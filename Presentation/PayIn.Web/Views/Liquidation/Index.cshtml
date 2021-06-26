@@ -1,0 +1,70 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+
+@using (Html.xpList(
+    LiquidationFactory.GetAllName,
+    LiquidationFactory.GetAllApi,
+    "",
+    "resources.liquidation.liquidations",
+    isTitleActive: true,
+    init:
+        "scope.arguments.since='" + DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss") + "';" +
+        "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "';",
+    initialSearch: false
+))
+{
+	<div class="table-responsive" data-ng-controller="LiquidationGetAllController">
+		<table class="table table-hover" style="margin-top:70px" col-md-12>
+			<thead>
+                <tr>
+                    <th translate="resources.liquidation.since">Since</th>
+                    <th translate="resources.liquidation.until">Until</th>
+                    <th translate="resources.liquidation.paymentDate">PaymentDate</th>
+                    <th translate="resources.liquidation.concession">Concession</th>
+                    <th translate="resources.liquidation.amount">Amount</th>
+                    <th translate="resources.liquidation.paid">Paid</th>
+                    <th>&nbsp;</th>
+                </tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-warning': item.state === 1,'b-l b-5x b-success': item.state === 2, 'b-l b-5x b-danger': item.state===0}">
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.Since))</td>
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.Until))</td>
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.PaymentDate))</td>
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.ConcessionName))</td>
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.Amount))€</td>
+                    <td>@(Html.ColumnFor<LiquidationGetAllResult>(x => x.Paid))€</td>
+                    <td class="icon-column">
+                        <!-- El primar link es antiguo para mantener compatibilidad mientras se migra -->
+                        <a ui-sref=@PaymentFactory.LiquidationPaymentsState("{{item.id||'null'}}", "{{item.concessionId||'null'}}") xp-navigate ng-if="item.paymentsCount>0">
+                            <i class='@XpIcons.Money'></i>
+                            <span class="badge badge-sm up bg-info" style="width:auto !important">{{item.paymentsCount}}</span>
+                        </a>
+                        <a ui-sref=@AccountLineFactory.GetByLiquidation("{{item.id}}") xp-navigate ng-if="item.paymentsCount==0||item.linesCount>0">
+                            <i class='@XpIcons.Money'></i>
+                            <span class="badge badge-sm up bg-info" style="width:auto !important">{{item.linesCount}}</span>
+                        </a>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">										
+        <div class="container-fluid row">
+            <div class="col-xs-12 col-sm-4">
+                <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.opened">Opened</p>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.outstanding">Outstanding</p>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.paid">Paid</p>
+            </div>
+        </div>										
+	</footer>
+}

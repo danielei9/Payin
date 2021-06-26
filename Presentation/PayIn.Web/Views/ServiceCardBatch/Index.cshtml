@@ -1,0 +1,65 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using PayIn.Application.Dto.Results
+
+@using (Html.xpList(
+    ServiceCardBatchFactory.GetAllName,
+    ServiceCardBatchFactory.GetAllApi,
+    "",
+    "resources.serviceCardBatch.list",
+    isPaginable: false,
+    isTitleActive: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, ServiceCardBatchFactory.CreateName, XpIcons.Plus)
+    }
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th translate="resources.serviceCardBatch.name">Name</th>
+                    <th translate="resources.serviceCardBatch.systemcard">SystemCard</th>
+                    <th translate="resources.serviceCardBatch.uidformat">Formato</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" ng-class="{
+					'b-l b-5x b-success' : item.state==1,
+					'b-l b-5x b-danger' : item.state!=1}">
+
+                    <td class="icon-column" ng-show="item.state===1">
+                        @XpColumns.IconColumn(XpIcons.Lock, popupUrl: ServiceCardBatchFactory.LockName, id: "{{item.id}}")
+                    </td>
+                    <td class="icon-column" ng-show="item.state!==1">
+                        @XpColumns.IconColumn(XpIcons.Unlock, popupUrl: ServiceCardBatchFactory.UnlockName, id: "{{item.id}}")
+                    </td>
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(XpIcons.Trash, popupUrl: ServiceCardBatchFactory.DeleteName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")
+                    </td>
+                    <td>@(Html.ColumnFor<ServiceCardBatchGetAllResult>(x => x.Name))</td>
+                    <td>@(Html.ColumnFor<ServiceCardBatchGetAllResult>(x => x.SystemCardName))</td>
+                    <td>@(Html.ColumnFor<ServiceCardBatchGetAllResult>(x => x.UidFormat))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.serviceCardBatch.active">Active</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.serviceCardBatch.blocked">Blocked</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+}

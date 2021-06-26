@@ -1,0 +1,264 @@
+<ion-view cache-view="false" title="PayIn" view-title="<div class='row' style='height: 100%;'><div class='col col-100'><div class='col col-10' style='padding: 0px;'><img class='title-image' style='height: 90%;position:fixed;top:0.5em;' src='img/logo.png'/></div><div class='col col-90'></div></div></div>" xp-panel ng-controller="menuGetAllController" xp-panel xp-loading>
+    <ion-nav-buttons side="left">
+        <div class="row">
+            <div class="col col-50" ng-click="openLeft()">
+                <img src="img/menu.png" style="width: 100%;">
+            </div>
+        </div>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-icon ion-android-notifications-none" ui-sref="serviceNotificationGetAll">
+            <span class="badge badge-assertive" ng-show="arguments.numNotifications">{{arguments.numNotifications}}</span>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-side-menus>
+        <ion-side-menu-content>
+            <ion-pane >
+                <!-- linear-gradient (45deg, #E59D72, #F5E88E); 
+style="background: url('img/trainFondo.png') center center / cover no-repeat fixed; opacity: 1; transform: translate3d(0%, 0px, 0px);"
+-->
+                <ion-content class="background mainContent">
+                    <div class="row" style="margin-top: 21%;">
+                        <div class="row">
+                            <div class="col col-5"></div>
+                            <div class="col col-90">¿Qué quieres hacer?</div>
+                            <div class="col col-5"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50" style=" text-align: center; color: white;">
+                            <div class="row">
+                                <div class="col col-30"></div>
+                                <div class="col col-50 circle-icon center" ng-click="transportClicked()" style="height: 100%; background-color: rgba(255,255,255,0.3); border-radius: 100%;">
+                                    <i class="material-icons" style="font-size: 3.5em;">directions_bus</i>
+                                </div>
+                                <div class="col col-20"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100" style="font-size: 0.9em;">
+                                    <div class="row center">
+                                        <div class="col col-10"></div>
+                                        <div class="col col-90">TRANSPORTE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col col-50" style=" text-align: center; color: white;"  ng-controller="BarcodeCtrl" ng-click="scanBarcode()">
+                            <div class="row">
+                                <div class="col col-20"></div>
+                                <div class="col col-50 circle-icon center" style="height: 100%; background-color: rgba(255,255,255,0.3); border-radius: 100%;">
+                                    <img src="img/qr-code.png" alt="" style="width: 3em; height: 3em;">
+                                </div>
+                                <div class="col col-30"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100" style="font-size: 0.9em;">
+                                    <div class="row center">
+                                        <div class="col col-90">PAGAR</div>
+                                        <div class="col col-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50" style="font-size: 1em;">
+                            <div class="row">
+                                <div class="col col-5"></div>
+                                <div class="col col-90">Consultar</div>
+                                <div class="col col-5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-50" style=" text-align: center; color: white;" >
+                            <div class="row">
+                                <div class="col col-30"></div>
+                                <div class="col col-50 circle-icon center" ui-sref="paymentmediagetall" ng-click="" style="height: 100%; background-color: rgba(255,255,255,0.3); border-radius: 100%;">
+                                    <i class="material-icons" style=" font-size: 3.5em;">credit_card</i>
+                                </div>
+                                <div class="col col-20"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100" style="font-size: 0.9em;">
+                                    <div class="row center">
+                                        <div class="col col-10"></div>
+                                        <div class="col col-70">WALLET</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-50" style=" text-align: center; color: white;" ng-controller="QRCtrl" ng-show="hasCommercePayment() || hasPaymentWorker()" >
+                            <div class="row">
+                                <div class="col col-20"></div>
+                                <div class="col col-50 circle-icon center" ui-sref="ticketcreate" ng-click="" style="height: 100%; background-color: rgba(255,255,255,0.3); border-radius: 100%;">
+                                    <i class="material-icons" style=" font-size: 3.5em;">euro_symbol</i>
+                                </div>
+                                <div class="col col-30"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100" style="font-size: 0.9em;">
+                                    <div class="row center">
+                                        <div class="col col-90">COBRAR</div>
+                                        <div class="col col-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-50" style=" text-align: center; color: white; opacity: 0.5;" ng-controller="QRCtrl" ng-hide="hasCommercePayment() || hasPaymentWorker()">
+                            <div class="row">
+                                <div class="col col-20"></div>
+                                <div class="col col-50 circle-icon center" style="height: 100%; background-color: rgba(255,255,255,0.3); border-radius: 100%;">
+                                    <i class="material-icons" style=" font-size: 3.5em;">map</i>
+                                </div>
+                                <div class="col col-30"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100" style="font-size: 0.9em;">
+                                    <div class="row center">
+                                        <div class="col col-90">MAPAS<br>(Próximamente)</div>
+                                        <div class="col col-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--xp-list api="Mobile/Main/v3" initial-search-->
+                    <div style="height: 16%; background-color: rgba(255,255,255,0);" data-ng-show="data.length>0">
+                        <div class="col col-100" style="text-align: center; margin-bottom: -5%;">
+                            <div class="row" >
+                                <div class="col col-25"></div>
+                                <div class="col col-50" >
+                                    <div class="row center" ui-sref="ticketGetAll" ng-click="" style=" border-radius: 38px 38px 38px 38px; background-color: rgba(255,255,255,0); border: 1px solid white; color: white; font-size: 0.9em; padding: 0px;">
+                                        <div class="col col-15"></div>
+                                        <div class="col col-15 center" style="padding:0px;"><i class="material-icons" style="font-size: 1.4em;">remove_red_eye</i></div>
+                                        <div class="col col-55 center" style="padding:0px; padding-top: 1px !important;" >VER TODOS</div>
+                                        <div class="col col-15"></div>
+                                    </div>
+                                </div>
+                                <div class="col col-25"></div>
+                            </div>
+                        </div>
+
+                        <ion-slide-box data-ng-show="data.length>0">
+                            <ion-slide data-ng-repeat="item in data">
+                                <div class="row">
+                                    <div class="col col-15"></div>
+                                    <div class="col col-70  center">
+                                        <div class="row"  style="box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);background-color: rgba(255,255,255,0.8); height: 5em;">
+                                            <div class="col col-10 center">
+                                                <span class="ion-chevron-left button-clear" style="color: black; font-size: 1em !important; margin-left: -0.5em;"></span>
+                                            </div>
+                                            <div class="col col-20" style="background-color: #E5AD3C; color: white; text-align: center;">
+                                                <div>{{item.day}}</div>
+                                                <div>{{item.month | xpNumberToMonth}}</div>
+                                            </div>
+                                            <div class="col col-55" style="margin-left: 10%; margin-top: 5%; padding: 0px; margin-right: 6.5%;">
+                                                <div style="margin-top: -0.5em; font-size: 1.05em; font-family: Roboto;
+                                                            white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                                    {{item.concessionName}}</div>
+                                                <div style="margin: 0; color: #333333; font-family: Roboto light; font-size: 0.93em; opacity: 0.9;">{{item.reference}}</div>
+                                                <div style="font-size: 0.9em; color: red;">-{{item.amount}}€</div>
+                                            </div>
+                                            <div class="col col-10 center">
+                                                <span class="ion-chevron-right button-clear" style="color: black; font-size: 1em; padding-left: 0;"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-10"></div>
+                                </div>
+                            </ion-slide> 
+                        </ion-slide-box>
+
+                    </div>
+                    <!--/xp-list-->
+                </ion-content>
+            </ion-pane>
+        </ion-side-menu-content>
+        <!-- Left menu -->
+        <ion-side-menu side="left">
+            <ion-content>
+                <ion-list>    
+                    <div class="list">
+                        <a class = "button button-full button-clear button-payin" ui-sref="accountprofile">Perfil</a>
+                        <!--a class = "button button-full button-clear button-payin" ui-sref="ticketcreate">Crear Ticket</a-->
+                        <a class = "button button-full button-clear button-payin" ui-sref="ticketdue">Recibos</a>
+                        <a class = "button button-full button-clear button-payin" ui-sref="mainGetEntailments">Vinculaciones</a>
+                        <a class = "button button-full button-clear button-payin" xp-logout ng-click="logout();">Cerrar Sesión</a>
+                        <a class = "button button-full button-clear button-payin" ui-sref="about">Acerca de Pay[In]</a>
+                    </div>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+
+
+
+    <!--
+<ion-footer-bar style="border: 0px;height: 15%; background-color: rgba(255,255,255,0);">
+<ion-slide-box>
+<ion-slide>
+<div class="row"  style="box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);background-color: rgba(255,255,255,0.8); width: 17em; height: 4.5em; margin-left: 3.7em;">
+<div class="col col-10">
+<button class="ion-chevron-left button-clear" style="color: white;color: white; font-size: 2em; margin-left: -0.5em;"></button>
+</div>
+<div class="col col-20" style="background-color: #E9AF30; color: white; text-align: center;">
+<div>4</div>
+<div>AGO</div>
+</div>
+<div class="col col-60" style="margin-left: 1%;">
+<div style="margin-top: -0.5em;">Metrovalencia</div>
+<div style="font-size: 0.9em; margin: 0; color: #333333;">Bonometro A</div>
+<div style="font-size: 0.9em; margin-top: -0.3em; color: red;">-7'20€</div>
+</div>
+<div class="col col-10">
+<button class="ion-chevron-right button-clear" style="color: white;color: white; font-size: 2em; padding-left: 0;"></button>
+</div>
+</div>
+</ion-slide>
+<ion-slide>
+<div class="row"  style="box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);background-color: rgba(255,255,255,0.8); width: 17em; height: 4.5em; margin-left: 3.7em;">
+<div class="col col-10">
+<button class="ion-chevron-left button-clear" style="color: white;color: white; font-size: 2em; margin-left: -0.5em;"></button>
+</div>
+<div class="col col-20" style="background-color: #E9AF30; color: white; text-align: center;">
+<div>5</div>
+<div>SEP</div>
+</div>
+<div class="col col-60" style="margin-left: 1%;">
+<div style="margin-top: -0.5em;">Metrovalencia</div>
+<div style="font-size: 0.9em; margin: 0; color: #333333;">Bonometro A</div>
+<div style="font-size: 0.9em; margin-top: -0.3em; color: red;">-7'20€</div>
+</div>
+<div class="col col-10">
+<button class="ion-chevron-right button-clear" style="color: white;color: white; font-size: 2em; padding-left: 0;"></button>
+</div>
+</div>
+</ion-slide>
+<ion-slide>
+<div class="row"  style="box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);background-color: rgba(255,255,255,0.8); width: 17em; height: 4.5em; margin-left: 3.7em;">
+<div class="col col-10">
+<button class="ion-chevron-left button-clear" style="color: white;color: white; font-size: 2em; margin-left: -0.5em;"></button>
+</div>
+<div class="col col-20" style="background-color: #E9AF30; color: white; text-align: center;">
+<div>4</div>
+<div>FEB</div>
+</div>
+<div class="col col-60" style="margin-left: 1%;">
+<div style="margin-top: -0.5em;">Metrovalencia</div>
+<div style="font-size: 0.9em; margin: 0; color: #333333;">Bonometro A</div>
+<div style="font-size: 0.9em; margin-top: -0.3em; color: red;">-7'20€</div>
+</div>
+<div class="col col-10">
+<button class="ion-chevron-right button-clear" style="color: white;color: white; font-size: 2em; padding-left: 0;"></button>
+</div>
+</div>
+</ion-slide>
+</ion-slide-box>
+</ion-footer-bar>
+-->
+</ion-view>

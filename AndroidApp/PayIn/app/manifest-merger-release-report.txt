@@ -1,0 +1,344 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
+	android:versionCode
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:installLocation
+		ADDED from AndroidManifest.xml:4:5
+permission#com.android.application.payin.permission.MAPS_RECEIVE
+ADDED from AndroidManifest.xml:6:5
+	android:protectionLevel
+		ADDED from AndroidManifest.xml:8:9
+	android:name
+		ADDED from AndroidManifest.xml:7:9
+uses-feature#android.hardware.camera
+ADDED from AndroidManifest.xml:12:5
+MERGED from com.embarkmobile:zxing-android-minimal:1.2.1:26:3
+	android:name
+		ADDED from AndroidManifest.xml:12:19
+uses-feature#android.hardware.telephony
+ADDED from AndroidManifest.xml:13:5
+	android:required
+		ADDED from AndroidManifest.xml:13:61
+	android:name
+		ADDED from AndroidManifest.xml:13:19
+uses-permission#com.payin.application.payin.permission.MAPS_RECEIVE
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
+uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
+ADDED from AndroidManifest.xml:16:5
+	android:name
+		ADDED from AndroidManifest.xml:16:22
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:17:5
+	android:name
+		ADDED from AndroidManifest.xml:17:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:18:5
+	android:name
+		ADDED from AndroidManifest.xml:18:22
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:19:5
+	android:name
+		ADDED from AndroidManifest.xml:19:22
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from AndroidManifest.xml:20:5
+	android:name
+		ADDED from AndroidManifest.xml:20:22
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#android.permission.NFC
+ADDED from AndroidManifest.xml:22:5
+	android:name
+		ADDED from AndroidManifest.xml:22:22
+uses-permission#android.permission.CAMERA
+ADDED from AndroidManifest.xml:23:5
+MERGED from com.embarkmobile:zxing-android-minimal:1.2.1:19:3
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+application
+ADDED from AndroidManifest.xml:25:5
+MERGED from com.android.support:appcompat-v7:22.1.1:22:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+MERGED from com.google.android.gms:play-services:6.5.87:20:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+MERGED from com.embarkmobile:zxing-android-minimal:1.2.1:43:3
+MERGED from com.github.alamkanak:android-week-view:1.2.3:9:5
+MERGED from com.android.support:appcompat-v7:22.1.1:22:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+MERGED from com.afollestad:material-dialogs:0.7.3.1:12:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+MERGED from com.android.support:appcompat-v7:22.1.1:22:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+MERGED from com.android.support:recyclerview-v7:22.1.1:22:5
+MERGED from com.android.support:support-v4:22.1.1:22:5
+	android:label
+		ADDED from AndroidManifest.xml:28:9
+	android:allowBackup
+		ADDED from AndroidManifest.xml:26:9
+	android:icon
+		ADDED from AndroidManifest.xml:27:9
+	android:largeHeap
+		ADDED from AndroidManifest.xml:30:9
+	android:theme
+		ADDED from AndroidManifest.xml:29:9
+meta-data#com.google.android.gms.version
+ADDED from AndroidManifest.xml:31:9
+MERGED from com.google.android.gms:play-services:6.5.87:21:9
+	android:value
+		ADDED from AndroidManifest.xml:33:13
+	android:name
+		ADDED from AndroidManifest.xml:32:13
+meta-data#com.google.android.maps.v2.API_KEY
+ADDED from AndroidManifest.xml:34:9
+	android:value
+		ADDED from AndroidManifest.xml:36:13
+	android:name
+		ADDED from AndroidManifest.xml:35:13
+activity#com.mobile.application.payin.views.Login
+ADDED from AndroidManifest.xml:37:9
+	android:name
+		ADDED from AndroidManifest.xml:38:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:39:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:40:17
+	android:name
+		ADDED from AndroidManifest.xml:40:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:41:17
+	android:name
+		ADDED from AndroidManifest.xml:41:27
+activity#com.mobile.application.payin.views.Register
+ADDED from AndroidManifest.xml:44:9
+	android:label
+		ADDED from AndroidManifest.xml:46:13
+	android:name
+		ADDED from AndroidManifest.xml:45:13
+activity#com.mobile.application.payin.views.UpdatePass
+ADDED from AndroidManifest.xml:48:9
+	android:label
+		ADDED from AndroidManifest.xml:50:13
+	android:name
+		ADDED from AndroidManifest.xml:49:13
+intent-filter#.Views.ChangePass+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:51:13
+action#.Views.ChangePass
+ADDED from AndroidManifest.xml:52:17
+	android:name
+		ADDED from AndroidManifest.xml:52:25
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:53:17
+	android:name
+		ADDED from AndroidManifest.xml:53:27
+activity#com.mobile.application.payin.views.Principal
+ADDED from AndroidManifest.xml:56:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:58:13
+	android:label
+		ADDED from AndroidManifest.xml:59:13
+	android:name
+		ADDED from AndroidManifest.xml:57:13
+activity#com.mobile.application.payin.views.Ora
+ADDED from AndroidManifest.xml:61:9
+	android:label
+		ADDED from AndroidManifest.xml:63:13
+	android:name
+		ADDED from AndroidManifest.xml:62:13
+activity#com.mobile.application.payin.views.Calendario
+ADDED from AndroidManifest.xml:65:9
+	android:label
+		ADDED from AndroidManifest.xml:67:13
+	android:name
+		ADDED from AndroidManifest.xml:66:13
+activity#com.mobile.application.payin.views.Incidencia
+ADDED from AndroidManifest.xml:69:9
+	android:label
+		ADDED from AndroidManifest.xml:71:13
+	android:name
+		ADDED from AndroidManifest.xml:70:13
+activity#com.mobile.application.payin.views.Settings
+ADDED from AndroidManifest.xml:73:9
+	android:label
+		ADDED from AndroidManifest.xml:75:13
+	android:name
+		ADDED from AndroidManifest.xml:74:13
+activity#com.mobile.application.payin.views.About
+ADDED from AndroidManifest.xml:77:9
+	android:label
+		ADDED from AndroidManifest.xml:79:13
+	android:name
+		ADDED from AndroidManifest.xml:78:13
+activity#com.mobile.application.payin.views.Fichaje
+ADDED from AndroidManifest.xml:81:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:83:13
+	android:label
+		ADDED from AndroidManifest.xml:84:13
+	android:name
+		ADDED from AndroidManifest.xml:82:13
+activity#com.mobile.application.payin.views.NFC
+ADDED from AndroidManifest.xml:86:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:88:13
+	android:label
+		ADDED from AndroidManifest.xml:89:13
+	android:name
+		ADDED from AndroidManifest.xml:87:13
+intent-filter#android.intent.category.DEFAULT+android.nfc.action.NDEF_DISCOVERED
+ADDED from AndroidManifest.xml:90:13
+action#android.nfc.action.NDEF_DISCOVERED
+ADDED from AndroidManifest.xml:91:17
+	android:name
+		ADDED from AndroidManifest.xml:91:25
+data
+ADDED from AndroidManifest.xml:93:17
+	android:mimeType
+		ADDED from AndroidManifest.xml:93:23
+service#com.mobile.application.payin.views.TrackService
+ADDED from AndroidManifest.xml:106:9
+	android:name
+		ADDED from AndroidManifest.xml:106:18
+activity#com.mobile.application.payin.views.PresenceTest
+ADDED from AndroidManifest.xml:107:9
+	android:label
+		ADDED from AndroidManifest.xml:109:13
+	android:name
+		ADDED from AndroidManifest.xml:108:13
+activity#com.mobile.application.payin.views.FichajeManual
+ADDED from AndroidManifest.xml:111:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:113:13
+	android:label
+		ADDED from AndroidManifest.xml:114:13
+	android:name
+		ADDED from AndroidManifest.xml:112:13
+activity#com.mobile.application.payin.views.Agenda
+ADDED from AndroidManifest.xml:116:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:118:13
+	android:label
+		ADDED from AndroidManifest.xml:119:13
+	android:name
+		ADDED from AndroidManifest.xml:117:13
+activity#com.mobile.application.payin.views.Formulario
+ADDED from AndroidManifest.xml:121:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:123:13
+	android:label
+		ADDED from AndroidManifest.xml:124:13
+	android:name
+		ADDED from AndroidManifest.xml:122:13
+uses-sdk
+INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
+MERGED from com.android.support:appcompat-v7:22.1.1:20:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+MERGED from com.google.android.gms:play-services:6.5.87:18:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+MERGED from com.embarkmobile:zxing-android-minimal:1.2.1:23:3
+MERGED from com.github.alamkanak:android-week-view:1.2.3:5:5
+MERGED from com.android.support:appcompat-v7:22.1.1:20:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+MERGED from com.afollestad:material-dialogs:0.7.3.1:8:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+MERGED from com.android.support:appcompat-v7:22.1.1:20:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+MERGED from com.android.support:recyclerview-v7:22.1.1:20:5
+MERGED from com.android.support:support-v4:22.1.1:20:5
+	android:targetSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-permission#android.permission.VIBRATE
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:20:3
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:20:20
+uses-permission#android.permission.FLASHLIGHT
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:21:3
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:21:20
+uses-feature#android.hardware.camera.front
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:27:3
+	android:required
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:27:62
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:27:17
+uses-feature#android.hardware.camera.autofocus
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:30:3
+	android:required
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:30:66
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:30:17
+uses-feature#android.hardware.camera.flash
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:31:3
+	android:required
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:31:62
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:31:17
+uses-feature#android.hardware.screen.landscape
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:32:3
+	android:required
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:32:66
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:32:17
+uses-feature#android.hardware.wifi
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:33:3
+	android:required
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:33:54
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:33:17
+supports-screens
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:37:3
+	android:largeScreens
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:38:21
+	android:smallScreens
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:40:21
+	android:normalScreens
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:39:21
+	android:xlargeScreens
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:37:21
+	android:anyDensity
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:41:21
+activity#com.google.zxing.client.android.CaptureActivity
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:7
+	android:clearTaskOnLaunch
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:17
+	android:screenOrientation
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:164
+	android:stateNotNeeded
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:202
+	android:windowSoftInputMode
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:291
+	android:configChanges
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:50
+	android:theme
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:232
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:44:101
+activity#com.google.zxing.client.android.HelpActivity
+ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:45:7
+	android:screenOrientation
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:45:77
+	android:name
+		ADDED from com.embarkmobile:zxing-android-minimal:1.2.1:45:17
+activity#android.support.v7.widget.TestActivity
+ADDED from com.android.support:recyclerview-v7:22.1.1:23:9
+	android:label
+		ADDED from com.android.support:recyclerview-v7:22.1.1:25:13
+	android:name
+		ADDED from com.android.support:recyclerview-v7:22.1.1:24:13

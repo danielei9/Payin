@@ -1,0 +1,13 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	SystemCardMemberFactory.DeleteName,
+	SystemCardMemberFactory.DeleteApi,
+	"",
+	"resources.systemCard.delete",
+	id: "id"
+))
+{
+	<p translate="resources.systemCardMember.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete the member {{name}} from the System Card?</p>
+}
+

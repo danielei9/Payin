@@ -1,0 +1,23 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.SystemCardMember;
+@using (Html.xpPut(
+    SystemCardMemberFactory.UpdateName,
+    SystemCardMemberFactory.UpdateApi,
+    "",
+    "resources.systemCardMember.update" //,
+    //isTitleActive: true //,
+    //init: "scope.arguments.id = 9"
+))
+{
+    <xp-get data-api="@SystemCardMemberFactory.GetApi">
+	@*<xp-get xp-panel data-api="@SystemCardMemberFactory.GetApi" data-xp-init="scope.id=params.Id;"></xp-get>*@
+        <div class="col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<SystemCardMemberUpdateArguments>(x => x.Name, focus: true))
+                @(Html.ArgumentFor<SystemCardMemberUpdateArguments>(x => x.Email, disabled: "1"))
+            </div>
+        </div>
+
+    </xp-get>
+
+}

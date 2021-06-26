@@ -1,0 +1,23 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPost(
+    LiquidationFactory.CreateAccountLinesName,
+    LiquidationFactory.CreateAccountLinesApi,
+    "",
+    "resources.liquidation.createAccountLines",
+    init: "scope.arguments.lines = _.filter(scope.arguments.lines, function(item) { return item.selected == true; })"
+))
+{
+    <div class="panel panel-default" style="margin-top:-15px">
+        <div class="panel-body">
+            <div data-ng-class="{'has-error':!form.liquidationId.$valid}" class="form-group col-md-12">
+                <label for="liquidationId" class="control-label ng-scope" translate="resources.liquidation.accountLines">Account lines</label>
+                <div class="input-group" style="width:100% !important;">
+                    <ul>
+                        <li ng-repeat="item in arguments.lines">{{item.date|xpDateTime}} {{item.typeName}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

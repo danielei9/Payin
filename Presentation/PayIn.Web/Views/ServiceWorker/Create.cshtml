@@ -1,0 +1,15 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceWorker;
+
+@using (Html.xpPost(
+	ServiceWorkerFactory.CreateName,
+	ServiceWorkerFactory.CreateApi,
+	"",
+	ServiceWorkerResources.Create,
+	isTitleActive: true
+))
+{
+	@(Html.ArgumentFor<ServiceWorkerCreateArguments>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ServiceWorkerCreateArguments>(x => x.Login))	
+}

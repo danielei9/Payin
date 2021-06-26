@@ -1,0 +1,20 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+@using (Html.xpPut(
+				ServiceCategoryFactory.UpdateName,
+				ServiceCategoryFactory.UpdateApi,
+				"",
+				"resources.serviceCategory.update",
+				isTitleActive: true				
+			))
+{
+    <xp-get data-api="@ServiceCategoryFactory.UpdateApi">
+	    @(Html.ArgumentFor<ServiceCategoryUpdateArguments>(x => x.Name))
+        @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AllMembersInSomeGroup, width: 6))
+        @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AMemberInOnlyOneGroup, width: 6))
+        @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AskWhenEmit, width: 6))
+        @(Html.SelectFor<ServiceCategoryCreateArguments>(x => x.DefaultGroupWhenEmitId, "defaultGroupWhenEmitName", ServiceGroupFactory.RetrieveSelectorApi, width: 6))
+    </xp-get>
+}
+

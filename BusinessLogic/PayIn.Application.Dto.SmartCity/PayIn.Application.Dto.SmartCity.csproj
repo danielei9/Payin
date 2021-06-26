@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28D56039-C7BD-4FFE-8B47-ABFE7261CB4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Application.Dto.SmartCity</RootNamespace>
+    <AssemblyName>PayIn.Application.Dto.SmartCity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arguments\ApiDeviceGetAllArguments.cs" />
+    <Compile Include="Arguments\ApiEnergyTariffGetAllArguments.cs" />
+    <Compile Include="Arguments\ApiComponentGetAllArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetTargetValuesArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetMaxEnergyArguments_Period.cs" />
+    <Compile Include="Arguments\ApiSensorGetMaxEnergyArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetInstantaneousArguments_Period.cs" />
+    <Compile Include="Arguments\ApiSensorGetPowerArguments_Period.cs" />
+    <Compile Include="Arguments\ApiSensorGetPowerArguments.cs" />
+    <Compile Include="Arguments\ApiSmartCityGetAllArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetEnergyArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetEnergyArguments_Period.cs" />
+    <Compile Include="Arguments\ApiSensorGetPerMonthArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetPerDayArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetPerHourArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetInstantaneousArguments.cs" />
+    <Compile Include="Arguments\ApiSensorGetAllArguments.cs" />
+    <Compile Include="Arguments\ApiSmartCitySetTargetValueArguments.cs" />
+    <Compile Include="Arguments\ApiSmartCityRemoveTargetValueArguments.cs" />
+    <Compile Include="Arguments\SentiloAlertGetAllArguments.cs" />
+    <Compile Include="Arguments\SentiloDataUpdateValueArguments.cs" />
+    <Compile Include="Arguments\SentiloDataUpdateSensorArguments.cs" />
+    <Compile Include="Arguments\SentiloDataUpdateProviderArguments_Sensor.cs" />
+    <Compile Include="Arguments\SentiloAlertUpdateArguments.cs" />
+    <Compile Include="Arguments\SentiloDataUpdateProviderArguments_Observation.cs" />
+    <Compile Include="Arguments\SentiloDataUpdateProviderArguments.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\ApiDeviceGetAllResult.cs" />
+    <Compile Include="Results\ApiEnergyTariffGetAllResult.cs" />
+    <Compile Include="Results\ApiComponentGetAllResult.cs" />
+    <Compile Include="Results\ApiEnergyTariffGetAllResult_Schedule.cs" />
+    <Compile Include="Results\ApiEnergyTariffGetAllResult_TimeTable.cs" />
+    <Compile Include="Results\ApiSensorGetTargetValuesResult.cs" />
+    <Compile Include="Results\ApiSensorGetMaxEnergyResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetMaxEnergyResult.cs" />
+    <Compile Include="Results\ApiSensorGetPowerResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetPowerResult.cs" />
+    <Compile Include="Results\ApiSmartCityGetAllResultBase.cs" />
+    <Compile Include="Results\ApiSmartCityGetAllResultBase_Sensor.cs" />
+    <Compile Include="Results\ApiSmartCityGetAllResult_Price.cs" />
+    <Compile Include="Results\ApiSmartCityGetAllResult.cs" />
+    <Compile Include="Results\ApiSensorGetAllResult.cs" />
+    <Compile Include="Results\ApiSensorGetAllResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetAllResult_Price.cs" />
+    <Compile Include="Results\ApiSensorGetEnergyResult.cs" />
+    <Compile Include="Results\ApiSensorGetInstantaneousResult.cs" />
+    <Compile Include="Results\ApiSensorGetEnergyResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetInstantaneousResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetPerHourResultBase.cs" />
+    <Compile Include="Results\ApiSensorGetPerMonthResult.cs" />
+    <Compile Include="Results\ApiSensorGetPerDayResult.cs" />
+    <Compile Include="Results\ApiSensorGetPerHourResult.cs" />
+    <Compile Include="Results\SentiloAlertGetAllResult_Message.cs" />
+    <Compile Include="Results\SentiloAlertGetAllResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899B32B-1B5C-476D-896A-8B0BF4B10F71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855E283-100D-455E-BAC4-B4A87207647A}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.SmartCity\PayIn.Domain.SmartCity.csproj">
+      <Project>{644CC14C-4E7D-4489-A2BF-770DD2904A0B}</Project>
+      <Name>PayIn.Domain.SmartCity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-D3C8-43A9-8EB0-FBAB811FA250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

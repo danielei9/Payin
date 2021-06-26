@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments.Purse;
+@using Xp.Common;
+
+@using (Html.xpPost(
+    PurseFactory.CreateName,
+    PurseFactory.CreateApi,
+    "",
+    "resources.purse.create",
+    isTitleActive: true,
+    successUrl: "/Purse/CreateImage/{{id}}" //El handler deberá pasar el id del nuevo monedero
+))
+{
+	<div class="col-md-12">
+		@(Html.ArgumentFor<PurseCreateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<PurseCreateArguments>(x => x.Validity, width:6))
+		@(Html.ArgumentFor<PurseCreateArguments>(x => x.Expiration, width: 6))
+   </div>
+		}

@@ -1,0 +1,51 @@
+﻿@using PayIn.Application.Dto.Transport.Arguments.TransportPrice;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	TransportPriceFactory.UpdateName,
+	TransportPriceFactory.UpdateApi,
+	"",
+	"resources.transportPrice.update",
+	init: "scope.arguments.id=params.id"
+))
+{
+	<xp-get data-api="@TransportPriceFactory.GetApi">
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.Price, width: 6))
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.Start, width: 3))
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.End, width: 3))
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.Version, width: 6))
+		<div data-ng-class="{'has-error':!form.zone.$valid}" class="form-group col-md-6">			
+			<label for="zone" class="control-label ng-scope" translate="resources.transportPrice.zonezone">Zona</label>
+			<select id="zone" name="zone" class="form-control ng-pristine ng-untouched ng-valid" data-ng-model="arguments.zone">
+				<option value="" class="ng-scope"></option>
+                <option value="1" translate="resources.transportPrice.zoneA" class="ng-scope">A</option>
+                <option value="2" translate="resources.transportPrice.zoneB" class="ng-scope">B</option>
+                <option value="4" translate="resources.transportPrice.zoneC" class="ng-scope">C</option>
+                <option value="8" translate="resources.transportPrice.zoneD" class="ng-scope">D</option>
+                <option value="16" translate="resources.transportPrice.zoneE" class="ng-scope">E</option>
+                <option value="32" translate="resources.transportPrice.zoneF" class="ng-scope">F</option>
+                <option value="3" translate="resources.transportPrice.zoneAB" class="ng-scope">AB</option>
+                <option value="6" translate="resources.transportPrice.zoneBC" class="ng-scope">BC</option>
+                <option value="12" translate="resources.transportPrice.zoneCD" class="ng-scope">CD</option>
+                <option value="24" translate="resources.transportPrice.zoneDE" class="ng-scope">DE</option>
+                <option value="48" translate="resources.transportPrice.zoneEF" class="ng-scope">EF</option>
+                <option value="7" translate="resources.transportPrice.zoneABC" class="ng-scope">ABC</option>
+                <option value="14" translate="resources.transportPrice.zoneBCD" class="ng-scope">BCD</option>
+                <option value="28" translate="resources.transportPrice.zoneCDE" class="ng-scope">CDE</option>
+                <option value="56" translate="resources.transportPrice.zoneDEF" class="ng-scope">DEF</option>
+                <option value="15" translate="resources.transportPrice.zoneABCD" class="ng-scope">ABCD</option>
+                <option value="30" translate="resources.transportPrice.zoneBCDE" class="ng-scope">BCDE</option>
+                <option value="60" translate="resources.transportPrice.zoneCDEF" class="ng-scope">CDEF</option>
+                <option value="31" translate="resources.transportPrice.zoneABCDE" class="ng-scope">ABCDE</option>
+                <option value="62" translate="resources.transportPrice.zoneBCDEF" class="ng-scope">BCDEF</option>
+                <option value="63" translate="resources.transportPrice.zoneABCDEF" class="ng-scope">ABCDEF</option>
+			</select>
+		</div>		
+		<div class="panel-body">
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+		</div>	
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.MaxTimeChanges, width: 3))	
+		@(Html.ArgumentFor<TransportPriceUpdateArguments>(x => x.OperatorContext, width: 9))
+	</xp-get>
+}
+

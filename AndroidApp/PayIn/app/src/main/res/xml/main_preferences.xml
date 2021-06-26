@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="prefRootScreen">
+
+    <Preference
+        android:key="prefProfile"
+        android:title="@string/profile"
+        android:summary="" >
+        <intent android:action=".Views.Profile" />
+    </Preference>
+
+    <Preference
+        android:key="prefEnterprise"
+        android:title="@string/enterprises"
+        android:summary="" >
+        <intent android:action=".Views.EnterpriseList" />
+    </Preference>
+
+    <Preference
+        android:key="prefVersion"
+        android:selectable="false"
+        android:title="@string/version_number"
+        android:summary="" />
+
+    <CheckBoxPreference
+        android:key="prefShowHours"
+        android:title="@string/prefHoursTitle"
+        android:summary="@string/prefhoursDesc"
+        android:defaultValue="true" />
+
+    <Preference
+        android:key="prefIP"
+        android:title="Cambiar IP"
+        android:summary="" />
+
+</PreferenceScreen>
+

@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPopupPut(
+	LiquidationFactory.PayName,
+	LiquidationFactory.PayApi,
+	"",
+	"resources.liquidation.pay"
+))
+{
+	<h4 translate="resources.liquidation.payQuestion" translate-values="{ total: '{{arguments.total}}' }">Do you want to pay the liquidation of {{arguments.total}} €?</h4>
+}

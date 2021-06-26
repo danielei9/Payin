@@ -1,0 +1,71 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Purse;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	PurseFactory.GetAll,
+	PurseFactory.GetAllApi,
+	"",
+	"resources.purse.purses",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: PurseFactory.CreateName
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>					
+					<th >&nbsp;</th>
+					<th translate="resources.purse.name">Name</th>
+					<th translate="resources.purse.supplier">Supplier</th>
+					<th translate="resources.purse.validity">Validity</th>
+					<th translate="resources.purse.expiration">Expiration</th>
+					<th translate="resources.purse.balance">Balance</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">		
+					<td data-ng-show="item.isSupplier==false">
+						&nbsp;
+					</td>		
+					<td class="icon-column" data-ng-show="item.isSupplier">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: PurseFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<PurseGetAllResult>(x => x.Name, panelUrl: PurseFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<PurseGetAllResult>(x => x.Name))</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<PurseGetAllResult>(x => x.Supplier, panelUrl: PurseFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<PurseGetAllResult>(x => x.Supplier))</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<PurseGetAllResult>(x => x.Validity, panelUrl: PurseFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<PurseGetAllResult>(x => x.Validity))</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<PurseGetAllResult>(x => x.Expiration, panelUrl: PurseFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<PurseGetAllResult>(x => x.Expiration))</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<PurseGetAllResult>(x => x.Total, panelUrl: PurseFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<PurseGetAllResult>(x => x.Total))</td>
+					<td class="icon-column2">
+						<a data-ui-sref='@PurseFactory.GetUsersName ({id:{{item.id}}})' data-xp-navigate>
+							<i class='@XpIcons.Purse'></i>							
+						</a>
+					</td>
+					<td class="icon-column2" ng-show="item.isSupplier">
+						<a ui-sref='@PaymentConcessionPurseFactory.GetAllName ({id:{{item.id}}})' xp-navigate>
+							<i class='@XpIcons.AddUser'></i>
+							{{item.numberActivePaymentConcessions}}/{{item.numberPaymentConcessions}}
+						</a>
+					</td>		
+					<td class="icon-column2" data-ng-show="item.isSupplier==false">
+						&nbsp;
+					</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

@@ -1,0 +1,74 @@
+﻿@using PayIn.Application.Dto.Results.SystemCard;
+@using PayIn.Web.App.Factories;
+@using PayIn.Domain.Security;
+@using Xp.Common;
+@{
+    var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+    var checkNotIsSuperadministrator = "!authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+}
+
+@using (Html.xpList(
+	SystemCardFactory.GetAllName,
+	SystemCardFactory.GetAllApi,
+	"",
+	"resources.systemCard.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	actions: new ActionLink[] {
+new ActionLink(ActionLink.ActionLinkType.Panel, SystemCardFactory.CreateName, XpIcons.Plus, roles: new List<string>{"Superadministrator" })
+	}
+))
+{
+
+	<div class="row"
+		 style="
+			position: absolute;
+			top: -5px;
+			width: 300px;
+			padding: 0;
+		">
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th ng-show="@checkIsSuperadministrator">&nbsp;</th>
+					<th translate="resources.systemCard.name">Name</th>
+					<th translate="resources.systemCard.owner">Owner</th>
+					<th translate="resources.systemCard.profile">Profile</th>
+					<th translate="resources.systemCard.cardType">Tipo de tarjeta</th>
+					<th translate="resources.systemCard.generationType">Tipo generador</th>
+					<th translate="resources.systemCard.membersCount">Nº usuarios</th>
+				</tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="item in data">
+                    <td class="icon-column" ng-show="@checkIsSuperadministrator">
+                        @XpColumns.IconColumn(
+XpIcons.Trash,
+popupUrl: SystemCardFactory.DeleteName,
+id: "{{item.id}}",
+arguments: "{\"name\":\"{{item.name}}\"}"
+)
+                    </td>
+                    <td ng-show="@checkIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Name, panelUrl: SystemCardFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkNotIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Name, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Owner, panelUrl: SystemCardFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkNotIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Owner, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Profile, panelUrl: SystemCardFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkNotIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.Profile, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.CardType, panelUrl: SystemCardFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkNotIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.CardType, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.NumberGenerationType, panelUrl: SystemCardFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td ng-show="@checkNotIsSuperadministrator">@(Html.ColumnFor<SystemCardGetAllResult>(x => x.NumberGenerationType, id: "{{item.id}}"))</td>
+                    <td class="icon-column">
+                        <a data-xp-navigate ui-sref="@(SystemCardMemberFactory.GetAllName + "({" + "systemCardId: item.id" + "})")">
+                            <i class='@XpIcons.Users'></i>
+                            <span class="badge badge-sm up bg-info pull-right-xs">{{item.membersCount}}</span>
+                        </a>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+}

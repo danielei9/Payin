@@ -1,0 +1,22 @@
+<ion-view cache-view="false" view-title="Bluetooth" ng-controller="mainBluetoothController" xp-panel xp-loading ng-init="xpSmartband.scanDevices()">
+    <div>
+        <ion-content>
+            <!--<div class="padding">
+                <button class="button button-block button-payin" ng-click="">Salir</button>
+            </div>-->
+            <ul class="list">
+                <li class="item item-icon-right" ng-repeat="item in xpSmartband.list">
+                    <div class="row row-center" ng-click="select(item.id, item.name)">
+                        <div class="col col-95 text-left">
+                            <div class="ticket-prize">{{item.name}}</div>
+                            <div class="ticket-prizeAux">{{item.id}}</div>
+                        </div>
+                        <div class="col col-5">
+                            <img style="height:50px;" src="img/cards/smartband icon orange.png" alt="">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </ion-content>
+    </div>
+</ion-view>

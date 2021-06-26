@@ -1,0 +1,60 @@
+﻿@using PayIn.Application.Dto.Results.ControlTrack;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@{
+	var items = ControlTrackFactory.GetItemName + "({itemId:{{item.id}}})";
+}
+@using (Html.xpList(
+	ControlTrackFactory.GetViewName,
+	ControlTrackFactory.GetViewApi,
+	"",
+	//ControlTrackResources.GetView,
+	"resources.controlTrack.getView",
+	"{{data[0].since.date | xpDateTime}} - {{data[0].until.date | xpDateTime}} ({{data[0].workerName}})",
+	isPaginable: false,
+	isSearchable: false,
+	isTitleActive: true,
+	init: 
+		"scope.id=params.id;" +
+		"scope.sumDistance = function(data) { return _.reduce(data, function(memo, item){return memo + (item.distance/1000 ||0); }, 0)};",		
+   success: 
+		"scope.$parent.data=scope.data;" +
+		"scope.arguments.start=scope.arguments.start||moment.utc(scope.data[0].since.date,[moment.ISO_8601]).format('YYYY-MM-DD HH:mm:ss');" +
+		"scope.arguments.end=scope.arguments.end||moment.utc(scope.data[0].until.date,[moment.ISO_8601]).format('YYYY-MM-DD HH:mm:ss');"
+))
+{
+	<div data-xp-map2 style="height:400px" data-xp-paths="temp.tracks" data-ng-controller="ControlTrackGetController"></div>
+	<div class="col-md-12" style="margin-top:10px;">
+		<div class="btn-group dropdown" dropdown data-ng-show="temp.tracks.length && temp.tracks[0].positions.length" data-ng-init="grafica=2" style="float:left;">
+			<button class="btn btn-default" dropdown-toggle><span translate="resources.controlTrack.selectTable">Select table</span>: {{grafica == 2 ? 'Mobile' : 'Server'}} <span class="caret" /></button>
+			<ul class="dropdown-menu">
+				<li><a data-ng-click="grafica=1"><span translate="resources.controlTrack.speedServer">Speed on server</span></a></li>
+				<li><a data-ng-click="grafica=2"> <span translate="resources.controlTrack.speedMobile">Speed on mobile</span> </a></li>
+			</ul>
+		</div>		
+	</div>	
+
+	<div data-ng-show="temp.tracks.length && temp.tracks[0].positions.length" class="btn-group m-l-xs pull-right" style="border: 1px solid #CCC; margin-right:20px;padding:10px; margin-top:10px;">
+		<div style="background-color:#0957FF" class="legendGraph" /><p style="float:left;" translate="resources.controlTrack.speed">Speed (Km/h)</p>
+	</div>
+
+	<data-xp-graph2 data-xp-model="grafica == 1 ? temp.tracks[0].positions : temp.tracksmobile[0].positions" data-xp-x-axis='{"data":"title"}' data-xp-y-axis='[{"data":"velocity"}]'></data-xp-graph2>
+
+	<div class="col-md-12" style="margin-top:-40px;" data-xp-slide>
+		<input type="text" ui-jq="slider" name="slider" id="slider" class="slider form-control" data-slider-min="1" data-slider-max="{{max}}" data-slider-step="1" data-slider-value="[1,{{max}}]">
+	</div>
+
+	<div class="text-center"><span translate ="resources.controlTrack.totalKm">totalKm</span>: {{sumDistance(data[0].items) ||0 |number:2}} km.</div>
+	<div class="pull-right"><button class="btn btn-default" translate="resources.globalResources.deleteFilter" data-ng-click="arguments.start=moment.utc('2015-01-01 12:50:38',[moment.ISO_8601]).format('YYYY-MM-DD HH:mm:ss');arguments.end=moment.utc('2035-01-01 12:50:38',[moment.ISO_8601]).format('YYYY-MM-DD HH:mm:ss');max=data[0].items.length;" onclick="deleteFilter()" >Delete Filter </button>
+</div>
+	<script>
+		function deleteFilter() {
+			$(".slider-selection").css('width', '100%');
+			$(".slider-selection").css('left', '0%');
+			$('.slider-track').children().eq(2).css('left', '100%');
+			$('.slider-track').children().eq(1).css('left', '0%');
+		}
+	</script>
+}

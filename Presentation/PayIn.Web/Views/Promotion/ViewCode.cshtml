@@ -1,0 +1,76 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Promotion;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using (Html.xpList(
+					PromotionFactory.GetCodeName,
+					PromotionFactory.GetCodeApi,
+					"",
+					"resources.promotion.viewCode",
+					isTitleActive: true,
+					initialSearch: true,
+					isPaginable: true,
+					showSpinner: true,
+					init: "scope.id=params.id",
+				    actions: new ActionLink[] {
+		                  new ActionLink(ActionLink.ActionLinkType.Panel, PromotionFactory.AddCode("{{$stateParams.id}}"), XpIcons.Plus)
+	               }
+					))
+{	
+	<div class="panel-heading">
+		<strong>Códigos ejecutados:</strong> {{arguments.totalApplied}}/{{arguments.total}}
+	</div>	
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>					
+					<th translate="resources.promotion.code">Name</th>
+					<th translate="resources.promotion.date">Start Date</th>
+					<th translate="resources.promotion.login">End Date</th>		
+					<th translate="resources.promotion.recharge">Recharge</th>
+                    <th translate="resources.promotion.travels">Travels</th>	
+					<th>&nbsp;</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.appliedDate,'b-l b-5x b-danger':item.appliedDate==null&&item.login==null,'b-l b-5x b-warning':item.appliedDate==null&&item.login!=null}">				
+					<td>@(Html.ColumnFor<PromotionGetCodeResult>(x => x.Name))</td>
+					<td><span data-ng-show="item.appliedDate"> {{item.appliedDate|xpDateTime}}</span> <span data-ng-hide="item.appliedDate"> Sin aplicar</span></td>
+					<td>@(Html.ColumnFor<PromotionGetCodeResult>(x => x.Login))</td>
+					<td><span data-ng-show="item.title">{{item.title}} {{item.zoneName}} ({{item.price}} €)</span></td>
+                    <td><span data-ng-show="item.title">{{item.travels}} ({{item.travelsPrice}} €)</span></td>			
+					<td class="icon-column">
+						<div data-ng-show="item.appliedDate==null&&item.login!=null">
+						@XpColumns.IconColumn(
+							XpIcons.Unlink,
+							popupUrl: PromotionFactory.UnlinkCode,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+						</div>
+						<div data-ng-hide="item.appliedDate==null&&item.login!=null">
+							&nbsp;
+						</div>
+                   </td>			
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.promotion.applied">Aplicado</p>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.promotion.assigned">Asignado</p>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.promotion.notApplied">Sin aplicar</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

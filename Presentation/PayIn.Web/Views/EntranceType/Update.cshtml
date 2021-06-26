@@ -1,0 +1,75 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	EntranceTypeFactory.Update,
+	EntranceTypeFactory.UpdateApi,
+	"",
+	"resources.entranceType.updateEntranceType"
+))
+{
+	<xp-get data-api="@EntranceTypeFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.entranceType.entranceTypeInfo">Entrance type information</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @EntranceTypeFactory.UpdateImageCropName))
+						<div class="col-md-9">
+							<div class="row">
+								@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.IsVisible, width: 2))                                
+                                @(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.Code, width: 5))
+								@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.Visibility, width: 2))
+                                @(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.State, width: 3, disabled: "1"))
+                            </div>
+							<div class="row">
+								@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.Name))                                
+							</div>
+							<div class="row">
+								@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.ShortDescription))
+							</div>
+							<div class="row">
+								@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.Description))
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.MaxEntrance, width: 4))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.Price, width: 4))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.ExtraPrice, width: 4))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.SellStart, width: 6))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.SellEnd, width: 6))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.CheckInStart, width: 6))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.CheckInEnd, width: 6))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.RangeMin, width: 5))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.RangeMax, width: 5))
+						@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.MaxSendingCount, width: 2))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Conditions))
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.entranceType.entranceTypeDaily">Entrance type daily</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.NumDays))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.StartDay, width: 6))
+						@(Html.ArgumentFor<EntranceTypeUpdateArguments>(x => x.EndDay, width: 6))
+					</div>
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}

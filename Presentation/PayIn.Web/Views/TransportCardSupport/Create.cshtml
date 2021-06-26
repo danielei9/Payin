@@ -1,0 +1,20 @@
+﻿@model System.Web.Mvc.SelectList
+@using PayIn.Application.Dto.Transport.Arguments.TransportCardSupport
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	TransportCardSupportFactory.Create,
+	TransportCardSupportFactory.CreateApi,
+	"",
+	"resources.transportCardSupport.create"
+))
+{
+	@(Html.ArgumentFor<TransportCardSupportCreateArguments>(x => x.Name))	
+    @(Html.SelectFor<TransportCardSupportCreateArguments>(x => x.OwnerName, "ownerName", TransportCardSupportFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<TransportCardSupportCreateArguments>(x => x.OwnerCode))
+	@(Html.ArgumentFor<TransportCardSupportCreateArguments>(x => x.Type))
+	@(Html.ArgumentFor<TransportCardSupportCreateArguments>(x => x.SubType))
+	
+}
+

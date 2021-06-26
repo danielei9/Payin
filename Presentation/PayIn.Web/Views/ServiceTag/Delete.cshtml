@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceTagFactory.Delete,
+	ServiceTagFactory.DeleteApi,
+	"",
+	//ServiceTagResources.Delete,
+	"resources.serviceTag.delete",
+	id: "id"
+))
+{
+	<p translate="resources.serviceTag.deleteQuestion" translate-values="{ reference: '{{arguments.reference}}' }">Do you want to delete the tag {{arguments.reference}}?</p>
+}
+

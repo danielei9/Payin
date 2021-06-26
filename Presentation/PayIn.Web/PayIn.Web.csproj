@@ -1,0 +1,1941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AFBA7BC2-5005-48E8-9E21-A40AB43E11A1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Web</RootNamespace>
+    <AssemblyName>PayIn.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <ApplicationInsightsResourceId>/subscriptions/227b7f68-70d9-4ebe-9595-8b0006b616c8/resourcegroups/PayIn/providers/microsoft.insights/components/payin.public.production</ApplicationInsightsResourceId>
+    <NuGetPackageImportStamp>b436e88c</NuGetPackageImportStamp>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/227b7f68-70d9-4ebe-9595-8b0006b616c8/resourceGroups/PayIn/providers/microsoft.insights/components/payin.public.production</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\PayIn.Web.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.4.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.4.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.4.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.4.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.4.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.TraceListener.2.4.1\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="MysticMind.HtmlAgilityPack, Version=1.4.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MysticMind.HtmlAgilityPack.1.4.9.4\lib\net45\MysticMind.HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20511.1437, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.205111437\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\Factories\AccessControlEntranceFactory.cs" />
+    <Compile Include="App\Factories\AccessControlFactory.cs" />
+    <Compile Include="App\Factories\Bus\GraphFactory.cs" />
+    <Compile Include="App\Factories\Bus\RequestFactory.cs" />
+    <Compile Include="App\Factories\Bus\StopFactory.cs" />
+    <Compile Include="App\Factories\Bus\LineFactory.cs" />
+    <Compile Include="App\Factories\JustMoney\UserFactory.cs" />
+    <Compile Include="App\Factories\JustMoney\PrepaidCardFactory.cs" />
+    <Compile Include="App\Factories\ServiceDocumentFactory.cs" />
+    <Compile Include="App\Factories\SmartCity\DeviceFactory.cs" />
+    <Compile Include="App\Factories\SmartCity\EnergyTariffFactory.cs" />
+    <Compile Include="App\Factories\SmartCity\ComponentFactory.cs" />
+    <Compile Include="App\Factories\SmartCity\SmartCityFactory.cs" />
+    <Compile Include="App\Factories\SmartCity\SensorFactory.cs" />
+    <Compile Include="App\Factories\ActivityFactory.cs" />
+    <Compile Include="App\Factories\ExhibitorFactory.cs" />
+    <Compile Include="App\Factories\AccountFactory.cs" />
+    <Compile Include="App\Factories\BlackListFactory.cs" />
+    <Compile Include="App\Factories\CampaignLineFactory.cs" />
+    <Compile Include="App\Factories\CampaignFactory.cs" />
+    <Compile Include="App\Factories\CheckFactory.cs" />
+    <Compile Include="App\Factories\ControlFormOptionFactory.cs" />
+    <Compile Include="App\Factories\EntranceFormValueFactory.cs" />
+    <Compile Include="App\Factories\EntranceFactory.cs" />
+    <Compile Include="App\Factories\EntranceTypeFactory.cs" />
+    <Compile Include="App\Factories\EntranceTypeFormFactory.cs" />
+    <Compile Include="App\Factories\EventFactory.cs" />
+    <Compile Include="App\Factories\GreyListFactory.cs" />
+    <Compile Include="App\Factories\HomeFactory.cs" />
+    <Compile Include="App\Factories\ControlFormArgumentFactory.cs" />
+    <Compile Include="App\Factories\ControlFormAssignCheckPointFactory.cs" />
+    <Compile Include="App\Factories\ControlFormAssignTemplateFactory.cs" />
+    <Compile Include="App\Factories\ControlFormFactory.cs" />
+    <Compile Include="App\Factories\ControlFormAssignFactory.cs" />
+    <Compile Include="App\Factories\ControlItemFactory.cs" />
+    <Compile Include="App\Factories\ControlPlanningCheckFactory.cs" />
+    <Compile Include="App\Factories\ControlPlanningItemFactory.cs" />
+    <Compile Include="App\Factories\ControlTemplateCheckFactory.cs" />
+    <Compile Include="App\Factories\ControlTrackFactory.cs" />
+    <Compile Include="App\Factories\ControlTemplateItemFactory.cs" />
+    <Compile Include="App\Factories\ControlTemplateFactory.cs" />
+    <Compile Include="App\Factories\ControlPlanningFactory.cs" />
+    <Compile Include="App\Factories\ControlPresenceFactory.cs" />
+    <Compile Include="App\Factories\LiquidationFactory.cs" />
+    <Compile Include="App\Factories\AccountLineFactory.cs" />
+    <Compile Include="App\Factories\ServiceIncidenceFactory.cs" />
+    <Compile Include="App\Factories\ServiceNotificationFactory.cs" />
+    <Compile Include="App\Factories\ServiceCardBatchFactory.cs" />
+    <Compile Include="App\Factories\ServiceCategoryFactory.cs" />
+    <Compile Include="App\Factories\ServiceGroupServiceUsersFactory.cs" />
+    <Compile Include="App\Factories\ServiceGroupFactory.cs" />
+    <Compile Include="App\Factories\TranslationFactory.cs" />
+    <Compile Include="App\Factories\SystemCardMemberFactory.cs" />
+    <Compile Include="App\Factories\ServiceCardFactory.cs" />
+    <Compile Include="App\Factories\NoticeFactory.cs" />
+    <Compile Include="App\Factories\PaymentConcessionCampaignFactory.cs" />
+    <Compile Include="App\Factories\PaymentConcessionFactory.cs" />
+    <Compile Include="App\Factories\PaymentConcessionPurseFactory.cs" />
+    <Compile Include="App\Factories\PaymentFactory.cs" />
+    <Compile Include="App\Factories\PaymentMediaFactory.cs" />
+    <Compile Include="App\Factories\PaymentWorkerFactory.cs" />
+    <Compile Include="App\Factories\PaymentUserFactory.cs" />
+    <Compile Include="App\Factories\ProductFamilyFactory.cs" />
+    <Compile Include="App\Factories\ProductFactory.cs" />
+    <Compile Include="App\Factories\PromotionFactory.cs" />
+    <Compile Include="App\Factories\PurseFactory.cs" />
+    <Compile Include="App\Factories\ServiceTagFactory.cs" />
+    <Compile Include="App\Factories\ServiceSupplierFactory.cs" />
+    <Compile Include="App\Factories\ServiceFreeDaysFactory.cs" />
+    <Compile Include="App\Factories\ServiceAddressNameFactory.cs" />
+    <Compile Include="App\Factories\ServiceCheckPointFactory.cs" />
+    <Compile Include="App\Factories\SystemCardFactory.cs" />
+    <Compile Include="App\Factories\ServiceZoneFactory.cs" />
+    <Compile Include="App\Factories\ServiceCityFactory.cs" />
+    <Compile Include="App\Factories\ServiceTimeTableFactory.cs" />
+    <Compile Include="App\Factories\ServicePriceFactory.cs" />
+    <Compile Include="App\Factories\ShipmentFactory.cs" />
+    <Compile Include="App\Factories\TransportSimultaneousTitleCompatibilitiesFactory.cs" />
+    <Compile Include="App\Factories\TransportCardSupportTitleCompatibilityFactory.cs" />
+    <Compile Include="App\Factories\TransportPriceFactory.cs" />
+    <Compile Include="App\Factories\TransportTitleFactory.cs" />
+    <Compile Include="App\Factories\TransportCardSupportFactory.cs" />
+    <Compile Include="App\Factories\TransportSystemFactory.cs" />
+    <Compile Include="App\Factories\TicketTemplateFactory.cs" />
+    <Compile Include="App\Factories\TicketFactory.cs" />
+    <Compile Include="App\Factories\ServiceConcessionFactory.cs" />
+    <Compile Include="App\Factories\ServiceAddressFactory.cs" />
+    <Compile Include="App\Factories\ServiceWorkerFactory.cs" />
+    <Compile Include="ActionLink.cs" />
+    <Compile Include="App\Factories\TransportOperationFactory.cs" />
+    <Compile Include="App\Factories\TransportValidationFactory.cs" />
+    <Compile Include="App\Factories\ShopFactory.cs" />
+    <Compile Include="App\Factories\UserFactory.cs" />
+    <Compile Include="App\Factories\ServiceUserFactory.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Bus\BusAreaRegistration.cs" />
+    <Compile Include="Areas\Bus\Controllers\GraphController.cs" />
+    <Compile Include="Areas\Bus\Controllers\RequestController.cs" />
+    <Compile Include="Areas\Bus\Controllers\StopController.cs" />
+    <Compile Include="Areas\Bus\Controllers\LineController.cs" />
+    <Compile Include="Areas\JustMoney\Controllers\HomeController.cs" />
+    <Compile Include="Areas\JustMoney\Controllers\UserController.cs" />
+    <Compile Include="Areas\JustMoney\Controllers\PrepaidCardController.cs" />
+    <Compile Include="Areas\JustMoney\JustMoneyAreaRegistration.cs" />
+    <Compile Include="Areas\SmartCity\Controllers\DeviceController.cs" />
+    <Compile Include="Areas\SmartCity\Controllers\EnergyTariffController.cs" />
+    <Compile Include="Areas\SmartCity\Controllers\ComponentController.cs" />
+    <Compile Include="Areas\SmartCity\Controllers\SmartCityController.cs" />
+    <Compile Include="Areas\SmartCity\Controllers\SensorController.cs" />
+    <Compile Include="Areas\SmartCity\SmartCityAreaRegistration.cs" />
+    <Compile Include="Controllers\AccessControlEntranceController.cs" />
+    <Compile Include="Controllers\AccessControlController.cs" />
+    <Compile Include="Controllers\ServiceDocumentController.cs" />
+    <Compile Include="Controllers\ServiceIncidenceController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
+    <Compile Include="Controllers\BlackListController.cs" />
+    <Compile Include="Controllers\CheckController.cs" />
+    <Compile Include="Controllers\ControlFormOptionController.cs" />
+    <Compile Include="Controllers\EntranceFormValueController.cs" />
+    <Compile Include="Controllers\EntranceController.cs" />
+    <Compile Include="Controllers\EntranceTypeController.cs" />
+    <Compile Include="Controllers\EntranceTypeFormController.cs" />
+    <Compile Include="Controllers\ExhibitorController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\GreyListController.cs" />
+    <Compile Include="Controllers\AccountLineController.cs" />
+    <Compile Include="Controllers\ServiceNotificationController.cs" />
+    <Compile Include="Controllers\NotificationSetController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\ServiceCardBatchController.cs" />
+    <Compile Include="Controllers\ServiceCategoryController.cs" />
+    <Compile Include="Controllers\ServiceGroupServiceUsersController.cs" />
+    <Compile Include="Controllers\ServiceGroupController.cs" />
+    <Compile Include="Controllers\TranslationController.cs" />
+    <Compile Include="Controllers\SystemCardController.cs" />
+    <Compile Include="Controllers\SystemCardMemberController.cs" />
+    <Compile Include="Controllers\ServiceCardController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\PaymentConcessionPurseController.cs" />
+    <Compile Include="Controllers\ProductFamilyController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
+    <Compile Include="Controllers\PurseController.cs" />
+    <Compile Include="Controllers\CampaignLineController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\ControlFormAssignCheckPointController.cs" />
+    <Compile Include="Controllers\ControlFormAssignController.cs" />
+    <Compile Include="Controllers\ControlFormArgumentController.cs" />
+    <Compile Include="Controllers\ControlFormAssignTemplateController.cs" />
+    <Compile Include="Controllers\ControlFormController.cs" />
+    <Compile Include="Controllers\ControlPlanningCheckController.cs" />
+    <Compile Include="Controllers\ControlTemplateCheckController.cs" />
+    <Compile Include="Controllers\ControlTrackController.cs" />
+    <Compile Include="Controllers\ControlItemController.cs" />
+    <Compile Include="Controllers\ControlPlanningItemController.cs" />
+    <Compile Include="Controllers\ControlTemplateItemController.cs" />
+    <Compile Include="Controllers\ControlTemplateController.cs" />
+    <Compile Include="Controllers\ControlPlanningController.cs" />
+    <Compile Include="Controllers\ControlPresenceController.cs" />
+    <Compile Include="Controllers\PaymentConcessionCampaignController.cs" />
+    <Compile Include="Controllers\PaymentConcessionController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentUserController.cs" />
+    <Compile Include="Controllers\PaymentWorkerController.cs" />
+    <Compile Include="Controllers\ServiceCheckPointController.cs" />
+    <Compile Include="Controllers\ServiceConcessionController.cs" />
+    <Compile Include="Controllers\ServiceFreeDaysController.cs" />
+    <Compile Include="Controllers\ServiceTagController.cs" />
+    <Compile Include="Controllers\ServiceTimeTableController.cs" />
+    <Compile Include="Controllers\ServicePriceController.cs" />
+    <Compile Include="Controllers\ServiceSupplierController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ServiceUserController.cs" />
+    <Compile Include="Controllers\ShipmentController.cs" />
+    <Compile Include="Controllers\TransportSimultaneousTitleCompatibilitiesController.cs" />
+    <Compile Include="Controllers\TransportCardSupportTitleCompatibilityController.cs" />
+    <Compile Include="Controllers\TransportPriceController.cs" />
+    <Compile Include="Controllers\TransportTitleController.cs" />
+    <Compile Include="Controllers\TransportCardSupportController.cs" />
+    <Compile Include="Controllers\TransportSystemController.cs" />
+    <Compile Include="Controllers\TicketTemplateController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\ServiceAddressController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiceWorkerController.cs" />
+    <Compile Include="Controllers\TransportOperationController.cs" />
+    <Compile Include="Controllers\TransportValidationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\FieldInfoExtension.cs" />
+    <Compile Include="Extensions\HelperResultExtension.cs" />
+    <Compile Include="Extensions\PropertyInfoExtension.cs" />
+    <Compile Include="Extensions\XpColumnsExtension.cs" />
+    <Compile Include="Extensions\XpArgumentsExtension.cs" />
+    <Compile Include="Extensions\XpHtmlHelpersExtension.cs" />
+    <Compile Include="Filters\XpXFrameOptionsFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\GenericDisposableWrapper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Models\ConfirmForgotPasswordViewModel.cs" />
+    <Compile Include="Models\ConfirmInvitedCompanyViewModel.cs" />
+    <Compile Include="Models\DealsViewModel.cs" />
+    <Compile Include="Models\ForgotPasswordViewModel.cs" />
+    <Compile Include="Models\RegisterCompanyViewModel.cs" />
+    <Compile Include="Models\ConfirmInvitedUserViewModel.cs" />
+    <Compile Include="Models\RegisterGetViewModel.cs" />
+    <Compile Include="Models\ValidateEmailViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\HttpClient.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Telemetry\XpTelemetryInitializer.cs" />
+    <Compile Include="WebRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App\blue-flag.png" />
+    <Content Include="App\escudo_vilamarxant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\event.png" />
+    <Content Include="App\icono_finestrat.png" />
+    <Content Include="App\js\app.config.js" />
+    <Content Include="App\js\app.config.lazyload.js" />
+    <Content Include="App\js\app.config.router.js" />
+    <Content Include="App\js\app.js" />
+    <Content Include="App\js\JsBarcode.all.min.js" />
+    <Content Include="App\js\markdown.js" />
+    <Content Include="App\js\ol-debug.js" />
+    <Content Include="App\js\openlayers-routing-machine.js" />
+    <Content Include="App\js\qrcode.js" />
+    <Content Include="App\js\xp.graph.js" />
+    <Content Include="App\js\xp.redsys.js" />
+    <Content Include="App\js\xp.shop.js" />
+    <Content Include="App\js\xp.graph.bar.js" />
+    <Content Include="App\js\xp.chart.js" />
+    <Content Include="App\js\xp.tree.js" />
+    <Content Include="App\js\xp.map2.js" />
+    <Content Include="App\js\xp.map3.js" />
+    <Content Include="App\js\xp.calendar.js" />
+    <Content Include="App\js\payin.js" />
+    <Content Include="App\js\xp.authentication.js" />
+    <Content Include="App\js\xp.communication.js" />
+    <Content Include="App\js\xp.slide.js" />
+    <Content Include="App\js\xp.file.js" />
+    <Content Include="App\js\xp.zip.js" />
+    <Content Include="App\js\xp.map.js" />
+    <Content Include="App\logo-small.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\logo_finestrat.png" />
+    <Content Include="App\logo_orange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\ol.css" />
+    <Content Include="App\accessControl.css" />
+    <Content Include="App\shop.svg" />
+    <Content Include="App\showcase.svg" />
+    <Content Include="App\spinner.gif" />
+    <Content Include="App\payin.css" />
+    <Content Include="App\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\js\xp.js" />
+    <Content Include="App\ticket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\turisme-intel.png" />
+    <Content Include="App\vinaros-ajuntament.png" />
+    <Content Include="App\vinaros-smart.png" />
+    <Content Include="App\vinaros.css" />
+    <Content Include="App\vinaros.png" />
+    <Content Include="App\weather-icons\wi-barometer.svg" />
+    <Content Include="App\weather-icons\wi-day-sunny.svg" />
+    <Content Include="App\weather-icons\wi-humidity.svg" />
+    <Content Include="App\weather-icons\wi-small-craft-advisory.svg" />
+    <Content Include="App\weather-icons\wi-strong-wind.svg" />
+    <Content Include="App\weather-icons\wi-thermometer.svg" />
+    <Content Include="Areas\JustMoney\app\js\app.js" />
+    <Content Include="Areas\JustMoney\app\js\xp.authentication.js" />
+    <Content Include="Areas\JustMoney\app\js\xp.communication.js" />
+    <Content Include="Areas\JustMoney\app\js\xp.js" />
+    <Content Include="bower_components\chart.js\dist\Chart.js" />
+    <Content Include="App\openlayers-routing-machine.css" />
+    <Content Include="Content\PayIn.DistributedServices.Payments.XML" />
+    <Content Include="Content\PayIn.DistributedServices.SmartCity.XML" />
+    <Content Include="Content\PayIn.DistributedServices.Transport.XML" />
+    <Content Include="Content\PayIn.DistributedServices.XML" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\Shop.css" />
+    <Content Include="Content\ShopEventsEntrances_Payin.css" />
+    <Content Include="Content\ShopEventsEntrances.css" />
+    <Content Include="Images\bus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\defaultCardAvatar.png" />
+    <Content Include="Images\defaultPurse.png" />
+    <Content Include="Images\emt.png" />
+    <Content Include="Images\flags\val.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\eng.png" />
+    <Content Include="Images\fallas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\fallas_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\fallas_194.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\fgv.png" />
+    <Content Include="Images\flags\0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\cat.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\fr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\gr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\it.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flags\pt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flames.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\fly.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icono_documentacion-300x168.png" />
+    <Content Include="Images\logout.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\logo_vinaros.png" />
+    <Content Include="Images\logo_finestrat.ico" />
+    <Content Include="Images\logo_vinaros.ico" />
+    <Content Include="Images\markerSectionEnd.png" />
+    <Content Include="Images\markerSectionInit.png" />
+    <Content Include="Images\mobilis.png" />
+    <Content Include="Images\mobilisTrencadis.png" />
+    <Content Include="Images\position.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\reloj.png" />
+    <Content Include="Images\flags\spa.png" />
+    <Content Include="Images\user_default_avatar.png" />
+    <Content Include="Images\logo_cancelado.png" />
+    <Content Include="Images\logo_pagado.png" />
+    <Content Include="Images\user_female.png" />
+    <Content Include="Images\vitrasa.png" />
+    <Content Include="Images\without-photo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\ai.0.15.0-build46802.js" />
+    <Content Include="Scripts\ai.0.15.0-build46802.min.js" />
+    <Content Include="Scripts\functions.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Scripts\toastr.min.css" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Vendors\angular-file-upload\angular-file-upload.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vendors\angular-file-upload\angular-file-upload.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vendors\angulr\js\angular-locale_es-es.js" />
+    <Content Include="Vendors\angulr\l10n\es_ES.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vendors\angulr\vendor\angular\angular-translate\angular-translate.old.js" />
+    <Content Include="Vendors\angulr\vendor\modules\textAngular\textAngular-rangy.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\textAngular\textAngular.css" />
+    <Content Include="Vendors\bootstrap-filestyle\bootstrap-filestyle.js" />
+    <Content Include="Vendors\bootstrap-filestyle\bootstrap-filestyle.min.js" />
+    <Content Include="Vendors\countup\angular-countUp.min.js" />
+    <Content Include="Vendors\countup\countUp.min.js" />
+    <Content Include="Vendors\D3\d3.js" />
+    <Content Include="Vendors\D3\d3.min.js" />
+    <Content Include="Vendors\flickity\flickity.css" />
+    <Content Include="Vendors\flickity\flickity.pkgd.min.js" />
+    <Content Include="Vendors\jszip\jszip.js" />
+    <Content Include="Vendors\jszip\jszip.min.js" />
+    <Content Include="Vendors\malot-bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Code\XpHelpers.cshtml" />
+    <Content Include="App_Code\XpColumns.cshtml" />
+    <Content Include="Icon.png" />
+    <Content Include="Images\markerEnd.png" />
+    <Content Include="Images\markerInit.png" />
+    <Content Include="Images\p-in.png" />
+    <Content Include="Images\p-check.png" />
+    <Content Include="Images\p-out.png" />
+    <Content Include="Images\spinner.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\app\_run.js" />
+    <Content Include="Scripts\app\app.datamodel.js" />
+    <Content Include="Scripts\app\app.viewmodel.js" />
+    <Content Include="Scripts\app\common.js" />
+    <Content Include="Scripts\app\home.viewmodel.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Compile Include="Controllers\LiquidationController.cs" />
+    <Content Include="App\js\xp.edit.js" />
+    <Content Include="App\js\xp.markdown.editor.js" />
+    <Content Include="Areas\SmartCity\Views\web.config" />
+    <Content Include="Areas\SmartCity\Views\Sensor\Energy.cshtml" />
+    <Content Include="Areas\SmartCity\Views\EnergyTariff\Index.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\Instantaneous.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\Index.cshtml" />
+    <Content Include="bower.json" />
+    <Content Include="Areas\SmartCity\Views\Sensor\PerHour.cshtml" />
+    <Content Include="Areas\JustMoney\Views\web.config" />
+    <Content Include="Areas\JustMoney\Views\PrepaidCard\Index.cshtml" />
+    <Content Include="Areas\JustMoney\Views\PrepaidCard\Create.cshtml" />
+    <Content Include="Areas\JustMoney\Views\PrepaidCard\Activate.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Component\Index.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Device\Index.cshtml" />
+    <Content Include="Areas\SmartCity\Views\SmartCity\Index.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\Power.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\MaxEnergy.cshtml" />
+    <Content Include="Areas\JustMoney\Views\Home\Index.cshtml" />
+    <Content Include="Areas\JustMoney\Views\User\Index.cshtml" />
+    <Content Include="Areas\JustMoney\Views\User\Update.cshtml" />
+    <Content Include="Areas\Bus\Views\web.config" />
+    <Content Include="Areas\Bus\Views\Line\Index.cshtml" />
+    <Content Include="Areas\Bus\Views\Graph\Index.cshtml" />
+    <Content Include="Areas\Bus\Views\Stop\ByLine.cshtml" />
+    <Content Include="Areas\Bus\Views\Request\Create.cshtml" />
+    <Content Include="Areas\Bus\Views\Line\Itinerary.cshtml" />
+    <Content Include="Areas\Bus\Views\Request\Delete.cshtml" />
+    <Content Include="Areas\Bus\Views\Stop\Visit.cshtml" />
+    <Content Include="Areas\Bus\Views\Stop\Update.cshtml" />
+    <Content Include="Areas\Bus\Views\Stop\UpdateLink.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\SetTargetValue.cshtml" />
+    <Content Include="Areas\SmartCity\Views\Sensor\RemoveTargetValue.cshtml" />
+    <Content Include="Areas\Bus\Views\Stop\Create.cshtml" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Vendors\malot-bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Vendors\angular-google-chart\ng-google-chart.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vendors\angulr\angular-stripped.html" />
+    <Content Include="Vendors\angulr\css\animate.css" />
+    <Content Include="Vendors\angulr\css\app.css" />
+    <Content Include="Vendors\angulr\css\bootstrap.css" />
+    <Content Include="Vendors\angulr\css\font-awesome.min.css" />
+    <Content Include="Vendors\angulr\css\font.css" />
+    <Content Include="Vendors\angulr\css\simple-line-icons.css" />
+    <Content Include="Vendors\angulr\fonts\fontawesome-webfont.svg" />
+    <Content Include="Vendors\angulr\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Vendors\angulr\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Vendors\angulr\img\a0.jpg" />
+    <Content Include="Vendors\angulr\img\a1.jpg" />
+    <Content Include="Vendors\angulr\img\a10.jpg" />
+    <Content Include="Vendors\angulr\img\a2.jpg" />
+    <Content Include="Vendors\angulr\img\a3.jpg" />
+    <Content Include="Vendors\angulr\img\a4.jpg" />
+    <Content Include="Vendors\angulr\img\a5.jpg" />
+    <Content Include="Vendors\angulr\img\a6.jpg" />
+    <Content Include="Vendors\angulr\img\a7.jpg" />
+    <Content Include="Vendors\angulr\img\a8.jpg" />
+    <Content Include="Vendors\angulr\img\a9.jpg" />
+    <Content Include="Vendors\angulr\img\b0.jpg" />
+    <Content Include="Vendors\angulr\img\b1.jpg" />
+    <Content Include="Vendors\angulr\img\b10.jpg" />
+    <Content Include="Vendors\angulr\img\b11.jpg" />
+    <Content Include="Vendors\angulr\img\b12.jpg" />
+    <Content Include="Vendors\angulr\img\b13.jpg" />
+    <Content Include="Vendors\angulr\img\b14.jpg" />
+    <Content Include="Vendors\angulr\img\b15.jpg" />
+    <Content Include="Vendors\angulr\img\b16.jpg" />
+    <Content Include="Vendors\angulr\img\b17.jpg" />
+    <Content Include="Vendors\angulr\img\b18.jpg" />
+    <Content Include="Vendors\angulr\img\b19.jpg" />
+    <Content Include="Vendors\angulr\img\b2.jpg" />
+    <Content Include="Vendors\angulr\img\b20.jpg" />
+    <Content Include="Vendors\angulr\img\b3.jpg" />
+    <Content Include="Vendors\angulr\img\b4.jpg" />
+    <Content Include="Vendors\angulr\img\b5.jpg" />
+    <Content Include="Vendors\angulr\img\b6.jpg" />
+    <Content Include="Vendors\angulr\img\b7.jpg" />
+    <Content Include="Vendors\angulr\img\b8.jpg" />
+    <Content Include="Vendors\angulr\img\b9.jpg" />
+    <Content Include="Vendors\angulr\img\bg.jpg" />
+    <Content Include="Vendors\angulr\img\c0.jpg" />
+    <Content Include="Vendors\angulr\img\c1.jpg" />
+    <Content Include="Vendors\angulr\img\c2.jpg" />
+    <Content Include="Vendors\angulr\img\c3.jpg" />
+    <Content Include="Vendors\angulr\img\c4.jpg" />
+    <Content Include="Vendors\angulr\img\c5.jpg" />
+    <Content Include="Vendors\angulr\img\c6.jpg" />
+    <Content Include="Vendors\angulr\img\c7.jpg" />
+    <Content Include="Vendors\angulr\img\c8.jpg" />
+    <Content Include="Vendors\angulr\img\c9.jpg" />
+    <Content Include="Vendors\angulr\img\logo.png" />
+    <Content Include="Vendors\angulr\img\p0.jpg" />
+    <Content Include="Vendors\angulr\index.html" />
+    <Content Include="Vendors\angulr\index.min.html" />
+    <Content Include="Vendors\angulr\js\app.js" />
+    <Content Include="Vendors\angulr\js\app\calendar\calendar.js" />
+    <Content Include="Vendors\angulr\js\app\contact\contact.js" />
+    <Content Include="Vendors\angulr\js\app\mail\mail-service.js" />
+    <Content Include="Vendors\angulr\js\app\mail\mail.js" />
+    <Content Include="Vendors\angulr\js\app\map\epolys.js" />
+    <Content Include="Vendors\angulr\js\app\map\jsapi.js" />
+    <Content Include="Vendors\angulr\js\app\map\load-google-maps.js" />
+    <Content Include="Vendors\angulr\js\app\map\map.js" />
+    <Content Include="Vendors\angulr\js\app\map\ui-map.js" />
+    <Content Include="Vendors\angulr\js\app\music\contact.js" />
+    <Content Include="Vendors\angulr\js\app\music\ctrl.js" />
+    <Content Include="Vendors\angulr\js\app\music\load-google-maps.js" />
+    <Content Include="Vendors\angulr\js\app\music\mail-service.js" />
+    <Content Include="Vendors\angulr\js\app\music\mail.js" />
+    <Content Include="Vendors\angulr\js\app\music\map.js" />
+    <Content Include="Vendors\angulr\js\app\music\theme.css" />
+    <Content Include="Vendors\angulr\js\app\music\ui-map.js" />
+    <Content Include="Vendors\angulr\js\app\music\videogular.css" />
+    <Content Include="Vendors\angulr\js\app\note\note.js" />
+    <Content Include="Vendors\angulr\js\app\weather\angular-skycons.js" />
+    <Content Include="Vendors\angulr\js\app\weather\ctrl.js" />
+    <Content Include="Vendors\angulr\js\app\weather\skycons.js" />
+    <Content Include="Vendors\angulr\js\controllers\bootstrap.js" />
+    <Content Include="Vendors\angulr\js\controllers\chart.js" />
+    <Content Include="Vendors\angulr\js\controllers\editor.js" />
+    <Content Include="Vendors\angulr\js\controllers\file-upload.js" />
+    <Content Include="Vendors\angulr\js\controllers\form.js" />
+    <Content Include="Vendors\angulr\js\controllers\grid.js" />
+    <Content Include="Vendors\angulr\js\controllers\imgcrop.js" />
+    <Content Include="App\js\select.js" />
+    <Content Include="Vendors\angulr\js\controllers\signin.js" />
+    <Content Include="Vendors\angulr\js\controllers\signup.js" />
+    <Content Include="Vendors\angulr\js\controllers\slider.js" />
+    <Content Include="Vendors\angulr\js\controllers\tab.js" />
+    <Content Include="Vendors\angulr\js\controllers\toaster.js" />
+    <Content Include="Vendors\angulr\js\controllers\tree.js" />
+    <Content Include="Vendors\angulr\js\controllers\upload.php" />
+    <Content Include="Vendors\angulr\js\controllers\vectormap.js" />
+    <Content Include="Vendors\angulr\js\directives\setnganimate.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-butterbar.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-focus.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-fullscreen.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-jq.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-module.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-nav.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-scroll.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-shift.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-toggleclass.js" />
+    <Content Include="Vendors\angulr\js\directives\ui-validate.js" />
+    <Content Include="Vendors\angulr\js\filters\fromNow.js" />
+    <Content Include="Vendors\angulr\js\services\ui-load.js" />
+    <Content Include="Vendors\angulr\l10n\en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vendors\angulr\psd\ui.png" />
+    <Content Include="Vendors\angulr\tpl\app.html" />
+    <Content Include="Vendors\angulr\tpl\apps_contact.html" />
+    <Content Include="Vendors\angulr\tpl\apps_note.html" />
+    <Content Include="Vendors\angulr\tpl\apps_weather.html" />
+    <Content Include="Vendors\angulr\tpl\app_calendar.html" />
+    <Content Include="Vendors\angulr\tpl\app_dashboard_v1.html" />
+    <Content Include="Vendors\angulr\tpl\app_dashboard_v2.html" />
+    <Content Include="Vendors\angulr\tpl\blank.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\aside.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\aside.music.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\header.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\header.music.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\nav.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\page_footer.html" />
+    <Content Include="Vendors\angulr\tpl\blocks\settings.html" />
+    <Content Include="Vendors\angulr\tpl\docs.html" />
+    <Content Include="Vendors\angulr\tpl\form_editor.html" />
+    <Content Include="Vendors\angulr\tpl\form_elements.html" />
+    <Content Include="Vendors\angulr\tpl\form_fileupload.html" />
+    <Content Include="Vendors\angulr\tpl\form_imagecrop.html" />
+    <Content Include="Vendors\angulr\tpl\form_select.html" />
+    <Content Include="Vendors\angulr\tpl\form_slider.html" />
+    <Content Include="Vendors\angulr\tpl\form_validation.html" />
+    <Content Include="Vendors\angulr\tpl\form_wizard.html" />
+    <Content Include="Vendors\angulr\tpl\layout.html" />
+    <Content Include="Vendors\angulr\tpl\layout_app.html" />
+    <Content Include="Vendors\angulr\tpl\layout_footer_fullwidth.html" />
+    <Content Include="Vendors\angulr\tpl\layout_footer_mobile.html" />
+    <Content Include="Vendors\angulr\tpl\layout_fullwidth.html" />
+    <Content Include="Vendors\angulr\tpl\layout_mobile.html" />
+    <Content Include="Vendors\angulr\tpl\mail.detail.html" />
+    <Content Include="Vendors\angulr\tpl\mail.html" />
+    <Content Include="Vendors\angulr\tpl\mail.list.html" />
+    <Content Include="Vendors\angulr\tpl\mail.new.html" />
+    <Content Include="Vendors\angulr\tpl\modal.form.html" />
+    <Content Include="Vendors\angulr\tpl\modal.html" />
+    <Content Include="Vendors\angulr\tpl\music.detail.html" />
+    <Content Include="Vendors\angulr\tpl\music.genres.html" />
+    <Content Include="Vendors\angulr\tpl\music.home.html" />
+    <Content Include="Vendors\angulr\tpl\music.html" />
+    <Content Include="Vendors\angulr\tpl\music.mtv.detail.html" />
+    <Content Include="Vendors\angulr\tpl\music.mtv.html" />
+    <Content Include="Vendors\angulr\tpl\music.player.html" />
+    <Content Include="Vendors\angulr\tpl\music.playlist.html" />
+    <Content Include="Vendors\angulr\tpl\page_404.html" />
+    <Content Include="Vendors\angulr\tpl\page_forgotpwd.html" />
+    <Content Include="Vendors\angulr\tpl\page_invoice.html" />
+    <Content Include="Vendors\angulr\tpl\page_lockme.html" />
+    <Content Include="Vendors\angulr\tpl\page_post.html" />
+    <Content Include="Vendors\angulr\tpl\page_price.html" />
+    <Content Include="Vendors\angulr\tpl\page_profile.html" />
+    <Content Include="Vendors\angulr\tpl\page_search.html" />
+    <Content Include="Vendors\angulr\tpl\page_signin.html" />
+    <Content Include="Vendors\angulr\tpl\page_signup.html" />
+    <Content Include="Vendors\angulr\tpl\table_datatable.html" />
+    <Content Include="Vendors\angulr\tpl\table_footable.html" />
+    <Content Include="Vendors\angulr\tpl\table_grid.html" />
+    <Content Include="Vendors\angulr\tpl\table_static.html" />
+    <Content Include="Vendors\angulr\tpl\ui_bootstrap.html" />
+    <Content Include="Vendors\angulr\tpl\ui_buttons.html" />
+    <Content Include="Vendors\angulr\tpl\ui_chart.html" />
+    <Content Include="Vendors\angulr\tpl\ui_googlemap.html" />
+    <Content Include="Vendors\angulr\tpl\ui_grid.html" />
+    <Content Include="Vendors\angulr\tpl\ui_icons.html" />
+    <Content Include="Vendors\angulr\tpl\ui_jvectormap.html" />
+    <Content Include="Vendors\angulr\tpl\ui_portlet.html" />
+    <Content Include="Vendors\angulr\tpl\ui_sortable.html" />
+    <Content Include="Vendors\angulr\tpl\ui_timeline.html" />
+    <Content Include="Vendors\angulr\tpl\ui_toaster.html" />
+    <Content Include="Vendors\angulr\tpl\ui_tree.html" />
+    <Content Include="Vendors\angulr\tpl\ui_widgets.html" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-animate\angular-animate.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-bootstrap\ui-bootstrap-tpls.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-cookies\angular-cookies.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-resource\angular-resource.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-touch\angular-touch.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-translate\angular-translate.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-translate\loader-static-files.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-translate\storage-cookie.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-translate\storage-local.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-ui-router\angular-ui-router.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular-ui-utils\ui-utils.js" />
+    <Content Include="Vendors\angulr\vendor\angular\angular.js" />
+    <Content Include="Vendors\angulr\vendor\angular\ngstorage\ngStorage.js" />
+    <Content Include="Vendors\angulr\vendor\angular\oclazyload\ocLazyLoad.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\bootstrap.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\easypiechart\jquery.easy-pie-chart.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.orderBars.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.pie.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.resize.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.spline.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\charts\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\chosen\chosen-sprite%402x.png" />
+    <Content Include="Vendors\angulr\vendor\jquery\chosen\chosen-sprite.png" />
+    <Content Include="Vendors\angulr\vendor\jquery\chosen\chosen.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\chosen\chosen.jquery.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\datatables\dataTables.bootstrap.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\datatables\dataTables.bootstrap.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\datatables\jquery.dataTables.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\fonts\footable.svg" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\footable.all.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\footable.core.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\fullcalendar.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\fullcalendar.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\fullcalendar.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\fullcalendar.print.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\readme.txt" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar.old\theme.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\fullcalendar0.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\gcal.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\lang-all.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\fullcalendar\theme.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\jquery.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jquery.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jquery.ui.touch-punch.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jvectormap\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\jvectormap\jquery-jvectormap.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\jvectormap\jquery-jvectormap.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\nestable\jquery.nestable.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\nestable\nestable.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2-bootstrap.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2-spinner.gif" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2.png" />
+    <Content Include="Vendors\angulr\vendor\jquery\select2\select2x2.png" />
+    <Content Include="Vendors\angulr\vendor\jquery\slider\bootstrap-slider.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\slider\slider.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\sortable\jquery.sortable.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\spinner\jquery.bootstrap-touchspin.css" />
+    <Content Include="Vendors\angulr\vendor\jquery\spinner\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\sortable\bootstrap-wysiwyg.js" />
+    <Content Include="Vendors\angulr\vendor\jquery\wysiwyg\jquery.hotkeys.js" />
+    <Content Include="Vendors\angulr\vendor\libs\screenfull.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-bootstrap-nav-tree\abn_tree.css" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-bootstrap-nav-tree\abn_tree_directive.js" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-slider\angular-slider.css" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-slider\angular-slider.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-ui-calendar\calendar.js" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-ui-select\select.min.css" />
+    <Content Include="Vendors\angulr\vendor\modules\angular-ui-select\select.js" />
+    <Content Include="Vendors\angulr\vendor\modules\angularjs-toaster\toaster.css" />
+    <Content Include="Vendors\angulr\vendor\modules\angularjs-toaster\toaster.js" />
+    <Content Include="Vendors\angulr\vendor\modules\ng-grid\ng-grid.min.css" />
+    <Content Include="Vendors\angulr\vendor\modules\ng-grid\ng-grid.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\ng-grid\theme.css" />
+    <Content Include="Vendors\angulr\vendor\modules\ngImgCrop\ng-img-crop.css" />
+    <Content Include="Vendors\angulr\vendor\modules\ngImgCrop\ng-img-crop.js" />
+    <Content Include="Vendors\angulr\vendor\modules\textAngular\textAngular-sanitize.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\textAngular\textAngular.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\plugins\buffering.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\plugins\controls.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\plugins\ima-ads.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\plugins\overlay-play.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\plugins\poster.min.js" />
+    <Content Include="Vendors\angulr\vendor\modules\videogular\videogular.min.js" />
+    <Content Include="Vendors\momentjs\moment-timezone-with-data.min.js" />
+    <Content Include="Vendors\momentjs\moment-with-locales.min.js" />
+    <Content Include="Vendors\momentjs\ng-img-crop\ng-img-crop.css" />
+    <Content Include="Vendors\ng-img-crop\ng-img-crop.css" />
+    <Content Include="Vendors\ng-img-crop\ng-img-crop.js" />
+    <Content Include="Vendors\ngDialog\ngDialog-theme-card.min.css" />
+    <Content Include="Vendors\ngDialog\ngDialog-theme-default.min.css" />
+    <Content Include="Vendors\ngDialog\ngDialog.min.css" />
+    <Content Include="Vendors\ngDialog\ngDialog.min.js" />
+    <Content Include="Vendors\re-captcha\recaptcha.js" />
+    <Content Include="Vendors\showdown\showdown.min.js" />
+    <Content Include="Vendors\textAngular\dist\textAngular-rangy.min.js" />
+    <Content Include="Vendors\textAngular\dist\textAngular-sanitize.min.js" />
+    <Content Include="Vendors\textAngular\dist\textAngular.css" />
+    <Content Include="Vendors\textAngular\dist\textAngular.min.js" />
+    <Content Include="Vendors\underscore\underscore.js" />
+    <Content Include="Vendors\upndown\upndown.bundle.min.js" />
+    <Content Include="Views\CampaignLine\GetByServiceUser.cshtml" />
+    <Content Include="Views\CampaignLine\GetByServiceGroup.cshtml" />
+    <Content Include="Views\Entrance\Index.cshtml" />
+    <Content Include="Views\ServiceTimeTable\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ServiceTimeTable\Delete.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Vendors\angulr\fonts\sourcesanspro\sourcesanspro.woff" />
+    <Content Include="Vendors\angulr\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Vendors\angulr\fonts\fontawesome-webfont.woff" />
+    <Content Include="Vendors\angulr\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Vendors\angulr\fonts\sourcesanspro\sourcesanspro-light.woff" />
+    <Content Include="Vendors\angulr\fonts\sourcesanspro\sourcesanspro-bold.woff" />
+    <Content Include="Vendors\angulr\fonts\fontawesome-webfont.eot" />
+    <Content Include="Vendors\angulr\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Vendors\angulr\fonts\FontAwesome.otf" />
+    <Content Include="Vendors\angulr\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Vendors\angulr\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Vendors\angulr\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Vendors\angulr\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Vendors\angulr\api\login" />
+    <Content Include="Vendors\angulr\api\signup" />
+    <Content Include="Vendors\angulr\js\app\contact\contacts.json" />
+    <Content Include="Vendors\angulr\js\app\mail\mails.json" />
+    <Content Include="Vendors\angulr\js\app\music\contacts.json" />
+    <Content Include="Vendors\angulr\js\app\music\mails.json" />
+    <Content Include="Vendors\angulr\js\app\note\notes.json" />
+    <Content Include="Vendors\angulr\js\controllers\largeLoad.json" />
+    <Content Include="Vendors\angulr\psd\ui.zip" />
+    <Content Include="Vendors\angulr\vendor\jquery\datatables\datatable.json" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\fonts\footable.eot" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\fonts\footable.ttf" />
+    <Content Include="Vendors\angulr\vendor\jquery\footable\fonts\footable.woff" />
+    <Content Include="Views\Shop\img\valencia.jpg" />
+    <Content Include="Views\Shop\js\controller\shopConcessionsGetAllController.js" />
+    <Content Include="Views\Shop\js\controller\shopGetAllConcessionsController.js" />
+    <Content Include="Views\Shop\js\app.js" />
+    <Content Include="Views\Shop\lib\Events.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\ServiceAddress\Index.cshtml" />
+    <Content Include="Views\ServiceAddress\Delete.cshtml" />
+    <Content Include="Views\ServiceAddress\Create.cshtml" />
+    <Content Include="App_Code\XpArguments.cshtml" />
+    <Content Include="Views\SupplierTickets\Index.cshtml" />
+    <Content Include="Views\ServicePrice\Delete.cshtml" />
+    <Content Include="Views\ServiceAddress\DeleteName.cshtml" />
+    <Content Include="Views\ServiceAddress\UpdateName.cshtml" />
+    <Content Include="Views\ServiceAddress\CreateName.cshtml" />
+    <Content Include="Views\ServiceTimeTable\Create.cshtml" />
+    <Content Include="Views\ServiceTimeTable\Update.cshtml" />
+    <Content Include="Views\ServiceTimeTable\_Update.cshtml" />
+    <Content Include="Views\ServicePrice\Create.cshtml" />
+    <Content Include="Views\ServicePrice\Update.cshtml" />
+    <Content Include="Views\ServiceFreeDays\Delete.cshtml" />
+    <Content Include="Views\ServiceFreeDays\Update.cshtml" />
+    <Content Include="Views\ServiceFreeDays\Create.cshtml" />
+    <Content Include="Views\ServiceFreeDays\Index.cshtml" />
+    <Content Include="Views\Ticket\CreateTicket.cshtml" />
+    <Content Include="Views\Ticket\CreateAndPay.cshtml" />
+    <Content Include="Views\Account\Login.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ServicePrice\Index.cshtml" />
+    <Content Include="Vendors\angulr\vendor\jquery\jquery-1.10.2.min.map" />
+    <Content Include="Views\ControlPresence\Index.cshtml" />
+    <Content Include="Views\ControlPresence\Create.cshtml" />
+    <Content Include="Views\ControlPresence\Delete.cshtml" />
+    <Content Include="Views\ControlPresence\Update.cshtml" />
+    <Content Include="Views\ControlPlanning\Index.cshtml" />
+    <Content Include="Views\ControlPlanning\Create.cshtml" />
+    <Content Include="Views\ControlPlanning\Delete.cshtml" />
+    <Content Include="Views\ControlPlanning\Update.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Views\Ticket\Delete.cshtml" />
+    <Content Include="Views\Ticket\DeleteDetail.cshtml" />
+    <Content Include="Views\Ticket\CreateDetail.cshtml" />
+    <Content Include="Views\Ticket\UpdateDetail.cshtml" />
+    <Content Include="Views\ControlItem\Create.cshtml" />
+    <Content Include="Views\ControlItem\Delete.cshtml" />
+    <Content Include="Views\ControlItem\Index.cshtml" />
+    <Content Include="Views\ControlItem\Update.cshtml" />
+    <Content Include="Views\Shared\_Authentication.cshtml" />
+    <Content Include="Views\ControlPresence\Legacy.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\ServiceTag\Create.cshtml" />
+    <Content Include="Views\ServiceTag\Delete.cshtml" />
+    <Content Include="Views\ServiceTag\Index.cshtml" />
+    <Content Include="Views\ServiceCheckPoint\Update.cshtml" />
+    <Content Include="Views\ServiceWorker\Index.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\UpdatePassword.cshtml" />
+    <Content Include="Views\ServiceWorker\Create.cshtml" />
+    <Content Include="Views\ServiceWorker\Update.cshtml" />
+    <Content Include="Views\ControlItem\AddTag.cshtml" />
+    <Content Include="Views\ControlItem\RemoveTag.cshtml" />
+    <Content Include="Views\ControlTemplate\Create.cshtml" />
+    <Content Include="Views\ControlTemplate\Delete.cshtml" />
+    <Content Include="Views\ControlTemplate\Index.cshtml" />
+    <Content Include="Views\ControlTemplate\Update.cshtml" />
+    <Content Include="Views\ControlTemplateItem\Create.cshtml" />
+    <Content Include="Views\ControlTemplateItem\Delete.cshtml" />
+    <Content Include="Views\ControlTemplateItem\Template.cshtml" />
+    <Content Include="Views\ControlTemplateItem\Update.cshtml" />
+    <Content Include="Views\ServiceWorker\Delete.cshtml" />
+    <Content Include="Views\ServiceWorker\Control.cshtml" />
+    <Content Include="Views\ControlPlanningItem\Delete.cshtml" />
+    <Content Include="Views\ControlPlanningItem\Update.cshtml" />
+    <Content Include="Views\ControlPlanning\Clear.cshtml" />
+    <Content Include="Views\ControlTrack\Item.cshtml" />
+    <Content Include="Vendors\angulr\css\bootstrap.css.map" />
+    <Content Include="Startup.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ControlTrack\Index.cshtml" />
+    <Content Include="Views\ControlTrack\View.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Scripts\knockout.validation.min.js.map" />
+    <Content Include="Views\ServiceWorker\AcceptAssignment.cshtml" />
+    <Content Include="Views\Account\ConfirmForgotPassword.cshtml" />
+    <Content Include="Views\ServiceTag\Update.cshtml" />
+    <Content Include="Views\ControlForm\Index.cshtml" />
+    <Content Include="Views\ControlForm\Create.cshtml" />
+    <Content Include="Views\ControlForm\Delete.cshtml" />
+    <Content Include="Views\ControlForm\Update.cshtml" />
+    <Content Include="Views\ControlPlanning\CreateTemplate.cshtml" />
+    <Content Include="Views\ControlPlanningCheck\Create.cshtml" />
+    <Content Include="Views\ControlPlanningCheck\Delete.cshtml" />
+    <Content Include="Views\ControlPlanningCheck\Update.cshtml" />
+    <Content Include="Views\ControlFormArgument\Form.cshtml" />
+    <Content Include="Views\ControlFormArgument\Delete.cshtml" />
+    <Content Include="Views\ControlFormArgument\Update.cshtml" />
+    <Content Include="Views\ControlFormArgument\Create.cshtml" />
+    <Content Include="Views\ControlTemplateCheck\Delete.cshtml" />
+    <Content Include="Views\ControlTemplateCheck\Update.cshtml" />
+    <Content Include="Views\ControlFormAssign\Check.cshtml" />
+    <Content Include="Views\ControlFormAssign\Create.cshtml" />
+    <Content Include="Views\ControlFormAssign\Delete.cshtml" />
+    <Content Include="Views\ControlTemplateCheck\Create.cshtml" />
+    <Content Include="Views\ControlTemplateCheck\Template.cshtml" />
+    <Content Include="Views\ControlFormAssign\Update.cshtml" />
+    <Content Include="Views\ControlFormAssignTemplate\Create.cshtml" />
+    <Content Include="Views\ControlFormAssignTemplate\Update.cshtml" />
+    <Content Include="Views\ControlFormAssignTemplate\Delete.cshtml" />
+    <Content Include="Views\ControlFormAssignTemplate\Check.cshtml" />
+    <Content Include="Views\ServiceCheckPoint\Item.cshtml" />
+    <Content Include="Views\ServiceCheckPoint\Create.cshtml" />
+    <Content Include="Views\ServiceCheckPoint\Delete.cshtml" />
+    <Content Include="Views\ControlFormAssignCheckPoint\Create.cshtml" />
+    <Content Include="Views\ControlFormAssignCheckPoint\Delete.cshtml" />
+    <Content Include="Views\ControlFormAssignCheckPoint\Check.cshtml" />
+    <Content Include="Views\ControlFormAssign\ViewCompleteForm.cshtml" />
+    <Content Include="Views\Account\Update.cshtml" />
+    <Content Include="Vendors\angular-file-upload\angular-file-upload.min.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\ControlPresence\Graph.cshtml" />
+    <Content Include="Views\Ticket\Update.cshtml" />
+    <Content Include="Views\ServiceSupplier\Index.cshtml" />
+    <Content Include="Views\ServiceSupplier\Update.cshtml" />
+    <Content Include="Views\ServiceConcession\Update.cshtml" />
+    <Content Include="Views\ControlPlanningItem\Create.cshtml" />
+    <Content Include="Views\ControlPresence\Graph.cshtml" />
+    <Content Include="Views\Account\ImageCrop.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\PaymentDetails.cshtml" />
+    <Content Include="Views\Ticket\Graph.cshtml" />
+    <Content Include="Views\Payment\Graph.cshtml" />
+    <Content Include="Views\PaymentConcession\Create.cshtml" />
+    <Content Include="Views\Home\Deals.cshtml" />
+    <Content Include="Views\Liquidation\Index.cshtml" />
+    <Content Include="Views\Liquidation\Liquidations.cshtml" />
+    <Content Include="Views\Liquidation\Change.cshtml" />
+    <Content Include="Views\Liquidation\Open.cshtml" />
+    <Content Include="Views\Liquidation\Pay.cshtml" />
+    <Content Include="Views\Account\DeleteImage.cshtml" />
+    <Content Include="Views\Payment\LiquidationPayments.cshtml" />
+    <Content Include="Views\Liquidation\_IndexCardBefore.cshtml" />
+    <Content Include="Views\PaymentConcession\Update.cshtml" />
+    <Content Include="Views\PaymentConcession\Confirm.cshtml" />
+    <Content Include="Views\PaymentConcession\CreateCommerce.cshtml" />
+    <Content Include="Views\Home\Popup.cshtml" />
+    <Content Include="Views\Ticket\Details.cshtml" />
+    <Content Include="Views\Payment\Charges.cshtml" />
+    <Content Include="Views\PaymentWorker\Index.cshtml" />
+    <Content Include="Views\PaymentWorker\Create.cshtml" />
+    <Content Include="Views\PaymentWorker\Delete.cshtml" />
+    <Content Include="Views\ServiceConcession\UpdateCommerce.cshtml" />
+    <Content Include="Views\ServiceConcession\Index.cshtml" />
+    <Content Include="Views\ServiceConcession\Delete.cshtml" />
+    <Content Include="Views\PaymentConcession\UpdateCommerce.cshtml" />
+    <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\PaymentWorker\Concession.cshtml" />
+    <Content Include="Views\PaymentWorker\DissociateConcession.cshtml" />
+    <Content Include="Views\PaymentWorker\ResendNotification.cshtml" />
+    <Content Include="Views\Account\RegisterCompany.cshtml" />
+    <Content Include="Views\Account\CreateCompany.cshtml" />
+    <Content Include="Views\PaymentUser\Index.cshtml" />
+    <Content Include="Views\PaymentUser\Create.cshtml" />
+    <Content Include="Views\PaymentUser\Update.cshtml" />
+    <Content Include="Views\PaymentUser\Delete.cshtml" />
+    <Content Include="Views\PaymentUser\ResendNotification.cshtml" />
+    <Content Include="Views\Shipment\Index.cshtml" />
+    <Content Include="Views\Shipment\Create.cshtml" />
+    <Content Include="Views\Shipment\AddUsers.cshtml" />
+    <Content Include="Views\TicketTemplate\Create.cshtml" />
+    <Content Include="Views\Shipment\Delete.cshtml" />
+    <Content Include="Views\Shipment\Update.cshtml" />
+    <Content Include="Views\Shipment\Details.cshtml" />
+    <Content Include="Views\Shipment\DeleteTicket.cshtml" />
+    <Content Include="Views\Shipment\Receipt.cshtml" />
+    <Content Include="Views\TicketTemplate\Update.cshtml" />
+    <Content Include="Views\TicketTemplate\Index.cshtml" />
+    <Content Include="Views\TicketTemplate\Details.cshtml" />
+    <Content Include="Views\Account\ConfirmedEmail.cshtml" />
+    <Content Include="Views\Account\GetUsers.cshtml" />
+    <Content Include="Views\Account\ConfirmedPassword.cshtml" />
+    <Content Include="Views\Account\OverwritePassword.cshtml" />
+    <Content Include="Views\Campaign\Index.cshtml" />
+    <Content Include="Views\CampaignLine\Create.cshtml" />
+    <Content Include="Views\CampaignLine\Index.cshtml" />
+    <Content Include="Views\Campaign\Create.cshtml" />
+    <Content Include="Views\CampaignLine\Delete.cshtml" />
+    <Content Include="Views\Campaign\Update.cshtml" />
+    <Content Include="Views\Campaign\Delete.cshtml" />
+    <Content Include="Views\CampaignLine\Update.cshtml" />
+    <Content Include="Views\PaymentConcessionCampaign\Index.cshtml" />
+    <Content Include="Views\PaymentConcessionCampaign\Create.cshtml" />
+    <Content Include="Views\PaymentConcessionCampaign\Delete.cshtml" />
+    <Content Include="Views\PaymentConcessionCampaign\ResendNotification.cshtml" />
+    <Content Include="Views\Purse\Index.cshtml" />
+    <Content Include="Views\Purse\Create.cshtml" />
+    <Content Include="Views\PaymentConcessionPurse\Index.cshtml" />
+    <Content Include="Views\Purse\Delete.cshtml" />
+    <Content Include="Views\PaymentConcessionPurse\Delete.cshtml" />
+    <Content Include="Views\PaymentConcessionPurse\ResendNotification.cshtml" />
+    <Content Include="Views\Purse\Update.cshtml" />
+    <Content Include="Views\PaymentConcessionPurse\Create.cshtml" />
+    <Content Include="Views\TicketTemplate\Delete.cshtml" />
+    <Content Include="Views\TransportOperation\Control.cshtml" />
+    <Content Include="Views\TransportOperation\Index.cshtml" />
+    <Content Include="Views\Purse\ImageCrop.cshtml" />
+    <Content Include="Views\Purse\CreateImage.cshtml" />
+    <Content Include="Views\Purse\DeleteImage.cshtml" />
+    <Content Include="Views\Purse\ImageCropCreate.cshtml" />
+    <Content Include="Views\TransportSystem\Index.cshtml" />
+    <Content Include="Views\TransportSystem\Delete.cshtml" />
+    <Content Include="Views\TransportSystem\Create.cshtml" />
+    <Content Include="Views\TransportCardSupport\Index.cshtml" />
+    <Content Include="Views\TransportCardSupport\Create.cshtml" />
+    <Content Include="Views\TransportCardSupport\Delete.cshtml" />
+    <Content Include="Views\TransportCardSupport\Update.cshtml" />
+    <Content Include="Views\TransportTitle\Index.cshtml" />
+    <Content Include="Views\TransportTitle\Delete.cshtml" />
+    <Content Include="Views\TransportTitle\Create.cshtml" />
+    <Content Include="Views\GreyList\ReadAll.cshtml" />
+    <Content Include="Views\GreyList\ModifyBlock.cshtml" />
+    <Content Include="Views\TransportTitle\Update.cshtml" />
+    <Content Include="Views\TransportPrice\Create.cshtml" />
+    <Content Include="Views\BlackList\Index.cshtml" />
+    <Content Include="Views\GreyList\Index.cshtml" />
+    <Content Include="Views\TransportPrice\Index.cshtml" />
+    <Content Include="Views\TransportPrice\Delete.cshtml" />
+    <Content Include="Views\TransportPrice\Update.cshtml" />
+    <Content Include="Views\GreyList\Delete.cshtml" />
+    <Content Include="Views\TransportOperation\DetailsRecharge.cshtml" />
+    <Content Include="Views\TransportValidation\Index.cshtml" />
+    <Content Include="Views\Promotion\Index.cshtml" />
+    <Content Include="Views\Promotion\Create.cshtml" />
+    <Content Include="Views\Promotion\Delete.cshtml" />
+    <Content Include="Views\Promotion\ViewCode.cshtml" />
+    <Content Include="Views\Promotion\AddCode.cshtml" />
+    <Content Include="Views\Promotion\Update.cshtml" />
+    <Content Include="Views\BlackList\Create.cshtml" />
+    <Content Include="Views\User\CreateNotification.cshtml" />
+    <Content Include="Views\BlackList\Delete.cshtml" />
+    <Content Include="Views\Account\UnlockUser.cshtml" />
+    <Content Include="Views\Promotion\UnlinkCode.cshtml" />
+    <Content Include="Views\Promotion\GetAllConcession.cshtml" />
+    <Content Include="Views\Purse\Users.cshtml" />
+    <Content Include="Views\ServiceUser\Index.cshtml" />
+    <Content Include="Views\ServiceUser\Create.cshtml" />
+    <Content Include="Views\ServiceUser\Update.cshtml" />
+    <Content Include="Views\ServiceUser\CreateImage.cshtml" />
+    <Content Include="Views\ServiceUser\ImageCrop.cshtml" />
+    <Content Include="Views\ServiceUser\Delete.cshtml" />
+    <Content Include="Views\ServiceUser\UpdateCardSelect.cshtml" />
+    <Content Include="Views\ServiceUser\UpdateCard.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Campaign\CreateImage.cshtml" />
+    <Content Include="Views\Campaign\ImageCrop.cshtml" />
+    <Content Include="Views\ServiceUser\CreateCardSelect.cshtml" />
+    <Content Include="Views\ProductFamily\Create.cshtml" />
+    <Content Include="Views\ProductFamily\Update.cshtml" />
+    <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\CreateImage.cshtml" />
+    <Content Include="Views\Product\ImageCrop.cshtml" />
+    <Content Include="Views\ServiceUser\Unsubscribe.cshtml" />
+    <Content Include="Views\ProductFamily\Delete.cshtml" />
+    <Content Include="Views\ProductFamily\ImageCrop.cshtml" />
+    <Content Include="Views\ProductFamily\CreateImage.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Payment\Refund.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\CreateImage.cshtml" />
+    <Content Include="Views\Event\ImageCrop.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
+    <Content Include="Views\Event\Update.cshtml" />
+    <Content Include="Views\EntranceType\Index.cshtml" />
+    <Content Include="Views\EntranceType\Create.cshtml" />
+    <Content Include="Views\EntranceType\ImageCrop.cshtml" />
+    <Content Include="Views\EntranceType\CreateImage.cshtml" />
+    <Content Include="Views\Campaign\Suspend.cshtml" />
+    <Content Include="Views\Campaign\Unsuspend.cshtml" />
+    <Content Include="Views\ServiceUser\Subscribe.cshtml" />
+    <Content Include="Views\EntranceType\Update.cshtml" />
+    <Content Include="Views\Check\Index.cshtml" />
+    <Content Include="Views\EntranceType\Delete.cshtml" />
+    <Content Include="Views\Entrance\Invite.cshtml" />
+    <Content Include="Views\Event\Unsuspend.cshtml" />
+    <Content Include="Views\Event\Suspend.cshtml" />
+    <Content Include="Views\Product\Hide.cshtml" />
+    <Content Include="Views\ProductFamily\Hide.cshtml" />
+    <Content Include="Views\EntranceType\Relocate.cshtml" />
+    <Content Include="Views\Product\Show.cshtml" />
+    <Content Include="Views\ProductFamily\Show.cshtml" />
+    <Content Include="Views\Event\Hide.cshtml" />
+    <Content Include="Views\Event\Show.cshtml" />
+    <Content Include="Views\EntranceType\Show.cshtml" />
+    <Content Include="Views\EntranceType\Hide.cshtml" />
+    <Content Include="Views\Shop\Index-no.cshtml" />
+    <Content Include="Views\Shop\EventIndex.cshtml" />
+    <Content Include="Views\ControlFormOption\Create.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\Concession.cshtml" />
+    <Content Include="Views\Shop\Event.cshtml" />
+    <Content Include="Views\Shop\Entrance.cshtml" />
+    <Content Include="Views\ControlFormOption\Index.cshtml" />
+    <Content Include="Views\ControlFormOption\Update.cshtml" />
+    <Content Include="Views\ControlFormOption\Delete.cshtml" />
+    <Content Include="Views\EntranceTypeForm\Index.cshtml" />
+    <Content Include="Views\EntranceTypeForm\Create.cshtml" />
+    <Content Include="Views\EntranceTypeForm\Delete.cshtml" />
+    <Content Include="Views\EntranceTypeForm\Update.cshtml" />
+    <Content Include="Views\Shop\Login.cshtml" />
+    <Content Include="Views\Shop\Register.cshtml" />
+    <Content Include="Views\Shop\All.cshtml" />
+    <Content Include="Views\EntranceFormValue\Index.cshtml" />
+    <Content Include="Views\Shop\Successful.cshtml" />
+    <Content Include="Views\Shop\Wrong.cshtml" />
+    <Content Include="Views\Event\DeleteImageGallery.cshtml" />
+    <Content Include="Views\CampaignLine\GetByProduct.cshtml" />
+    <Content Include="Views\CampaignLine\AddProduct.cshtml" />
+    <Content Include="Views\CampaignLine\RemoveProduct.cshtml" />
+    <Content Include="Views\CampaignLine\AddEntranceType.cshtml" />
+    <Content Include="Views\CampaignLine\GetByEntranceType.cshtml" />
+    <Content Include="Views\CampaignLine\RemoveEntranceType.cshtml" />
+    <Content Include="Views\Event\AddImageGallery.cshtml" />
+    <Content Include="Views\CampaignLine\GetByProductFamily.cshtml" />
+    <Content Include="Views\CampaignLine\AddProductFamily.cshtml" />
+    <Content Include="Views\CampaignLine\RemoveProductFamily.cshtml" />
+    <Content Include="Views\Entrance\Mail.cshtml" />
+    <Content Include="Views\Exhibitor\Index.cshtml" />
+    <Content Include="Views\Entrance\Unsuspend.cshtml" />
+    <Content Include="Views\Entrance\Suspend.cshtml" />
+    <Content Include="Views\Exhibitor\Delete.cshtml" />
+    <Content Include="Views\Exhibitor\Suspend.cshtml" />
+    <Content Include="Views\Exhibitor\Unsuspend.cshtml" />
+    <Content Include="Views\Exhibitor\Update.cshtml" />
+    <Content Include="Views\Event\Visibility.cshtml" />
+    <Content Include="Views\Exhibitor\Create.cshtml" />
+    <Content Include="Views\Entrance\EntranceTicket.cshtml" />
+    <Content Include="Views\ServiceUser\Dashboard.cshtml" />
+    <Content Include="Views\Entrance\EmailTemplate.htm" />
+    <Content Include="Views\EntranceType\Visibility.cshtml" />
+    <Content Include="Views\Shop\Form.cshtml" />
+    <Content Include="Views\Shop\Vacio.cshtml" />
+    <Content Include="Views\Product\Visibility.cshtml" />
+    <Content Include="Views\Product\ProductDashboard.cshtml" />
+    <Content Include="Views\Event\CreateMapImage.cshtml" />
+    <Content Include="Views\Event\MapImageCrop.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
+    <Content Include="Views\Activity\Create.cshtml" />
+    <Content Include="Views\Activity\Update.cshtml" />
+    <Content Include="Views\Activity\Delete.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Notice\Create.cshtml" />
+    <Content Include="Views\Campaign\EventList.cshtml" />
+    <Content Include="Views\Campaign\AddEvent.cshtml" />
+    <Content Include="Views\Campaign\RemoveEvent.cshtml" />
+    <Content Include="Views\Notice\CreateImage.cshtml" />
+    <Content Include="Views\Notice\ImageCrop.cshtml" />
+    <Content Include="Views\Notice\Update.cshtml" />
+    <Content Include="Views\Notice\Delete.cshtml" />
+    <Content Include="Views\Notice\Show.cshtml" />
+    <Content Include="Views\Notice\Hide.cshtml" />
+    <Content Include="Views\Notice\Visibility.cshtml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\Account\ConfirmInvitedUser.cshtml" />
+    <Content Include="Views\PaymentConcession\Index.cshtml" />
+    <Content Include="Views\ServiceCard\Index.cshtml" />
+    <Content Include="Views\ServiceCard\Delete.cshtml" />
+    <Content Include="Views\ServiceCard\Unlock.cshtml" />
+    <Content Include="Views\ServiceCard\Lock.cshtml" />
+    <Content Include="Views\SystemCardMember\Create.cshtml" />
+    <Content Include="Views\SystemCardMember\Index.cshtml" />
+    <Content Include="Views\SystemCardMember\Lock.cshtml" />
+    <Content Include="Views\SystemCardMember\Unlock.cshtml" />
+    <Content Include="Views\ServiceCard\Destroy.cshtml" />
+    <Content Include="Views\Account\ConfirmInvitedCompany.cshtml" />
+    <Content Include="Views\ServiceCardBatch\Delete.cshtml" />
+    <Content Include="Views\ServiceCardBatch\Index.cshtml" />
+    <Content Include="Views\ServiceCardBatch\Lock.cshtml" />
+    <Content Include="Views\ServiceCardBatch\Unlock.cshtml" />
+    <Content Include="Views\ServiceCardBatch\Create.cshtml" />
+    <Content Include="Views\Liquidation\CreateAndPay.cshtml" />
+    <Content Include="Views\TransportCardSupportTitleCompatibility\Index.cshtml" />
+    <Content Include="Views\TransportCardSupportTitleCompatibility\Create.cshtml" />
+    <Content Include="Views\TransportCardSupportTitleCompatibility\Delete.cshtml" />
+    <Content Include="Views\TransportCardSupportTitleCompatibility\Update.cshtml" />
+    <Content Include="Views\ServiceCard\Create.cshtml" />
+    <Content Include="Views\Event\ImageMenuCrop.cshtml" />
+    <Content Include="Views\TransportSimultaneousTitleCompatibilities\Create.cshtml" />
+    <Content Include="Views\TransportSimultaneousTitleCompatibilities\Delete.cshtml" />
+    <Content Include="Views\TransportSimultaneousTitleCompatibilities\Index.cshtml" />
+    <Content Include="Views\TransportSimultaneousTitleCompatibilities\Update.cshtml" />
+    <Content Include="Views\NotificationSet\Create.cshtml" />
+    <Content Include="Views\Liquidation\Create.cshtml" />
+    <Content Include="Views\NotificationSet\Index.cshtml" />
+    <Content Include="Views\SystemCard\Index.cshtml" />
+    <Content Include="Views\SystemCard\Create.cshtml" />
+    <Content Include="Views\SystemCard\Delete.cshtml" />
+    <Content Include="Views\SystemCard\ImageCrop.cshtml" />
+    <Content Include="Views\SystemCard\Update.cshtml" />
+    <Content Include="Views\SystemCardMember\Update.cshtml" />
+    <Content Include="Views\ServiceGroup\Create.cshtml" />
+    <Content Include="Views\ServiceGroup\Delete.cshtml" />
+    <Content Include="Views\ServiceGroup\Index.cshtml" />
+    <Content Include="Views\ServiceGroup\Update.cshtml" />
+    <Content Include="Views\ServiceGroupServiceUsers\Index.cshtml" />
+    <Content Include="Views\ServiceGroupServiceUsers\Create.cshtml" />
+    <Content Include="Views\Ticket\SystemCard.cshtml" />
+    <Content Include="Views\CampaignLine\AddServiceGroup.cshtml" />
+    <Content Include="Views\CampaignLine\AddServiceUser.cshtml" />
+    <Content Include="Views\CampaignLine\RemoveServiceGroup.cshtml" />
+    <Content Include="Views\CampaignLine\RemoveServiceUser.cshtml" />
+    <Content Include="Views\ServiceCard\Item.cshtml" />
+    <Content Include="Views\ServiceCategory\Create.cshtml" />
+    <Content Include="Views\ServiceCategory\Delete.cshtml" />
+    <Content Include="Views\ServiceCategory\Index.cshtml" />
+    <Content Include="Views\ServiceCategory\Update.cshtml" />
+    <Content Include="Views\ServiceUser\AddServiceGroup.cshtml" />
+    <Content Include="Views\ServiceUser\ServiceGroups.cshtml" />
+    <Content Include="Views\ServiceUser\RemoveServiceGroup.cshtml" />
+    <Content Include="Views\Product\Groups.cshtml" />
+    <Content Include="Views\Product\RemoveGroup.cshtml" />
+    <Content Include="Views\EntranceType\RemoveGroup.cshtml" />
+    <Content Include="Views\Product\AddGroup.cshtml" />
+    <Content Include="Views\EntranceType\AddGroup.cshtml" />
+    <Content Include="Views\EntranceType\Groups.cshtml" />
+    <Content Include="Views\ServiceNotification\Index.cshtml" />
+    <Content Include="Views\Payment\CardPayments.cshtml" />
+    <Content Include="Views\ServiceGroup\AddUser.cshtml" />
+    <Content Include="Views\EntranceType\GetSellable.cshtml" />
+    <Content Include="Views\EntranceType\Recharge.cshtml" />
+    <Content Include="Views\EntranceType\GetToGive.cshtml" />
+    <Content Include="Views\EntranceType\Donate.cshtml" />
+    <Content Include="Views\ServiceUser\View.cshtml" />
+    <Content Include="Views\ServiceCard\MyCardsPrev.cshtml" />
+    <Content Include="Views\EntranceType\BuyRecharge.cshtml" />
+    <Content Include="Views\ServiceCard\LinkCard.cshtml" />
+    <Content Include="Views\ServiceCard\UnlinkCard.cshtml" />
+    <Content Include="Views\EntranceType\GetBuyable.cshtml" />
+    <Content Include="Views\Ticket\Pay.cshtml" />
+    <Content Include="Views\ServiceCard\MyCards.cshtml" />
+    <Content Include="Views\Account\Unliquidated.cshtml" />
+    <Content Include="Views\Payment\Unliquidated.cshtml" />
+    <Content Include="Views\Translation\Update.cshtml" />
+    <Content Include="Views\AccountLine\Logbook.cshtml" />
+    <Content Include="Views\AccountLine\ServiceCards.cshtml" />
+    <Content Include="Views\AccountLine\Cash.cshtml" />
+    <Content Include="Views\AccountLine\CreditCards.cshtml" />
+    <Content Include="Views\AccountLine\Products.cshtml" />
+    <Content Include="Views\AccountLine\EntranceTypes.cshtml" />
+    <Content Include="Views\AccountLine\Others.cshtml" />
+    <Content Include="Views\Liquidation\CreateAccountLines.cshtml" />
+    <Content Include="Views\Liquidation\AddAccountLines.cshtml" />
+    <Content Include="Views\Translation\Create.cshtml" />
+    <Content Include="Views\AccountLine\Liquidation.cshtml" />
+    <Content Include="Views\Liquidation\Close.cshtml" />
+    <Content Include="Views\Liquidation\RemoveAccountLines.cshtml" />
+    <Content Include="Views\AccountLine\Accounts.cshtml" />
+    <Content Include="Views\Translation\CreateFormattedText.cshtml" />
+    <Content Include="Views\Translation\UpdateFormattedText.cshtml" />
+    <Content Include="Views\Translation\Delete.cshtml" />
+    <Content Include="Views\ServiceIncidence\Index.cshtml" />
+    <Content Include="Views\ServiceIncidence\Update.cshtml" />
+    <Content Include="Views\Notice\Pages.cshtml" />
+    <Content Include="Views\Notice\Edicts.cshtml" />
+    <Content Include="Views\Notice\CreatePage.cshtml" />
+    <Content Include="Views\Notice\CreateEdict.cshtml" />
+    <Content Include="Views\Notice\UpdatePage.cshtml" />
+    <Content Include="Views\Notice\UpdateEdict.cshtml" />
+    <Content Include="Views\Account\ConfirmedEmailTurismeVilamarxant.cshtml" />
+    <Content Include="Views\Account\ConfirmEmailTurismeVilamarxant.cshtml" />
+    <Content Include="Views\Account\ConfirmForgotPasswordTurismeVilamarxant.cshtml" />
+    <Content Include="Views\Account\ConfirmedPasswordTurismeVilamarxant.cshtml" />
+    <Content Include="Views\Shop\ByConcession.cshtml" />
+    <Content Include="Views\PaymentConcession\BannerImageCrop.cshtml" />
+    <Content Include="Views\ServiceUser\Register.cshtml" />
+    <Content Include="Views\ServiceDocument\Create.cshtml" />
+    <Content Include="Views\ServiceDocument\Delete.cshtml" />
+    <Content Include="Views\ServiceDocument\Index.cshtml" />
+    <Content Include="Views\ServiceDocument\Update.cshtml" />
+    <Content Include="Views\Account\WaitEmail.cshtml" />
+    <Content Include="Views\Entrance\ChangeCard.cshtml" />
+    <Content Include="Views\ServiceCard\Link.cshtml" />
+    <Content Include="Views\Account\ConfirmedEmailFinestrat.cshtml" />
+    <Content Include="Views\Account\ConfirmedPasswordFinestrat.cshtml" />
+    <Content Include="Views\Account\ConfirmEmailFinestrat.cshtml" />
+    <Content Include="Views\AccessControl\Create.cshtml" />
+    <Content Include="Views\AccessControl\Delete.cshtml" />
+    <Content Include="Views\AccessControl\Index.cshtml" />
+    <Content Include="Views\AccessControl\Update.cshtml" />
+    <Content Include="Views\AccessControl\Places.cshtml" />
+    <Content Include="Views\AccessControl\Entry.cshtml" />
+    <Content Include="Views\AccessControl\Weather.cshtml" />
+    <Content Include="Views\AccessControlEntrance\Create.cshtml" />
+    <Content Include="Views\AccessControlEntrance\Delete.cshtml" />
+    <Content Include="Views\AccessControlEntrance\Index.cshtml" />
+    <Content Include="Views\AccessControlEntrance\Update.cshtml" />
+    <Content Include="Views\AccessControl\Info.cshtml" />
+    <Content Include="Views\AccessControl\Reset.cshtml" />
+    <Content Include="Views\AccessControl\Public.cshtml" />
+    <Content Include="Views\Shared\_LayoutPublic.cshtml" />
+    <Content Include="Vendors\angulr\l10n\va_ES.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\AccessControl\Language.cshtml" />
+    <Content Include="Views\AccessControl\Mupi.cshtml" />
+    <None Include="Web.Carcaixent.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Emulator.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Fallas.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Faura.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Finestrat.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Homo.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.JustMoney.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Production.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Vilamarxant.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Vinaros.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Bus\Models\" />
+    <Folder Include="Areas\Bus\Views\Shared\" />
+    <Folder Include="Areas\JustMoney\app\css\" />
+    <Folder Include="Areas\JustMoney\Models\" />
+    <Folder Include="Areas\JustMoney\Views\Shared\" />
+    <Folder Include="Areas\SmartCity\Models\" />
+    <Folder Include="Areas\SmartCity\Views\Shared\" />
+    <Folder Include="bin\" />
+    <Folder Include="Vendors\angulr\js\controllers\uploads\" />
+    <Folder Include="Views\TransportConcession\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto.Bus\PayIn.Application.Dto.Bus.csproj">
+      <Project>{7090df27-a80f-475a-b7f6-69b5cd4addd0}</Project>
+      <Name>PayIn.Application.Dto.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto.Payments\PayIn.Application.Dto.Payments.csproj">
+      <Project>{98d4f750-5e87-4954-ba9b-3ecb96f345b5}</Project>
+      <Name>PayIn.Application.Dto.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto.Security\PayIn.Application.Dto.Security.csproj">
+      <Project>{96299adf-60c2-4fb8-8254-9a19fd59d8b1}</Project>
+      <Name>PayIn.Application.Dto.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto.SmartCity\PayIn.Application.Dto.SmartCity.csproj">
+      <Project>{28D56039-C7BD-4FFE-8B47-ABFE7261CB4A}</Project>
+      <Name>PayIn.Application.Dto.SmartCity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto.Transport\PayIn.Application.Dto.Transport.csproj">
+      <Project>{ce24a72a-9633-404e-8634-eb8cb3ac625e}</Project>
+      <Name>PayIn.Application.Dto.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Application.Dto\PayIn.Application.Dto.csproj">
+      <Project>{fe2e19bd-48cb-4d5a-863c-7dfb76548ba3}</Project>
+      <Name>PayIn.Application.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.Bus\PayIn.DistributedServices.Bus.csproj">
+      <Project>{9237efb8-0742-45b3-af6c-036b296e6957}</Project>
+      <Name>PayIn.DistributedServices.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.JustMoney\PayIn.DistributedServices.JustMoney.csproj">
+      <Project>{56c55d58-80fe-4ee0-91b0-f654a6954b96}</Project>
+      <Name>PayIn.DistributedServices.JustMoney</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.Payments\PayIn.DistributedServices.Payments.csproj">
+      <Project>{c0065c35-699f-4f13-9bf3-3cb9c96a09ec}</Project>
+      <Name>PayIn.DistributedServices.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.Security\PayIn.DistributedServices.Security.csproj">
+      <Project>{33f7c07d-1a12-4d6d-b778-184ef93f8657}</Project>
+      <Name>PayIn.DistributedServices.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.SmartCity\PayIn.DistributedServices.SmartCity.csproj">
+      <Project>{b6e4fce9-7ac4-4524-8196-bb101827ac65}</Project>
+      <Name>PayIn.DistributedServices.SmartCity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.Transport\PayIn.DistributedServices.Transport.csproj">
+      <Project>{1ee532f6-34a7-4242-a673-92fd3a599faf}</Project>
+      <Name>PayIn.DistributedServices.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices.Tsm\PayIn.DistributedServices.Tsm.csproj">
+      <Project>{e49e405c-f99d-4b30-9546-d77206ba3d22}</Project>
+      <Name>PayIn.DistributedServices.Tsm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.DistributedServices\PayIn.DistributedServices.csproj">
+      <Project>{86a92c89-a787-4faf-9dce-de9ded3973ab}</Project>
+      <Name>PayIn.DistributedServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Domain.Security\PayIn.Domain.Security.csproj">
+      <Project>{a2f82701-af3c-42cf-a31a-529a4833380a}</Project>
+      <Name>PayIn.Domain.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Domain.Transport\PayIn.Domain.Transport.csproj">
+      <Project>{5773cb9d-44ea-4541-8006-d7042def917c}</Project>
+      <Name>PayIn.Domain.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\PayIn.Infrastructure.Security\PayIn.Infrastructure.Security.csproj">
+      <Project>{d7220b15-4c39-4e5d-bfba-c58a4bd95df5}</Project>
+      <Name>PayIn.Infrastructure.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-d3c8-43a9-8eb0-fbab811fa250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\Xp.DistributedServices\Xp.DistributedServices.csproj">
+      <Project>{8a08ca56-a4bf-4cc9-81f8-348f4633ba02}</Project>
+      <Name>Xp.DistributedServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Resources\PayIn.Common.Resources.csproj">
+      <Project>{94f8de05-4ce3-48eb-9c76-9d8db36e90af}</Project>
+      <Name>PayIn.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Security\PayIn.Common.Security.csproj">
+      <Project>{D0E42711-7326-4E5B-9E1E-F595CB004A9E}</Project>
+      <Name>PayIn.Common.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{d619b94f-c9d9-487c-8341-33446f417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899B32B-1B5C-476D-896A-8B0BF4B10F71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{b7a850e4-f2c6-4081-87d1-e5379bf5c0a7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434E06D7-69BB-4175-A611-0133D7A5336A}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;HOMO</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;FALLAS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;FINESTRAT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;VINAROS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54435</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8080/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties Vendors_4angulr_4l10n_4en_1json__JSONSchema="ambiar" />
+    </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\Microsoft.ApplicationInsights.0.10.0-build17704\tools\net40\Microsoft.ApplicationInsights.targets" Condition="Exists('..\..\packages\Microsoft.ApplicationInsights.0.10.0-build17704\tools\net40\Microsoft.ApplicationInsights.targets')" />
+  <!--<Target Name="EnsureApplicationInsightsImported" BeforeTargets="BeforeBuild" Condition="'$(ApplicationInsightsImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.ApplicationInsights.0.10.0-build17704\tools\net40\Microsoft.ApplicationInsights.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+    <Error Condition="Exists('..\..\packages\Microsoft.ApplicationInsights.0.10.0-build17704\tools\net40\Microsoft.ApplicationInsights.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+  </Target>-->
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

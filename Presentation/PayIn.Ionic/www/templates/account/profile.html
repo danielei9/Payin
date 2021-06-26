@@ -1,0 +1,89 @@
+<ion-view cache-view="false" view-title="Perfil" xp-panel xp-loading>
+    <xp-put api="api/account">
+        <ion-content class="background transportContent" >
+            <div class="wrapperMargin20">
+                <form name="form" id="form" role="form" ng-submit="accept()">
+                    <xp-get api="api/account/current">
+                        <div class="row">
+                            <div class="col col-20 center img-profile-logos">
+                                <i class="material-icons">account_circle</i>
+                            </div>
+                            <div class="col col-80">
+                                <label form="name" ng-class="{'has-error':form.name.$invalid}">
+                                    <input type="text" class="inputMainStyle" name="taxName" ng-model="arguments.taxName" placeholder="Nombre">
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="hrProfile">
+                        <div class="row" ng-controller= "datepickerServiceController">
+                            <div class="col col-20 center">
+                                <ionic-datepicker input-obj="datepickerObject" >
+                                    <button type="button" class="button button-clear button-icon ion-android-calendar img-profile-logos"></button>
+                                </ionic-datepicker>
+                            </div>
+                            <div class="col col-80">
+                                <label form="name" ng-class="{'has-error':form.birthday.$invalid}">
+                                    <xp-date  name="birthday" class="birthday" id="birthday" ng-model="arguments.birthday"  />
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="hrProfile">
+                        <div class="row">
+                            <div class="col col-20 center img-profile-logos">
+                                <i class="material-icons">phone</i>
+                            </div>
+                            <div class="col col-80">
+                                <label form="name"  ng-class="{'has-error':form.mobile.$invalid}">
+                                    <input type="text" class="inputMainStyle"  name="mobile" ng-model="arguments.mobile" placeholder="Teléfono">
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="hrProfile">
+                        <div class="row">
+                            <div class="col col-20 center img-profile-logos" >
+                                <i class="material-icons">fingerprint</i>
+                            </div>
+                            <div class="col col-80">
+                                <label form="name" ng-class="{'has-error':form.taxNumber.$invalid}">
+                                    <input type="text" class="inputMainStyle" name="taxNumber" ng-model="arguments.taxNumber" placeholder="DNI">
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="hrProfile">
+                        <div class="row">
+                            <div class="col col-20 center img-profile-logos">
+                                <i class="material-icons">place</i>
+                            </div>
+                            <div class="col col-80">
+                                <label form="name" ng-class="{'has-error':form.taxAddress.$invalid}">
+                                    <input type="text" class="inputMainStyle" name="taxAddress" ng-model="arguments.taxAddress" placeholder="Dirección">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row cleanBorders">
+                            <div class="col col-5"></div>
+                            <div class="col col-90" >
+                                <div class="row center" class="buttonMainStyle">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-90 center">
+                                        <button type="submit"  class="buttonMainStyle" ng-disabled="form.$invalid">Guardar</button>
+                                    </div>
+                                    <div class="col col-5"></div>
+                                </div>
+                            </div>
+                            <div class="col col-5"></div>
+                        </div>   
+                        <div class="row">
+                            <div class="col col-50">
+                                <a ui-sref="updatepin" class="label-profile" ng-disabled="form.$invalid" nav-transition="android">Cambiar PIN Pay[IN]</a>
+                            </div>
+                            <div class="col col-50">
+                                <a ui-sref="updatepassword" class="label-profile" ng-disabled="form.$invalid" nav-transition="android">Cambiar contraseña</a>
+                            </div>
+                        </div>      
+                    </xp-get>
+                </form>        
+            </div>        
+        </ion-content>  
+    </xp-put>
+</ion-view>

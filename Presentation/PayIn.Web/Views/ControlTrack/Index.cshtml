@@ -1,0 +1,74 @@
+﻿@using PayIn.Application.Dto.Results.ControlTrack;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@{
+	var items = ControlTrackFactory.GetItemName + "({itemId:{{item.id}}})";
+}
+@using (Html.xpList(
+	ControlTrackFactory.GetAllName,
+	ControlTrackFactory.GetAllApi,
+	"",
+	//ControlTrackResources.GetAll,
+	"resources.controlTrack.getAll",
+	isPaginable: false,
+	initialSearch: false, // se hace en el ControlTrackGetAllController específico al cambiar el date
+	isTitleActive: true,
+	init:
+		"scope.arguments.date='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+))
+{
+	<div class="table-responsive" data-ng-controller="ControlTrackGetAllController">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.controlTrack.worker">Worker</th>
+					<th translate="resources.controlTrack.item">Item</th>
+					<th translate="resources.controlTrack.date">Date</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td>@(Html.ColumnFor<ControlTrackGetAllResult>(x => x.WorkerName))</td>
+					<td>@(Html.ColumnFor<ControlTrackGetAllResult>(x => x.ItemName))</td>
+					<td>
+						<span>{{item.since.date | xpDateTime}}</span>
+						<a ui-sref='@ControlFormAssignFactory.GetFormState("{{item.since.checkId}}")' ng-show="item.since.formsCount">
+							<i class='@XpIcons.List'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.since.formsCount||0}}</span>
+						</a>
+						<i class='@XpIcons.ArrowRight' ng-hide='item.since.id===item.until.id'></i>
+						<span ng-hide='item.since.id===item.until.id'>{{item.until.date | xpDateTime}}</span>
+						<a ui-sref='@ControlFormAssignFactory.GetFormState("{{item.until.checkId}}")' ng-show="item.until.formsCount && item.since.id!==item.until.id">
+							<i class='@XpIcons.List'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.until.formsCount||0}}</span>
+						</a>
+					</td>
+					<td class="icon-column">
+						<img src='{{item.since.image}}' style="height:30px" data-ng-show="item.since && item.since.image" data-xp-image/>
+					</td>
+					<td class="icon-column">
+						<img src='{{item.until.image}}' style="height:30px" data-ng-show="item.until && item.until.image" data-xp-image />
+					</td>
+					<td class="icon-column">
+						<a ui-sref='@ControlTrackFactory.GetName ({id: {{item.id}}})'>
+							<i class='@XpIcons.Map' />
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+}

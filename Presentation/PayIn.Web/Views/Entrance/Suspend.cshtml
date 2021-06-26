@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EntranceFactory.SuspendName,
+	EntranceFactory.SuspendApi,
+	"",
+	"resources.entrance.suspend"
+))
+{
+	<p translate="resources.entrance.suspendQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to suspend the entrance {{arguments.name}}?</p>
+}

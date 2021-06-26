@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ServicePrice;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ServicePriceFactory.Update,
+	ServicePriceFactory.UpdateApi,
+	"",
+	//ServicePriceResources.Update
+	"resources.servicePrice.update"
+))
+{
+	<xp-get data-api="@ServicePriceFactory.GetApi">
+		@(Html.ArgumentFor<ServicePriceUpdateArguments>(x => x.Time))
+		@(Html.ArgumentFor<ServicePriceUpdateArguments>(x => x.Price))
+	</xp-get>
+}
+

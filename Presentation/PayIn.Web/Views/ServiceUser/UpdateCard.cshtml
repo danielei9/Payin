@@ -1,0 +1,38 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ServiceUserFactory.UpdateCardName,
+	ServiceUserFactory.UpdateCardApi,
+	"",
+	"resources.serviceUser.updateCard",
+	init:
+		"scope.id = params.id;" +
+		"scope.arguments.uid = params.uid;" +
+		"scope.arguments.cardState = params.cardState;" +
+		"scope.arguments.ownCard = params.ownCard==1;" +
+		"scope.arguments.newCard = params.newCard==1;" +
+		"scope.arguments.newCardConcessionName = params.newCardConcessionName;" +
+		"scope.arguments.ownerVatNumber = params.ownerVatNumber;" +
+		"scope.arguments.ownerName = params.ownerName;" +
+		"scope.arguments.ownerLastName = params.ownerLastName;"
+))
+{
+	<div class="padding-horizontal" ng-show="!arguments.ownCard && !arguments.newCard && arguments.newCardConcessionName">
+		<div class="alert alert-info">
+			<p>Este número pertenece a una tarjeta emitida por <b>{{arguments.newCardConcessionName}}</b>.</p>
+			<p>El nombre, apellidos, DNI y foto serán sobreescritos por los datos introducidos por {{arguments.concessionName}}.</p>
+			<ul>
+				<li>DNI: {{arguments.ownerVatNumber}}</li>
+				<li>Nombre: {{arguments.ownerName}}</li>
+				<li>Apellidos: {{arguments.ownerLastName}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<ServiceUserUpdateCardArguments>(x => x.Uid, width: 6, disabled:"1"))
+			@(Html.ArgumentFor<ServiceUserUpdateCardArguments>(x => x.CardState, width: 6, disabled: "!arguments.ownCard && !arguments.newCard"))
+		</div>
+	</div>
+}

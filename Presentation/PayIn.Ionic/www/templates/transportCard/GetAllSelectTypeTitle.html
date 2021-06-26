@@ -1,0 +1,79 @@
+<ion-view
+          cache-view="false"
+          view-title="Transporte"
+          xp-panel
+          id="transportCardGet";
+          xp-init="
+                   scope.temp.charges = params.charges; 
+                   scope.temp.operationType = 1;
+                   scope.temp.cardId = params.cardId;
+                   scope.temp.cardType = params.cardType;
+                   scope.temp.cardScript = params.cardScript"
+          >
+    <xp-post
+             api="mobile/ticket/v1/"
+             ng-controller="transportCardGetAllChargesController"
+             xp-init="scope.arguments.date = moment(Date()).format('YYYY-MM-DD HH:mm:ss');">
+        <ion-content class="background transportContent" >
+            <div style="margin-top: 20%;">
+                <div class="row">
+                    <div class="col col-100" style="color: white; font-size: 1.5em; font-weight: bold;">
+                        <div class="row">
+                            <div class="col col-90 center">
+                                Otros titulos:
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-5"></div>
+                    <div class="col col-90" style="background-color: rgba(255,255,255,0.15); border-radius: 10%; color: white;" >
+                        <div class="row" ng-click="selectTransport(temp, ticket, price, 1);">
+                            <div class="col col-100">
+                                <div class="row">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-10"><div class="ion-android-train" style="font-size: 1.5em;"></div></div>                    
+                                    <div class="col col-80">METRO</div>                    
+                                    <div class="col col-5"><div class="ion-chevron-right button-clear" style="color: white; font-size: 1em !important; margin-left: -0.5em;"></div></div>                    
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="white" style="margin-top: -0.2%; font-weight: bold;">
+                        <div class="row" ng-click="selectTransport(temp, ticket, price, 0);">
+                            <div class="col col-100">
+                                <div class="row">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-10"><div class="ion-android-bus" style="font-size: 1.5em;"></div></div>                    
+                                    <div class="col col-80">BUS</div>                    
+                                    <div class="col col-5"><div class="ion-chevron-right button-clear" style="color: white; font-size: 1em !important; margin-left: -0.5em;"></div></div>                    
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="white" style="margin-top: -0.2%; font-weight: bold;">
+                        <div class="row" ng-show="data.data.data.data" ng-click="selectTransport(temp, ticket, price, 1);">
+                            <div class="col col-100">
+                                <div class="row">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-10"><div class="ion-android-bicycle" style="font-size: 1.5em;"></div></div>                    
+                                    <div class="col col-80">BICI</div>                    
+                                    <div class="col col-5"><div class="ion-chevron-right button-clear" style="color: white; font-size: 1em !important; margin-left: -0.5em;"></div></div>                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-click="selectTransport(temp, ticket, price, 2);">
+                            <div class="col col-100">
+                                <div class="row">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-10"><div class="ion-ios-more" style="font-size: 1.5em;"></div></div>                    
+                                    <div class="col col-80">COMBINADOS</div>                    
+                                    <div class="col col-5"><div class="ion-chevron-right button-clear" style=" color: white;font-size: 1em !important; margin-left: -0.5em;"></div></div>                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-5"></div>
+                </div>
+            </div>
+        </ion-content>
+    </xp-post>
+</ion-view>

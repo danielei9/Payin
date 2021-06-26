@@ -1,0 +1,191 @@
+﻿@using System.Reflection;
+@using Xp.Common;
+
+@helper Column(System.Web.Mvc.HtmlHelper html, PropertyInfo field, int? width, string popupUrl, string panelUrl, string id, string arguments, string filter, string filterArgument, int decimals, string currency, string iterator)
+{
+	var width_ = width == null ? "" : string.Format("class=col-md-{0}", width);
+	var xpType = field.GetXpType();
+	
+	var filter_ = filter;
+	var filterArgument_ = filterArgument;
+	if (xpType == XpType.Time) {
+		filter_ = "xpTime";
+	} else if (xpType == XpType.Duration) {
+		filter_ = "xpDuration";
+	} else if (xpType == XpType.Date) {
+		filter_ = "xpDate";
+	} else if (xpType == XpType.DateTime) {
+		filter_ = "xpDateTime";
+	} else if (xpType == XpType.Decimal) {
+		filter_ = "number";
+		filterArgument_ = decimals.ToString();
+	} else if (xpType == XpType.Currency) {
+		filter_ = "currency";
+		filterArgument_ = "'" + currency + "' : " + decimals.ToString();
+	}
+
+	if (width != null) {
+<div @width_>
+@_ColumnControl(html, field, width, popupUrl, panelUrl, id, arguments, filter_, filterArgument_, iterator).AddTabs(1)
+</div>
+	} else {
+@_ColumnControl(html, field, width, popupUrl, panelUrl, id, arguments, filter_, filterArgument_, iterator)
+	}
+}
+@helper _ColumnControl(System.Web.Mvc.HtmlHelper html, PropertyInfo field, int? width, string popupUrl, string panelUrl, string id, string arguments, string filter, string filterArgument, string iterator)
+{
+	var name = iterator + "." + field.GetName();
+	var xpType = field.GetXpType();
+
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	var panelUrl_ =
+		panelUrl == null ? "" :
+		string.IsNullOrEmpty(id) ? panelUrl : panelUrl + "({id:" + id + "})";
+	var value = 
+		"{{" + name + (
+			filter.IsNullOrEmpty() ? "" : 
+			" | " + filter + (
+				filterArgument.IsNullOrEmpty() ? "" :
+				" : " + filterArgument
+			)
+		) +
+		"}}";
+
+	if (popupUrl != null) {
+<a href @id_ @arguments_ data-xp-navigate data-xp-modal=@popupUrl>@value</a>
+	} else if (!panelUrl_.IsNullOrEmpty()) {
+<a ui-sref="@panelUrl_" @arguments_ data-xp-navigate>@value</a>
+	} else {
+<span>@value</span>
+	}
+}
+@helper TextColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null, string filter = null, string filterArgument = null)
+{
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	var panelUrl_ =
+		panelUrl == null ? "" :
+		string.IsNullOrEmpty(id) ? panelUrl : panelUrl.Replace(":id", id.ToString());
+	var colSize_ = colSize == null ? "" : string.Format("class=col-md-{0}", colSize);
+	var value = 
+		"{{" + 
+		model + 
+		(
+			filter.IsNullOrEmpty() ? "" :
+			" | " + filter + (
+				filterArgument.IsNullOrEmpty() ? "" :
+				" : " + filterArgument
+			)
+		)	+
+		"}}";
+
+	if (colSize != null) {
+<div @colSize_>
+		@if (popupUrl != null) {
+	<a href @id_ @arguments_ data-xp-navigate data-xp-modal=@popupUrl>@value</a>
+		} else if (!panelUrl_.IsNullOrEmpty()) {
+	<a ui-sref="@panelUrl_" @arguments_ data-xp-navigate>@value</a>
+		} else {
+	<span>@value</span>
+		}
+</div>
+	}	else {
+		if (popupUrl != null) {
+<a href @id_ @arguments_ data-xp-navigate data-xp-modal=@popupUrl>@value</a>
+		} else if (!panelUrl_.IsNullOrEmpty()) {
+<a ui-sref="@panelUrl_" @arguments_ data-xp-navigate>@value</a>
+		} else {
+<span>@value</span>
+		}
+	}
+}
+
+@helper DateTimeColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null)
+{
+@TextColumn(model, colSize: colSize, popupUrl: popupUrl, panelUrl: panelUrl, id: id, arguments: arguments, filter: "date", filterArgument: "'dd/MM/yyyy HH:mm:ss'")
+}
+@helper DateColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null)
+{
+@TextColumn(model, colSize: colSize, popupUrl: popupUrl, panelUrl: panelUrl, id: id, arguments: arguments, filter: "date", filterArgument: "'dd/MM/yyyy'")
+}
+@helper TimeColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null)
+{
+@TextColumn(model, colSize: colSize, popupUrl: popupUrl, panelUrl: panelUrl, id: id, arguments: arguments, filter: "date", filterArgument: "'HH:mm'")
+}
+@helper NumberColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null, string decimals = null)
+{
+	@TextColumn(model, colSize: colSize, popupUrl: popupUrl, panelUrl: panelUrl, id: id, arguments: arguments, filter: "number", filterArgument: decimals)
+}
+@helper CurrencyColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null, string currency = null)
+{
+	@TextColumn(model, colSize: colSize, popupUrl: popupUrl, panelUrl: panelUrl, id: id, arguments: arguments, filter: "currency", filterArgument: currency)
+}
+@helper IconColumn(string name, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null, string tooltip = null, string success = null)
+{
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("xp-arguments={0}", arguments);
+	var success_ = success.IsNullOrEmpty() ? "" : string.Format("xp-success={0}", success);
+	//var tooltip_ = tooltip.IsNullOrEmpty() ? "" : string.Format("tooltip={0}", tooltip);
+	var panelUrl_ =
+		panelUrl == null ? "" :
+		string.IsNullOrEmpty(id) ? panelUrl :
+		panelUrl.Replace(":id", id.ToString());
+	var colSize_ = colSize == null ? "" : string.Format("class=col-md-{0}", colSize);
+
+	if (colSize != null)
+	{
+<div @colSize_>
+		@if (popupUrl != null) {
+	<a href @id_ @arguments_ @success_ tooltip="@tooltip" xp-navigate xp-modal=@popupUrl><i class="@name"></i></a>
+		}
+		else if (!panelUrl_.IsNullOrEmpty())
+		{
+	<a ui-sref="@panelUrl_" @arguments_ @success_ tooltip="@tooltip" xp-navigate><i class="@name"></i></a>
+		}
+		else
+		{
+	<span><i class="@name"></i></span>
+		}
+</div>
+	}
+	else
+	{
+		if (popupUrl != null)
+		{
+			<a href @id_ @arguments_ @success_ tooltip="@tooltip" xp-navigate data-xp-modal=@popupUrl><i class="@name"></i></a>
+		}
+		else if (!panelUrl_.IsNullOrEmpty())
+		{
+			<a ui-sref="@panelUrl_" @arguments_ @success_ tooltip="@tooltip" xp-navigate><i class="@name"></i></a>
+		}
+		else
+		{
+			<span><i class="@name"></i></span>
+		}
+	}
+}
+@*
+@helper BoolColumn(string model, int? colSize = null, string popupUrl = null, string panelUrl = null, string id = null, string arguments = null)
+{
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	var panelUrl_ =
+		panelUrl == null ? "" :
+		string.IsNullOrEmpty(id) ? panelUrl : panelUrl.Replace(":id", id.ToString());
+	var colSize_ = colSize == null ? "" : string.Format("class=col-md-{0}", colSize);
+	<div @colSize_>
+		@if (popupUrl != null)
+		{
+			<a href="@popupUrl" data-toggle="modal" @arguments_ data-xp-navigate>{{@model}}</a>
+		}
+		else if (!panelUrl_.IsNullOrEmpty())
+		{
+			<a href="#@panelUrl_" @arguments_ data-xp-navigate>{{@model}}</a>
+		}
+		else
+		{
+			<span>{{@model}}</span>
+		}
+	</div>
+}
+*@

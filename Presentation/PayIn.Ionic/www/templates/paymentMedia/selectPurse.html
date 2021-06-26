@@ -1,0 +1,51 @@
+
+       <ion-view cache-view="false" view-title="Aplica tus Descuentos" xp-panel xp-init="scope.amount = params.amount;scope.arguments.ticketId=params.ticketId;scope.data=params.paymentMedias; ">
+    <ion-header-bar class="bar bar-subheader bar-stable" align-title="center">
+        <h1 class="title" style="font-size: 1em;"> Total de la compra: {{amount | number: 2}}€</h1>
+    </ion-header-bar>
+    <ion-content ng-controller= "paymentMediaSelectCardController">
+            <ion-list >
+                <ion-item
+                          ng-repeat="item in data | filter: { type: 5 }"  
+                          class="payin-bgCard purse"
+                          style="height:8em; border: 0px;">
+                    <div class="row padding" >
+                        <div class="col col-67">
+                            <div style="margin-top: 1em; white-space:normal; overflow-y: hidden;" class="wizardParams">
+                                 {{item.title}}
+                            </div>
+                        </div>
+                        <div class="col col-33">
+                                    <button type="button" 
+                                            id="walletButton"
+                                            ng-class="{'button-payin':item.order}" 
+                                            class="button buttonWallet" 
+                                            ng-click="selectPaymentMedia(item)">
+                                        <label class="wizardParams" 
+                                               style="text-align: center">{{(item.balance - paymentMediaPayed(item)) | number: 2}}€</label>
+                                    </button>
+                        </div>
+                    </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        <div id="resumen">
+            <div class="row" >
+                <div class="col col-50">Total a pagar:</div>
+                <div class="col col-50"><label style="float:right;"> {{amount | number: 2}}€</label></div>
+            </div>
+            <div class="row" ng-repeat="item in data | filter:activePaymentMedia | orderBy:'order || 1000'">
+                <div class="col col-50">{{item.title}}</div>
+                <div class="col col-50"> <label style="float: right;">- {{(paymentMediaPayed(item)) | number: 2}}€</label></div>
+            </div >
+            <div class="row">
+                <div class="col col-50">Total pendiente: </div>
+                <div class="col col-50"><label style="float: right;">{{(amount - payed()) | number: 2}}€</label></div>
+            </div>
+        </div>
+        <button type="button"
+                class="button button-payin"
+                style="width:95%; margin-left: 2%; margin-right:2%; margin-top: 5%;margin-botton: 5%"
+                ng-click="selectCard()">Finaliza el pago</button>
+    </ion-content>
+</ion-view>

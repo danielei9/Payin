@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EntranceFactory.UnsuspendName,
+	EntranceFactory.UnsuspendApi,
+	"",
+	"resources.entrance.unsuspend"
+))
+{
+	<p translate="resources.entrance.unsuspendQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to activate the entrance {{arguments.name}}?</p>
+}
+

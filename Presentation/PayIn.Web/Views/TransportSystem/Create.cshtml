@@ -1,0 +1,16 @@
+﻿@model System.Web.Mvc.SelectList
+@using PayIn.Application.Dto.Transport.Arguments.TransportSystem
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	TransportSystemFactory.Create,
+	TransportSystemFactory.CreateApi,
+	"",
+	"resources.transportSystem.create"
+))
+{
+	@(Html.ArgumentFor<TransportSystemCreateArguments>(x => x.Name))
+	@(Html.ArgumentFor<TransportSystemCreateArguments>(x => x.CardType))
+}
+

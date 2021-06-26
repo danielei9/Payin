@@ -1,0 +1,36 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EventFactory.UpdateImageCropName,
+	EventFactory.UpdateImageCrop,
+	"",
+	"resources.event.imageCrop",
+	init: "scope.arguments.eventId = params.id",
+	previous: "scope.arguments.photoUrl=scope.temp.avatar.image;"
+))
+{
+	<div class="wrapper-md" xp-image-purse>
+		<div class="hbox hbox-auto-xs">
+			<div class="col">
+				<div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+					<div class="bg-light" style="height:320px">
+						<img-crop
+							image="myImage"
+							result-image="temp.avatar.image"
+							result-image-size="{ w:400, h:200 }"
+							area-type="rectangle"
+							aspect-ratio="2"
+						></img-crop>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="inline bg-white wrapper-sm b-a">
+					<div class="bg-light">
+						<img ng-src="{{temp.avatar.image}}" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

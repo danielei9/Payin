@@ -1,0 +1,47 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	PaymentConcessionFactory.UpdateName,
+	PaymentConcessionFactory.UrlApi,
+	"",
+	"resources.paymentConcession.update"
+))
+{
+	<xp-get data-api="@PaymentConcessionFactory.UrlApi">
+		<div class="panel panel-default" style="margin-top:-15px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.informationComercial">InformationComercial</div>
+            <div class="panel-body">
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.Name, focus: true))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.Phone, width: 3, disabled: "1"))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.Address, width: 9, disabled: "1"))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.Observations, disabled: "1"))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.GroupEntranceTypeByEvent))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.OnlineCartActivated))
+            </div>
+		</div>
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.conditions">Pay[in] conditions</div>
+            <div class="panel-body">
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.LiquidationAmountMin, width: 3))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.PayinCommission, width: 3))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.State, width: 2))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.AllowUnsafePayments, width: 2))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.CanHasPublicEvent, width: 2))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.OnPayedEmail, width: 12))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.OnPaymentMediaCreatedUrl, width: 12))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.OnPaymentMediaErrorCreatedUrl, width: 12))
+            </div>
+		</div>
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.printerManagement">Printer management</div>
+            <div class="panel-body">
+                @(Html.SelectFor<PaymentConcessionUpdateArguments>(x => x.TicketTemplateId, "ticketTemplateName", TicketTemplateFactory.SelectorApi))
+                @(Html.ArgumentFor<PaymentConcessionUpdateArguments>(x => x.PhotoUrl, fieldUrl: @PaymentConcessionFactory.UpdateBannerImageCropName))
+            </div>
+		</div>
+	</xp-get>
+}
+
+
+

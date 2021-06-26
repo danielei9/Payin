@@ -1,0 +1,18 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupGet(
+	ServiceUserFactory.CreateCardSelectName,
+	ServiceUserFactory.CreateCardGetApi,
+	"",
+	"resources.serviceUser.createCard",
+	id: "id",
+	noInitialSearch: true,
+	successUrl: ServiceUserFactory.Create + "?uid={{data[0].uid}}&systemCardId={{data[0].systemCardId}}&systemCardName={{data[0].systemCardName}}"
+))
+{
+	<xp-get api=@ServiceUserFactory.CreateCardSelectGetApi>
+		@(Html.SelectFor<ServiceUserCreateArguments>(x => x.SystemCardId, "systemCardId", focus: true))
+		@(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Uid))
+	</xp-get>
+}

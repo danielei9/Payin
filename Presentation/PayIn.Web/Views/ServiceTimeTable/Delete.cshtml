@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceTimeTableFactory.Delete,
+	ServiceTimeTableFactory.DeleteApi,
+	"",
+	//ServiceTimeTableResources.Delete,
+	"resources.serviceTimeTable.delete",
+	id: "id"
+))
+{
+	<p translate="resources.serviceTimeTable.deleteQuestion" translate-values="{ zone: '{{arguments.zone}}', from:'{{arguments.from}}', until:'{{arguments.until}}' }">Do you want to delete {{arguments.zone}} , {{arguments.from}} - {{arguments.until}}?</p>
+}

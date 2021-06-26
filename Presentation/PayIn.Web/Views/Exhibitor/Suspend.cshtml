@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ExhibitorFactory.SuspendName,
+	ExhibitorFactory.SuspendApi,
+	"",
+	"resources.exhibitor.suspend"
+))
+{
+	<p translate="resources.exhibitor.suspendQuestion" translate-values="{ name: '{{arguments.name}}',  event: '{{$stateParams.eventName}}'}">Do you want to suspend the event {{$stateParams.eventName}}?</p>
+}

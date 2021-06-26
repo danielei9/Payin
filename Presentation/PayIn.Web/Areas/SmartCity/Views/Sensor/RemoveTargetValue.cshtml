@@ -1,0 +1,13 @@
+﻿@using PayIn.Web.App.Factories.SmartCity;
+
+@using (Html.xpPopupPut(
+    SensorFactory.RemoveTargetValueName,
+    SensorFactory.RemoveTargetValueApi,
+    "",
+    "resources.smartCity.sensor.removeTargetValue",
+    arguments: "params"
+))
+{
+	<p translate="resources.smartCity.sensor.removeTargetValueQuestion" >Do you want to remove this target value?</p>
+}
+

@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlItemFactory.Update,
+	ControlItemFactory.UpdateApi,
+	"",
+	//ControlItemResources.Update
+	"resources.controlItem.update"
+))
+{
+	<xp-get data-api="@ControlItemFactory.GetApi">
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.Name,                focus: true))
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.Observations                    ))
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.CheckTimetable                  ))
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.SaveFacialRecognition           ))	
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.SaveTrack                       ))
+		@(Html.ArgumentFor<ControlItemUpdateArguments>(x => x.TrackFrecuency, placeHolder: ControlItemResources.PlaceHolder))
+	</xp-get>
+}
+

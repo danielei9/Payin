@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPlanning;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlPlanningFactory.Update,
+	ControlPlanningFactory.UpdateApi,
+	"",
+	//ControlPlanningResources.Update
+	"resources.controlPlanning.update"
+))
+{
+	<xp-get data-api="@ControlPlanningFactory.GetApi">
+		@(Html.ArgumentFor<ControlPlanningUpdateArguments>(x => x.CheckDuration))
+	</xp-get>
+}
+

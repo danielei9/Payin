@@ -1,0 +1,29 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	ActivityFactory.CreateName,
+	ActivityFactory.CreateApi,
+	"",
+	"resources.activity.create",
+	isTitleActive: true
+))
+{
+	<div class="panel panel-default" style="margin:-15px 0 15px 0">
+		<div class="panel-heading font-bold" translate="resources.activity.activityInfo">Activity information</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="row">
+					@(Html.ArgumentFor<ActivityCreateArguments>(x => x.Name))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<ActivityCreateArguments>(x => x.Description))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<ActivityCreateArguments>(x => x.Start, width: 6))
+					@(Html.ArgumentFor<ActivityCreateArguments>(x => x.End, width: 6))
+				</div>
+			</div>
+		</div>
+	</div>
+}

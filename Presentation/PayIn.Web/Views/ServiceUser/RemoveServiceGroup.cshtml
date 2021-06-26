@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+    ServiceUserFactory.RemoveServiceGroupName,
+    ServiceUserFactory.RemoveServiceGroupApi,
+    "",
+    "resources.serviceUser.removeGroup" //,
+	//init: "scope.arguments.userId = params.userId"
+))
+{
+    <p translate="resources.serviceUser.deleteQuestion4" translate-values="{ groupName: '{{arguments.groupName}}', userName: '{{arguments.userName}}' }">Do you want to remove '{{arguments.groupName}}' from groups associated to user '{{arguments.userName}}'?</p>
+}

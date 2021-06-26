@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceFreeDays;
+
+@using (Html.xpPut(
+	ServiceFreeDaysFactory.Update,
+	ServiceFreeDaysFactory.UpdateApi,
+	"",
+	//ServiceFreeDaysResources.Update
+	"resources.serviceFreeDays.update"
+))
+{
+	<xp-get data-api="@ServiceFreeDaysFactory.GetApi">
+	@(Html.ArgumentFor<ServiceFreeDaysUpdateArguments>(x => x.Name))
+	@(Html.ArgumentFor<ServiceFreeDaysUpdateArguments>(x => x.From))
+	@(Html.ArgumentFor<ServiceFreeDaysUpdateArguments>(x => x.Until))
+	@(Html.SelectFor<ServiceFreeDaysUpdateArguments>(x => x.ConcessionId, "concessionName", ServiceConcessionFactory.RetrieveSelectorApi))
+	</xp-get>
+}
+

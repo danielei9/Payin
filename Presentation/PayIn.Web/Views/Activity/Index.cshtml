@@ -1,0 +1,45 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+@using (Html.xpList(
+	ActivityFactory.GetAllName,
+	ActivityFactory.GetAllApi,
+	"",
+	"resources.activity.retrieveAll",
+	init: "scope.arguments.id=params.id",
+	isTitleActive: true,
+	initialSearch: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+				new ActionLink(ActionLink.ActionLinkType.Panel, ActivityFactory.Create("{{$stateParams.id}}") , XpIcons.Plus)
+		}
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th> &nbsp;</th>
+					<th translate="resources.activity.start">Start</th>
+					<th translate="resources.activity.end">End</th>
+					<th translate="resources.activity.name">Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" >
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+						XpIcons.Trash,
+						popupUrl: ActivityFactory.Delete,
+						id: "{{item.id}}",
+						arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ApiActivityGetAllResult>(x => x.Start, panelUrl: ActivityFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ApiActivityGetAllResult>(x => x.End, panelUrl: ActivityFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ApiActivityGetAllResult>(x => x.Name, panelUrl: ActivityFactory.UpdateName, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

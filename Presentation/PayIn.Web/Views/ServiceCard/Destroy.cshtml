@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceCardFactory.DestroyName,
+	ServiceCardFactory.DestroyApi,
+	"",
+	"resources.serviceCard.destroyed"
+))
+{
+<p translate="resources.serviceCard.destroyQuestion">Do you want to destroy this Card?</p>
+}

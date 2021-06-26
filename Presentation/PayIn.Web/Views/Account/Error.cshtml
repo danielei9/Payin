@@ -1,0 +1,13 @@
+﻿@using Xp.Common;
+
+@if (!string.IsNullOrWhiteSpace(Convert.ToString(ViewBag.Message)))
+{
+    <div id="errorDiv" class="alert alert-block alert-danger fade in">
+        <button id="errorDivBtn" class="close close-sm" type="button">
+            <i class="@XpIcons.Remove"></i>
+        </button>
+        <ul>
+            <li id="liError">@ViewBag.Message</li>
+        </ul>
+    </div>
+}

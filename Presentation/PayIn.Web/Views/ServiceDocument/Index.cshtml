@@ -1,0 +1,65 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+	ServiceDocumentFactory.GetAllName,
+	ServiceDocumentFactory.GetAllApi,
+	"",
+	"resources.serviceDocument.getAll",
+	isTitleActive: true,
+	//isSearchable: false,
+	//initialSearch: true,
+	addPanelUrl: ServiceDocumentFactory.CreateName
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+				<tr>
+					<th class="icon-column">&nbsp;</th>
+					@*<th>&nbsp;</th>*@
+					<th translate="resources.serviceDocument.since">Since</th>
+					<th translate="resources.serviceDocument.until">Until</th>
+					<th translate="resources.serviceDocument.name">Name</th>
+					<th class="icon-column">&nbsp;</th>
+				</tr>
+            </thead>
+            <tbody>
+				<tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+					<td>
+						@XpColumns.IconColumn(XpIcons.Trash, popupUrl: ServiceDocumentFactory.DeleteName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")
+					</td>
+					@*
+					<td class="icon-column" ng-show="item.state===1">
+						@XpColumns.IconColumn(XpIcons.Pause, popupUrl: ServiceDocumentFactory.UnsuspendName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")
+					</td>
+					<td class="icon-column" ng-show="item.state===2">
+						@XpColumns.IconColumn(XpIcons.Play, popupUrl: ServiceDocumentFactory.SuspendName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")
+					</td>
+					*@
+					<td>@(Html.ColumnFor<ServiceDocumentGetAllResult>(x => x.Since, panelUrl: ServiceDocumentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceDocumentGetAllResult>(x => x.Until, panelUrl: ServiceDocumentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceDocumentGetAllResult>(x => x.Name, panelUrl: ServiceDocumentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td class="icon-column">
+						<a ng-href="{{item.url}}" target="_blank">
+							<i class="@XpIcons.Download"></i>
+						</a>
+					</td>
+				</tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.active">Paid</p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.deleted">Cancelled</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

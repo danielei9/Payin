@@ -1,0 +1,107 @@
+<ion-view cache-view="false" view-title="Transportes" ng-controller="transportCardGetAllController" xp-panel xp-loading>
+    <ion-nav-buttons side="primary">
+        <a class="button button-clear button-icon icon ion-bluetooth" ui-sref="transportCardBluetooth"></a>
+    </ion-nav-buttons>
+    <div>
+        <ion-content>
+            <xp-post
+                api="mobile/transportOperation/v1/Search"
+                xp-back="0"
+                xp-success='state.go("transportCardGet", { "cardId": scope.arguments.cardId, "cardType": 2, "cardScript": [], "cardData": data })'
+                xp-init='scope.connectDevice();'>
+                <div>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label col col-21" style="padding: 0; margin-right: 1%;">Nº Tarjeta: </span>
+                        <input type="number" ng-model="temp.cardId" placeholder="Inserte el número de detrás de la tarjeta">
+                    </label>
+                    <div class="padding">
+                        <button
+                            class="button button-block button-payin"
+                            ng-click="
+                                arguments.cardId=xpNfc.numUidToHexLE(temp.cardId);
+                                accept();
+                            ">¡Encuentra tu tarjeta!</button>
+                    </div>
+                    <div ng-class="{'balanced-bg': xpSmartband.connected}" class="center" ng-show="xpSmartband.address" style="height: 4em;width: 100%;">
+                        {{xpSmartband.address}} - {{xpSmartband.name}}
+                    </div>
+                    <div class="padding">
+                        <button class="button button-block button-payin" ng-disabled="!xpSmartband.address" ng-click="getAllCards();">Get Cards</button>
+                    </div>
+                    <div ng-hide="xpSmartband.list" style="height:100%" class="has-header tabs-icon-top">
+                        <img src="img/Transporticon.png" style="opacity: 0.1;width:100%;padding-left:20%;padding-right:20%;">
+                        <div style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%;" ng-show="capabilities.nfcStatus !== 'NO_NFC'">
+                            Acerque la tarjeta o introduzca el número posterior de la tarjeta en el campo de búsqueda.
+                        </div>
+                        <div style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%;" ng-show="capabilities.nfcStatus === 'NO_NFC'">
+                            Introduzca el número posterior de la tarjeta de transporte para leer la información.
+                        </div>
+                    </div>
+                    <!-- Smartband -->
+                    <ion-list
+                        id="slide"
+                        ng-repeat="device in xpSmartband.list">
+                        <ion-item class="card"
+                            ng-class="{'payin-bgMobilis':item.id>=1,'payin-bgVitrasa':item.id<1}"
+                            ng-repeat="item in device.cards" 
+                            on-tap="selectCard(1, item)"
+                            ng-style="item.isActivated ? {'border':'5px solid #E9AF30' } : {}">
+                            <div style="height: 10%; background-color: white;left:0;top:0; position: absolute; width: 100%;">
+                                <span class="text-left" style="text-transform:uppercase;float:left;">{{item.name || item.id}}</span>
+                                <span class="text-right" style="text-transform:uppercase;float:right;">{{item.uid}}</span>
+                            </div>
+                            <div style="height:0;padding-bottom:66%;">
+                                <img style="margin-left:80%;height:80px;" src="img/cards/smartband icon orange.png" alt="">
+                                <div class="row" style="padding-bottom:15%;">
+                                    <div class="col col-50"><h5 class="col text-left">{{item.name}}</h5></div>
+                                    <div class="col col-50"><h5 class="col text-right">{{item.balance}}</h5></div>  
+                                </div>
+                                <div class="payin-creditcard">
+                                    <div class="row">
+                                        <div class="col col-100">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="cardScript[0].validity">
+                                        <div class="col col-40 col-offset-20"><h5 class="payin-expirationCard">CAD: {{item.validity}}</h5></div>               
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                    <!-- Mobile -->
+                    <ion-list id="slide">
+                        <ion-item class="card"
+                            ng-class="{'payin-bgMobilis':item.id>=1,'payin-bgVitrasa':item.id<1}"
+                            ng-repeat="item in xpNfc.listVC" 
+                            on-tap="selectCard(2, item)"
+                            ng-style="item.isActivated ? {'border':'5px solid #E9AF30' } : {}">
+                            <div style="height: 10%; background-color: white;left:0;top:0; position: absolute; width: 100%;">
+                                <span class="text-left" style="text-transform:uppercase;float:left;">{{item.name || item.id}}</span>
+                                <span class="text-right" style="text-transform:uppercase;float:right;">{{item.uid}}</span>
+                            </div>
+                            <div style="height:0;padding-bottom:66%;">
+                                <img style="margin-left:80%;height:80px;" src="img/cards/phone icon orange.png" alt="">
+                                <div class="row" style="padding-bottom:15%;">
+                                    <div class="col col-50"><h5 class="col text-left">{{item.name}}</h5></div>
+                                    <div class="col col-50"><h5 class="col text-right">{{item.balance}}</h5></div>  
+                                </div>
+                                <div class="payin-creditcard">
+                                    <div class="row">
+                                        <div class="col col-100">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="cardScript[0].validity">
+                                        <div class="col col-40 col-offset-20"><h5 class="payin-expirationCard">CAD: {{item.validity}}</h5></div>               
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </xp-post>
+        </ion-content>
+    </div>
+    <div>
+        <ion-floating-button has-footer="false" button-color="#E9AF30" icon="ion-plus" icon-color="#fff" ng-click="createCard(1);"></ion-floating-button>
+    </div>
+</ion-view>

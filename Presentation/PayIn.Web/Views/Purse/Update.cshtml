@@ -1,0 +1,40 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.Purse;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using Xp.Common;
+
+@using (Html.xpPut(
+	PurseFactory.Update,
+	PurseFactory.UpdateApi,
+	"",	
+	"resources.purse.update",	
+	success: "scope.$emit('changedAvatar');"
+))
+{
+<xp-get data-api="@PurseFactory.UpdateApi">	
+	<div class="col-md-2 purseUpdateParent" style="width:241px">
+		<div class="image-upload">
+			<div class="purseUpdate">
+				<div class="col-md-12 bottom">
+					<span translate="resources.purse.updateImage">Haz click para actualizar la imagen.</span>
+				</div>
+			</div>
+			<label for="file-input">
+				<img  class="image-pointer-margin" ng-controller="OnChangedAvatar" ng-src="{{arguments.photoUrl}}" data-ng-show="arguments.photoUrl.length">
+				<img  class="image-pointer-margin" ng-src="@ApplicationUserResources.DefaultPurseImage" ng-hide="arguments.photoUrl.length">
+			</label>
+			<input data-xp-navigate data-xp-modal="purseimagecrop" id="file-input" type="file" accept=".jpg,.png" />
+		</div>
+		<p class="infoPurse">Te recomendamos una imagen PNG de 231x143px</p>
+	</div>
+
+	<div class="col-md-9">
+		@(Html.ArgumentFor<PurseUpdateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<PurseUpdateArguments>(x => x.Validity, width: 6))
+		@(Html.ArgumentFor<PurseUpdateArguments>(x => x.Expiration, width: 6))
+	</div>
+</xp-get>
+}
+
+

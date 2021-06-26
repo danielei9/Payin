@@ -1,0 +1,17 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+@using Xp.Common;
+
+@using (Html.xpPost(
+		ControlFormOptionFactory.CreateName,
+		ControlFormOptionFactory.CreateApi,
+		"",
+		"resources.controlFormOption.create",
+		isTitleActive: true,
+		init: "scope.arguments.argumentId=params.argumentId;"
+))
+{
+    @(Html.ArgumentFor<ControlFormOptionCreateArguments>(x => x.Text, width: 9, focus: true))
+    @(Html.ArgumentFor<ControlFormOptionCreateArguments>(x => x.Value, width: 3))
+}

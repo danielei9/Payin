@@ -1,0 +1,19 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Results.TicketDetail;
+
+@using (Html.xpPut(
+    TicketFactory.TicketUpdateDetailName,
+    TicketFactory.TicketUpdateDetailApi,
+    "",
+    "resources.ticket.update",
+    isTitleActive: true
+))
+{
+    <xp-get data-api="@TicketFactory.UrlDetailApi">
+        @(Html.ArgumentFor<TicketDetailGetResult>(x => x.Reference))
+        @(Html.ArgumentFor<TicketDetailGetResult>(x => x.Article))
+        @(Html.ArgumentFor<TicketDetailGetResult>(x => x.Price))
+        @(Html.ArgumentFor<TicketDetailGetResult>(x => x.Quantity))
+        @(Html.ArgumentFor<TicketDetailGetResult>(x => x.Vat))
+    </xp-get>
+}

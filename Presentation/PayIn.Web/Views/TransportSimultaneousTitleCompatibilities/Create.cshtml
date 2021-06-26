@@ -1,0 +1,18 @@
+﻿@model System.Web.Mvc.SelectList
+@using PayIn.Application.Dto.Transport.Arguments.TransportSimultaneousTitleCompatibilities
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+		TransportSimultaneousTitleCompatibilitiesFactory.CreateName,
+		TransportSimultaneousTitleCompatibilitiesFactory.CreateApi,
+		"",
+		"resources.transportSimultaneousTitleCompatibilities.create",
+		"{{temp.titleName}}",
+		init: "scope.arguments.TitleId=params.titleId"
+	))
+{
+<xp-get data-api="@TransportSimultaneousTitleCompatibilitiesFactory.CreateGetNameApi">
+	@(Html.SelectFor<TransportSimultaneousTitleCompatibilitiesCreateArguments>(x => x.TransportTitle2Id, "Name", TransportSimultaneousTitleCompatibilitiesFactory.RetrieveSelectorApi, placeHolder: "Introduce el titulo a asociar"))
+</xp-get>
+}

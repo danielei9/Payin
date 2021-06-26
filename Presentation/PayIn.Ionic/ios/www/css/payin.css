@@ -1,0 +1,71 @@
+.center{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+pie {
+	width:100%;
+	height:50px;
+  position: absolute;
+  bottom:0px;
+}
+.account-login-logo {
+	width:60%
+}
+.item-floating-label {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+a.button-block, a.button-full, .button-full > a.button, input.button.button-block {
+  width: 100%;
+}
+ion-footer-bar.bar .button {
+  box-shadow: none
+}
+
+.payin-link:link, .payin-link:visited{
+  color:#E9AF30;
+  text-decoration:none;    
+}
+.payin-link:active{
+
+  color:#E85C0C !important;
+}
+
+.payin-terms:link, .payin-terms:visited, .payin-terms:active{
+  color:#AAA;
+  text-decoration:none;
+  font-size: 0.8rem;
+}
+
+.item-checkbox .checkbox {
+  right: auto !important;
+}

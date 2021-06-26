@@ -1,0 +1,64 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	EntranceFactory.EntranceTicket,
+	EntranceFactory.EntranceTicketApi,
+	"",
+	"resources.entrance.entranceTicket",
+	isTitleActive: true,
+	showFormButtons:false
+))
+{
+	<xp-get api="@EntranceFactory.EntranceTicketApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.entrance.ticketData">Ticket data</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						<label translate="resources.entrance.amount">Amount</label>: {{arguments.amount}}
+					</div>
+					<div class="row">
+						<label translate="resources.entrance.date">Date</label>: {{arguments.date | date: "dd/MM/yyyy HH:mm:ss"}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.entrance.ticketValidity">Ticket Validity</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						<label translate="resources.entrance.since">Since</label>: {{arguments.since | date: "dd/MM/yyyy HH:mm:ss"}}
+					</div>
+					<div class="row">
+						<label translate="resources.entrance.until">Until</label>: {{arguments.until | date: "dd/MM/yyyy HH:mm:ss"}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.entrance.ticketProviderData">Ticket probider data</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						<label translate="resources.entrance.supplierName">SupplierName</label>: {{arguments.supplierName}}
+					</div>
+					<div class="row">
+						<label translate="resources.entrance.taxName">Name</label>: {{arguments.taxName}}
+					</div>
+					<div class="row">
+						<label translate="resources.entrance.taxNumber">Number</label>: {{arguments.taxNumber}}
+					</div>
+					<div class="row">
+						<label translate="resources.entrance.taxAddress">Address</label>: {{arguments.taxAddress}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-toolbar pull-right">
+			<button class="btn btn-default" type="reset" ng-click="cancel()" style="background-color: #ffffff !important;
+    background-color: #27c24c; border-color: #27c24c; margin-right:40px;" translate="resources.entrance.back">Back</button>
+		</div>
+</xp-get>
+}

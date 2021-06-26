@@ -1,0 +1,104 @@
+<ion-view view-title="Introducir Pay[in] PIN" xp-panel xp-loading>
+    <ion-content class="background mainContent">
+        <div style="margin-top: 20%;">
+            <div ng-show="temp.showTerm == 0">
+                <xp-post
+                         api="Mobile/Ticket/v3/Pay" 
+                         xp-init="
+                                  scope.temp.showTerm = 0;
+                                  scope.arguments = params.args,
+                                  scope.arguments.id = params.ticketId,
+                                  scope.arguments.paymentMedias= params.paymentMedias,
+                                  scope.arguments.promotions = scope.arguments.promotions"
+                                  
+                         xp-success="navigation.goBack(-3);"
+                         ng-controller="ticketPayController"
+                         >
+                    <div>
+                        <form name="form" role="form" id="form" ng-submit="accept2(arguments.pin)">
+                            <div class="row" style="margin-top: 25%">
+                                <div class="col col-100">
+                                    <div class="row">
+                                        <div class="col col-5"></div>
+                                        <div class="col col-90" style="color: white;">
+                                            Introduce tu código Pin Pay[in] de 4 dígitos.
+                                        </div>
+                                        <div class="col col-5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 25%">
+                                <div class="col col-100">
+                                    <div class="row">
+                                        <div class="col col-5"></div>
+                                        <div class="col col-90">
+                                            <input style="border: 0px; width: 100%; border-bottom: 1px solid white; background-color: rgba(255,255,255,0);" type="password" name="pin" ng-model="arguments.pin" required ng-pattern="/^\d{4}$/" autofocus>
+                                        </div>
+                                        <div class="col col-5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5%; margin-bottom: 5%;" ng-click="showTerms()">
+                                <div class="col col-100">
+                                    <div class="row">
+                                        <div class="col col-5"></div>
+                                        <div class="col col-80 center">Leer condiciones legales</div>
+                                        <div class="col col-5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 0px;background-color: rgba(255,255,255,0); padding: 0px;">
+                                <div class="row">
+                                    <div class="col col-100">
+                                        <div class="row">
+                                            <div class="col col-10"></div>
+                                            <div class="col col-80" ng-controller="ticketPayController">
+                                                <div ng-click="prePay()" class="row center" style=" border-radius: 38px 38px 38px 38px; background-color: rgba(255,255,255,0); border: 1px solid white; color: white; font-size: 1.5em; padding: 10px;">
+                                                    <div class="col col-15"></div>
+                                                    <div class="col col-70 center">
+                                                        <button type="submit" style="background-color: rgba(255,255,255,0); border: 0px; color: white;">PAGAR</button>
+                                                    </div>
+                                                    <div class="col col-15"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col col-10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        </form>
+                        </xp-post>
+                    </div>
+            </div>
+            <div ng-show="temp.showTerm == 1" >
+                <div  ng-click="showTerms()">
+                    <div class="row" style="margin-top: 5%; margin-bottom: 5%;">
+                        <div class="col col-100">
+                            <div class="row center">
+                                <div class="col col-95"></div>
+                                <div class="col col-5" style="font-size: 2em;">x</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-100 center" style="color: white; font-size: 5em;">
+                            PAY[IN]
+                        </div>
+                    </div>
+                    <div class="row" style="color: white; margin-top: 20%;">
+                        <div class="col col-100">
+                            <div class="row">
+                                <div class="col col-100 center">
+                                    Usted va a realizar el pago a Payment Innovation Network S.L. (B-98638927), ubicada en Marina Real Juan Carlos I, Muelle de la aduana s/n Edificio Lanzadera, 46024, Valencia, quien posteriormente realizará la gestión de la transacción con la empresa emisora.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100 center"> Para más información o cualquier reclamación info@pay-in.es</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

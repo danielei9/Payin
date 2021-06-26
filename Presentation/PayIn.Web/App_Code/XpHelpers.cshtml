@@ -1,0 +1,1435 @@
+﻿@using PayIn.Web;
+@using PayIn.Common.Resources;
+@using Xp.Common.Resources;
+@using Xp.Common;
+@using PayIn.Web.App.Factories;
+
+@helper _xpTitle(string title, string subtitle, bool isTitleActive, bool showSpinner, bool isHeaderActive)
+{
+	<!-- Title -->
+	<div class="bg-light lter b-b wrapper-md noPrint">
+		@if (isHeaderActive)
+		{
+			<h1 class="m-n font-thin h3">
+				@if (showSpinner)
+				{
+					<!-- Spinner -->
+					<i class="fa fa-spinner fa-spin pull-right" data-ng-show="windowState().isBusy"></i>
+					<!-- /Spinner -->
+				}
+				@if (isTitleActive)
+				{
+					<!-- Name -->
+					<span translate="@title">title</span>
+					<small class="xp-subtitle">@subtitle</small>
+					<!-- /Name -->
+				}
+			</h1>
+		}
+	</div>
+	<!-- /Title -->
+}
+@helper _xpErrors()
+{
+	<div class="alert alert-block alert-danger fade in ng-hide" data-ng-show="errors.length" data-ng-cloak>
+		@*<button data-dismiss="alert" class="close close-sm" type="button">
+		*@
+		<button class="close close-sm" type="button" data-ng-click="clearErrors()">
+			<i class="@XpIcons.Remove"></i>
+		</button>
+		<ul>
+			<li ng-style="$first ? {'list-style-type':'none','margin-left':'-36px'} : { }" data-ng-repeat="error in errors">{{error}}</li>
+		</ul>
+	</div>
+}
+@helper _xpActionArgs(IEnumerable<ActionLink> actions)
+{
+	if (actions == null)
+	{
+		return;
+	}
+	<!-- Auxiliar -->
+	<div class="navbar-right btn-group">
+		@foreach (var action in actions)
+		{
+			@_xpActionArg(action);
+		}
+	</div>
+	<!-- /Auxiliar -->
+}
+@helper _xpActionArg(ActionLink action)
+{
+	var show = action.Show.IsNullOrEmpty() ? "" : "ng-show=" + action.Show;
+	var id = action.Id.IsNullOrEmpty() ? "" : "xp-id=" + action.Id;
+	var arguments = action.Arguments.IsNullOrEmpty() ? "" : "xp-arguments=" + action.Arguments;
+	var class_ = action.Class.IsNullOrEmpty() ? "" : action.Class;
+
+	if (action.Items != null)
+	{
+		<div class="btn-group dropdown" dropdown @show style="padding-right:7px">
+			<div dropdown-toggle>
+				<i class="@action.Icon" toggle style="padding-right:0"></i>
+				<span class="caret" />
+			</div>
+			<ul class="dropdown-menu">
+				@foreach (var item in action.Items)
+				{
+					<li>@_xpActionArg(item)</li>
+				}
+			</ul>
+		</div>
+	}
+	else if (action.Type == ActionLink.ActionLinkType.Panel)
+	{
+		if (action.Icon.IsNullOrEmpty())
+		{
+			<a class='@class_' ui-sref="@action.Source" @show xp-navigate translate="@action.TextTranslate">@action.Text</a>
+		}
+		else
+		{
+			<a class='@class_' ui-sref="@action.Source" @show xp-navigate translate="@action.TextTranslate"><i class="@action.Icon"></i>@action.Text</a>
+		}
+	}
+	else if (action.Type == ActionLink.ActionLinkType.Popup)
+	{
+		if (action.Icon.IsNullOrEmpty())
+		{
+			<a class='@class_' xp-modal="@action.Source" @show xp-navigate translate="@action.TextTranslate" toggle="modal" href @id @arguments>@action.Text</a>
+		}
+		else
+		{
+			<a class='@class_' xp-modal="@action.Source" @show xp-navigate translate="@action.TextTranslate" toggle="modal" href @id @arguments><i class="@action.Icon"></i>@action.Text</a>
+		}
+	}
+	else if (action.Type == ActionLink.ActionLinkType.Csv)
+	{
+		if (action.Icon.IsNullOrEmpty())
+		{
+			<a class='@class_' data-ng-href="@action.Source" @show data-xp-navigate translate="@action.TextTranslate">@action.Text</a>
+		}
+		else
+		{
+			<a class='@class_' data-ng-href="@action.Source" @show data-xp-navigate translate="@action.TextTranslate"><i class="@action.Icon"></i>@action.Text</a>
+		}
+	}
+}
+@helper _xpListArgs(string name, bool isPaginable, bool isSearchable, string addPanelUrl, string addPopupUrl, string addArguments, string csvUrl, IEnumerable<ActionLink> actions)
+{
+	var arguments_ = addArguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", addArguments);
+
+	if ((name == "controltrackgetitem"))
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="date">
+					<input data-ng-model="arguments.date" id="date" name="date" required type="text" class="form-control ng-pristine ng-valid ng-valid-required ng-touched">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<select class="form-control" data-ng-model="arguments.trackId" placeholder="Todos" data-ng-show="data.length>1||arguments.trackId">
+				<option value="" translate="resources.globalResources.all">All</option>
+				<option data-ng-repeat="item in temp.trackEnum" value="{{item.id}}">{{item.since.date|xpDateTime}} - {{item.until.date|xpDateTime}} ({{item.workerName}})</option>
+			</select>
+		</div>
+	}
+	else if (name == "controltrackgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="date">
+					<input data-ng-model="arguments.date" id="date" name="date" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class='form-group'>
+				<input data-ng-model="arguments.workerName" id="workerId" name="workerId" type=text class="form-control" data-xp-typeahead="workerId" data-api="/Api/ServiceWorker/Selector" data-relation="arguments.workerId=item.id;arguments.workerName=item.value;" placeholder='@ServiceWorkerResources.Worker' />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.workerId.items">
+						<a ng-click="argumentSelect.workerId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+			<div class='form-group'>
+				<input data-ng-model="arguments.itemName" id="itemId" name="itemId" type=text class="form-control" data-xp-typeahead="itemId" data-api="/Api/ControlItem/Selector" data-relation="arguments.itemId=item.id;arguments.itemName=item.value;" placeholder='@ControlItemResources.Item' />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.itemId.items">
+						<a ng-click="argumentSelect.itemId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	}
+	else if (name == "transportcardsupportgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class='form-group'>
+				<input data-ng-model="arguments.ownerName" id="ownerId" name="ownerId" type=text class="form-control" data-xp-typeahead="ownerId" data-api="/Api/TransportCardSupport/Selector" data-relation="arguments.ownerId=item.id;arguments.ownerName=item.value;" placeholder='@GlobalResources.OwnerNameSelector' />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.ownerId.items">
+						<a ng-click="argumentSelect.ownerId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	}
+	else if (name == "controltrackgetview")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date-time="start">
+					<input data-ng-model="arguments.start" id="start" name="start" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date-time="end">
+					<input data-ng-model="arguments.end" id="end" name="end" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "controlpresencegethours" || name == "accountlinegetall" || name == "accountlinegetbylogbook" || name == "paymentgetall" || name == "ticketsystemcard" || name == "shipmentreceiptgetall" || name == "paymentgetcharges" || name == "transportoperationgetall" || name == "transportvalidationgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="since">
+					<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="until">
+					<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "accountlinegetbycash" || name == "accountlinegetbycreditcards" || name == "accountlinegetbyothers")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<!-- since / until -->
+			<div class="form-group" style="width:100%">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="since" style="width:100%">
+							<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="until" style="width:100%">
+							<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Type -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=0" ng-change="search()" style="width:100%">
+						<option value="0" translate="resources.accountLineTypeLine.allTypes">(All types)</option>
+						<option value="1" translate="resources.accountLineTypeLine.buy">Buy</option>
+						<option value="2" translate="resources.accountLineTypeLine.entrance">Entrance</option>
+						<option value="3" translate="resources.accountLineTypeLine.product">Product</option>
+						<option value="4" translate="resources.accountLineTypeLine.discount">Discount</option>
+						<option value="5" translate="resources.accountLineTypeLine.extraPrice">Extra Price</option>
+						<option value="6" translate="resources.accountLineTypeLine.recharge">Recharge</option>
+						<option value="7" translate="resources.accountLineTypeLine.returnCard">Return Card</option>
+					</select>
+				</div>
+			</div>
+			<!-- EventId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="eventId"
+						   name="eventId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="eventId"
+						   ng-model="arguments.eventName"
+						   api="/Api/Event/RetrieveSelector"
+						   relation="arguments.eventId=item.id;arguments.eventName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Evento"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.eventId.items">
+							<a ng-click="argumentSelect.eventId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceConcessionId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="serviceConcessionId"
+						   name="serviceConcessionId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="serviceConcessionId"
+						   ng-model="arguments.concessionName"
+						   api="/Api/ServiceConcession/RetrieveSelectorMembers"
+						   relation="arguments.serviceConcessionId=item.id;arguments.concessionName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Empresa"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.serviceConcessionId.items">
+							<a ng-click="argumentSelect.serviceConcessionId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "accountlinegetbyservicecards")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<!-- since / until -->
+			<div class="form-group" style="width:100%">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="since" style="width:100%">
+							<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="until" style="width:100%">
+							<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Type -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=0" ng-change="search()" style="width:100%">
+						<option value="0" translate="resources.accountLineTypeLine.allTypes">(All types)</option>
+						<option value="1" translate="resources.accountLineTypeLine.buy">Buy</option>
+						<option value="2" translate="resources.accountLineTypeLine.entrance">Entrance</option>
+						<option value="3" translate="resources.accountLineTypeLine.product">Product</option>
+						<option value="4" translate="resources.accountLineTypeLine.discount">Discount</option>
+						<option value="5" translate="resources.accountLineTypeLine.extraPrice">Extra Price</option>
+						<option value="6" translate="resources.accountLineTypeLine.recharge">Recharge</option>
+						<option value="7" translate="resources.accountLineTypeLine.returnCard">Return Card</option>
+					</select>
+				</div>
+			</div>
+			<!-- EventId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="eventId"
+						   name="eventId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="eventId"
+						   ng-model="arguments.eventName"
+						   api="/Api/Event/RetrieveSelector"
+						   relation="arguments.eventId=item.id;arguments.eventName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Evento"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.eventId.items">
+							<a ng-click="argumentSelect.eventId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceConcessionId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="serviceConcessionId"
+						   name="serviceConcessionId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="serviceConcessionId"
+						   ng-model="arguments.concessionName"
+						   api="/Api/ServiceConcession/RetrieveSelectorMembers"
+						   relation="arguments.serviceConcessionId=item.id;arguments.concessionName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Empresa"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.serviceConcessionId.items">
+							<a ng-click="argumentSelect.serviceConcessionId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceCardId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<div class="input-righticonwrapper">
+						<input id="serviceCardId"
+							   name="serviceCardId"
+							   type="text"
+							   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+							   xp-typeahead="serviceCardId"
+							   ng-model="arguments.serviceCardName"
+							   api="/Api/ServiceCard/RetrieveSelector"
+							   relation="arguments.serviceCardId=item.id;arguments.serviceCardName=item.value;"
+							   arguments=""
+							   required=""
+							   placeholder="Uid"
+							   autocomplete="off"
+							   style="width:100%">
+						<label class="fa fa-search input-righticon"></label>
+						<ul class="typeahead dropdown-menu">
+							<li ng-repeat="item in argumentSelect.serviceCardId.items">
+								<a ng-click="argumentSelect.serviceCardId.itemClick(item);search()">{{item.value}}</a>
+							</li>
+							<!-- ngRepeat: item in argumentSelect.serviceCardId.items -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "accountlinegetbyaccounts")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<!-- since / until -->
+			<div class="form-group" style="width:100%">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="since" style="width:100%">
+							<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="until" style="width:100%">
+							<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Type -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=0" ng-change="search()" style="width:100%">
+						<option value="0" translate="resources.accountLineTypeLine.allTypes">(All types)</option>
+						<option value="1" translate="resources.accountLineTypeLine.buy">Buy</option>
+						<option value="2" translate="resources.accountLineTypeLine.entrance">Entrance</option>
+						<option value="3" translate="resources.accountLineTypeLine.product">Product</option>
+						<option value="4" translate="resources.accountLineTypeLine.discount">Discount</option>
+						<option value="5" translate="resources.accountLineTypeLine.extraPrice">Extra Price</option>
+						<option value="6" translate="resources.accountLineTypeLine.recharge">Recharge</option>
+						<option value="7" translate="resources.accountLineTypeLine.returnCard">Return Card</option>
+					</select>
+				</div>
+			</div>
+			<!-- EventId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="eventId"
+						   name="eventId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="eventId"
+						   ng-model="arguments.eventName"
+						   api="/Api/Event/RetrieveSelector"
+						   relation="arguments.eventId=item.id;arguments.eventName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Evento"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.eventId.items">
+							<a ng-click="argumentSelect.eventId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceConcessionId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="serviceConcessionId"
+						   name="serviceConcessionId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="serviceConcessionId"
+						   ng-model="arguments.concessionName"
+						   api="/Api/ServiceConcession/RetrieveSelectorMembers"
+						   relation="arguments.serviceConcessionId=item.id;arguments.concessionName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Empresa"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.serviceConcessionId.items">
+							<a ng-click="argumentSelect.serviceConcessionId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceCardId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<div class="input-righticonwrapper">
+						<input id="serviceCardId"
+							   name="serviceCardId"
+							   type="text"
+							   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+							   xp-typeahead="serviceCardId"
+							   ng-model="arguments.serviceCardName"
+							   api="/Api/ServiceCard/RetrieveSelector"
+							   relation="arguments.serviceCardId=item.id;arguments.serviceCardName=item.value;"
+							   arguments=""
+							   required=""
+							   placeholder="Uid"
+							   autocomplete="off"
+							   style="width:100%">
+						<label class="fa fa-search input-righticon"></label>
+						<ul class="typeahead dropdown-menu">
+							<li ng-repeat="item in argumentSelect.serviceCardId.items">
+								<a ng-click="argumentSelect.serviceCardId.itemClick(item);search()">{{item.value}}</a>
+							</li>
+							<!-- ngRepeat: item in argumentSelect.serviceCardId.items -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "accountlinegetbyentrancetypes")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<!-- since / until -->
+			<div class="form-group" style="width:100%">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="since" style="width:100%">
+							<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="until" style="width:100%">
+							<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Type -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=0" ng-change="search()" style="width:100%">
+						<option value="0" translate="resources.accountLineTypeLine.allTypes">(All types)</option>
+						<option value="1" translate="resources.accountLineTypeLine.buy">Buy</option>
+						<option value="2" translate="resources.accountLineTypeLine.entrance">Entrance</option>
+						<option value="3" translate="resources.accountLineTypeLine.product">Product</option>
+						<option value="4" translate="resources.accountLineTypeLine.discount">Discount</option>
+						<option value="5" translate="resources.accountLineTypeLine.extraPrice">Extra Price</option>
+						<option value="6" translate="resources.accountLineTypeLine.recharge">Recharge</option>
+						<option value="7" translate="resources.accountLineTypeLine.returnCard">Return Card</option>
+					</select>
+				</div>
+			</div>
+			<!-- EventId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="eventId"
+						   name="eventId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="eventId"
+						   ng-model="arguments.eventName"
+						   api="/Api/Event/RetrieveSelector"
+						   relation="arguments.eventId=item.id;arguments.eventName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Evento"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.eventId.items">
+							<a ng-click="argumentSelect.eventId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceConcessionId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="serviceConcessionId"
+						   name="serviceConcessionId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="serviceConcessionId"
+						   ng-model="arguments.concessionName"
+						   api="/Api/ServiceConcession/RetrieveSelectorMembers"
+						   relation="arguments.serviceConcessionId=item.id;arguments.concessionName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Empresa"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.serviceConcessionId.items">
+							<a ng-click="argumentSelect.serviceConcessionId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- EntranceTypeId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="EntranceTypeId"
+						   name="EntranceTypeId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="EntranceTypeId"
+						   ng-model="arguments.EntrancetTypeName"
+						   api="/Api/EntranceType/RetrieveSelector"
+						   relation="arguments.EntranceTypeId=item.id;arguments.EntrancetTypeName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Tipo de entrada"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.EntranceTypeId.items">
+							<a ng-click="argumentSelect.EntranceTypeId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "accountlinegetbyproducts")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<!-- since / until -->
+			<div class="form-group" style="width:100%">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="since" style="width:100%">
+							<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group date" xp-date="until" style="width:100%">
+							<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Type -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=0" ng-change="search()" style="width:100%">
+						<option value="0" translate="resources.accountLineTypeLine.allTypes">(All types)</option>
+						<option value="1" translate="resources.accountLineTypeLine.buy">Buy</option>
+						<option value="2" translate="resources.accountLineTypeLine.entrance">Entrance</option>
+						<option value="3" translate="resources.accountLineTypeLine.product">Product</option>
+						<option value="4" translate="resources.accountLineTypeLine.discount">Discount</option>
+						<option value="5" translate="resources.accountLineTypeLine.extraPrice">Extra Price</option>
+						<option value="6" translate="resources.accountLineTypeLine.recharge">Recharge</option>
+						<option value="7" translate="resources.accountLineTypeLine.returnCard">Return Card</option>
+					</select>
+				</div>
+			</div>
+			<!-- EventId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="eventId"
+						   name="eventId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="eventId"
+						   ng-model="arguments.eventName"
+						   api="/Api/Event/RetrieveSelector"
+						   relation="arguments.eventId=item.id;arguments.eventName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Evento"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.eventId.items">
+							<a ng-click="argumentSelect.eventId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ServiceConcessionId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="serviceConcessionId"
+						   name="serviceConcessionId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="serviceConcessionId"
+						   ng-model="arguments.concessionName"
+						   api="/Api/ServiceConcession/RetrieveSelectorMembers"
+						   relation="arguments.serviceConcessionId=item.id;arguments.concessionName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Empresa"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.serviceConcessionId.items">
+							<a ng-click="argumentSelect.serviceConcessionId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- ProductId -->
+			<div class="form-group" style="width:100%">
+				<div class="input-group" style="width:100%">
+					<input id="ProductId"
+						   name="ProductId"
+						   type="text"
+						   class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+						   xp-typeahead="ProductId"
+						   ng-model="arguments.ProductName"
+						   api="/Api/Product/RetrieveSelector"
+						   relation="arguments.ProductId=item.id;arguments.ProductName=item.value;"
+						   arguments=""
+						   required=""
+						   placeholder="Producto"
+						   autocomplete="off"
+						   style="width:100%">
+					<label class="fa fa-search input-righticon"></label>
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in argumentSelect.ProductId.items">
+							<a ng-click="argumentSelect.ProductId.itemClick(item);search()">{{item.value}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "ticketgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="since">
+					<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control" ng-change="search()">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="until">
+					<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control" ng-change="search()">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "liquidationgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="since">
+					<input data-ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="until">
+					<input data-ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+	}
+	else if (name == "servicenotificationgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="since">
+					<input ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" xp-date="until">
+					<input ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class='form-group' style="width:100%; padding: 10px 0">
+				<select class="form-control" ng-model="arguments.type" placeholder="Tipo" ng-init="arguments.type=22" ng-change="search()">
+					<option value="" translate="resources.globalResources.all">All</option>
+					<option value="22">Personalized</option>
+					<option value="1">Concession Vinculation</option>
+					<option value="2">Concession Vinculation Accepted</option>
+					<option value="3">Payment Succeed</option>
+					<option value="4">Payment Error</option>
+					<option value="5">Refund Succeed</option>
+					<option value="6">Refund Error</option>
+					<option value="7">Payment Media Create Succeed</option>
+					<option value="8">Payment Media Create Error</option>
+					<option value="9">Concession Vinculation Refused</option>
+					<option value="10">Concession Dissociation</option>
+					<option value="11">Payment Worker Concession Dissociation</option>
+					<option value="12">Payment User Concession Dissociation</option>
+					<option value="13">Accept Concession Vinculation</option>
+					<option value="14">Ticket Active</option>
+					<option value="15">Ticket Active Today</option>
+					<option value="16">Payment Concession Campaign</option>
+					<option value="17">Purse Deleted</option>
+					<option value="18">Payment Media Last Day</option>
+					<option value="19">Payment Concession Purse</option>
+					<option value="20">Ticket Last Day</option>
+					<option value="21">Service NotificationCreate</option>
+					<option value="23">Send Promotion Code</option>
+					<option value="24">Order Change State</option>
+					<option value="25">Chat Send</option>
+					<option value="26">Validate Entrance</option>
+				</select>
+			</div>
+		</div>
+	}
+	else if (name == "liquidationpayments")
+	{
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0;height:50px">
+		</div>
+	}
+	else if (name == "servicecardbatchgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group" ng-init="arguments.systemCardId = arguments.systemCardId[0]">
+				<select ng-change="arguments.systemCardId = arguments.systemCardId == null ? '' : arguments.systemCardId; search()one" class="form-control" ng-model="arguments.systemCardId" ng-options="systemCard.id as systemCard.value for systemCard in arguments.systemCards">
+					<option value="" translate="resources.globalResources.all">All</option>
+				</select>
+			</div>
+		</div>
+	}
+	else if (name == "paymentunliquidated")
+	{
+		<style>
+			.form-group {
+				margin-bottom: 20px !important;
+			}
+
+			.buttonClean {
+				height: 34px;
+			}
+		</style>
+		<style media="screen and (min-width: 768px)">
+			#filterByEventCheck {
+				margin-left: -9px;
+				margin-bottom: 10px !important;
+			}
+
+			#toFilter {
+				max-width: 500px;
+			}
+		</style>
+		<div class="nav navbar-left btn-group form-inline" id="toFilter" style="width:50%;padding:0 5px 0 0">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date-time="since" style="width: calc(100% - 34px);float: left;">
+					<input data-ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+				<button type="button" class="btn btn-sm buttonClean" data-toggle="tooltip" data-placement="bottom" title="Limpiar" ng-click="arguments.since=''">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date-time="until" style="width: calc(100% - 34px);float: left;">
+					<input data-ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+				<button type="button" class="btn btn-sm buttonClean" data-toggle="tooltip" data-placement="bottom" title="Limpiar" ng-click="arguments.until=''">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+			<div class='form-group input-righticonwrapper' style="width:100%">
+				<input ng-model="arguments.concessionName" id="concessionId" name="concessionId" type=text class="form-control" style="width:100%" xp-typeahead="concessionId" api="/Api/Liquidation/SelectorConcession" relation="arguments.concessionId=item.id; arguments.concessionName=item.value;" placeholder='Empresa' />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.concessionId.items">
+						<a ng-click="argumentSelect.concessionId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+			<div class='form-group input-righticonwrapper' style="width:100%; margin-bottom: 0 !important;">
+				<div class="checkbox" id="filterByEventCheck">
+					<label class="i-checks">
+						<input type="checkbox" ng-init="arguments.filterByEvent=false;" ng-model="arguments.filterByEvent" id="checkFilterByEvent" name="checkFilterByEvent"><i></i> Filtrar por evento
+					</label>
+				</div>
+				<input ng-model="arguments.eventName" id="eventId" name="eventId" type=text class="form-control" style="width: 100%" xp-typeahead="eventId" api="/Api/Event/RetrieveSelector" relation="arguments.eventId=item.id; arguments.eventName=item.value;" placeholder='Evento' ng-disabled="arguments.filterByEvent===false" />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.eventId.items">
+						<a ng-click="argumentSelect.eventId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	}
+	else if (name == "notificationsetgetall")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class='form-group' style="width:100%">
+				<input ng-model="arguments.eventName" id="eventId" name="eventId" type=text class="form-control" style="width:100%" xp-typeahead="eventId" api="/Api/Event/RetrieveSelector" relation="arguments.eventId=item.id;arguments.eventName=item.value;" placeholder='Evento' />
+				<ul class="typeahead dropdown-menu">
+					<li ng-repeat="item in argumentSelect.eventId.items">
+						<a ng-click="argumentSelect.eventId.itemClick(item)">{{item.value}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	}
+	else if (name == "liquidationpay")
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="since">
+					<input data-ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="until">
+					<input data-ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="checkbox">
+				<label class="i-checks">
+					<input type="checkbox" id="checkUnPay" data-ng-model="arguments.checkUnPay"><i></i>Ver no pagados
+				</label>
+			</div>
+		</div>
+	}
+	else if ((name == "ticketgraph") || (name == "paymentgraph"))
+	{
+		<div class="nav navbar-left btn-group form-inline">
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="since">
+					<input data-ng-model="arguments.since" id="since" name="since" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group date ng-scope" data-xp-date="until">
+					<input data-ng-model="arguments.until" id="until" name="until" type="text" class="form-control">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+	}
+	if (isSearchable)
+	{
+		<!-- Search -->
+		<div class="nav navbar-right">
+			<form name="form" role="search" ng-submit="search()" style="width: 250px;" novalidate>
+				<div class="input-group">
+					<input type="text" class="input-sm form-control" placeholder="@GlobalResources.Search" data-ng-model="arguments.filter" autofocus>
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Buscar">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+						<button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Limpiar" ng-click="clean();">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+		<!-- /Search -->
+	}
+
+	<!-- Auxiliar -->
+	<div class="nav navbar-right btn-group">
+		@if (!string.IsNullOrEmpty(addPopupUrl))
+		{
+			<!-- AddPopup -->
+			<a href="@addPopupUrl" data-toggle="modal" @arguments_ data-xp-navigate><i class="glyphicon glyphicon-plus"></i></a>
+			<!-- /AddPopup -->
+		}
+		@if (!string.IsNullOrEmpty(addPanelUrl))
+		{
+			<!-- AddPanel -->
+			<a data-ui-sref="@addPanelUrl" @arguments_ data-xp-navigate><i class="glyphicon glyphicon-plus"></i></a>
+			<!-- /AddPanel -->
+		}
+		@if (!string.IsNullOrEmpty(csvUrl))
+		{
+			<!-- CSV -->
+			<a href="@csvUrl" @arguments_ data-xp-navigate><i class="glyphicon glyphicon-save"></i></a>
+			<!-- /CSV -->
+		}
+		@_xpActionArgs(actions)
+		@*@if (isPaginable)
+			{
+			<!-- Pagination -->
+			<div class="btn-group" data-ng-show="numPages() | xpMore: 1">
+				<!-- First -->
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() | xpMore: 3" data-ng-click="loadPage(1)">1</button>
+				<button type="button" class="btn btn-default disabled" data-ng-show="currentPage() | xpMore: 4">...</button>
+				<!-- Previous -->
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() | xpMore: 2" data-ng-click="loadPage(currentPage() - 2)">{{currentPage() - 2}}</button>
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() | xpMore: 1" data-ng-click="loadPage(currentPage() - 1)">{{currentPage() - 1}}</button>
+				<!-- Current -->
+				<button type="button" class="btn btn-default active">{{currentPage()}}</button>
+				<!-- Next -->
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() - numPages() | xpLess: - 1" data-ng-click="loadPage(currentPage() + 1)">{{currentPage() + 1}}</button>
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() - numPages() | xpLess: - 2" data-ng-click="loadPage(currentPage() + 2)">{{currentPage() + 2}}</button>
+				<!-- Last -->
+				<button type="button" class="btn btn-default disabled" data-ng-show="currentPage() - numPages() | xpLess: - 4">...</button>
+				<button type="button" class="btn btn-default" data-ng-show="currentPage() - numPages() | xpLess: - 3" data-ng-click="loadPage(numPages())">{{numPages()}}</button>
+			</div>
+			<!-- /Pagination -->
+			}*@
+	</div>
+	<!-- /Auxiliar -->
+	if ((name == "paymentunliquidated") || (name == "liquidationpayments"))
+	{
+		<div class="nav navbar-right btn-group" id="toFilter" style="width:50%;padding:20px 0 0 5px">
+			<table class="table table-hover">
+				<tbody>
+					<tr>
+						<td><span translate="resources.payment.amount">Amount</span></td>
+						<td class="text-right">{{arguments.totalAmount | number : 2}} €</td>
+					</tr>
+					<tr>
+						<td><span translate="resources.payment.commission">Commission</span></td>
+						<td class="text-right">{{-1 * arguments.totalCommission | number : 2}} €</td>
+					</tr>
+					<tr>
+						<td><b translate="resources.payment.total">Total</b></td>
+						<th class="text-right"><b>{{arguments.totalAmount - arguments.totalCommission | number : 2}} €</b></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	}
+}
+@helper _xpList(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string controller, string cancelText, bool isPaginable, bool isSearchable, bool isTitleActive, bool showSpinner, bool showFormButtons, string addPanelUrl, string addPopupUrl, string addArguments, string init, bool isHeaderActive, bool isBreadcrumbActive, string csvUrl, IEnumerable<ActionLink> actions, bool initialSearch, string cardBeforePage, string previous, string success)
+{
+	cancelText = cancelText ?? GlobalResources.Back;
+	var _isPaginable = isPaginable ? "data-is-paginable" : "";
+	var _initialSearch = initialSearch ? "data-initial-search" : "";
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div class="fade-in">
+		<div data-xp-panel data-xp-panel-title=@title>
+			@_xpTitle(title, subtitle, isTitleActive, showSpinner, isHeaderActive).AddTabs(2)
+			<div class="wrapper-md">
+				<xp-list id="@name" api="@apiUrl" cache="@cache" xp-init="@init" @controller_ @_isPaginable @_initialSearch xp-previous="@previous" xp-success="@success">
+					<div class="row">
+						@*@if (cardBeforePage != null) {@RenderPage(cardBeforePage)}*@
+						<div class="col-xs-12">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="nav dataTables_wrapper">
+										@_xpListArgs(name, isPaginable, isSearchable, addPanelUrl, addPopupUrl, addArguments, csvUrl, actions).AddTabs(9)
+									</div>
+									@_xpErrors().AddTabs(8)
+									<div>
+										<!-- Body -->
+										<!-- UsingBody -->
+										<!-- /Body -->
+									</div>
+									@if (showFormButtons != false)
+									{
+										<div class="btn-toolbar pull-right">
+											<button class="btn btn-default" type="reset" ng-click="cancel()">@cancelText</button>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</xp-list>
+			</div>
+		</div>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPopupGet(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string id, string arguments, string init, string controller, string previous, string accept, int? goBack, string success, string successUrl, string successPopup, bool noInitialSearch)
+{
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	var SuccessModal_ = successPopup.IsNullOrEmpty() ? "" : "data-xp-modal=" + HomeFactory.Popup;
+	var _noInitialSearch = noInitialSearch ? "no-initial-search" : "";
+	var _goBack = goBack != null ? "xp-go-back=" + goBack : "";
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+	var accept_ = accept.IsNullOrEmpty() ? "search()" : accept;
+
+	<!-- @name -->
+	<div id="@name" xp-popup xp-title=@title>
+		<xp-get api="@apiUrl" xp-init="@init" @controller_ @_noInitialSearch xp-previous="@previous" xp-success="@success" xp-success-url="@successUrl" @SuccessModal_ @_goBack xp-arguments="@successPopup">
+			<form name="form" role="form" class="form" ng-submit="@accept_" novalidate>
+				<div class="modal-header">
+					<h3 class="modal-title" translate="@title">title<small class="xp-subtitle">@subtitle</small></h3>
+				</div>
+				<div class="modal-body">
+					@_xpErrors().AddTabs(4)
+					<fieldset data-ng-disabled="windowState().isReadOnly">
+						<!-- UsingBody -->
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" ng-show="windowState().isBusy" />
+					<button type="button" class="btn btn-default" ng-click="cancel()" data-dismiss="modal" translate="resources.globalResources.cancel">Cancel</button>
+					<button type="submit" class="btn btn-success" ng-disabled="form.$invalid" translate="resources.globalResources.ok">Ok</button>
+				</div>
+			</form>
+		</xp-get>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPopupPut(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string id, string arguments, string init, string controller, string acceptText, string previous, string success, string successUrl)
+{
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	acceptText = acceptText ?? GlobalResources.Ok;
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div id="@name" xp-popup xp-title=@title>
+		<xp-put api="@apiUrl" xp-init="@init" @controller_ xp-previous="@previous" xp-success="@success" xp-success-url="@successUrl">
+			<form name="form" role="form" class="form" data-ng-submit="accept()" novalidate>
+				<div class="modal-header">
+					<h3 class="modal-title" translate="@title">title<small class="xp-subtitle">@subtitle</small></h3>
+				</div>
+				<div class="modal-body">
+					@_xpErrors().AddTabs(4)
+					<fieldset ng-disabled="windowState().isReadOnly">
+						<!-- UsingBody -->
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" data-ng-show="windowState().isBusy" />
+					<button type="button" class="btn btn-default" ng-click="cancel()" data-dismiss="modal" translate="resources.globalResources.cancel">Cancel</button>
+					<button type="submit" class="btn btn-success" ng-disabled="form.$invalid" translate="resources.globalResources.ok">Ok</button>
+				</div>
+			</form>
+		</xp-put>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPut(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string arguments, string init, string controller, string acceptText, string cancelText, bool isTitleActive, bool showSpinner, bool showFormButtons, bool isHeaderActive, bool isBreadcrumbActive, IEnumerable<ActionLink> actions, string previous, int? goBack, string success, string successPopup)
+{
+	acceptText = acceptText ?? GlobalResources.Ok;
+	cancelText = cancelText ?? GlobalResources.Cancel;
+	var SuccessModal_ = successPopup.IsNullOrEmpty() ? "" : "data-xp-modal=" + HomeFactory.Popup;
+	var _goBack = goBack != null ? "xp-go-back=" + goBack : "";
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div class="fade-in">
+		<div xp-panel xp-panel-title=@title>
+			@_xpTitle(title, subtitle, isTitleActive, showSpinner, isHeaderActive).AddTabs(2)
+			<div class="wrapper-md">
+				<xp-put id="@name" api="@apiUrl" cache="@cache" xp-init="@init" @controller_ xp-previous="@previous" @_goBack xp-success="@success" @SuccessModal_ xp-arguments="@successPopup">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel panel-default">
+								<div id="panel-body" class="panel-body">
+									@if ((actions != null) && (actions.Count() > 0))
+									{
+										<div class="nav dataTables_wrapper">
+											@_xpActionArgs(actions).AddTabs(9)
+										</div>
+									}
+									<form name="form" role="form" class="form" ng-submit="accept()" novalidate>
+										@_xpErrors().AddTabs(9)
+										<div class="row">
+											<!-- Body -->
+											<!-- UsingBody -->
+											<!-- /Body -->
+										</div>
+										@if (showFormButtons)
+										{
+											<div class="btn-toolbar pull-right">
+												@if (@cancelText != "")
+												{
+													<button class="btn btn-default" type="reset" ng-click="cancel()">@cancelText</button>
+												}
+												@if (@acceptText != "")
+												{
+													<button class="btn btn-success" type="submit" ng-disabled="form.$invalid">@acceptText</button>
+												}
+											</div>
+										}
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</xp-put>
+			</div>
+		</div>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPopupPost(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string arguments, string init, string controller, string acceptText, string previous, string successPopup)
+{
+	acceptText = acceptText ?? GlobalResources.Ok;
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("xp-arguments={0}", arguments);
+	//var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var SuccessModal_ = successPopup.IsNullOrEmpty() ? "" : "xp-modal=" + HomeFactory.Popup;
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div id="@name" xp-popup xp-title=@title>
+		<xp-post api="@apiUrl" xp-init="@init" @controller_ xp-previous="@previous" @*xp-success="@success" xp-success-url="@successUrl"*@ @SuccessModal_ xp-arguments="@successPopup">
+			<form name="form" role="form" class="form" ng-submit="accept()" novalidate>
+				<div class="modal-header">
+					<h3 class="modal-title" translate="@title">title<small class="xp-subtitle">@subtitle</small></h3>
+				</div>
+				<div class="modal-body">
+					@_xpErrors().AddTabs(4)
+					<fieldset ng-disabled="windowState().isReadOnly">
+						<!-- UsingBody -->
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" ng-show="windowState().isBusy" />
+					<button type="button" class="btn btn-default" ng-click="cancel()" data-dismiss="modal" translate="resources.globalResources.cancel">Cancel</button>
+					<button type="submit" class="btn btn-success" ng-disabled="form.$invalid" translate="resources.globalResources.ok">@acceptText</button>
+				</div>
+			</form>
+		</xp-post>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPost(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string arguments, string init, string controller, string acceptText, string cancelText, bool isTitleActive, bool showSpinner, bool showFormButtons, bool isHeaderActive, bool isBreadcrumbActive, string previous, int? goBack, string success, string successUrl, string successPopup)
+{
+	acceptText = acceptText ?? GlobalResources.Ok;
+	cancelText = cancelText ?? GlobalResources.Cancel;
+	var SuccessModal_ = successPopup.IsNullOrEmpty() ? "" : "data-xp-modal=" + HomeFactory.Popup;
+	var _goBack = goBack != null ? "xp-go-back=" + goBack : "";
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div class="fade-in">
+		<div xp-panel xp-title=@title>
+			@_xpTitle(title, subtitle, isTitleActive, showSpinner, isHeaderActive).AddTabs(2)
+			<div class="wrapper-md">
+				<xp-post id="@name" api="@apiUrl" cache="@cache" xp-init="@init" @controller_ xp-previous="@previous" xp-success="@success" @_goBack xp-success-url="@successUrl" @SuccessModal_ xp-arguments="@successPopup">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel panel-default">
+								<div id="panel-body" class="panel-body">
+									<form name="form" role="form" class="form" ng-submit="accept()" novalidate>
+										@_xpErrors().AddTabs(9)
+										<div class="row">
+											<!-- UsingBody -->
+										</div>
+										@if (showFormButtons)
+										{
+											<div class="btn-toolbar pull-right">
+												@if (@cancelText != "")
+												{
+													<button class="btn btn-default" type="reset" ng-click="cancel()">@cancelText</button>
+												}
+												@if (@acceptText != "")
+												{
+													<button class="btn btn-success" type="submit" ng-disabled="form.$invalid">@acceptText</button>
+												}
+											</div>
+										}
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</xp-post>
+			</div>
+		</div>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPopupDelete(string name, string apiUrl, string classIcon, string title, string subtitle, string cache, string id, string arguments, string init, string controller, string previous, string success, string successUrl, string successPopup)
+{
+	var id_ = id.IsNullOrEmpty() ? "" : string.Format("data-xp-id={0}", id);
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	var SuccessModal_ = successPopup.IsNullOrEmpty() ? "" : "data-xp-modal=" + HomeFactory.Popup;
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div id="@name" xp-popup xp-title=@title>
+		<xp-delete api="@apiUrl" xp-init="@init" @controller_ xp-previous="@previous" xp-success="@success" xp-success-url="@successUrl" @SuccessModal_ xp-arguments="@successPopup">
+			<form name="form" role="form" class="form" data-ng-submit="accept()" novalidate>
+				<div class="modal-header">
+					<h3 class="modal-title" translate="@title">title<small class="xp-subtitle">@subtitle</small></h3>
+				</div>
+				<div class="modal-body">
+					@_xpErrors().AddTabs(4)
+					<fieldset data-ng-disabled="windowState().isReadOnly">
+						<!-- UsingBody -->
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" data-ng-show="windowState().isBusy" />
+					<button type="button" class="btn btn-default" ng-click="cancel()" data-dismiss="modal" translate="resources.globalResources.cancel">Cancel</button>
+					<button type="submit" class="btn btn-success" ng-disabled="form.$invalid" translate="resources.globalResources.ok">Ok</button>
+				</div>
+			</form>
+		</xp-delete>
+	</div>
+	<!-- /@name -->
+}
+@helper _xpPopupShow(string name, string classIcon, string title, string subtitle, string cache, string id, string arguments, string init, string controller, string acceptText, bool showAcceptButton, bool showCancelButton, string cancelText, string accept)
+{
+	var arguments_ = arguments.IsNullOrEmpty() ? "" : string.Format("data-xp-arguments={0}", arguments);
+	acceptText = acceptText ?? GlobalResources.Ok;
+	cancelText = cancelText ?? GlobalResources.Close;
+	var controller_ = controller.IsNullOrEmpty() ? "" : "ng-controller=" + controller;
+
+	<!-- @name -->
+	<div id="@name" xp-popup @controller_ xp-init="@init" xp-title=@title>
+		<form name="form" role="form" class="form" ng-submit="@accept" novalidate>
+			<div class="modal-header">
+				<h3 class="modal-title" translate="@title">title<small class="xp-subtitle">@subtitle</small></h3>
+			</div>
+			<div class="modal-body">
+				@_xpErrors().AddTabs(4)
+				<fieldset ng-disabled="windowState().isReadOnly">
+					<!-- UsingBody -->
+					@if (showCancelButton || showAcceptButton)
+					{
+                    <div class="btn-toolbar pull-right">
+                        @if (showCancelButton)
+                        {
+                            <button type="button" class="btn btn-default" data-dismiss="modal" translate="resources.globalResources.close">Close</button>
+                        }
+                        @if (showAcceptButton)
+                        {
+                            <button type="submit" class="btn btn-success" ng-disabled="form.$invalid" translate="resources.globalResources.ok">Ok</button>
+                        }
+                    </div>
+					}
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<!-- /@name -->
+}

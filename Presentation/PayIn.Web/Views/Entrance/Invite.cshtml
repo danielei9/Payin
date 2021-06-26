@@ -1,0 +1,24 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using (Html.xpPost(
+	EntranceFactory.InviteName,
+	EntranceFactory.InviteApi,
+	"",
+	"resources.entrance.invite",
+	isTitleActive: true
+))
+{
+	<div data-ng-init="arguments.entranceTypeId = $stateParams.id">
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<ApiEntranceInviteArguments>(x => x.Quantity, width: 3))
+				@(Html.ArgumentFor<ApiEntranceInviteArguments>(x => x.Email, width: 9))
+			</div>
+			<div class="row">
+				@(Html.ArgumentFor<ApiEntranceInviteArguments>(x => x.VatNumber, width: 3))
+				@(Html.ArgumentFor<ApiEntranceInviteArguments>(x => x.UserName, width: 4))
+				@(Html.ArgumentFor<ApiEntranceInviteArguments>(x => x.LastName, width: 5))
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+    ProductFactory.CreateImageName,
+    ProductFactory.CreateImageApi,
+    "",
+    "resources.product.imageCrop",
+    isTitleActive: true,
+    successUrl: "#/Product",
+    acceptText: "",
+    cancelText: "Continuar"
+))
+{
+	<xp-get	api="@ProductFactory.GetApi">
+		@(Html.ArgumentFor<ProductUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @ProductFactory.UpdateImageCropName))
+		<div class="col-md-9">
+			<h4 translate="resources.product.infoCreateImage">Para completar el proceso, solo falta añadir la imagen del producto, de esta forma podrá ser identificado fácilmente.</h4>
+		</div>
+	</xp-get>
+}
+

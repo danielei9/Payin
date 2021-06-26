@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPopupDelete(
+	PaymentWorkerFactory.Delete,
+	PaymentWorkerFactory.DeleteApi,
+	"",
+	//PaymentWorkerResources.Delete,
+	"resources.paymentWorker.delete",
+	id: "id"
+))
+{
+	<p translate="resources.paymentWorker.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete the payment worker {{arguments.name}}?</p>
+}

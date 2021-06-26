@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript" src="../../App/js/qrcode.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <img src="http://payin-test.cloudapp.net/app/logo_orange.png" style="height:65px;width:189.24px"/><br /><br />
+    <div style="border-top:3px solid #e9af30">&nbsp;</div>
+
+    <span style="font-family:Arial;font-size:10pt">
+        <br />
+        Hola <b>{UserName}</b>,<br /><br />
+        Aquí tiene su entrada.<br />
+        <img id='barcode'
+            src='https://api.qrserver.com/v1/create-qr-code/?data={codeId}&amp;size=100x100'
+            width="100"
+            max-width="200px"
+            height="100" />
+        <br /> &nbsp;&nbsp;{id}   <br />   
+        {Description}
+        <br /><br />
+        Gracias,<br />
+        Pay[in]
+    </span>
+</body>
+</html>

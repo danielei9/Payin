@@ -1,0 +1,35 @@
+﻿@using PayIn.Application.Dto.Bus.Results;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpList(
+	LineFactory.GetAllName,
+	LineFactory.GetAllApi,
+	"",
+	"resources.bus.line.getAll",
+	isTitleActive: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.bus.line.login">Login</th>
+					<th translate="resources.bus.line.name">Name</th>
+					@*<th class="icon-column">&nbsp;</th>*@
+					<th class="icon-column">&nbsp;</th>
+					<th ng-if="app.configuration() == 'Test'" class="icon-column">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<BusApiLineGetAllResult>(x => x.Login))</td>
+					<td>@(Html.ColumnFor<BusApiLineGetAllResult>(x => x.Name))</td>
+					@*<td>@XpColumns.IconColumn(XpIcons.Graph, panelUrl: GraphFactory.GetAllName + "({ id: \"{{item.id}}\"})")</td>*@
+					<td>@XpColumns.IconColumn(XpIcons.MapMarker, panelUrl: StopFactory.ByLineName + "({ id: \"{{item.id}}\"})")</td>
+					<td ng-if="app.configuration() == 'Test'">@XpColumns.IconColumn(XpIcons.FlagCheckered, panelUrl: LineFactory.GetItineraryName + "({ id: \"{{item.id}}\"})")</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

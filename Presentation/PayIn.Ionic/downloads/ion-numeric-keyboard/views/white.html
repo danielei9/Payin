@@ -1,0 +1,39 @@
+<ion-view class="passcode-example">
+
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-icon ion-arrow-left-c" ui-sref="home"></a>
+    </div>
+    <h1 class="title">Passcode</h1>
+  </ion-header-bar>
+
+  <ion-content scroll="false">
+    <div class="row">
+      <div class="col">
+       <h4>Please enter your passcode.</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-input">
+        <div class="circle" ng-show="passcode.length >= 1"></div>
+      </div>
+      <div class="col col-input">
+        <div class="circle" ng-show="passcode.length >= 2"></div>
+      </div>
+      <div class="col col-input">
+        <div class="circle" ng-show="passcode.length >= 3"></div>
+      </div>
+      <div class="col col-input">
+        <div class="circle" ng-show="passcode.length >= 4"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col forgot">
+        Forgot passcode? <span>Log Back In</span>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-numeric-keyboard class="white-keyboard" options="options"></ion-numeric-keyboard>
+
+</ion-view>

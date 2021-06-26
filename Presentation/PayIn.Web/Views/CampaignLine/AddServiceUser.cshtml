@@ -1,0 +1,15 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	CampaignLineFactory.AddServiceUserName,
+	CampaignLineFactory.AddServiceUserApi,
+	"",
+	"resources.campaignLine.addServiceUser"
+))
+{
+	@(Html.SelectFor<CampaignLineAddServiceUserArguments>(x => x.ServiceUserId, "serviceUserName", CampaignLineFactory.ServiceUserRetrieveSelectorApi))
+}

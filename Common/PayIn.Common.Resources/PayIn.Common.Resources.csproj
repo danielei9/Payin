@@ -1,0 +1,1491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94F8DE05-4CE3-48EB-9C76-9D8DB36E90AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Common.Resources</RootNamespace>
+    <AssemblyName>PayIn.Common.Resources</AssemblyName>
+    <DefaultLanguage>es-ES</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.0.16</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Emulator\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="ApplicationUserResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationUserResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ApplicationUserResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationUserResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationUserResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CampaignLineResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CampaignLineResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>CampaignLineResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CampaignLineResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CampaignLineResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CampaignResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CampaignResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormArgumentResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormArgumentResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlFormArgumentResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormArgumentResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormArgumentResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignCheckPointResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignCheckPointResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlFormAssignCheckPointResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignCheckPointResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignCheckPointResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlFormAssignResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignTemplateResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignTemplateResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlFormAssignTemplateResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignTemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignTemplateResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlFormResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlFormAssignResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlFormAssignResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlItemResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlItemResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlItemResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningCheckResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningCheckResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlPlanningCheckResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningItemResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningItemResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlPlanningItemResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlPlanningResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPresenceResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPresenceResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlPresenceResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateCheckResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateCheckResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlTemplateCheckResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateItemResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateItemResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlTemplateItemResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlTemplateResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTrackResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTrackResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlTrackResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceCheckResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceCheckResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EntranceCheckResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceCheckResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceCheckResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceResource.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EntranceResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnumResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.es-ES.Designer.cs</LastGenOutput>
+      <LastGenOutput>EnumResources.es-VA.Designer.cs</LastGenOutput>
+      <DependentUpon>EnumResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceTypeResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceTypeResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EntranceTypeResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceTypeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntranceTypeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnumResources.es-VA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.es-VA1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoticeGalleryResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoticeGalleryResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>NoticeGalleryResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoticeGalleryResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoticeGalleryResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventGalleryResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventGalleryResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EventGalleryResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventGalleryResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventGalleryResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoticeResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoticeResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>NoticeResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoticeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NoticeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceDocumentResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceDocumentResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceDocumentResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceDocumentResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceDocumentResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ProfileResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GreyListResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GreyListResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>HomeResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiquidationResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LiquidationResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>LiquidationResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>MainResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionPurseResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionPurseResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionPurseResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionPurseResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentConcessionPurseResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionCampaignResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionCampaignResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentConcessionCampaignResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionCampaignResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionCampaignResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentConcessionResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentMediaResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentMediaResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentMediaResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentUserResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentUserResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentUserResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentUserResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentUserResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentWorkerResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentWorkerResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PaymentWorkerResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentWorkerResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentWorkerResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EventResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventMapResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventMapResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>EventMapResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventMapResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EventMapResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurseResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurseResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>PurseResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurseResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurseResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCategoryResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCategoryResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceCategoryResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCategoryResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCategoryResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceGroupResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceGroupResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceGroupResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceGroupResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceGroupResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceUserResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceUserResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceUserResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceUserResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceUserResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ProductResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductFamilyResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductFamilyResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ProductFamilyResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductFamilyResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductFamilyResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemCardResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemCardResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportOperationResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportOperationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceAddressNameResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceAddressNameResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceAddressNameResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceAddressResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceAddressResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceAddressResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCheckPointResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCheckPointResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceCheckPointResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCityResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCityResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceCityResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceConcessionResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceConcessionResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceConcessionResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceFreeDaysResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceFreeDaysResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceFreeDaysResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceNotificationResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceNotificationResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceNotificationResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceNotificationResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceNotificationResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceNumberPlateResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceNumberPlateResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceNumberPlateResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicePriceResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServicePriceResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServicePriceResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceSupplierResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceSupplierResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceSupplierResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceTagResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceTagResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceTagResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceTimeTableResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceTimeTableResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceTimeTableResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceWorkerResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceWorkerResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceWorkerResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceZoneResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceZoneResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ServiceZoneResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShipmentResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipmentResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>ShipmentResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShipmentResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipmentResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TicketResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>TicketResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketTemplateResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TicketTemplateResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>TicketTemplateResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketTemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TicketTemplateResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportCardRechargeResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportCardRechargeResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>TransportCardRechargeResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportCardRechargeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportCardRechargeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportResources.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>UserResources.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningCheckResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningCheckResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningItemResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningItemResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTrackResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTrackResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateItemResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateItemResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiquidationResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LiquidationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentConcessionResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentConcessionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceConcessionResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceConcessionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceSupplierResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceSupplierResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceTagResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceTagResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCheckPointResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCheckPointResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlItemResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlItemResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPlanningResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPlanningResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPresenceResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlPresenceResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlTemplateCheckResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ControlTemplateCheckResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentMediaResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentMediaResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceAddressNameResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceAddressNameResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceAddressResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceAddressResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceCityResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceCityResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceFreeDaysResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceFreeDaysResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceNumberPlateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceNumberPlateResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicePriceResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServicePriceResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceTimeTableResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceTimeTableResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceZoneResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceZoneResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnumResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EnumResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TicketResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceWorkerResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceWorkerResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WhiteListResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WhiteListResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationUserResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationUserResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationUserResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationUserResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignLineResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CampaignLineResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignLineResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CampaignLineResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CampaignResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CampaignResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormArgumentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormArgumentResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormArgumentResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormArgumentResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignCheckPointResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignCheckPointResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignCheckPointResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignCheckPointResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignTemplateResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignTemplateResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignTemplateResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignTemplateResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormAssignResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormAssignResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFormResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlFormResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlItemResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlItemResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningCheckResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningCheckResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningItemResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningItemResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPresenceResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPresenceResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateCheckResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateCheckResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateCheckResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateCheckResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateItemResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateItemResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTrackResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTrackResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceTypeResources.es-ES.Designer.cs">
+      <DependentUpon>EntranceTypeResources.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="EntranceResource.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceCheckResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceCheckResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceCheckResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceCheckResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EnumResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceTypeResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntranceTypeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EnumResources.es-VA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EnumResources.es-VA1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.es-VA.resx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticeGalleryResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoticeGalleryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticeGalleryResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoticeGalleryResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventGalleryResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventGalleryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventGalleryResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventGalleryResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticeResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoticeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticeResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoticeResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDocumentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceDocumentResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDocumentResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceDocumentResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfileResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfileResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GreyListResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GreyListResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GreyListResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GreyListResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LiquidationResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LiquidationResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MainResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionPurseResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionPurseResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionCampaignResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionCampaignResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionPurseResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionPurseResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionCampaignResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionCampaignResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentMediaResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentMediaResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentUserResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentUserResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentUserResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentUserResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentWorkerResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentWorkerResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentWorkerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentWorkerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventMapResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventMapResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EventMapResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventMapResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PurseResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurseResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PurseResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurseResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCategoryResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCategoryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCategoryResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCategoryResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceGroupResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceGroupResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceGroupResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceGroupResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceUserResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceUserResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceUserResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceUserResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductFamilyResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductFamilyResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductFamilyResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductFamilyResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCardResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemCardResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransportOperationResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportOperationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAddressNameResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAddressNameResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAddressResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAddressResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCheckPointResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCheckPointResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCityResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCityResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceConcessionResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceConcessionResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceFreeDaysResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceFreeDaysResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceNotificationResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceNotificationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceNotificationResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceNotificationResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceNumberPlateResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceNumberPlateResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServicePriceResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicePriceResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceSupplierResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceSupplierResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTagResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceTagResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTimeTableResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceTimeTableResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceWorkerResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceWorkerResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceZoneResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceZoneResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShipmentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShipmentResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShipmentResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShipmentResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketTemplateResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketTemplateResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketTemplateResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketTemplateResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransportCardRechargeResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportCardRechargeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransportCardRechargeResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportCardRechargeResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransportResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TransportResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningCheckResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningCheckResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningItemResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningItemResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTrackResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTrackResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateItemResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateItemResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTemplateResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlTemplateResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="HomeResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LiquidationResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LiquidationResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentConcessionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentConcessionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceConcessionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceConcessionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceSupplierResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceSupplierResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTagResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceTagResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCheckPointResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCheckPointResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlItemResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlItemResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPlanningResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPlanningResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPresenceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControlPresenceResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MainResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentMediaResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentMediaResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="ServiceAddressNameResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAddressNameResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAddressResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAddressResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCityResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceCityResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceFreeDaysResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceFreeDaysResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceNumberPlateResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceNumberPlateResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServicePriceResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicePriceResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTimeTableResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceTimeTableResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceZoneResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceZoneResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="EnumResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EnumResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceWorkerResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceWorkerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WhiteListResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WhiteListResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WhiteListResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WhiteListResources.es-ES.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{B7A850E4-F2C6-4081-87D1-E5379BF5C0A7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CampaignResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CampaignResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>CampaignResources.resx</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WhiteListResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WhiteListResources.es-ES.Designer.cs</LastGenOutput>
+      <DependentUpon>WhiteListResources.resx</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GreyListResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GreyListResources.es-ES.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

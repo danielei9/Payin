@@ -1,0 +1,48 @@
+﻿@using PayIn.Application.Dto.Results.ServiceWorker;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	ServiceWorkerFactory.GetAll,
+	ServiceWorkerFactory.GetAllApi,
+	"",
+	//ServiceWorkerResources.GetAll,
+	"resources.serviceWorker.getAll",
+	
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: ServiceWorkerFactory.CreateName
+))
+{
+	<div class="table-responsive">	
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceWorker.name">Name</th>
+					<th translate="resources.serviceWorker.login">Login</th>					
+					<th translate="resources.serviceWorker.hasAccepted">HasAccepted</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Remove,
+							popupUrl: ServiceWorkerFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ServiceWorkerGetAllResult>(x => x.Name,  panelUrl: ServiceWorkerFactory.WorkerUpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceWorkerGetAllResult>(x => x.Login, panelUrl: ServiceWorkerFactory.WorkerUpdateName, id: "{{item.id}}"))</td>
+					<td class="icon-column" ng-show="item.state==0">@XpColumns.IconColumn(XpIcons.Remove)</td>
+					<td class="icon-column" ng-show="item.state==1">@XpColumns.IconColumn(XpIcons.Ok)</td>
+					<td class="icon-column" ng-show="item.state==2">@XpColumns.IconColumn(XpIcons.Question)</td>
+					<td class="icon-column" ng-show="item.state==3">@XpColumns.IconColumn(XpIcons.Deleted)</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

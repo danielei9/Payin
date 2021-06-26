@@ -1,0 +1,54 @@
+<ion-view view-title="Registro" xp-panel>
+  <ion-content ng-controller="LoadingCtrl">
+    <xp-register data-api="/api/account" ng-controller="accountRegisterController">
+      <form name="form" id="form" role="form" ng-submit="register2()">
+        <div class="list">
+          <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.name.$invalid}">
+            <span class="input-label">Nombre completo</span>
+            <input type="text" name="name" ng-model="arguments.name" required autofocus>
+          </label>
+          <ng-messages for="form.name.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.username.$invalid}">
+            <span class="input-label">Email</span>
+            <input type="text" name="username" ng-model="arguments.username" required>
+          </label>
+          <ng-messages for="form.username.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.mobile.$invalid}">
+            <span class="input-label">Teléfono</span>
+            <input type="text" name="mobile" ng-model="arguments.mobile" required>
+          </label>
+          <ng-messages for="form.mobile.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.password.$invalid}">
+            <span class="input-label">Nueva contraseña</span>
+            <input type="password" name="password" ng-model="arguments.password" required>
+          </label>
+          <ng-messages for="form.password.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.confirmPassword.$invalid}">
+            <span class="input-label">Confirmar contraseña</span>
+            <input type="password" name="confirmPassword" ng-model="arguments.confirmPassword" required>
+          </label>
+          <ng-messages for="form.confirmPassword.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <div class="item item-checkbox">
+            <label class="checkbox">
+              <input type="checkbox" name="acceptTerms" ng-model="arguments.acceptTerms">
+            </label>
+            <a ui-sref="policy" class="payin-terms"> Acepto los términos y condiciones de uso</a>
+          </div>
+        </div>
+        <div class="button-bar padding">
+          <button type="submit" class="button button-payin" ng-disabled="form.$invalid">Ok</button>
+        </div>
+      </form>
+    </xp-register>
+  </ion-content>
+</ion-view>

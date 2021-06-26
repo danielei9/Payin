@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rLayout" >
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+    <TextView
+        android:id="@+id/txtDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/ColorPrimary"
+        android:layout_below="@id/tool_bar"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/txtPress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textSize="17sp"
+        android:text="@string/pressToContinue"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/txtDay"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/btnNfc"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/ic_correcto"
+        android:layout_below="@id/txtPress"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/contentDescriptorNFC"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnNfc"
+        android:fillViewport="true" >
+
+    </ScrollView>
+
+
+    <!--
+    <TextView
+        android:id="@+id/txtIncidencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/incidencias"
+        android:textSize="17sp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/txtInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
+    -->
+</RelativeLayout>

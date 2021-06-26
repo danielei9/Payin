@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	TransportCardSupportFactory.Delete,
+	TransportCardSupportFactory.DeleteApi,
+	"",
+	"resources.transportCardSupport.delete",
+	id: "id"
+))
+{
+	<p translate="resources.transportCardSupport.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete the transport card support {{arguments.name}}?</p>
+}
+

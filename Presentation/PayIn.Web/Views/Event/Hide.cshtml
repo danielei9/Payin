@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EventFactory.Hide,
+	EventFactory.IsVisibleApi,
+	"",
+	"resources.event.hide",
+	init: "scope.arguments.isVisible=false;"
+))
+{
+	<p translate="resources.event.hideQuestion">Do you want to hide this event?</p>
+}

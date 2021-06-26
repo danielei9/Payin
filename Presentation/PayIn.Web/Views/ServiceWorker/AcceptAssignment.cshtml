@@ -1,0 +1,36 @@
+﻿@using Xp.Common;
+@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Arguments.ServiceWorker;
+@{
+	Layout = "~/Views/Shared/_Authentication.cshtml";
+	}
+@using (Html.xpPost(
+	ServiceWorkerFactory.AcceptAssignmentName,
+	ServiceWorkerFactory.AcceptAssignmentApi,
+	"",
+	//ServiceWorkerResources.AcceptAssignment,
+	"resources.serviceWorker.acceptAssignment",
+	isTitleActive: false,
+	showFormButtons: false
+)) { 
+
+<div class="container w-xxl w-auto-xs">
+	<img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;" />
+	<div class="wrapper text-center">
+		<strong translate="resources.serviceWorker.acceptAssignment">Accept Assignment</strong>
+	</div>
+	<div class="m-b-lg">
+		<xp-get data-api=@ServiceWorkerFactory.AcceptAssignmentApi>
+			<form name="form" role="form" class="form" novalidate>
+				<div class="spinnerContainer" data-ng-show="_windowState.isBusy">
+					<img class="spinnerLoading" src="~/Images/spinner.gif" />
+				</div>
+				@Html.AntiForgeryToken()
+				@XpHelpers._xpErrors()
+				<button href class="btn btn-lg btn-orange btn-block" ng-click="HasAccepted" type="submit" ng-disabled=" form.$invalid || _windowstate.isbusy">@(Html.ArgumentFor<ServiceWorkerAcceptAssignmentArguments>(x => x.HasAccepted))</button>
+			</form>
+		</xp-get>
+	</div>
+</div>
+	}

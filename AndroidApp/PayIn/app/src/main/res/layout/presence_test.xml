@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fichar entrada"
+        android:id="@+id/btnEnter"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        style="@style/DefaultButtonText"
+        android:background="@drawable/button_default_bg"
+        android:layout_margin="20dp"
+        android:padding="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fichar salida"
+        android:id="@+id/btnExit"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        style="@style/DefaultButtonText"
+        android:background="@drawable/button_default_bg"
+        android:layout_margin="20dp"
+        android:padding="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track"
+        android:id="@+id/btnTrack"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        style="@style/DefaultButtonText"
+        android:background="@drawable/button_default_bg"
+        android:layout_margin="20dp"
+        android:padding="20dp" />
+</LinearLayout>

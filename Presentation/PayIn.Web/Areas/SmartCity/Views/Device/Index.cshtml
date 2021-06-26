@@ -1,0 +1,45 @@
+﻿@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	DeviceFactory.GetAllName,
+	DeviceFactory.GetAllApi,
+	"",
+	"resources.smartCity.device.getAll",
+	isTitleActive: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.smartCity.device.name">Name</th>
+					<th translate="resources.smartCity.device.providerName">ProviderName</th>
+					<th translate="resources.smartCity.device.model">Model</th>
+					<th translate="resources.smartCity.device.providerCode">ProviderCode</th>
+					<th translate="resources.smartCity.device.lastTimestamp">Last timestamp</th>
+					<th translate="resources.smartCity.device.co2Factor">CO2Factor</th>
+					<th class="icon-column">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.ProviderName))</td>
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.Model))</td>
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.ProviderCode))</td>
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.LastTimestamp))</td>
+					<td>@(Html.ColumnFor<ApiDeviceGetAllResult>(x => x.CO2Factor))</td>
+					<td>
+						<button class="btn btn-xs btn-info"
+								ui-sref='@ComponentFactory.GetAllName ({deviceId:"{{item.id}}"})'
+								xp-navigate>
+							{{item.componentsNumber}}
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

@@ -1,0 +1,57 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpList(
+    ServiceUserFactory.Get,
+    ServiceUserFactory.GetApi,
+    "",
+    "resources.serviceUser.item",
+    isSearchable: false,
+    initialSearch: false,
+    cancelText: "Volver"
+))
+{
+<xp-get data-api="@ServiceUserFactory.GetApi">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3 purseUpdateParent" style="height:100%">
+                <img style="margin:0;width:100%" ng-src="{{arguments.photoUrl}}" data-ng-show="arguments.photoUrl.length">
+                <img style="margin:0;width:100%" ng-src="@ApplicationUserResources.DefaultUserAvatar" ng-hide="arguments.photoUrl.length">
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-2" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.vatNumber"># VAT</label><br>{{arguments.vatNumber}}</div>
+                    <div class="col-md-5" style="height: 60px;" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.name">Name</label><br>{{arguments.name}}</div>
+                    <div class="col-md-5"><label class="control-label ng-scope" translate="resources.serviceUser.lastName">Lastname</label><br>{{arguments.lastName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.address">Address</label><br>{{arguments.address}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.birthDate">BirthDate</label><br>{{arguments.birthDate}}</div>
+                    <div class="col-md-3" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.phone">Phone</label><br>{{arguments.phone}}</div>
+                    <div class="col-md-6" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.email">Email</label><br>{{arguments.email}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.uid">Uid</label><br>{{arguments.uid}}</div>
+            <div class="col-md-6" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.cardState">CardState</label><br>{{arguments.cardState}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.code">Code</label><br>{{arguments.code}}</div>
+            <div class="col-md-9" style="height: 60px;"><label class="control-label ng-scope" translate="resources.serviceUser.observations">Observations</label><br>{{arguments.observations}}</div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+    </div>
+    <div class="btn-toolbar pull-right">
+        <button class="btn btn-default" type="reset" ng-click="cancel()" translate="resources.serviceUser.back">Back</button>
+        @*<a href="" tooltip="" xp-navigate="" xp-modal="serviceuserupdate ({\"id\":{{arguments.id}}})" class="ng-scope">*@
+            <button class="btn btn-success" type="button" translate="resources.serviceUser.edit" ui-sref="serviceuserupdate({id:arguments.id})">Edit</button>
+        @*</a>*@
+    </div>
+</xp-get>
+}

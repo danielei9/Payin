@@ -1,0 +1,38 @@
+﻿@model System.Web.Mvc.SelectList
+@using PayIn.Application.Dto.Transport.Arguments.TransportTitle;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+				TransportTitleFactory.Create,
+				TransportTitleFactory.CreateApi,
+				"",
+				"resources.transportTitle.create"
+			))
+{
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.Name))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.Code))
+	@(Html.SelectFor<TransportTitleCreateArguments>(x => x.TransportConcessionName, "transportConcessionName", TransportTitleFactory.RetrieveSelectorTransporConcessionApi))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.OwnerCode))
+	@(Html.SelectFor<TransportTitleCreateArguments>(x => x.OwnerName, "ownerName", TransportTitleFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.Environment))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.MaxQuantity))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.Slot))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.HasZone))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.OperateByPayIn))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.IsYoung))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.IsOverWritable))
+
+	<div class="panel-body">
+		<div class="line line-dashed b-b line-lg pull-in"></div>
+	</div>
+
+	//@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.OperatorContext, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.ValidityBit, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.TableIndex, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.MaxExternalChanges, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.MaxPeopleChanges, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.ActiveTitle, width: 3))
+	@(Html.ArgumentFor<TransportTitleCreateArguments>(x => x.Priority, width: 3))
+}
+

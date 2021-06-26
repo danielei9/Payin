@@ -1,0 +1,39 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+    ServiceUserFactory.CreateName,
+    ServiceUserFactory.CreateApi,
+    "",
+    "resources.serviceUser.create",
+    isTitleActive: true,
+    successUrl: "/ServiceUser/CreateImage/{{id}}"
+    //success:
+    //    "scope.arguments.ownCard && xpStack.navigate(scope, '/ServiceUser/CreateImage/' + data.id) || " +
+    //    "!scope.arguments.ownCard && xpStack.navigate(scope)",
+    //goBack:0
+))
+{
+    <div class="col-md-12">
+	    <div class="row">
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.VatNumber, width: 4))
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Name, width: 4, focus: true))
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.LastName, width: 4))
+	    </div>
+	    <div class="row">
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Address))
+	    </div>
+	    <div class="row">
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.BirthDate, width: 3))
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Phone, width: 3))
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Email, width: 6))
+	    </div>
+        <div class="row">
+            @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Code, width: 3, placeHolder: "Código de socio de esta asociación"))
+            @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.Observations, width: 9, placeHolder: "Aquí puede guardar información interna solo visible por esta asociación"))
+        </div>
+	    @*<div class="row">
+		    @(Html.ArgumentFor<ServiceUserCreateArguments>(x => x.AssertDoc, inputAttribute: "buttontext"))
+	    </div>*@
+    </div>
+}

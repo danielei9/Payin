@@ -1,0 +1,43 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    AccessControlEntranceFactory.GetAllName,
+    AccessControlEntranceFactory.GetAllApi,
+    "",
+    "resources.accessControl.entrance.retrieveAll",
+    isTitleActive: true,
+    initialSearch: true,
+    showFormButtons: true,
+    init:
+        "scope.arguments.accessControlId = params.accessControlId;",
+    actions: new ActionLink[] {
+                new ActionLink(ActionLink.ActionLinkType.Panel, AccessControlEntranceFactory.CreateName + "({accessControlId:'{{arguments.accessControlId}}'})", XpIcons.Plus)
+                            }
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th translate="resources.accessControl.entrance.name">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data">
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: AccessControlEntranceFactory.Delete,
+                            id: "{{item.id}}",
+                            arguments: "{\"name\":\"{{item.name}}\"}"
+                        )
+                    </td>
+                    <td>@(Html.ColumnFor<ApiAccessControlEntranceGetAllResult>(x => x.Name, panelUrl: AccessControlEntranceFactory.UpdateName, id: "{{item.id}}"))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

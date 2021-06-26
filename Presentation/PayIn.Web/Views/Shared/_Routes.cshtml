@@ -1,0 +1,73 @@
+﻿@*
+				@using Autoescuelas.Core;
+				@using Xp.Others.Resources;
+*@
+@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+@using System.Configuration;
+@using System.Threading;
+
+<script>
+				(function () {
+								window.util = window.util || {};
+								window.util.culture = '@Thread.CurrentThread.CurrentCulture.TextInfo.CultureName';
+								window.util.apiUrl = '@ConfigurationManager.AppSettings["apiUrl"].ToString(Thread.CurrentThread.CurrentCulture)';
+								window.util.pageSize = @ConfigurationManager.AppSettings["pageSize"].ToString(Thread.CurrentThread.CurrentCulture);
+								window.util.columns = @ConfigurationManager.AppSettings["columns"].ToString(Thread.CurrentThread.CurrentCulture);
+
+								window.util.pathRegexp = function (path) {
+												var keys = [], sensitive = false, strict = false;
+												path = path
+													.concat(strict ? '' : '/?')
+													.replace(/\/\(/g, '(?:/')
+													.replace(/(\/)?(\.)?:(\w+)(?:(\(.*?\)))?(\?)?(\*)?/g, function (_, slash, format, key, capture, optional, star) {
+																	keys.push({ name: key, optional: !!optional });
+																	slash = slash || '';
+																	return ''
+																		+ (optional ? '' : slash)
+																		+ '(?:'
+																		+ (optional ? slash : '')
+																		+ (format || '') + (capture || (format && '([^/.]+?)' || '([^/]+?)')) + ')'
+																		+ (optional || '')
+																		+ (star ? '(/*)?' : '');
+													})
+													.replace(/([\/.])/g, '\\$1')
+													.replace(/\*/g, '(.*)');
+												return new RegExp('^' + path + '$', sensitive ? '' : 'i');
+								};
+								var route = function (route, templateUrl, icon, description) {
+												return {
+																route: route,
+																data: {
+																				templateUrl: templateUrl,
+																				icon: icon,
+																				description: description,
+																				regex: util.pathRegexp(route)
+																}
+												};
+								};
+								window.util.routes = [];
+
+								// ServiceAddress
+								window.util.routes.push(route('@ServiceAddressFactory.RetrieveAll', '@ServiceAddressFactory.RetrieveAllTemplate', '', '@Html.Raw(ServiceAddressFactory.RetrieveAll)'));
+								window.util.routes.push(route('@ServiceAddressFactory.Create', '@ServiceAddressFactory.CreateTemplate', '', '@Html.Raw(ServiceAddressFactory.Create)'));
+								// ServicePrice
+								window.util.routes.push(route('@ServicePriceFactory.RetrieveAll', '@ServicePriceFactory.RetrieveAllTemplate', '', '@Html.Raw(ServicePriceFactory.RetrieveAll)'));
+								window.util.routes.push(route('@ServicePriceFactory.Create', '@ServicePriceFactory.CreateTemplate', '', '@Html.Raw(ServicePriceFactory.Create)'));
+								// ServiceFreedays
+								window.util.routes.push(route('@ServiceFreeDaysFactory.RetrieveAll', '@ServiceFreeDaysFactory.RetrieveAllTemplate', '', '@Html.Raw(ServiceFreeDaysFactory.RetrieveAll)'));
+								window.util.routes.push(route('@ServiceFreeDaysFactory.Create', '@ServiceFreeDaysFactory.CreateTemplate', '', '@Html.Raw(ServiceFreeDaysFactory.Create)'));
+								// ServiceTimeTable
+								window.util.routes.push(route('@ServiceTimeTableFactory.RetrieveAll', '@ServiceTimeTableFactory.RetrieveAllTemplate', '', '@Html.Raw(ServiceTimeTableFactory.RetrieveAll)'));
+								window.util.routes.push(route('@ServiceTimeTableFactory.Create', '@ServiceTimeTableFactory.CreateTemplate', '', '@Html.Raw(ServiceTimeTableFactory.Create)'));
+								@*window.util.routes.push(route('@ServiceTimeTableFactory.Update', '@ServiceTimeTableFactory.UpdateTemplate', '', '@Html.Raw(ServiceTimeTableFactory.Update)'));*@
+								// SupplierTickets
+								window.util.routes.push(route('@TicketFactory.SupplierRetrieveAllCharge', '@TicketFactory.SupplierRetrieveAllChargeTemplate', '', '@Html.Raw(TicketFactory.SupplierRetrieveAllCharge)'));
+								window.util.routes.push(route('@TicketFactory.UserCreateAndPayOra', '@TicketFactory.UserCreateAndPayOraTemplate', '', '@Html.Raw(TicketFactory.UserCreateAndPayOra)'));
+
+								@*window.util.routes.push(route('@TicketFactory.SupplierRetrieveAllOra', '@TicketFactory.SupplierRetrieveAllOraTemplate', '', '@Html.Raw(TicketFactory.SupplierRetrieveAllOra)'));*@
+								// UserTickets
+								window.util.routes.push(route('@TicketFactory.UserRetrieveAllCharge', '@TicketFactory.UserRetrieveAllChargeTemplate', '', '@Html.Raw(TicketFactory.UserRetrieveAllCharge)'));
+								window.util.routes.push(route('@TicketFactory.UserRetrieveAllOra', '@TicketFactory.UserRetrieveAllOraTemplate', '', '@Html.Raw(TicketFactory.UserRetrieveAllOra)'));
+				})()
+</script>

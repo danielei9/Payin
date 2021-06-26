@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	LiquidationFactory.LiquidationOpenName,
+	LiquidationFactory.LiquidationOpenApi,
+	"",
+	"resources.liquidation.open"
+))
+{
+	<h4 translate="resources.liquidation.openQuestion">Do you want to open again the liquidation?</h4>
+}

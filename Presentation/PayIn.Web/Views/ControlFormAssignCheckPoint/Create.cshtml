@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormAssignCheckPoint;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlFormAssignCheckPointFactory.CreateState(),
+	ControlFormAssignCheckPointFactory.CreateApi,
+	"",
+	//ControlFormAssignCheckPointResources.Create,
+	"resources.controlFormAssignCheckPoint.create",
+	init: "scope.arguments.checkId=params.checkId;"
+))
+{
+	@(Html.SelectFor<ControlFormAssignCheckPointCreateArguments>(x => x.FormId, "formName", ControlFormFactory.GetSelectorApi, focus: true))
+}
+

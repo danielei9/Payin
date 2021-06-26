@@ -1,0 +1,29 @@
+﻿@using Xp.Common;
+@using PayIn.Common.Security;
+@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Application.Dto.Arguments.ServiceConcession;
+@using PayIn.Common;
+
+@using (Html.xpPut(
+	ServiceConcessionFactory.UpdateCommerce,
+	ServiceConcessionFactory.UpdateCommerceApi,
+	"",
+	//ServiceConcessionResources.Update
+	"resources.serviceConcession.update"
+))
+{
+	<xp-get data-api="@ServiceConcessionFactory.GetCommerceApi">
+		
+		@(Html.ArgumentFor<ServiceConcessionUpdateCommerceArguments>(x => x.Name, inputAttribute: "ng-disabled=state!==" +(int)ConcessionState.Pending))
+		@(Html.ArgumentFor<ServiceConcessionUpdateCommerceArguments>(x => x.MaxWorkers, inputAttribute: "disabled"))
+		@(Html.ArgumentFor<ServiceConcessionUpdateCommerceArguments>(x => x.State, inputAttribute: "disabled"))
+		@(Html.ArgumentFor<ServiceConcessionUpdateCommerceArguments>(x => x.Type, inputAttribute: "disabled"))
+	</xp-get>
+}
+
+
+

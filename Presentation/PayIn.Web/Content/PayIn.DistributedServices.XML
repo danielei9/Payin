@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PayIn.DistributedServices</name>
+    </assembly>
+    <members>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.ControlFormOptionController.GetAll(PayIn.Application.Dto.Arguments.ControlFormOptionGetAllArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Arguments.ControlFormOptionGetAllArguments,PayIn.Application.Dto.Results.ControlFormOptionGetAllResult})">
+            <summary>
+            Obtener listado de opciones en formularios de tipo multiopcion
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.ControlFormOptionController.Get(System.Int32,PayIn.Application.Dto.Arguments.ControlFormOptionGetArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Arguments.ControlFormOptionGetArguments,PayIn.Application.Dto.Results.ControlFormOptionGetResult})">
+            <summary>
+            Obtener la información de una opcion de un formulario multiopcion
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.ControlFormOptionController.Post(System.Int32,PayIn.Application.Dto.Arguments.ControlFormOptionCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Arguments.ControlFormOptionCreateArguments})">
+            <summary>
+            Crear una opcion
+            </summary>
+            <param name="argumentId"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.ControlFormOptionController.Put(System.Int32,PayIn.Application.Dto.Arguments.ControlFormOptionUpdateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Arguments.ControlFormOptionUpdateArguments})">
+            <summary>
+            Modificar una opcion
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.ControlFormOptionController.Delete(System.Int32,PayIn.Application.Dto.Arguments.ControlFormOptionDeleteArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Arguments.ControlFormOptionDeleteArguments})">
+            <summary>
+            Eliminar opcion
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Controllers.Api.PublicServiceUserController">
+            <summary>
+            Gestiona los usuarios de Tarjetas de Fidelización
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.PublicServiceUserController.Post(PayIn.Application.Dto.Arguments.ServiceUserCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Arguments.ServiceUserCreateArguments})">
+            <summary>
+            Añade un nuevo miembro a la Tarjeta de Fidelización
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Controllers.Api.PublicSystemCardController">
+            <summary>
+            Gestión de los sistemas de tarjetas de fidelización
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.PublicSystemCardController.RetrieveSelector(PayIn.Application.Dto.Arguments.ApiSystemCardGetSelectorArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Arguments.ApiSystemCardGetSelectorArguments,Xp.Application.Dto.SelectorResult})">
+            <summary>
+            Listado de sistemas de tarjetas de fidelización
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

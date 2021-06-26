@@ -1,0 +1,70 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    EntranceTypeFactory.CreateName,
+    EntranceTypeFactory.CreateApi,
+    "",
+    "resources.entranceType.create",
+    isTitleActive: true,
+    successUrl: "/EntranceType/CreateImage/{{id}}",
+    init:
+        "scope.arguments.price = 0;" +
+        "scope.arguments.extraPrice = 0;" +
+        "scope.arguments.maxSendingCount = 0;"
+))
+{
+	<div class="panel panel-default" style="margin:-15px 0 15px 0">
+		<div class="panel-heading font-bold" translate="resources.entranceType.entranceTypeInfo">Entrance type information</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Name, width: 7))
+                    @(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Code, width: 3))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Visibility, width: 2))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.ShortDescription))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Description))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.MaxEntrance, width: 4))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Price, width: 4))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.ExtraPrice, width: 4))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.SellStart, width: 6))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.SellEnd, width: 6))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.CheckInStart, width: 6))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.CheckInEnd, width: 6))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.RangeMin, width: 5))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.RangeMax, width: 5))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.MaxSendingCount, width: 2))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.Conditions))
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default" style="margin:-15px 0 15px 0">
+		<div class="panel-heading font-bold" translate="resources.entranceType.entranceTypeDaily">Entrance type daily</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.NumDays))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.StartDay, width: 6))
+					@(Html.ArgumentFor<EntranceTypeCreateArguments>(x => x.EndDay, width: 6))
+				</div>
+			</div>
+		</div>
+	</div>
+}

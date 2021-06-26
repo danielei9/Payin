@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PayIn.DistributedServices.Transport</name>
+    </assembly>
+    <members>
+        <member name="M:PayIn.DistributedServices.Transport.Controllers.TransportOperationController.Refund(System.Int32,PayIn.Application.Dto.Payments.Arguments.PublicTransportOperationRefundArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTransportOperationRefundArguments})">
+            <summary>
+            Devolver una operación ya cobrada externamente
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

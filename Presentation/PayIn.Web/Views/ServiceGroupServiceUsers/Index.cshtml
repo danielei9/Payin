@@ -1,0 +1,76 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results
+@using (Html.xpList(
+		ServiceGroupServiceUsersFactory.GetAllName,
+		ServiceGroupServiceUsersFactory.GetAllApi,
+		"",
+		"resources.transportCardSupportTitleCompatibility.getAll",
+		"{{arguments.groupName}}",
+		isTitleActive: true,
+		init: "scope.arguments.groupId = params.groupId",
+		initialSearch: true,
+		actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel,
+		ServiceGroupServiceUsersFactory.Create("{{$stateParams.groupId}}"),
+		XpIcons.Plus,
+		arguments: "{\"groupName\":\"{{arguments.groupName}}\"}")
+	}
+
+))
+{
+	<div class="table-responsive">
+
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceUser.name">Name</th>
+					<th translate="resources.serviceUser.vatNumber">Vat Number</th>
+					<th translate="resources.serviceUser.name">Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success': item.state===1, 'b-l b-5x b-danger': item.state===2}">
+					<td class="icon-column" ng-show="item.state===1">
+						@XpColumns.IconColumn(
+								XpIcons.Trash,
+								popupUrl: ServiceGroupServiceUsersFactory.Delete,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{item.name}}\"}"
+							)
+					</td>
+					<td class="icon-column" ng-show="item.state===2">
+						@XpColumns.IconColumn(
+								XpIcons.Trash,
+								popupUrl: ServiceGroupServiceUsersFactory.Delete,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{item.name}}\"}"
+							)
+					</td>
+					<td>
+						@(Html.ColumnFor<ServiceGroupServiceUsersGetAllResult>(x => x.Name, panelUrl: ServiceGroupServiceUsersFactory.UpdateName, id: "{{item.id}}"))
+						@(Html.ColumnFor<ServiceGroupServiceUsersGetAllResult>(x => x.LastName, panelUrl: ServiceGroupServiceUsersFactory.UpdateName, id: "{{item.id}}"))
+					</td>
+					<td>@(Html.ColumnFor<ServiceGroupServiceUsersGetAllResult>(x => x.VatNumber, panelUrl: ServiceGroupServiceUsersFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceGroupServiceUsersGetAllResult>(x => x.Email, panelUrl: ServiceGroupServiceUsersFactory.UpdateName, id: "{{item.id}}"))</td>
+
+					<td style="padding:0"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.serviceUser.active">Active</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.serviceUser.unsubscribed">Unsubscribed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}
+

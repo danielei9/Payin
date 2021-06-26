@@ -1,0 +1,52 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ServiceUserFactory.UpdateName,
+	ServiceUserFactory.UrlApi,
+	"",
+	"resources.serviceUser.update"
+))
+{
+	<xp-get data-api="@ServiceUserFactory.GetApi">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3 purseUpdateParent" style="height:100%">
+					<div class="image-upload">
+                        <label for="file-input" style="width:100%">
+                            <img ng-class="{'image-pointer-margin':true}" style="margin:0;width:100%" ng-src="{{arguments.photoUrl}}" data-ng-show="arguments.photoUrl.length">
+                            <img ng-class="{'image-pointer-margin':true}" style="margin:0;width:100%" ng-src="@ApplicationUserResources.DefaultUserAvatar" ng-hide="arguments.photoUrl.length">
+                            <div translate="resources.serviceUser.updateImage" style="text-align: center;">Haz click para actualizar la imagen.</div>
+                        </label>
+						<input data-xp-navigate data-xp-modal="@ServiceUserFactory.UpdateImageCropName" id="file-input" type="file" accept=".jpg,.png" value="{0}" />
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="row">
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.VatNumber, width: 2, focus: true))
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Name, width: 5))
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.LastName, width: 5))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Address))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.BirthDate, width: 3))
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Phone, width: 3))
+						@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Email, width: 6))
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Uid, width: 6, disabled: "1"))
+				@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.CardState, width: 6, disabled: "!arguments.ownCard"))
+			</div>
+			<div class="row">
+				@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Code, width: 3, placeHolder: "Código de socio de esta asociación"))
+				@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Observations, width: 9, placeHolder: "Aquí puede guardar información interna solo visible por esta asociación"))
+			</div>
+		</div>
+	</xp-get>
+
+}

@@ -1,0 +1,20 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using Xp.Common;
+
+@using (Html.xpPut(
+	TicketFactory.TicketCreateDetailName,
+	TicketFactory.TicketCreateDetailApi,
+	"",
+	"resources.ticket.create",
+	isTitleActive: true
+))
+{
+	@(Html.ArgumentFor<TicketUpdateArguments.TicketUpdateArguments_Details>(x => x.Reference, focus: true))
+	@(Html.ArgumentFor<TicketUpdateArguments.TicketUpdateArguments_Details>(x => x.Article))
+	@(Html.ArgumentFor<TicketUpdateArguments.TicketUpdateArguments_Details>(x => x.Price))
+	@(Html.ArgumentFor<TicketUpdateArguments.TicketUpdateArguments_Details>(x => x.Quantity))
+	@(Html.ArgumentFor<TicketUpdateArguments.TicketUpdateArguments_Details>(x => x.Vat))
+}

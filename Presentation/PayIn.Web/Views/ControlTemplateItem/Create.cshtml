@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplateItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlTemplateItemFactory.Create,
+	ControlTemplateItemFactory.CreateApi,
+	"",
+	//ControlTemplateItemResources.Create,
+	"resources.controlTemplateItem.create",
+	init: "scope.arguments.templateId = params.templateId;"
+))
+{
+@(Html.ArgumentFor<ControlTemplateItemCreateArguments>(x => x.Since, width:6))
+@(Html.ArgumentFor<ControlTemplateItemCreateArguments>(x => x.Until, width: 6))
+}
+

@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56C55D58-80FE-4EE0-91B0-F654A6954B96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.DistributedServices.JustMoney</RootNamespace>
+    <AssemblyName>PayIn.DistributedServices.JustMoney</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;JUSTMONEY</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\IAppBuilderExtension.cs" />
+    <Compile Include="Controllers\Api\JustMoneyApiAccountController.cs" />
+    <Compile Include="Controllers\Api\JustMoneyApiPrepaidCardController.cs" />
+    <Compile Include="Controllers\JustMoney\JustMoneyJustMoneyPrepaidCardController.cs" />
+    <Compile Include="Controllers\Api\JustMoneyApiPfsController.cs" />
+    <Compile Include="Controllers\Mobile\JustMoneyMobilePrepaidCardController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{d619b94f-c9d9-487c-8341-33446f417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899b32b-1b5c-476d-896a-8b0bf4b10f71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{b7a850e4-f2c6-4081-87d1-e5379bf5c0a7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434e06d7-69bb-4175-a611-0133d7a5336a}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855e283-100d-455e-bac4-b4a87207647a}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.JustMoney\PayIn.Application.Dto.JustMoney.csproj">
+      <Project>{04C58BC2-A721-4173-BBB8-0DC1896FF1D8}</Project>
+      <Name>PayIn.Application.Dto.JustMoney</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Security\PayIn.Application.Dto.Security.csproj">
+      <Project>{96299ADF-60C2-4FB8-8254-9A19FD59D8B1}</Project>
+      <Name>PayIn.Application.Dto.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Common.DI.JustMoney\PayIn.Common.DI.JustMoney.csproj">
+      <Project>{8ca4e28e-8d01-4daf-ad69-f3e757853aed}</Project>
+      <Name>PayIn.Common.DI.JustMoney</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.DistributedServices\PayIn.DistributedServices.csproj">
+      <Project>{86a92c89-a787-4faf-9dce-de9ded3973ab}</Project>
+      <Name>PayIn.DistributedServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Security\PayIn.Domain.Security.csproj">
+      <Project>{A2F82701-AF3C-42CF-A31A-529A4833380A}</Project>
+      <Name>PayIn.Domain.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Infrastructure.Security\PayIn.Infrastructure.Security.csproj">
+      <Project>{D7220B15-4C39-4E5D-BFBA-C58A4BD95DF5}</Project>
+      <Name>PayIn.Infrastructure.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-D3C8-43A9-8EB0-FBAB811FA250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.DistributedServices\Xp.DistributedServices.csproj">
+      <Project>{8a08ca56-a4bf-4cc9-81f8-348f4633ba02}</Project>
+      <Name>Xp.DistributedServices</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

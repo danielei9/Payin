@@ -1,0 +1,68 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Common.Security;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using Xp.Common.Resources;
+
+@using (Html.xpPost(
+	PaymentConcessionFactory.CreatePaymentConcessionName,
+	PaymentConcessionFactory.CreatePaymentConcessionApi,
+	"",
+	//PaymentConcessionResources.Create,
+	"resources.payment.create",
+	successPopup: "{\"message\":\"" + GlobalResources.ConcessionSuccessMessage + "\"}"
+))
+{
+	<div class="spinnerContainer" data-ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>
+	<xp-get data-api="@PaymentConcessionFactory.GetSupplierApi">
+
+		<div class="panel panel-default" style="margin-top:-15px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.informationTax">InformationTax</div>
+			<div class="panel-body">
+				<p class="col-md-12" translate="resources.paymentConcession.informationTaxDescription">InformationTaxDescription</p>
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.TaxNumber, width: 3, focus: true, inputAttribute: "disabled"))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.TaxName, width: 9, inputAttribute: "disabled"))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.TaxAddress, inputAttribute: "disabled"))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.BankAccountNumber, placeHolder: @PaymentConcessionResources.PlaceHolderAccount, inputAttribute: "autocomplete = \"off\""))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.FormA, inputAttribute: "buttontext"))
+			</div>
+		</div>
+
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.informationComercial">InformationComercial</div>
+			<div class="panel-body">
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.Name, inputAttribute: "disabled"))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.Phone, width: 3))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.Address, width: 9))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.Observations))
+			</div>
+		</div>
+
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" ng-show="arguments.showPinForm" translate="resources.paymentConcession.pin">Pin</div>
+			<div class="panel-body" ng-hide="arguments.showPinForm">
+				<p class="col-md-12" ng-show="arguments.showPinForm" translate="resources.paymentConcession.pinNonDescription">PinNonDescription</p>
+				<div data-ng-class="{'has-error':!form.acceptTerms.$valid}" class="form-group col-md-12">
+					<label class="i-checks" style="margin-top:20px;">
+						<input type="checkbox" name="AcceptTerms" ng-model="arguments.acceptTerms" required>
+						<i></i><span translate="resources.security.acceptTerms">AcceptTerms</span><a href="@SecurityResources.TermsLink" class="text-info" translate="resources.security.agreement">Agreement</a>
+					</label>
+				</div>
+			</div>
+			<div class="panel-body" ng-show="arguments.showPinForm">
+				<p class="col-md-12" translate="resources.paymentConcession.pinDescription">PinDescription</p>
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.Pin, width: 6))
+				@(Html.ArgumentFor<PaymentConcessionCreateArguments>(x => x.PinConfirmation, width: 6))
+				<div data-ng-class="{'has-error':!form.acceptTerms.$valid}" class="form-group col-md-12">
+					<label class="i-checks" style="margin-top:20px;">
+						<input type="checkbox" name="AcceptTerms" ng-model="arguments.acceptTerms" required>
+						<i></i><span translate="resources.security.acceptTerms" style="margin-left:0px;">AcceptTerms </span> <a href="@SecurityResources.TermsLink" class="text-info" translate="resources.security.agreement">Agreement</a>
+					</label>
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}
+

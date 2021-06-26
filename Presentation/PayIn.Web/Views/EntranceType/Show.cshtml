@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EntranceTypeFactory.Show,
+	EntranceTypeFactory.IsVisibleApi,
+	"",
+	"resources.entranceType.show",
+	init: "scope.arguments.isVisible=true;"
+))
+{
+	<p translate="resources.entranceType.showQuestion">Do you want to show this entrance type?</p>
+}

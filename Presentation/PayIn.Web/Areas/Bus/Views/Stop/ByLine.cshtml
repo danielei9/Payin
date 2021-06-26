@@ -1,0 +1,112 @@
+﻿@using PayIn.Application.Dto.Bus.Results;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpList(
+    StopFactory.ByLineName,
+    StopFactory.ByLineApi,
+    "",
+    "resources.bus.stop.caption",
+    isTitleActive: true,
+    init: "scope.id = params.id;",
+    success: "scope.temp.stops = scope.data",
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, StopFactory.CreateName, XpIcons.Plus)
+    }
+))
+{
+    <style>
+        .map {
+            width: 100%;
+            height: 600px;
+            margin-bottom: 10px;
+        }
+		.colLocation, .colLocation a i {
+			color: rgba(7, 33, 152, 1) !important;
+		}
+
+        .colNoLocation, .colNoLocation a i {
+            color: rgba(7, 33, 152, 0.3) !important;
+        }
+        .colCoord {
+            width: 120px;
+            text-align: center;
+        }
+		.routing-control {
+			visibility: hidden;
+		}
+        .link {
+            cursor: pointer;
+        }
+        .linkCell {
+            padding: 0 !important;
+            line-height: 0px !important;
+            border: 0 !important;
+        }
+        .colTight {
+            width: 1px !important;
+        }
+    </style>
+    <div class="map">
+        <xp-map center-longitude='-0.212564'
+                center-latitude='38.567699'
+                markers="temp.stops"
+                main-longitude-template='arguments.longitude'
+                main-latitude-template='arguments.latitude'
+                zoom='13'>
+        </xp-map>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Lista de paradas</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="icon-column">&nbsp;</th>
+                        <th class="icon-column" translate="resources.bus.stop.masterCode">Master Code</th>
+                        <th translate="resources.bus.stop.name">Name</th>
+                        <th translate="resources.bus.stop.location">Location</th>
+                        <th translate="resources.bus.stop.waitingTime">Waiting time</th>
+                        <th translate="resources.bus.stop.longitude" class="colCoord">Longitude</th>
+                        <th translate="resources.bus.stop.latitude" class="colCoord">Latitude</th>
+                        <th translate="resources.bus.stop.links">Links</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in data">
+                        <td ng-hide="item.longitude == null || item.latitude == null" class="icon-column colLocation link" ui-sref="busstopupdate({id:{{item.id}}})" xp-navigate>@XpColumns.IconColumn(XpIcons.MapMarker)</td>
+                        <td ng-show="item.longitude == null || item.latitude == null" class="icon-column colNoLocation link" ui-sref="busstopupdate({id:{{item.id}}})" xp-navigate>@XpColumns.IconColumn(XpIcons.MapMarker)</td>
+                        <td ui-sref="busstopupdate({id:{{item.id}}})" class="link" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.MasterCode))</td>
+                        <td ui-sref="busstopupdate({id:{{item.id}}})" class="link" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.Code)) @(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.Name))</td>
+                        <td ui-sref="busstopupdate({id:{{item.id}}})" class="link" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.Location))</td>
+                        <td ui-sref="busstopupdate({id:{{item.id}}})" class="link" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.WaitingTime))</td>
+                        <td class="colCoord link" ui-sref="busstopupdate({id:{{item.id}}})" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.Longitude, decimals: 6))</td>
+                        <td class="colCoord link" ui-sref="busstopupdate({id:{{item.id}}})" xp-navigate>@(Html.ColumnFor<BusApiStopGetByLineResult>(x => x.Latitude, decimals: 6))</td>
+                        <td>
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr ng-repeat="link in item.links">
+										<td class="link linkCell" ui-sref="busstopupdatelink({id:{{link.id}}})" xp-navigate>
+											<span ng-if="link.sense==0">@XpColumns.IconColumn(XpIcons.Remove)</span>
+											<span ng-if="link.sense==1">@XpColumns.IconColumn(XpIcons.ArrowDown)</span>
+											<span ng-if="link.sense==2">@XpColumns.IconColumn(XpIcons.ArrowUp)</span>
+											<span ng-if="link.sense>=3">@XpColumns.IconColumn(XpIcons.Refresh)</span>
+											@(Html.ColumnFor<BusApiStopGetByLineResult_Link>(x => x.ToCode, iterator: "link"))
+											@(Html.ColumnFor<BusApiStopGetByLineResult_Link>(x => x.ToName, iterator: "link"))
+											(
+											@(Html.ColumnFor<BusApiStopGetByLineResult_Link>(x => x.Weight, iterator: "link"))
+											-
+											@(Html.ColumnFor<BusApiStopGetByLineResult_Link>(x => x.Time, iterator: "link"))
+											)
+										</td>
+                                        <td class="icon-column colTight link linkCell" ui-sref="busstopupdatelink({id:{{link.id}}})" xp-navigate>@XpColumns.IconColumn(XpIcons.Pencil)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

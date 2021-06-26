@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday/Foundation date</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="ForgotPasswordText" xml:space="preserve">
+    <value>Forgot your {{arguments.email}} account password</value>
+  </data>
+  <data name="RememberPassword" xml:space="preserve">
+    <value>I remember the password</value>
+  </data>
+  <data name="HaveAccountQuestion" xml:space="preserve">
+    <value>Already have an account?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LoginText" xml:space="preserve">
+    <value>Log in to get into the platform</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="NotHaveAccountQuestion" xml:space="preserve">
+    <value>Do not have an account?</value>
+  </data>
+  <data name="UpdatePwd" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdatePwdText" xml:space="preserve">
+    <value>Update password</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Create user</value>
+  </data>
+  <data name="RegisterText" xml:space="preserve">
+    <value>Register to get into the platform. </value>
+  </data>
+  <data name="TaxAddress" xml:space="preserve">
+    <value>Tax address</value>
+  </data>
+  <data name="TaxName" xml:space="preserve">
+    <value>Tax name</value>
+  </data>
+  <data name="TaxNumber" xml:space="preserve">
+    <value>Tax number</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Override" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="OverrideText" xml:space="preserve">
+    <value>Post a new password</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="ConfirmEmailContentUser" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a {2},&lt;/p&gt;
+&lt;p&gt;Gracias por registrate en Pay[in]. Por razones de seguridad, necesitamos validar que este correo electrónico te pertenece. Por esta razón, le hemos enviado este correo electrónico con el enlace que le permitirá terminar el registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmEmail?userid={0}&amp;code={1}&amp;email={3}"&gt;{4}/Account/ConfirmEmail&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error o no se ha registrado en Pay[in], por favir ignore y elimina este correo de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+    <comment>{0} -&gt; UserId, {1} -&gt; Code, {2} -&gt; UserName, {3} -&gt; Email, {4} -&gt; Url</comment>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Confirma el registro en Pay[in]</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm email</value>
+  </data>
+  <data name="code" xml:space="preserve">
+    <value>code</value>
+  </data>
+  <data name="userId" xml:space="preserve">
+    <value>user Id</value>
+  </data>
+  <data name="ConfirmEmailUrlText" xml:space="preserve">
+    <value>Confirmar registro en Pay[in]</value>
+  </data>
+  <data name="ForgotPasswordContent" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a {2},&lt;/p&gt;
+&lt;p&gt;Para recuperar la contraseña haga click aquí: &lt;a href="{5}/Account/ConfirmForgotPassword?userid={0}&amp;code={1}&amp;email={3}"&gt;{5}/Account/ConfirmForgotPassword&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Si usted ha recibido este mensaje por error o no solicitó recuperar su contraseña, ignore y elimine este correo desde su bandeja de entrada.&lt;/p&gt;
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ForgotPasswordSubject" xml:space="preserve">
+    <value>Confirmar cambio de contraseña</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailUser" xml:space="preserve">
+    <value>system@pay-in.es</value>
+  </data>
+  <data name="Recover" xml:space="preserve">
+    <value>Recover</value>
+  </data>
+  <data name="ConfirmForgotPasswordText" xml:space="preserve">
+    <value>En breve recibirá un correo en su cuenta. Para crear la nueva contraseña, pulsa sobre el link recibido en el correo o copia el "User ID" y el "Code" desde el correo y pégalo en su campo correspondiente.</value>
+  </data>
+  <data name="ConfirmEmailText" xml:space="preserve">
+    <value>Gracias por registrarte en el sistema Pay[in]. Recibirás un email en tu cuenta donde deberás confirmar tu registro. Para ello, haz click en el link recibido en el mail o copia el userID y Code del mail y pegalo en los campos correspondientes del formulario. Por favor, si no recibes el mail intenta registrarte de nuevo. Si todavía no recibes el mail enviamos un mail a system@pay-in.es.</value>
+  </data>
+  <data name="FotoUrl" xml:space="preserve">
+    <value>https://payin.blob.core.windows.net/files/account/foto{0}.jpeg</value>
+  </data>
+  <data name="FotoUrlTest" xml:space="preserve">
+    <value>https://payintest.blob.core.windows.net/files/account/foto{0}.jpeg</value>
+  </data>
+  <data name="FotoShortUrl" xml:space="preserve">
+    <value>account/foto{0}.jpeg</value>
+  </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="DeleteImageQuestion" xml:space="preserve">
+    <value>Are you sure to delete the image?</value>
+  </data>
+  <data name="FotoShortUrlTest" xml:space="preserve">
+    <value>account/foto{0}.jpeg</value>
+  </data>
+  <data name="AccountBlockedBefore" xml:space="preserve">
+    <value>Your user account is blocked for security reasons. Please, contact our administrator at info@pay-in.es to solve the incidence.</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="ValidateConfirmForgotPassword" xml:space="preserve">
+    <value>Check fields and make sure everything is fine.</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Email already exists.</value>
+  </data>
+  <data name="ComparePassword" xml:space="preserve">
+    <value>Password and his confirm must be identical.</value>
+  </data>
+  <data name="UserBlocked" xml:space="preserve">
+    <value>Ha introducido el Pin tres veces de forma incorrecta. Por seguridad hemos bloqueado su cuenta. Por favor, para resolver la incidencia póngase en contacto con nuestro administrador en info@pay-in.es.</value>
+  </data>
+  <data name="HeadMessageError" xml:space="preserve">
+    <value>Your Pay-[In] account has been blocked for security reasons</value>
+  </data>
+  <data name="AcceptTerms" xml:space="preserve">
+    <value>I accept the terms and conditions of this</value>
+  </data>
+  <data name="AcceptTermsException" xml:space="preserve">
+    <value>To register you must accept terms of service</value>
+  </data>
+  <data name="Agreement" xml:space="preserve">
+    <value>Agreement</value>
+  </data>
+  <data name="TermsLink" xml:space="preserve">
+    <value>http://www.pay-in.es/condiciones-de-servicio/</value>
+  </data>
+  <data name="InfoEmail" xml:space="preserve">
+    <value>Check your e- mail to confirm the registration , mail may be in the spam folder.</value>
+  </data>
+  <data name="CheckAcceptTerms" xml:space="preserve">
+    <value>You must accept terms</value>
+  </data>
+  <data name="passwordLengthException" xml:space="preserve">
+    <value>The password must be at least 6 characters long.</value>
+  </data>
+  <data name="PasswordMin" xml:space="preserve">
+    <value>Password (min. 6 characters)</value>
+  </data>
+  <data name="ToastConfirmEmail" xml:space="preserve">
+    <value>Thanks for signing in the Pay[in] system</value>
+  </data>
+  <data name="ToastRegister" xml:space="preserve">
+    <value>Thanks for signing in the Pay[in] system. You will shortly receive an email in your account where you must confirm your registration. To do this, click on the link received in the mail . Please, if you do not receive the mail folder checks spam or attempts to register again . If you do not receive the mail emailed to system@pay-in.es.</value>
+  </data>
+  <data name="RegisterSupplier" xml:space="preserve">
+    <value>Create company</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company contact</value>
+  </data>
+  <data name="RegisterTextCompany" xml:space="preserve">
+    <value>If you are a business, sign up as a company</value>
+  </data>
+  <data name="RegisterTextUser" xml:space="preserve">
+    <value>If you are a user, sign up as a user</value>
+  </data>
+  <data name="SupplierName" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="EmailExistsCompany" xml:space="preserve">
+    <value>This user already exists , hire your products from the admin panel</value>
+  </data>
+  <data name="PinLengthException" xml:space="preserve">
+    <value>The PIN must be 4 digits long.</value>
+  </data>
+  <data name="ConfirmEmailContentCompany" xml:space="preserve">
+    <value>&lt;p&gt; {2},&lt;/p&gt;
+&lt;p&gt;Gracias por registrar su empresa en Pay[in]. Por razones de seguridad, necesitamos validar que este correo electrónico pertenece a su empresa. Por esta razón, le hemos enviado este correo electrónico con el enlace que le permitirá terminar el registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmEmail?userid={0}&amp;code={1}&amp;email={3}"&gt;{4}/Account/ConfirmEmail&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error o no ha registrado su empresa en Pay[in], por favor ignore y elimine este correo de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ConfirmEmailContentSelfEmployed" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a  {2},&lt;/p&gt;
+&lt;p&gt;Gracias por registrarse en Pay[in] como autónomo. Por razones de seguridad, necesitamos validar que este correo electrónico le pertenece. Por esta razón, le hemos enviado este correo electrónico con el enlace que le permitirá terminar el registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmEmail?userid={0}&amp;code={1}&amp;email={3}"&gt;{4}/Account/ConfirmEmail&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error o no se ha registrado en Pay[in], por favor ignore y elimine este correo de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="OverridePasswordContent" xml:space="preserve">
+    <value>&lt;p&gt;Dear  Mr/Ms {0},&lt;/ p&gt;&lt;p&gt;Your  Pay-[In] password have been modified&lt;/p&gt; &lt;br /&gt; &lt;p&gt;If you have any question, do not hesitate to contact us at info@pay-in.es&lt;/p&gt; &lt;br /&gt; &lt;p&gt;If you have received this email in error, please ignore and delete it. &lt;/ p&gt;
+&lt;p&gt;Yours sincerely &lt;/ p&gt;</value>
+  </data>
+  <data name="OverridePasswordSubject" xml:space="preserve">
+    <value>Override Password Notification</value>
+  </data>
+  <data name="OpenSessionApp" xml:space="preserve">
+    <value>Volver a la Aplicación</value>
+  </data>
+  <data name="OpenSessionWeb" xml:space="preserve">
+    <value>Iniciar Sesion Web</value>
+  </data>
+  <data name="ErrorPassword" xml:space="preserve">
+    <value>Check Password.</value>
+  </data>
+  <data name="FotoPurseShortUrl" xml:space="preserve">
+    <value>purse/foto{0}.jpeg</value>
+  </data>
+  <data name="FotoPurseShortUrlTest" xml:space="preserve">
+    <value>purse/foto{0}.jpeg</value>
+  </data>
+  <data name="FotoPurseUrl" xml:space="preserve">
+    <value>https://payin.blob.core.windows.net/files/purse/foto{0}.jpeg</value>
+  </data>
+  <data name="FotoPurseUrlTest" xml:space="preserve">
+    <value>https://payintest.blob.core.windows.net/files/purse/foto{0}.jpeg</value>
+  </data>
+  <data name="UnlockUserContent" xml:space="preserve">
+    <value>&lt;p&gt;Dear  Mr/Ms {0},&lt;/ p&gt;&lt;p&gt;Your  Pay-[In] user has been unlock&lt;/p&gt; &lt;br /&gt; &lt;p&gt;If you have any question, do not hesitate to contact us at info@pay-in.es&lt;/p&gt; &lt;br /&gt; &lt;p&gt;If you have received this email in error, please ignore and delete it. &lt;/ p&gt;
+&lt;p&gt;Yours sincerely &lt;/ p&gt;</value>
+  </data>
+  <data name="UnlockUserSubject" xml:space="preserve">
+    <value>Unlock user notification</value>
+  </data>
+  <data name="InviteUserEmailContent" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a  {2},&lt;/p&gt;
+&lt;p&gt;Ha sido invitado como usuario de la Plataforma {7}. Por esta razón le hemos enviado este correo electrónico con el enlace que le permitirá completar el formulario de registro:&lt;/p&gt;
+&lt;a href="{5}/Account/ConfirmInvitedUser?userid={0}&amp;code={1}&amp;email={3}&amp;name={2}&amp;phone={4}&amp;concessionPhotoUrl={6}&amp;concessionName={7}"&gt;{5}/Account/ConfirmInvitedUser&lt;/a&gt;&lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error, por favor ignore y elimine esta notificación de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ConfirmCompanyEmailSubject" xml:space="preserve">
+    <value>Confirma el registro de la empresa en Pay[in]</value>
+  </data>
+  <data name="InviteCompanyUserEmailContent" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a  sr/sra,&lt;/p&gt;
+&lt;p&gt;Su empresa ha sido invitada como miembro de us Sistema de Tarjetas de la Plataforma Pay[in]. Por esta razón le hemos enviado este correo electrónico con el enlace que le permitirá completar el formulario de registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmInvitedCompany?userid={0}&amp;code={1}&amp;email={3}&amp;name={2}"&gt;{4}/Account/ConfirmInvitedCompany&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error, por favor ignore y elimine esta notificación de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ConfirmEmailContent_Vilamarxant" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a  {2},&lt;/p&gt;
+&lt;p&gt;Gracias por registrarse en la APP Turisme Vilamarxant. Por razones de seguridad, necesitamos validar que este correo electrónico le pertenece. Por esta razón, le hemos enviado este correo electrónico con el enlace que le permitirá terminar el registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmEmail?userid={0}&amp;code={1}&amp;email={3}"&gt;{4}/Account/ConfirmEmail&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error o no se ha registrado en la APP Turisme Vilamarxant, por favor ignore y elimine este correo de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ConfirmEmailSubject_Vilamarxant" xml:space="preserve">
+    <value>Confirma el registro en la APP Turisme Vilamarxant</value>
+  </data>
+  <data name="ConfirmEmailText_Vilamarxant" xml:space="preserve">
+    <value>Gracias por registrarte en la APP Turisme Vilamarxant. Recibirás un email en tu cuenta donde deberás confirmar tu registro. Para ello, haz click en el link recibido en el mail o copia el userID y Code del mail y pegalo en los campos correspondientes del formulario. Por favor, si no recibes el mail intenta registrarte de nuevo. Si todavía no recibes el mail enviamos un mail a app@vilamarxant.es.</value>
+  </data>
+  <data name="ForgotPasswordContent_Vilamarxant" xml:space="preserve">
+    <value>&lt;p&gt;Dear {2},&lt;/ p&gt;&lt;p&gt;To confirm the password changed in APP Turisme Vilamarxant click here: &lt;a href="http://vilamarxant.pay-in.es/Account/ConfirmForgotPasswordTurismeVilamarxant?userid={0}&amp;code={1}&amp;email={3}"&gt;http://vilamarxant.pay-in.es/Account/ConfirmForgotPasswordTurismeVilamarxant&lt;/a&gt;&lt;/p&gt; &lt;br /&gt; &lt;p&gt; If you wish to change your password, paste the user ID and the code in the corresponding boxes: &lt;p&gt; &lt;br /&gt; &lt;p&gt; User ID: &lt;strong&gt; {0} &lt;/ strong&gt; &lt;/ p&gt; &lt;br /&gt; &lt;p&gt; Code: &lt;strong&gt; {1} &lt;/ strong&gt; &lt;/ p&gt; &lt;br /&gt; &lt;p&gt; If you have received this message in error or did not request to retrieve your APP Turisme Vilamarxant password, ignore and delete this email from your inbox. &lt;/ p&gt;</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>&lt;p&gt; Thank you! &lt;/ p&gt;</value>
+  </data>
+  <data name="InviteUserEmailSubject" xml:space="preserve">
+    <value>Confirma el registro en {0}</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ConfirmEmailContent_Finestrat" xml:space="preserve">
+    <value>&lt;p&gt;Estimado/a  {2},&lt;/p&gt;
+&lt;p&gt;Gracias por registrarse en la APP Finestrat. Por razones de seguridad, necesitamos validar que este correo electrónico le pertenece. Por esta razón, le hemos enviado este correo electrónico con el enlace que le permitirá terminar el registro:&lt;/p&gt;
+&lt;a href="{4}/Account/ConfirmEmail?userid={0}&amp;code={1}&amp;email={3}"&gt;{4}/Account/ConfirmEmail&lt;/a&gt;                   &lt;br /&gt;
+&lt;p&gt;Si ha recibido este correo por error o no se ha registrado en la APP Finestrat, por favor ignore y elimine este correo de su bandeja de entrada.&lt;/p&gt;  
+&lt;p&gt;¡Muchas gracias!&lt;/p&gt;</value>
+  </data>
+  <data name="ConfirmEmailSubject_Finestrat" xml:space="preserve">
+    <value>Confirma el registro en la APP Finestrat</value>
+  </data>
+  <data name="ConfirmEmailText_Finestrat" xml:space="preserve">
+    <value>Gracias por registrarte en la APP Finestrat. Recibirás un email en tu cuenta donde deberás confirmar tu registro. Para ello, haz click en el link recibido en el mail o copia el userID y Code del mail y pegalo en los campos correspondientes del formulario. Por favor, si no recibes el mail intenta registrarte de nuevo. Si todavía no recibes el mail enviamos un mail a kikeapp@finestrat.org.</value>
+  </data>
+  <data name="ForgotPasswordContent_Finestrat" xml:space="preserve">
+    <value>&lt;p&gt;Dear {2},&lt;/ p&gt;&lt;p&gt;To confirm the password changed in APP Finestrat click here: &lt;a href="http://finestrat.pay-in.es/Account/ConfirmForgotPasswordFinestrat?userid={0}&amp;code={1}&amp;email={3}"&gt;http://finestrat.pay-in.es/Account/ConfirmForgotPasswordFinestrat&lt;/a&gt;&lt;/p&gt; &lt;br /&gt; &lt;p&gt; If you wish to change your password, paste the user ID and the code in the corresponding boxes: &lt;p&gt; &lt;br /&gt; &lt;p&gt; User ID: &lt;strong&gt; {0} &lt;/ strong&gt; &lt;/ p&gt; &lt;br /&gt; &lt;p&gt; Code: &lt;strong&gt; {1} &lt;/ strong&gt; &lt;/ p&gt; &lt;br /&gt; &lt;p&gt; If you have received this message in error or did not request to retrieve your APP Finestrat password, ignore and delete this email from your inbox. &lt;/ p&gt;</value>
+  </data>
+</root>

@@ -1,0 +1,66 @@
+﻿@using PayIn.Application.Dto.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ControlPlanningFactory.GetAllName,
+	ControlPlanningFactory.GetAllApi,
+	"",
+	//ControlPlanningResources.GetAll,
+	"resources.controlPlanning.getAll",
+	"{{arguments.workerName}}",
+	isPaginable: false,
+	isTitleActive: true,
+	initialSearch: false,
+	isSearchable: false,
+	showFormButtons: true,
+	init: "scope.arguments.workerId=params.workerId;"
+))
+{
+	<xp-calendar class="hbox hbox-auto-xs hbox-auto-sm table-responsive">		
+		<div id="calendar" data-ng-hide="isList">
+			<div class="clearfix m-b">				
+				<div class="btn-group m-l-xs pull-right" style="border: 1px solid #CCC; margin-right:20px;">
+					<a tooltip="@ControlPlanningResources.Today" data-ng-click="today()" style="border-right:1px solid #CCC;"><i class='@XpIcons.Today'></i></a>
+					<a tooltip="@ControlPlanningResources.Day" data-ng-click="changeView('agendaDay')"><i class='@XpIcons.Day'></i></a>
+					<a tooltip="@ControlPlanningResources.Week" data-ng-click="changeView('agendaWeek')"><i class='@XpIcons.Week'></i></a>
+					<a tooltip="@ControlPlanningResources.Month" data-ng-click="changeView('month')"><i class='@XpIcons.Month'></i></a>
+				</div>
+				<div class="nav navbar-right btn-group" style="margin-right:20px;">
+					<a data-ui-sref='@ControlPlanningFactory.CreateName     ({workerId:{{$stateParams.workerId}}})' data-xp-navigate tooltip="@ControlPlanningResources.Create">        <i class='@XpIcons.Time'> </i></a>
+					<a data-ui-sref='@ControlPlanningFactory.CreateTemplateName ({workerId:{{$stateParams.workerId}}})' data-xp-navigate tooltip="@ControlPlanningResources.CreateTemplate"><i class='@XpIcons.Copy'> </i></a>
+					<a data-ui-sref='@ControlPlanningFactory.ClearName          ({workerId:{{$stateParams.workerId}}})' data-xp-navigate tooltip="@ControlPlanningResources.Clear">         <i class='@XpIcons.Trash'></i></a>
+				</div>
+				<div class="nav navbar-right btn-group dropdown" dropdown="">
+					<a dropdown-toggle aria-haspopup="true" aria-expanded="false">
+						<i class='@XpIcons.Plus' style="padding-right:0;width:17px;"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a data-ui-sref='@ControlPlanningItemFactory.CreateName  ({workerId:{{$stateParams.workerId}}})' data-xp-navigate tooltip="@ControlPlanningItemResources.Create"> @ControlPlanningItemResources.Create</a> </li>
+						<li><a data-ui-sref='@ControlPlanningCheckFactory.CreateName ({workerId:{{$stateParams.workerId}}})' data-xp-navigate tooltip="@ControlPlanningCheckResources.Create">@ControlPlanningCheckResources.Create</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--Pop-up al ponerse encima de un evento-->
+			<div class="pos-rlt">
+				<div class="fc-overlay">
+					<div class="panel bg-white b-a pos-rlt">
+						<span class="arrow"></span>
+						<h4 class="font-thin m-b-sm">{{event.title}}</h4>
+						<div class="line b-b b-light"></div>
+						<div ng-show='event.startText && !event.endText'><i class="icon-calendar text-muted m-r-xs"></i>{{event.startText}}</div>
+						<div ng-show='event.startText && event.endText'><i class="icon-calendar text-muted m-r-xs"></i>{{event.startText}} - {{event.endText}}</div>
+						<div ng-show='!event.startText && !event.endText'></div>
+						<div ng-show='event.location'><i class="icon-pointer text-muted m-r-xs"></i> {{event.location}}</div>
+						<div class="m-t-sm">{{event.info}}</div>
+					</div>
+				</div>
+				<!--Calendario-->
+				<div class="calendar" data-xp-navigate data-ng-model="eventSources" config="uiConfig.calendar" data-ui-calendar="uiConfig.calendar"></div>
+			</div>
+		</div>
+	</xp-calendar>
+}
+

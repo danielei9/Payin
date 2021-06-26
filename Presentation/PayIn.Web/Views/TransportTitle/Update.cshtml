@@ -1,0 +1,59 @@
+﻿@using PayIn.Application.Dto.Transport.Arguments.TransportTitle;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpPut(
+                TransportTitleFactory.UpdateName,
+                TransportTitleFactory.UpdateApi,
+                "",
+                "resources.transportTitle.update",
+                isTitleActive: true,
+                init: "scope.arguments.id=params.id"
+            ))
+{
+    <xp-get data-api="@TransportTitleFactory.UpdateApi">
+        <div class="form-group col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Code, width: 3))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Name, width: 9, focus: true))
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.OwnerCode, width: 3))
+                @(Html.SelectFor<TransportTitleUpdateArguments>(x => x.OwnerName, "ownerName", TransportTitleFactory.RetrieveSelectorApi, width: 9))
+            </div>
+        </div>
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Environment))
+        <div class="form-group col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.OperateByPayIn, width: 3))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.IsOverWritable, width: 3))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Slot, width: 3))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.HasZone, width: 3))
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.TemporalUnit, width: 4))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.TemporalType, width: 2))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Quantity, width: 4))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.QuantityType, width: 2))
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row">
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.RechargeMin, width: 4))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.RechargeStep, width: 4))
+                @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.MaxQuantity, width: 4))
+            </div>
+        </div>
+        <div class="panel-body"><div class="line line-dashed b-b line-lg pull-in"></div></div>
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.ValidityBit, width: 3))
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.TableIndex, width: 3))
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.MaxExternalChanges, width: 3))
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.MaxPeopleChanges, width: 3))
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.ActiveTitle, width: 3))
+        @(Html.ArgumentFor<TransportTitleUpdateArguments>(x => x.Priority, width: 3))
+    </xp-get>
+}

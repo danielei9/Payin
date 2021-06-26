@@ -1,0 +1,19 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.PaymentUser;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	PaymentUserFactory.Update,
+	PaymentUserFactory.UpdateApi,
+	"",
+	//ServiceWorkerResources.Update
+	"resources.paymentUser.update"
+))
+{
+	<xp-get data-api="@PaymentUserFactory.UpdateApi">
+		@(Html.ArgumentFor<PaymentUserUpdateArguments>(x => x.Name, focus: true, inputAttribute: "autocomplete = \"off\""))
+		@(Html.ArgumentFor<PaymentUserUpdateArguments>(x => x.Login, inputAttribute:"disabled"))
+	</xp-get>
+}
+
+

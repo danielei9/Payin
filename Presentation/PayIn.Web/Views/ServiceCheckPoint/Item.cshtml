@@ -1,0 +1,72 @@
+﻿@using PayIn.Application.Dto.Results.ServiceCheckPoint;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@{
+	var route = ServiceCheckPointFactory.Update + "({id:{{item.Id}}})";
+	var forms = ControlFormAssignCheckPointFactory.GetCheckStateName + "({checkId:{{item.id}}})";
+}
+
+@using (Html.xpList(
+	ServiceCheckPointFactory.GetItemChecks,
+	ServiceCheckPointFactory.GetItemChecksApi,
+	"",
+	//ServiceCheckPointResources.GetAll,
+	"resources.serviceCheckPoint.getAll",
+	"{{temp.name}}",
+	isPaginable: false,
+	isTitleActive: true,
+	showFormButtons: true,
+	init: "scope.id = params.itemId;",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ServiceCheckPointFactory.Create + "({itemId:{{$stateParams.itemId}}})", XpIcons.Plus)
+	}
+))
+{
+
+	<xp-get data-xp-panel data-api=@ServiceCheckPointFactory.GetApi data-xp-init="scope.id=params.itemId;" data-xp-success="scope.$parent.temp.name=scope.arguments.name;"></xp-get>
+	<div>
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceCheckPoint.type">Type  </th>
+					<th translate="resources.serviceCheckPoint.supplier">Supplier </th>
+					<th translate="resources.serviceCheckPoint.reference">Reference</th>
+					<th translate="resources.serviceCheckPoint.name">Name</th>
+					<th translate="resources.serviceCheckPoint.position">Position </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" >
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+						XpIcons.Remove,
+						popupUrl: ServiceCheckPointFactory.Delete,
+						id: "{{item.id}}",
+						arguments: "{\"id\":\"{{item.id}}\",\"name\":\"{{item.name}}\",\"tagId\":\"{{item.reference}}\",\"tagReference\":\"{{item.reference}}\"}"
+					)
+					</td>
+					<td class="icon-column">
+						<img data-ng-show="item.type==1" src="~/Images/p-in.png" alt="P[in]" style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==2" src="~/Images/p-out.png" alt="P[out]" style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==3" src="~/Images/p-check.png" alt="P[check]" style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==4" src="~/Images/p-check.png" alt="P[check]" style="height:50px; margin:-20px 0 -15px 0;" />
+					</td>
+					<td>@(Html.ColumnFor<ServiceCheckPointGetItemChecksResult>(x => x.SupplierName, panelUrl: ServiceCheckPointFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceCheckPointGetItemChecksResult>(x => x.Reference, panelUrl: ServiceCheckPointFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceCheckPointGetItemChecksResult>(x => x.Name, panelUrl: ServiceCheckPointFactory.Update, id: "{{item.id}}"))</td>
+					<td><a ui-sref="servicecheckpointupdate({id:{{item.id}}})" data-xp-navigate data-ng-show="item.longitude">{{item.longitude}}, {{item.latitude}}</a></td>
+					@*<td class="icon-column">
+						<a data-xp-navigate ui-sref=@forms>
+							<i class='@XpIcons.ListAlt'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.formsCount}}</span>
+						</a>
+					</td>*@	
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

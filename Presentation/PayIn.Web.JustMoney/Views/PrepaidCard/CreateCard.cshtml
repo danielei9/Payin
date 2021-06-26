@@ -1,0 +1,159 @@
+﻿<div xp-panel ng-init="app.selectedPage='prepaidcardaddcard'">
+	<xp-post api="JustMoney/Api/PrepaidCard/AddCard">
+		<form name="form" role="form" ng-submit="accept()">
+			<xp-list api="/JustMoney/Api/PrepaidCard/Cards"
+					 initial-search
+					 xp-success="scope.arguments.cards = data.data;
+                                 scope.arguments.cardId = scope.arguments.cards[0].id.toString();
+                                 scope.actualStep = 1;
+                                 scope.maxCards = (4-data.data.length);
+                                 scope.arguments.cardsToAdd = 1">
+				<!-- Modificar alias de las tarjetas -->
+				<div class="spinner" ng-show="_windowState.isBusy">
+					<div class="double-bounce1"></div>
+					<div class="double-bounce2"></div>
+				</div>
+				<h1>Solicitar nueva tarjeta</h1>
+
+
+				<div class="col-md-12" ng-if="maxCards<=0">
+					<div class="verticalSpacer"></div>
+					<div class="form-group row">
+						<div class="col-md-10">
+							<p>
+								Ya ha alcanzado el límite de tarjetas. No es posible solicitar más de 4 tarjetas.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12" ng-if="maxCards>0">
+					<div ng-show="actualStep == 1">
+						<div class="form-group row">
+							<div class="col-md-10">
+								<p>
+									El precio de la tarjeta adicional es € 10.00. Esta cantidad será cobrada de
+									su tarjeta, por favor asegúrese de tener suficiente fondos en su tarjeta.
+								</p>
+								<p>Puedes solicitar hasta 3 tarjetas.</p>
+								<h6>¿Con qué tarjeta quieres pagar?</h6>
+							</div>
+							<div class="col-md-2">&nbsp;</div>
+
+							<div class="col-md-10">
+								<select class="form-control" name="country" ng-model="arguments.cardId" required ng-disabled="_windowState.isBusy">
+									<option ng-repeat="card in arguments.cards" ng-selected="card.id == arguments.cardId" value="{{card.id}}">{{card.alias}}</option>
+								</select>
+							</div>
+							<div class="col-md-2">&nbsp;</div>
+
+							<div class="col-sm-10">
+								<div class="orangeSingleButtonsDiv">
+									<button type="button" class="orangeButton" ng-click="actualStep=2" ng-disabled="_windowState.isBusy">Solicitar</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div ng-show="actualStep == 2">
+						<div class="form-group row">
+							<div class="col-md-10">
+								<div class="col-md-4">
+									Número de tarjetas<br />
+								</div>
+								<div class="col-md-8">
+									<button type="button" ng-disabled="_windowState.isBusy || arguments.cardsToAdd>=maxCards" class="btn btn-primary btn-sm" ng-click="arguments.cardsToAdd = arguments.cardsToAdd+1">+</button>
+									{{arguments.cardsToAdd}}
+									<button type="button" ng-disabled="_windowState.isBusy || arguments.cardsToAdd<=1" class="btn btn-primary btn-sm" ng-click="arguments.cardsToAdd=arguments.cardsToAdd-1">-</button>
+								</div>
+							</div>
+							<div class="col-md-2">&nbsp;</div>
+
+							<div class="erticalSpacer"></div>
+
+							<div class="col-md-12">
+								<h6>Alias de Usuario</h6>
+							</div>
+							<div class="col-md-10">
+								<div class="row">
+									<div class="col-md-2">Tarjeta 1</div>
+									<div class="col-md-10">
+										<input type="text" class="form-control" name="alias1" ng-model="arguments.alias1" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2" ng-show="arguments.cardsToAdd>=2">Tarjeta 2</div>
+									<div class="col-md-10" ng-show="arguments.cardsToAdd>=2">
+										<input type="text" class="form-control" name="alias2" ng-model="arguments.alias2" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2" ng-show="arguments.cardsToAdd==3">Tarjeta 3</div>
+									<div class="col-md-10" ng-show="arguments.cardsToAdd==3">
+										<input type="text" class="form-control" name="alias3" ng-model="arguments.alias3" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2"><small>* Mínimo 4 y máximo 6 caracteres</small></div>
+
+							<div class="verticalSpacer"></div>
+
+							<div class="col-md-12">
+								<h6>Dirección de envío</h6>
+							</div>
+							<div class="col-md-10">
+								<div class="row">
+									<div class="col-md-12">
+										<label for="address1" class="col-sm-12 col-form-label">Dirección</label><br />
+										<input type="text" class="form-control" name="address1" ng-model="arguments.address1" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="address2" class="col-sm-12 col-form-label">Complemento de dirección</label><br />
+										<input type="text" class="form-control" name="address2" ng-model="arguments.address2" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="city" class="col-sm-12 col-form-label">Población</label><br />
+										<input type="text" class="form-control" name="city" ng-model="arguments.city" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="state" class="col-sm-12 col-form-label">Provincia</label><br />
+										<input type="text" class="form-control" name="province" ng-model="arguments.province" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="zipCode" class="col-sm-12 col-form-label">Código Postal</label><br />
+										<input type="text" class="form-control" name="zipCode" ng-model="arguments.zipCode" ng-disabled="_windowState.isBusy">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label for="country" class="col-sm-12 col-form-label">País</label><br />
+										<select class="form-control" name="country" ng-model="arguments.country" required ng-disabled="_windowState.isBusy">
+											<option value="25">España</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">&nbsp;</div>
+
+							<div class="verticalSpacer"><br /></div>
+
+							<div class="col-sm-10">
+								<div class="orangeSingleButtonsDiv">
+									<button type="submit" class="orangeButton" ng-disabled="_windowState.isBusy">Solicitar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</xp-list>
+		</form>
+	</xp-post>
+</div>

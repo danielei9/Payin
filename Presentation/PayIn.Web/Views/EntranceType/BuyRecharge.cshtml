@@ -1,0 +1,21 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+
+@using (Html.xpPost(
+    EntranceTypeFactory.BuyRechargeName,
+    TicketFactory.BuyRechargeBalanceApi,
+    "",
+    "resources.ticket.rechargeBalance",
+    init:
+        "scope.arguments.cardId=params.cardId;",
+    successUrl: "/Ticket/Pay/{{id}}"
+))
+{
+<xp-get api="@EntranceTypeFactory.BuyRechargeApi">
+    <div>
+        @(Html.SelectFor<TicketRechargeBalanceArguments>(x => x.PurseId, "purseId"))
+    </div>
+    @(Html.ArgumentFor<TicketRechargeBalanceArguments>(x => x.Amount))
+</xp-get>
+}

@@ -1,0 +1,94 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using Xp.Common.Resources;
+
+@using (Html.xpPost(
+	TicketFactory.PayName,
+	TicketFactory.PayApi,
+	"",
+	"resources.ticket.pay",
+	showFormButtons: false,
+	controller: "TicketPayController",
+    success: "{{scope.pay(data)}}"
+))
+{
+    <style>
+        .bg-light.lter {
+            background-color: unset;
+        }
+    </style>
+	<xp-get api="@TicketFactory.DetailsApi">
+		<div class="col-md-4" style="float:left;">
+			<img ng-show="arguments.fotoUrl" src="{{arguments.supplierFotoUrl}}" style="max-width:160px; margin:30px 0 0 30px;" />
+		</div>
+		<div class="col-md-4" style="float:right;">
+			<img ng-show="arguments.state === 1 && arguments.payedAmount >= arguments.total" src="~/Images/logo_pagado.png" style="max-width:70%; margin:60px 0 0 30px;" />
+			@*<img data-ng-show="arguments.state === 2" src="~/Images/logo_cancelado.png" style="max-width:70%; margin:60px 0 0 30px;" />*@
+		</div>
+		<div class="col-md-4">
+			<!--style="float:right;"-->
+			<h1 class="text-center" width:80%"><strong>{{arguments.supplierName}}</strong></h1>
+			<p class="text-center">{{arguments.supplierTaxAddress}}</p>
+			<p class="text-center"><span translate="resources.ticket.cif">Cif</span> {{arguments.supplierTaxNumber}}</p>
+			<p class="text-center" translate="resources.ticket.vatIncluding">VatIncluding</p>
+			<p class="text-center">{{arguments.date|xpDateTime}}</p>
+			<p class="text-center"><span translate="resources.ticket.attended">Attended</span> {{arguments.workerName}}</p>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.ticket.title">Title</th>
+					<th translate="resources.ticket.price">Amount</th>
+					<th translate="resources.ticket.quantity">Quantity</th>
+					<th translate="resources.ticket.total" class="text-right">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in arguments.lines">
+					<td class="icon-column">{{$index+1}}</td>
+					<td>{{item.title}}</td>
+					<td>{{item.amount|number:2}}&euro;</td>
+					<td>{{item.quantity}}</td>
+					<td class="text-right">{{item.amount*item.quantity|number:2}}&euro;</td>
+				</tr>
+			</tbody>
+		</table>
+		<h4 class="text-right align-total"><strong translate="resources.ticket.paid">Paid</strong>: {{arguments.payedAmount|number:2}} € / {{arguments.total|number:2}} €</h4>
+		<h5 ng-show="arguments.hasShipment" class="text-left align-total"><span translate="resources.ticket.sinceDetail">Since</span> <strong>{{arguments.since|xpDateTime}}</strong>  <span translate="resources.ticket.untilDetail">Until</span><strong>{{arguments.until|xpDateTime}}</strong></h5>
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6" style="padding:15px;float:left" ng-repeat="payment in arguments.payments">
+					<div class="bg-light pull-left" style="padding:15px;width:100%">
+						<table style="table-layout:fixed;width:100%">
+							<tbody>
+								<tr>
+									<td class="text-right h2 font-thin" style="display:none;">&nbsp;</td>
+									<td style="padding-right:7px;width:40%;text-align:center" class="text-right h2 font-thin" ng-show="payment.state===2">{{payment.stateAlias}}</td>
+									<td style="padding-right:7px;width:40%;text-align:center" class="text-right h2 font-thin" ng-show="payment.state===3" translate="resources.payment.pending">Pending</td>
+									<td style="padding-right:7px;width:40%;text-align:center" class="text-right h2 font-thin" ng-show="payment.state===4" translate="resources.payment.returned">Returned</td>
+									<td style="padding-right:7px;width:40%;text-align:center" class="text-right h2 font-thin" ng-show="payment.state===1">{{payment.amount|number:2}} €</td>
+									<td style="padding-left:7px">
+										<div>
+											<p>{{payment.taxName}}</p>
+											<p>{{payment.numberHash}}</p>
+											<p>Id.{{payment.id}} - {{payment.date|xpDateTime}}</p>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="btn-toolbar pull-right" style="padding:15px">
+			<button class="btn btn-default" type="reset" ng-click="cancel()" ng-if="arguments.payedAmount<arguments.total">Cancel</button>
+			<button class="btn btn-success" type="submit" ng-disabled="form.$invalid" ng-if="arguments.payedAmount<arguments.total">Pagar</button>
+			<button class="btn btn-success" type="reset" ng-click="cancel()" ng-if="arguments.payedAmount>=arguments.total">Volver</button>
+		</div>
+	</xp-get>
+}

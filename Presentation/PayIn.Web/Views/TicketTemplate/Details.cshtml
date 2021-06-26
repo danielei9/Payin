@@ -1,0 +1,29 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Ticket;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using Xp.Common.Resources;
+
+@using (Html.xpPopupShow(
+	"",
+	"",	
+	"resources.ticketTemplate.ticketTemplate"	
+))
+{
+<xp-get data-api="@TicketTemplateFactory.DetailsApi">	
+	<div class="col-md-12" style="float:left;">
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.name">Name</span>  {{arguments.name}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.previousTextPosition">Previous Text Position</span>   {{arguments.previousTextPosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.backTextPosition">Back Text Position</span>   {{arguments.backTextPosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.amountPosition">Amount</span>  {{arguments.amountPosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.dateFormatOnly">Date Format</span>  {{arguments.dateFormat}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.datePosition">Date Position</span>  {{arguments.datePosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.decimalCharDelimiter">Decimal Char Delimiter</span>  {{arguments.decimalCharDelimiter}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.referencePosition"> Reference Position</span>  {{arguments.referencePosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.titlePosition">Title Position</span>  {{arguments.titlePosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.workerPosition">Worker Position</span>  {{arguments.workerPosition}}</p>
+		<p class="text-left"><span style="font-weight: bold;" translate="resources.ticketTemplate.regEx">Regular Expression</span>  {{arguments.regEx}}</p>
+	</div>
+</xp-get>
+}

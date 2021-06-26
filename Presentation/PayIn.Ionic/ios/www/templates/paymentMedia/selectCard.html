@@ -1,0 +1,44 @@
+<ion-view cache-view="false" view-title="Tarjeta" xp-panel>
+  <ion-header-bar class="bar bar-subheader bar-stable" align-title="center">
+    <h1 class="title">Mis tarjetas <span class="badge badge-calm">{{data.length}}</span></h1>
+  </ion-header-bar>
+  <ion-content ng-controller="LoadingCtrl">
+    <xp-list api="mobile/paymentmedia/v1" xp-init="scope.temp.ticketId=params.ticketId;scope.data=params.paymentMedias">
+      <ion-refresher
+        pulling-text="Mantener para refrescar..."
+        on-refresh="search()">
+      </ion-refresher>
+      <ion-list>
+        <ion-item class="card payin-bgCard" ng-repeat="item in data" ng-controller="SelectCardCtrl" ng-click="ticketpay(item.id)" >
+          <div style="height:0;padding-bottom:62%">
+            <div class="row" style="padding-bottom:15%;">
+            <div class="col col-50"><h4 class="col text-left">{{item.title}}</h4></div>
+            <div class="col col-50"><h3 class="col text-right">{{item.bankEntity | uppercase}}</h3></div>   
+            </div>
+            <div class="row">
+            <div claass="col col-center">
+              <img src="../img/chip.png" style="max-width:17%;"/>
+            </div>  
+          </div>
+             <div class="payin-creditcard">    
+              <div class="row">
+                <div class="col col-100">
+                  <h3 class="payin-creditNumber">{{item.numberHash}}</h3>
+                </div>
+              </div>
+              <div class="row">               
+                  <div class="col col-40 col-offset-20">
+                    <h4 class="payin-expirationCard">CAD: {{item.expirationMonth}} / {{item.expirationYear}}</h4>
+                  </div>               
+             </div>         
+           </div>
+          </div>
+           <div class="row row-bottom payin-creditcard">
+              <div class="col col-33">{{item.subtitle | uppercase}}</div>
+              <div class="col col-33 col-offset-50"><img src="../img/visa.jpg" class="payin-imgCredit" ng-hide="true"/></div>
+            </div>
+        </ion-item>
+      </ion-list>
+    </xp-list>
+  </ion-content>
+</ion-view>

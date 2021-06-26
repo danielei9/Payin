@@ -1,0 +1,22 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using (Html.xpPost(
+													EntranceTypeFormFactory.CreateName,
+													EntranceTypeFormFactory.CreateApi,
+													"",
+													"resources.entranceTypeForm.create",
+													init:
+														"scope.arguments.entranceTypeId=params.entranceTypeId;" +
+														"scope.arguments.order=0;"
+												))
+{
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<EntranceTypeFormCreateArguments>(x => x.Order, width: 4))
+				@(Html.SelectFor<EntranceTypeFormCreateArguments>(x => x.FormId, "FormName", ControlFormFactory.GetSelectorApi, width: 8))
+			</div>
+		</div>
+	</div>
+}
+

@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EntranceTypeFactory.Hide,
+	EntranceTypeFactory.IsVisibleApi,
+	"",
+	"resources.entranceType.hide",
+	init: "scope.arguments.isVisible=false;"
+))
+{
+	<p translate="resources.entranceType.hideQuestion">Do you want to hide this entrance type?</p>
+}

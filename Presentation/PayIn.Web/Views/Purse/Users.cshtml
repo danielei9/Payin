@@ -1,0 +1,39 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Purse;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	PurseFactory.GetUsers,
+	PurseFactory.GetUsersApi,
+	"",
+	"resources.purse.purses",
+	isPaginable: false,
+	isTitleActive: true,
+	init: "scope.id=params.id"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.purse.login">Login</th>
+					<th translate="resources.purse.amount">Amount</th>				
+					<th>&nbsp;</th>				
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">					
+					<td>@(Html.ColumnFor<PurseGetUsersResult>(x => x.Login))</td>	
+					<td>@(Html.ColumnFor<PurseGetUsersResult>(x => x.Amount)) &euro;</td>				
+					<td class="icon-column2">
+						<a data-ui-sref='@PurseFactory.GetUsersName ({id:{{item.id}}})' data-xp-navigate data-ng-show="false">
+							<i class='@XpIcons.Purse'></i>							
+						</a>
+					</td>
+							
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

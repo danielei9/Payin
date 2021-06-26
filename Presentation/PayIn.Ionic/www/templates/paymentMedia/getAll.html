@@ -1,0 +1,138 @@
+<ion-view cache-view="false" view-title="Wallet" xp-panel xp-loading ng-controller="paymentMediaGetAllController">
+      <ion-content class="background transportContent" >
+        <div style="margin-top: 20%; overflow: hidden;">
+            <xp-list api="mobile/paymentmedia/v1" initial-search>
+                <ion-slide-box id="slide" class="showSlider">
+                    <ion-slide class="maxHeight">
+                       <div class="row">
+                           <div class="col col-100">
+                               <div style="font-size: 2em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">Tarjetas</div>
+                           </div>
+                       </div>
+                       <div class="row" ng-hide="data.length>0">
+                            <div style="margin-top: 20%;">
+                                <div style="font-size: 2em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">En estos momentos no dispone de ninguna tarjeta.</div>
+                            </div>
+                        </div>
+                        <ul class="list" data-ng-show="data.length>0">
+                            <li ng-repeat="item in data | filter: { type: '4', state: '2'} ">
+                                <div class="row">
+                                    <div class="col col-5"></div>
+                                    <div class="col col-90" class="row" style="background-color: rgba(255,255,255,0.3); border-radius: 38px 38px 38px 38px;" on-tap="delete({api:'mobile/paymentmedia/v1',id:{{item.id}},index :$index, text:'{{item.title}}'})" >
+                                        <div class="row" style="margin-top: 5%;">
+                                            <div class="col col-30">
+                                                <i class="material-icons" style=" font-size: 8em; opacity: 0.7;">credit_card</i>
+                                            </div>
+                                            <div class="col col-70">
+                                                <div class="row">
+                                                    <div class="col col-100 text-right">{{item.title}}</div>
+                                                </div>
+                                                <div class="payin-creditcard" style="margin-top: 10%;">
+                                                    <div class="row">
+                                                        <div class="col col-100 text-right">
+                                                            <div class="payin-creditNumber">{{item.numberHash}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 2%;">
+                                            <div class="col col-10"></div>
+                                            <div class="col col-80 center" style="border: 2px solid white; color: white;  border-radius: 8px 8px 8px 8px;">DESACTIVAR</div>
+                                            <div class="col col-10"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-5"></div>
+                                </div>
+                            </li>
+                            <li ng-repeat="item in data | filter: {type: '4', state: '!2'}">
+                                <div class="row" >
+                                    <div class="col col-5"></div>
+                                    <div class="col col-90" ng-click="activate(item)" class="row" style="background-color: rgba(255,255,255,0.3); border-radius: 38px 38px 38px 38px;" >
+                                        <div class="row" style="margin-top: 5%;">
+                                            <div class="col col-30">
+                                                <i class="material-icons" style=" font-size: 8em; opacity: 0.7;">credit_card</i>
+                                            </div>
+                                            <div class="col col-70">
+                                                <div class="row">
+                                                    <div class="col col-100 text-right">{{item.title}}</div>
+                                                </div>
+                                                <div class="payin-creditcard" style="margin-top: 10%;">
+                                                    <div class="row">
+                                                        <div class="col col-100 text-right">
+                                                            <div class="payin-creditNumber">{{item.numberHash}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 2%;">
+                                            <div class="col col-10"></div>
+                                            <div class="col col-40 center" style="border: 2px solid white; color: white;  border-radius: 8px 8px 8px 8px;" ng-show="item.state !== 2" >ACTIVAR</div>
+                                            <div class="col col-40 center" style="color: white;" ng-show="item.state !== 2">PENDIENTE</div>
+                                            <div class="col col-10"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-5"></div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </ion-slide>
+                    <ion-slide class="maxHeight">     
+                       <div class="row">
+                           <div class="col col-100">
+                               <div style="font-size: 2em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">Promociones</div>
+                           </div>
+                       </div>
+                        <div class="row" ng-show="arguments.promotions.length === 0">
+                            <div style="margin-top: 20%;">
+                                <div style="font-size: 2em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">En estos momentos no dispone de ninguna promoción.</div>
+                            </div>
+                        </div>                 
+                        <div class="row" ng-show="arguments.promotions.length > 0" ng-repeat="data in arguments.promotions">
+                            <div class="col col-5"></div>
+                            <div class="col col-90" style="background-color: rgba(255,255,255,0.3); border-radius: 38px, 38px, 38px, 38px;">
+                                <div class="row">
+                                    <div class="col col-100">
+                                        <div class="item item-divider"  style="background-color: rgba(255,255,255,0); padding: 0px; border: 0px; color: white;font-weight:bold;">
+                                            <span>{{data.concession}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="white" style="margin-top: -0.2%; font-weight: bold;">
+                                <div class="row" style="padding: 0px;">
+                                    <div class="col col-100">
+                                        <div class="row" >
+                                            <div class="col col-60">
+                                                {{data.name}}
+                                            </div>
+                                            <div class="col col-40">
+                                                {{data.quantity}} viajes 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-5"></div>
+                        </div>
+                    </ion-slide>
+                </ion-slide-box>
+                <iframe frameborder="0" width="100%" style="height: 80vh; display: none" name="bankFrame" id="bankFrame" onload="iframeLoaded()"></iframe>
+                <!-- DEBUG -->
+                <form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="post"></form>
+                <!-- REAL -->
+                <!--<form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis.redsys.es/sis/realizarPago" method="post"></form>-->
+            </xp-list>
+        </div>
+    </ion-content>
+     <ion-footer-bar align-title="left" style="background-color: rgba(255,255,255,0); background-image: none;">
+        <ion-floating-menu has-footer="false" menu-color="#ffffff" menu-open-color="#ffffff" menu-icon-color="#D78E31" menu-open-icon-color="#D78E31" icon="ion-plus" >              
+            <ion-floating-item ui-sref="wizardUser" has-footer="false" button-color="#ffffff" icon="ion-card" icon-color="#D78E31" text="Añadir tarjeta">
+            </ion-floating-item>
+            <ion-floating-item   ng-click="codigoDescuento()" has-footer="false" button-color="#ffffff" icon="ion-arrow-graph-down-right" icon-color="#D78E31" text="Añadir descuento">
+            </ion-floating-item>
+        </ion-floating-menu>
+    </ion-footer-bar>
+</ion-view>
+

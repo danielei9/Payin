@@ -1,0 +1,24 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+    NotificationSetFactory.Create,
+    NotificationSetFactory.CreateApi,
+    "",
+    "resources.notificationset.create",
+    isTitleActive: true
+))
+{
+    <div class="col-md-12">
+        <div class="row">
+            @(Html.SelectFor<NotificationSetCreateArguments>(x => x.EventId, "concessionName", EventFactory.RetrieveSelectorApi, focus: true, width: 12))
+        </div>
+        <div class="row">
+            @*@(Html.ArgumentFor<NotificationSetCreateArguments>(x => x.Message, width: 12))*@
+            <div class="col-md-12">
+                <label for="titlePosition" class="control-label ng-scope" translate="resources.notificationset.message">Text to notify</label>
+                <textarea rows="20" style="width:100%; overflow:scroll; font-family: Consolas, monaco, monospace;" spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off" ng-model="arguments.message"></textarea>
+            </div>
+        </div>
+    </div>
+}

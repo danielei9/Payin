@@ -1,0 +1,21 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPost(
+    TicketFactory.Recharge,
+    TicketFactory.RechargeApi,
+    "",
+    "resources.ticket.rechargeBalance" //,
+                                       //init:
+                                       //    "scope.arguments={};" +
+                                       //    "scope.arguments.uid=params.uid;" +
+                                       //    "scope.arguments.paymentConcessionId=params.paymentConcessionId;" +
+                                       //    "scope.arguments.amount=arguments.amount;console.log(arguments);"
+                                       //"scope.arguments.lines=_.map(_.filter(scope.data, function(item) { return item.selected; }), function(item) { return { id: item.id}; });"
+))
+{
+    <p translate="resources.ticket.rechargeBalanceQuestion" translate-values="{ uid: '{{arguments.uid}}' }">Do you want to increase balance of card '{uid}'?</p>
+    @*<p>arguments: {{arguments}}</p>
+    <p>amount: {{arguments.amount}}</p>
+    <p>uid: {{arguments.uid}}</p>
+    <p>purseId: {{arguments.purseId}}</p>*@
+}

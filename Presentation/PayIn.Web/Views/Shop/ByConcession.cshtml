@@ -1,0 +1,530 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.Shop;
+@using PayIn.Application.Dto.Results.Shop;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Domain.Security;
+@using Xp.Common;
+
+<style>
+	.app-header-fixed {
+		padding-top: unset !important;
+	}
+
+	#uidFilter div {
+		background-color: transparent;
+	}
+
+	#uidFilter div label {
+		display: none;
+	}
+
+    .btn-mystyle {
+        margin-top: -15px;
+        border-color: var(--highlightcolor);
+        background-color: var(--bottombgcolor);
+    }
+
+    .btn-mystyle:hover {
+        background-color: var(--bgcolor);
+        transition: all 0.3s ease;
+    }
+
+    .btn-mystyle span {
+        background-color: transparent;
+        color: var(--highlightcolor);
+    }
+
+    .linkCard {
+        border-color: var(--highlightcolor);
+        border-width: 1px;
+        width: 100%;
+    }
+
+    .popupDescription h4, .popupDescription p {
+        color: black;
+    }
+
+    .alignRight {
+        text-align: right;
+    }
+
+    .fa-unlink:hover {
+        color: black;
+    }
+</style>
+
+@{
+	Layout = null;
+}
+
+<div xp-panel contoller="TicketPayController" xp-logout>
+	<xp-redsys></xp-redsys>
+    <xp-list api="@ShopFactory.GetApiByConcession"
+             initial-search
+             xp-init="scope.id=params.id; scope.arguments.total=0; scope.arguments.productsTotal=0"
+             xp-success="
+                scope.temp.serviceCardId=data.serviceCards;
+                scope.arguments.selectedTab='info';
+        ">
+        <div id="head-section">
+            <div class="banner" style="background-image: url('{{arguments.concessionPhotoUrl}}'); display: table">
+                <!-- Banner -->
+                <div class="banner_uid_container">
+                    <div class="banner_uid_searchpanel">
+                        <div class="banner_uid_shadow"></div>
+                        <div class="banner_uid_text" id="uidFilter">
+							<div>
+								@(Html.SelectFor<ShopByConcessionArguments>(x => x.ServiceCardId, "serviceCardId", placeHolder: "Pulsera/Tarjeta", changed: "search()"))
+							</div>
+							<div class="input-group-btn" style="padding-right: 15px;">
+								<button type="button" class="btn btn-mystyle" data-toggle="modal" data-target="#modalLinkCard" aria-label="Vincular tarjeta">
+                                    <span class="@XpIcons.Plus"></span>
+                                </button>
+							</div>
+							<!-- Modal -->
+							<div class="modal fade" id="modalLinkCard" role="dialog">
+								<div xp-popup class="modal-dialog modal-sm" xp-panel>
+									<xp-put api="Api/ServiceCard/Link" xp-init="scope.arguments.paymentConcessionId=params.id;delete scope.id;" xp-success="$('#modalLinkCard').modal('hide'); scope.search();">
+										<form ng-submit="accept()">
+											<div class="modal-content" style="background-color: white;">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title">Vincular tarjeta</h4>
+												</div>
+												<div class="modal-body">
+													<div class="alert alert-block alert-danger fade in ng-hide" ng-show="errors.length" ng-cloak>
+														<button class="close close-sm" type="button" ng-click="clearErrors()">
+															<i class="@XpIcons.Remove"></i>
+														</button>
+														<ul>
+															<li ng-style="$first ? {'list-style-type':'none','margin-left':'-36px'} : { }" data-ng-repeat="error in errors">{{error}}</li>
+														</ul>
+													</div>
+													<fieldset ng-disabled="windowState().isReadOnly">
+														<p>Nº de tarjeta a vincular:</p>
+														<input type="text" ng-model="arguments.uidText" class="linkCard" />
+													</fieldset>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+													<button type="submit" class="btn btn-primary" style="background-color: var(--highlightcolor);">Vincular</button>
+												</div>
+											</div>
+										</form>
+									</xp-put>
+								</div>
+							</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="logo">
+                    <img alt="{{arguments.concessionName}}" ng-src={{arguments.concessionLogoUrl}}>
+                </div>
+            </div>
+            <div class="title">
+                <div class="verticalTitle">
+                    {{arguments.concessionName}}
+                    <div class="exitButton-div" ng-click="logout('http://www.facca.es')" style="cursor: pointer"><img src="../images/logout.svg" alt="Cerrar sesión" class="exitButton"></div>
+                </div>
+            </div>
+            <!-- Botonera TAB -->
+            <div class="buttongroup" ng-show="arguments.serviceCardId">
+				<div class="btn-group">
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'info'}" ng-click="arguments.selectedTab='info'">Información</button>
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'buy'}" ng-click="arguments.selectedTab='buy'">Eventos</button>
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'shop'}" ng-click="arguments.selectedTab='shop'">Tienda</button>
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'recharge'}" ng-click="arguments.selectedTab='recharge'">Recarga</button>
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'documents'}" ng-click="arguments.selectedTab='documents'">Documentos</button>
+					<button type="button" class="btn" ng-class="{'btn-selected': arguments.selectedTab === 'tickets'}" ng-click="arguments.selectedTab='tickets'">Histórico</button>
+				</div>
+            </div>
+        </div>
+        <div style="padding:20px 20px 0 20px" ng-show="errors.length">
+            <div style="margin:0"
+                 class="alert alert-block alert-danger fade in">
+                <button class="close close-sm" type="button" ng-click="clearErrors()">
+                    <i class="@XpIcons.Remove"></i>
+                </button>
+                <ul style="background-color:inherit">
+                    <li style="background-color:inherit"
+                        ng-style="$first ? {'list-style-type':'none','margin-left':'-36px'} : { }"
+                        ng-repeat="error in errors">
+                        {{error || 'Error interno, consulta con el administrador'}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cardInblackList" ng-show="arguments.inBlackList">
+            <div style="margin:0"
+                 class="alert alert-block alert-danger fade in">
+                <ul style="background-color:inherit">
+                    <li style="background-color:inherit"
+                        ng-style="{'list-style-type':'none','margin-left':'-36px'}">
+                        ¡La tarjeta está bloqueada!
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ng-show="arguments.serviceCardId">
+            <!-- TAB Info -->
+            <div id="tabInfo" ng-show="arguments.selectedTab === 'info'">
+                <div class="tabContent">
+                    <div class="tabSeparator tabContent-2col">Datos generales</div>
+                    <div class="tabContent-2col">
+                        <div class="tabContent-content alignRight" ng-show="arguments.isLinkedCard">
+                            @XpColumns.IconColumn(XpIcons.Unlink, popupUrl: ServiceCardFactory.UnlinkCardName, id: "{{arguments.serviceCardId}}", tooltip: "Desvincular tarjeta", success: "scope.search()")
+                        </div>
+                    </div>
+                    <div class="tabContent-2col">
+                        <div class="tabContent-content"><div class="tabContent-label">Nombre: </div>{{arguments.ownerName}}</div>
+                    </div>
+                    <div class="tabContent-2col">
+                        <div class="tabContent-content"><div class="tabContent-label">Nº pulsera/tarjeta: </div>{{arguments.cardUid}}</div>
+                    </div>
+                </div>
+                <div class="tabContent">
+                    <div class="tabSeparator">Saldo en pulsera/tarjeta</div>
+					<div class="tabContent-1col">
+						<div class="balance">{{arguments.lastBalance + arguments.pendingBalance | number: 2}}€</div>
+					</div>
+                </div>
+                <div class="tabContent">
+                    <div class="tabSeparator">Entradas adquiridas</div>
+                    <div class="tabContent-1col">
+                        <table class="table table-striped marginBottom10px">
+                            <thead>
+                                <tr class="data-head">
+                                    <th>Evento</th>
+                                    <th>Tipo</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="data-row" ng-repeat="item in arguments.entrances">
+                                    <td class="data-cell">{{item.eventName}}</td>
+                                    <td class="data-cell">{{item.entranceTypeName}}</td>
+                                    <td class="data-cell data-centeredcolumn">{{item.quantity}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB Buy entrances -->
+            <div id="tabBuy" ng-show="arguments.selectedTab === 'buy'">
+                <xp-post api="@TicketFactory.BuyManyEntrancesApi"
+                         xp-success-url="/Ticket/Pay/{{id}}"
+                         xp-init="
+                         scope.accept2=function() {
+                            var myId=params.id;
+                            var cardId=scope.arguments.serviceCardId;
+                            var newArguments={total: 0, concessionId: myId, serviceCardId: cardId, entrancesType: []};
+                            var entrancesType=[];
+                            var total=0;
+                            for (var myEvent of scope.data) {
+                                for (var myEntranceType of myEvent.entranceTypes) {
+                                    if (myEntranceType.quantity>0) {
+                                        total += myEntranceType.quantity * (myEntranceType.price + myEntranceType.extraPrice);
+                                        entrancesType.push({entranceTypeId: myEntranceType.id, quantity: myEntranceType.quantity});
+                                    }
+                                }
+                            }
+
+                            newArguments.entrancesType = entrancesType;
+                            newArguments.total = total;
+                            // console.log('newArguments:', newArguments);
+                            scope.arguments = newArguments;
+                            this.accept();
+                        };
+
+                        scope.calcTotal = function() {
+                            var total = 0;
+                            for (var myEvent of scope.data) {
+                                for (var myEntranceType of myEvent.entranceTypes) {
+                                    if (myEntranceType.quantity > 0) {
+                                        // console.log('entrancePrice:', myEntranceType.entrancePrice, '- entranceExtraPrice:', myEntranceType.entranceExtraPrice);
+                                        total += myEntranceType.quantity * (myEntranceType.entrancePrice + myEntranceType.entranceExtraPrice);
+                                    }
+                                }
+                            }
+                            scope.arguments.total = total;
+                        };
+
+                        scope.isNaN = function(value) {
+                            return isNaN(value);
+                        }
+                    "
+                    >
+                    <form name="form" role="form" class="form" ng-submit="accept2()" novalidate>
+                        <div class="tabContent" ng-repeat="item in data">
+                            <!-- Repeat for every EVENT -->
+                            <div class="singleEventIMG">
+                                <img src="{{item.eventPhotoUrl}}" alt="{{item.eventName}}">                                                     <!-- Event IMG -->
+                            </div>
+                            <div class="singleEventAllInfo">
+                                <div class="dateAndTime">
+                                    <p>
+                                        {{item.eventDate | date: 'MMM' | uppercase}}<br />                                                      <!-- Month -->
+                                        {{item.eventDate | date: 'd'}}<br />                                                                    <!-- Day number -->
+                                        <hr>
+                                        {{item.eventDate | date: 'H:mm'}}                                                                       <!-- Event Start Time -->
+                                    </p>
+                                </div>
+                                <div id="eventTitle">{{item.eventName}}</div>                                                                     <!-- Event Title -->
+                                <div id="eventPlace">
+                                    <!-- Event Place -->
+                                    Ubicación:
+                                    <br /><span>{{item.eventPlace}}</span>
+                                </div>                                                                                                           <!-- Event Information below -->
+                                <div id="eventInfo" ng-show="item.eventConditions != ''">
+                                    <div id="viewMore">
+								        <a data-toggle="modal" data-target="#modalViewConditions{{item.eventId}}">
+                                            Ver condiciones legales
+                                        </a>
+                                    </div>
+							        <!-- Modal -->
+							        <div class="modal fade popupDescription" id="modalViewConditions{{item.eventId}}" role="dialog">
+								        <div class="modal-dialog modal-lg">
+											<div class="modal-content" style="background-color: white;">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Condiciones legales</h4>
+												</div>
+												<div class="modal-body">
+                                                    <p>{{item.eventConditions}}</p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+												</div>
+											</div>
+								        </div>
+							        </div>
+                                </div>
+                                <div id="eventInfo" ng-show="item.eventShortDescription != '' || item.eventDescription != ''">
+                                    {{item.eventShortDescription}}<br>
+                                    <div id="viewMore">
+								        <a data-toggle="modal" data-target="#modalViewDescription{{item.eventId}}">
+                                            Ampliar descripción
+                                        </a>
+                                    </div>
+							        <!-- Modal -->
+							        <div class="modal fade popupDescription" id="modalViewDescription{{item.eventId}}" role="dialog">
+								        <div class="modal-dialog modal-lg">
+											<div class="modal-content" style="background-color: white;">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">{{item.eventName}}</h4>
+												</div>
+												<div class="modal-body">
+                                                    <p>{{item.eventDescription}}</p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+												</div>
+											</div>
+								        </div>
+							        </div>
+                                </div>
+                                <div class="singleTicket" ng-repeat="entranceType in item.entranceTypes">
+                                    <!-- repeat for every TICKET -->
+                                    <h2 class="ticketType">Tipo de entrada: <br /><div>{{entranceType.entranceName}}</div></h2>               <!-- Type Ticket -->
+                                    <h2 class="ticketCosts">Precio: <br /><div>{{entranceType.entrancePrice}} €</div></h2>                    <!-- Entrance Type Price -->
+                                    <h2 class="administrationCosts">Gestión: <br /><div>{{entranceType.entranceExtraPrice}} €</div></h2>      <!-- Admininistration costs -->
+                                    <div class="ticketCounter">
+                                        <div class="number-input">
+                                            <a ng-hide="entranceType.quantity<=0" ng-click="entranceType.quantity = entranceType.quantity-1; calcTotal();"></a>
+                                            <a ng-show="entranceType.quantity<=0" class="disabled"></a>
+                                            <input ng-model="entranceType.quantity" class="quantity" min="0" max="{{entranceType.entranceMaxEntrancesPerCard-entranceType.entranceSoldByType}}" placeholder="0" name="EventTicket" type="number" ng-hide="entranceType.entranceMaxEntrancesPerCard-entranceType.entranceSoldByType<=0">
+                                            <input ng-model="entranceType.quantity" disabled class="disabled quantity" placeholder="0" name="EventTicket" type="number" ng-show="entranceType.entranceMaxEntrancesPerCard-entranceType.entranceSoldByType<=0">
+                                            <a ng-hide="entranceType.quantity>=(entranceType.entranceMaxEntrancesPerCard-entranceType.entranceSoldByType)" ng-click="entranceType.quantity = entranceType.quantity+1; calcTotal();" class="plus"></a>
+                                            <a ng-show="entranceType.quantity>=(entranceType.entranceMaxEntrancesPerCard-entranceType.entranceSoldByType)" class="plus disabled"></a>
+                                        </div>
+                                        <div class="soldCounter">{{entranceType.entranceSoldByType}} de {{entranceType.entranceMaxEntrancesPerCard}}</div>
+                                    </div>
+                                </div>                                                                                                          <!-- This is the end of the TICKET -->
+                            </div>
+                        </div>                                                                                                                  <!--This is the end of the EVENT-->
+                        <!-- Faltaponer un totalizador de € a comprar -->
+                        <!-- Faltaría mostrar error aquí -->
+                        <div class="submitButtonForm" ng-hide="isNaN(arguments.total)">
+                            <!--This is the buy button -->
+                            <input type="submit" value="Comprar" class="productBuyButton">
+                            <p class="productTotal" ng-hide="isNaN(arguments.total)">Total: {{arguments.total}}€</p>
+                            <p class="productTotal" ng-show="isNaN(arguments.total)">Generando ticket</p>
+                        </div>
+                    </form>
+                </xp-post>
+            </div>
+
+            <!-- TAB Recharge card -->
+            <div id="tabRecharge" ng-show="arguments.selectedTab === 'recharge'" class="" style="text-align: center">
+                <xp-post api="@TicketFactory.BuyRechargeBalanceApi"
+                         xp-success-url="/Ticket/Pay/{{id}}"
+                         xp-init="
+                                scope.accept3=function() {
+                                    scope.id=null;
+                                    this.accept();
+                                }">
+                    <div class="tabContent">
+                        <form name="form" role="form" class="form" ng-submit="accept3()" novalidate>
+                            <div style="font-size: large;">Importe de saldo a recargar:</div>
+                            <div style="width: 200px; align-content: center; display: inline-block;">
+                                @(Html.ArgumentFor<TicketRechargeBalanceArguments>(x => x.Amount, dataMin: 0, placeHolder: "Cantidad", label: "&nbsp;"))
+                            </div>
+                            <div>
+                                <div><button class="submitButton">Recargar</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </xp-post>
+            </div>
+
+            <!-- TAB Shop -->
+            <div id="tabBuy" ng-show="arguments.selectedTab === 'shop'">
+                <xp-post api="@TicketFactory.BuyManyProductsApi"
+                         xp-success-url="/Ticket/Pay/{{id}}"
+                         xp-init="
+                         scope.acceptProducts=function() {
+                         var myId=params.id;
+                         var cardId=scope.arguments.serviceCardId;
+                         var newArguments={productsTotal: 0, concessionId: myId, serviceCardId: cardId, products: []};
+                         var products=[];
+                         var total=0;
+                         for (var myProduct of scope.arguments.products) {
+                         if (myProduct.quantity>
+                    0) {
+                    // console.log('myProduct:', myProduct);
+                    total += myProduct.quantity * myProduct.price;
+                    products.push({productId: myProduct.productId, quantity: myProduct.quantity});
+                    // console.log('products:', products);
+                    }
+                    }
+
+                    newArguments.products = products;
+                    newArguments.productsTotal = total;
+                    // console.log('newArguments:', newArguments);
+                    scope.arguments = newArguments;
+                    this.accept();
+                    };
+
+                    scope.calcProductsTotal = function() {
+                    var total = 0;
+                    //console.log('scope:', scope);
+                    //console.log('scope.arguments:', scope.arguments);
+                    //console.log('scope.arguments.products:', scope.arguments.products);
+                    for (var myProduct of scope.arguments.products) {
+                    //console.log('Recorro productos:', myProduct.quantity);
+                    if (myProduct.quantity > 0) {
+                    total += myProduct.quantity * myProduct.price;
+                    }
+                    }
+                    //console.log('total:', total);
+                    scope.arguments.productsTotal = total;
+                    };
+
+                    scope.isNaN = function(value) {
+                    return isNaN(value);
+                    }
+                    ">
+                    <form name="form" role="form" ng-submit="acceptProducts()" novalidate class="productForm">
+                        <div class="allProductsOuterDiv">
+                            <div class="container">
+                                <div class="col-3 col-xl-2 col-lg-3 col-md-3 col-sm-4 col-xs-6 allProducts" ng-repeat="item in arguments.products">
+                                    <div class="singleProduct">
+                                        <div class="singleProductIMG" style="background-image: url('{{item.photoUrl}}')"></div> <!-- Image of Product -->
+                                        <p class="productNameAndPrice">
+                                            <span class="productName">{{item.productName}}</span><br>                           <!-- Name of Product -->
+                                            <span class="productPrice">{{item.price}} €</span>                                  <!-- Price of Product -->
+                                        </p>
+                                        <div class="productCounter">
+                                            <div class="product-number-input">
+                                                <a ng-hide="item.quantity<=0" ng-click="item.quantity = item.quantity-1; calcProductsTotal();"></a>
+                                                <a ng-show="item.quantity<=0" class="disabled"></a>
+                                                <input ng-model="item.quantity" class="quantity" min="0" max="50" placeholder="0" name="EventTicket" type="number">
+                                                <a ng-hide="item.quantity>=50" ng-click="item.quantity = item.quantity+1; calcProductsTotal();" class="plus"></a>
+                                                <a ng-show="item.quantity>=50" class="disabled"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End of Single Product -->
+                            </div>
+                        </div>
+                        <div class="productBuyPart" ng-hide="isNaN(arguments.productsTotal)">
+                            <input type="submit" value="Comprar" class="productBuyButton">
+                            <p class="productTotal">Total: {{arguments.productsTotal}} €</p>
+                        </div>
+                        <div class="productBuyPart" ng-show="isNaN(arguments.productsTotal)">
+                            <p class="making-ticket">Generando ticket</p>
+                        </div>
+                    </form>
+                </xp-post>
+            </div>
+
+            <!-- TAB Documents -->
+            <div id="tabDocuments" ng-show="arguments.selectedTab === 'documents'">
+                <div class="row">
+                    <div style="margin: 30px;">
+                        <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="item in arguments.serviceDocuments">
+                            <a ng-href="{{item.url}}" target="_blank" class="shopDocument_A">
+                                <div class="shopDocument_DIV">
+                                    {{item.serviceDocumentName}}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB Historic -->
+            <div id="tabTickets" ng-show="arguments.selectedTab === 'tickets'">
+
+                <div class="tabContent">
+                    <div class="tabSeparator">Últimos 30 tickets</div>
+                    <div class="tabContent-1col">
+                        <table class="table table-striped marginBottom10px">
+                            <thead>
+                                <tr class="data-head">
+                                    <th class="col-center">Nº</th>
+                                    <th class="col-center col-min120">Fecha</th>
+                                    <th class="col-min120">Adquisición</th>
+                                    <th>Productos / Entradas</th>
+                                    <th class="col-center">Importe</th>
+                                    <th class="col-center">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="data-row" ng-repeat="item in arguments.tickets">
+                                    <td class="data-cell data-centeredcolumn">@(Html.ColumnFor<ShopByConcessionResultBase.Ticket>(x => x.Id))</td>
+                                    <td class="data-cell col-center">@(Html.ColumnFor<ShopByConcessionResultBase.Ticket>(x => x.DateTime))</td>
+                                    <td class="data-cell">@(Html.ColumnFor<ShopByConcessionResultBase.Ticket>(x => x.TypeName))</td>
+                                    <td class="data-cell">
+                                        <span ng-hide="item.entranceTypes || item.productsLines">- - -</span>
+                                        <table ng-show="item.entranceTypes">
+                                            <tbody>
+                                                <tr ng-repeat="entranceType in item.entranceTypes">
+                                                    <td>{{entranceType.eventName}} ({{entranceType.entranceTypeName}}, {{entranceType.quantity}} entrada/s)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table ng-show="item.productLines">
+                                            <tbody>
+                                                <tr ng-repeat="line in item.productLines">
+                                                    <td>{{line.productName}} ({{line.quantity}} ud/s - {{line.price}} &euro; = {{line.quantity * line.price}} €)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td class="data-cell data-centeredcolumn">@(Html.ColumnFor<ShopByConcessionResultBase.Ticket>(x => x.Amount))</td>
+                                    <td class="data-cell data-centeredcolumn" ng-show="item.state!=5">@(Html.ColumnFor<ShopByConcessionResultBase.Ticket>(x => x.StateName))</td>
+                                    <td class="data-cell col-min120 col-center" ng-show="item.state==5">No pagado</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xp-list>
+</div>

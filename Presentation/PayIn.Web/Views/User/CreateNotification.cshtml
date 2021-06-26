@@ -1,0 +1,50 @@
+﻿@using PayIn.Application.Dto.Arguments.User;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPost(
+	UserFactory.CreateNotificationName,
+	UserFactory.CreateNotificationApi,
+	"",
+	//ControlFormResources.Create
+	"resources.user.createNotification"
+))
+{
+	@(Html.ArgumentFor<UserCreateNotificationArguments>(x => x.Text))
+	<div class="form-group col-md-12">
+		<span>Para insertar emojis, pega el emoji desde esta página: </span>
+		<a href="https://www.piliapp.com/emoji/list/" target="_blank"> Philiapp</a>
+	</div>
+	<div class="form-group line b-b "></div>
+	<div class="form-group col-md-12" ng-hide="arguments.allUsers==true" ng-controller="CreateNotificationController">
+		<label for="users" class="control-label">Añadir usuarios</label>
+		<div class="input-group">
+			<input id="users" type="text" class="form-control" ng-model="users" />
+			<div ng-click="addUser(users)" class="input-group-btn">
+				<button type="button" class="btn btn-default" tabindex="-1"><i class="@XpIcons.Plus"></i></button>
+			</div>
+		</div>
+		<div class="input-group">
+			<table class="table table-hover" ng-show="arguments.users.length>0">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th translate="resources.user.email">email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="item in arguments.users">
+						<td class="icon-column">
+							<a data-ng-click="remove($index)"><i class="@XpIcons.Trash"></i></a>
+						</td>
+						<td>{{$index+1}}</td>
+						<td>{{item}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	@(Html.ArgumentFor<UserCreateNotificationArguments>(x => x.AllUsers))
+}

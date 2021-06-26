@@ -1,0 +1,74 @@
+<ion-view cache-view="false" view-title="Pay[in] PIN" xp-panel xp-loading>
+    <ion-content class="background transportContent" >
+        <div class="wrapperMargin20">
+            <xp-update-pin id="updatepin" data-api="Mobile/User/v1/Pin" ng-controller="pinUpdateController" data-cache>
+               <ion-scroll zooming="true" direction="y"  style="margin-bottom: 3%;">
+                <form name="form" role="form" class="form" ng-submit="confirm()">
+                    <div class="row">
+                        <div class="col col-100">     
+                            <div class="row">
+                                <div class="col col-100 whiteColor">
+                                    Por su seguridad, Pay[in] necesita <b>verificar su PIN anterior</b> de 4 números.<br>
+                                    Este PIN debe ser fácil de recordar y no tiene por qu&eacute; ser el mismo que el de su tarjeta.
+                                </div>
+                            </div> 
+                            <div class="row wrapperMargin10">
+                                <div class="col col-100">
+                                    <label form="form"  ng-class="{'has-error':form.oldPassword.$invalid}">
+                                        <span class="whiteColor">Pin Pay[In] anterior</span>
+                                        <input type="password" name="oldPin" class="inputMainStyle inputPass formUpdate wrapperMargin5" ng-model="arguments.oldPin" required ng-pattern="/^\d{4}$/" autofocus>
+                                    </label> 
+                                    <ng-messages for="form.oldPin.$error" role="alert">
+                                        <ng-message when="required">Este campo es requerido.</ng-message>
+                                        <ng-message when="pattern">Este campo debe ser de 4 dígitos.</ng-message>
+                                    </ng-messages>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100">
+                                    <label form="form"  ng-class="{'has-error':form.password.$invalid}">
+                                        <span class="whiteColor">Nuevo Pin Pay[In]</span>
+                                        <input class="inputMainStyle inputPass formUpdate wrapperMargin5" type="password" name="pin" ng-model="arguments.pin" placeholder="Pay[in] PIN nuevo (4 dígitos)" required ng-pattern="/^\d{4}$/">
+                                    </label>
+                                    <ng-messages for="form.pin.$error" role="alert">
+                                        <ng-message when="required">Este campo es requerido.</ng-message>
+                                        <ng-message when="pattern">Este campo debe ser de 4 dígitos.</ng-message>
+                                    </ng-messages>   
+                                </div>        
+                            </div>
+                            <div class="row wrapperMargin20">
+                                <div class="col col-100" >
+                                    <div class="row center buttonMainStyle padding-initial">
+                                        <div class="col col-100 center">
+                                            <button type="submit" class="cleanBackground" ng-disabled="form.$invalid">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100">
+                                    <div class="payin-bar padding-horizontal">
+                                        <a class="button button-block cleanBackground whiteColor" ng-href="#/Account/ForgotPin">¿Has olvidado el pin?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </form>  
+              </ion-scroll>  
+            </xp-update-pin>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+

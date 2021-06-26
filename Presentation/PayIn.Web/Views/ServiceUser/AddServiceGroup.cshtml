@@ -1,0 +1,29 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+    ServiceUserFactory.AddServiceGroupName,
+    ServiceUserFactory.AddServiceGroupApi,
+    "",
+    "resources.serviceUser.addServiceGroup",
+	subtitle: "{{temp.serviceUserName}} {{temp.serviceUserLastName}}",
+    isTitleActive: true,
+    init:
+		"scope.id = params.id;"
+))
+{
+	<xp-get
+		api="@ServiceUserFactory.GetApi"
+		xp-success="
+			scope.temp.serviceUserName=scope.arguments.name;
+			scope.temp.serviceUserLastName=scope.arguments.lastName;
+			scope.$parent.arguments={};
+		"
+	>
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.SelectFor<ServiceUserAddServiceGroupArguments>(x => x.ServiceGroupId, "ServiceGroupName", ServiceGroupFactory.RetrieveSelectorApi))
+			</div>
+		</div>
+	</xp-get>
+}

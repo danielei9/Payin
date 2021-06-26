@@ -1,0 +1,40 @@
+﻿@using PayIn.Application.Dto.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ControlPresenceFactory.GetGraphName,
+	ControlPresenceFactory.GetGraphApi,
+	"",
+	//ControlPresenceResources.Chart,
+	"resources.controlPresence.chart",
+	"{{arguments.workerName}}",
+	isPaginable: false,
+	isTitleActive: true,	
+	isSearchable: false,
+	initialSearch: false,
+	init:
+		"scope.arguments.workerId=params.workerId;" +
+		"scope.arguments.since='" + DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd") + "';" +
+		"scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" +
+		"scope.sumPlanned = function(data) { return _.reduce(data, function(memo, item){ return memo + item.durationPlanned; }, 0)};" +
+		"scope.sumWorked = function(data) { return _.reduce(data, function(memo, item){ return memo + item.durationWorked; }, 0)};"
+))
+{
+	<div class="table-responsive" data-ng-controller="ControlPresenceGraphController">
+		<div data-ng-show="data.length" class="btn-group m-l-xs pull-right" style="border: 1px solid #CCC; margin-right:20px;padding:10px;">
+			<div style="background-color:#FFCC00;" class="legendGraph" /><p style="float:left;" translate="resources.controlPresence.durationPlanned">Duration planned</p>
+			<br />
+			<div style="background-color:#228B22" class="legendGraph" /><p style="float:left;" translate="resources.controlPresence.durationWorked">Duration worked</p>
+		</div>
+
+		<h4 data-ng-hide="data.length" style="position:absolute;z-index:9999; left:30%; top:40%">@ControlPresenceResources.NoData</h4>
+		<data-xp-graph2 data-xp-model="data" data-xp-x-axis='{"data":"day"}' data-xp-y-axis='[{"data":"durationWorked"},{"data":"durationPlanned"}]' data-ng-options="hour"></data-xp-graph2>
+		<div class="col-md-4"><span translate="resources.controlPresence.totalHoursPlanned">Total Hours Planned</span>: {{sumPlanned(data)||0 | xpHourToTime}}</div>
+		<div class="col-md-4"><span translate="resources.controlPresence.totalHoursWorked">Total Hours Worked</span>: {{sumWorked(data)||0 | xpHourToTime}}</div>
+		<div data-ng-show="sumWorked(data) >= sumPlanned(data)" class="col-md-4"><span translate="resources.controlPresence.difference"> Difference</span>: {{(sumWorked(data) - sumPlanned(data))||0 | xpHourToTime}}</div>
+		<div data-ng-show="sumWorked(data) < sumPlanned(data)" class="col-md-4"><span translate="resources.controlPresence.difference">Difference</span>: <span style="color:red;">-{{(sumPlanned(data) - sumWorked(data))||0 | xpHourToTime}}</span></div>
+	</div>
+}
+

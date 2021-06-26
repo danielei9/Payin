@@ -1,0 +1,61 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	CampaignFactory.GetEventName,
+	CampaignFactory.GetEventApi,
+	"",
+	"resources.campaign.getEvent",
+	"{{arguments.title}}",
+	isPaginable: false,
+	isTitleActive: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, CampaignFactory.AddEvent("{{$stateParams.id}}"), XpIcons.Plus)
+	},
+	init: "scope.id=params.id"
+))
+{
+	<div class="table-responsive">
+
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.campaign.since">Since</th>
+					<th translate="resources.campaign.until">Until</th>
+					<th translate="resources.campaign.name">Name</th>				
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: CampaignFactory.RemoveEvent,
+							id: "{{item.id}}"
+							,arguments: "{\"campaign\":\"{{item.campaignId}}\",\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>
+						<div ng-if="item.sinceTime">
+							@(Html.ColumnFor<ApiCampaignGetEventResult>(x => x.SinceTime, id: "{{item.id}}"))
+						</div>
+					</td>
+					<td>
+						<div ng-if="item.untilTime">	
+							@(Html.ColumnFor<ApiCampaignGetEventResult>(x => x.UntilTime, id: "{{item.id}}"))
+						</div>
+					</td>
+                    <td>
+                        <div ng-if="item.name">
+                            @(Html.ColumnFor<ApiCampaignGetEventResult>(x => x.Name, id: "{{item.id}}"))
+                        </div>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

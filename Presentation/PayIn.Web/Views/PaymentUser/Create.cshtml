@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments.PaymentUser;
+@using Xp.Common;
+@using (Html.xpPost(
+	PaymentUserFactory.CreateName,
+	PaymentUserFactory.CreateApi,
+	"",
+	"resources.paymentUser.create",
+	isTitleActive: true
+))
+{
+	@(Html.ArgumentFor<PaymentUserCreateArguments>(x => x.Name, focus: true, inputAttribute: "autocomplete = \"off\""))
+	@(Html.ArgumentFor<PaymentUserCreateArguments>(x => x.Login, inputAttribute: "autocomplete = \"off\""))
+
+}

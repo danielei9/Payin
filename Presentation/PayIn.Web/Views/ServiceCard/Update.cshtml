@@ -1,0 +1,47 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results
+
+@using (Html.xpPut(
+    ServiceCardFactory.Update,
+    ServiceCardFactory.UpdateApi,
+    "",
+    "resources.serviceCard.card",
+    acceptText: "",
+    cancelText: "Volver"
+))
+{
+<style>
+    .cardImage{
+        width: 100% !important;
+        height: 100% !important;
+    }
+</style >
+
+<xp-get data-api="@ServiceCardFactory.UpdateApi">
+    <div class="col-md-4 text-center">
+        <img class="cardImage" ng-src="{{arguments.userPhoto}}" />
+    </div>
+    <div class="col-md-8">
+        <table class="table table-responsive">
+            <tbody>
+                <tr>
+                    <td>
+                        <div>{{arguments.systemCardName}}</div>
+                        <div data-ng-show="arguments.cardType <= 0 || arguments.cardType > 3 "><span translate="resources.serviceCard.notEmitted">Not emitted</span></div>
+                        <div data-ng-show="arguments.cardType == 1"><span translate="resources.serviceCard.primary">Primary</span></div>
+                        <div data-ng-show="arguments.cardType == 2"><span translate="resources.serviceCard.secondary">Secondary</span></div>
+                        <div data-ng-show="arguments.cardType == 3"><span translate="resources.serviceCard.anonymous">Anonymous</span></div>
+                        <div>{{arguments.userName}} {{arguments.userSame}}</div>
+                        <div>{{arguments.alias}}</div>
+                        <div>
+                            <span>{{arguments.cardId}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</xp-get>
+
+}

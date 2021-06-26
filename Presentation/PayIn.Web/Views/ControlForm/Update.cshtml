@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlForm;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPut(
+	ControlFormFactory.Update,
+	ControlFormFactory.UpdateApi,
+	"",
+	//ControlFormResources.Update
+	"resources.controlForm.update"
+))
+{
+	<xp-get data-api="@ControlFormFactory.GetApi">
+		@(Html.ArgumentFor<ControlFormUpdateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<ControlFormUpdateArguments>(x => x.Observations))
+	</xp-get>
+}

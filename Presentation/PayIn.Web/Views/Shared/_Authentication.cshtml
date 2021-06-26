@@ -1,0 +1,40 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en" ng-app="xp.authentication">
+<head>
+    <meta charset="utf-8" />
+    @*<title>Platges Vinaròs</title>*@
+	<title>Finestrat</title>
+    @*<title>Pay[in]</title>*@
+    <link id="favicon" rel="shortcut icon" href="~/Images/{{features.favicon()}}" type="image/png" />
+    <link rel="apple-touch-icon" sizes="194x194" href="~/Images/{{features.faviconApple()}}" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit" async defer></script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+</head>
+<body ng-controller="AppCtrl">
+	<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}">
+		@RenderBody()
+	</div>
+	<!-- jQuery-->
+	@Scripts.Render("~/bundles/jquery")
+	<!-- Angularjs -->
+	@Scripts.Render("~/bundles/angularjs")
+	<!-- BootStrap-->
+	@Scripts.Render("~/bundles/bootstrap")
+	<!-- Lazyload -->
+	@Scripts.Render("~/bundles/lazyload")
+	<!-- Translate -->
+	@Scripts.Render("~/bundles/translate")
+	<!-- Xp.authentication -->
+	@Scripts.Render("~/bundles/xp.authentication")
+</body>
+</html>

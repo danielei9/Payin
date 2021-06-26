@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPlanning;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlPlanningFactory.CreateTemplateName,
+	ControlPlanningFactory.CreateTemplateApi,
+	"",
+	//ControlPlanningResources.CreateTemplate,
+	"resources.controlPlanning.createTemplate",
+	init:
+		"scope.arguments.dateSince=moment(Date()).format('YYYY-MM-DD');" +
+		"scope.arguments.dateUntil=moment(Date()).format('YYYY-MM-DD');" +
+		"scope.arguments.workerId=params.workerId;",
+		success: "scope.onSuccessUrl = data.ids.length > 0 ? '/ControlFormAssign/Update/{{ids}}' : ''"
+	))
+{
+@(Html.SelectFor<ControlPlanningCreateTemplateArguments>(x => x.TemplateId, "templateName", ControlTemplateFactory.RetrieveSelectorApi))
+@(Html.ArgumentFor<ControlPlanningCreateTemplateArguments>(x => x.DateSince, width: 6))
+@(Html.ArgumentFor<ControlPlanningCreateTemplateArguments>(x => x.DateUntil, width: 6))
+}

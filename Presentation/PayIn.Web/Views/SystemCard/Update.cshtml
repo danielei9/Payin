@@ -1,0 +1,34 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.SystemCard;
+@using (Html.xpPut(
+    SystemCardFactory.UpdateName,
+    SystemCardFactory.UpdateApi,
+    "",
+    "resources.systemCard.update",
+    isTitleActive: true
+))
+{
+    <xp-get data-api="@SystemCardFactory.GetApi">
+        <div class="col-md-3">
+            <div class="row">
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.PhotoUrl, fieldUrl: @SystemCardFactory.UpdateImageCropName))
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.Name, focus: true))
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.CardType))
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.SynchronizationInterval))
+                @(Html.SelectFor<SystemCardUpdateArguments>(x => x.ConcessionOwnerId, "owner", ServiceConcessionFactory.RetrieveSelectorApi, focus: true))
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.NumberGenerationType))
+                @(Html.ArgumentFor<SystemCardUpdateArguments>(x => x.ClientId))
+                <div class="form-group col-md-12">
+                    <label for="affiliationEmailBody" class="control-label ng-scope" translate="resources.systemCard.affiliationEmailBody">Email to send</label>
+                    <textarea id="affiliationEmailBody" rows="10" style="width:100%; overflow:scroll; font-family: Consolas, monaco, monospace;" ng-model="arguments.affiliationEmailBody" spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </xp-get>
+
+}

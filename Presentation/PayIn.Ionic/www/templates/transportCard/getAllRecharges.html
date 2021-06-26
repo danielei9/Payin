@@ -1,0 +1,60 @@
+<ion-view cache-view="false" view-title="Recargar" xp-panel xp-loading
+    xp-init="
+        scope.temp.recharges = params.recharges; 
+        scope.temp.charges = params.charges; 
+        scope.temp.operationType = 0;
+        scope.temp.cardId = params.cardId;
+        scope.temp.cardType = params.cardType;
+        scope.temp.cardScript = params.cardScript;">
+    <xp-post
+        api="mobile/ticket/v1/"
+        ng-controller="transportCardGetAllRechargesController"
+        xp-init="scope.arguments.date = moment(Date()).format('YYYY-MM-DD HH:mm:ss');">
+        <ion-content>
+            <div ng-hide="data">
+                <img src="img/Transporticon.png" style="opacity: 0.1; width: 80%; margin-left: 9%; margin-right: 9%; margin-top: 15%;">
+                <div style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%;">El título actual no tiene titulos válidos para recargar, pruebe con Otros títulos.</div>
+            </div>
+            <div ng-show="data">
+                <ul class="list">
+                    <li
+                        class="item item-block item-icon-right"
+                        ng-repeat="ticket in temp.recharges">
+                        <div 
+                             class="row row-center"
+                             ng-init="price=ticket.prices[0]"
+                             ng-click="createTicket(temp, ticket, price)">
+                            <div class="col col-80">
+                                <div class="ticket-prize text-truncate">{{ticket.ownerName}} - {{ticket.name}} {{price.zoneName}}</div>
+                                <div style="font-size: 0.8em; color: #000000;">{{ticket.ownerCity}}</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===4&&price.price">Sustitución de título</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===5&&price.changePrice">Nueva tarifa</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===6&&price.changePrice">Cambio de Zona</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===8">Tarifa obsoleta</div>
+                            </div>
+                            <div class="col col-20 text-right"  ng-show="price.price">
+                                <div class="ticket-prize"ng-show="ticket.code < 1270 || ticket.code > 1278">{{price.price | number:2}}€</div>
+                                <div style="font-size: 0.8em; color: #000000;" ng-show="price.changePrice">+ {{price.changePrice |number:2}}€</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===4&&price.price">Elim. billetes</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===5&&price.changePrice">Act. billetes</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===6&&price.changePrice">Act. billetes</div>
+                                <div class="assertive" style="font-size: 0.8em;" ng-show="price.rechargeType===8">Act. billetes</div>
+                            </div>
+                            <div class="col" ng-hide="price.price">
+                                <a class="icon ion-chevron-right payin size-16"></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+        <div class="bar bar-footer" style="border: none; padding: 5px;height: 5em;">
+            <div style="width: 100%;">
+                <button
+                    class="button button-block button-payin"
+                    ui-sref="transportCardGetAllCharges({charges:temp.charges,cardId:temp.cardId,cardType:temp.cardType,cardScript:temp.cardScript})"
+                    style="width:100%;max-width:none; height: 2.5em; font-size: 1.3em;"> Cargar otros títulos</button>
+            </div>
+        </div>
+    </xp-post>
+</ion-view>

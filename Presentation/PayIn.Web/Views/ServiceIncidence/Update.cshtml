@@ -1,0 +1,313 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+@using PayIn.Application.Dto.Arguments.Notification;
+
+@using (Html.xpPut(
+    ServiceIncidenceFactory.UpdateName,
+    ServiceIncidenceFactory.UpdateApi,
+    "",
+    "resources.incidence.get"
+))
+{
+    <style type="text/css">
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        .dataTables_wrapper {
+            display: none;
+        }
+
+        .labelCaption {
+            /*font-weight: bold;*/
+        }
+
+        .b-light {
+            background-color: #fffff0; /*#edf1f2;*/
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .arrow.left:after {
+            border-right-color: #fffff0; /*#edf1f2;*/
+        }
+
+        .arrow.left {
+            border-right-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .arrow.pull-up {
+            top: 13px;
+        }
+
+        #send-box {
+            margin-bottom: -40px;
+            padding-bottom: 15px;
+            margin-top: 10px;
+            margin-left: -10px;
+            padding-right: 5px;
+        }
+
+        #send-box-text-column {
+            margin: 0px 40px 0px 0px;
+        }
+
+        #send-box-button-column {
+            float: right;
+            width: 50px;
+            margin-right: -60px;
+        }
+
+        .flybutton {
+            margin-left: -3px;
+            width: 23px;
+        }
+
+        .chat-area {
+            max-width: 80%;
+        }
+
+        .chat-box {
+            display: inline-block;
+        }
+
+        .image-photo-box {
+            float: left;
+            margin-bottom: 10px;
+        }
+
+        .notification-photo {
+            display: block;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .position-image {
+            display: block;
+            margin-left: auto;
+        }
+
+        .align-right {
+            float: right;
+        }
+
+        .avatar-pull-right {
+            float: right !important;
+            margin-left: 10px;
+        }
+
+        .bg-mine {
+            background-color: #dcf8c6;
+        }
+
+        .arrow.right.arrow-success:after {
+            border-left-color: #dcf8c6 !important;
+        }
+
+        .sender-name {
+            margin-top: -10px;
+            margin-left: -8px;
+            color: #e9af30; /* #9bb318;*/ /*#6acd18;*/
+            font-size: small;
+            padding-bottom: 3px;
+            font-weight: 600;
+        }
+    </style>
+    <xp-get data-api=@ServiceIncidenceFactory.GetApi>
+        <div class="panel panel-default print" style="margin:-15px 0 15px 0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel-heading font-bold" translate="resources.incidence.captionData">Data</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.name">Name</span><br />
+                                    {{arguments.name}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.user_Name">Name</span><br />
+                                    {{arguments.user_NameLastname}}
+                                </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.user_Phone">Phone</span><br />
+                                    {{arguments.user_Phone}}
+                                </p>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.user_Email">Email</span><br />
+                                    {{arguments.user_Email}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.dateTime">Date/Time</span><br />
+                                    {{arguments.dateTime|xpDateTime}}
+                                </p>
+                            </div>
+                            @(Html.ArgumentFor<ServiceIncidenceUpdateArguments>(x => x.State, width: 3))
+                            <div class="form-group col-md-6">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.type">Type</span><br />
+                                    {{arguments.typeName}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.category">Category</span><br />
+                                    {{arguments.categoryName}}
+                                </p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p>
+                                    <span class="labelCaption" translate="resources.incidence.subCategory">Subcategory</span><br />
+                                    {{arguments.subCategoryName}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <span class="labelCaption ng-scope" translate="resources.incidence.observations">Observations</span><br />
+                                <textarea id="internalObservationsText" name="internalObservationsText" rows="5" type="custom" class="form-control ng-pristine ng-valid ng-touched" ng-model="arguments.internalObservations">ababab</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button onClick="window.print()" ng-disabled="form.$invalid || _windowState.isBusy"
+                style="
+				float:  left;
+				position: absolute;
+				margin:  0 15px;
+			"
+                class="btn btn-info">
+            <i class="@XpIcons.Printer"></i>
+        </button>
+    </xp-get>
+}
+
+@using (Html.xpPut(
+    "", //ServiceNotificationFactory.CreateName,
+    ServiceIncidenceFactory.AddNotificationApi,
+    "",
+    "resources.incidence.captionChat",
+    showFormButtons: false,
+    success: "scope.$$childTail.search();scope.arguments.message='';",
+    goBack: 0
+))
+{
+
+    <xp-list data-api="@ServiceIncidenceFactory.GetNotificationsApi" initial-search>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    <div class="form-group col-md-12" style="margin-top: 10px;">
+                        <div class="printePagebreak">
+                            <div ng-repeat="msg in data">
+                                <div class="m-b" ng-class="{'text-right': msg.isMine}">
+                                    <span class="thumb-sm avatar" ng-hide="arguments.photoUrl.length && !msg.isMine" ng-class="{'avatar-pull-right': msg.isMine, 'pull-left': !msg.isMine}">
+                                        <img src="/Images/user_default_avatar.png" ng-show="!msg.isMine">
+                                    </span>
+                                    <div class="m-l-sm inline chat-area" ng-class="{'text-left': msg.isMine}">
+                                        <div class="pos-rlt wrapper b r r-2x chat-box" ng-class="{'bg-mine': msg.isMine, 'b-light': !msg.isMine}">
+                                            <span class="arrow pull-up" ng-class="{'right arrow-success': msg.isMine, 'left': !msg.isMine}"></span>
+                                            <div class="sender-name" ng-hide="msg.isMine">{{msg.senderName}}</div>
+                                            <div class="m-b-none">{{msg.message}}</div>
+                                            <div ng-hide="msg.notificationPhoto==''" class="image-photo-box">
+                                                <a href="{{msg.notificationPhoto}}" target="_blank">
+                                                    <img style="border: none" ng-src="{{msg.notificationPhoto}}" class="notification-photo" />
+                                                </a>
+                                            </div>
+                                            <div
+												 ng-hide="msg.longitude == null && msg.latitude == null"
+												 class="col-md-6"
+												 style="
+													width: 600px;
+													height: 500px;
+													padding: 0;
+												"
+											>
+                                                <!-- UBICACION-MENSAJE -->
+												<xp-map
+                									markers="arguments.pois"
+                									main-longitude-template="msg.longitude"
+		        									main-latitude-template="msg.latitude"
+                									main-place="Incidencia"
+                									zoom="14"
+													ng-if="msg.longitude && msg.latitude"
+												></xp-map>
+                                            </div>
+                                        </div>
+                                        <div><small class="text-muted">{{msg.createdAt|xpDateTime}}</small></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" id="send-box">
+                        <div id="send-box-text-column">
+
+                            <div data-ng-class="{'has-error':!form.message.$valid}" class="form-group">
+                                <label for="message" class="control-label ng-scope" translate="resources.incidence.message"></label>
+                                <input id="message" name="message" type="custom" class="form-control  ng-pristine ng-valid ng-touched" ng-model="arguments.message" placeholder="Texto a enviar" ng-disabled="">
+
+                                <div id="send-box-button-column" style="margin-top: -35px;">
+                                    <button class="btn m-b-xs btn-sm btn-info btn-addon" type="submit">
+                                        <img src="../images/fly.svg" class="flybutton">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xp-list>
+}

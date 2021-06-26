@@ -1,0 +1,32 @@
+<ion-view view-title="Login" hide-nav-bar="true" class="col-center" xp-panel>
+  <ion-content class="center" ng-controller="LoadingCtrl">
+    <xp-login api="token">
+      <div class="center">
+        <img class="account-login-logo" src="img/logo_orange.png"/>
+      </div>
+      <form name="form" role="form" class="form" ng-submit="login()" novalidate>
+        <div class="list list-inset">
+          <label class="item item-input item-floating-label">
+            <i class="icon ion-email placeholder-icon"></i>
+              <input type="text" placeholder="Email" ng-model="arguments.user" ng-required>
+          </label>
+          <label class="item item-input item-floating-label">
+            <i class="icon ion-locked placeholder-icon"></i>
+              <input type="password" placeholder="Contraseña" ng-model="arguments.password" ng-required>
+          </label>
+        </div>
+        <div class="padding-horizontal">
+          <button type="submit" class="button button-block button-payin" ng-href="#/Account/Register" ng-disabled="form.$invalid" nav-transition="android">Identificarse</button>
+        </div>
+      </form>
+      <div class="payin-bar padding-horizontal">
+        <a class="button button-block button-clear button-payin" ng-href="#/Account/Register">Registrarse</a>
+      </div>
+    </xp-login>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="clear padding-horizontal" style="padding:0 10px;box-shadow:none;background-size:0;">
+    <div class="buttons">
+      <a class="button button-clear button-payin" ng-href="#/Policy" style="width:100%;max-width:none;">Politica Privacidad</a>
+    </div>
+  </ion-footer-bar>
+</ion-view>

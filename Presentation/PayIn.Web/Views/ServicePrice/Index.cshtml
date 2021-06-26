@@ -1,0 +1,48 @@
+﻿@using PayIn.Application.Dto.Results.ServicePrice;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ServicePriceFactory.GetAll,
+	ServicePriceFactory.GetAllApi,
+	"",
+	//ServicePriceResources.RetrieveAll,
+	"resources.servicePrice.retrieveAll",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: ServicePriceFactory.Create,
+	csvUrl: ServicePriceFactory.GetAllCsv
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.servicePrice.concession">Concession</th>
+					<th translate="resources.servicePrice.zone">Zone</th>
+					<th translate="resources.servicePrice.time">Time</th>
+					<th translate="resources.servicePrice.price">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+						XpIcons.Remove,
+						popupUrl: ServicePriceFactory.Delete,
+						id: "{{item.id}}",
+						arguments: "{\"zone\":\"{{item.zoneName}}\",\"time\":\"{{item.time}}\",\"price\":\"{{item.price}}\"}"
+					)
+					</td>
+					<td>@(Html.ColumnFor<ServicePriceGetAllResult>(x => x.ConcessionName, panelUrl: ServicePriceFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServicePriceGetAllResult>(x => x.ZoneName,       panelUrl: ServicePriceFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServicePriceGetAllResult>(x => x.Time,           panelUrl: ServicePriceFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServicePriceGetAllResult>(x => x.Price,          panelUrl: ServicePriceFactory.Update, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}
+@*@Html.Partial("_Delete")*@

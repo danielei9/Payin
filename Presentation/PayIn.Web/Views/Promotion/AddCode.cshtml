@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.Promotion;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using (Html.xpPost(
+					PromotionFactory.AddCodeName,
+					PromotionFactory.AddCodeApi,
+					"",
+					"resources.promotion.addCode",
+					isTitleActive: true,
+					init:"scope.arguments.id=scope.id"
+				))
+{
+
+	<p translate="resources.promotion.addCodeQuestion" >¿Cuántos códigos nuevos quieres añadir?</p>
+	@(Html.ArgumentFor<PromotionAddCodeArguments>(x => x.Quantity, focus: true))
+
+
+}

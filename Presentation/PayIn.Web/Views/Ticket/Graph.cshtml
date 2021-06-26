@@ -1,0 +1,44 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpList(
+	TicketFactory.GraphName,
+	TicketFactory.GraphApi,
+	"",
+	//TicketResources.Chart,
+	"resources.ticket.chart",
+	"",
+	isPaginable: false,
+	isTitleActive: true,
+	isSearchable: false,
+	init:
+		"scope.arguments.since='" + DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd") + "';" +
+		"scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" +
+		"scope.sumTickets = function(data) { return _.reduce(data, function(memo, item){ return memo + (item.ticketAmount || 0); }, 0)};"+
+		"scope.sumCharged = function(data) { return _.reduce(data, function(memo, item){ return memo + (item.chargedAmount || 0); }, 0)};" +
+		"scope.sumRefunded = function(data) { return _.reduce(data, function(memo, item){ return memo + (item.refundedAmount || 0); }, 0)};"
+	))
+{
+	<div class="table-responsive" data-ng-controller="TicketGetAllDayController">
+		<div class="legend-graph-group" data-ng-show="data.length">
+			<div class="legend-graph-item">
+				<div class="legend-graph-color" style="background-color:#228B22;"/>
+				<p class="legend-graph-text" translate="resources.ticket.ticketAmount">TicketAmount (&euro;)</p>
+			</div>
+			<div class="legend-graph-item">
+				<div class="legend-graph-color" style="background-color:#FFCC00;"/>
+				<p class="legend-graph-text" translate="resources.ticket.chargedAmount">ChargedAmount (&euro;)</p>
+			</div>
+			<div class="legend-graph-item">
+				<div class="legend-graph-color" style="background-color:#FF0000;"/>
+				<p class="legend-graph-text" translate="resources.ticket.refundAmount">RefundAmount (&euro;)</p>
+			</div>
+		</div>
+		<h4 data-ng-hide="data.length" style="position:absolute;z-index:9999; left:30%; top:40%" translate="resources.ticket.noData">No details available for this date.</h4>
+		<data-xp-graph2 data-xp-model="data" data-xp-x-axis='{"data":"day"}' data-xp-y-axis='[{"data":"ticketAmount"}, {"data":"chargedAmount"}, {"data":"refundedAmount"}]'></data-xp-graph2>
+		<div class="col-md-3"><span translate="resources.ticket.totalTicket">TotalTicket</span>: {{sumTickets(data) || 0 | currency: '€'}}</div>
+		<div class="col-md-3"><span translate="resources.ticket.totalCharged">Total Charged</span>: {{sumCharged(data) || 0 | currency: '€'}}</div>
+		<div class="col-md-3"><span translate="resources.ticket.totalRefunded">TotalRefunded</span>: <span style="color:#FF0000">{{sumRefunded(data) || 0 | currency: '€'}}</span></div>
+		<div class="col-md-3"><span translate="resources.ticket.total">Total</span>: {{sumTickets(data) - sumRefunded(data) || 0 | currency: '€'}}</div>		
+	</div>
+}
+

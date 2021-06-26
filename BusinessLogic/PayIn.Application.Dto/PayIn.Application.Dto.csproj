@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE2E19BD-48CB-4D5A-863C-7DFB76548BA3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Application.Dto</RootNamespace>
+    <AssemblyName>PayIn.Application.Dto</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Emulator\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arguments\ControlFormArgument\ControlFormArgumentCreateArguments.cs" />
+    <Compile Include="Arguments\ControlFormArgument\ControlFormArgumentDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlFormArgument\ControlFormArgumentGetArguments.cs" />
+    <Compile Include="Arguments\ControlFormArgument\ControlFormArgumentGetFormArguments.cs" />
+    <Compile Include="Arguments\ControlFormArgument\ControlFormArgumentUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignCheckPoint\ControlFormAssignCheckPointCreateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignCheckPoint\ControlFormAssignCheckPointDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetCheckArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateCreateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateGetArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateGetCheckArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssignTemplate\ControlFormAssignTemplateUpdateArguments_Value.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignCreateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignGetArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignGetCheckArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignGetIdsArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignUpdateArguments_Assign.cs" />
+    <Compile Include="Arguments\ControlFormAssign\ControlFormAssignUpdateArguments_Value.cs" />
+    <Compile Include="Arguments\ControlFormOption\ControlFormOptionCreateArguments.cs" />
+    <Compile Include="Arguments\ControlFormOption\ControlFormOptionDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlFormOption\ControlFormOptionGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlFormOption\ControlFormOptionGetArguments.cs" />
+    <Compile Include="Arguments\ControlFormOption\ControlFormOptionUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormCreateArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormGetArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ControlFormUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlForm\ApiControlFormGetArguments.cs" />
+    <Compile Include="Arguments\ControlForm\MobileControlFormGetArguments.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments_Assign.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments_IncidentItem.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments_PlanningCheck.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments_PlanningItem.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateArguments_Value.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateManualCheckArguments.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateManualCheckArguments_Assign.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateManualCheckArguments_IncidentItem.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentCreateManualCheckArguments_Value.cs" />
+    <Compile Include="Arguments\ControlIncident\ControlIncidentGetItemsArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemAddTagArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemCreateArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemGetArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemGetNameArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemMobileGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemRemoveTagArguments.cs" />
+    <Compile Include="Arguments\ControlItem\ControlItemUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningCheck\ControlPlanningCheckCreateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningCheck\ControlPlanningCheckDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningCheck\ControlPlanningCheckGetArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningCheck\ControlPlanningCheckMobileGetArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningCheck\ControlPlanningCheckUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningItem\ControlPlanningItemCreateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningItem\ControlPlanningItemDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningItem\ControlPlanningItemGetArguments.cs" />
+    <Compile Include="Arguments\ControlPlanningItem\ControlPlanningItemUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningClearArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningCreateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningCreateTemplateArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningGetArguments.cs" />
+    <Compile Include="Arguments\ControlPlanning\ControlPlanningUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceCreateArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceGetHoursArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceGetRangeArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileCheckArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileCheckArguments_Assign.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileCheckArguments_Item.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileCheckArguments_Value.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileGetTagArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileGetTimetableArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceMobileTrackArguments.cs" />
+    <Compile Include="Arguments\ControlPresence\ControlPresenceUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateCheck\ControlTemplateCheckCreateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateCheck\ControlTemplateCheckDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateCheck\ControlTemplateCheckGetArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateCheck\ControlTemplateCheckGetTemplateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateCheck\ControlTemplateCheckUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTemplateItemCreateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTemplateItemDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTemplateItemGetArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTemplateItemGetTemplateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTemplateItemUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateCreateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateDeleteArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateGetArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ControlTemplate\ControlTemplateUpdateArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTrack\ControlTrackGetAllArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTrack\ControlTrackGetArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTrack\ControlTrackGetItemArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTrack\ControlTrackPublicGetByDayArguments.cs" />
+    <Compile Include="Arguments\ControlTemplateItem\ControlTrack\ControlTrackPublicGetByRangeArguments.cs" />
+    <Compile Include="Arguments\Device\DeviceCreateArguments.cs" />
+    <Compile Include="Arguments\Device\DeviceMobileDeleteArguments.cs" />
+    <Compile Include="Arguments\Device\DeviceMobileCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardLinkCardArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentGetCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentGetArguments.cs" />
+    <Compile Include="Arguments\ServiceDocument\ServiceDocumentUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\MobileServiceIncidenceCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\ServiceIncidenceCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\MobileServiceIncidenceGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\MobileServiceIncidenceGetArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\ServiceIncidenceGetArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\ServiceIncidenceUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\ServiceIncidenceGetAllArguments.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_BlackListUpdates.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_GreyListResolution.cs" />
+    <Compile Include="Arguments\ServiceCard\MobileServiceCardGetArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\MobileServiceCardGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardGetAllMyCardsArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetSelectorMembersArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupAddUserArguments.cs" />
+    <Compile Include="Arguments\ServiceIncidence\ServiceIncidenceGetArguments_Notifications.cs" />
+    <Compile Include="Arguments\ServiceNotification\MobileServiceIncidenceCreatePositionArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\MobileServiceIncidenceCreatePhotoArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\MobileServiceNotificationCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\ServiceNotificationGetAllArguments.cs" />
+    <Compile Include="Arguments\NotifyMe\NotifyMeCreateArguments.cs" />
+    <Compile Include="Arguments\NotifyMe\NotifyMeDeleteArguments.cs" />
+    <Compile Include="Arguments\Like\LikeDeleteArguments.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Group.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_ServiceCardReturned.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_ServiceCardEmition.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Wallet.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Payment.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Option.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_FormArgument.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Form.cs" />
+    <Compile Include="Arguments\Main\MobileMainSynchronizeArguments_Ticket.cs" />
+    <Compile Include="Arguments\Main\MobileMainGetVersionArguments.cs" />
+    <Compile Include="Arguments\Main\MobileMainGetAllV4Arguments.cs" />
+    <Compile Include="Arguments\Main\MainMobileGetAllV3Arguments.cs" />
+    <Compile Include="Arguments\Main\MainMobileGetAllV2Arguments.cs" />
+    <Compile Include="Arguments\Main\MainMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\Main\MainMobileGetEntailmentsArguments.cs" />
+    <Compile Include="Arguments\Like\LikeCreateArguments.cs" />
+    <Compile Include="Arguments\NotificationSet\NotificationSetCreateArguments.cs" />
+    <Compile Include="Arguments\NotificationSet\NotificationSetGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceAddressName\ServiceAddressNameCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceAddressName\ServiceAddressNameDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceAddressName\ServiceAddressNameUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceAddress\ServiceAddressCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceAddress\ServiceAddressDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceAddress\ServiceAddressGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceAddress\ServiceAddressUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchLockArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchUnlockArguments.cs" />
+    <Compile Include="Arguments\ServiceCardBatch\ServiceCardBatchCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardDestroyArguments.cs" />
+    <Compile Include="Arguments\ServiceGroupServiceUsers\ServiceGroupServiceUsersCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceGroupServiceUsers\ServiceGroupServiceUsersCreateGetNameArguments.cs" />
+    <Compile Include="Arguments\ServiceGroupServiceUsers\ServiceGroupServiceUsersGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupGetArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceCategory\ServiceCategoryGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceCategory\ServiceCategoryGetArguments.cs" />
+    <Compile Include="Arguments\ServiceCategory\ServiceCategoryCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceCategory\ServiceCategoryUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceCategory\ServiceCategoryDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointGetAllItemArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointGetArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointGetSelectorCheckArguments.cs" />
+    <Compile Include="Arguments\ServiceCheckPoint\ServiceCheckPointUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceCity\ServiceCityGetByZoneTypeArguments.cs" />
+    <Compile Include="Arguments\ServiceCity\ServiceCityGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceGroup\ServiceGroupGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\MobileServiceNotificationCreateChatToExhibitorArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\MobileServiceNotificationCreateChatToVisitorArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\MobileServiceCardUnlinkArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\MobileServiceCardLinkArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserAddServiceGroupArguments .cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserCreateCardSelectGetArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardGetArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceGroupServiceUsers\ServiceGroupServiceUsersGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserGetAllByDashBoardArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardUnlockArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserRemoveServiceGroupArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserRegisterArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserSubscribeArguments.cs" />
+    <Compile Include="Arguments\ServiceCard\ServiceCardLockArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserUnsubscribeArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserUpdateCardArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserCreateCardGetArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserGetServiceGroupsArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserUpdateCardGetArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopByConcessionArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopGetEntranceArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopEventGetEntranceTypesArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopConcessionGetEventsArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopGetAllConcessionsArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopEventGetAllArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardDeleteArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberAddInvitedCompanyArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberGetArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberLockArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberUnlockArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberCreateArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberGetAllArguments.cs" />
+    <Compile Include="Arguments\SystemCardMember\SystemCardMemberUpdateArguments.cs" />
+    <Compile Include="Arguments\SystemCard\ApiSystemCardGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetAllCommerceArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetCommerceArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionGetStateArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionUpdateCommerceArguments.cs" />
+    <Compile Include="Arguments\ServiceConcession\ServiceConcessionUpdateStateArguments.cs" />
+    <Compile Include="Arguments\ServiceFreeDays\ServiceFreeDaysCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceFreeDays\ServiceFreeDaysDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceFreeDays\ServiceFreeDaysGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceFreeDays\ServiceFreeDaysGetByIdArguments.cs" />
+    <Compile Include="Arguments\ServiceFreeDays\ServiceFreeDaysUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\ServiceNotificationMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceNotification\ServiceNotificationCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceNumberPlate\ServiceNumberPlateCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceNumberPlate\ServiceNumberPlateDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceNumberPlate\ServiceNumberPlateGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceNumberPlate\ServiceNumberPlateUpdateArguments.cs" />
+    <Compile Include="Arguments\ServicePrice\ServicePriceCreateArguments.cs" />
+    <Compile Include="Arguments\ServicePrice\ServicePriceDeleteArguments.cs" />
+    <Compile Include="Arguments\ServicePrice\ServicePriceGetAllArguments.cs" />
+    <Compile Include="Arguments\ServicePrice\ServicePriceGetArguments.cs" />
+    <Compile Include="Arguments\ServicePrice\ServicePriceUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceSupplier\ServiceSupplierGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceSupplier\ServiceSupplierGetArguments.cs" />
+    <Compile Include="Arguments\ServiceSupplier\ServiceSupplierGetCurrentArguments.cs" />
+    <Compile Include="Arguments\ServiceSupplier\ServiceSupplierGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceSupplier\ServiceSupplierUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagGetArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagMobileGetArguments.cs" />
+    <Compile Include="Arguments\ServiceTag\ServiceTagUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceTimeTable\ServiceTimeTableCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceTimeTable\ServiceTimeTableDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceTimeTable\ServiceTimeTableGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceTimeTable\ServiceTimeTableGetByIdArguments.cs" />
+    <Compile Include="Arguments\ServiceTimeTable\ServiceTimeTableUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserGetArguments.cs" />
+    <Compile Include="Arguments\ServiceUser\ServiceUserUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerMobileAcceptAssignmentArguments .cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerChangeRoleArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerGetArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerGetControlArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerMobileRejectAssignmentArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\ServiceWorkerUpdateArguments.cs" />
+    <Compile Include="Arguments\ServiceWorker\WorkerMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\ServiceZone\ServiceZoneCreateArguments.cs" />
+    <Compile Include="Arguments\ServiceZone\ServiceZoneDeleteArguments.cs" />
+    <Compile Include="Arguments\ServiceZone\ServiceZoneGetByConcessionArguments.cs" />
+    <Compile Include="Arguments\ServiceZone\ServiceZoneGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ServiceZone\ServiceZoneUpdateArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardUpdateArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardGetArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardCreateArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardDeleteArguments.cs" />
+    <Compile Include="Arguments\SystemCard\SystemCardGetAllArguments.cs" />
+    <Compile Include="Arguments\TokenArguments.cs" />
+    <Compile Include="Arguments\Translation\TranslationDeleteArguments.cs" />
+    <Compile Include="Arguments\Translation\TranslationGetArguments.cs" />
+    <Compile Include="Arguments\Translation\TranslationCreateArguments.cs" />
+    <Compile Include="Arguments\Translation\TranslationUpdateArguments.cs" />
+    <Compile Include="Arguments\User\UserCreateNotificationArguments.cs" />
+    <Compile Include="CalculatePrice.cs" />
+    <Compile Include="CalculateTimeTable.cs" />
+    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="CalculateZone.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\PaymentMediaGetAllQuery.cs" />
+    <Compile Include="Results\CalendarResult.cs" />
+    <Compile Include="Results\ControlFormArgument\ControlFormArgumentGetFormResult.cs" />
+    <Compile Include="Results\ControlFormArgument\ControlFormArgumentGetResult.cs" />
+    <Compile Include="Results\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetCheckResult.cs" />
+    <Compile Include="Results\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetCheckResultBase.cs" />
+    <Compile Include="Results\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetCheckResult_Argument.cs" />
+    <Compile Include="Results\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetResult.cs" />
+    <Compile Include="Results\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetResult_Argument.cs" />
+    <Compile Include="Results\ControlFormAssignTemplate\ControlFormAssignTemplateGetCheckResult.cs" />
+    <Compile Include="Results\ControlFormAssignTemplate\ControlFormAssignTemplateGetCheckResultBase.cs" />
+    <Compile Include="Results\ControlFormAssignTemplate\ControlFormAssignTemplateGetCheckResult_Argument.cs" />
+    <Compile Include="Results\ControlFormAssignTemplate\ControlFormAssignTemplateGetResult.cs" />
+    <Compile Include="Results\ControlFormAssignTemplate\ControlFormAssignTemplateGetResult_Argument.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetCheckResult.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetCheckResultBase.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetCheckResult_Value.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetIdsResult.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetIdsResult_Assign.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetIdsResult_Value.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetResult.cs" />
+    <Compile Include="Results\ControlFormAssign\ControlFormAssignGetResult_Value.cs" />
+    <Compile Include="Results\ControlFormOption\ControlFormOptionGetAllResult.cs" />
+    <Compile Include="Results\ControlFormOption\ControlFormOptionGetResult.cs" />
+    <Compile Include="Results\ControlForm\ControlFormGetAllResult.cs" />
+    <Compile Include="Results\ControlForm\ControlFormGetResult.cs" />
+    <Compile Include="Results\ControlForm\ControlFormGetSelectorResult.cs" />
+    <Compile Include="Results\ControlForm\ApiControlFormGetResult.cs" />
+    <Compile Include="Results\ControlForm\MobileControlFormGetResult.cs" />
+    <Compile Include="Results\ControlForm\ApiControlFormGetResult_Arguments.cs" />
+    <Compile Include="Results\ControlForm\MobileControlFormGetResult_Arguments.cs" />
+    <Compile Include="Results\ControlIncident\ControlIncidentCreateManualCheckResult.cs" />
+    <Compile Include="Results\ControlIncident\ControlIncidentCreateResult.cs" />
+    <Compile Include="Results\ControlIncident\ControlIncidentGetItemsResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemGetAllResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemGetNameResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemGetResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemGetSelectorResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemMobileGetAllResult.cs" />
+    <Compile Include="Results\ControlItem\ControlItemMobileGetAllResult_Assign.cs" />
+    <Compile Include="Results\ControlItem\ControlItemMobileGetAllResult_Planning.cs" />
+    <Compile Include="Results\ControlItem\ControlItemMobileGetAllResult_Value.cs" />
+    <Compile Include="Results\ControlItem\ControlItemMobileGetSelectorResult.cs" />
+    <Compile Include="Results\ControlPlanningCheck\ControlPlanningCheckGetResult.cs" />
+    <Compile Include="Results\ControlPlanningCheck\ControlPlanningCheckMobileGetResult.cs" />
+    <Compile Include="Results\ControlPlanningCheck\ControlPlanningCheckMobileGetResult_Assign.cs" />
+    <Compile Include="Results\ControlPlanningCheck\ControlPlanningCheckMobileGetResult_Planning.cs" />
+    <Compile Include="Results\ControlPlanningCheck\ControlPlanningCheckMobileGetResult_Value.cs" />
+    <Compile Include="Results\ControlPlanningItem\ControlPlanningItemGetResult.cs" />
+    <Compile Include="Results\ControlPlanning\ControlPlanningGetAllResult.cs" />
+    <Compile Include="Results\ControlPlanning\ControlPlanningGetAllResultBase.cs" />
+    <Compile Include="Results\ControlPlanning\ControlPlanningGetAllResult_Item.cs" />
+    <Compile Include="Results\ControlPlanning\ControlPlanningGetResult.cs" />
+    <Compile Include="Results\ControlPresence\CalendarItemResult.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceGetHoursResult.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceGetHoursResultBase.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceMobileCheckResult.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceMobileGetTagResult.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceMobileGetTagResult_Item.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresenceMobileGetTimetableResult.cs" />
+    <Compile Include="Results\ControlPresence\ControlPresencePublicGetResult.cs" />
+    <Compile Include="Results\ControlTemplateCheck\ControlTemplateCheckGetResult.cs" />
+    <Compile Include="Results\ControlTemplateCheck\ControlTemplateCheckGetTemplateResult.cs" />
+    <Compile Include="Results\ControlTemplateItem\ControlTemplateItemGetResult.cs" />
+    <Compile Include="Results\ControlTemplateItem\ControlTemplateItemGetTemplateResult.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetAllResult.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetAllResult_Check.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetAllResult_Item.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetAllResult_Types.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetResult.cs" />
+    <Compile Include="Results\ControlTemplate\ControlTemplateGetSelectorResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetAllResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetAllResult_Item.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetItemResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetItemResult_Item.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackGetResult_Item.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackPublicGetByDayResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackPublicGetByDayResult_Item.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackPublicGetByRangeResult.cs" />
+    <Compile Include="Results\ControlTrack\ControlTrackPublicGetByRangeResult_Item.cs" />
+    <Compile Include="Results\MainGetAll_PaymentMediaDto.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4ResultBase.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4Result_Notice.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4Result_Event.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResultBase.cs" />
+    <Compile Include="Results\Main\MainMobileGetVersionResult.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4Result.cs" />
+    <Compile Include="Results\Main\MainMobileGetAllV3Result.cs" />
+    <Compile Include="Results\Main\MainMobileGetAllV2ResultBase.cs" />
+    <Compile Include="Results\Main\MainMobileGetAllV2Result.cs" />
+    <Compile Include="Results\Main\MainMobileGetAllResult.cs" />
+    <Compile Include="Results\Main\MainMobileGetAllResultBase.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4Result_Option.cs" />
+    <Compile Include="Results\Main\MobileMainGetAllV4Result_Row.cs" />
+    <Compile Include="Results\Main\MainMobileGetEntailmentsResultBase.cs" />
+    <Compile Include="Results\Main\MainMobileGetEntailmentsResult.cs" />
+    <Compile Include="Results\ApiControlFormGetResult_Options.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_CampaignLine_Group.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_CampaignLine_User.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ConfigWallet.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ConfigCard.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_Page.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_GreyList.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_CampaignLine.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceCategory.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ValidationEntrance.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_EntranceType.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_Event.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_BlackList.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceCardEmited.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceGroupId.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceGroup.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_Product.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceCardNotEmited.cs" />
+    <Compile Include="Results\Main\MobileMainSynchronizeResult_ServiceUser.cs" />
+    <Compile Include="Results\MobileControlFormGetResult_Options.cs" />
+    <Compile Include="Results\ServiceCardBatch\ServiceCardBatchGetAllResultBase.cs" />
+    <Compile Include="Results\ServiceCardBatch\ServiceCardBatch_SystemCard.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResultBase.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Charge.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Concession.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Group.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Log.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Operation.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Promotion.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_PromotionAction.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_PromotionPrice.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_PurseValue.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_Entrance.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_RechargePrice.cs" />
+    <Compile Include="Results\ServiceCardReadInfoResult_RechargeTitle.cs" />
+    <Compile Include="Results\ServiceCard\MobileServiceCardGetAllResult.cs" />
+    <Compile Include="Results\ServiceCard\MobileServiceCardGetAllResultBase.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetAllMyCardsResult.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult_PendingRecharge.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardMyCardsGetResult.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult_Operation.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult_Entrance.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult_Group.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult_PurseValue.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetSelectorMembersResult.cs" />
+    <Compile Include="Results\ServiceDocument\ServiceDocumentGetAllResult.cs" />
+    <Compile Include="Results\ServiceDocument\ServiceDocumentGetCreateResultBase.cs" />
+    <Compile Include="Results\ServiceDocument\ServiceDocumentGetCreateResult.cs" />
+    <Compile Include="Results\ServiceDocument\ServiceDocumentGetResult.cs" />
+    <Compile Include="Results\ServiceIncidence\MobileServiceIncidenceGetAllResult.cs" />
+    <Compile Include="Results\ServiceIncidence\ServiceIncidenceGetAllResult.cs" />
+    <Compile Include="Results\ServiceIncidence\MobileServiceIncidenceGetResult.cs" />
+    <Compile Include="Results\ServiceIncidence\ServiceIncidenceGetResult.cs" />
+    <Compile Include="Results\ServiceGroup\ServiceGroupGetUserResult.cs" />
+    <Compile Include="Results\ServiceIncidence\ServiceIncidenceGetResult_Notifications.cs" />
+    <Compile Include="Results\ServiceNotification\ServiceNotificationGetAllResult.cs" />
+    <Compile Include="Results\PaymentMediaGetAllResult.cs" />
+    <Compile Include="Results\PaymentMedia\PaymentMediaGetSelectorResult.cs" />
+    <Compile Include="Results\NotificationSet\NotificationSetGetAllResult.cs" />
+    <Compile Include="Results\ServiceAddress\ServiceAddressGetAllResult.cs" />
+    <Compile Include="Results\ServiceCardBatch\ServiceCardBatchGetAllResult.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetResult.cs" />
+    <Compile Include="Results\ServiceCategory\ServiceCategoryGetAll_GroupResult.cs" />
+    <Compile Include="Results\ServiceGroupServiceUsers\ServiceGroupServiceUsersGetAllResultBase.cs" />
+    <Compile Include="Results\ServiceGroupServiceUsers\ServiceGroupServiceUsersCreateGetNameResult.cs" />
+    <Compile Include="Results\ServiceGroupServiceUsers\ServiceGroupServiceUsersCreateGetNameResultBase.cs" />
+    <Compile Include="Results\ServiceGroupServiceUsers\ServiceGroupServiceUsersGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceGroup\ServiceGroupGetAllResult.cs" />
+    <Compile Include="Results\ServiceGroup\ServiceGroupGetResult.cs" />
+    <Compile Include="Results\ServiceCategory\ServiceCategoryGetAllResult.cs" />
+    <Compile Include="Results\ServiceCategory\ServiceCategoryGetResult.cs" />
+    <Compile Include="Results\ServiceCheckPoint\ServiceCheckPointGetAllItemResult.cs" />
+    <Compile Include="Results\ServiceCheckPoint\ServiceCheckPointGetResult.cs" />
+    <Compile Include="Results\ServiceCheckPoint\ServiceCheckPointGetSelectorCheckResult.cs" />
+    <Compile Include="Results\ServiceCheckPoint\ServiceCheckPointGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceCity\ServiceCityGetByZoneTypeResult.cs" />
+    <Compile Include="Results\ServiceCity\ServiceCityGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceGroup\ServiceGroupGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagMobileGetResult_Assign.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagMobileGetResult_Item.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagMobileGetResult_Planning.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagMobileGetResult_Value.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserCreateCardSelectGetResultBase.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserCreateCardSelectGetResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserCreateCardGetResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetServiceGroupsResultBase.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetAllByDashBoardResultBase.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetAllByDashBoardResult.cs" />
+    <Compile Include="Results\ServiceCard\ServiceCardGetAllResult.cs" />
+    <Compile Include="Results\ServiceGroupServiceUsers\ServiceGroupServiceUsersGetAllResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetServiceGroupsResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserUpdateCardGetResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetAllCommerceResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetAllResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetCommerceResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceConcession\ServiceConcessionGetStateResult.cs" />
+    <Compile Include="Results\ServiceFreeDays\ServiceFreeDaysGetAllByConcessionResult.cs" />
+    <Compile Include="Results\ServiceFreeDays\ServiceFreeDaysGetByIdResult.cs" />
+    <Compile Include="Results\ServiceNotification\ServiceNotificationMobileGetAllResult.cs" />
+    <Compile Include="Results\ServiceNumberPlate\ServiceNumberPlateGetAllResult.cs" />
+    <Compile Include="Results\ServicePrice\ServicePriceGetAllResult.cs" />
+    <Compile Include="Results\ServicePrice\ServicePriceGetResult.cs" />
+    <Compile Include="Results\ServiceSupplier\ServiceSupplierGetAllResult.cs" />
+    <Compile Include="Results\ServiceSupplier\ServiceSupplierGetCurrentResult.cs" />
+    <Compile Include="Results\ServiceSupplier\ServiceSupplierGetResult.cs" />
+    <Compile Include="Results\ServiceSupplier\ServiceSupplierGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagGetAllResult.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagGetResult.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceTag\ServiceTagMobileGetResult.cs" />
+    <Compile Include="Results\ServiceTimeTable\ServiceTimeTableGetAllResult.cs" />
+    <Compile Include="Results\ServiceTimeTable\ServiceTimeTableGetByIdResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetAllResult.cs" />
+    <Compile Include="Results\ServiceUser\ServiceUserGetResult.cs" />
+    <Compile Include="Results\ServiceWorker\ServiceWorkerGetAllResult.cs" />
+    <Compile Include="Results\ServiceWorker\ServiceWorkerGetControlResult.cs" />
+    <Compile Include="Results\ServiceWorker\ServiceWorkerGetResult.cs" />
+    <Compile Include="Results\ServiceWorker\ServiceWorkerGetSelectorResult.cs" />
+    <Compile Include="Results\ServiceWorker\WorkerMobileGetAllResult.cs" />
+    <Compile Include="Results\ServiceZone\ServiceZoneGetByConcessionResult.cs" />
+    <Compile Include="Results\ServiceZone\ServiceZoneGetSelectorResult.cs" />
+    <Compile Include="Results\Shop\ShopByConcessionResult.cs" />
+    <Compile Include="Results\Shop\ShopByConcessionResultBase.cs" />
+    <Compile Include="Results\Shop\ShopConcessionGetEventsResultBase.cs" />
+    <Compile Include="Results\Shop\ShopGetAllConcessionsResult_EventImages.cs" />
+    <Compile Include="Results\Shop\ShopGetSelectorResult.cs" />
+    <Compile Include="Results\Shop\ShopConcessionGetEventsResult.cs" />
+    <Compile Include="Results\Shop\ShopGetEntranceResult.cs" />
+    <Compile Include="Results\Shop\ShopEntranceTypesByConcessionResult.cs" />
+    <Compile Include="Results\Shop\ShopGetAllConcessionsResult.cs" />
+    <Compile Include="Results\Shop\ShopEventGetAllResult.cs" />
+    <Compile Include="Results\SystemCardMember\SystemCardMemberGetResult.cs" />
+    <Compile Include="Results\SystemCardMember\SystemCardMemberGetAllResultBase.cs" />
+    <Compile Include="Results\SystemCardMember\SystemCardMemberGetAllResult.cs" />
+    <Compile Include="Results\SystemCard\SystemCardGetResult.cs" />
+    <Compile Include="Results\SystemCard\SystemCardGetAllResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Resources\PayIn.Common.Resources.csproj">
+      <Project>{94f8de05-4ce3-48eb-9c76-9d8db36e90af}</Project>
+      <Name>PayIn.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{D619B94F-C9D9-487C-8341-33446F417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899B32B-1B5C-476D-896A-8B0BF4B10F71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{b7a850e4-f2c6-4081-87d1-e5379bf5c0a7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434E06D7-69BB-4175-A611-0133D7A5336A}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855e283-100d-455e-bac4-b4a87207647a}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Payments\PayIn.Domain.Payments.csproj">
+      <Project>{85B72F50-A783-4AB8-AE30-E75F9A935B26}</Project>
+      <Name>PayIn.Domain.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Public\PayIn.Domain.Public.csproj">
+      <Project>{85254dd9-4622-4e90-84d5-4287bffebeb9}</Project>
+      <Name>PayIn.Domain.Public</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Transport\PayIn.Domain.Transport.csproj">
+      <Project>{5773CB9D-44EA-4541-8006-D7042DEF917C}</Project>
+      <Name>PayIn.Domain.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-d3c8-43a9-8eb0-fbab811fa250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Domain\Xp.Domain.csproj">
+      <Project>{5BBA38CE-8ABE-48EF-ADC9-AB257CF91F93}</Project>
+      <Name>Xp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Infrastructure\Xp.Infrastructure.csproj">
+      <Project>{42ae21a4-ff0a-42a2-81be-5a37fd2d0b2a}</Project>
+      <Name>Xp.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

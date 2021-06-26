@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Transport.Arguments.TransportCardSupportTitleCompatibility;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpPut(
+	TransportCardSupportTitleCompatibilityFactory.UpdateName,
+	TransportCardSupportTitleCompatibilityFactory.UpdateApi,
+	"",
+	"resources.transportCardSupportTitleCompatibility.update",
+	"{{temp.titleName}}",
+	isTitleActive: true
+))
+{
+<xp-get data-api="@TransportCardSupportTitleCompatibilityFactory.UpdateApiId">
+	@(Html.SelectFor<TransportCardSupportTitleCompatibilityUpdateArguments>(x => x.TransportCardSupportName, "transportCardSupportName", TransportCardSupportTitleCompatibilityFactory.RetrieveSelectorApi))
+</xp-get>
+}

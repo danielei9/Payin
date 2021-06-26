@@ -1,0 +1,1598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayIn.Domain.Public.ServiceSupplier">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="ServiceSupplier" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concessions" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true">
+      <Path>
+        <Point X="5.75" Y="5" />
+        <Point X="8.25" Y="5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CheckPoints" Type="PayIn.Domain.Public.ServiceCheckPoint" FixedToPoint="true">
+      <Path>
+        <Point X="5.438" Y="6.757" />
+        <Point X="5.438" Y="9.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Tags" Type="PayIn.Domain.Public.ServiceTag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="5.875" />
+        <Point X="7.792" Y="5.875" Type="JumpStart" />
+        <Point X="7.958" Y="5.875" Type="JumpEnd" />
+        <Point X="8" Y="5.875" />
+        <Point X="8" Y="6.2" />
+        <Point X="8.312" Y="6.2" />
+        <Point X="8.312" Y="6.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAEAAAAAAgAQAAAAQAEAAAAAwAAAACAA=</HashCode>
+      <FileName>ServiceSupplier.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Workers" />
+      <Property Name="Concessions" />
+      <Property Name="CheckPoints" />
+      <Property Name="Tags" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCity" BaseTypeListCollapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="ProvinceId" Hidden="true" />
+      <Method Name="ServiceCity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAEAACAAAAAAIAAQAAAAAAEAACAAAAgAAAAA=</HashCode>
+      <FileName>ServiceCity.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Province" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Addresses" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCountry" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="ServiceCountry" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>ServiceCountry.cs</FileName>
+      <NewMemberFileName>Service.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Provinces" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceProvince" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="CountryId" Hidden="true" />
+      <Method Name="ServiceProvince" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAQAAAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceProvince.cs</FileName>
+      <NewMemberFileName>ServiceCity.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Country" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cities" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceConcession">
+    <Position X="8.25" Y="3.5" Width="1.75" />
+    <Members>
+      <Property Name="SupplierId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Zones" Type="PayIn.Domain.Public.ServiceZone" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="4.994" />
+        <Point X="11.042" Y="4.994" Type="JumpStart" />
+        <Point X="11.208" Y="4.994" Type="JumpEnd" />
+        <Point X="12.25" Y="4.994" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Supplier" Type="PayIn.Domain.Public.ServiceSupplier" FixedFromPoint="true">
+      <Path>
+        <Point X="8.25" Y="4.688" />
+        <Point X="5.75" Y="4.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FreeDays" Type="PayIn.Domain.Public.ServiceFreeDays" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="3.5" />
+        <Point X="8.5" Y="2.062" />
+        <Point X="7.5" Y="2.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Forms" Type="PayIn.Domain.Public.ControlForm" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="5.812" />
+        <Point X="10.292" Y="5.812" Type="JumpStart" />
+        <Point X="10.458" Y="5.812" Type="JumpEnd" />
+        <Point X="11.042" Y="5.812" Type="JumpStart" />
+        <Point X="11.208" Y="5.812" Type="JumpEnd" />
+        <Point X="12" Y="5.812" />
+        <Point X="12" Y="5.988" />
+        <Point X="13.042" Y="5.988" Type="JumpStart" />
+        <Point X="13.208" Y="5.988" Type="JumpEnd" />
+        <Point X="13.51" Y="5.988" Type="JumpStart" />
+        <Point X="13.677" Y="5.988" Type="JumpEnd" />
+        <Point X="25.125" Y="5.988" />
+        <Point X="25.125" Y="17.834" />
+        <Point X="25.5" Y="17.834" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ServiceUsers" Type="PayIn.Domain.Public.ServiceUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="3.688" />
+        <Point X="2.969" Y="3.688" />
+        <Point X="2.969" Y="26.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAqAAAAAIAACIBAAIAABAQKAAAAEAAAAQAABABgAgA=</HashCode>
+      <FileName>ServiceConcession.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Supplier" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Zones" />
+      <Property Name="FreeDays" />
+      <Property Name="Items" />
+      <Property Name="Forms" />
+      <Property Name="ServiceUsers" />
+      <Property Name="Cards" />
+      <Property Name="SystemCardOwners" />
+      <Property Name="CardBatchs" />
+      <Property Name="Categories" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServicePrice">
+    <Position X="15.75" Y="4.25" Width="1.5" />
+    <Members>
+      <Property Name="ZoneId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAACAQAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>ServicePrice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Zone" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceTimeTable">
+    <Position X="15.75" Y="6.25" Width="1.5" />
+    <Members>
+      <Property Name="ZoneId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACABACAAAAAAAAABAAAAAAAAAAAAAAgAAAECAAAAA=</HashCode>
+      <FileName>ServiceTimeTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Zone" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceZone">
+    <Position X="12.25" Y="4.25" Width="1.75" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="ServiceZone" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true">
+      <Path>
+        <Point X="12.25" Y="4.994" />
+        <Point X="11.875" Y="4.994" />
+        <Point X="11.875" Y="4.563" />
+        <Point X="11.208" Y="4.563" Type="JumpStart" />
+        <Point X="11.042" Y="4.563" Type="JumpEnd" />
+        <Point X="10" Y="4.563" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAHCAAAAAQAAAAAAAAAAAAQAAAAAAEAACAAAAAAAAAA=</HashCode>
+      <FileName>ServiceZone.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Addresses" />
+      <Property Name="Prices" />
+      <Property Name="TimeTables" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceNumberPlate">
+    <Position X="20.25" Y="2.5" Width="1.75" />
+    <Members>
+      <Method Name="ServiceNumberPlate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAAAAI=</HashCode>
+      <FileName>ServiceNumberPlate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceAddress">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="CityId" Hidden="true" />
+      <Method Name="ServiceAddress" Hidden="true" />
+      <Property Name="ZoneId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgACgAADAAAAgAAIEBAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceAddress.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="City" />
+      <Property Name="Zone" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Names" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceAddressName">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="AddressId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Address" Type="PayIn.Domain.Public.ServiceAddress" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="1.236" />
+        <Point X="12.25" Y="1.236" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAAAAAAAAAAAAAAQACAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceAddressName.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceFreeDays">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="ServiceFreeDays" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="2" />
+        <Point X="8.562" Y="2" />
+        <Point X="8.562" Y="3.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAEAAAAAQAAAAAAEAACAAAAAAAAAA=</HashCode>
+      <FileName>ServiceFreeDays.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlPlanning">
+    <Position X="14" Y="14" Width="1.5" />
+    <Members>
+      <Method Name="ControlPlanning" Hidden="true" />
+      <Property Name="ItemId" Hidden="true" />
+      <Property Name="WorkerId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Item" Type="PayIn.Domain.Public.ControlItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="14.375" />
+        <Point X="11.862" Y="14.375" />
+        <Point X="11.862" Y="12.007" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Checks" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.562" Y="15.488" />
+        <Point X="14.562" Y="16.631" />
+        <Point X="17.5" Y="16.631" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACABgAAAAACAAAgAAAAAAEAAAAAAABIAAAAgAAAAA=</HashCode>
+      <FileName>ControlPlanning.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Worker" />
+      <Property Name="Item" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+      <Property Name="Checks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlTrackItem">
+    <Position X="17.5" Y="21.25" Width="1.75" />
+    <Members>
+      <Property Name="TrackId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Track" Type="PayIn.Domain.Public.ControlTrack" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="21.875" />
+        <Point X="15.75" Y="21.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEAAAABAACAIAAABAAAEAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ControlTrackItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Track" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlItem">
+    <Position X="10.25" Y="9.75" Width="2" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="ControlItem" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Plannings" Type="PayIn.Domain.Public.ControlPlanning" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.812" Y="12.007" />
+        <Point X="11.812" Y="14.442" />
+        <Point X="14" Y="14.442" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Templates" Type="PayIn.Domain.Public.ControlTemplate" FixedFromPoint="true">
+      <Path>
+        <Point X="12.25" Y="10.938" />
+        <Point X="14" Y="10.938" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Tracks" Type="PayIn.Domain.Public.ControlTrack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.625" Y="12.007" />
+        <Point X="10.625" Y="21.382" />
+        <Point X="11.292" Y="21.382" Type="JumpStart" />
+        <Point X="11.458" Y="21.382" Type="JumpEnd" />
+        <Point X="14.25" Y="21.382" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAMEAAEAAAAAQAAQAAAAAAEIACAgAAAAAAAA=</HashCode>
+      <FileName>ControlItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Plannings" />
+      <Property Name="CheckPoints" />
+      <Property Name="Templates" />
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCheckPoint">
+    <Position X="5.25" Y="9.75" Width="1.75" />
+    <Members>
+      <Property Name="ItemId" Hidden="true" />
+      <Method Name="ServiceCheckPoint" Hidden="true" />
+      <Property Name="SupplierId" Hidden="true" />
+      <Property Name="TagId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Item" Type="PayIn.Domain.Public.ControlItem" FixedFromPoint="true">
+      <Path>
+        <Point X="7" Y="11.25" />
+        <Point X="8.799" Y="11.25" Type="JumpStart" />
+        <Point X="8.966" Y="11.25" Type="JumpEnd" />
+        <Point X="8.995" Y="11.25" Type="JumpStart" />
+        <Point X="9.326" Y="11.25" Type="JumpEnd" />
+        <Point X="9.557" Y="11.25" Type="JumpStart" />
+        <Point X="10.083" Y="11.25" Type="JumpEnd" />
+        <Point X="10.25" Y="11.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Supplier" Type="PayIn.Domain.Public.ServiceSupplier" FixedFromPoint="true">
+      <Path>
+        <Point X="5.375" Y="9.75" />
+        <Point X="5.375" Y="6.757" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Presences" Type="PayIn.Domain.Public.ControlPresence" FixedFromPoint="true">
+      <Path>
+        <Point X="5.812" Y="12.007" />
+        <Point X="5.812" Y="17.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PlanningChecks" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.375" Y="12.007" />
+        <Point X="6.375" Y="17.062" />
+        <Point X="8.799" Y="17.062" Type="JumpStart" />
+        <Point X="8.966" Y="17.062" Type="JumpEnd" />
+        <Point X="8.995" Y="17.062" Type="JumpStart" />
+        <Point X="9.326" Y="17.062" Type="JumpEnd" />
+        <Point X="9.557" Y="17.062" Type="JumpStart" />
+        <Point X="9.99" Y="17.062" Type="JumpEnd" />
+        <Point X="10.542" Y="17.062" Type="JumpStart" />
+        <Point X="10.771" Y="17.062" Type="JumpEnd" />
+        <Point X="11.292" Y="17.062" Type="JumpStart" />
+        <Point X="11.458" Y="17.062" Type="JumpEnd" />
+        <Point X="17.5" Y="17.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TemplateChecks" Type="PayIn.Domain.Public.ControlTemplateCheck" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.625" Y="12.007" />
+        <Point X="6.625" Y="12.625" />
+        <Point X="8.799" Y="12.625" Type="JumpStart" />
+        <Point X="8.966" Y="12.625" Type="JumpEnd" />
+        <Point X="8.995" Y="12.625" Type="JumpStart" />
+        <Point X="9.326" Y="12.625" Type="JumpEnd" />
+        <Point X="9.557" Y="12.625" Type="JumpStart" />
+        <Point X="9.99" Y="12.625" Type="JumpEnd" />
+        <Point X="10.542" Y="12.625" Type="JumpStart" />
+        <Point X="10.771" Y="12.625" Type="JumpEnd" />
+        <Point X="11.292" Y="12.625" Type="JumpStart" />
+        <Point X="11.458" Y="12.625" Type="JumpEnd" />
+        <Point X="11.729" Y="12.625" Type="JumpStart" />
+        <Point X="11.945" Y="12.625" Type="JumpEnd" />
+        <Point X="18.5" Y="12.625" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Tag" Type="PayIn.Domain.Public.ServiceTag" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.489" Y="9.75" />
+        <Point X="6.489" Y="7.048" />
+        <Point X="6.917" Y="7.048" Type="JumpStart" />
+        <Point X="7.083" Y="7.048" Type="JumpEnd" />
+        <Point X="7.25" Y="7.048" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAEAgAIAAgAAYAAQEAgAAAAABEQAAAAAgAAE=</HashCode>
+      <FileName>ServiceCheckPoint.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Item" />
+      <Property Name="Supplier" />
+      <Property Name="Tag" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Presences" />
+      <Property Name="PlanningChecks" />
+      <Property Name="TemplateChecks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceWorker">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <Members>
+      <Property Name="SupplierId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Plannings" Type="PayIn.Domain.Public.ControlPlanning" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.312" Y="10.074" />
+        <Point X="4.312" Y="14.688" />
+        <Point X="4.573" Y="14.688" Type="JumpStart" />
+        <Point X="4.739" Y="14.688" Type="JumpEnd" />
+        <Point X="5.729" Y="14.688" Type="JumpStart" />
+        <Point X="5.958" Y="14.688" Type="JumpEnd" />
+        <Point X="6.229" Y="14.688" Type="JumpStart" />
+        <Point X="6.458" Y="14.688" Type="JumpEnd" />
+        <Point X="8.799" Y="14.688" Type="JumpStart" />
+        <Point X="8.966" Y="14.688" Type="JumpEnd" />
+        <Point X="8.995" Y="14.688" Type="JumpStart" />
+        <Point X="9.326" Y="14.688" Type="JumpEnd" />
+        <Point X="9.557" Y="14.688" Type="JumpStart" />
+        <Point X="9.99" Y="14.688" Type="JumpEnd" />
+        <Point X="10.542" Y="14.688" Type="JumpStart" />
+        <Point X="10.771" Y="14.688" Type="JumpEnd" />
+        <Point X="11.292" Y="14.688" Type="JumpStart" />
+        <Point X="11.458" Y="14.688" Type="JumpEnd" />
+        <Point X="14" Y="14.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Supplier" Type="PayIn.Domain.Public.ServiceSupplier" FixedFromPoint="true">
+      <Path>
+        <Point X="4.688" Y="7.75" />
+        <Point X="4.688" Y="6.757" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Tracks" Type="PayIn.Domain.Public.ControlTrack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.875" Y="10.074" />
+        <Point X="3.875" Y="21.625" />
+        <Point X="5.979" Y="21.625" Type="JumpStart" />
+        <Point X="6.208" Y="21.625" Type="JumpEnd" />
+        <Point X="8.799" Y="21.625" Type="JumpStart" />
+        <Point X="8.966" Y="21.625" Type="JumpEnd" />
+        <Point X="8.995" Y="21.625" Type="JumpStart" />
+        <Point X="9.326" Y="21.625" Type="JumpEnd" />
+        <Point X="9.557" Y="21.625" Type="JumpStart" />
+        <Point X="9.99" Y="21.625" Type="JumpEnd" />
+        <Point X="11.292" Y="21.625" Type="JumpStart" />
+        <Point X="11.458" Y="21.625" Type="JumpEnd" />
+        <Point X="14.25" Y="21.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAEAAAIAAAAAAAAQAAAAAAAAAAAgQBAAgAAA=</HashCode>
+      <FileName>ServiceWorker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Supplier" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Plannings" />
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlTemplate">
+    <Position X="14" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="ControlTemplate" Hidden="true" />
+      <Property Name="ItemId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Item" Type="PayIn.Domain.Public.ControlItem" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="10.375" />
+        <Point X="12.25" Y="10.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TemplateItems" Type="PayIn.Domain.Public.ControlTemplateItem" FixedFromPoint="true">
+      <Path>
+        <Point X="15.5" Y="9.47" />
+        <Point X="17.5" Y="9.47" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Checks" Type="PayIn.Domain.Public.ControlTemplateCheck" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="11.625" />
+        <Point X="18.5" Y="11.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAASAApAACAAAAAAgAAQACQEIACAIAAAIAAAAAAAAAA=</HashCode>
+      <FileName>ControlTemplate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Item" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TemplateItems" />
+      <Property Name="Checks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlTemplateItem">
+    <Position X="17.5" Y="9" Width="1.75" />
+    <Members>
+      <Property Name="TemplateId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAEAAAAAAEAAAAAAAAAAAAABABAAAAAAAAEA=</HashCode>
+      <FileName>ControlTemplateItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Template" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlPlanningItem">
+    <Position X="17.5" Y="14" Width="1.75" />
+    <Members>
+      <Method Name="ControlPlanningItem" Hidden="true" />
+      <Property Name="PlanningId" Hidden="true" />
+      <Property Name="SinceId" Hidden="true" />
+      <Property Name="UntilId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Since" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedToPoint="true">
+      <Path>
+        <Point X="18.5" Y="15.103" />
+        <Point X="18.5" Y="16.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.364" Y="0.206" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Until" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedToPoint="true">
+      <Path>
+        <Point X="18.062" Y="15.103" />
+        <Point X="18.062" Y="16.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.728" Y="0.206" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Planning" Type="PayIn.Domain.Public.ControlPlanning" FixedFromPoint="true">
+      <Path>
+        <Point X="17.5" Y="14.5" />
+        <Point X="15.5" Y="14.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ControlPresences" Type="PayIn.Domain.Public.ControlPresence" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19.25" Y="14.562" />
+        <Point X="20.063" Y="14.562" />
+        <Point X="20.063" Y="18.812" />
+        <Point X="11.458" Y="18.812" Type="JumpStart" />
+        <Point X="11.292" Y="18.812" Type="JumpEnd" />
+        <Point X="10.771" Y="18.812" Type="JumpStart" />
+        <Point X="10.542" Y="18.812" Type="JumpEnd" />
+        <Point X="9.99" Y="18.812" Type="JumpStart" />
+        <Point X="9.557" Y="18.812" Type="JumpEnd" />
+        <Point X="9.326" Y="18.812" Type="JumpStart" />
+        <Point X="8.995" Y="18.812" Type="JumpEnd" />
+        <Point X="8.966" Y="18.812" Type="JumpStart" />
+        <Point X="8.799" Y="18.812" Type="JumpEnd" />
+        <Point X="7.5" Y="18.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAEAAAAAAAAAAAAAIABAgAAAAAAEA=</HashCode>
+      <FileName>ControlPlanningItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Since" />
+      <Property Name="Until" />
+      <Property Name="Planning" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ControlPresences" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlPresence">
+    <Position X="5.75" Y="17.75" Width="1.75" />
+    <Members>
+      <Property Name="CheckPointId" Hidden="true" />
+      <Property Name="PlanningCheckId" Hidden="true" />
+      <Property Name="PlanningItemId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TrackSince" Type="PayIn.Domain.Public.ControlTrack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.062" Y="20.392" />
+        <Point X="6.062" Y="21.953" />
+        <Point X="8.799" Y="21.953" Type="JumpStart" />
+        <Point X="8.966" Y="21.953" Type="JumpEnd" />
+        <Point X="8.995" Y="21.953" Type="JumpStart" />
+        <Point X="9.326" Y="21.953" Type="JumpEnd" />
+        <Point X="9.557" Y="21.953" Type="JumpStart" />
+        <Point X="9.99" Y="21.953" Type="JumpEnd" />
+        <Point X="11.292" Y="21.953" Type="JumpStart" />
+        <Point X="11.458" Y="21.953" Type="JumpEnd" />
+        <Point X="14.25" Y="21.953" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TrackUntil" Type="PayIn.Domain.Public.ControlTrack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.125" Y="20.392" />
+        <Point X="6.125" Y="21.875" />
+        <Point X="8.799" Y="21.875" Type="JumpStart" />
+        <Point X="8.966" Y="21.875" Type="JumpEnd" />
+        <Point X="8.995" Y="21.875" Type="JumpStart" />
+        <Point X="9.326" Y="21.875" Type="JumpEnd" />
+        <Point X="9.557" Y="21.875" Type="JumpStart" />
+        <Point X="9.99" Y="21.875" Type="JumpEnd" />
+        <Point X="11.292" Y="21.875" Type="JumpStart" />
+        <Point X="11.458" Y="21.875" Type="JumpEnd" />
+        <Point X="14.25" Y="21.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CheckPoint" Type="PayIn.Domain.Public.ServiceCheckPoint" FixedToPoint="true">
+      <Path>
+        <Point X="5.875" Y="17.75" />
+        <Point X="5.875" Y="12.007" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PlanningItem" Type="PayIn.Domain.Public.ControlPlanningItem" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="18.875" />
+        <Point X="8.799" Y="18.875" Type="JumpStart" />
+        <Point X="8.966" Y="18.875" Type="JumpEnd" />
+        <Point X="8.995" Y="18.875" Type="JumpStart" />
+        <Point X="9.326" Y="18.875" Type="JumpEnd" />
+        <Point X="9.557" Y="18.875" Type="JumpStart" />
+        <Point X="9.99" Y="18.875" Type="JumpEnd" />
+        <Point X="10.542" Y="18.875" Type="JumpStart" />
+        <Point X="10.771" Y="18.875" Type="JumpEnd" />
+        <Point X="11.292" Y="18.875" Type="JumpStart" />
+        <Point X="11.458" Y="18.875" Type="JumpEnd" />
+        <Point X="20.125" Y="18.875" />
+        <Point X="20.125" Y="14.5" />
+        <Point X="19.25" Y="14.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PlanningCheck" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="18.125" />
+        <Point X="8.799" Y="18.125" Type="JumpStart" />
+        <Point X="8.966" Y="18.125" Type="JumpEnd" />
+        <Point X="8.995" Y="18.125" Type="JumpStart" />
+        <Point X="9.326" Y="18.125" Type="JumpEnd" />
+        <Point X="9.557" Y="18.125" Type="JumpStart" />
+        <Point X="9.99" Y="18.125" Type="JumpEnd" />
+        <Point X="10.542" Y="18.125" Type="JumpStart" />
+        <Point X="10.771" Y="18.125" Type="JumpEnd" />
+        <Point X="11.292" Y="18.125" Type="JumpStart" />
+        <Point X="11.458" Y="18.125" Type="JumpEnd" />
+        <Point X="18.625" Y="18.125" />
+        <Point X="18.625" Y="17.546" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAACAAAADEAAAgAQACAYBAAAAAgAABABAAAAAAABAgE=</HashCode>
+      <FileName>ControlPresence.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TrackSince" />
+      <Property Name="TrackUntil" />
+      <Property Name="CheckPoint" />
+      <Property Name="PlanningItem" />
+      <Property Name="PlanningCheck" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlTrack">
+    <Position X="14.25" Y="21.25" Width="1.5" />
+    <Members>
+      <Method Name="ControlTrack" Hidden="true" />
+      <Property Name="ItemId" Hidden="true" />
+      <Property Name="WorkerId" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="PresenceSince" Type="PayIn.Domain.Public.ControlPresence" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="21.25" />
+        <Point X="15" Y="19.75" />
+        <Point X="11.458" Y="19.75" Type="JumpStart" />
+        <Point X="11.292" Y="19.75" Type="JumpEnd" />
+        <Point X="10.771" Y="19.75" Type="JumpStart" />
+        <Point X="10.542" Y="19.75" Type="JumpEnd" />
+        <Point X="9.99" Y="19.75" Type="JumpStart" />
+        <Point X="9.557" Y="19.75" Type="JumpEnd" />
+        <Point X="9.326" Y="19.75" Type="JumpStart" />
+        <Point X="8.995" Y="19.75" Type="JumpEnd" />
+        <Point X="8.966" Y="19.75" Type="JumpStart" />
+        <Point X="8.799" Y="19.75" Type="JumpEnd" />
+        <Point X="7.5" Y="19.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PresenceUntil" Type="PayIn.Domain.Public.ControlPresence" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.938" Y="21.25" />
+        <Point X="14.938" Y="19.812" />
+        <Point X="11.458" Y="19.812" Type="JumpStart" />
+        <Point X="11.292" Y="19.812" Type="JumpEnd" />
+        <Point X="10.771" Y="19.812" Type="JumpStart" />
+        <Point X="10.542" Y="19.812" Type="JumpEnd" />
+        <Point X="9.99" Y="19.812" Type="JumpStart" />
+        <Point X="9.557" Y="19.812" Type="JumpEnd" />
+        <Point X="9.326" Y="19.812" Type="JumpStart" />
+        <Point X="8.995" Y="19.812" Type="JumpEnd" />
+        <Point X="8.966" Y="19.812" Type="JumpStart" />
+        <Point X="8.799" Y="19.812" Type="JumpEnd" />
+        <Point X="7.5" Y="19.812" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Worker" Type="PayIn.Domain.Public.ServiceWorker" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="21.562" />
+        <Point X="11.458" Y="21.562" Type="JumpStart" />
+        <Point X="11.292" Y="21.562" Type="JumpEnd" />
+        <Point X="9.99" Y="21.562" Type="JumpStart" />
+        <Point X="9.557" Y="21.562" Type="JumpEnd" />
+        <Point X="9.326" Y="21.562" Type="JumpStart" />
+        <Point X="8.995" Y="21.562" Type="JumpEnd" />
+        <Point X="8.966" Y="21.562" Type="JumpStart" />
+        <Point X="8.799" Y="21.562" Type="JumpEnd" />
+        <Point X="6.208" Y="21.562" Type="JumpStart" />
+        <Point X="5.979" Y="21.562" Type="JumpEnd" />
+        <Point X="3.938" Y="21.562" />
+        <Point X="3.938" Y="10.074" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Item" Type="PayIn.Domain.Public.ControlItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="21.312" />
+        <Point X="11.458" Y="21.312" Type="JumpStart" />
+        <Point X="11.292" Y="21.312" Type="JumpEnd" />
+        <Point X="10.688" Y="21.312" />
+        <Point X="10.688" Y="12.007" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Items" Type="PayIn.Domain.Public.ControlTrackItem" FixedFromPoint="true">
+      <Path>
+        <Point X="15.75" Y="21.953" />
+        <Point X="17.5" Y="21.953" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACABAEAAAACAAAgCAAAAAEAAQAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>ControlTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PresenceSince" />
+      <Property Name="PresenceUntil" />
+      <Property Name="Worker" />
+      <Property Name="Item" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceTag">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <Members>
+      <Method Name="ServiceTag" Hidden="true" />
+      <Property Name="SupplierId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="CheckPoints" Type="PayIn.Domain.Public.ServiceCheckPoint" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="7.125" />
+        <Point X="7.083" Y="7.125" Type="JumpStart" />
+        <Point X="6.917" Y="7.125" Type="JumpEnd" />
+        <Point X="6.562" Y="7.125" />
+        <Point X="6.562" Y="9.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Supplier" Type="PayIn.Domain.Public.ServiceSupplier" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.375" Y="6.75" />
+        <Point X="8.375" Y="6.2" />
+        <Point X="8" Y="6.2" />
+        <Point X="8" Y="5.812" />
+        <Point X="7.958" Y="5.812" Type="JumpStart" />
+        <Point X="7.792" Y="5.812" Type="JumpEnd" />
+        <Point X="5.75" Y="5.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAAAAMAAAAAAAAAAAAAAAAAAAQAAAAAgAAA=</HashCode>
+      <FileName>ServiceTag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Supplier" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="CheckPoints" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlPlanningCheck">
+    <Position X="17.5" Y="16.25" Width="1.75" />
+    <Members>
+      <Property Name="CheckPointId" Hidden="true" />
+      <Method Name="ControlPlanningCheck" Hidden="true" />
+      <Property Name="PlanningId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Planning" Type="PayIn.Domain.Public.ControlPlanning" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="16.562" />
+        <Point X="14.625" Y="16.562" />
+        <Point X="14.625" Y="15.488" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ItemsSince" Type="PayIn.Domain.Public.ControlPlanningItem">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.257" Y="0.311" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ItemsUntil" Type="PayIn.Domain.Public.ControlPlanningItem" FixedToPoint="true">
+      <Path>
+        <Point X="18.125" Y="16.25" />
+        <Point X="18.125" Y="15.103" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.141" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="CheckPoint" Type="PayIn.Domain.Public.ServiceCheckPoint" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="17.121" />
+        <Point X="11.458" Y="17.121" Type="JumpStart" />
+        <Point X="11.292" Y="17.121" Type="JumpEnd" />
+        <Point X="10.771" Y="17.121" Type="JumpStart" />
+        <Point X="10.542" Y="17.121" Type="JumpEnd" />
+        <Point X="9.99" Y="17.121" Type="JumpStart" />
+        <Point X="9.557" Y="17.121" Type="JumpEnd" />
+        <Point X="9.326" Y="17.121" Type="JumpStart" />
+        <Point X="8.995" Y="17.121" Type="JumpEnd" />
+        <Point X="8.966" Y="17.121" Type="JumpStart" />
+        <Point X="8.799" Y="17.121" Type="JumpEnd" />
+        <Point X="6.312" Y="17.121" />
+        <Point X="6.312" Y="12.007" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FormAssigns" Type="PayIn.Domain.Public.ControlFormAssign" FixedFromPoint="true">
+      <Path>
+        <Point X="19.25" Y="16.938" />
+        <Point X="19.98" Y="16.938" Type="JumpStart" />
+        <Point X="20.208" Y="16.938" Type="JumpEnd" />
+        <Point X="20.917" Y="16.938" Type="JumpStart" />
+        <Point X="21.083" Y="16.938" Type="JumpEnd" />
+        <Point X="21.25" Y="16.938" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ControlPresences" Type="PayIn.Domain.Public.ControlPresence" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.562" Y="17.546" />
+        <Point X="18.562" Y="18.062" />
+        <Point X="11.458" Y="18.062" Type="JumpStart" />
+        <Point X="11.292" Y="18.062" Type="JumpEnd" />
+        <Point X="10.771" Y="18.062" Type="JumpStart" />
+        <Point X="10.542" Y="18.062" Type="JumpEnd" />
+        <Point X="9.99" Y="18.062" Type="JumpStart" />
+        <Point X="9.557" Y="18.062" Type="JumpEnd" />
+        <Point X="9.326" Y="18.062" Type="JumpStart" />
+        <Point X="8.995" Y="18.062" Type="JumpEnd" />
+        <Point X="8.966" Y="18.062" Type="JumpStart" />
+        <Point X="8.799" Y="18.062" Type="JumpEnd" />
+        <Point X="7.5" Y="18.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAAAAAgAQAAAAAAAAAAAAAAIBBAgAAACAgAA=</HashCode>
+      <FileName>ControlPlanningCheck.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Planning" />
+      <Property Name="CheckPoint" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ItemsSince" />
+      <Property Name="ItemsUntil" />
+      <Property Name="FormAssigns" />
+      <Property Name="ControlPresences" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlForm">
+    <Position X="25.5" Y="16.25" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="ControlForm" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="26.562" Y="16.25" />
+        <Point X="26.562" Y="5.988" />
+        <Point X="13.677" Y="5.988" Type="JumpStart" />
+        <Point X="13.51" Y="5.988" Type="JumpEnd" />
+        <Point X="13.208" Y="5.988" Type="JumpStart" />
+        <Point X="13.042" Y="5.988" Type="JumpEnd" />
+        <Point X="11.208" Y="5.988" Type="JumpStart" />
+        <Point X="11.042" Y="5.988" Type="JumpEnd" />
+        <Point X="10.375" Y="5.988" />
+        <Point X="10.375" Y="5.688" />
+        <Point X="10" Y="5.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Arguments" Type="PayIn.Domain.Public.ControlFormArgument">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.274" Y="0.078" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AssignTemplates" Type="PayIn.Domain.Public.ControlFormAssignTemplate" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="26.062" Y="16.25" />
+        <Point X="26.062" Y="13.713" />
+        <Point X="25.208" Y="13.713" Type="JumpStart" />
+        <Point X="25.042" Y="13.713" Type="JumpEnd" />
+        <Point X="24.75" Y="13.713" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAQAAQAAAAAAEAAKEAABAAACAA=</HashCode>
+      <FileName>ControlForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Arguments" />
+      <Property Name="Assigns" />
+      <Property Name="AssignTemplates" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlFormAssign">
+    <Position X="21.25" Y="16.25" Width="2.25" />
+    <Members>
+      <Property Name="CheckId" Hidden="true" />
+      <Property Name="FormId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Check" Type="PayIn.Domain.Public.ControlPlanningCheck" FixedFromPoint="true">
+      <Path>
+        <Point X="21.25" Y="16.875" />
+        <Point X="21.083" Y="16.875" Type="JumpStart" />
+        <Point X="20.917" Y="16.875" Type="JumpEnd" />
+        <Point X="20.208" Y="16.875" Type="JumpStart" />
+        <Point X="19.98" Y="16.875" Type="JumpEnd" />
+        <Point X="19.25" Y="16.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Values" Type="PayIn.Domain.Public.ControlFormValue">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.147" Y="0.515" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAgCQAAAAAAAAACAAAAAAAAAgAAEAAAA=</HashCode>
+      <FileName>ControlFormAssign.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Form" />
+      <Property Name="Check" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Values" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlFormArgument">
+    <Position X="25.5" Y="19.75" Width="2" />
+    <Members>
+      <Property Name="FormId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAECEAAAAAEQAAAAAAAQACQAACAAAAAAAQAgBAFAAAA=</HashCode>
+      <FileName>ControlFormArgument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Form" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Values" />
+      <Property Name="Options" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlFormValue">
+    <Position X="21.25" Y="19.25" Width="2" />
+    <Members>
+      <Property Name="ArgumentId" Hidden="true" />
+      <Property Name="AssignId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Assign" Type="PayIn.Domain.Public.ControlFormAssign">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.783" Y="0.188" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ValueOptions" Type="PayIn.Domain.Public.ControlFormOption" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.562" Y="21.444" />
+        <Point X="22.562" Y="24.562" />
+        <Point X="25.5" Y="24.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ASAAAAQAAIAAAAIAAAAQACAAAAAAAAAAYAAAAAAAAAA=</HashCode>
+      <FileName>ControlFormValue.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Assign" />
+      <Property Name="Argument" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ValueOptions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlTemplateCheck">
+    <Position X="18.5" Y="11.5" Width="2" />
+    <Members>
+      <Property Name="CheckPointId" Hidden="true" />
+      <Method Name="ControlTemplateCheck" Hidden="true" />
+      <Property Name="TemplateId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Template" Type="PayIn.Domain.Public.ControlTemplate" FixedFromPoint="true">
+      <Path>
+        <Point X="18.5" Y="11.938" />
+        <Point X="15.5" Y="11.938" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CheckPoint" Type="PayIn.Domain.Public.ServiceCheckPoint" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.5" Y="12.562" />
+        <Point X="11.945" Y="12.562" Type="JumpStart" />
+        <Point X="11.729" Y="12.562" Type="JumpEnd" />
+        <Point X="11.458" Y="12.562" Type="JumpStart" />
+        <Point X="11.292" Y="12.562" Type="JumpEnd" />
+        <Point X="10.771" Y="12.562" Type="JumpStart" />
+        <Point X="10.542" Y="12.562" Type="JumpEnd" />
+        <Point X="9.99" Y="12.562" Type="JumpStart" />
+        <Point X="9.557" Y="12.562" Type="JumpEnd" />
+        <Point X="9.326" Y="12.562" Type="JumpStart" />
+        <Point X="8.995" Y="12.562" Type="JumpEnd" />
+        <Point X="8.966" Y="12.562" Type="JumpStart" />
+        <Point X="8.799" Y="12.562" Type="JumpEnd" />
+        <Point X="6.688" Y="12.562" />
+        <Point X="6.688" Y="12.007" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FormAssignTemplates" Type="PayIn.Domain.Public.ControlFormAssignTemplate" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="20.5" Y="11.963" />
+        <Point X="20.917" Y="11.963" Type="JumpStart" />
+        <Point X="21.083" Y="11.963" Type="JumpEnd" />
+        <Point X="23.75" Y="11.963" />
+        <Point X="23.75" Y="13" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEAAAgAQAAAAAAAAAAAAAABAAAAAAACAgQQ=</HashCode>
+      <FileName>ControlTemplateCheck.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Template" />
+      <Property Name="CheckPoint" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="FormAssignTemplates" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlFormAssignTemplate">
+    <Position X="22.75" Y="13" Width="2" />
+    <Members>
+      <Property Name="CheckId" Hidden="true" />
+      <Property Name="FormId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Form" Type="PayIn.Domain.Public.ControlForm" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="24.75" Y="14.062" />
+        <Point X="25.042" Y="14.062" Type="JumpStart" />
+        <Point X="25.208" Y="14.062" Type="JumpEnd" />
+        <Point X="25.812" Y="14.062" />
+        <Point X="25.812" Y="16.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Check" Type="PayIn.Domain.Public.ControlTemplateCheck" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="23.438" Y="13" />
+        <Point X="23.438" Y="12.242" />
+        <Point X="21.083" Y="12.242" Type="JumpStart" />
+        <Point X="20.917" Y="12.242" Type="JumpEnd" />
+        <Point X="20.5" Y="12.242" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAEAAAACAAAAIAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ControlFormAssignTemplate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Form" />
+      <Property Name="Check" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCardBatch">
+    <Position X="8.25" Y="26" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Property Name="SystemCardId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="SystemCard" Type="PayIn.Domain.Public.SystemCard" FixedFromPoint="true">
+      <Path>
+        <Point X="8.562" Y="26" />
+        <Point X="8.562" Y="23.5" />
+        <Point X="6" Y="23.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Cards" Type="PayIn.Domain.Public.ServiceCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.75" Y="27.375" />
+        <Point X="9.823" Y="27.375" Type="JumpStart" />
+        <Point X="10.083" Y="27.375" Type="JumpEnd" />
+        <Point X="11.292" Y="27.375" Type="JumpStart" />
+        <Point X="11.458" Y="27.375" Type="JumpEnd" />
+        <Point X="21.938" Y="27.375" />
+        <Point X="21.938" Y="33.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAgAAAAAAAAAAQIAAQAAEAACAAABAAAAAA=</HashCode>
+      <FileName>ServiceCardBatch.cs</FileName>
+      <NewMemberFileName>ServiceCard.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+      <Property Name="SystemCard" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceUser">
+    <Position X="2.5" Y="26.75" Width="1.5" />
+    <Members>
+      <Property Name="CardId" Hidden="true" />
+      <Property Name="ConcessionId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Public.ServiceConcession" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.062" Y="26.75" />
+        <Point X="3.062" Y="3.75" />
+        <Point X="8.25" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Card" Type="PayIn.Domain.Public.ServiceCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="28.938" />
+        <Point X="4.432" Y="28.938" Type="JumpStart" />
+        <Point X="4.599" Y="28.938" Type="JumpEnd" />
+        <Point X="4.948" Y="28.938" Type="JumpStart" />
+        <Point X="5.115" Y="28.938" Type="JumpEnd" />
+        <Point X="9.823" Y="28.938" Type="JumpStart" />
+        <Point X="10.083" Y="28.938" Type="JumpEnd" />
+        <Point X="11.292" Y="28.938" Type="JumpStart" />
+        <Point X="11.458" Y="28.938" Type="JumpEnd" />
+        <Point X="21.375" Y="28.938" />
+        <Point X="21.375" Y="33.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="OnwnerCards" Type="PayIn.Domain.Public.ServiceCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.75" Y="30.29" />
+        <Point X="2.75" Y="34.438" />
+        <Point X="4.432" Y="34.438" Type="JumpStart" />
+        <Point X="4.599" Y="34.438" Type="JumpEnd" />
+        <Point X="4.948" Y="34.438" Type="JumpStart" />
+        <Point X="5.115" Y="34.438" Type="JumpEnd" />
+        <Point X="9.823" Y="34.438" Type="JumpStart" />
+        <Point X="10.083" Y="34.438" Type="JumpEnd" />
+        <Point X="21" Y="34.438" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Groups" Type="PayIn.Domain.Public.ServiceGroup" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="30.29" />
+        <Point X="3.25" Y="32.912" />
+        <Point X="4.432" Y="32.912" Type="JumpStart" />
+        <Point X="4.599" Y="32.912" Type="JumpEnd" />
+        <Point X="4.948" Y="32.912" Type="JumpStart" />
+        <Point X="5.115" Y="32.912" Type="JumpEnd" />
+        <Point X="8.25" Y="32.912" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AABAAEAAACAQACAAAAAwAAQAACAAgEACCAAQJAgAAAg=</HashCode>
+      <FileName>ServiceUser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+      <Property Name="Card" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="OnwnerCards" />
+      <Property Name="Groups" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.SystemCard">
+    <Position X="4" Y="22.5" Width="2" />
+    <Members>
+      <Property Name="ConcessionOwnerId" Hidden="true" />
+      <Property Name="ProfileId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="SystemCardMembers" Type="PayIn.Domain.Public.SystemCardMember" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="24.188" />
+        <Point X="8.479" Y="24.188" Type="JumpStart" />
+        <Point X="8.645" Y="24.188" Type="JumpEnd" />
+        <Point X="8.799" Y="24.188" Type="JumpStart" />
+        <Point X="8.966" Y="24.188" Type="JumpEnd" />
+        <Point X="9.159" Y="24.188" Type="JumpStart" />
+        <Point X="9.326" Y="24.188" Type="JumpEnd" />
+        <Point X="9.557" Y="24.188" Type="JumpStart" />
+        <Point X="9.99" Y="24.188" Type="JumpEnd" />
+        <Point X="11.292" Y="24.188" Type="JumpStart" />
+        <Point X="11.458" Y="24.188" Type="JumpEnd" />
+        <Point X="11.75" Y="24.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAACAgABAgAEAAAQIAAgAAAQCABAAAAgAgAA=</HashCode>
+      <FileName>SystemCard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConcessionOwner" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cards" />
+      <Property Name="CardBatchs" />
+      <Property Name="SystemCardMembers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.SystemCardMember">
+    <Position X="11.75" Y="23.5" Width="2" />
+    <Members>
+      <Property Name="SystemCardId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="SystemCard" Type="PayIn.Domain.Public.SystemCard" FixedToPoint="true">
+      <Path>
+        <Point X="11.75" Y="24.125" />
+        <Point X="11.458" Y="24.125" Type="JumpStart" />
+        <Point X="11.292" Y="24.125" Type="JumpEnd" />
+        <Point X="9.99" Y="24.125" Type="JumpStart" />
+        <Point X="9.557" Y="24.125" Type="JumpEnd" />
+        <Point X="9.326" Y="24.125" Type="JumpStart" />
+        <Point X="9.159" Y="24.125" Type="JumpEnd" />
+        <Point X="8.966" Y="24.125" Type="JumpStart" />
+        <Point X="8.799" Y="24.125" Type="JumpEnd" />
+        <Point X="8.645" Y="24.125" Type="JumpStart" />
+        <Point X="8.479" Y="24.125" Type="JumpEnd" />
+        <Point X="6" Y="24.125" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAQAABQAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>SystemCardMember.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SystemCard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ControlFormOption">
+    <Position X="25.5" Y="24" Width="1.75" />
+    <Members>
+      <Property Name="ArgumentId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Values" Type="PayIn.Domain.Public.ControlFormValue" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.5" Y="24.373" />
+        <Point X="22.75" Y="24.373" />
+        <Point X="22.75" Y="21.444" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAIAAgDAAAAAA=</HashCode>
+      <FileName>ControlFormOption.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Argument" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Values" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCard">
+    <Position X="21" Y="33.25" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Property Name="OwnerUserId" Hidden="true" />
+      <Property Name="ServiceCardBatchId" Hidden="true" />
+      <Property Name="SystemCardId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.375" Y="33.25" />
+        <Point X="22.375" Y="21.694" />
+        <Point X="21" Y="21.694" />
+        <Point X="21" Y="5.988" />
+        <Point X="13.677" Y="5.988" Type="JumpStart" />
+        <Point X="13.51" Y="5.988" Type="JumpEnd" />
+        <Point X="13.208" Y="5.988" Type="JumpStart" />
+        <Point X="13.042" Y="5.988" Type="JumpEnd" />
+        <Point X="11.208" Y="5.988" Type="JumpStart" />
+        <Point X="11.042" Y="5.988" Type="JumpEnd" />
+        <Point X="10.375" Y="5.988" />
+        <Point X="10.375" Y="5.125" />
+        <Point X="10" Y="5.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="OwnerUser" Type="PayIn.Domain.Public.ServiceUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21" Y="34.313" />
+        <Point X="10.083" Y="34.313" Type="JumpStart" />
+        <Point X="9.823" Y="34.313" Type="JumpEnd" />
+        <Point X="5.115" Y="34.313" Type="JumpStart" />
+        <Point X="4.948" Y="34.313" Type="JumpEnd" />
+        <Point X="4.599" Y="34.313" Type="JumpStart" />
+        <Point X="4.432" Y="34.313" Type="JumpEnd" />
+        <Point X="2.875" Y="34.313" />
+        <Point X="2.875" Y="30.29" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Users" Type="PayIn.Domain.Public.ServiceUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.25" Y="33.25" />
+        <Point X="21.25" Y="29.062" />
+        <Point X="11.458" Y="29.062" Type="JumpStart" />
+        <Point X="11.292" Y="29.062" Type="JumpEnd" />
+        <Point X="10.083" Y="29.062" Type="JumpStart" />
+        <Point X="9.823" Y="29.062" Type="JumpEnd" />
+        <Point X="5.115" Y="29.062" Type="JumpStart" />
+        <Point X="4.948" Y="29.062" Type="JumpEnd" />
+        <Point X="4.599" Y="29.062" Type="JumpStart" />
+        <Point X="4.432" Y="29.062" Type="JumpEnd" />
+        <Point X="4" Y="29.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ServiceCardBatch" Type="PayIn.Domain.Public.ServiceCardBatch" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.062" Y="33.25" />
+        <Point X="22.062" Y="27.229" />
+        <Point X="11.458" Y="27.229" Type="JumpStart" />
+        <Point X="11.292" Y="27.229" Type="JumpEnd" />
+        <Point X="10.083" Y="27.229" Type="JumpStart" />
+        <Point X="9.823" Y="27.229" Type="JumpEnd" />
+        <Point X="9.75" Y="27.229" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.122" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Groups" Type="PayIn.Domain.Public.ServiceGroup" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21" Y="35.125" />
+        <Point X="10" Y="35.125" />
+        <Point X="10" Y="31.625" />
+        <Point X="9.99" Y="31.625" Type="JumpStart" />
+        <Point X="9.823" Y="31.625" Type="JumpEnd" />
+        <Point X="9.375" Y="31.625" />
+        <Point X="9.375" Y="32" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="LinkedUsers" Type="PayIn.Domain.Public.ServiceUserLink" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.438" Y="36.473" />
+        <Point X="21.438" Y="37.375" />
+        <Point X="4.5" Y="37.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AKAAMGgCAAIAAAAAQRAAAAoAAAQACEAECEAABAAAAAA=</HashCode>
+      <FileName>ServiceCard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+      <Property Name="OwnerUser" />
+      <Property Name="SystemCard" />
+      <Property Name="ServiceCardBatch" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Users" />
+      <Property Name="Groups" />
+      <Property Name="LinkedUsers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.Profile">
+    <Position X="14.25" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAQAAAAAAAAIAAAAgAEAAAA=</HashCode>
+      <FileName>Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceCategory">
+    <Position X="10.75" Y="32" Width="1.75" />
+    <Members>
+      <Property Name="ServiceConcessionId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ServiceConcession" Type="PayIn.Domain.Public.ServiceConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.375" Y="32" />
+        <Point X="11.375" Y="12.257" />
+        <Point X="10.771" Y="12.257" Type="JumpStart" />
+        <Point X="10.542" Y="12.257" Type="JumpEnd" />
+        <Point X="10" Y="12.257" />
+        <Point X="10" Y="6.325" />
+        <Point X="9.99" Y="6.325" Type="JumpStart" />
+        <Point X="9.557" Y="6.325" Type="JumpEnd" />
+        <Point X="9.49" Y="6.325" Type="JumpStart" />
+        <Point X="8.995" Y="6.325" Type="JumpEnd" />
+        <Point X="8.966" Y="6.325" Type="JumpStart" />
+        <Point X="8.799" Y="6.325" Type="JumpEnd" />
+        <Point X="8.458" Y="6.325" Type="JumpStart" />
+        <Point X="8.229" Y="6.325" Type="JumpEnd" />
+        <Point X="7.875" Y="6.325" />
+        <Point X="7.875" Y="5.381" />
+        <Point X="8.25" Y="5.381" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Groups" Type="PayIn.Domain.Public.ServiceGroup" FixedFromPoint="true">
+      <Path>
+        <Point X="10.75" Y="32.875" />
+        <Point X="10.083" Y="32.875" Type="JumpStart" />
+        <Point X="9.823" Y="32.875" Type="JumpEnd" />
+        <Point X="9.75" Y="32.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAgAIAAAAAAgAQCAAAAAAAAAAAEAAAAAAg=</HashCode>
+      <FileName>ServiceCategory.cs</FileName>
+      <NewMemberFileName>ServiceGroup.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ServiceConcession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Groups" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceGroup">
+    <Position X="8.25" Y="32" Width="1.5" />
+    <Members>
+      <Property Name="CategoryId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Category" Type="PayIn.Domain.Public.ServiceCategory" FixedToPoint="true">
+      <Path>
+        <Point X="9.75" Y="32.795" />
+        <Point X="9.823" Y="32.795" Type="JumpStart" />
+        <Point X="10.083" Y="32.795" Type="JumpEnd" />
+        <Point X="10.75" Y="32.795" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Users" Type="PayIn.Domain.Public.ServiceUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="32.856" />
+        <Point X="5.115" Y="32.856" Type="JumpStart" />
+        <Point X="4.948" Y="32.856" Type="JumpEnd" />
+        <Point X="4.599" Y="32.856" Type="JumpStart" />
+        <Point X="4.432" Y="32.856" Type="JumpEnd" />
+        <Point X="3.312" Y="32.856" />
+        <Point X="3.312" Y="30.29" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Cards" Type="PayIn.Domain.Public.ServiceCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.438" Y="32" />
+        <Point X="9.438" Y="31.625" />
+        <Point X="9.823" Y="31.625" Type="JumpStart" />
+        <Point X="10.083" Y="31.625" Type="JumpEnd" />
+        <Point X="11.292" Y="31.625" Type="JumpStart" />
+        <Point X="11.458" Y="31.625" Type="JumpEnd" />
+        <Point X="20.625" Y="31.625" />
+        <Point X="20.625" Y="33.438" />
+        <Point X="21" Y="33.438" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAkAAAAAAAAQIAAAAAAAAAAQAAAABCBQ=</HashCode>
+      <FileName>ServiceGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Users" />
+      <Property Name="Cards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Public.ServiceUserLink">
+    <Position X="3" Y="37" Width="1.5" />
+    <Members>
+      <Property Name="CardId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAA=</HashCode>
+      <FileName>ServiceUserLink.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Card" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

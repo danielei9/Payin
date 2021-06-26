@@ -1,0 +1,15 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+    ServiceGroupFactory.AddUserName,
+    ServiceGroupFactory.AddUserApi,
+    "",
+    "resources.serviceGroup.addUser",
+    init: "scope.arguments.serviceGroupId=params.id;" //,
+	// subtitle: "{{temp.serviceCategeroyName}}"
+))
+{
+    @(Html.SelectFor<ServiceGroupAddUserArguments>(x => x.ServiceUserId, "serviceUserName", ServiceUserFactory.RetrieveSelectorApi))
+}

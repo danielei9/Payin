@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ExhibitorFactory.UnsuspendName,
+	ExhibitorFactory.UnsuspendApi,
+	"",
+	"resources.exhibitor.unsuspend"
+))
+{
+	<p translate="resources.exhibitor.unsuspendQuestion" translate-values="{ name: '{{arguments.name}}',  event: '{{$stateParams.eventName}}'}">Do you want to activate the exhibitor "{{$stateParams.eventName}}"?</p>
+}
+

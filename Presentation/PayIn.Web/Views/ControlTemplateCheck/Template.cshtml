@@ -1,0 +1,62 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+@using PayIn.Application.Dto.Results.ControlTemplateCheck;
+
+@{
+	var checks = ControlTemplateCheckFactory.GetTemplate + "({id:{{item.id}}})";
+	var forms = ControlFormAssignTemplateFactory.GetCheckState + "({checkId:{{item.id}}})";
+}
+
+@using (Html.xpList(
+	ControlTemplateCheckFactory.GetTemplate,
+	ControlTemplateCheckFactory.GetTemplateApi,
+	"",
+	//ControlTemplateCheckResources.GetTemplate,
+	"resources.controlTemplateCheck.getTemplate",
+	"{{temp.name}}",
+	isPaginable: false,
+	isSearchable: false,
+	isTitleActive: true,
+	showFormButtons: true,
+	init: "scope.arguments.templateId = params.templateId;",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ControlTemplateCheckFactory.CreateName + "({templateId:{{$stateParams.templateId}}})" , XpIcons.Plus)
+	}
+))
+{
+	<xp-get data-xp-panel data-api=@ControlTemplateFactory.GetApi data-xp-init="scope.id=params.templateId" data-xp-success="scope.$parent.temp.name=scope.arguments.name;"></xp-get>
+
+<div class="table-responsive">
+	<table class="table table-hover" ng-show="data.length">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th translate="resources.controlTemplateCheck.time">Time</th>
+				<th translate="resources.controlTemplateCheck.checkPoint">CheckPoint</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in data">
+				<td class="icon-column">
+					@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ControlTemplateCheckFactory.DeleteState,
+							id: "{{item.id}}",
+							arguments: "{\"time\":\"{{item.time}}\"}"
+					)
+				</td>
+				<td>
+					@(Html.ColumnFor<ControlTemplateCheckGetTemplateResult>(x => x.Time, panelUrl: ControlTemplateCheckFactory.Update, id: "{{item.id}}"))
+					<a data-xp-navigate ui-sref=@forms>
+						<i class='@XpIcons.ListAlt'></i>
+						<span class="badge badge-sm up bg-info pull-right-xs">{{item.formsCount||0}}</span>
+					</a>
+				</td>
+				<td>{{item.checkPoint}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+}

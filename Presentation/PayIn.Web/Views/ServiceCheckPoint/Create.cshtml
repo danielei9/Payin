@@ -1,0 +1,76 @@
+﻿@using PayIn.Application.Dto.Arguments.ServiceCheckPoint;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServiceCheckPointFactory.Create,
+	ServiceCheckPointFactory.CreateApi,
+	"",
+	//ServiceCheckPointResources.Create,
+	"resources.serviceCheckPoint.create",
+	"{{arguments.reference}}",
+	init: "scope.arguments.itemId=params.itemId"
+))
+{
+	@(Html.ArgumentFor<ServiceCheckPointCreateArguments>(x => x.Name))
+	@(Html.ArgumentFor<ServiceCheckPointCreateArguments>(x => x.Observations))
+	@(Html.ArgumentFor<ServiceCheckPointCreateArguments>(x => x.Type))
+	@(Html.SelectFor<ServiceCheckPointCreateArguments>(x => x.SupplierId, "supplierName", ServiceSupplierFactory.GetSelectorApi))
+	@(Html.SelectFor<ServiceCheckPointCreateArguments>(x => x.TagId, "Reference", ServiceTagFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<ServiceCheckPointCreateArguments>(x => x.Longitude, width: 6))
+	@(Html.ArgumentFor<ServiceCheckPointCreateArguments>(x => x.Latitude, width: 6))
+
+	<div class="form-group col-md-12">
+		<div data-xp-map data-xp-longitude="arguments.longitude" data-xp-latitude="arguments.latitude">
+			<div id="map_canvas" style="min-height:400px" ui-map="myMap"
+				 ui-event="{'map-click': 'addMark($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+				 ui-options="mapOptions">
+			</div>
+			<div class="panel-body">
+				<div class="input-group">
+					<input id="address" type="text" size="115" placeholder="@ServiceCheckPointResources.Placeholder" class="input-sm form-control">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Buscar" ng-click="codeAddress()">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						<button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Borrar marcadores" ng-click="deleteMarkers()">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
+						<button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Buscar marcador" ng-click="myMap.panTo(marker.getPosition())" ng-repeat="marker in myMarkers">
+							<i class="glyphicon glyphicon-map-marker"></i>
+						</button>
+					</span>
+				</div>
+				@*<ul class="list-unstyled list-inline" style="float:left;">
+						<li ng-repeat="marker in myMarkers" id="markerList" style="height:26px;width:30px;" class="btn btn-default btn-sm">
+							<a class=" glyphicon glyphicon-map-marker" ng-click="myMap.panTo(marker.getPosition())" id="marker"></a>
+						</li>
+					</ul>*@
+				<!-- this is the confusing part. we have to point the map marker directive at an existing google.maps.Marker object, so it can hook up events-->
+				<div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+					 ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+				</div>
+				<!--info Window
+				<div ui-map-info-window="myInfoWindow">
+					<div class="m-b-sm">Marker</div>
+					<div class="m-b-sm">
+						<div class="pull-left m-t-xs">Lat: </div>
+						<input ng-model="currentMarkerLat" class="form-control input-sm w-sm m-l-lg" id="lat">
+					</div>
+					<div class="m-b-sm">
+						<div class="pull-left m-t-xs">Lng: </div>
+						<input ng-model="currentMarkerLng" class="form-control input-sm w-sm m-l-lg" id="lng">
+					</div>
+					<div class="m-b-sm">
+						<div class="pull-left m-t-xs">Name: </div>
+						<input ng-model="name" class="form-control input-sm w-sm m-l-lg">
+					</div>
+					<a class="btn btn-default btn-sm m-l-lg m-b-sm" ng-click="setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)">Set Position</a>
+					<a class="btn btn-default btn-sm m-l-lg m-b-sm" ng-click="deleteMarkers()">Delete</a>
+
+				</div>-->
+			</div>
+		</div>
+	</div>
+}
+

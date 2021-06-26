@@ -1,0 +1,70 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Shipment;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	ShipmentFactory.GetAll,
+	ShipmentFactory.GetAllApi,
+	"",
+	"resources.shipment.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: ShipmentFactory.CreateName
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>				
+					<th translate="resources.shipment.name">Name</th>
+					<th translate="resources.shipment.amount">Login</th>
+					<th translate="resources.shipment.since">Since</th>
+					<th translate="resources.shipment.until">Until</th>
+					<th>&nbsp;</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.started===true && item.finished===false,'b-l b-5x b-danger':item.finished === true || item.started === false}">
+					<td class="icon-column"> 
+						<span data-ng-show="item.finished==false && item.started==false">
+							@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ShipmentFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						    )
+						</span>
+                    </td>
+					<td data-ng-show="item.finished==false">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Name, panelUrl: ShipmentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.finished==false">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Amount, panelUrl: ShipmentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.finished==false">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Since, panelUrl: ShipmentFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.finished==false">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Until, panelUrl: ShipmentFactory.UpdateName, id: "{{item.id}}"))</td>
+
+					<td data-ng-show="item.finished==true">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Name))</td>
+					<td data-ng-show="item.finished==true">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Amount))</td>
+					<td data-ng-show="item.finished==true">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Since))</td>
+					<td data-ng-show="item.finished==true">@(Html.ColumnFor<ShipmentGetAllResult>(x => x.Until))</td>				
+					<td class="icon-column2">						
+						<a ui-sref='@ShipmentFactory.DetailName ({id:{{item.id}}})' data-xp-navigate><i class="@XpIcons.AddUser"></i></a>
+						{{item.numberPayers}}/{{item.numberTickets}}
+				  </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.shipment.active">Assigned</p>
+				</div>				
+				<div class="col-xs-12 col-sm-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.shipment.notActive">Unsuscribed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

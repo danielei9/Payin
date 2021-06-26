@@ -1,0 +1,18 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EntranceTypeFormFactory.Update,
+	EntranceTypeFormFactory.UpdateApi,
+	"",
+	"resources.entranceTypeForm.updateOrder"
+))
+{
+	<xp-get data-api="@EntranceTypeFormFactory.GetApi">
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<EntranceTypeFormUpdateArguments>(x => x.Order, width: 3))
+			</div>
+		</div>
+	</xp-get>
+}

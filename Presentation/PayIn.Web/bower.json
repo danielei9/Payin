@@ -1,0 +1,22 @@
+{
+  "name": "PayIn.Web",
+  "authors": [
+    "Pay[in]<info@pay-in.es>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "textAngular": "v1.5.16",
+    "openlayers": "^5.3.0",
+    "chart.js": "^2.7.3"
+  }
+}

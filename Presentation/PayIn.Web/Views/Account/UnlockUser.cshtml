@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+        AccountFactory.UnlockUserName,
+        AccountFactory.UnlockUserApi,
+        "",
+        "resources.account.unlockUser"
+))
+{
+    <p translate="resources.account.unlockUserQuestion">Do you want unlock the user?</p>
+}

@@ -1,0 +1,26 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+	ServiceGroupFactory.Create,
+	ServiceGroupFactory.CreateApi,
+	"",
+	"resources.serviceGroup.create",
+	subtitle : "{{temp.serviceCategeroyName}}"
+))
+{
+	<xp-get
+		api="@ServiceCategoryFactory.Get"
+		xp-success="
+			scope.temp.serviceCategeroyName=scope.arguments.name;
+			scope.$parent.arguments={};
+		"
+	>
+		@(Html.ArgumentFor<ServiceGroupCreateArguments>(x => x.Name))
+		<div class="panel-body">
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+		</div>
+	</xp-get>
+}
+

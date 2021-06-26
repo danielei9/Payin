@@ -1,0 +1,25 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	PaymentFactory.RefundName,
+	PaymentFactory.RefundApi,
+	"",
+	"resources.payment.pinRefund",
+	successUrl:"#/Payment/Charges"
+))
+{
+	<h4 translate="resources.payment.refundQuestion">To make the refund you must enter the pin of the company.</h4>
+
+	<div data-ng-class="{'has-error':!form.pin.$valid}" class="form-group col-md-6 has-error">
+		<label for="pin" class="control-label ng-scope" translate="Pin">Pin</label>
+		<input id="pin" name="pin" type="password" class="form-control  ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched" ng-model="arguments.pin" data-ng-pattern="/^\d{4}$/" required="" placeholder="" ng-disabled="" >
+			<div ng-show="form.pin.$error.required">
+				<span class="error control-label ng-scope" translate="Pin">Pin</span> 
+				<span class="error control-label ng-scope" translate="resources.globalResources.exceptionRequired">es requerido</span>
+			</div>
+			<div ng-show="form.pin.$error.pattern" class="ng-hide">
+				<span class="error control-label ng-scope" translate="Pin">Pin</span> 
+				<span class="error control-label ng-scope" translate="resources.globalResources.exceptionPattern"> no cumple el patrón</span>
+			</div>
+	</div>
+}

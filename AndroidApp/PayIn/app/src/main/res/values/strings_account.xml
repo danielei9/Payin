@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_name">Usuario</string>
+    <string name="name">Nombre</string>
+    <string name="email">Email</string>
+    <string name="phone">Teléfono</string>
+    <string name="birthday">Fecha de nacimiento</string>
+    <string name="tax_name">Nombre completo</string>
+    <string name="tax_number">DNI&#47;CIF</string>
+    <string name="tax_addr">Dirección postal</string>
+
+    <string name="password">Contraseña</string>
+    <string name="comfirm_password">Confirmar contraseña</string>
+    <string name="password_create">Contraseña (min. 6 caracteres)</string>
+    <string name="new_password">Nueva contraseña</string>
+    <string name="old_password">Antigua contraseña</string>
+    <string name="change_password">Cambiar contraseña</string>
+
+    <string name="sign_in">Identificarse</string>
+    <string name="register">Registrarse</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <string name="user">USUARIO</string>
+    <string name="tax">DATOS FISCALES</string>
+
+    <string name="profile">Perfil</string>
+    <string name="version_number">Número de versión</string>
+    <string name="enterprises">Empresas</string>
+
+    <string name="useTerms">Condiciones de uso</string>
+    <string name="useTermsAccept">Acepto los términos y condiciones de uso</string>
+
+    <string name="confirmMail">Confirmar email</string>
+</resources>

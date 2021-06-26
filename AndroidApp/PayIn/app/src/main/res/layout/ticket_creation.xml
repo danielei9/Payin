@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tool_bar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" >
+
+        <TextView
+            android:id="@+id/txtInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crear ticket"
+            android:textSize="24sp"/>
+
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"
+            android:focusable="false"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvCommerce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/concession"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/spiCommerce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="@string/amount"
+            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            android:drawableRight="@drawable/ic_euro"
+            android:drawableEnd="@drawable/ic_euro" >
+            <requestFocus/>
+        </EditText>
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/concept"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etReference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/reference" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:text="@string/cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="21sp"
+                android:background="@drawable/button_border"
+                android:layout_gravity="center_horizontal|bottom"
+                android:padding="12dp"
+                android:layout_weight="5" />
+
+            <Button
+                android:id="@+id/btnSend"
+                android:text="@string/btnCreate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="21sp"
+                android:background="@drawable/button_border"
+                android:layout_gravity="center_horizontal|bottom"
+                android:padding="12dp"
+                android:layout_weight="5" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

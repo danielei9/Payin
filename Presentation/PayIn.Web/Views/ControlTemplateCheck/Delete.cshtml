@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ControlTemplateCheckFactory.DeleteState,
+	ControlTemplateCheckFactory.DeleteApi,
+	"",
+	//ControlTemplateCheckResources.Delete,
+	"resources.controlTemplateCheck.delete",
+	id: "id"
+))
+{
+	<p translate="resources.controlTemplateCheck.deleteQuestion" translate-values="{ time: '{{arguments.time|xpTime}}' }">Do you want to delete the Template check {{arguments.time|xpTime}}?</p>
+}
+

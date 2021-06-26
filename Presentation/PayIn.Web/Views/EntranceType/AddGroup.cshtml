@@ -1,0 +1,20 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	EntranceTypeFactory.AddGroupName,
+	EntranceTypeFactory.AddGroupApi,
+	"",
+	"resources.entranceType.addGroup",
+	subtitle: "{{temp.eventName}} - {{temp.entranceTypeName}}"
+))
+{
+	<xp-get api="@EntranceTypeFactory.GetApi"
+		xp-success="
+			scope.temp.eventName=scope.arguments.eventName;
+			scope.temp.entranceTypeName=scope.arguments.name;
+			scope.$parent.arguments={};
+		">
+		@(Html.SelectFor<EntranceTypeAddGroupArguments>(x => x.GroupId, "groupName", ServiceGroupFactory.RetrieveSelectorApi))
+	</xp-get>
+}

@@ -1,0 +1,16 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceAddressName;
+
+@using (Html.xpPopupPost(
+	ServiceAddressNameFactory.Create,
+	ServiceAddressNameFactory.CreateApi,
+	"",
+	//ServiceAddressNameResources.Create
+	"resources.serviceAddressName.create"
+))
+{
+	@(Html.ArgumentFor<ServiceAddressNameCreateArguments>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ServiceAddressNameCreateArguments>(x => x.ProviderMap))
+	@*@(Html.ArgumentFor<ServiceAddressNameCreateArguments>(x => x.AddressId))*@
+}

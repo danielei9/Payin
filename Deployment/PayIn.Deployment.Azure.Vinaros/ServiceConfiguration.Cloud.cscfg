@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="PayIn.Deployment.Azure.Vinaros" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="6" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="PayIn.Web">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=paying;AccountKey=$(_paying.key_)" />
+      <Setting name="Files" value="DefaultEndpointsProtocol=https;AccountName=vinarosswat;AccountKey=WoW9ZkH0wvml5wyEAURjzGa81sYHKxYdTujSh3NtbmGkuhSQ/q/ConJGqoXG7eyjgUppy4RyKL9wF6v4BxDQ1Q==;EndpointSuffix=core.windows.net" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="155ce3b2-dcce-45ec-bf19-d30b96bf8a61" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="vinaros.es" thumbprint="EE444C592D610FE19D0E25198E04C17BABDDEF81" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

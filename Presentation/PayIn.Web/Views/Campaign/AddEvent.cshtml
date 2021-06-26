@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	CampaignFactory.AddEventName,
+	CampaignFactory.AddEventApi,
+	"",
+	"resources.campaign.addEvent"
+))
+{
+	@(Html.SelectFor<CampaignAddEventArguments>(x => x.EventId, "eventName", CampaignFactory.EventRetrieveSelectorApi))
+}

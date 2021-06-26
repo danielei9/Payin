@@ -1,0 +1,25 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    AccessControlFactory.CreateName,
+    AccessControlFactory.CreateApi,
+    "",
+    "resources.accessControl.create",
+    isTitleActive: true
+))
+{
+	<div class="panel panel-default" style="margin:-15px 0 15px 0">
+		<div class="panel-heading font-bold" translate="resources.accessControl.enclosureInfo">Enclosure information</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+                <div class="row">
+                    @(Html.ArgumentFor<ApiAccessControlCreateArguments>(x => x.Name))
+                    @(Html.ArgumentFor<ApiAccessControlCreateArguments>(x => x.Schedule))
+                    @(Html.ArgumentFor<ApiAccessControlCreateArguments>(x => x.MaxCapacity))
+                    @(Html.ArgumentFor<ApiAccessControlCreateArguments>(x => x.Map))
+                </div>
+			</div>
+		</div>
+	</div>
+}

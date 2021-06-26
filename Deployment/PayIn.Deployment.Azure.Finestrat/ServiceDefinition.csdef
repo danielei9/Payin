@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="PayIn.Deployment.Azure.Finestrat" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="PayIn.Web" vmsize="ExtraSmall">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Http" endpointName="Http" />
+          <Binding name="Https" endpointName="Https" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Http" protocol="http" port="80" />
+      <InputEndpoint name="Https" protocol="https" port="443" certificate="pay-in.es"/>
+    </Endpoints>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="Files" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="pay-in.es" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+    <Startup>
+      <Task taskType="background" commandLine="Startup.cmd" executionContext="elevated" />
+    </Startup>
+  </WebRole>
+</ServiceDefinition>

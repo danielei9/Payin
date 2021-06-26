@@ -1,0 +1,151 @@
+﻿@using PayIn.Application.Dto.SmartCity.Arguments;
+@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	SensorFactory.GetPowerName,
+	SensorFactory.GetPowerApi,
+	"",
+	"resources.smartCity.sensor.getPower",
+	isTitleActive: true,
+	init:
+		"scope.id = params.id;" +
+		"scope.arguments.period = 1;" +
+		"scope.selectedType = 1;" +
+		"scope.selectedGraph = 1;"
+))
+{
+	<div style="margin-top:-50px;">
+		<div class="row">
+			<div class="form-group col-md-3">
+				<label for="period" class="control-label" translate="resources.smartCity.sensor.getEnergyPeriod">Periodo</label>
+				<select id="period" name="period" class="form-control" ng-model="arguments.period">
+					<option value="1" translate="resources.smartCity.sensor.getPowerPeriodLast24h">Últimas 24h</option>
+					<option value="2" translate="resources.smartCity.sensor.getPowerPeriodDay">Dia específico</option>
+					<option value="3" translate="resources.smartCity.sensor.getPowerPeriodLast30d">Últimos 30d</option>
+					<option value="4" translate="resources.smartCity.sensor.getPowerPeriodMonth">Mes específico</option>
+				</select>
+			</div>
+			<div class="form-group col-md-3" ng-if="arguments.period==2||arguments.period==4">
+				<label for="date" class="control-label ng-scope" translate="resources.smartCity.sensor.getEnergyDate">Desde</label>
+				<div class="input-group date" xp-date="arguments.date">
+					<input data-ng-model="value" id="date" name="date" type="text" class="form-control" autocomplete="off">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<div>
+				<xp-chart
+					xp-model="data"
+					xp-options='{
+						"type": "bar",
+						"scaleBeginAtZero": true,
+						"legend": {
+							"visible": false
+						}
+					}'
+					xp-data='[
+						{
+							"name": "Valores",
+							"value": "p1Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p1Color",
+							"borderColor": "p1Color",
+							"borderWidth": 2
+						},
+						{
+							"name": "Valores",
+							"value": "p2Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p2Color",
+							"borderColor": "p2Color",
+							"borderWidth": 2
+						},
+						{
+							"name": "Valores",
+							"value": "p3Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p3Color",
+							"borderColor": "p3Color",
+							"borderWidth": 2
+						},
+						{
+							"name": "Valores",
+							"value": "p4Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p4Color",
+							"borderColor": "p4Color",
+							"borderWidth": 2
+						},
+						{
+							"name": "Valores",
+							"value": "p5Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p5Color",
+							"borderColor": "p5Color",
+							"borderWidth": 2
+						},
+						{
+							"name": "Valores",
+							"value": "p6Value",
+							"fillTransparency": 0,
+							"backgroundColor": "p6Color",
+							"borderColor": "p6Color",
+							"borderWidth": 2
+						},
+						{
+							"type": "line",
+							"value": "powerContractMin",
+							"borderColor": "\"#aed6f1\"",
+							"borderWidth": 2,
+							"backgroundColor": "\"#aed6f1\""
+						},
+						{
+							"name": "Potencia contratada",
+							"type": "line",
+							"value": "powerContract - powerContractMin",
+							"borderColor": "\"#85c1e9\"",
+							"borderWidth": 2,
+							"backgroundColor": "\"#aed6f1\""
+						},
+						{
+							"type": "line",
+							"value": "powerContractMax - powerContract",
+							"borderColor": "\"#aed6f1\"",
+							"borderWidth": 2,
+							"backgroundColor": "\"#aed6f1\"",
+							"fill": "-2"
+						}
+					]'
+					xp-x-axis='{
+						"data": "timestamp",
+						"isDateTime": true,
+						"stacked": true
+					}'
+					xp-y-axis='{
+						"unity": "kW",
+						"beginAtZero": true,
+						"stacked": true
+					}'>
+				</xp-chart>
+			</div>
+			@*<table class="table table-hover">
+				<thead>
+					<tr>
+						<th translate="resources.smartCity.sensor.timestamp">Timestamp</th>
+						<th translate="resources.smartCity.sensor.value">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in data">
+						<td>@(Html.ColumnFor<ApiSensorGetInstantaneousResult>(x => x.Timestamp))</td>
+						<td>@(Html.ColumnFor<ApiSensorGetInstantaneousResult>(x => x.Value))</td>
+					</tr>
+				</tbody>
+			</table>*@
+		</div>
+	</div>
+}

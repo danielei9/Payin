@@ -1,0 +1,376 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PayIn.DistributedServices.Payments</name>
+    </assembly>
+    <members>
+        <member name="T:PayIn.DistributedServices.Controllers.Api.EntranceTypeController">
+            <summary>
+            Gestión de tipos de entrada
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.GetAll(PayIn.Application.Dto.Payments.Arguments.EntranceTypeGetAllArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeGetAllArguments,PayIn.Application.Dto.Payments.Results.EntranceTypeGetAllResult})">
+            <summary>
+            Obtener listado de tipos de entrada
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Get(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeGetArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeGetArguments,PayIn.Application.Dto.Payments.Results.EntranceTypeGetResult})">
+            <summary>
+            Obtener la información de un tipo de entrada
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Put(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeUpdateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeUpdateArguments})">
+            <summary>
+            Modificar un tipo de entrada
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Post(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeCreateArguments})">
+            <summary>
+            Crear un tipo de entrada
+            </summary>
+            <param name="eventId"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.EntranceTypeImage(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeUpdatePhotoArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeUpdatePhotoArguments})">
+            <summary>
+            Subir una foto del tipo de entrada
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Syncronize(PayIn.Application.Dto.Payments.Arguments.EntranceTypeSyncronizeArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeSyncronizeArguments})">
+            <summary>
+            Sincronizar los tipos de entradas
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Delete(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeDeleteArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeDeleteArguments})">
+            <summary>
+            Eliminar tipo de entrada
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.Relocate(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeRelocateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeRelocateArguments})">
+            <summary>
+            Eliminar tipo de entrada pasando las entradas a otro tipo
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Api.EntranceTypeController.IsVisible(System.Int32,PayIn.Application.Dto.Payments.Arguments.EntranceTypeIsVisibleArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EntranceTypeIsVisibleArguments})">
+            <summary>
+            Ocutar o mostrar un tipo de entrada
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Controllers.Public.EventController">
+            <summary>
+            Gestión de eventos
+            </summary>
+            <remarks>
+            En evento se diferencian varios tipos de fechas:
+            - eventStart y eventEnd se refiere a la fecha-hora de inicio y fin del evento
+            - checkInStart y checkInEnd se refiere a la fecha-hora de inicio y fin del check, o lo que es lo mismo al periodo apertura de puertas
+            </remarks>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.GetAll(PayIn.Application.Dto.Payments.Arguments.EventGetAllArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventGetAllArguments,PayIn.Application.Dto.Payments.Results.EventGetAllResult})">
+            <summary>
+            Obtener listado de eventos
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.Get(System.Int32,PayIn.Application.Dto.Payments.Arguments.EventGetArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventGetArguments,PayIn.Application.Dto.Payments.Results.EventGetResult})">
+            <summary>
+            Obtener la información de un evento
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.Put(System.Int32,PayIn.Application.Dto.Payments.Arguments.EventUpdateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventUpdateArguments})">
+            <summary>
+            Modificar un evento
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.Post(PayIn.Application.Dto.Payments.Arguments.EventCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventCreateArguments})">
+            <summary>
+            Crear un evento
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.EventImage(System.Int32,PayIn.Application.Dto.Payments.Arguments.EventUpdatePhotoArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventUpdatePhotoArguments})">
+            <summary>
+            Subir una foto
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Controllers.Public.EventController.Delete(System.Int32,PayIn.Application.Dto.Payments.Arguments.EventDeleteArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.EventDeleteArguments})">
+            <summary>
+            Eliminar evento
+            </summary>
+            <param name="id"></param>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.Api.ProductController">
+            <summary>
+            Gestor de productos
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.Api.ProductController.Syncronize(PayIn.Application.Dto.Payments.Arguments.ProductSyncronizeArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.ProductSyncronizeArguments})">
+            <summary>
+            Sincronizar la lista de productos
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.Mobile.EntranceController">
+            <summary>
+            Gestor de entradas
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.Mobile.EntranceController.Get(PayIn.Application.Dto.Payments.Arguments.PublicEntranceGetByUserArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicEntranceGetByUserArguments,PayIn.Application.Dto.Payments.Results.MobileEntranceGetAllResult})">
+            <summary>
+            Obtener listado de entradas de un usaurio
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.CampaignCodeController">
+            <summary>
+            Gestiona los Códigos de las campañas de fidelización
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.CampaignCodeController.Create(PayIn.Application.Dto.Payments.Arguments.PublicCampaignCodeCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicCampaignCodeCreateArguments})">
+            <summary>
+            Crear código de una campaña para un usaurio
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.CampaignController">
+            <summary>
+            Gestiona las Campañas de Fidelización
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.CampaignController.RetrieveSelector(PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetAllArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetAllArguments,PayIn.Application.Dto.Payments.Results.PublicCampaignGetAllResult})">
+            <summary>
+            Listado de campañas
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.CampaignController.RetrieveSelector(PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetAllWithLinesArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetAllWithLinesArguments,PayIn.Application.Dto.Payments.Results.PublicCampaignGetAllWithLinesResult})">
+            <summary>
+            Listado de campañas activas a dia de hoy con sus líneas
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.CampaignController.RetrieveSelector(PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetByUserArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetByUserArguments,PayIn.Application.Dto.Payments.Results.PublicCampaignGetByUserResult})">
+            <summary>
+            Listado de campañas
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.CampaignController.RetrieveQr(PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetQrArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicCampaignGetQrArguments,PayIn.Application.Dto.Payments.Results.PublicCampaignGetQrResult})">
+            <summary>
+            Devolver el QR de una campaña
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.EntranceCheckController">
+            <summary>
+            Gestión de validaciones de entrada y salida
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.EntranceCheckController.PostQr(PayIn.Application.Dto.Payments.Arguments.MobileEntranceCheckCreateQrArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.MobileEntranceCheckCreateQrArguments})">
+            <summary>
+            Validar entrada o salida por QR del evento mediante una entrada gestionada por pay[in]
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.EntranceCheckController.PostText(PayIn.Application.Dto.Payments.Arguments.MobileEntranceCheckCreateTextArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.MobileEntranceCheckCreateTextArguments})">
+            <summary>
+            Validar entrada o salida por el texto de debajo del QR  del evento mediante una entrada gestionada por pay[in]
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.EntranceCheckController.PostUserQr(PayIn.Application.Dto.Payments.Arguments.PublicEntranceCheckCreateUserQrArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicEntranceCheckCreateUserQrArguments})">
+            <summary>
+            Validar entrada o salida por QR del evento mediante una entrada que se autogenera en pay[in].
+            </summary>
+            <remarks>
+            Se utiliza para la validación cuando existen entradas que no están introducidas en Pay[in]
+            y por tanto cuando se validan y no existen se introducen en el sistema
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.PaymentMediaController">
+            <summary>
+            Gestión de medios de pago (tarjetas, monederos, ...)
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.PaymentMediaController.GetAllByUser(PayIn.Application.Dto.Payments.Arguments.PublicPaymentMediaGetByUserArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicPaymentMediaGetByUserArguments,PayIn.Application.Dto.Payments.Results.MobilePaymentMediaGetAllResult})">
+            <summary>
+            Obtener listado de medios de pago de un usuario
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:PayIn.DistributedServices.Payments.Controllers.PaymentMediaController.CreateWebCardUser(PayIn.Application.Dto.Payments.Arguments.PublicPaymentMediaCreateWebCardByUserArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicPaymentMediaCreateWebCardByUserArguments})" -->
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.TicketController">
+            <summary>
+            Gestión de tickets
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.Create(PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateAndGetArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateAndGetArguments})">
+            <summary>
+            Crear un ticket
+            </summary>
+            <remarks>
+            Este método se utiliza para enviarle toda la información desde el móvil de forma que el usuario pueda modificar los precios, ...
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.CreatePayedAndGet(PayIn.Application.Dto.Payments.Arguments.PublicTicketCreatePayedAndGetArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketCreatePayedAndGetArguments})">
+            <summary>
+            Crear un ticket ya pagado externamente
+            </summary>
+            <remarks>
+            Este método se utiliza para crear un ticket que cuyo saldo no es recibido por payin sino por la empresa creadora.
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.CreateList(PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateListArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateListArguments})">
+            <summary>
+            Crear un conjunto de tickets
+            </summary>
+            <remarks>
+            Este método se utiliza para enviarle toda la información de varios tickets para almacernarlos
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.CreateEntrances(PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateEntrancesAndGetArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateEntrancesAndGetArguments})">
+            <summary>
+            Crear un ticket para comprar entradas
+            </summary>
+            <remarks>
+            Este método se utiliza para comprar entradas, el sistema ya se encarga de calcular los precios, descuentos y gastos de gestión.
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.CreateEntrances(PayIn.Application.Dto.Payments.Arguments.PublicTicketPayAndCreateWebCardByUserArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketPayAndCreateWebCardByUserArguments})">
+            <summary>
+            Pagar un ticket creando tarjeta simultaneamente
+            </summary>
+            <remarks>
+            Al mismo tiempo que se paga el ticket se devuelve el texto de creación de tarjeta para el IFrame
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.CreateProducts(PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateProductsAndGetArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketCreateProductsAndGetArguments})">
+            <summary>
+            Crear un ticket para comprar productos
+            </summary>
+            <remarks>
+            Este método se utiliza para comprar productos, el sistema ya se encarga de calcular los precios y descuentos.
+            </remarks>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TicketController.Pay(PayIn.Application.Dto.Payments.Arguments.PublicTicketPayUserArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.PublicTicketPayUserArguments},System.Int32)">
+            <summary>
+            Pagar un ticket por parte de una empresa intermediaria
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <param name="id">Id del ticket</param>
+            <returns></returns>
+        </member>
+        <member name="T:PayIn.DistributedServices.Payments.Controllers.PaymentConcessionController">
+            <summary>
+            Gestión de empresas de pagos
+            </summary>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.PaymentConcessionController.RetrieveSelector(PayIn.Application.Dto.Payments.Arguments.PaymentConcessionGetSelectorArguments,Xp.Application.Dto.IQueryBaseHandler{PayIn.Application.Dto.Payments.Arguments.PaymentConcessionGetSelectorArguments,Xp.Application.Dto.SelectorResult})">
+            <summary>
+            Obtener el listado de empresas para un selector
+            </summary>
+            <param name="arguments"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PayIn.DistributedServices.Payments.Controllers.TpvTicketController.Post(PayIn.Application.Dto.Payments.Arguments.TicketTpvCreateArguments,Xp.Application.Dto.IServiceBaseHandler{PayIn.Application.Dto.Payments.Arguments.TicketTpvCreateArguments})">
+            <summary>
+            Método para crear un ticket
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

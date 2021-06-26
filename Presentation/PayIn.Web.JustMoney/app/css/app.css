@@ -1,0 +1,137 @@
+﻿.header_area {
+	height:120px; 
+}
+
+.header_area img {
+	top: 0px;
+	left: -40px;
+	position: absolute;
+	width: 500px;
+	transition: 0.7s;
+}
+
+.sticky img {
+	top: -10px;
+	width: 400px;
+}
+
+.navbar-toggler {
+	z-index: 10;
+}
+
+@media (min-width: 0px) and (max-width: 700px) {
+    .header_area img {
+        width: 260px;
+        top: 0;
+    }
+
+    .productButtons a {
+        font-size: 14px;
+        margin-right: 3px !important;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 800px) {
+	.headerjustmoneycard {
+		width: 0;
+	}
+
+	.headerbutton {
+		font-size: 12px !important;
+		padding: 12px 15px !important;
+	}
+
+	.phone-store-img img {
+		margin-left: -10px;
+		width: 80%;
+		min-width: 150px;
+		max-width: 196px;
+		float: left;
+		display: block;
+	}
+}
+
+@media (min-width: 0px) and (max-width: 991px) {
+	#mosh-navbar {
+		background-color: white;
+		z-index: 10;
+	}
+}
+
+.login-register-btn a {
+	color: white !important;
+	background-color: #003769;
+	border-radius: 5px;
+	width: 130px;
+	text-align: center;
+	font-size: 21px;
+}
+
+
+.contactFormButtonElement {
+	background-color: #F4AE24;
+	width: 190px !important;
+	border: none;
+	color: white;
+	text-align: center;
+	padding: 4px 0;
+	letter-spacing: 2px;
+}
+
+.contactFormNameElement,
+.contactFormEmailElement,
+.contactFormPhoneElement,
+.contactFormMessageElement {
+	border: none;
+	background-color: #f2f2f2;
+	padding: 7px 15px;
+}
+
+.contactFormNameContainer,
+.contactFormEmailContainer,
+.contactFormPhoneContainer {
+	float: left;
+	width: 300px;
+	margin: -10px -5px;
+}
+
+.contactFormMessageContainer {
+	margin-left: 50px;
+	vertical-align: top;
+	display: inline-block;
+	width: 300px;
+	margin-top: 35px;
+}
+
+.contactFormMessageElement {
+	height: 75px !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #1e6dad;
+    background-color: #1e6dad;
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+    transform: translateY(-2px);
+}
+
+.custom-switch .custom-control-label::before {
+    left: -2.25rem;
+    width: 40px;
+    height: 24px;
+    border-radius: 12px !important;
+    transform: translateY(-1px);
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translate(15px,-2px);
+}
+
+.custom-switch .custom-control-label::after {
+    left: -33px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px !important;
+    transform: translateY(-1px);
+}

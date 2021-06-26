@@ -1,0 +1,81 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpList(
+	PaymentFactory.GetAllName,
+	PaymentFactory.GetAllApi,
+	"",
+	"resources.payment.getAll",
+	isTitleActive: true,
+	init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" 
+        + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+	initialSearch: false
+))
+{
+	<div class="table-responsive" data-ng-controller="PaymentGetAllController">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.payment.date">Date</th>
+					<th translate="resources.payment.id">Id</th>
+					<th translate="resources.payment.name">Name</th>
+					<th class="text-right" translate="resources.payment.amount">Amount</th>
+					<th translate="resources.payment.observations">Observations</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success': item.state === 1,'b-l b-5x b-warning': item.state === 4,'b-l b-5x b-danger': item.state === 2 || item.state === 3}">
+					<td class="datetime-column">@(Html.ColumnFor<PaymentsGetAllResult>(x => x.Date, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>@(Html.ColumnFor<PaymentsGetAllResult>(x => x.Id, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>
+                        <span>
+                            @(Html.ColumnFor<PaymentsGetAllResult>(x => x.UidText, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))
+                        </span>
+                        <span ng-if="item.seq">
+                            -
+                            @(Html.ColumnFor<PaymentsGetAllResult>(x => x.Seq, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))
+                        </span>
+                        <span ng-if="item.uid && item.uidText && (item.uid!=item.uidText)">
+                            (
+                            @(Html.ColumnFor<PaymentsGetAllResult>(x => x.Uid, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))
+                            )
+                        </span>
+                        <span>
+                            @(Html.ColumnFor<PaymentsGetAllResult>(x => x.TaxName, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))
+                        </span>
+                    </td>
+					<td class="text-right">
+						@(Html.ColumnFor<PaymentsGetAllResult>(x => x.Amount, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))€ /
+						@(Html.ColumnFor<PaymentsGetAllResult>(x => x.TicketAmount, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))€
+					</td>
+                    <td ng-show="item.refundFromId == null && item.refundToId == null && !item.uid">&nbsp;</td>
+                    <td ng-show="item.refundFromId == null && item.refundToId == null && item.uid">
+                        <span ng-show="item.amount<0">Recarga</span>
+                        <span ng-show="item.amount==0">&nbsp;</span>
+                        <span ng-show="item.amount>0">Pago</span>
+                    </td>
+					<td ng-show="item.refundToId != null" ><span translate="resources.payment.returned">Returned</span> {{item.refundToId}} ({{item.refundtodate| xpDateTime}})</td>
+					<td ng-show="item.refundFromId != null"><span translate="resources.payment.return">Return</span>  {{item.refundFromId}} ({{item.refundfromdate| xpDateTime}})</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legend-graph-color" />
+					<p style="float:left;" translate="resources.payment.payment">Payment</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legend-graph-color" />
+					<p style="float:left;" translate="resources.payment.refund">Refund</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legend-graph-color" />
+					<p style="float:left;" translate="resources.payment.errorPending">Error/Pending</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

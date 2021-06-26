@@ -1,0 +1,59 @@
+/*   #9C6B01     #C48C11      #E9AF30      #FCC858      #FFD782 */
+/*               #e6b400      #ffc900                           */
+
+.bar.bar-payin {
+  border-color: #C48C11;
+  background-color: #E9AF30;
+  background-image: linear-gradient(0deg, #C48C11, #C48C11 50%, transparent 50%);
+  color: #fff;
+  padding-top: 4em;
+}
+.payin-color, 
+.payin-color h1,
+.payin-color h2,
+.payin-color h3,
+.payin-color h4,
+.payin-color h5,
+.payin-color h6 {
+  background-color: #E9AF30;
+  color: #FFF !important;
+}
+
+.bar.bar-payin .title {
+  color: #fff;
+}
+.bar.bar-payin.bar-footer {
+  /*background-image: linear-gradient(180deg, #C48C11, #C48C11 50%, transparent 50%); */
+    background-color: white;
+    opacity: 0.11;
+    
+}
+.bar-payin .button {
+  border-color: #C48C11;
+  background-color: #E9AF30;
+  color: #fff;
+}
+.bar-payin .button:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.bar-payin .button.active, .bar-payin .button.activated {
+  border-color: #C48C11;
+  background-color: #C48C11;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.bar-payin .button.button-clear {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  color: #fff;
+  font-size: 17px;
+}
+.bar-payin .button.button-icon {
+  border-color: transparent;
+  background: none;
+}
+
+.payin-subheader{
+  font-size:3.7vw;
+}

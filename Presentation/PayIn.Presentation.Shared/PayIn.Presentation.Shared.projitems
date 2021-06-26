@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>2c878675-49eb-4f2d-aaff-102c6f5538fb</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PayIn.Presentation</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Design\PaymentD.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Design\HubGetD.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Design\TicketCreateOraD.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Design\PaymentD.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Design\HubGetD.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\appbar.eye.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\appbar.form.basic.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\appbar.image.redeye.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\appbar.qr.png" />
+  </ItemGroup>
+</Project>

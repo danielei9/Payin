@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceCardFactory.LockCardName,
+	ServiceCardFactory.LockCardApi,
+	"",
+	"resources.serviceCard.lock"
+))
+{
+	<p translate="resources.serviceCard.lockQuestion">Do you want to lock this Card?</p>
+}

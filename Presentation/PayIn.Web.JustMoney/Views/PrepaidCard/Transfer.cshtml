@@ -1,0 +1,46 @@
+﻿<div xp-panel ng-init="app.selectedPage='prepaidcardloadfunds'">
+    <xp-list api="/JustMoney/Api/PrepaidCard"
+             initial-search
+             xp-success="
+			 scope.temp.selectedCard=scope.data[0]
+		">
+        <div class="spinner" ng-show="_windowState.isBusy">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <h1>Transferencia de Fondos</h1>
+        <!-- Errors -->
+        <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+            <ul>
+                <li ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <!-- Botonera TAB -->
+        <div class="linksToDifferentCards">
+            <div class="fourLinks" ng-if="data.length>=1" ng-class="{'diffCardLinkActive': temp.selectedCard.id === data[0].id}" ng-click="temp.selectedCard=data[0]"><a>{{data[0].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=2" ng-class="{'diffCardLinkActive': temp.selectedCard.id === data[1].id}" ng-click="temp.selectedCard=data[1]"><a>{{data[1].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=3" ng-class="{'diffCardLinkActive': temp.selectedCard.id === data[2].id}" ng-click="temp.selectedCard=data[2]"><a>{{data[2].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=4" ng-class="{'diffCardLinkActive': temp.selectedCard.id === data[3].id}" ng-click="temp.selectedCard=data[3]"><a>{{data[3].alias}}</a></div>
+        </div>
+
+        <div class="verticalSpacer"></div>
+
+        <!-- Datos del transferencia -->
+        <h6>
+            Puedes cargar tu tarjeta realizando una transferencia a tu cuenta Just Money nº '{{temp.selectedCard.iban}}'.
+            En el concepto escribe <strong>Carga de tarjeta</strong> seguido de tu número de <strong>Card Holder</strong>.
+        </h6>
+        <div class="verticalSpacer"></div>
+        <div style="text-align: center;">
+            <img style="width: 400px;" src="~/app/img/TransferenciaTarjeta.PNG" />
+        </div>
+        <div class="verticalSpacer"></div>
+        <h6>
+            En tu caso: Carga de tarjeta {{temp.selectedCard.cardHolderId}}
+        </h6>
+        <h6>
+            Recibirás el dinero en tu tarjeta Just Money en un plazo de 2 a 3 días.
+        </h6>
+    </xp-list>
+</div>

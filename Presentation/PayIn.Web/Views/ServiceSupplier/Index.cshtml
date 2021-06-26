@@ -1,0 +1,88 @@
+﻿@using PayIn.Application.Dto.Results.ServiceSupplier;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common.Resources;
+
+@using (Html.xpList(
+	ServiceSupplierFactory.GetAllSuppliersName,
+	ServiceSupplierFactory.GetAllSuppliers,
+	"",
+	"resources.serviceSupplier.suppliers",
+	isPaginable: false,
+	isTitleActive: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.serviceSupplier.suppliers">Suppliers</th>
+					<th translate="resources.serviceSupplier.concessions">Concessions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td>@(Html.ColumnFor<ServiceSupplierGetAllResult>(x => x.Name, panelUrl: ServiceSupplierFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td class="table-column">
+						<table class="table table-hover">
+							<tbody>
+								<tr ng-repeat="concession in item.concessions"
+									ng-class="{'b-l b-3x b-success': concession.state === 0,'b-l b-3x b-danger': concession.state === 1 ,'b-l b-3x b-warning': concession.state === 2 || concession.state === 3}">
+									<td class="max-text-size-200" data-ng-show="concession.type==4">@(Html.ColumnFor<ServiceSupplierGetAllResult.Concession>(x => x.Name, panelUrl: ServiceConcessionFactory.UpdateName, id: "{{concession.paymentConcessionId}}", iterator: "concession"))</td>
+									<td class="max-text-size-250" data-ng-show="concession.type==4">
+										&nbsp;
+									</td>
+									<td class="max-text-size-100" data-ng-show="concession.type==4">
+										@(Html.ColumnFor<ServiceSupplierGetAllResult.Concession>(x => x.TypeName, panelUrl: ServiceConcessionFactory.UpdateName, id: "{{concession.paymentConcessionId}}", iterator: "concession"))
+									</td>
+									<td data-ng-show="concession.type==4">
+										&nbsp;
+									</td>
+
+									<td class="max-text-size-200" data-ng-show="concession.type!=4">
+										@(Html.ColumnFor<ServiceSupplierGetAllResult.Concession>(x => x.Name, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{concession.paymentConcessionId}}", iterator: "concession"))
+									</td>
+									<td class="max-text-size-100" data-ng-show="concession.type!=4">
+										@(Html.ColumnFor<ServiceSupplierGetAllResult.Concession>(x => x.CreateConcessionDate, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{concession.paymentConcessionId}}", iterator: "concession"))
+									</td>
+									<td class="max-text-size-100" data-ng-show=" concession.type!=4">
+										@(Html.ColumnFor<ServiceSupplierGetAllResult.Concession>(x => x.TypeName, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{concession.paymentConcessionId}}", iterator: "concession"))
+									</td>
+									<td class="max-text-size-100" data-ng-show="concession.type!=4">
+										<a ui-sref="paymentconcessionupdate({id:{{concession.id}}})" data-xp-navigate>@ServiceSupplierResources.Payin {{concession.payinCommission}}%</a>
+									</td>
+									<td class="max-text-size-100 icon-column" style="text-align:right" data-ng-show="concession.formUrl!=null && concession.formUrl!=&#34;&#34;">
+										<a href="{{concession.formUrl}}">
+											@XpColumns.IconColumn(
+												XpIcons.Save
+											)
+										</a>
+									</td>
+									<td class="max-text-size-100" data-ng-show="concession.formUrl==null || concession.formUrl==&#34;&#34;">
+										&nbsp;
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.globalResources.active">Active</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.globalResources.suspended">Suspended</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.globalResources.removed">Removed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

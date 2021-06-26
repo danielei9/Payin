@@ -1,0 +1,54 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ProductFactory.UpdateName,
+	ProductFactory.UpdateApi,
+	"",
+	"resources.product.updateproduct",
+	init: "scope.arguments.familyName = params.familyName;"
+))
+{
+	<xp-get data-api="@ProductFactory.UpdateApi">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="row">
+						@(Html.ArgumentFor<ProductUpdatePhotoArguments>(x => x.PhotoUrl, fieldUrl: ProductFactory.UpdateImageCropName))						
+					</div>
+				</div>
+                <div class="col-md-9">
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.IsVisible, width: 4))
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.Visibility, width: 4))
+                        @(Html.SelectFor<ProductUpdateArguments>(x => x.FamilyId, "familyName", ProductFamilyFactory.RetrieveSelectorApi, focus: true, width: 4))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.SellableInTpv, width: 4))
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.SellableInWeb, width: 4))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.Code, width: 4))
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.ToConsult, width: 4))
+                        <div ng-hide="arguments.toConsult">
+                            @(Html.ArgumentFor<ProductUpdateArguments>(x => x.Price, width: 4))
+                        </div>
+                        <div data-ng-class="{'has-error':!form.price.$valid}" class="form-group col-md-4" ng-show="arguments.toConsult">
+                            <label for="price" class="control-label ng-scope" translate="resources.product.price">Precio</label>
+                            <div class="input-group bootstrap-touchspin" style="width:100% !important;">
+                                <span class="input-group-addon bootstrap-touchspin-prefix">EUR</span>
+                                <input id="price" name="price" type="text" class="form-control" disabled="disabled" prefix="EUR" value="A consultar" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.Name))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductUpdateArguments>(x => x.Description))
+                    </div>
+                </div>
+			</div>
+		</div>
+	</xp-get>
+}

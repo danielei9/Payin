@@ -1,0 +1,108 @@
+﻿@using PayIn.Application.Dto.Payments.Results.CampaignLine;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	CampaignLineFactory.GetAllName,
+	CampaignLineFactory.GetAllApi,
+	"",
+	"resources.campaignLine.getAll",
+	"{{arguments.title}}",
+	isPaginable: false,
+	isTitleActive: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, CampaignLineFactory.Create("{{$stateParams.id}}"), XpIcons.Plus)
+	},
+	init: "scope.id=params.id"
+))
+{
+	<div class="table-responsive">
+		@*<h4 data-ng-show="data[0].type==3" translate="resources.campaignLine.noMoney">Los clientes no acumulan dinero en las campañas con descuento directo</h4>
+		<h4 data-ng-show="data[0].type!=3" translate="resources.campaignLine.money" translate-values="{ money: '{{data[0].money || 0}}' }">Los clientes llevan acumulados:</h4>*@
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.campaignLine.timeTable">Time table</th>
+					<th translate="resources.campaignLine.quantity">Quantity</th>	
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>					
+				</tr>
+			</thead>
+			<tbody>
+                <tr data-ng-repeat="item in data">
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: CampaignLineFactory.Delete,
+                            id: "{{item.id}}",
+                            arguments: "{\"quantity\":\"{{item.quantity}}\"}"
+                        )
+                    </td>
+                    <td>
+                        <a ng-if="item.sinceTime||item.untilTime" ui-sref="@CampaignLineFactory.UpdateName ({id:{{item.id}}})" xp-navigate>
+                            @(Html.ColumnFor<ApiCampaignLineGetAllResult>(x => x.SinceTime, panelUrl: CampaignLineFactory.UpdateName, id: "{{item.id}}"))
+                            -
+                            @(Html.ColumnFor<ApiCampaignLineGetAllResult>(x => x.UntilTime, panelUrl: CampaignLineFactory.UpdateName, id: "{{item.id}}"))
+                        </a>
+                        <a ng-if="!item.sinceTime&&!item.untilTime" ui-sref="@CampaignLineFactory.UpdateName ({id:{{item.id}}})" xp-navigate>
+                            <span translate="resources.campaignLine.always">
+                        </a>
+
+                    </td>
+                    <td>
+                        @*
+							//Percent = 1,
+							//Money = 2,
+							DirectDiscount = 3,
+							Manual = 4,
+							DirectPrice = 5,
+							DirectPercentDiscount = 6
+                        *@
+                        <a ui-sref="@CampaignLineFactory.UpdateName ({id:{{item.id}}})" data-xp-navigate>
+                            <span ng-if="item.type==3||item.type==6">-</span>
+                            <span ng-if="item.type==4">Manual</span>
+                            <span ng-if="item.type!=4">{{item.quantity}}</span>
+                            <span ng-if="item.type==3||item.type==5">€</span>
+                            <span ng-if="item.type==6">%</span>
+                        </a>
+                        <br />
+                    </td>
+                    <td class="icon-column" ng-if="!item.allProduct">
+                        <a data-ui-sref="@CampaignLineFactory.GetByServiceGroupName ({id:{{item.id}}})" data-xp-navigate>
+                            <i class='@XpIcons.Users2'></i>
+                            <span ng-if="item.serviceGroupCount" class="badge badge-sm up bg-info ng-binding" style="width:auto !important">{{item.serviceGroupCount}}</span>
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-if="!item.allProduct">
+                        <a data-ui-sref="@CampaignLineFactory.GetByServiceUserName  ({id:{{item.id}}})" data-xp-navigate>
+                            <i class='@XpIcons.User'></i>
+                            <span ng-if="item.serviceUserCount" class="badge badge-sm up bg-info ng-binding" style="width:auto !important">{{item.serviceUserCount}}</span>
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-if="!item.allProduct">
+                        <a data-ui-sref="@CampaignLineFactory.GetByProductFamilyName ({id:{{item.id}}})" data-xp-navigate>
+                            <i class='@XpIcons.Cubes'></i>
+                            <span ng-if="item.productFamilyCount" class="badge badge-sm up bg-info ng-binding" style="width:auto !important">{{item.productFamilyCount}}</span>
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-if="!item.allProduct">
+                        <a data-ui-sref="@CampaignLineFactory.GetByProductName ({id:{{item.id}}})" data-xp-navigate>
+                            <i class='@XpIcons.Cube'></i>
+                            <span ng-if="item.productCount" class="badge badge-sm up bg-info ng-binding" style="width:auto !important">{{item.productCount}}</span>
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-if="!item.allEntranceType">
+                        <a data-ui-sref="@CampaignLineFactory.GetByEntranceTypeName ({id:{{item.id}}})" data-xp-navigate>
+                            <i class='@XpIcons.Ticket'></i>
+                            <span ng-if="item.entranceTypeCount" class="badge badge-sm up bg-info ng-binding" style="width:auto !important">{{item.entranceTypeCount}}</span>
+                        </a>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+}

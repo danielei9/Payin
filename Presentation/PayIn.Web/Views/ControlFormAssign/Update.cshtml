@@ -1,0 +1,28 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormAssign;
+@using PayIn.Common;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlFormAssignFactory.UpdateStateName,
+	ControlFormAssignFactory.UpdateApi,
+	"",
+	"resources.controlFormAssign.update"
+	//ControlFormAssignResources.Update//,
+	//init: "scope.arguments.ids=params.id;"
+))
+{
+	<xp-get data-api="@ControlFormAssignFactory.UpdateGetApi">
+		<div ng-repeat="assign in arguments.assigns">
+			<h3 class="col-md-12">
+				<img data-ng-show="assign.type===@((int)PresenceType.Entrance)" src="~/Images/p-in.png" alt="P[in]" style="height:50px; margin:-20px 0 -15px 0;" />
+				<img data-ng-show="assign.type===@((int)PresenceType.Exit)" src="~/Images/p-out.png" alt="P[out]" style="height:50px; margin:-20px 0 -15px 0;" />
+				<img data-ng-show="assign.type===@((int)PresenceType.Round)" src="~/Images/p-check.png" alt="P[check]" style="height:50px; margin:-20px 0 -15px 0;" />
+				{{assign.formName}} 
+				<small>{{assign.dateTime|xpDateTime}}</small>
+			</h3>
+			<div ng-repeat="arg in assign.values" ng-controller="ControlFormAssignUpdate_ValueController"></div>
+		</div>
+	</xp-get>
+}
+

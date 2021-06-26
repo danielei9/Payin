@@ -1,0 +1,111 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+	EntranceFactory.GetAllName,
+	EntranceFactory.GetAllApi,
+	"",
+	"resources.entrance.retrieveAll",
+	"{{data[0].entranceTypeName}} ({{data[0].eventName}})",
+	init: "scope.id=params.id",
+	isTitleActive: true,
+	initialSearch: true,
+	showFormButtons: true
+	//actions: new ActionLink[] {
+	//	new ActionLink(ActionLink.ActionLinkType.Panel, EntranceFactory.Invite("{{$stateParams.id}}"), XpIcons.Loyalty)
+	//}
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th translate="resources.entrance.code">Code</th>
+                    <th translate="resources.entrance.name">Name</th>
+                    <th translate="resources.entrance.login">Mail</th>
+                    <th translate="resources.entrance.totalAmount">TotalAmount</th>
+                    @*<th translate="resources.entrance.checks">Checks</th>*@
+                    <th translate="resources.entrance.ticket">Ticket</th>
+                    <th class="icon-column"> &nbsp;</th>
+                </tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="item in data"
+					ng-class="{
+						'b-l b-5x b-success':item.state==1,
+						'b-l b-5x b-warning':item.state==2,
+						'b-l b-5x b-danger':item.state==5,
+						'b-l b-5x b-info': item.state==3 || item.state==4
+					}"
+				>
+					<td class="icon-column" ng-show="item.state==1">
+						@XpColumns.IconColumn(
+							XpIcons.Pause,
+							popupUrl: EntranceFactory.SuspendName,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+                    <td class="icon-column" ng-show="item.state==2 || item.state==4 || item.state==5">
+                       &nbsp;
+                    </td>
+					<td class="icon-column" ng-show="item.state==3">
+						@XpColumns.IconColumn(
+							XpIcons.Play,
+							popupUrl: EntranceFactory.UnsuspendName,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.Code))</td>
+                    <td>
+						@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.UserName)) 
+						@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.LastName))
+					</td>
+					<td>@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.Login))</td>
+					<td>@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.TotalAmount))€ 
+						<span ng-show="item.extraPrice">
+							+
+							@(Html.ColumnFor<ApiEntranceGetAllResult>(x => x.ExtraPrice))€
+						</span>
+					</td>
+					@*<td class="icon-column">
+						<a data-ui-sref='@CheckFactory.GetAllName ({id:{{item.id}}})' data-xp-navigate> <i class='@XpIcons.Arrows'> </i></a>
+					</td>*@
+					<td class="icon-column">
+						<a data-ui-sref='@TicketFactory.DetailsName ({id:{{item.ticketId}}})' data-xp-navigate> <i class='@XpIcons.Eur'> </i></a>
+					</td>
+					<td>
+                        <a ui-sref='@EntranceFormValueFactory.GetAllName ({id:{{item.id}}})' data-xp-navigate ng-show="features.hasForms()"> <i class='@XpIcons.Search'></i></a>
+                        <span ng-hide="features.hasForms()">&nbsp;</span>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+		<footer class="panel-footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12 col-sm-3">
+						<div style="background-color:#27C24C;" class="legend-graph-color" />
+						<p style="float:left;" translate="resources.entrance.activeLeyend" translate-values="{count: (data|filter:{state:1}).length}">Active</p>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<div style="background-color:#FAD733;" class="legend-graph-color" />
+						<p style="float:left;" translate="resources.entrance.validatedLeyend" translate-values="{count: (data|filter:{state:2}).length}">Validated</p>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<div style="background-color:#F05050;" class="legend-graph-color" />
+						<p style="float:left;" translate="resources.entrance.returnedLeyend" translate-values="{count: (data|filter:{state:5}).length}">Returned</p>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<div style="background-color:#23b7e5;" class="legend-graph-color" />
+						<p style="float:left;" translate="resources.entrance.pending/suspendedLeyend" translate-values="{count: (data|filter:{state:3}).length+(data|filter:{state:4}).length}">Pending/Suspended</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+}

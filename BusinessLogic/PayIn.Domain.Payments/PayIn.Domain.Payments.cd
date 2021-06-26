@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayIn.Domain.Payments.PaymentMedia">
+    <Position X="17.5" Y="6.25" Width="1.75" />
+    <Members>
+      <Method Name="PaymentMedia" Hidden="true" />
+      <Property Name="PurseId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Payments" Type="PayIn.Domain.Payments.Payment">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.747" Y="0.089" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Recharges" Type="PayIn.Domain.Payments.Recharge" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="8.875" />
+        <Point X="16.521" Y="8.875" Type="JumpStart" />
+        <Point X="16.354" Y="8.875" Type="JumpEnd" />
+        <Point X="16.333" Y="8.875" Type="JumpStart" />
+        <Point X="16.167" Y="8.875" Type="JumpEnd" />
+        <Point X="15.833" Y="8.875" Type="JumpStart" />
+        <Point X="15.667" Y="8.875" Type="JumpEnd" />
+        <Point X="15.654" Y="8.875" Type="JumpStart" />
+        <Point X="15.487" Y="8.875" Type="JumpEnd" />
+        <Point X="13.438" Y="8.875" />
+        <Point X="13.438" Y="10.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCBAAEABAAAAIgQCAAAAGAoEAQg4DAIAAAA=</HashCode>
+      <FileName>PaymentMedia.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Purse" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Payments" />
+      <Property Name="Recharges" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Ticket">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Property Name="PaymentUserId" Hidden="true" />
+      <Property Name="PaymentWorkerId" Hidden="true" />
+      <Property Name="TemplateId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Shipment" Type="PayIn.Domain.Payments.Shipment" FixedFromPoint="true">
+      <Path>
+        <Point X="8" Y="1.587" />
+        <Point X="6" Y="1.587" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PaymentWorker" Type="PayIn.Domain.Payments.PaymentWorker" FixedFromPoint="true">
+      <Path>
+        <Point X="8" Y="3.644" />
+        <Point X="5.25" Y="3.644" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgECgAEDCABAAEAAEAiCAAgAAGEFDCcABJgAACEA=</HashCode>
+      <FileName>Ticket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+      <Property Name="PaymentUser" />
+      <Property Name="Shipment" />
+      <Property Name="PaymentWorker" />
+      <Property Name="Template" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Payments" />
+      <Property Name="Lines" />
+      <Property Name="Recharges" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Payment">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <Members>
+      <Property Name="LiquidationId" Hidden="true" />
+      <Method Name="Payment" Hidden="true" />
+      <Property Name="PaymentMediaId" Hidden="true" />
+      <Property Name="RefundFromId" Hidden="true" />
+      <Property Name="TicketId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PaymentMedia" Type="PayIn.Domain.Payments.PaymentMedia">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.201" Y="1.062" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Ticket" Type="PayIn.Domain.Payments.Ticket">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.099" Y="-0.221" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Liquidation" Type="PayIn.Domain.Payments.Liquidation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="5.126" />
+        <Point X="11.125" Y="5.126" />
+        <Point X="11.125" Y="6.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RefundFrom" Type="PayIn.Domain.Payments.Payment" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.75" Y="3.375" />
+        <Point X="14" Y="3.375" />
+        <Point X="14" Y="2.861" />
+        <Point X="13.75" Y="2.861" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RefundTo" Type="PayIn.Domain.Payments.Payment" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.75" Y="4.456" />
+        <Point X="14.416" Y="4.456" />
+        <Point X="14.416" Y="5.074" />
+        <Point X="13.75" Y="5.074" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ECECjAAAAACAAAACABAEAiCAAAgA+FABAwAABAAACAA=</HashCode>
+      <FileName>Payment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentMedia" />
+      <Property Name="Ticket" />
+      <Property Name="Liquidation" />
+      <Property Name="RefundFrom" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="RefundTo" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Gateway">
+    <Position X="21" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Gateway.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.PaymentConcession">
+    <Position X="0.5" Y="6.5" Width="2" />
+    <Members>
+      <Method Name="PaymentConcession" Hidden="true" />
+      <Property Name="TicketTemplateId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Shipments" Type="PayIn.Domain.Payments.Shipment" FixedToPoint="true">
+      <Path>
+        <Point X="1.925" Y="6.5" />
+        <Point X="1.925" Y="1.375" />
+        <Point X="4.5" Y="1.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PaymentWorkers" Type="PayIn.Domain.Payments.PaymentWorker" FixedFromPoint="true">
+      <Path>
+        <Point X="2.5" Y="9.793" />
+        <Point X="2.875" Y="9.793" />
+        <Point X="2.875" Y="4.246" />
+        <Point X="3.385" Y="4.246" Type="JumpStart" />
+        <Point X="3.552" Y="4.246" Type="JumpEnd" />
+        <Point X="3.75" Y="4.246" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CQxCgEABCECAABQIAABUAAARAjeQIkIGCAAAYgIAAAQ=</HashCode>
+      <FileName>PaymentConcession.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TicketTemplate" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tickets" />
+      <Property Name="Shipments" />
+      <Property Name="Liquidations" />
+      <Property Name="PaymentWorkers" />
+      <Property Name="Campaigns" />
+      <Property Name="PaymentConcessionCampaigns" />
+      <Property Name="PaymentUsers" />
+      <Property Name="Purses" />
+      <Property Name="PaymentConcessionPurses" />
+      <Property Name="EntranceSystems" />
+      <Property Name="Exhibitors" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Liquidation">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="Liquidation" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Payments" Type="PayIn.Domain.Payments.Payment" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.562" Y="6.5" />
+        <Point X="10.562" Y="4.427" />
+        <Point X="12.25" Y="4.427" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Recharges" Type="PayIn.Domain.Payments.Recharge" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="8.938" />
+        <Point X="12.625" Y="8.938" />
+        <Point X="12.625" Y="10.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAFBQAAAEAAAAAAAgAAAEEQQCAAABAAAQEA=</HashCode>
+      <FileName>Liquidation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Payments" />
+      <Property Name="Recharges" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Log">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Log" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAQAAAAAAAAAAiCIAAAQAIAAQAAAAAAA=</HashCode>
+      <FileName>Log.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Arguments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.LogArgument">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="LogId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAgAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>LogArgument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Log" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.PaymentWorker">
+    <Position X="3.75" Y="3.25" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="PaymentWorker" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Tickets" Type="PayIn.Domain.Payments.Ticket" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="3.415" />
+        <Point X="8" Y="3.415" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Payments.PaymentConcession" FixedFromPoint="true">
+      <Path>
+        <Point X="3.75" Y="3.5" />
+        <Point X="3.552" Y="3.5" Type="JumpStart" />
+        <Point X="3.385" Y="3.5" Type="JumpEnd" />
+        <Point X="2.327" Y="3.5" Type="JumpStart" />
+        <Point X="2.161" Y="3.5" Type="JumpEnd" />
+        <Point X="2.009" Y="3.5" Type="JumpStart" />
+        <Point X="1.842" Y="3.5" Type="JumpEnd" />
+        <Point X="0.966" Y="3.5" />
+        <Point X="0.966" Y="6.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAAAAAQAAAAAAEAACAAQBAAAAAA=</HashCode>
+      <FileName>PaymentWorker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tickets" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Payments.TicketTemplate">
+    <Position X="3.25" Y="10" Width="2" />
+    <Members>
+      <Method Name="TicketTemplate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAYAAAAEAIAAgAAAgAEAgEQAAQAgIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TicketTemplate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tickets" />
+      <Property Name="Concessions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Shipment">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="Shipment" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Tickets" Type="PayIn.Domain.Payments.Ticket" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="1.25" />
+        <Point X="7" Y="1.25" />
+        <Point X="7" Y="1.218" />
+        <Point X="8" Y="1.218" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Payments.PaymentConcession" FixedFromPoint="true">
+      <Path>
+        <Point X="4.5" Y="1.688" />
+        <Point X="2.244" Y="1.688" />
+        <Point X="2.244" Y="6.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAEAAAAASAAAAAAEAACAAABAAAAEA=</HashCode>
+      <FileName>Shipment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tickets" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.PaymentUser">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="PaymentUser" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAAAAAQAAAAAAEAACAAQBAAAAAA=</HashCode>
+      <FileName>PaymentUser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tickets" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Campaign">
+    <Position X="7" Y="15.75" Width="1.75" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Concession" Type="PayIn.Domain.Payments.PaymentConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="18.106" />
+        <Point X="5.865" Y="18.106" Type="JumpStart" />
+        <Point X="5.698" Y="18.106" Type="JumpEnd" />
+        <Point X="3.115" Y="18.106" Type="JumpStart" />
+        <Point X="2.948" Y="18.106" Type="JumpEnd" />
+        <Point X="2.896" Y="18.106" Type="JumpStart" />
+        <Point X="2.729" Y="18.106" Type="JumpEnd" />
+        <Point X="2.396" Y="18.106" Type="JumpStart" />
+        <Point X="2.229" Y="18.106" Type="JumpEnd" />
+        <Point X="1.919" Y="18.106" Type="JumpStart" />
+        <Point X="1.752" Y="18.106" Type="JumpEnd" />
+        <Point X="1.368" Y="18.106" Type="JumpStart" />
+        <Point X="1.202" Y="18.106" Type="JumpEnd" />
+        <Point X="1.044" Y="18.106" Type="JumpStart" />
+        <Point X="0.877" Y="18.106" Type="JumpEnd" />
+        <Point X="0.845" Y="18.106" Type="JumpStart" />
+        <Point X="0.678" Y="18.106" Type="JumpEnd" />
+        <Point X="0.562" Y="18.106" />
+        <Point X="0.562" Y="13.18" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TargetEvents" Type="PayIn.Domain.Payments.Event" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.078" Y="18.906" />
+        <Point X="7.078" Y="24.125" />
+        <Point X="6" Y="24.125" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAEAAgAEAAlAAAAAAAAACAAEAACEAgBBABAEA=</HashCode>
+      <FileName>Campaign.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="CampaignLines" />
+      <Property Name="PaymentConcessionCampaigns" />
+      <Property Name="TargetEvents" />
+      <Property Name="CampaignCodes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.CampaignLine">
+    <Position X="12.25" Y="14.5" Width="1.5" />
+    <Members>
+      <Property Name="CampaignId" Hidden="true" />
+      <Method Name="CampaignLine" Hidden="true" />
+      <Property Name="PurseId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAQAAAAABAAAEEAEEAAAAAAAAEAEAIAAQYghAABAAQ=</HashCode>
+      <FileName>CampaignLine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Purse" />
+      <Property Name="Campaign" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Recharges" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Purse">
+    <Position X="12.25" Y="19.25" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="Purse" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PaymentConcessionPurses" Type="PayIn.Domain.Payments.PaymentConcessionPurse" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="20" />
+        <Point X="10" Y="20" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAQQAAAAAFAACAAgBBIAAAA=</HashCode>
+      <FileName>Purse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="PaymentMedias" />
+      <Property Name="PaymentConcessionPurses" />
+      <Property Name="CampaignLines" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.PaymentConcessionPurse">
+    <Position X="7.75" Y="19.75" Width="2.25" />
+    <Members>
+      <Property Name="PaymentConcessionId" Hidden="true" />
+      <Property Name="PurseId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Purse" Type="PayIn.Domain.Payments.Purse" FixedFromPoint="true">
+      <Path>
+        <Point X="10" Y="20.375" />
+        <Point X="12.25" Y="20.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIEAAAgBAAAAAA=</HashCode>
+      <FileName>PaymentConcessionPurse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentConcession" />
+      <Property Name="Purse" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.PaymentConcessionCampaign">
+    <Position X="3.25" Y="16" Width="2.25" />
+    <Members>
+      <Property Name="CampaignId" Hidden="true" />
+      <Property Name="PaymentConcessionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAEAAAAAAAAAAAAEAAAAEAAAABAAAAAA=</HashCode>
+      <FileName>PaymentConcessionCampaign.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentConcession" />
+      <Property Name="Campaign" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Recharge">
+    <Position X="12.25" Y="10.25" Width="1.5" />
+    <Members>
+      <Property Name="CampaignLineId" Hidden="true" />
+      <Property Name="LiquidationId" Hidden="true" />
+      <Property Name="PaymentMediaId" Hidden="true" />
+      <Property Name="TicketId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Liquidation" Type="PayIn.Domain.Payments.Liquidation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.875" Y="10.25" />
+        <Point X="12.875" Y="8.701" />
+        <Point X="11.5" Y="8.701" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PaymentMedia" Type="PayIn.Domain.Payments.PaymentMedia" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.125" Y="10.25" />
+        <Point X="13.125" Y="8.312" />
+        <Point X="15.487" Y="8.312" Type="JumpStart" />
+        <Point X="15.654" Y="8.312" Type="JumpEnd" />
+        <Point X="15.667" Y="8.312" Type="JumpStart" />
+        <Point X="15.833" Y="8.312" Type="JumpEnd" />
+        <Point X="16.167" Y="8.312" Type="JumpStart" />
+        <Point X="16.333" Y="8.312" Type="JumpEnd" />
+        <Point X="16.354" Y="8.312" Type="JumpStart" />
+        <Point X="16.521" Y="8.312" Type="JumpEnd" />
+        <Point X="17.5" Y="8.312" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAAhAAAAAAAAAACAIBAAACAAAAAoFABAwAAAAAACAA=</HashCode>
+      <FileName>Recharge.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Liquidation" />
+      <Property Name="Ticket" />
+      <Property Name="PaymentMedia" />
+      <Property Name="CampaignLine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.TicketLine">
+    <Position X="15" Y="0.5" Width="2" />
+    <Members>
+      <Property Name="EntranceTypeId" Hidden="true" />
+      <Property Name="TicketId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Entrances" Type="PayIn.Domain.Payments.Entrance" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.438" Y="4.233" />
+        <Point X="16.438" Y="26.91" />
+        <Point X="15" Y="26.91" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="EntranceType" Type="PayIn.Domain.Payments.EntranceType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.75" Y="4.233" />
+        <Point X="15.75" Y="22.391" />
+        <Point X="11.5" Y="22.391" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EgACAQAAAAAQGEACAABAAACAABAIgBAAAQAAgAAAADA=</HashCode>
+      <FileName>TicketLine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ticket" />
+      <Property Name="EntranceType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Entrances" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.CampaignCode">
+    <Position X="7" Y="12.75" Width="1.5" />
+    <Members>
+      <Property Name="CampaignId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Campaign" Type="PayIn.Domain.Payments.Campaign" FixedToPoint="true">
+      <Path>
+        <Point X="7.375" Y="14.367" />
+        <Point X="7.375" Y="15.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAgAAAAAAEAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>CampaignCode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Campaign" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Event">
+    <Position X="4" Y="23.75" Width="2" />
+    <Members>
+      <Property Name="EntranceSystemId" Hidden="true" />
+      <Property Name="PaymentConcessionId" Hidden="true" />
+      <Property Name="ProfileId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="EntranceTypes" Type="PayIn.Domain.Payments.EntranceType" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="25.188" />
+        <Point X="9.75" Y="25.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Entrances" Type="PayIn.Domain.Payments.Entrance" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="27.562" />
+        <Point X="10.667" Y="27.562" Type="JumpStart" />
+        <Point X="10.833" Y="27.562" Type="JumpEnd" />
+        <Point X="10.854" Y="27.562" Type="JumpStart" />
+        <Point X="11.021" Y="27.562" Type="JumpEnd" />
+        <Point X="13.5" Y="27.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Contacts" Type="PayIn.Domain.Payments.Contact" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="28.188" />
+        <Point X="6.188" Y="28.188" />
+        <Point X="6.188" Y="31.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Campaigns" Type="PayIn.Domain.Payments.Campaign" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="24.288" />
+        <Point X="7.219" Y="24.288" />
+        <Point X="7.219" Y="18.906" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BMgAAAAAAEggEFAAgBAoQASCAAEAAABMAFQARIAAiFA=</HashCode>
+      <FileName>Event.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentConcession" />
+      <Property Name="EntranceSystem" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Exhibitors" />
+      <Property Name="EntranceTypes" />
+      <Property Name="Entrances" />
+      <Property Name="EventImages" />
+      <Property Name="EventForms" />
+      <Property Name="Contacts" />
+      <Property Name="Campaigns" />
+      <Property Name="Notices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EntranceType">
+    <Position X="9.75" Y="21.5" Width="1.75" />
+    <Members>
+      <Property Name="EventId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Event" Type="PayIn.Domain.Payments.Event" FixedFromPoint="true">
+      <Path>
+        <Point X="9.75" Y="25.375" />
+        <Point X="6" Y="25.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Entrances" Type="PayIn.Domain.Payments.Entrance" FixedFromPoint="true">
+      <Path>
+        <Point X="11.5" Y="26.375" />
+        <Point X="13.5" Y="26.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TicketLines" Type="PayIn.Domain.Payments.TicketLine" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.5" Y="22.188" />
+        <Point X="15.57" Y="22.188" />
+        <Point X="15.57" Y="4.233" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BEIAAAAkAQggEAAAkFAkAASABgQBAARAAAAABBAACBA=</HashCode>
+      <FileName>EntranceType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Event" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Entrances" />
+      <Property Name="EntranceTypeForms" />
+      <Property Name="TicketLines" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EntranceTypeForm">
+    <Position X="10" Y="29.75" Width="1.75" />
+    <Members>
+      <Property Name="EntranceTypeId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="EntranceType" Type="PayIn.Domain.Payments.EntranceType" FixedFromPoint="true">
+      <Path>
+        <Point X="10.938" Y="29.75" />
+        <Point X="10.938" Y="27.156" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAQAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>EntranceTypeForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EntranceType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Entrance">
+    <Position X="13.5" Y="25.25" Width="1.5" />
+    <Members>
+      <Method Name="Entrance" Hidden="true" />
+      <Property Name="EntranceTypeId" Hidden="true" />
+      <Property Name="EventId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="EntranceType" Type="PayIn.Domain.Payments.EntranceType" FixedFromPoint="true">
+      <Path>
+        <Point X="13.5" Y="26.188" />
+        <Point X="11.5" Y="26.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Event" Type="PayIn.Domain.Payments.Event" FixedFromPoint="true">
+      <Path>
+        <Point X="13.5" Y="27.375" />
+        <Point X="11.021" Y="27.375" Type="JumpStart" />
+        <Point X="10.854" Y="27.375" Type="JumpEnd" />
+        <Point X="10.833" Y="27.375" Type="JumpStart" />
+        <Point X="10.667" Y="27.375" Type="JumpEnd" />
+        <Point X="6" Y="27.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TicketLine" Type="PayIn.Domain.Payments.TicketLine" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="26.688" />
+        <Point X="16.25" Y="26.688" />
+        <Point X="16.25" Y="4.233" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FormValues" Type="PayIn.Domain.Payments.EntranceFormValue" FixedFromPoint="true">
+      <Path>
+        <Point X="14.188" Y="28.858" />
+        <Point X="14.188" Y="29.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Contacts" Type="PayIn.Domain.Payments.Contact" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="28.188" />
+        <Point X="11.021" Y="28.188" Type="JumpStart" />
+        <Point X="10.854" Y="28.188" Type="JumpEnd" />
+        <Point X="10.833" Y="28.188" Type="JumpStart" />
+        <Point X="10.667" Y="28.188" Type="JumpEnd" />
+        <Point X="7.188" Y="28.188" />
+        <Point X="7.188" Y="31.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAAQAQggACAAAABIAAAqAAAAAiAAAAAAAQAQBAAAACg=</HashCode>
+      <FileName>Entrance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EntranceType" />
+      <Property Name="Event" />
+      <Property Name="TicketLine" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="FormValues" />
+      <Property Name="Contacts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Contact">
+    <Position X="6" Y="31.5" Width="1.5" />
+    <Members>
+      <Property Name="EventId" Hidden="true" />
+      <Property Name="ExhibitorId" Hidden="true" />
+      <Property Name="VisitorEntranceId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Event" Type="PayIn.Domain.Payments.Event" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.375" Y="31.5" />
+        <Point X="6.375" Y="28" />
+        <Point X="6" Y="28" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Exhibitor" Type="PayIn.Domain.Payments.Exhibitor" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="32.438" />
+        <Point X="4.75" Y="32.438" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="VisitorEntrance" Type="PayIn.Domain.Payments.Entrance" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="31.5" />
+        <Point X="7" Y="28" />
+        <Point X="10.667" Y="28" Type="JumpStart" />
+        <Point X="10.833" Y="28" Type="JumpEnd" />
+        <Point X="10.854" Y="28" Type="JumpStart" />
+        <Point X="11.021" Y="28" Type="JumpEnd" />
+        <Point X="13.5" Y="28" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAgAAAAAAgAAQAAIAABAgAAAAAAAAAAFAAAAAA=</HashCode>
+      <FileName>Contact.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Event" />
+      <Property Name="Exhibitor" />
+      <Property Name="VisitorEntrance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EntranceSystem">
+    <Position X="0.5" Y="21.5" Width="2" />
+    <NestedTypes>
+      <Class Name="PayIn.Domain.Payments.EntranceSystem.Codes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EntranceSystem.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAEAUAAAEAAAACQAAUAAgAgAAAAAQAAACAAAAA=</HashCode>
+      <FileName>EntranceSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Events" />
+      <Property Name="PaymentConcessions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EventForm">
+    <Position X="7.75" Y="29.75" Width="1.5" />
+    <Members>
+      <Property Name="EventId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Event" Type="PayIn.Domain.Payments.Event" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="30.375" />
+        <Point X="7.271" Y="30.375" Type="JumpStart" />
+        <Point X="7.104" Y="30.375" Type="JumpEnd" />
+        <Point X="7.083" Y="30.375" Type="JumpStart" />
+        <Point X="6.917" Y="30.375" Type="JumpEnd" />
+        <Point X="6.458" Y="30.375" Type="JumpStart" />
+        <Point X="6.292" Y="30.375" Type="JumpEnd" />
+        <Point X="6.271" Y="30.375" Type="JumpStart" />
+        <Point X="6.104" Y="30.375" Type="JumpEnd" />
+        <Point X="5.562" Y="30.375" />
+        <Point X="5.562" Y="28.637" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Event" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EventImage">
+    <Position X="0.5" Y="26" Width="1.5" />
+    <Members>
+      <Property Name="EventId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAgAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Event" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Exhibitor">
+    <Position X="2.75" Y="31" Width="2" />
+    <Members>
+      <Property Name="PaymentConcessionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAgAAAAACAAAEAAAAAAAAQAAgAAAAAGAAAAJAAAAAA=</HashCode>
+      <FileName>Exhibitor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PaymentConcession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Events" />
+      <Property Name="Contacts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.Notice">
+    <Position X="0.5" Y="28" Width="1.5" />
+    <Members>
+      <Property Name="EventId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAgACggEAAAgAAAAAQAAgAAgAAAAAAABAAAAAA=</HashCode>
+      <FileName>Notice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Event" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="NoticeImages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.EntranceFormValue">
+    <Position X="13.5" Y="29.75" Width="1.75" />
+    <Members>
+      <Property Name="EntranceId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Entrance" Type="PayIn.Domain.Payments.Entrance" FixedToPoint="true">
+      <Path>
+        <Point X="14.375" Y="29.75" />
+        <Point X="14.375" Y="28.858" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABA=</HashCode>
+      <FileName>EntranceFormValue.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Entrance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Payments.NoticeImage">
+    <Position X="0.5" Y="31.75" Width="1.5" />
+    <Members>
+      <Property Name="NoticeId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAACAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NoticeImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Notice" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

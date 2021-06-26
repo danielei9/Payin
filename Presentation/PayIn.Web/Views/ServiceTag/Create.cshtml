@@ -1,0 +1,18 @@
+﻿@using PayIn.Application.Dto.Arguments.ServiceTag;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServiceTagFactory.Create,
+	ServiceTagFactory.CreateApi,
+	"",
+	//ServiceTagResources.Create,
+	"resources.serviceTag.create",
+	init: "scope.arguments.itemId = params.itemId;"
+))
+{
+	@(Html.ArgumentFor<ServiceTagCreateArguments>(x => x.Type))
+	@(Html.SelectFor  <ServiceTagCreateArguments>(x => x.SupplierId, "supplierName", ServiceSupplierFactory.GetSelectorApi))
+	@(Html.ArgumentFor<ServiceTagCreateArguments>(x => x.Reference))
+}
+

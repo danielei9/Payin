@@ -1,0 +1,29 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlTemplateFactory.Update,
+	ControlTemplateFactory.UpdateApi,
+	"",
+	//ControlTemplateResources.Update
+	"resources.controlTemplate.update"
+))
+{
+<xp-get data-api="@ControlTemplateFactory.GetApi">
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Observations))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.CheckDuration))
+	<div class="form-group col-md-12">
+		<label for="checkDuration" class="control-label" translate="resources.controlTemplate.weekDays">Week days</label>
+	</div>
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Monday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Tuesday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Wednesday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Thursday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Friday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Saturday, width: 3))
+	@(Html.ArgumentFor<ControlTemplateUpdateArguments>(x => x.Sunday, width: 3))
+</xp-get>
+}
+

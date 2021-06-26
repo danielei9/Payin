@@ -1,0 +1,153 @@
+<ion-view id="ticketGetTicket" view-title="Ticket" cache-view="false" class="col-center" xp-panel xp-loading ng-controller="ticketGetController2" 
+          xp-init="
+                   scope.arguments.data =  params.data.data[0] || null,
+                   scope.temp.isPaymentWorker = params.data.isPaymentWorker;
+                   scope.arguments.promotions = params.data.promotions,
+                   scope.arguments.promotionsCopy=[],
+                   scope.arguments.paymentMedias = [],
+                   scope.arguments.id = params.id,
+                   scope.temp.cardId=params.cardId, 
+                   scope.temp.cardType=params.cardType, 
+                   scope.temp.cardScript=params.cardScript,
+                   scope.temp.operationId=params.operationId,
+                   scope.temp.code=params.code, 
+                   scope.temp.quantity=params.quantity,
+                   scope.temp.operationType = params.operationType,
+                   scope.temp.priceId = params.priceId;
+                   scope.arguments.slot = params.slot; 
+                   scope.temp.rechargeType = params.rechargeType;
+                   scope.arguments.paymentMediasCopy = angular.copy(params.data.paymentMedias)">
+    <ion-content class="background transportContent">
+            <ion-refresher pulling-text="Mantener para refrescar..." on-refresh="search()">
+            </ion-refresher>
+            <div class="row">
+                <div class="col col-100" style="margin-top: 15%; ">
+                    <div class="row">
+                        <div class="col col-25"></div>
+                        <div class="col col-50 center">
+                            <h1 ng-show="arguments.data.amount != null" style="color: white;">{{arguments.data.amount|number:2}}€</h1>
+                        </div>
+                        <div class="col col-25"></div>
+                    </div>
+                </div>
+            </div>
+            <hr style="background-color: white; width: 80%;">
+            <div class="row" style="padding: 0">
+                <div class="col col-100" style="padding: 0">
+                    <div class="row">
+                        <div class="col col-25"></div>
+                        <div class="col col-50 center">
+                            <span style="color: white;">{{arguments.data.supplierName}}</span>
+                        </div>
+                        <div class="col col-25"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-100">
+                    <div class="row" ng-repeat="item in arguments.data.lines">
+                        <div class="col col-66" style="margin:0">{{item.quantity}} {{item.title}}</div>
+                        <div class="col col-33 text-right" style="margin:0">{{item.amount|number:2}}€</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-100">
+                    <div class="row" ng-repeat="item in arguments.promotionsCopy" ng-click="deletePromotions($index)"  data-ng-class="{'deleted':item.class=='deleted','active':item.class!='deleted'}">
+                       <div class="col col-10">
+                         <div class="ion-ios-minus-outline" data-ng-show="item.class=='deleted'"></div>
+                         <div class="ion-ios-plus-outline"  data-ng-hide="item.class=='deleted'"></div>
+                    </div>
+                        <div class="col col-60" style="margin:0">Pay[in] te regala </div>
+                        <div class="col col-30 text-right" style="margin:0">{{item.quantity}} {{item.type | xpTypeDiscount}}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr style="background-color: white; width: 80%;">
+            <div class="row" style="margin-top: -2%; padding: 0px;">
+                <div class="col col-100">
+                    <div class="row">
+                        <div class="col col-20"></div>
+                        <div class="col col-60 center" style="color: white;">
+                            <span>{{arguments.date|xpDateTime}}</span>
+                        </div>
+                        <div class="col col-20"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-100"  style="text-align: center;" ng-hide="(hasCommercePayment() || hasPaymentWorker())&&temp.isPaymentWorker">
+                <div class="row">
+                    <div class="col col-10"></div>
+                    <div class="col col-80">
+                        <div class="row center" style="background-color: rgba(255,255,255,0); padding: 0px;" ng-click="codigoDescuento()">
+                            <div class="col col-10"></div>
+                            <div class="col col-15 center " id="descuentoCheck" ng-show="!arguments.promotion" style="padding:0px;"><i class="material-icons" style="color: white;font-size: 2em;">add_circle</i></div>
+                            <div class="col col-15 center " id="descuentoCheck" ng-show="arguments.promotion" style="padding:0px;"><i class="material-icons" style="color: white;font-size: 2em;">check_circle</i></div>
+                            <div class="col col-50 center" style="padding:0px; padding-top: 1px !important;" style=" font-size: 1.2em;">Introduce tu código de descuento</div>
+                            <div class="col col-25"></div>
+                        </div>
+                    </div>
+                    <div class="col col-10"></div>
+                </div>
+            </div>
+            <div class="col col-100" style="text-align: center; margin-bottom: -5%;" ng-repeat="purse in arguments.paymentMedias" ng-hide="((hasCommercePayment() || hasPaymentWorker())&&temp.isPaymentWorker">
+                <div class="row" ng-show="purse.type === 5">
+                    <div class="col col-10"></div>
+                    <div class="col col-80">
+                        <div class="row center" style="background-color: rgba(255,255,255,0); padding: 0px;">
+                            <div class="col col-10"></div>
+                            <div class="col col-15 center" style="padding:0px;"><i class="material-icons checkCircleIcon" style="color: white; font-size: 2em; opacity: 0.3;">check_circle</i></div>
+                            <div class="col col-40 center" style="padding:0px; padding-top: 1px !important;" style=" font-size: 1.2em;">Monedero 1</div>
+                            <div class="col col-35"><span>-18'30€</span></div>
+                        </div>
+                    </div>
+                    <div class="col col-10"></div>
+                </div>
+            </div>
+            <div id="qrcode" class="center" ng-show="(hasCommercePayment() || hasPaymentWorker())&&temp.isPaymentWorker"></div>
+            <ion-slide-box data-ng-init="arguments.paymentMedias.push(arguments.paymentMediasCopy[0])" ng-hide="((hasCommercePayment() || hasPaymentWorker())&&temp.isPaymentWorker">
+                <ion-slide data-ng-repeat="pm in arguments.paymentMediasCopy" ng-click="selectCreditCard($index)">
+                    <div class="row">
+                        <div class="col col-15"></div>
+                        <div class="col col-70  center">
+                            <div class="row"  style="box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.1);background-color: rgba(255,255,255,0.8); height: 5em;">
+                                <div class="col col-5 center">
+                                    <span class="ion-chevron-left button-clear" style="color: black; font-size: 1em !important; margin-left: -0.5em;"></span>
+                                </div>
+                                <div class="col col-25" style="color: #000000; opacity: 0.7; text-align: center;">
+                                    <i class="material-icons" style=" font-size: 3.5em;">credit_card</i>
+                                </div>
+                                <div class="col col-55" style="margin-left: 10%; margin-top: 2%; padding: 0px;">
+                                    <div style="font-size: 1.2em; font-family: Roboto; margin-bottom: 5%;">{{pm.title}}</div>
+                                    <div style="font-size: 1.2em; color: red;">-{{pm.amount|number:2}}€</div>
+                                </div>
+                                <div class="col col-5"></div>
+                                <div class="col col-5 center">
+                                    <span class="ion-chevron-right button-clear" style="color: black; font-size: 1em; padding-left: 0;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-10"></div>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>        
+            <div style="border: 0px;background-color: rgba(255,255,255,0); padding: 0px;" ng-hide="(hasCommercePayment() || hasPaymentWorker())&& temp.isPaymentWorker">
+                <div class="row">
+                    <div class="col col-100">
+                        <div class="row">
+                            <div class="col col-10"></div>
+                            <div class="col col-80" ng-controller="ticketPayController">
+                                <div ng-click="prePay()" class="row center" style=" border-radius: 38px 38px 38px 38px; background-color: rgba(255,255,255,0); border: 1px solid white; color: white; font-size: 1.5em; padding: 10px;">
+                                    <div class="col col-15"></div>
+                                    <div class="col col-70 center" >PAGAR</div>
+                                    <div class="col col-15"></div>
+                                </div>
+                            </div>
+                            <div class="col col-10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </ion-content>
+</ion-view>

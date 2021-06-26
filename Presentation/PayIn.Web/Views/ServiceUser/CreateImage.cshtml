@@ -1,0 +1,32 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServiceUserFactory.CreateImageName,
+	ServiceUserFactory.CreateImageApi,
+	"",
+	"resources.serviceUser.imageCrop",
+	isTitleActive: true,
+	init: "scope.arguments.serviceUserId=params.id",
+	successUrl: "#/ServiceUser",
+	acceptText: "",
+	cancelText: "Continuar"
+))
+{
+	<xp-get data-api="@ServiceUserFactory.GetApi">
+		<div class="col-md-3 purseUpdateParent" style="height:100%">
+			<div class="image-upload">
+				<label for="file-input" style="width:100%">
+					<img class="image-pointer-margin" style="margin:0;width:100%" ng-src="{{arguments.photoUrl}}" data-ng-show="arguments.photoUrl.length">
+					<img class="image-pointer-margin" style="margin:0;width:100%" ng-src="@ApplicationUserResources.DefaultUserAvatar" ng-hide="arguments.photoUrl.length">
+					<div translate="resources.serviceUser.updateImage" style="text-align: center;">Haz click para actualizar la imagen.</div>
+				</label>
+				<input data-xp-navigate data-xp-modal="@ServiceUserFactory.UpdateImageCropName" id="file-input" type="file" accept=".jpg,.png" value="{0}" />
+			</div>
+		</div>
+		<div class="col-md-9">
+			<h4 translate="resources.serviceUser.infoCreateImage">Para completar el proceso, solo falta añadir la foto del usuario, de esta forma podrá ser identificado fácilmente.</h4>
+		</div>
+	</xp-get>
+}
+

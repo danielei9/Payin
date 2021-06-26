@@ -1,0 +1,115 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPut(
+                    ExhibitorFactory.UpdateName,
+                    ExhibitorFactory.UpdateApi,
+                    "",
+                    "resources.exhibitor.update"                   
+                ))
+{
+    <script type="text/javascript" src="~/App/js/qrcode.js"></script>
+    <script type="text/javascript">
+        function soloNumeros(e) {
+            var key = window.Event ? e.which : e.keyCode
+            return ((key >= 48 && key <= 57) || (key == 32) ||
+                (key == 8) || (key == 9) || (key == 43))
+        }
+    </script>
+    <style>
+        a[role="button"] {
+            display: inline-block;
+            text-decoration: none;
+            color: #444;
+            background: #efefef;
+            padding: 0.5em 0.75em;
+            font-family: sans-serif;
+            border: 0.0625rem solid transparent;
+            transition: 0.2s border-color ease-in-out;
+        }
+            a[role="button"]::before {
+                display: inline-block;
+                padding-right: 0.25em;
+                color: #aaa;
+            }
+
+
+            a[role="button"]:hover, a[role="button"]:focus {
+                border-color: #aaa;
+            }
+
+       #placeHolder img{
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+
+	<xp-get data-api="@ExhibitorFactory.UpdateApi">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+                    <div class="row">
+                        <div id="placeHolder">
+                            <div class="row" style="text-align: center;" ng-controller="getCodeExhibitor">
+                                <span id="qrcode">{{arguments.id}}</span>
+                            </div>
+
+                            <div style="width: 100%; text-align: center">
+                                <a href='https://api.qrserver.com/v1/create-qr-code/?data=pay[in]/exhibitor:{"id":{{arguments.id}}}&amp;size=256x256&ecc=H'
+                                   download='Exhibitor_{{arguments.name}}_QR'
+                                   style="background-color: transparent;" target="_blank">
+                                    <img src='https://api.qrserver.com/v1/create-qr-code/?data=pay[in]/exhibitor:{"id":{{arguments.id}}}&amp;size=256x256&ecc=H'
+                                         style="margin: 0; width: 100%; max-width: 256px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div onKeyPress="return soloNumeros(event)">
+                            @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Code, width: 3))
+                        </div>
+                        @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.InvitationCode, width: 3))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Pavilion, width: 3))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Stand, width: 3))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Name, width: 9))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Email, width: 3))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Contact, width: 9))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.ContactEmail, width: 3))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Url, width: 12))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Address, width: 12))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.PostalCode, width: 3))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.City, width: 3))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Province, width: 3))
+                        @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Country, width: 3))
+                    </div>
+                    <div class="row">
+                        <div onKeyPress="return soloNumeros(event)">
+                            @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Phone, width: 6))
+                        </div>
+                        <div onKeyPress="return soloNumeros(event)">
+                            @(Html.ArgumentFor<ExhibitorUpdateArguments>(x => x.Fax, width: 6))
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @(Html.SelectFor<ExhibitorUpdateArguments>(x => x.PaymentConcessionId, "concessionName", ExhibitorFactory.RetrieveSelectorApi, focus: true, width: 12))
+                    </div>
+
+                </div>
+			</div>
+		</div>
+	</xp-get>
+}

@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+				PromotionFactory.UnlinkCode,
+				PromotionFactory.UnlinkCodeApi,
+				"",
+				//ServiceWorkerResources.Delete,
+				"resources.promotion.unlinkCode",
+				id: "id"
+			))
+{
+	<p translate="resources.promotion.unlinkCodeQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want unlink the code {{arguments.name}}?</p>
+}
+

@@ -1,0 +1,71 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+    ServiceGroupFactory.GetAllName,
+    ServiceGroupFactory.GetAllApi,
+    "",
+    "resources.serviceGroup.getAll",
+    isTitleActive: true,
+    isSearchable: false,
+    initialSearch: true,
+    addPanelUrl: ServiceGroupFactory.CreateName
+    //actions: new ActionLink[] {
+    //    new ActionLink(
+    //        new ActionLink[] {
+    //            new ActionLink(ActionLink.ActionLinkType.Panel, ProductFamilyFactory.CreateName, text: "Family", textTranslate: "resources.product.family")
+    //        },
+    //        XpIcons.Plus
+    //    )
+    //}
+    ))
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th translate="resources.serviceGroup.id">Id</th>
+                    <th translate="resources.serviceGroup.names">Name</th>
+                    <th translate="resources.serviceGroup.categoryId">CategoryId</th>
+                    <th translate="resources.serviceGroup.afiliates">Afiliados</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr 
+                    ng-repeat="item in data" 
+                    ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+                    <td ng-show="item.state === 0">&nbsp;</td>
+                    <td class="icon-column" ng-show="item.state === 1">
+                        @XpColumns.IconColumn(
+                                                     XpIcons.Trash,
+                                                     popupUrl: ServiceGroupFactory.Delete,
+                                                     id: "{{item.id}}",
+                                                     arguments: "{\"name\":\"{{item.name}}\"}"
+                                                 )
+                    </td>
+                    <td>@(Html.ColumnFor<ServiceGroupGetAllResult>(x => x.Id, panelUrl: ServiceGroupFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<ServiceGroupGetAllResult>(x => x.Name, panelUrl: ServiceGroupFactory.UpdateName, id: "{{item.id}}"))</td>
+
+                    <td>@(Html.ColumnFor<ServiceGroupGetAllResult>(x => x.CategoryId, panelUrl: ServiceGroupFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>
+                        <a ui-sref='@usersGroup' data-xp-navigate class="ng-binding"><i class="@XpIcons.Users"></i> {{item.counterGroupAfiliates}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.active">Paid</p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.deleted">Cancelled</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

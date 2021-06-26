@@ -1,0 +1,19 @@
+﻿@using PayIn.Application.Dto.Arguments.ServiceTag;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ServiceTagFactory.Update,
+	ServiceTagFactory.UpdateApi,
+	"",
+	//ServiceTagResources.Update,
+	"resources.serviceTag.update",
+	"{{arguments.reference}}"
+))
+{
+	<xp-get data-api="@ServiceTagFactory.GetApi">
+		@(Html.ArgumentFor<ServiceTagUpdateArguments>(x => x.Type))		
+		@(Html.ArgumentFor<ServiceTagUpdateArguments>(x => x.Reference))
+	</xp-get>
+}
+

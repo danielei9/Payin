@@ -1,0 +1,53 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+@using PayIn.Application.Dto.Results;
+@using (Html.xpPut(
+    ServiceGroupFactory.UpdateName,
+    ServiceGroupFactory.UpdateApi,
+    "",
+    "resources.serviceGroup.update",
+    isTitleActive: true,
+    //init: "scope.arguments.id=params.id",
+    actions: new ActionLink[] {
+                new ActionLink(ActionLink.ActionLinkType.Panel, ServiceGroupFactory.AddUser("{{id}}") , XpIcons.Plus)
+        }))
+{
+<xp-get data-api="@ServiceGroupFactory.UpdateApi">
+    @(Html.ArgumentFor<ServiceGroupUpdateArguments>(x => x.Name))
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="width: 25px;">&nbsp;</th>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in arguments.users" ng-class="{'b-l b-5x b-warning': item.state!=1}">
+                <td class="icon-column" style="text-align: right;">
+                    @XpColumns.IconColumn(
+                             XpIcons.Trash,
+                             popupUrl: ServiceUserFactory.RemoveServiceGroupName,
+                             id: "{{item.id}}",
+                             arguments: "{\"groupId\":\"{{arguments.id}}\",\"userName\":\"{{item.email}}\",\"groupName\":\"{{arguments.name}}\"}"
+                             )
+                </td>
+                <td>@(Html.ColumnFor<ServiceGroupGetUserResult>(x => x.LastName)), @(Html.ColumnFor<ServiceGroupGetUserResult>(x => x.Name))</td>
+                <td>@(Html.ColumnFor<ServiceGroupGetUserResult>(x => x.Email))</td>
+            </tr>
+        </tbody>
+    </table>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div style="background-color:#fad733;" class="legendGraph" /><p style="float:left;" translate="resources.serviceUser.blocked">Blocked</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</xp-get>
+}
+

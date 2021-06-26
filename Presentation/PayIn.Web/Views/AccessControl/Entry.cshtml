@@ -1,0 +1,97 @@
+﻿@using PayIn.Web.App.Factories;
+
+<link href="~/App/accessControl.css" rel="stylesheet">
+
+@using (Html.xpPost(
+    AccessControlFactory.EntryName,
+    AccessControlFactory.EntryApi,
+    "",
+    "",
+    init:
+        "scope.id=params.accessControlId;" +
+        "scope.arguments.accessControlId=params.accessControlId;" +
+        "scope.arguments.people=1;" +
+        "scope.arguments.entryIn=true;",
+    showFormButtons: false,
+    isHeaderActive: false,
+    goBack: 0,
+    successPopup: "{\"message\":\"Datos enviados\"}",
+    success:
+        "scope.arguments.currentCapacity=data.capacityAfterEntrance;" +
+        "scope.arguments.dateTime=data.dateTime"
+))
+{
+    <xp-get data-api="@AccessControlFactory.PlaceApi" xp-success="scope.arguments.entranceId=scope.arguments.entries[0].id">
+        <div class="loading-overlay" ng-show="windowState().isBusy">
+           <div class="loader">Cargando</div>
+        </div>
+        <div class="container p-2-3">
+            <div class="places-top">
+                <div class="places-top-title">{{arguments.name}}</div>
+                <a xp-navigate data-xp-modal="@AccessControlFactory.EntryReset" xp-id="{{arguments.accessControlId}}" class="btn btn-link uppercase-button ml-auto" translate="resources.accessControl.reset">Reset</a>
+                <a ui-sref="@AccessControlFactory.PlacesName" class="btn btn-link uppercase-button ml-auto" translate="resources.globalResources.back">Back</a>
+            </div>
+            <div class="beach-data-list">
+                <div class="beach-data-item">
+                    <div class="beach-data-item-number" ng-class="{'beach-data-item-number-orange': arguments.currentCapacity/arguments.maxCapacity>0.9,'beach-data-item-number-red': arguments.currentCapacity>=arguments.maxCapacity}">{{arguments.currentCapacity*100/arguments.maxCapacity | xpNumber}}%</div>
+                    <div class="beach-data-item-label" translate="resources.accessControl.public.capacity">Capacity</div>
+                </div>
+                <div class="beach-data-item">
+                    <div class="beach-data-item-number">{{arguments.currentCapacity}}</div>
+                    <div class="beach-data-item-label" translate="resources.accessControl.public.currentCapacity">People now</div>
+                </div>
+                <div class="beach-data-item">
+                    <div class="beach-data-item-number">{{arguments.maxCapacity}}</div>
+                    <div class="beach-data-item-label" translate="resources.accessControl.public.maxCapacity">Maximum capacity</div>
+                </div>
+            </div>
+            <form>
+                <div class="input-group-2-col">
+                    <label>
+                        <input class="d-none" type="radio" name="enter" value="1" ng-checked="arguments.entryIn===true" ng-click="arguments.entryIn=true;arguments.entryOut=false">
+                        <div class="radio-button" translate="resources.accessControl.public.in">In</div>
+                    </label>
+                    <label>
+                        <input class="d-none" type="radio" name="enter" value="0"  ng-checked="arguments.entryOut===true" ng-click="arguments.entryOut=true;arguments.entryIn=false;">
+                        <div class="radio-button" translate="resources.accessControl.public.out">Out</div>
+                    </label>
+                </div>
+                <div class="input-label" translate="resources.accessControl.public.people">People</div>
+                <div class="input-group">
+                    <label>
+                        <input class="d-none" type="radio" checked="checked" name="people" value="1" ng-click="arguments.people=1">
+                        <div class="radio-button radio-button-square">1</div>
+                    </label>
+                    <label>
+                        <input class="d-none" type="radio" name="people" value="2" ng-click="arguments.people=2">
+                        <div class="radio-button radio-button-square">2</div>
+                    </label>
+                    <label>
+                        <input class="d-none" type="radio" name="people" value="3" ng-click="arguments.people=3">
+                        <div class="radio-button radio-button-square">3</div>
+                    </label>
+                    <label>
+                        <input class="d-none" type="radio" name="people" value="4" ng-click="arguments.people=4">
+                        <div class="radio-button radio-button-square">4</div>
+                    </label>
+                    <label>
+                        <input class="d-none" type="radio" name="people" value="5" ng-click="arguments.people=5">
+                        <div class="radio-button radio-button-square">5</div>
+                    </label>
+                </div>
+                <div class="input-label" translate="resources.accessControl.public.entrance">Entrance</div>
+                <div class="input-group">
+                    <label ng-repeat="item in arguments.entries">
+                        <input class="d-none" type="radio" ng-checked="item.id===arguments.entranceId" name="access" value="{{item.id}}" ng-click="arguments.entranceId=item.id">
+                        <div class="radio-button radio-button-square">{{item.name}}</div>
+                    </label>
+                </div>
+            </form>
+            <div class="mt-2" translate="resources.accessControl.public.dataFrom" translate-values="{ date: '{{arguments.dateTime | date:'HH:mm'}}' }">Data from {{arguments.dateTime | date:'HH:mm'}}h</div>
+            <div class="input-group-2-col mt-1">
+                <button ng-click="$state.reload()" class="btn btn-primary uppercase-button" translate="resources.accessControl.public.refresh">Refresh data</button>
+                <button type="submit" class="btn btn-primary uppercase-button" translate="resources.accessControl.public.send">Send</button>
+            </div>
+        </div>
+    </xp-get>
+}

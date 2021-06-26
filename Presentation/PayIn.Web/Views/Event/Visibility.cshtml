@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpPut(
+                EventFactory.VisibilityName,
+                EventFactory.VisibilityApi,
+                "",
+                "resources.event.visibilityEvent"
+            ))
+{
+	<xp-get data-api="@EventFactory.VisibilityApi">
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="row">
+						@(Html.ArgumentFor<EventVisibilityArguments>(x => x.Visibility))
+					</div>
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}

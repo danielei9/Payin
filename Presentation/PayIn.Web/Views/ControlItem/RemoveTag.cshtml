@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ControlItemFactory.RemoveTag,
+	ControlItemFactory.RemoveTagApi,
+	"",
+	//ControlItemResources.RemoveTag,
+	"resources.controlItem.removeTag",
+	arguments: "{id:{{arguments.id}},tagId:{{arguments.tagId}}}"
+))
+{
+	<p translate="resources.controlItem.removeTagQuestion" translate-values="{ tagReference: '{{arguments.tagReference}}', name:'{{arguments.name}}' }">Do you want to remove the tag {{arguments.tagReference}} of the item {{arguments.name}}?</p>
+}
+

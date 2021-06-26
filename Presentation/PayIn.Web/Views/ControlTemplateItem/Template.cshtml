@@ -1,0 +1,78 @@
+﻿@using PayIn.Application.Dto.Results.ControlTemplateItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+
+@{
+	var items = ControlTemplateItemFactory.GetTemplate + "({id:{{item.id}}})";
+	var untilForms = ControlFormAssignTemplateFactory.GetCheckState + "({checkId:{{item.untilId}}})";
+	var sinceForms = ControlFormAssignTemplateFactory.GetCheckState + "({checkId:{{item.sinceId}}})";
+}
+
+
+@using (Html.xpList(
+	ControlTemplateItemFactory.GetTemplate,
+	ControlTemplateItemFactory.GetTemplateApi,
+	"",
+	//ControlTemplateItemResources.GetTemplate,
+	"resources.controlTemplateItem.getTemplate",
+	"{{temp.name}}",
+	isPaginable: false,
+	isSearchable: false,
+	isTitleActive: true,
+	showFormButtons: true,
+	init: "scope.arguments.templateId = params.templateId;",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ControlTemplateItemFactory.Create + "({templateId:{{$stateParams.templateId}}})", XpIcons.Plus)
+	}
+))
+{
+		<xp-get data-xp-panel data-api=@ControlTemplateFactory.GetApi data-xp-init="scope.id=params.templateId" data-xp-success="scope.$parent.temp.name=scope.arguments.name;"></xp-get>
+		<div class="table-responsive">
+			<table class="table table-hover" ng-show="data.length">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th translate="resources.controlTemplateItem.since">Since</th>
+						<th translate="resources.controlTemplateItem.until">Until</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="item in data">
+						<td class="icon-column">
+							@XpColumns.IconColumn(
+								XpIcons.Trash,
+								popupUrl: ControlTemplateItemFactory.Delete,
+								id: "{{item.id}}",
+								arguments: "{\"since\":\"{{item.since}}\",\"until\":\"{{item.until}}\"}"
+							)
+						</td>
+						<td>@(Html.ColumnFor<ControlTemplateItemGetTemplateResult>(x => x.Since, panelUrl: ControlTemplateItemFactory.Update, id: "{{item.id}}"))
+						<a data-xp-navigate ui-sref=@sinceForms>
+							<i class='@XpIcons.ListAlt'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.sinceFormsCount||0}}</span>
+						</a>
+						</td>
+						<td>@(Html.ColumnFor<ControlTemplateItemGetTemplateResult>(x => x.Until, panelUrl: ControlTemplateItemFactory.Update, id: "{{item.id}}"))
+							<a data-xp-navigate ui-sref=@untilForms>
+							<i class='@XpIcons.ListAlt'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.untilFormsCount||0}}</span>
+						</a>
+						</td>
+						<td class="journey">
+							<div class="journey-0">0h</div>
+							<div class="journey-24">24h</div>
+							<div class="journey-bar">
+								<div class="journey-background" />
+								<div class="journey-range"
+									 style="margin-left:{{item.since|xpJourneyStart}}%;width:{{item.until|xpJourneyLength:item.since}}%"
+									 title="{{item.since|xpTime}} - {{item.until|xpTime}}" />
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+}

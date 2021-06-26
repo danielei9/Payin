@@ -1,0 +1,28 @@
+﻿@using PayIn.Application.Dto.Results.ControlTrack;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@{
+	var items = ControlTrackFactory.GetItemName + "({itemId:{{item.id}}})";
+}
+@using (Html.xpList(
+	ControlTrackFactory.GetItemName,
+	ControlTrackFactory.GetItemApi,
+	"",
+	//ControlTrackResources.GetItem,
+	"resources.controlTrack.getItem",
+	"{{temp.name}}",
+	isPaginable: false,
+	initialSearch: false, // se hace en el controller ControlTrackGetItemController al cambiar el date
+	isTitleActive: true,
+	init:
+		"scope.arguments.itemId=params.itemId;" +
+		"scope.arguments.date='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+))
+{
+	<xp-get data-xp-panel data-api=@ControlItemFactory.GetApi data-xp-init="scope.id=params.itemId" data-xp-success="scope.$parent.temp.name=scope.arguments.name;"></xp-get>
+	<div data-xp-map2 data-xp-paths="temp.tracks" style="height:400px" data-ng-controller="ControlTrackGetItemController" id="map"></div>
+	<div data-xp-map-graphics data-xp-paths="temp.tracks" id="chart_div" google-chart chart="chart" style="{{chart.cssStyle}}" data-ng-show="temp.tracks.length && temp.tracks[0].positions.length"></div>
+
+}

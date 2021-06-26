@@ -1,0 +1,30 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+				ActivityFactory.Update,
+				ActivityFactory.UpdateApi,
+				"",
+				"resources.activity.updateActivity"
+			))
+{
+	<xp-get data-api="@ActivityFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.activity.activityInfo">Activity information</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+							<div class="row">
+								@(Html.ArgumentFor<ActivityUpdateArguments>(x => x.Name))                                
+                            </div>
+							<div class="row">
+								@(Html.ArgumentFor<ActivityUpdateArguments>(x => x.Description))                                
+							</div>
+							<div class="row">
+								@(Html.ArgumentFor<ActivityUpdateArguments>(x => x.Start, width:6))
+								@(Html.ArgumentFor<ActivityUpdateArguments>(x => x.End, width: 6))
+							</div>
+					</div>
+				</div>
+			</div>
+	</xp-get>
+}

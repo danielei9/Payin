@@ -1,0 +1,39 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    CampaignFactory.CreateName,
+    CampaignFactory.CreateApi,
+    "",
+    "resources.campaign.create",
+    isTitleActive: true,
+    successUrl: "/Campaign/CreateImage/{{id}}",
+    init: "scope.arguments.paymentConcessionId=params.paymentConcessionId;"
+))
+{
+    <div class="col-md-12">
+        <div class="row">
+            @(Html.ArgumentFor<ApiCampaignCreateArguments>(x => x.Title, focus: true, width: 9))
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            @(Html.ArgumentFor<ApiCampaignCreateArguments>(x => x.Description))
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            @(Html.ArgumentFor<ApiCampaignCreateArguments>(x => x.Since, width: 6))
+            @(Html.ArgumentFor<ApiCampaignCreateArguments>(x => x.Until, width: 6))
+        </div>
+    </div>
+    <div data-ng-hide="true">
+        @(Html.ArgumentFor<ApiCampaignCreateArguments>(x => x.NumberOfTimes, placeHolder: "Sin límite"))
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            @(Html.SelectFor<ApiCampaignCreateArguments>(x => x.TargetSystemCardId, "targetSystemCardId", width: 6, placeHolder: "Todos los sistemas de tarjetas"))
+            @(Html.SelectFor<ApiCampaignCreateArguments>(x => x.TargetConcessionId, "targetConcessionName", api: ServiceConcessionFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los comercios del sistema de tarjeta seleccionado", arguments: "{\"systemCardId\":\"{{arguments.targetSystemCardId}}\"}", disabled: "!arguments.targetSystemCardId"))
+        </div>
+    </div>
+}

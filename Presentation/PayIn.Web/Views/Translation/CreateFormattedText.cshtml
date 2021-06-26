@@ -1,0 +1,52 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Results.Translation;
+
+@using (Html.xpPost(
+    TranslationFactory.Create,
+    TranslationFactory.CreateApi,
+    "",
+    "resources.translation.title",
+    isTitleActive: true,
+    init: ""
+        + "scope.arguments.noticeId = params.noticeId;"
+        + "scope.arguments.eventId = params.eventId;"
+        + "scope.arguments.translationType = params.translationType;"
+        + "scope.arguments.translateTo = 0;"
+    ))
+{
+<xp-get data-api="@TranslationFactory.GetApi">
+    @*<div>arguments: {{arguments}}</div>
+    <div>arguments.originalText: {{arguments.originalText}}</div>*@
+
+    <div class="form-group">
+        <div class="row" style="margin: 0px 0px 15px 0px;">
+            <div data-ng-class="{'has-error':!form.originalText.$valid}" class="col-md-12">
+                <label for="originalText" class="control-label ng-scope" translate="resources.translation.originalText">Texto original</label>
+                <p ng-bind="arguments.originalText"></p>
+            </div>
+        </div>
+
+        <div class="row" style="margin: 0px 0px 15px 0px;">
+            <div class="col-md-3">
+                <span translate="resources.translation.translateTo" for="translateTo" class="control-label ng-scope">Translate to</span>
+                <select id="translateTo" name="translateTo" class="form-control ng-pristine ng-valid ng-touched" ng-model="arguments.translateTo">
+                    <option value="0">Valenciano</option>
+                    <option value="1">Castellano</option>
+                    <option value="2">Inglés</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row" style="margin: 0px 0px 15px 0px;">
+            <div data-ng-class="{'has-error':!form.translatedText.$valid}" class="col-md-12">
+                @*<label for="translatedText" class="control-label ng-scope" translate="resources.translation.translatedText">Texto traducido</label>
+                <textarea id="translatedText" name="translatedText" rows="5" type="custom" class="form-control ng-pristine ng-valid ng-touched" ng-model="arguments.translatedText"></textarea>*@
+                <label for="translatedText" class="control-label ng-scope" translate="resources.translation.translatedText">Texto traducido</label>
+                <div ng-controller="wysiwygeditor" style="margin-top:0px" id="markdownTranslatedText">
+                    <div text-angular="text-angular" name="htmlcontent" ng-model="arguments.translatedText" ta-disabled='disabled' xp-markdown-editor="arguments.translatedText"></div><!-- xp-markdown-editor="arguments.description" -->
+                </div>
+            </div>
+        </div>
+    </div>
+</xp-get>
+}

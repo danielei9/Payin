@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPopupDelete(
+	PaymentWorkerFactory.DissociateConcession,
+	PaymentWorkerFactory.DissociateConcessionApi,
+	"",
+	//PaymentWorkerResources.DissociateConcession,
+	"resources.paymentWorker.dissociateConcession",
+	id: "id"
+))
+{
+	<p translate="resources.paymentWorker.dissociateQuestion" translate-values="{ supplierName: '{{arguments.supplierName}}' }">
+		Do you want to dissociate from '{{arguments.supplierName}}'?</p>
+
+}

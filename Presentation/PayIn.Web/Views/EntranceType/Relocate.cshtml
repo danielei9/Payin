@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+    EntranceTypeFactory.Relocate,
+    EntranceTypeFactory.RelocateApi,
+    "",
+    "resources.entranceType.relocate",
+    init: "scope.arguments.entranceTypeName = params.entranceTypeName; ",
+    arguments :"id"
+))
+{
+	<p translate="resources.entranceType.relocateQuestion" translate-values="{ name: '{{arguments.name}}' }">Where do you want to relocate the entrances{{arguments.name}}?</p>
+    @(Html.SelectFor<EntranceTypeRelocateArguments>(x => x.Id, "entranceTypeName", EntranceTypeFactory.RetrieveSelectorApi, arguments: "{\"id\": \"{{id}}\"}", width: 3))
+
+}

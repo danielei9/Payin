@@ -1,0 +1,30 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	TicketFactory.CreateName,
+	TicketFactory.CreateApi,
+	"",
+	"resources.ticket.create"
+))
+{
+	<div data-ng-init="selectDate=1">
+		<div class="col-md-12" style="margin-top:10px;">
+			<div class="btn-group dropdown" dropdown  data-ng-init="selectDate=1" style="float:left;">
+				<button class="btn btn-default" dropdown-toggle><span translate="resources.ticket.selectDate">Select date</span>: {{selectDate == 1 ? 'Inmediato' : 'Intervalo'}} <span class="caret" /></button>
+				<ul class="dropdown-menu">
+					<li><a data-ng-click="selectDate=1"><span translate="resources.ticket.now">Now</span></a></li>
+					<li><a data-ng-click="selectDate=2"> <span translate="resources.ticket.range">Range</span> </a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-12" data-ng-show="selectDate==2">
+			@(Html.ArgumentFor<TicketCreateArguments>(x => x.Since, width:6))
+			@(Html.ArgumentFor<TicketCreateArguments>(x => x.Until, width:6))
+		</div>
+		@(Html.SelectFor<TicketCreateArguments>(x => x.ConcessionId, "concessionName", PaymentConcessionFactory.GetSelectorApi))
+		@(Html.ArgumentFor<TicketCreateArguments>(x => x.Amount))
+		@(Html.ArgumentFor<TicketCreateArguments>(x => x.Title))
+		@(Html.ArgumentFor<TicketCreateArguments>(x => x.Reference))
+	</div>
+}

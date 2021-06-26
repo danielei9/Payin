@@ -1,0 +1,99 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    NoticeFactory.UpdatePageName,
+    NoticeFactory.UpdatePageApi,
+    "",
+    "resources.notice.updateNoticePage",
+    init:
+		"scope.arguments.sendNotification = false;" +
+		"scope.currentDate = (new Date()).toJSON()"
+))
+{
+    <script type="text/css">
+        .badge {
+            display: none;
+        }
+
+        img:hover + .badge {
+            display: block;
+        }
+
+        .icon-map:before {
+            content: "\e033";
+            line-height: 20px;
+        }
+
+        .flag {
+            width: 16px;
+            height: 11px;
+        }
+    </script>
+    <xp-get data-api="@NoticeFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.notice.noticeInfo">Page information</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="row">
+							@(Html.ArgumentFor<NoticeUpdatePhotoArguments>(x => x.PhotoUrl, fieldUrl: @NoticeFactory.UpdateImageCropName))
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="row">
+							@(Html.SelectFor<ApiNoticeUpdatePageArguments>(x => x.SuperNoticeId, "superNoticeName", NoticeFactory.RetrieveSelectorApi))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Name))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.State, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.IsVisible, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Visibility, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.SendNotification, width: 3))
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.ShortDescription))
+					@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Description))
+				</div>
+			</div>
+		</div>
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.notice.placeInfo">Place</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="row">
+							<div class="col-md-12"
+								 style="
+                                    width:100%;
+                                    height:300px;
+                                ">
+								<xp-map
+									center-longitude="-0.62227"
+									center-latitude="39.56776"
+									main-longitude-template="arguments.longitude"
+									main-latitude-template="arguments.latitude"
+									zoom="14"
+									external-click="
+										arguments.longitude=xpMap.position.longitude;
+										arguments.latitude=xpMap.position.latitude;
+									">
+								</xp-map>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7">
+						@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Place, width: 12))
+						@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Longitude, width: 6))
+						@(Html.ArgumentFor<ApiNoticeUpdatePageArguments>(x => x.Latitude, width: 6))
+					</div>
+				</div>
+			</div>
+        </div>
+    </xp-get>
+}

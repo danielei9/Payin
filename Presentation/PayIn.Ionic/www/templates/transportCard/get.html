@@ -1,0 +1,221 @@
+<ion-view
+          cache-view="false"
+          view-title="Transporte"
+          xp-panel
+          ng-controller = "transportCardGetController";
+          id="transportCardGet";
+          xp-init='
+                   
+                   scope.data=params.cardData;
+                   scope.temp.cardId=params.cardId;
+                   scope.rechargeTitles = scope.data.rechargeTitles;
+                   scope.temp.cardType=params.cardType;
+                   scope.temp.cardScript=params.cardScript;
+                   scope.temp.operationId = params.operationId;
+                   scope.temp.operationType = 0;
+
+                   scope.temp.charges = scope.data.chargeTitles;
+                   
+                   scope.temp.addTitle = (scope.data.data.lenght < 1) ? "Sustituir titulo" : "Añadir titulo";
+                   
+                   scope.temp.controlShow = 0;
+                   scope.temp.nameButton = "Últimas validaciones";
+                   scope.temp.nameButton1 = "Últimas recargas";'
+          >
+    <ion-content class="background transportContent">
+        <div ng-hide="data" style="margin-top: 20%;">
+            <img src="img/Transporticon.png" style="opacity: 0.6; width: 80%; margin-left: 9%; margin-right: 9%; margin-top: 15%;">
+            <div style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">Acerque la tarjeta de transporte para leer la información</div>
+        </div>
+        <div ng-show="data" style="margin-top: 20%;">
+
+            <ion-scroll zooming="true" direction="y"  style="margin-bottom: 3%;">
+                <div class="row" >
+                    <div class="col col-90">
+                        <div class="row">
+                            <div class="col col-50">
+                                <div style="height:0;padding-bottom:60%;margin-top:10%" 
+                                     ng-class="{'payin-bgReloj': data.deviceType===1, 
+                                               'payin-bgTrencadis' : data.isPersonalized,
+                                               'payin-bgFGV':data.owner===2, 
+                                               'payin-bgEMT':data.owner===3,
+                                               'payin-bgMobilis':true}">
+                                </div>
+                            </div>
+                            <div class="col col-50">
+                                <div class="row">
+                                    <div class="col col-100">
+                                        {{data.typeName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-100">
+                                        {{data.cardId|eigeUid}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-100">
+                                        Cad.{{data.expiredDate|xpDate}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="temp.controlShow == 0">
+                    <div class="row">
+                        <div class="col col-100" style="color: white; font-size: 1.1em;">
+                            <div class="row">
+                                <div class="col col-90">
+                                    Títulos de tarjeta:
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="ticket in data.data" ng-controller="transportCardGetAllRechargesController" xp-init="scope.arguments.date = moment(Date()).format('YYYY-MM-DD HH:mm:ss');" style="margin-bottom: 2%;">
+                        <div class="col col-5"></div>
+                        <div class="col col-90" style="background-color: rgba(255,255,255,0.15); border-radius: 10%;"  ng-click="createTicket(temp, ticket, data.rechargeTitles)">
+                            <div class="row">
+                                <div class="col col-100">
+                                    <div class="item item-divider"  style="background-color: rgba(255,255,255,0); padding: 0px; border: 0px; color: white;font-weight:bold;">
+                                        <span ng-show="titulo.ownerName">{{::ticket.ownerName}} -</span>
+                                        <span>{{::ticket.name}} {{ticket.zone|eigeZonaFilter}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="white" style="margin-top: -0.2%; font-weight: bold;">
+                            <div class="row" style="padding: 0px;">
+                                <div class="col col-10"></div>
+                                <div class="col col-80">
+                                    <div class="row"  >
+                                        <div class="col col-60">
+                                            Saldo
+                                        </div>
+                                        <div class="col col-40" ng-show="ticket.hasBalance">
+                                            {{ticket.balance}} viajes
+                                        </div>
+                                        <div class="col col-40" ng-show="ticket.hasBalance&&ticket.balanceAcumulated">
+                                            Acum. {{ticket.balanceAcumulated|xpQuantity:ticket.balanceUnits}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-10"></div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="col col-100" style="padding: 0px;">
+                                    <div class="row" style="padding: 0px;">
+                                        <div class="col col-60"></div>
+                                        <div class="col col-40">
+                                            <div class="row" style="padding: 0px;">
+                                                <div class=" col col-20 ion-checkmark-round"></div>
+                                                <div class="col col-80">Recargar</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="temp.controlShow == 1">
+                    <div class="row">
+                        <div class="col col-100" style="color: white; font-size: 1.1em;">
+                            <div class="row">
+                                <div class="col col-90">
+                                    Últimas Validaciones:
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding" ng-hide="data.logs.length">
+                        <div class="ticket-list text-truncate">Ninguna validación registrada</div>
+                    </div>
+                    <div class="padding" ng-show="data.logs.length">
+                        <ion-scroll zooming="true" direction="y" style="height: 21em">
+                            <div class="row" style="font-size:0.8em" ng-repeat="item in data.logs">
+                                <div class="col col-25">{{item.date|xpDateTimeHM}}</div>
+                                <div class="col" ng-class="{'col-60':'item.hasBalance','col-75':true}">
+                                    <div >
+                                        <span ng-show="item.titleOwnerName">{{::item.titleOwnerName}} -</span>
+                                        <span>{{::item.titleName}} {{item.titleZone|eigeZonaFilter}}</span>
+                                    </div>
+                                    <div style="color: blue;">
+                                        <span ng-show="item.operator">{{::item.operator}} -</span>
+                                        <span>{{::item.typeName}} {{::item.place}}</span>
+                                        <span ng-hide="(item.zone|eigeZonaHistoricoFilter)===''">(Zona {{item.zone|eigeZonaHistoricoFilter}})</span>
+                                    </div>
+                                </div>
+                                <div class="text-right col col-15" ng-show="item.hasBalance">{{(-1*item.quantity)|xpQuantity:item.quantityUnits}}</div>
+                            </div>
+                        </ion-scroll>
+                    </div>
+                </div>
+                <div ng-show="temp.controlShow == 2">
+                    <div class="row">
+                        <div class="col col-100" style="color: white; font-size: 1.1em;">
+                            <div class="row">
+                                <div class="col col-90">
+                                    Últimas Recargas: 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padding" ng-hide="data.charges.length">
+                        <div class="ticket-list text-truncate">Ninguna recarga registrada</div>
+                    </div>
+                    <div class="padding" ng-show="data.charges.length">
+                        <div class="row">
+                            <div class="col col-25" style="color: #E9AF30">Fecha</div>
+                            <div class="col col-60" style="color: #E9AF30">Acción</div>
+                            <div class="col col-15" style="color: #E9AF30"><!--Cant.--></div>
+                        </div>
+                        <hr>
+                        <div class="row" style="font-size:0.8em" ng-repeat="item in data.charges">
+                            <div class="col col-25">{{item.date|xpDate}}</div>
+                            <div class="col col-60">
+                                <div class="payin-blue">
+                                    <span ng-show="item.titleOwnerName">{{::item.titleOwnerName}} -</span>
+                                    <span>{{::item.titleName}} {{item.titleZone|eigeZonaFilter}}</span>
+                                </div>
+                                <div>{{::item.typeName}} {{::item.place}}</div>
+                            </div>
+                            <div class="text-right col col-15"><!--{{item.quantity|number:2}}€--></div>
+                        </div>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+        <!--div style="border: 0px;background-color: rgba(255,255,255,0); padding: 0px;">
+<div class="row">
+<div class="col col-100">
+<div class="row">
+<div class="col col-10"></div>
+<div class="col col-80" ng-controller="ticketPayController">
+<div ng-click="pay()" class="row center" style=" border-radius: 38px 38px 38px 38px; background-color: rgba(255,255,255,0); border: 1px solid white; color: white; font-size: 1em; padding: 10px;">
+<div class="col col-15"></div>
+<div class="col col-70 center" >RECARGAR</div>
+<div class="col col-15"></div>
+</div>
+</div>
+<div class="col col-10"></div>
+</div>
+</div>
+</div>
+</div-->
+    </ion-content>
+    <ion-footer-bar align-title="left" style="background-color: rgba(255,255,255,0); background-image: none;">
+        <ion-floating-menu has-footer="false" menu-color="#ffffff" menu-open-color="#ffffff" menu-icon-color="#D78E31" menu-open-icon-color="#D78E31" icon="ion-plus" >
+            <!--ion-floating-item click="event1()" has-footer="false" button-color="#ffffff" icon="ion-close" icon-color="#D78E31" text="Eliminar tarjeta">
+            </ion-floating-item-->
+            <ion-floating-item ui-sref="transportCardGetAllSelectTypeTitle({charges:temp.charges,cardId:temp.cardId,cardType:temp.cardType,cardScript:temp.cardScript})" has-footer="false" button-color="#ffffff" icon="ion-plus" icon-color="#D78E31" text="{{temp.addTitle}}">
+            </ion-floating-item>
+            <ion-floating-item ng-click="revoke()" has-footer="false" button-color="#ffffff" icon="ion-android-cancel" icon-color="#D78E31" text="Anulación recarga">
+            </ion-floating-item>
+            <ion-floating-item click="ultRecharge()" has-footer="false" button-color="#ffffff" icon="ion-navicon" icon-color="#D78E31" text="{{temp.nameButton1}}">
+            </ion-floating-item>
+            <ion-floating-item  click="ultValidation()" has-footer="false" button-color="#ffffff" icon="ion-checkmark-round" icon-color="#D78E31" text="{{temp.nameButton}}">
+            </ion-floating-item>
+        </ion-floating-menu>
+    </ion-footer-bar>
+</ion-view>

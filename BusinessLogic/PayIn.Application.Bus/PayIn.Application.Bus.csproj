@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2A94B2D-E2A2-4EEE-8EC4-1CD3F4E03C45}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Application.Bus</RootNamespace>
+    <AssemblyName>PayIn.Application.Bus</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\BusApiGraphGetAllHandler.cs" />
+    <Compile Include="Handlers\BusApiStopCreateHandler.cs" />
+    <Compile Include="Handlers\BusMobileRequestCreateHandler.cs" />
+    <Compile Include="Handlers\BusApiStopResetHandler.cs" />
+    <Compile Include="Handlers\BusMobileRequestGetByUserHandler.cs" />
+    <Compile Include="Handlers\BusApiStopGetLinkHandler.cs" />
+    <Compile Include="Handlers\BusApiStopUpdateLinkHandler.cs" />
+    <Compile Include="Handlers\BusApiLineGetSelectorHandler.cs" />
+    <Compile Include="Handlers\BusApiStopUpdateHandler.cs" />
+    <Compile Include="Handlers\BusApiStopGetHandler.cs" />
+    <Compile Include="Handlers\BusApiStopVisitHandler.cs" />
+    <Compile Include="Handlers\BusApiRequestCreateHandler.cs" />
+    <Compile Include="Handlers\BusApiStopGetByLineHandler.cs" />
+    <Compile Include="Handlers\BusMobileStopGetAllHandler.cs" />
+    <Compile Include="Handlers\BusApiVehicleGetItineraryHandler.cs" />
+    <Compile Include="Handlers\BusApiLineGetAllHandler.cs" />
+    <Compile Include="Handlers\BusApiStopGetSelectorHandler.cs" />
+    <Compile Include="Handlers\BusApiRequestDeleteHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Dijkstra\Dijkstra.cs" />
+    <Compile Include="Services\Dijkstra\Node.cs" />
+    <Compile Include="Services\Dijkstra\NodeType.cs" />
+    <Compile Include="Services\Dijkstra\PrioQueue.cs" />
+    <Compile Include="Services\Dijkstra\Route.cs" />
+    <Compile Include="Services\Dijkstra\RoutesStops.cs" />
+    <Compile Include="Services\Dijkstra\RoutesStopsList.cs" />
+    <Compile Include="Services\Dijkstra\RouteWayEnum.cs" />
+    <Compile Include="Services\Dijkstra\RoutingNode.cs" />
+    <Compile Include="Services\RouteItinerateRoute.cs" />
+    <Compile Include="Services\RouteItinerateStop.cs" />
+    <Compile Include="Services\RouteItinerates.cs" />
+    <Compile Include="Services\RouteItinerate.cs" />
+    <Compile Include="Services\RouteRequestStop.cs" />
+    <Compile Include="Services\RouteRoute.cs" />
+    <Compile Include="Services\RouteLink.cs" />
+    <Compile Include="Services\RouteStop.cs" />
+    <Compile Include="Services\RouteService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{d619b94f-c9d9-487c-8341-33446f417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899b32b-1b5c-476d-896a-8b0bf4b10f71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434e06d7-69bb-4175-a611-0133d7a5336a}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855E283-100D-455E-BAC4-B4A87207647A}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Bus\PayIn.Application.Dto.Bus.csproj">
+      <Project>{7090DF27-A80F-475A-B7F6-69B5CD4ADDD0}</Project>
+      <Name>PayIn.Application.Dto.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.BusinessLogic.Common\PayIn.BusinessLogic.Common.csproj">
+      <Project>{37EBDB01-383C-47F8-A44F-CCC87F7C63F2}</Project>
+      <Name>PayIn.BusinessLogic.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Bus\PayIn.Domain.Bus.csproj">
+      <Project>{14972FB7-E923-4910-8F0B-68E205C66849}</Project>
+      <Name>PayIn.Domain.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-D3C8-43A9-8EB0-FBAB811FA250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Domain\Xp.Domain.csproj">
+      <Project>{5BBA38CE-8ABE-48EF-ADC9-AB257CF91F93}</Project>
+      <Name>Xp.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

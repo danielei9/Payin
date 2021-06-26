@@ -1,0 +1,15 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupGet(
+	ServiceUserFactory.UpdateCardName,
+	ServiceUserFactory.UpdateCardGetApi,
+	"",
+	"resources.serviceUser.updateCard",
+	id: "id",
+	noInitialSearch: true,
+	successUrl: ServiceUserFactory.UpdateCard + "/{{data[0].id}}?uid={{data[0].uid}}&cardState={{data[0].cardState}}&ownCard={{data[0].ownCard?1:0}}&newCard={{data[0].newCard?1:0}}&newCardConcessionName={{data[0].newCardConcessionName}}&ownerName={{data[0].ownerName}}&ownerLastName={{data[0].ownerLastName}}&ownerVatNumber={{data[0].ownerVatNumber}}"
+))
+{
+	@(Html.ArgumentFor<ServiceUserUpdateArguments>(x => x.Uid, label: "resources.serviceUser.uidNew"))
+}

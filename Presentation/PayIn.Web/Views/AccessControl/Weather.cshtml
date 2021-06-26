@@ -1,0 +1,99 @@
+﻿@using PayIn.Web.App.Factories;
+
+<div id="@AccessControlFactory.Weather" xp-popup xp-title="El tiempo">
+    <xp-get api="@AccessControlFactory.WeatherApi" xp-init xp-previous xp-success xp-success-url xp-go-back="0" xp-arguments>
+        <form name="form" role="form" class="form" ng-submit="search()" novalidate>
+            <div class="modal-header">
+                <h3 class="modal-title" translate="resources.accessControl.weather.weather">El tiempo<small class="xp-subtitle"></small></h3>
+            </div>
+            <div class="modal-body">
+                <fieldset data-ng-disabled="windowState().isReadOnly">
+                    <div class="d-flex mt-1 mb-1" translate="resources.accessControl.public.dataFrom" translate-values="{ date: '{{data[0].dateTime | date:'HH:mm'}}' }">Data from {{data[0].dateTime | date:'HH:mm'}}h</div>
+                    <div class="weather-list">
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-thermometer.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.temperature}} ºC
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.temperature">
+                                    Temperature
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-humidity.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.humidity}} %
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.humidity">
+                                    Humidity
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-small-craft-advisory.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.windSpeed}} m/s
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.windSpeed">
+                                    Wind speed
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-strong-wind.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.windDirection}} º
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.windDirection">
+                                    Wind direction
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-day-sunny.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.uvIndex}} UVI
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.uvIndex">
+                                    UV index
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-day-sunny.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.radiation}} w/m2
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.radiation">
+                                    UV radiation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weather-list-item">
+                            <img class="weather-list-icon" src="~/App/weather-icons/wi-barometer.svg">
+                            <div class="weather-list-info">
+                                <div class="weather-list-info-primary">
+                                    {{arguments.pressure}} hPa
+                                </div>
+                                <div class="weather-list-info-secondary" translate="resources.accessControl.weather.pressure">
+                                    Atmospheric pressure
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" ng-show="windowState().isBusy" />
+                <button type="button" class="btn btn-default" data-dismiss="modal" translate="resources.globalResources.close">Close</button>
+            </div>
+        </form>
+    </xp-get>
+</div>

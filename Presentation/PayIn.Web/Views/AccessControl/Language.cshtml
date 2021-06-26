@@ -1,0 +1,16 @@
+﻿<div xp-popup xp-title="Info">
+    <div class="modal-header">
+        <h3 class="modal-title" translate="resources.accessControl.public.language">Language<small class="xp-subtitle"></small></h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <div ng-repeat="(langKey, label) in langs">
+                <a ng-click="setLang(langKey, $event)" class="btn btn-link uppercase-button" href>{{label}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <img src="~/App/spinner.gif" style="margin: 2px 5px 0 0" ng-show="windowState().isBusy" />
+        <button type="button" class="btn btn-default" data-dismiss="modal" translate="resources.globalResources.close">Close</button>
+    </div>
+</div>

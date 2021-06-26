@@ -1,0 +1,46 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using Xp.Common.Resources;
+
+@using (Html.xpList(
+	PaymentWorkerFactory.GetAllConcession,
+	PaymentWorkerFactory.GetAllConcessionApi,
+	"",
+	//PaymentWorkerResources.Concessions,	
+	"resources.paymentWorker.companies",
+	isPaginable: false,
+	isTitleActive: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.paymentWorker.supplierName">SupplierName</th>
+					<th translate="resources.paymentWorker.concessionName">ConcessionName</th>
+					<th translate="resources.paymentWorker.workerState">WorkerState</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: PaymentWorkerFactory.DissociateConcession,
+							id: "{{item.id}}",
+							arguments: "{\"supplierName\":\"{{item.supplierName}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<PaymentWorkerGetAllConcessionResult>(x => x.SupplierName))</td>
+					<td>@(Html.ColumnFor<PaymentWorkerGetAllConcessionResult>(x => x.ConcessionName))</td>
+					<td class="icon-column" ng-show="item.state == 2">@XpColumns.IconColumn(XpIcons.Question)</td>
+					<td class="icon-column" ng-show="item.state == 1">@XpColumns.IconColumn(XpIcons.Ok)</td>
+					<td class="icon-column" ng-show="item.state == 0">@XpColumns.IconColumn(XpIcons.Remove)</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

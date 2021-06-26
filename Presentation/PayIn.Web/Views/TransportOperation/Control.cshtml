@@ -1,0 +1,123 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportOperation;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@{
+	var viewCard = TransportOperationFactory.DetailsOperationId("{{item.lastOperation}}", "{{item.uid}}");
+	var details = TransportOperationFactory.Details("{{item.id}}", "{{item.uid}}");	
+
+}
+
+@using (Html.xpList(
+	TransportOperationFactory.GetAllName,
+	TransportOperationFactory.GetAllApi,
+	"",
+	"resources.transportLog.getAll",
+	isTitleActive: true,
+	init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+	initialSearch: false
+))
+{
+	<div class="table-responsive" ng-controller="TransportOperationGetAllController">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.transportLog.date">Date</th>
+					<th translate="resources.transportLog.uid">UID</th>
+					<th translate="resources.transportLog.login">User login</th>
+					<th translate="resources.transportLog.rechargeType">Recharge type</th>
+					<th translate="resources.transportLog.content">Content</th>
+					<th translate="resources.transportLog.state">State</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state===false,'b-l b-5x b-danger':item.state===true}">
+					<td>@(Html.ColumnFor<TransportOperationGetAllResult>(x => x.DateTime))</td>
+					<td>{{item.uid}}</td>
+					<td>@(Html.ColumnFor<TransportOperationGetAllResult>(x => x.Login))</td>
+					<td>
+						<span data-ng-show="item.action == 'Recharge'" translate="resources.transportLog.getRecharge">NFC Recharge</span>
+						<span data-ng-show="item.action == 'Read'" translate="resources.transportLog.readInfo">NFC read card</span>
+						<span data-ng-show="item.action == 'Charge'" translate="resources.transportLog.readInfoNoCompat">Read info no compat.</span>
+						<span data-ng-show="item.action == 'Revoke'" translate="resources.transportLog.revoke">Revoke</span>
+						<span data-ng-show="item.action == 'Recharge' || item.action =='Revoke'"><br />{{item.titleRecharged}} {{item.zoneRecharged | eigeZonaFilter}}</span>
+						<span data-ng-show="item.action == 'CreateCard'" translate="resources.transportLog.createCard">Create Card</span>
+                        <span data-ng-show="item.action == 'Search'" translate="resources.transportLog.magnifyingGlass">Magnifying glass read</span>
+                        <span data-ng-show="item.action == 'Purchaise'" translate="resources.transportLog.purchaise">Compra</span>
+                        <span data-ng-show="item.action == 'Unemit'" translate="resources.transportLog.unemit">Card return</span>
+					</td>
+					<td>
+						<p>{{item.title1}} {{item.title1Zone | eigeZonaFilter}} <span data-ng-show="item.title1Quantity != -1">{{item.title1Quantity}} </span></p>
+						<p>{{item.title2}} {{item.title2Zone | eigeZonaFilter}} <span data-ng-show="item.title2Quantity != -1">{{item.title2Quantity}} </span></p>
+					</td>
+					<td>
+						<div data-ng-show="item.action =='Recharge' || item.action =='Revoke'">
+							<div data-ng-show="item.ticketPay==true">
+                                <span class="label bg-success" tooltip="Correcto" style="color:#FFF;font-size: 60% !important;">
+                                    <span data-ng-show="item.action=='Revoke'">DEVUELTO</span>
+                                    <span data-ng-show="item.action!='Revoke'">PAGADO</span>
+                                </span><br />
+                            </div>
+							<div data-ng-hide="item.ticketPay==true">
+                                <span class="label bg-danger" tooltip="{{item.ticketPayError || 'Sin Pagar'}}" style="font-size: 60% !important;">
+                                    <span data-ng-show="item.action=='Revoke'">SIN DEVOLVER</span>
+                                    <span data-ng-show="item.action!='Revoke'">SIN PAGAR</span>
+                                </span><br />
+                            </div>
+							<div data-ng-show="item.rechargedApplied==true">
+                                <span class="label bg-success" tooltip="Aplicado" style="color:#FFF;font-size: 60% !important;">APLICADO</span>
+                            </div>
+							<div data-ng-show="item.rechargedApplied==false">
+                                <span class="label bg-danger" tooltip="Sin Aplicar" style="font-size: 60% !important;">SIN APLICAR</span>
+                            </div>
+							<div data-ng-show="item.rechargeConfirm==true">
+                                <span class="label bg-success" tooltip="Confirmado" style="color:#FFF;font-size: 60% !important;">CONFIRMADO</span>
+                            
+                            </div>
+							<div data-ng-hide="item.rechargeConfirm==true">
+                                <span class="label bg-danger" tooltip="{{item.errorRechargeConfirm || 'Sin Confirmar'}}" style="font-size: 60% !important;">SIN CONFIRMAR</span>
+                            </div>
+						</div>
+						<div data-ng-show="item.action =='Read'">&nbsp;</div>
+					</td>
+					<td>
+						<div class="pull-left legendColorBox">
+							<div class="greyListContainer" data-ng-show="item.greyListPending">
+								<div class="greyListPoint" />
+							</div>
+							<a data-xp-navigate tooltip="Consultar tarjeta" ui-sref=@viewCard>
+								<i class='@XpIcons.CardTransport'></i>
+							</a>
+						</div>
+						<div class="pull-left" data-ng-class="{'payinEye2':item.action=='Recharge','payinEye':item.action !='Recharge'}" data-ng-show="item.state == false">
+							<a data-xp-navigate tooltip="Ver operación" ui-sref=@details data-ng-show="item.action == 'Read'">
+								<i class='@XpIcons.Details'></i>
+							</a>
+							<a data-xp-navigate tooltip="Ver operación" ui-sref=@details data-ng-show="item.action == 'Revoke'">
+								<i class='@XpIcons.Details'></i>
+							</a>
+							<a data-xp-navigate tooltip="Ver operación" ui-sref=@details data-ng-show="item.action == 'Recharge'" style="margin-left:0.6em">
+								<i class='@XpIcons.Details'></i>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.correct">Error</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.error">Correct</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

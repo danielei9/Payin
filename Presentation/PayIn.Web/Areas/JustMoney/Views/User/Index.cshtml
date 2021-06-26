@@ -1,0 +1,31 @@
+﻿@using PayIn.Web.App.Factories.JustMoney;
+@using PayIn.Application.Dto.JustMoney.Results;
+
+@using (Html.xpList(
+    UserFactory.GetAllName,
+    UserFactory.GetAllApi,
+    "",
+    "Usuarios",
+    initialSearch: true,
+    isTitleActive: true
+))
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Login</th>
+                <th>PAN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data">
+                <td xp-navigate ui-sref='@UserFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<JustMoneyApiPrepaidCardGetAllResult>(x => x.FirstName))</td>
+                <td xp-navigate ui-sref='@UserFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<JustMoneyApiPrepaidCardGetAllResult>(x => x.LastName))</td>
+                <td xp-navigate ui-sref='@UserFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<JustMoneyApiPrepaidCardGetAllResult>(x => x.Login))</td>
+                <td xp-navigate ui-sref='@UserFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<JustMoneyApiPrepaidCardGetAllResult>(x => x.Pan))</td>
+            </tr>
+        </tbody>
+    </table>
+}

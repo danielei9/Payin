@@ -1,0 +1,48 @@
+﻿
+<div xp-panel ng-init="app.selectedPage='prepaidcardenabledisable'">
+    <xp-put api="JustMoney/Api/PrepaidCard/EnableDisable" class="xpPutRow">
+        <form name="form" role="form" ng-submit="accept()">
+            <xp-list api="/JustMoney/Api/PrepaidCard/EnableDisable"
+                     initial-search
+                     xp-success="scope.arguments.cards = data.data">
+
+                <div class="spinner" ng-show="_windowState.isBusy">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                <h1>Bloquear/Desbloquear tarjetas</h1>
+                <!-- Errors -->
+                <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+                    <ul>
+                        <li ng-repeat="error in errors">{{error}}</li>
+                    </ul>
+                </div>
+
+                <div class="verticalSpacer">&nbsp;</div>
+
+                <div class="col-md-10">
+                    <!-- Buttons -->
+                    <div class="row rowCardLockUnlock" ng-repeat="card in data">
+                        <div class="col-md-10">
+                            <label for="cardAlias{{card.id}}" class="switchLabel">{{card.alias}}</label>
+                        </div>
+                        <div class="col-md-2 switchCell">
+                            <div class="custom-control custom-switch floatRight">
+                                <input type="checkbox" class="custom-control-input" id="cardAlias{{card.id}}" ng-model="card.enable" ng-disabled="_windowState.isBusy">
+                                <label class="custom-control-label" for="cardAlias{{card.id}}"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="orangeSingleButtonsDiv">
+                        <button type="submit" class="orangeButton" ng-disabled="_windowState.isBusy">Guardar cambios</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    &nbsp;
+                </div>
+            </xp-list>
+        </form>
+    </xp-put>
+
+</div>

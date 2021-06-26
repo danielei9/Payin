@@ -1,0 +1,66 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+
+@{
+	XpHtmlHelpersExtension.SetXpHelpers(typeof(ASP.XpHelpers));
+	XpArgumentsExtension.SetXpArguments(typeof(ASP.XpArguments));
+	XpColumnsExtension.SetXpColumns(typeof(ASP.XpColumns));
+
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en" ng-app="xp.shop">
+<head>
+    <meta charset="utf-8" />
+    <title>Pay[in] @ViewBag.Title</title>
+    <link id="favicon" rel="shortcut icon" href="~/Images/{{features.favicon()}}" type="image/png" />
+    <link rel="apple-touch-icon" sizes="194x194" href="~/Images/{{features.faviconApple()}}" type="image/png" />
+    <link type="text/css" href="~/Content/ShopEventsEntrances.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit" async defer></script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Markdown-->
+    @Styles.Render("~/Content/markdown")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+</head>
+<body ng-controller="AppCtrl">
+    <script type="text/javascript" defer="defer">
+		@Html.Raw(ViewBag.AccessToken)
+		@Html.Raw(ViewBag.RefreshToken)
+		@Html.Raw(ViewBag.UserName)
+		@Html.Raw(ViewBag.Roles)
+		@Html.Raw(ViewBag.ClientId)
+		@Html.Raw(ViewBag.Error)
+    </script>
+    <div class="app" id="uiView" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}">
+        <div style="height:100%;" ui-view></div>
+    </div>
+    <!-- Font Awesome -->
+    @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">*@
+    <script src="https://use.fontawesome.com/1b938b1e38.js"></script>
+    <!-- jQuery-->
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Angularjs -->
+    @Scripts.Render("~/bundles/angularjs")
+    <!-- BootStrap-->
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Lazyload -->
+    @Scripts.Render("~/bundles/lazyload")
+    <!-- Translate -->
+    @Scripts.Render("~/bundles/translate")
+    <!-- Markdown-->
+    @Scripts.Render("~/bundles/markdown")
+    <!-- Xp.shop -->
+    @Scripts.Render("~/bundles/xp.shop")
+    <!-- Xp -->
+    @Scripts.Render("~/bundles/xp")
+    <iframe frameborder="0" width="100%" style="height: 80vh; display: none;" name="bankFrame" id="bankFrame"></iframe>
+    <form style="display:none" name="formPost" id="formPost" target="_self"></form>
+</body>
+</html>

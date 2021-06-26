@@ -1,0 +1,20 @@
+﻿@model System.Web.Mvc.SelectList
+@using PayIn.Application.Dto.Transport.Arguments.TransportCardSupportTitleCompatibility
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+        TransportCardSupportTitleCompatibilityFactory.CreateName,
+        TransportCardSupportTitleCompatibilityFactory.CreateApi,
+        "",
+        "resources.transportCardSupportTitleCompatibility.create",
+        "{{temp.titleName}}",
+        init: "scope.arguments.TitleId=params.titleId"
+    ))
+{
+<xp-get data-api="@TransportCardSupportTitleCompatibilityFactory.CreateGetNameApi">
+	@(Html.SelectFor<TransportCardSupportTitleCompatibilityCreateArguments>(x => x.TransportCardSupportId, "transportCardSupportName", TransportCardSupportTitleCompatibilityFactory.RetrieveSelectorApi, placeHolder: "Introduce la Tarjeta a asociar"))
+</xp-get>
+
+}
+

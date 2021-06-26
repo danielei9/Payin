@@ -1,0 +1,15 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	CampaignLineFactory.AddProductName,
+	CampaignLineFactory.AddProductApi,
+	"",
+	"resources.campaignLine.addProduct"
+))
+{
+	@(Html.SelectFor<CampaignLineAddProductArguments>(x => x.ProductId, "productName", CampaignLineFactory.ProductRetrieveSelectorApi))
+}

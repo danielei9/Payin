@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	NoticeFactory.Show,
+	NoticeFactory.IsVisibleApi,
+	"",
+	"resources.notice.show",
+	init: "scope.arguments.isVisible=true;"
+))
+{
+	<p translate="resources.notice.showQuestion">Do you want to show this notice?</p>
+}

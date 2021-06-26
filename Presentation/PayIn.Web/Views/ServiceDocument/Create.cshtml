@@ -1,0 +1,26 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+	ServiceDocumentFactory.Create,
+	ServiceDocumentFactory.CreateApi,
+	"",
+	"resources.serviceDocument.create",
+	init:
+		"scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+))
+{
+	<xp-get api="@ServiceDocumentFactory.GetCreateApi">
+		@(Html.SelectFor<ServiceDocumentCreateArguments>(x => x.SystemCardId, "systemCardId"))
+		@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Name, focus: true))
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Since, width: 6))
+				@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Until, width: 6))
+			</div>
+		</div>
+		@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Url, inputAttribute: "buttontext"))
+	</xp-get>
+}
+

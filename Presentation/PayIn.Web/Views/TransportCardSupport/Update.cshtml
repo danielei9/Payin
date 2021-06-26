@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Transport.Arguments.TransportCardSupport;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpPut(
+	TransportCardSupportFactory.UpdateName,
+	TransportCardSupportFactory.UpdateApi,
+	"",
+	"resources.transportCardSupport.update",
+	isTitleActive: true,
+	init: "scope.arguments.id=params.id"
+))
+{
+<xp-get data-api="@TransportCardSupportFactory.UpdateApi">
+	@(Html.ArgumentFor<TransportCardSupportUpdateArguments>(x => x.Name, focus: true))
+	@(Html.SelectFor<TransportCardSupportUpdateArguments>(x => x.OwnerName, "ownerName", TransportCardSupportFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<TransportCardSupportUpdateArguments>(x => x.OwnerCode))
+	@(Html.ArgumentFor<TransportCardSupportUpdateArguments>(x => x.Type))
+	@(Html.ArgumentFor<TransportCardSupportUpdateArguments>(x => x.SubType))
+</xp-get>
+}

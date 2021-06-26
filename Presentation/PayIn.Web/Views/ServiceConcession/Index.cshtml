@@ -1,0 +1,80 @@
+﻿@using PayIn.Application.Dto.Results.ServiceConcession;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common.Resources;
+@using (Html.xpList(
+	ServiceConcessionFactory.GetAllName,
+	ServiceConcessionFactory.GetAllApi,
+	"",
+	//ServiceConcessionResources.Concessions,
+	"resources.serviceConcession.concessions",
+	isPaginable: false,
+	isTitleActive: true
+)){
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.serviceConcession.name">Name</th>
+					<th translate="resources.serviceConcession.type">Type</th>
+					<th translate="resources.serviceConcession.observations">Observations</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data"
+					ng-class="{'b-l b-3x b-success': item.state === 0,'b-l b-3x b-danger': item.state === 1 ,'b-l b-3x b-warning': item.state === 2 || item.state === 3}">
+					<td data-ng-show="item.type === 1">
+						@(Html.ColumnFor<ServiceConcessionGetAllCommerceResult>(x => x.Name, panelUrl: PaymentConcessionFactory.UpdateCommerce, id: "{{item.id}}"))
+					</td>
+					<td data-ng-show="item.type !== 1">
+						@(Html.ColumnFor<ServiceConcessionGetAllCommerceResult>(x => x.Name, panelUrl: ServiceConcessionFactory.UpdateCommerce, id: "{{item.id}}"))
+					</td>
+					<td data-ng-show="item.type === 1">
+						@(Html.ColumnFor<ServiceConcessionGetAllCommerceResult>(x => x.TypeName, panelUrl: PaymentConcessionFactory.UpdateCommerce, id: "{{item.id}}"))
+					</td>
+					<td data-ng-show="item.type !== 1">
+						@(Html.ColumnFor<ServiceConcessionGetAllCommerceResult>(x => x.TypeName, panelUrl: ServiceConcessionFactory.UpdateCommerce, id: "{{item.id}}"))
+					</td>
+					<td data-ng-show="item.type === 1">
+						@(Html.ColumnFor<ServiceConcessionGetAllCommerceResult>(x => x.CreateConcessionDate, panelUrl: PaymentConcessionFactory.UpdateCommerce, id: "{{item.id}}"))
+					</td>
+					<td data-ng-show="item.type !== 1">
+						&nbsp;
+					</td>
+					<td data-ng-show="item.type === 1">
+						Pay[in]: {{item.payinCommision}}%
+					</td>
+					<td data-ng-show="item.type !== 1">
+						&nbsp;
+					</td>
+					<td class="icon-column" style="text-align:right">
+						@XpColumns.IconColumn(
+												XpIcons.Trash,
+												popupUrl: ServiceConcessionFactory.Delete,
+												id: "{{item.id}}"
+								)
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.serviceSupplier.active">&nbsp;Active&nbsp;</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.serviceSupplier.suspended">&nbsp;Suspended&nbsp;</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.serviceSupplier.removed">&nbsp;Removed&nbsp;</p>
+				</div>
+			</div>
+		</div>		
+	</footer>
+
+}

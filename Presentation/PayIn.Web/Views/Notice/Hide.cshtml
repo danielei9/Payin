@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	NoticeFactory.Hide,
+	NoticeFactory.IsVisibleApi,
+	"",
+	"resources.notice.hide",
+	init: "scope.arguments.isVisible=false;"
+))
+{
+	<p translate="resources.notice.hideQuestion">Do you want to hide this notice?</p>
+}

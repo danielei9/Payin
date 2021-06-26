@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPopupPut(
+    EntranceFactory.ChangeCardName,
+    EntranceFactory.ChangeCardApi,
+    "",
+    "resources.entrance.changeCardEntrance"
+))
+{
+    @(Html.ArgumentFor<ApiEntranceChangeCardArguments>(x => x.UidText, width: 12))
+}

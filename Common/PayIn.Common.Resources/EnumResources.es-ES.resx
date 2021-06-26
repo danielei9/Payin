@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountLineType_Cash" xml:space="preserve">
+    <value>Metálico</value>
+  </data>
+  <data name="AccountLineType_CreditCard" xml:space="preserve">
+    <value>Tarjeta de crédito</value>
+  </data>
+  <data name="AccountLineType_Entrances" xml:space="preserve">
+    <value>Entradas</value>
+  </data>
+  <data name="AccountLineType_Others" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="AccountLineType_Products" xml:space="preserve">
+    <value>Productos</value>
+  </data>
+  <data name="AccountLineType_ServiceCard" xml:space="preserve">
+    <value>Tarjeta o Pulsera</value>
+  </data>
+  <data name="CampaignLineType_DirectDiscount" xml:space="preserve">
+    <value>Descuento directo</value>
+  </data>
+  <data name="CampaignLineType_Money" xml:space="preserve">
+    <value>Dinero</value>
+  </data>
+  <data name="CampaignLineType_Percent" xml:space="preserve">
+    <value>Porcentaje</value>
+  </data>
+  <data name="CheckPointType_Check" xml:space="preserve">
+    <value>P[check] – Control entrada/salida</value>
+  </data>
+  <data name="CheckPointType_Entrance" xml:space="preserve">
+    <value>P[in] – Control entrada</value>
+  </data>
+  <data name="CheckPointType_Exit" xml:space="preserve">
+    <value>P[out] – Control salida</value>
+  </data>
+  <data name="CheckPointType_Round" xml:space="preserve">
+    <value>P[round] – Control ronda</value>
+  </data>
+  <data name="CheckType_Incident" xml:space="preserve">
+    <value>Check de incidente</value>
+  </data>
+  <data name="CheckType_Manual" xml:space="preserve">
+    <value>Check manual</value>
+  </data>
+  <data name="CheckType_NFC" xml:space="preserve">
+    <value>NFC Check</value>
+  </data>
+  <data name="CheckType_Undefined" xml:space="preserve">
+    <value>Indefinido</value>
+  </data>
+  <data name="ConcessionState_Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="ConcessionState_Pending" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="ConcessionState_Removed" xml:space="preserve">
+    <value>Eliminado</value>
+  </data>
+  <data name="ConcessionState_Suspended" xml:space="preserve">
+    <value>Suspendido</value>
+  </data>
+  <data name="ControlFormArgumentTarget_Check" xml:space="preserve">
+    <value>Check (a rellenar por el usuario)</value>
+  </data>
+  <data name="ControlFormArgumentTarget_Creation" xml:space="preserve">
+    <value>Creation (a rellenar por el operador)</value>
+  </data>
+  <data name="ControlFormArgumentTarget_Undefined" xml:space="preserve">
+    <value>Indefinido</value>
+  </data>
+  <data name="ControlFormArgumentType_Bool" xml:space="preserve">
+    <value>Sí y No</value>
+  </data>
+  <data name="ControlFormArgumentType_Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="ControlFormArgumentType_Datetime" xml:space="preserve">
+    <value>Fecha y hora</value>
+  </data>
+  <data name="ControlFormArgumentType_Double" xml:space="preserve">
+    <value>Número decimal</value>
+  </data>
+  <data name="ControlFormArgumentType_Duration" xml:space="preserve">
+    <value>Duración</value>
+  </data>
+  <data name="ControlFormArgumentType_File" xml:space="preserve">
+    <value>Fichero</value>
+  </data>
+  <data name="ControlFormArgumentType_Image" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="ControlFormArgumentType_Int" xml:space="preserve">
+    <value>Número entero</value>
+  </data>
+  <data name="ControlFormArgumentType_String" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="ControlFormArgumentType_Time" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="DecimalCharDelimiter_Comma" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="DecimalCharDelimiter_Dot" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="IncidenceCategory_Cleaning" xml:space="preserve">
+    <value>Limpieza</value>
+  </data>
+  <data name="IncidenceCategory_Excrements" xml:space="preserve">
+    <value>Excrementos</value>
+  </data>
+  <data name="IncidenceCategory_Green_Line" xml:space="preserve">
+    <value>Linea Verde</value>
+  </data>
+  <data name="IncidenceCategory_Lighting" xml:space="preserve">
+    <value>Iluminación</value>
+  </data>
+  <data name="IncidenceCategory_Others" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="IncidenceCategory_Parks_and_gardens" xml:space="preserve">
+    <value>Parques y jardines</value>
+  </data>
+  <data name="IncidenceCategory_Streets" xml:space="preserve">
+    <value>Calles</value>
+  </data>
+  <data name="IncidenceCategory_Street_furniture" xml:space="preserve">
+    <value>Mobiliario urbano</value>
+  </data>
+  <data name="IncidenceState_Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="IncidenceState_Closed" xml:space="preserve">
+    <value>Cerrado</value>
+  </data>
+  <data name="IncidenceState_Deleted" xml:space="preserve">
+    <value>Borrado</value>
+  </data>
+  <data name="IncidenceSubCategory_Broken" xml:space="preserve">
+    <value>Rotura</value>
+  </data>
+  <data name="IncidenceSubCategory_Broken_branches" xml:space="preserve">
+    <value>Ramas rotas</value>
+  </data>
+  <data name="IncidenceSubCategory_Broken_lamp" xml:space="preserve">
+    <value>Lámpara rota</value>
+  </data>
+  <data name="IncidenceSubCategory_Cast_lamp" xml:space="preserve">
+    <value>Lámpara fundida</value>
+  </data>
+  <data name="IncidenceSubCategory_Childish_games" xml:space="preserve">
+    <value>Juegos infantiles</value>
+  </data>
+  <data name="IncidenceSubCategory_Cleaning_of_solar" xml:space="preserve">
+    <value>Limpieza de solares</value>
+  </data>
+  <data name="IncidenceSubCategory_Cleaning_varies" xml:space="preserve">
+    <value>Limpieza (varios)</value>
+  </data>
+  <data name="IncidenceSubCategory_Debris" xml:space="preserve">
+    <value>Escombros</value>
+  </data>
+  <data name="IncidenceSubCategory_Dirty" xml:space="preserve">
+    <value>Suciedad</value>
+  </data>
+  <data name="IncidenceSubCategory_Dumpster" xml:space="preserve">
+    <value>Contenedor de basura</value>
+  </data>
+  <data name="IncidenceSubCategory_Equipment" xml:space="preserve">
+    <value>Equipamiento</value>
+  </data>
+  <data name="IncidenceSubCategory_Graffiti" xml:space="preserve">
+    <value>Grafiti</value>
+  </data>
+  <data name="IncidenceSubCategory_Green_Line_Other" xml:space="preserve">
+    <value>Otro (Línea Verde)</value>
+  </data>
+  <data name="IncidenceSubCategory_Missing" xml:space="preserve">
+    <value>Desaparecido</value>
+  </data>
+  <data name="IncidenceSubCategory_Other" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="IncidenceSubCategory_Others" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="IncidenceSubCategory_Parkland" xml:space="preserve">
+    <value>Parques</value>
+  </data>
+  <data name="IncidenceSubCategory_Pavement_in_poor_condition" xml:space="preserve">
+    <value>Pavimento en mal estado</value>
+  </data>
+  <data name="IncidenceSubCategory_Plots" xml:space="preserve">
+    <value>Parcelas</value>
+  </data>
+  <data name="IncidenceSubCategory_Pruning_container" xml:space="preserve">
+    <value>Contenedor de poda</value>
+  </data>
+  <data name="IncidenceSubCategory_Public_road" xml:space="preserve">
+    <value>Carretera pública</value>
+  </data>
+  <data name="IncidenceSubCategory_Risk_of_fire" xml:space="preserve">
+    <value>Riesgo de incendio</value>
+  </data>
+  <data name="IncidenceSubCategory_Sewerage" xml:space="preserve">
+    <value>Alcantarillado</value>
+  </data>
+  <data name="IncidenceSubCategory_Signaling" xml:space="preserve">
+    <value>Señalización</value>
+  </data>
+  <data name="IncidenceSubCategory_Uncontrolled_landfills" xml:space="preserve">
+    <value>Vertederos incontrolados</value>
+  </data>
+  <data name="IncidenceSubCategory_Undergrowth" xml:space="preserve">
+    <value>Maleza</value>
+  </data>
+  <data name="IncidenceSubCategory_Water_leaks" xml:space="preserve">
+    <value>Fugas de agua</value>
+  </data>
+  <data name="IncidenceType_Ask" xml:space="preserve">
+    <value>Pregunta</value>
+  </data>
+  <data name="IncidenceType_Incidence" xml:space="preserve">
+    <value>Incidencia</value>
+  </data>
+  <data name="IncidenceType_Others" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="IncidenceType_Suggerence" xml:space="preserve">
+    <value>Sugerencia</value>
+  </data>
+  <data name="IncidentType_ManualCheck" xml:space="preserve">
+    <value>Check manual</value>
+  </data>
+  <data name="IncidentType_Other" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="IncidentType_Presence" xml:space="preserve">
+    <value>Presencia</value>
+  </data>
+  <data name="NotificationType_AcceptAssignment" xml:space="preserve">
+    <value>Aceptar asignación</value>
+  </data>
+  <data name="PaymentMediaType_AmericanExpress" xml:space="preserve">
+    <value>American Express</value>
+  </data>
+  <data name="PaymentMediaType_MasterCard" xml:space="preserve">
+    <value>MasterCard</value>
+  </data>
+  <data name="PaymentMediaType_Visa" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="PinType_ControlPresence" xml:space="preserve">
+    <value>Control de presencia</value>
+  </data>
+  <data name="PinType_ParkingMeter" xml:space="preserve">
+    <value>Parkímetro</value>
+  </data>
+  <data name="PinType_PaymentMedia" xml:space="preserve">
+    <value>Forma de pago</value>
+  </data>
+  <data name="PresenceType_Entrance" xml:space="preserve">
+    <value>P[in]</value>
+  </data>
+  <data name="PresenceType_Exit" xml:space="preserve">
+    <value>P[out]</value>
+  </data>
+  <data name="ProviderMapType_Google" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="ProviderMapType_Nokia" xml:space="preserve">
+    <value>Nokia</value>
+  </data>
+  <data name="ServiceAddressSide_Even" xml:space="preserve">
+    <value>Even</value>
+  </data>
+  <data name="ServiceAddressSide_Odd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="ServiceType_Charge" xml:space="preserve">
+    <value>Pagos</value>
+  </data>
+  <data name="ServiceType_Control" xml:space="preserve">
+    <value>Control</value>
+  </data>
+  <data name="ServiceType_Ora" xml:space="preserve">
+    <value>ORA</value>
+  </data>
+  <data name="ServiceType_ParkingFine" xml:space="preserve">
+    <value>Multa estacionamiento</value>
+  </data>
+  <data name="SexType_Female" xml:space="preserve">
+    <value>Mujer</value>
+  </data>
+  <data name="SexType_Male" xml:space="preserve">
+    <value>Hombre</value>
+  </data>
+  <data name="SexType_Undefined" xml:space="preserve">
+    <value>Indefinido</value>
+  </data>
+  <data name="TicketLineType_Buy" xml:space="preserve">
+    <value>Compra</value>
+  </data>
+  <data name="TicketLineType_Discount" xml:space="preserve">
+    <value>Descuento</value>
+  </data>
+  <data name="TicketLineType_Entrance" xml:space="preserve">
+    <value>Compra entradas</value>
+  </data>
+  <data name="TicketLineType_ExtraPrice" xml:space="preserve">
+    <value>Gestión</value>
+  </data>
+  <data name="TicketLineType_Product" xml:space="preserve">
+    <value>Compra productos</value>
+  </data>
+  <data name="TicketLineType_Recharge" xml:space="preserve">
+    <value>Recarga</value>
+  </data>
+  <data name="TicketLineType_ReturnCard" xml:space="preserve">
+    <value>Devolución tarjeta</value>
+  </data>
+  <data name="TicketStateType_Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="TicketStateType_Cancelled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="TicketStateType_ParciallyPayed" xml:space="preserve">
+    <value>Parcialmente pagado</value>
+  </data>
+  <data name="TicketStateType_Payed" xml:space="preserve">
+    <value>Pagado</value>
+  </data>
+  <data name="TicketType_NotPayable" xml:space="preserve">
+    <value>No pagable</value>
+  </data>
+  <data name="TicketType_Order" xml:space="preserve">
+    <value>Reserva</value>
+  </data>
+  <data name="TicketType_Recharge" xml:space="preserve">
+    <value>Recarga</value>
+  </data>
+  <data name="TicketType_Shipment" xml:space="preserve">
+    <value>Pedido</value>
+  </data>
+  <data name="TicketType_Ticket" xml:space="preserve">
+    <value>Compra</value>
+  </data>
+  <data name="WorkerState_Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="WorkerState_Deleted" xml:space="preserve">
+    <value>Eliminado</value>
+  </data>
+  <data name="WorkerState_Pending" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="WorkerState_Unsuscribed" xml:space="preserve">
+    <value>Desvinculado</value>
+  </data>
+  <data name="PeriodType_Last24h" xml:space="preserve">
+    <value>Últimas 24h</value>
+  </data>
+  <data name="PeriodType_Day" xml:space="preserve">
+    <value>Día</value>
+  </data>
+  <data name="ApiSensorGetEnergyArguments_Period_Day" xml:space="preserve">
+    <value>Día</value>
+  </data>
+  <data name="ApiSensorGetEnergyArguments_Period_Last24h" xml:space="preserve">
+    <value>Últ. 24h</value>
+  </data>
+  <data name="ServiceOperationType_CardEmited" xml:space="preserve">
+    <value>Emisión de tarjeta</value>
+  </data>
+  <data name="ServiceOperationType_CardReturned" xml:space="preserve">
+    <value>Devolución de tarjeta</value>
+  </data>
+  <data name="ServiceOperationType_EntranceBought" xml:space="preserve">
+    <value>Compra de entrada</value>
+  </data>
+  <data name="ServiceOperationType_EntranceReturned" xml:space="preserve">
+    <value>Devolución de entrada</value>
+  </data>
+  <data name="ServiceOperationType_Other" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="ServiceOperationType_ProductBought" xml:space="preserve">
+    <value>Compra de producto</value>
+  </data>
+  <data name="ServiceOperationType_ProductReturned" xml:space="preserve">
+    <value>Devolución de producto</value>
+  </data>
+  <data name="ServiceOperationType_PurseRecharged" xml:space="preserve">
+    <value>Compra en monedero</value>
+  </data>
+  <data name="ServiceOperationType_PurseReturned" xml:space="preserve">
+    <value>Devolución en monedero</value>
+  </data>
+  <data name="ServiceOperationType_TpvBought" xml:space="preserve">
+    <value>Compra en TPV</value>
+  </data>
+  <data name="ServiceOperationType_TpvReturned" xml:space="preserve">
+    <value>Devolución en TPV</value>
+  </data>
+  <data name="ServiceOperationType_CardRead" xml:space="preserve">
+    <value>Lectura de tarjeta</value>
+  </data>
+</root>

@@ -1,0 +1,76 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+    ServiceCategoryFactory.GetAllName,
+    ServiceCategoryFactory.GetAllApi,
+    "",
+    "resources.serviceCategory.getAll",
+    isTitleActive: true,
+    isSearchable: false,
+    initialSearch: true,
+    //actions: new ActionLink[] {
+    //            new ActionLink(ActionLink.ActionLinkType.Panel, ServiceCategoryFactory.Create, XpIcons.Plus)
+    //    }
+    addPanelUrl: ServiceCategoryFactory.CreateName
+    ))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length" col-md-12>
+            <thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceCategory.name">Name</th>	
+					<th translate="resources.serviceCategory.groups" colspan="2">Groups</th>
+				</tr>
+            </thead>
+            <tbody>
+				<tr ng-repeat="item in data">
+					<td class="icon-column">
+						<span ng-show="item.groups.length>0">
+							&nbsp;
+						</span>
+						<span ng-show="item.groups.length<=0">
+							@XpColumns.IconColumn(
+							   XpIcons.Trash,
+							   popupUrl: ServiceCategoryFactory.Delete,
+							   id: "{{item.id}}",
+							   arguments: "{\"name\":\"{{item.name}}\"}"
+						   )
+						</span>
+					</td>
+					<td class="max-text-size-200" style="cursor:pointer;" xp-navigate ui-sref='@ServiceCategoryFactory.UpdateName ({id:{{item.id}}})'>@(Html.ColumnFor<ServiceCategoryGetAllResult>(x => x.Name))</td>
+					<td class="icon-column">
+						<a ui-sref='@ServiceGroupFactory.CreateName ({id:{{item.id}}})' xp-navigate>
+							@XpColumns.IconColumn(XpIcons.Plus)
+						</a>
+					</td>
+					<td class="table-column">
+						<table class="table table-hover">
+							<tbody>
+                                <tr ng-repeat="group in item.groups">
+                                    <td class="icon-column">
+                                        @XpColumns.IconColumn(
+                                            XpIcons.Trash,
+                                            popupUrl: ServiceGroupFactory.Delete,
+                                            id: "{{group.id}}",
+                                            arguments: "{\"name\":\"{{group.name}}\"}"
+                                        )
+                                    </td>
+                                    <td style="cursor:pointer;" xp-navigate ui-sref='@ServiceGroupFactory.UpdateName ({id:{{group.id}}})'>@(Html.ColumnFor<ServiceCategoryGetAll_GroupResult>(x => x.Name, iterator: "group"))</td>
+                                    <td class="icon-column">
+                                        <a ui-sref='@ServiceGroupFactory.UpdateName ({id:"{{group.id}}"})' xp-navigate>
+                                            <i class='@XpIcons.Group'> </i>
+                                            <span class="badge badge-sm up bg-info" style="width:auto !important">{{group.membersCount}}</span>
+                                        </a>
+                                    </td>
+                                </tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+            </tbody>
+        </table>
+    </div>
+}

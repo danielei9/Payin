@@ -1,0 +1,133 @@
+﻿@using PayIn.Application.Dto.Payments.Results
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+    AccountLineFactory.GetByCashName,
+    AccountLineFactory.GetByCashApi,
+    "",
+    "resources.accountLine.getByCash",
+    isTitleActive: true,
+    init:
+        "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" +
+        "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+))
+{
+<div class="table-responsive" data-ng-controller="UnliquidatedController">
+    <div class="row row-sm">
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalRecharge | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Recargas</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalBuy | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Compras</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalReturnCard | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Devoluciones tarjetas</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalDiscount | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Descuentos</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalProduct | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Productos</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalEntrance | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Entradas</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.totalExtraPrice | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Precio extra</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col- m-b-md">
+            <div class="r bg-light dker item hbox no-border text-center">
+                <div class="col dk padder-v r-r">
+                    <div class="text-primary-dk font-thin h1"><span>{{arguments.total | number:2}}€</span></div>
+                    <span class="text-muted text-xs">Total</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover" col-md-12>
+        <thead>
+            <tr>
+                <th translate="resources.accountLine.date">Date</th>
+                <th translate="resources.accountLine.type">Type</th>
+                <th translate="resources.accountLine.event">Event</th>
+                <th translate="resources.accountLine.concession">Concession</th>
+                <th translate="resources.accountLine.debit" class="text-right">Debit</th>
+                <th translate="resources.accountLine.credit" class="text-right">Credit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data" ng-click="item.selected = !item.selected" ng-class="{'selectedrow':item.selected}">
+                <td>@(Html.ColumnFor<AccountLineGetByCashResult>(x => x.Date))</td>
+                <td>@(Html.ColumnFor<AccountLineGetByCashResult>(x => x.TypeName))</td>
+                <td>@(Html.ColumnFor<AccountLineGetByCashResult>(x => x.EventName))</td>
+                <!-- AccountType: Cash = 0, ServiceCard = 1, CreditCard = 2, Products = 3, Entrances = 4, Others = 99 -->
+                <!-- TicketType: Buy = 1, Entrance = 2, Product = 3, Discount = 4, ExtraPrice = 5, Recharge = 6, ReturnCard = 7 -->
+                <td class='b-l b-5x b-light'>
+                    @(Html.ColumnFor<AccountLineGetByCashResult>(x => x.ConcessionName))
+                </td>
+                <td class="text-right" style="padding-right:10px">
+                    <span ng-show="item.amount>=0">@(Html.ColumnFor<AccountLineGetByCashResult>(x => x.Amount))€</span>
+                </td>
+                <td class="text-right" style="padding-right:10px">
+                    <span ng-show="item.amount<0">{{-1 * item.amount | number:2}} €</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <footer class="panel-footer">
+        <div class="elementBottom">
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.payment.pending">Pendient</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.payment.liquidated">liquidado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.payment.paid">Pagado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:lightgrey;" class="legendGraph" /><p style="float:left;" translate="resources.payment.unliquidable">No liquidables</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:deepskyblue;" class="legendGraph" /><p style="float:left;" translate="resources.payment.review">Revisar</p>
+            </div>
+        </div>
+    </footer>
+}

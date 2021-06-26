@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceUserFactory.UnsubscribeName,
+	ServiceUserFactory.UnsubscribeApi,
+	"",
+	"resources.serviceUser.unsubscribe"
+))
+{
+	<p translate="resources.serviceUser.unsubscribedQuestion">Do you want to unsubscribe this member?</p>
+}

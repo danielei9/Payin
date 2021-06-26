@@ -1,0 +1,18 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplateItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlTemplateItemFactory.Update,
+	ControlTemplateItemFactory.UpdateApi,
+	"",
+	//ControlTemplateItemResources.Update
+	"resources.controlItem.update"
+))
+{
+	<xp-get data-api="@ControlTemplateItemFactory.GetApi">
+		@(Html.ArgumentFor<ControlTemplateItemUpdateArguments>(x => x.Since, width: 6))
+		@(Html.ArgumentFor<ControlTemplateItemUpdateArguments>(x => x.Until, width: 6))
+	</xp-get>
+}
+

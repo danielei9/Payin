@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Response_0" xml:space="preserve">
+    <value>Transacción aprobada</value>
+  </data>
+  <data name="Response_1" xml:space="preserve">
+    <value>Transacción aprobada previa identificación del titular</value>
+  </data>
+  <data name="Response_101" xml:space="preserve">
+    <value>Tarjeta caducada</value>
+  </data>
+  <data name="Response_102" xml:space="preserve">
+    <value>Tarjeta bloqueada transitoriamente o bajo sospecha de fraude</value>
+  </data>
+  <data name="Response_104" xml:space="preserve">
+    <value>Operación no permitida</value>
+  </data>
+  <data name="Response_106" xml:space="preserve">
+    <value>Número de intentos excedido</value>
+  </data>
+  <data name="Response_107" xml:space="preserve">
+    <value>Contactar con el emisor</value>
+  </data>
+  <data name="Response_109" xml:space="preserve">
+    <value>Identificación invalida del comercio o terminal</value>
+  </data>
+  <data name="Response_110" xml:space="preserve">
+    <value>Importe inválido</value>
+  </data>
+  <data name="Response_114" xml:space="preserve">
+    <value>Tarjeta no soporta el tipo de operación solicitado</value>
+  </data>
+  <data name="Response_116" xml:space="preserve">
+    <value>Disponible insuficiente</value>
+  </data>
+  <data name="Response_118" xml:space="preserve">
+    <value>Tarjeta no registrada</value>
+  </data>
+  <data name="Response_119" xml:space="preserve">
+    <value>Transacción denegada</value>
+  </data>
+  <data name="Response_125" xml:space="preserve">
+    <value>Tarjeta no efectiva</value>
+  </data>
+  <data name="Response_129" xml:space="preserve">
+    <value>Error CVV2/CVC2</value>
+  </data>
+  <data name="Response_167" xml:space="preserve">
+    <value>Contactar con el emisor: sospecha de fraude</value>
+  </data>
+  <data name="Response_180" xml:space="preserve">
+    <value>Tarjeta ajena al servicio</value>
+  </data>
+  <data name="Response_181" xml:space="preserve">
+    <value>Tarjeta con restricciones de débito o crédito</value>
+  </data>
+  <data name="Response_182" xml:space="preserve">
+    <value>Tarjeta con restricciones de débito o crédito</value>
+  </data>
+  <data name="Response_184" xml:space="preserve">
+    <value>Error de autenticación</value>
+  </data>
+  <data name="Response_190" xml:space="preserve">
+    <value>Denegación sin especificar el motivo</value>
+  </data>
+  <data name="Response_191" xml:space="preserve">
+    <value>Fecha de caducidad erronea</value>
+  </data>
+  <data name="Response_2" xml:space="preserve">
+    <value>Transacción aprobada</value>
+  </data>
+  <data name="Response_201" xml:space="preserve">
+    <value>Tarjeta cadudaca</value>
+  </data>
+  <data name="Response_202" xml:space="preserve">
+    <value>Tarjeta bloqueada transitoriamente o bajo sospecha de fraude</value>
+  </data>
+  <data name="Response_204" xml:space="preserve">
+    <value>Operación no permitida</value>
+  </data>
+  <data name="Response_207" xml:space="preserve">
+    <value>Contactar con el emisor</value>
+  </data>
+  <data name="Response_208" xml:space="preserve">
+    <value>Tarjeta perdida o robada</value>
+  </data>
+  <data name="Response_209" xml:space="preserve">
+    <value>Tarjeta perdida o robada</value>
+  </data>
+  <data name="Response_280" xml:space="preserve">
+    <value>Error CVV2/CVC2</value>
+  </data>
+  <data name="Response_290" xml:space="preserve">
+    <value>Denegación sin especificar el motivo</value>
+  </data>
+  <data name="Response_400" xml:space="preserve">
+    <value>Anulación aceptada</value>
+  </data>
+  <data name="Response_480" xml:space="preserve">
+    <value>No se encuentra la operación original o time-out excedido</value>
+  </data>
+  <data name="Response_481" xml:space="preserve">
+    <value>Anulación aceptada</value>
+  </data>
+  <data name="Response_500" xml:space="preserve">
+    <value>Conciliación aceptada</value>
+  </data>
+  <data name="Response_501" xml:space="preserve">
+    <value>No encontrada la operación original o time-out excedido</value>
+  </data>
+  <data name="Response_503" xml:space="preserve">
+    <value>No encontrada la operación original o time-out excedida</value>
+  </data>
+  <data name="Response_904" xml:space="preserve">
+    <value>Comercio no registrado en el FUC</value>
+  </data>
+  <data name="Response_9064" xml:space="preserve">
+    <value>Longitud tarjeta incorrecta</value>
+  </data>
+  <data name="Response_9078" xml:space="preserve">
+    <value>No existe método de pago</value>
+  </data>
+  <data name="Response_909" xml:space="preserve">
+    <value>Error de sistema</value>
+  </data>
+  <data name="Response_9093" xml:space="preserve">
+    <value>Tarjeta no existe</value>
+  </data>
+  <data name="Response_9094" xml:space="preserve">
+    <value>Denegación de los emisores</value>
+  </data>
+  <data name="Response_9104" xml:space="preserve">
+    <value>Operación segura no es posible</value>
+  </data>
+  <data name="Response_912" xml:space="preserve">
+    <value>Emisor no disponible</value>
+  </data>
+  <data name="Response_913" xml:space="preserve">
+    <value>Transmisión duplicada</value>
+  </data>
+  <data name="Response_9142" xml:space="preserve">
+    <value>Tiempo límite de pago superado</value>
+  </data>
+  <data name="Response_916" xml:space="preserve">
+    <value>Importe demasiado pequeño</value>
+  </data>
+  <data name="Response_9218" xml:space="preserve">
+    <value>No se pueden hacer operaciones seguras</value>
+  </data>
+  <data name="Response_9253" xml:space="preserve">
+    <value>Check-digit erroneo</value>
+  </data>
+  <data name="Response_9256" xml:space="preserve">
+    <value>Preautorizaciones no habilitadas</value>
+  </data>
+  <data name="Response_9261" xml:space="preserve">
+    <value>Límite operativo excedido</value>
+  </data>
+  <data name="Response_928" xml:space="preserve">
+    <value>Time-out excedido</value>
+  </data>
+  <data name="Response_9281" xml:space="preserve">
+    <value>Supera alertas bloqueantes</value>
+  </data>
+  <data name="Response_9283" xml:space="preserve">
+    <value>Supera alertas bloqueantes</value>
+  </data>
+  <data name="Response_940" xml:space="preserve">
+    <value>Transacción anulada anteriormente</value>
+  </data>
+  <data name="Response_941" xml:space="preserve">
+    <value>Transacción de autorización ya anulada por una anulación anterior</value>
+  </data>
+  <data name="Response_942" xml:space="preserve">
+    <value>Transacción original denegada</value>
+  </data>
+  <data name="Response_943" xml:space="preserve">
+    <value>Datos de la transacción original distintos</value>
+  </data>
+  <data name="Response_944" xml:space="preserve">
+    <value>Sesión erronea</value>
+  </data>
+  <data name="Response_945" xml:space="preserve">
+    <value>Transimisión duplicada</value>
+  </data>
+  <data name="Response_946" xml:space="preserve">
+    <value>Operación a anular en proceso</value>
+  </data>
+  <data name="Response_947" xml:space="preserve">
+    <value>Transmisión duplicada en proceso</value>
+  </data>
+  <data name="Response_949" xml:space="preserve">
+    <value>Terminal inoperativo</value>
+  </data>
+  <data name="Response_950" xml:space="preserve">
+    <value>Devolución no permitida</value>
+  </data>
+  <data name="Response_965" xml:space="preserve">
+    <value>Violación normativa</value>
+  </data>
+  <data name="Response_99" xml:space="preserve">
+    <value>Transacción aprobada</value>
+  </data>
+  <data name="Response_9912" xml:space="preserve">
+    <value>Emisor no disponible</value>
+  </data>
+  <data name="Response_9913" xml:space="preserve">
+    <value>Error en la confirmación</value>
+  </data>
+  <data name="Response_9914" xml:space="preserve">
+    <value>Confirmación "KO"</value>
+  </data>
+  <data name="Response_9915" xml:space="preserve">
+    <value>Pago cancelado</value>
+  </data>
+  <data name="Response_9928" xml:space="preserve">
+    <value>Anulación de preautorización realizada por el sistema</value>
+  </data>
+  <data name="Response_9929" xml:space="preserve">
+    <value>Anulación de preautorización realizada por el comercio</value>
+  </data>
+  <data name="Response_9997" xml:space="preserve">
+    <value>Transacción simultánea</value>
+  </data>
+  <data name="Response_9998" xml:space="preserve">
+    <value>Estado operación: Solicitada</value>
+  </data>
+  <data name="Response_9999" xml:space="preserve">
+    <value>Estado operación: Autenticando</value>
+  </data>
+</root>

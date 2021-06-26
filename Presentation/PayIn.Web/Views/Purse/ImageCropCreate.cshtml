@@ -1,0 +1,44 @@
+﻿@using Xp.Common;
+@using PayIn.Common.Security;
+@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Common.Resources;
+@using (Html.xpPopupPut(
+	PurseFactory.CreateImageCropName,
+	PurseFactory.UpdateImageCrop,
+	"",
+	"resources.purse.imageCrop",
+	init: "scope.arguments.purseId = params.id",
+	successUrl: "#/Purses",
+	previous: "scope.arguments.image=scope.temp.avatar.image;"
+))
+{
+	<div class="wrapper-md" xp-image-purse>
+		<div class="hbox hbox-auto-xs">
+			<div class="col">
+				<div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+					<div class="bg-light" style="height:320px">
+						<img-crop image="myImage"
+								  result-image="temp.avatar.image"
+								  result-image-size="{ w: 231, h: 143 }"
+								  area-type="rectangle"></img-crop>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="inline bg-white wrapper-sm b-a">
+					<div class="bg-light">
+						<img ng-src="{{temp.avatar.image}}" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+
+
+
+

@@ -1,0 +1,94 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportTitle;
+@using PayIn.Application.Dto.Transport.Results.TransportPrice;
+@using PayIn.Application.Dto.Transport.Results.TransportCardSupportTitleCompatibility;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@{
+	var TransportPrice = TransportPriceFactory.GetAll("{{item.id}}");
+	var TransportCardSupportTitleCompatibility = TransportCardSupportTitleCompatibilityFactory.GetAll("{{item.id}}");
+	var TransportSimultaneousTitleCompatibilities = TransportSimultaneousTitleCompatibilitiesFactory.GetAll("{{item.id}}");
+}
+
+@using (Html.xpList(
+	TransportTitleFactory.GetAllName,
+	TransportTitleFactory.GetAllApi,
+	"",
+	"resources.transportTitle.getAll",
+	isPaginable: true,
+	isTitleActive: true,
+	addPanelUrl: TransportTitleFactory.CreateName
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length" col-md-12>
+            <thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.transportTitle.code">Code</th>
+					<th translate="resources.transportTitle.ownerName">Owner</th>
+					<th translate="resources.transportTitle.environment">Environment</th>
+					<th translate="resources.transportTitle.name">Name</th>
+					<th translate="resources.transportTitle.operateByPayIn">Pay[In]</th>
+					<th translate="resources.transportTitle.hasZone">Use Zones</th>
+					<th translate="resources.transportTitle.isOverwritable">Modificable</th>
+					<th translate="resources.transportTitle.prices">Prices</th>
+					<th translate="resources.transportTitle.support">Card Support</th>
+					<th translate="resources.transportTitle.compatibilities">Compatibilities</th>
+				</tr>
+            </thead>
+            <tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+					<td ng-show="item.state === 0">&nbsp;</td>
+					<td class="icon-column" ng-show="item.state === 1">
+						@XpColumns.IconColumn(
+				   XpIcons.Trash,
+				   popupUrl: TransportTitleFactory.Delete,
+				   id: "{{item.id}}",
+				   arguments: "{\"name\":\"{{item.name}}\"}"
+			   )
+					</td>
+					<td>@(Html.ColumnFor<TransportTitleGetAllResult>(x => x.Code, panelUrl: TransportTitleFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportTitleGetAllResult>(x => x.OwnerName, panelUrl: TransportTitleFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportTitleGetAllResult>(x => x.EnvironmentAlias, panelUrl: TransportTitleFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportTitleGetAllResult>(x => x.Name, panelUrl: TransportTitleFactory.UpdateName, id: "{{item.id}}"))</td>
+
+					<td>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.operateByPayIn == true" translate="resources.transportTitle.yes">Sí</a>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.operateByPayIn == false" translate="resources.transportTitle.no">No</a>
+					</td>
+					<td>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.hasZone == true" translate="resources.transportTitle.yes">Sí</a>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.hasZone == false" translate="resources.transportTitle.no">No</a>
+					</td>
+					<td>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.isOverWritable == true" translate="resources.transportTitle.yes">Sí</a>
+						<a ui-sref='@TransportTitleFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding" ng-show="item.isOverWritable == false" translate="resources.transportTitle.no">No</a>
+					</td>
+					<td>
+						<a ui-sref='@TransportPrice' data-xp-navigate class="ng-binding"><i class="@XpIcons.List"></i> {{item.counterPricing}}</a>
+					</td>
+					<td>
+						<a ui-sref='@TransportCardSupportTitleCompatibility' data-xp-navigate class="ng-binding"><i class="@XpIcons.CardTransport"></i> {{item.counterCardSupport}}</a>
+					</td>
+					<td>
+                        <a ui-sref='@TransportSimultaneousTitleCompatibilities' data-xp-navigate class="ng-binding"><i class="@XpIcons.Ticket"></i> {{item.counterTitlecompatibilities}}</a>
+					</td>
+				</tr>
+            </tbody>
+        </table>
+    </div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.active">Paid</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.deleted">Cancelled</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

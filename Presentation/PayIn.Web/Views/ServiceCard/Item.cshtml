@@ -1,0 +1,251 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Domain.Security;
+@{
+    var checkIsSuperadministratorOrSystemCardOwner = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.SystemCardOwner + "')";
+}
+@using (Html.xpPut(
+    ServiceCardFactory.Get,
+    ServiceCardFactory.GetApi,
+    "",
+    "resources.serviceCard.card",
+    acceptText: "",
+    cancelText: "Volver"
+))
+{
+    <style>
+        .cardImage {
+            width: 100% !important;
+            height: 100% !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px 5px 5px 5px;
+            -moz-border-radius: 5px 5px 5px 5px;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border: 1px outset #d8d8d8
+        }
+
+        .systemCardName {
+            margin-top: 10px !important;
+            margin-bottom: -5px !important;
+        }
+        .inBackList {
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+        .locked {
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            z-index: 1;
+            right: 0px;
+            text-align: center;
+            font-size: 25px;
+            transform: rotate(345deg);
+            color: #e9af30;
+            text-shadow: black 0.1em 0.1em 0.2em;
+            font-weight: bold;
+        }
+        .changeCard {
+            border-color: var(--highlightcolor);
+            border-width: 1px;
+            width: 100%;
+        }
+    </style>
+    <xp-get data-api="@ServiceCardFactory.GetApi" xp-success="scope.temp.operations = scope.arguments.operations; delete scope.arguments.operations; scope.temp.entrances = scope.arguments.entrances; delete scope.arguments.entrances; ">
+        <div class="row" style="margin: 10px;">
+            <div class="col-md-4 text-center">
+                <div ng-show="@checkIsSuperadministratorOrSystemCardOwner">
+                    <span ng-show="(!arguments.inBlackList) && (arguments.state!=3) && (arguments.relation!=0)">
+                        @XpColumns.IconColumn(XpIcons.Pause, popupUrl: ServiceCardFactory.LockCardName, id: "{{arguments.id}}", tooltip: "Bloquear")
+                    </span>
+                    <span ng-show="(arguments.inBlackList) && (arguments.state!=3) && (arguments.relation!=0)">
+                        @XpColumns.IconColumn(XpIcons.Play, popupUrl: ServiceCardFactory.UnlockCardName, id: "{{arguments.id}}", tooltip: "Desbloquear")
+                    </span>
+                </div>
+                <div class="locked" ng-show="arguments.inBlackList">
+                    (<i class="@XpIcons.Lock"></i> BLOQUEADA)
+                </div>
+                <img class="cardImage" ng-src="{{arguments.userPhoto}}" ng-class="{ 'inBackList': arguments.inBlackList }" /><!-- src="https://payintest.blob.core.windows.net/files/systemcard/photo/tarjeta_por_defecto.jpg"/ -->
+                <div style="margin-top: 5px;" ng-show="arguments.relation==0">
+                    <button class="btn btn-success" type="button" translate="resources.serviceCard.unlinkCard" ui-sref="@ServiceCardFactory.UnlinkCardName ({id:arguments.id})">Unlink card</button>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div><h3 class="font-thin">{{arguments.systemCardName}}</h3></div>
+                <div>
+                    <h4 style="margin-bottom: 0;">
+                        {{arguments.userName}} {{arguments.userSurname}}
+                    </h4>
+                </div>
+                <div style="font-style:italic">
+                    <span data-ng-show="arguments.cardType <= 0 || arguments.cardType > 3" translate="resources.serviceCard.notEmitted">Not emitted</span>
+                    <span data-ng-show="arguments.cardType == 1" translate="resources.serviceCard.primary">Primary</span>
+                    <span data-ng-show="arguments.cardType == 2" translate="resources.serviceCard.secondary">Secondary</span>
+                    <span data-ng-show="arguments.cardType == 3" translate="resources.serviceCard.anonymous">Anonymous</span>
+                </div>
+                <div>{{arguments.alias}}</div>
+                <div>Nº de tarjeta: {{arguments.cardId}}</div>
+            </div>
+        </div>
+        <div class="row" style="margin: 10px;">
+            <div class="col-md-12">
+                <tabset class="tab-container">
+                    <tab heading="Grupos" ng-hide="arguments.relation == 0">
+                        <div class="table-responsive" ng-hide="arguments.relation == 0">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Grupo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in arguments.groups">
+                                        <td>{{item.name}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </tab>
+                    <tab heading="Monederos" ng-hide="arguments.relation == 0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td colspan="3">
+                                            <a ng-show="arguments.canSellBalance && (!arguments.inBlackList)" ui-sref="@EntranceTypeFactory.RechargeName ({cardId:arguments.id})" xp-navigate class="btn btn-success" translate="resources.serviceUser.sellBalance">Sell recharge of money</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th><span translate="resources.serviceCard.purse">Purse</span></th>
+                                        <th style="width: 75px;"><span translate="resources.serviceCard.amount">Amount</span></th>
+                                        <th><span translate="resources.serviceCard.pendingOperations">Pending operations</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in arguments.purseValues">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.amount}}</td>
+                                        <td style="width: 1px;">
+                                            <div ng-show="item.pendingRecharges.length" style="width: 240px;">
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr ng-repeat="operation in item.pendingRecharges">
+                                                            <td style="width: 120px;">{{operation.dateTime | date : 'dd/MM/yyyy HH:mm'}}</td>
+                                                            <td style="width: 50px;">{{operation.amount}} €</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div ng-hide="item.pendingRecharges.length">&nbsp;</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </tab>
+                    <tab heading="Entradas">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td colspan="5">
+                                            <a ng-show="arguments.canSellBalance && (!arguments.inBlackList)" ui-sref="@EntranceTypeFactory.GetSellableName ({cardId:arguments.id})" xp-navigate class="btn btn-success" translate="resources.serviceUser.sellEntrance">Sell entrances</a>
+                                            @*
+											<a ng-show="arguments.canGiveBalance && (!arguments.inBlackList)" ui-sref="@EntranceTypeFactory.GetToGiveName ({cardId:arguments.id})" xp-navigate class="btn btn-success" translate="resources.serviceUser.giveEntrance">Give entrances</a>
+                                            <a ng-show="arguments.canBuyBalance && (!arguments.inBlackList)" ui-sref="@EntranceTypeFactory.GetBuyableName  ({cardId:arguments.id})" xp-navigate class="btn btn-success" translate="resources.serviceUser.buyEntrance">Buy entrances</a>
+											*@
+										</td>
+                                    </tr>
+                                    <tr>
+                                        <th><span translate="resources.serviceCard.event">Event</span></th>
+                                        <th><span translate="resources.serviceCard.type">Type</span></th>
+                                        <th style="width: 150px;"><span translate="resources.serviceCard.start">Start</span></th>
+                                        <th style="width: 150px;"><span translate="resources.serviceCard.purchaseDate">Purchase date</span></th>
+                                        <th style="width: 24px;">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in temp.entrances" ng-class="{
+					                            'b-l b-5x b-success' : !item.finished,
+					                            'b-l b-5x b-warning' : !item.finished && item.state==4,
+					                            'b-l b-5x b-light expired-color' : item.finished
+			                                }" title="Fecha de compra: {{item.timestamp | date : 'dd/MM/yyyy HH:mm'}}">
+                                        <td>{{item.eventName}}</td>
+                                        <td>{{item.entranceTypeName}}</td>
+                                        <td>{{item.eventStart | date : 'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{item.timestamp | date : 'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>
+                                            <div ng-hide="item.finished || item.state==4">
+                                                @XpColumns.IconColumn(XpIcons.Share, popupUrl: EntranceFactory.ChangeCardName, id: "{{item.id}}", tooltip: "Cambiar a otra pulsera/tarjeta")
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <footer class="panel-footer">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-4">
+                                            <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;"><span translate="resources.serviceCard.activeEvent">Active</span></p>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <div style="background-color:#fad733;" class="legendGraph" /><p style="float:left;"><span translate="resources.serviceCard.pendingEvent">Pending</span></p>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <div style="background-color:#BBB;" class="legendGraph" /><p style="float:left;"><span translate="resources.serviceCard.finishedEvent">Finished</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </tab>
+                    <tab heading="Histórico"><!-- ng-hide="arguments.relation == 0" -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td colspan="5">
+                                            <a ng-show="arguments.canBuyBalance && (!arguments.inBlackList)" ui-sref="@EntranceTypeFactory.BuyRechargeName ({cardId:arguments.id})" xp-navigate class="btn btn-success" translate="resources.serviceUser.buyBalance">Buy recharge of money</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Operación</th>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Últ. Emisión</th>
+                                        <th>Monederos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in temp.operations">
+                                        <td>{{item.seq}}</td>
+                                        <td>{{item.date | date : 'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{item.typeName}}</td>
+                                        <td>{{item.eSeq}}</td>
+                                        <td>
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    <tr ng-repeat="subitem in item.purseValues">
+                                                        <td>{{subitem.name}}</td>
+                                                        <td style="text-align: right;">
+                                                            {{subitem.amount}} €
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </xp-get>
+
+}

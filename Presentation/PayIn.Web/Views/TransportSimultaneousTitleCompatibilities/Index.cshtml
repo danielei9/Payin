@@ -1,0 +1,53 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportSimultaneousTitleCompatibilities;
+@using PayIn.Application.Dto.Transport.Arguments.TransportSimultaneousTitleCompatibilities;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	TransportSimultaneousTitleCompatibilitiesFactory.GetAllName,
+	TransportSimultaneousTitleCompatibilitiesFactory.GetAllApi,
+	"",
+	"resources.transportCardSupportTitleCompatibility.getAll",
+	"{{arguments.titleName}}",
+	isPaginable: false,
+	isTitleActive: true,
+	initialSearch:true,
+	showSpinner: true,
+	init: "scope.arguments.titleId = params.titleId",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, TransportSimultaneousTitleCompatibilitiesFactory.Create("{{$stateParams.titleId}}"),
+		XpIcons.Plus,
+		arguments: "{\"titleName\":\"{{arguments.titleName}}\"}")}
+))
+{
+    <div class="table-responsive" >
+            <table class="table table-hover" ng-show="data.length"col-md-12>
+                <thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th translate="resources.transportSimultaneousTitleCompatibilities.code">Code</th>
+						<th translate="resources.transportSimultaneousTitleCompatibilities.ownerName">Owner</th>
+						<th translate="resources.transportSimultaneousTitleCompatibilities.environment">Environment</th>
+						<th translate="resources.transportSimultaneousTitleCompatibilities.name">Name</th>
+					</tr>
+                </thead>
+                <tbody>
+					<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+						<td class="icon-column">
+							@XpColumns.IconColumn(
+												  XpIcons.Trash,
+												  popupUrl: TransportSimultaneousTitleCompatibilitiesFactory.Delete,
+												  id: "{{item.idSimultaneous}}",
+												  arguments: "{\"name\":\"{{item.name}}\"}"
+												  )
+						</td>
+						<td>@(Html.ColumnFor<TransportSimultaneousTitleCompatibilitiesGetByTitleResult>(x => x.Code, panelUrl: TransportSimultaneousTitleCompatibilitiesFactory.UpdateName, id: "{{item.idSimultaneous}}"))</td>
+						<td>@(Html.ColumnFor<TransportSimultaneousTitleCompatibilitiesGetByTitleResult>(x => x.OwnerName, panelUrl: TransportSimultaneousTitleCompatibilitiesFactory.UpdateName, id: "{{item.idSimultaneous}}"))</td>
+						<td>@(Html.ColumnFor<TransportSimultaneousTitleCompatibilitiesGetByTitleResult>(x => x.EnvironmentAlias, panelUrl: TransportSimultaneousTitleCompatibilitiesFactory.UpdateName, id: "{{item.idSimultaneous}}"))</td>
+						<td>@(Html.ColumnFor<TransportSimultaneousTitleCompatibilitiesGetByTitleResult>(x => x.Name, panelUrl: TransportSimultaneousTitleCompatibilitiesFactory.UpdateName, id: "{{item.idSimultaneous}}"))</td>
+					</tr>
+                </tbody>
+            </table>
+        </div>
+        }

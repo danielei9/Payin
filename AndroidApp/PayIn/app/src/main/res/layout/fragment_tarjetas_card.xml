@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginBottom="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp" >
+
+            <!--
+                android:layout_width="@dimen/md_listitem_height"
+                android:layout_height="@dimen/md_listitem_height"
+            -->
+
+            <ImageView
+                android:id="@+id/ivBank"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="Credit Card Icon"
+                android:src="@drawable/credit_card"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txtCardBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignTop="@+id/ivBank"
+                android:layout_alignLeft="@+id/txtCardName"
+                android:layout_alignStart="@+id/txtCardName" />
+
+            <TextView
+                android:id="@+id/txtCardName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@+id/txtCardBank"
+                android:layout_toRightOf="@+id/ivBank"
+                android:layout_toEndOf="@+id/ivBank" />
+
+            <TextView
+                android:id="@+id/txtCardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PaymentMediaHash"
+                android:textColor="@color/ColorBlack"
+                android:textSize="24sp"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/txtCardExpire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_alignLeft="@+id/ivBank"
+                android:layout_alignStart="@+id/ivBank" />
+
+            <TextView
+                android:id="@+id/txtCardType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_above="@+id/txtCardExpire"
+                android:layout_alignLeft="@+id/txtCardExpire"
+                android:layout_alignStart="@+id/txtCardExpire" />
+
+            <ImageView
+                android:id="@+id/ivCreditCard"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="Credit Card Icon"
+                android:src="@drawable/credit_card"
+                android:layout_alignBottom="@+id/txtCardType"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txtCardState"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

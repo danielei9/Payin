@@ -1,0 +1,44 @@
+<html><meta http-equiv=Content-Type content=text/html; charset=utf-8/>
+
+<style>
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+</style>
+
+<body><div style=text-align:justify>
+
+Versi&oacute;n 2.1.1 <br><br>
+Payment Innovation Network S.L. <br><br>
+
+<div style=text-align:center>
+<a href="http://www.pay-in.es/">www.pay-in.es</a> <br><br>
+<a href="mailto:info@pay-in.es">info@pay-in.es</a> <br><br>
+</div>
+
+<br>
+
+Novedades versi&oacute;n 2.1.1: <br>
+<ul>
+  <li>Incorporaci&oacute;n de trabajadores para creaci&oacute;n de tickets</li>
+  <li>Posibilidad de cambiar la frecuencia de muestreo del track</li>
+  <li>Recepci&oacute;n notificaciones push</li>
+</ul>
+
+<br>
+
+Para activar tu cuenta de empresa contacta con <a href="mailto:info@pay-in.es">info@pay-in.es</a> <br><br>
+Para cualquier problema, consulta o sugerencia contacta con <a href="mailto:info@pay-in.es">info@pay-in.es</a> <br><br>
+
+Pay[in] actúa como plataforma de pagos entre el pagador y el cobrador. Para cualquier reclamación o incidencia sobre el proceso de pago o cobro, puede realizarla a  través del correo <a href="mailto:info@pay-in.es">info@pay-in.es</a>.
+Toda reclamación deberá ser realizada durante los 20 días hábiles posteriores a la transacción.
+
+</div>
+
+</body></html>

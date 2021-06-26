@@ -1,0 +1,20 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    EntranceTypeFactory.DonateName,
+    TicketFactory.DonateApi,
+    "",
+    "resources.ticket.donateBalance",
+    init:
+        "scope.arguments.cardId = params.cardId"
+//"scope.arguments.paymentConcessionId = params.paymentConcessionId"
+))
+{
+<xp-get api="@EntranceTypeFactory.DonateApi">
+    <div>
+        @(Html.SelectFor<TicketDonateBalanceArguments>(x => x.PurseId, "purseId"))
+    </div>
+    @(Html.ArgumentFor<TicketDonateBalanceArguments>(x => x.Amount))
+</xp-get>
+}

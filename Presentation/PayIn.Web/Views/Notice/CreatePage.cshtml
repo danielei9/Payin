@@ -1,0 +1,52 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    NoticeFactory.CreatePageName,
+    NoticeFactory.CreatePageApi,
+    "",
+    "resources.notice.createPage",
+    isTitleActive: true,
+    successUrl: "/Notice/CreateImage/{{id}}",
+    init:
+		"scope.arguments.isVisible = true;" +
+		"scope.arguments.visibility = 1;" +
+		"scope.arguments.sendNotification = false;" +
+		"scope.currentDate = (new Date()).toJSON()"
+))
+{
+    <div class="panel panel-default" style="margin:-15px 0 15px 0">
+        <div class="panel-heading font-bold" translate="resources.notice.noticeInfo">Notice information</div>
+        <div class="panel-body">
+            <div class="row">
+                @(Html.SelectFor<ApiNoticeCreatePageArguments>(x => x.SuperNoticeId, "superNotice", NoticeFactory.RetrieveSelectorApi))
+            </div>
+            <div class="row">
+                @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Name))
+            </div>
+			<div class="row">
+				@(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.IsVisible, width: 4))
+				@(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Visibility, width: 4))
+				@(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.SendNotification, width: 4))
+			</div>
+            <div class="row">
+                @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.ShortDescription))
+                @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Description))
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin:-15px 0 15px 0">
+        <div class="panel-heading font-bold" translate="resources.notice.placeInfo">Place</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="row">
+                    @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Place, width: 12))
+                </div>
+                <div class="row">
+                    @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Longitude, width: 6))
+                    @(Html.ArgumentFor<ApiNoticeCreatePageArguments>(x => x.Latitude, width: 6))
+                </div>
+            </div>
+        </div>
+    </div>
+}

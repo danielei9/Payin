@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	SystemCardMemberFactory.LockSystemCardMemberName,
+	SystemCardMemberFactory.LockSystemCardMemberApi,
+	"",
+	"resources.systemCardMember.locked"
+))
+{
+	<p translate="resources.systemCardMember.lockquestion">Do you want to lock this Company?</p>
+}

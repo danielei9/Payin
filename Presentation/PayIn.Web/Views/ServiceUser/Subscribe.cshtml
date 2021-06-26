@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceUserFactory.SubscribeName,
+	ServiceUserFactory.SubscribeApi,
+	"",
+	"resources.serviceUser.subscribe"
+))
+{
+	<p translate="resources.serviceUser.subscribedQuestion">Do you want to subscribe this member?</p>
+}

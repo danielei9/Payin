@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceTimeTable;
+
+@using (Html.xpPopupPut(
+	ServiceTimeTableFactory.UpdateName,
+	ServiceTimeTableFactory.UpdateApi,
+	"",
+	//ServiceTimeTableResources.Update
+	"resources.serviceTimeTable.update"
+))
+{
+				@*<xp-get data-api="@ServiceTimeTableFactory.RetrieveApi">*@
+								@(Html.SelectFor<ServiceTimeTableUpdateArguments>(x => x.ZoneId, "zoneName", ServiceZoneFactory.RetrieveSelectorApi))
+								@(Html.ArgumentFor<ServiceTimeTableUpdateArguments>(x => x.FromWeekday))
+								@(Html.ArgumentFor<ServiceTimeTableUpdateArguments>(x => x.UntilWeekday))
+								@(Html.ArgumentFor<ServiceTimeTableUpdateArguments>(x => x.FromHour))
+								@(Html.ArgumentFor<ServiceTimeTableUpdateArguments>(x => x.DurationHour))
+				@*</xp-get>*@
+}
+

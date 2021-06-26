@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="PayIn.Deployment.Azure.Vinaros" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="PayIn.Web" vmsize="Standard_A1_v2">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Http" endpointName="Http" />
+          <Binding name="Https" endpointName="Https" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Http" protocol="http" port="80" />
+      <InputEndpoint name="Https" protocol="https" port="443" certificate="vinaros.es" />
+    </Endpoints>
+    <Certificates>
+      <Certificate name="vinaros.es" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="Files" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" />
+    </ConfigurationSettings>
+    <Startup>
+      <Task taskType="background" commandLine="Startup.cmd" executionContext="elevated" />
+    </Startup>
+  </WebRole>
+</ServiceDefinition>

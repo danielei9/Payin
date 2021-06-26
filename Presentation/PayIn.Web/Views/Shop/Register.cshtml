@@ -1,0 +1,67 @@
+﻿@using PayIn.Common.Security;
+@using PayIn.Web.Models
+@model RegisterViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html style="background-color:#FFFFFF">
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+
+
+        <script type="text/javascript">
+            function validateForm() {
+                var x = document.forms["login"]["username"].value;
+                if (x == null || x == "") {
+                    alert("Please fill out the username");
+                    return false;
+                }
+            }
+        </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+        <link type="text/css" href="~/Content/Login.css" rel="stylesheet" />   
+        <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register Pay[In] Platform</title>
+    </head>
+    <body>
+       @using (Html.BeginForm("Register", "Shop", FormMethod.Post, new { @class = "form", role = "form" }))
+       {
+            @Html.AntiForgeryToken()
+            <div class="login-page">
+                <div class="formulario">
+                    <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:-10px; margin-right:60px; float:right;z-index:-1;width: 200px;" />
+                    <p style="font-style: italic; padding-top: 70px; color:red">Para poder realizar la compra de entradas se requiere que sea usuario de la plataforma</p>
+                    <form name="login" method="post" accept-charset="utf-8">
+                        <label for="name" style="padding-top:25px">Nombre</label>
+                        @Html.TextBoxFor(m => m.Name, new { @id = "name", @class = "form-control no-border", @placeholder = @SecurityResources.Name })
+                        <label for="usermail">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @id = "email", @class = "form-control no-border", @placeholder = @SecurityResources.Email })
+                        <label for="mobile">Móvil</label>
+                        @Html.TextBoxFor(m => m.Mobile, new { @id = "mobile", @class = "form-control no-border", @placeholder = @SecurityResources.Telephone })
+                        <label for="password">Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @id = "password", @class = "form-control no-border", @placeholder = @SecurityResources.Password })
+                        <label for="confirmPass">Confirmar Password</label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @id = "confirmPassword", @class = "form-control no-border", @placeholder = @SecurityResources.ConfirmPassword })
+                        <div style="display:inline-block">
+                                <p >@Html.CheckBoxFor(m => m.CheckTerms, new { @id = "terms" })
+                                <span>@SecurityResources.AcceptTerms</span>
+                                <a href="@SecurityResources.TermsLink" class="btn-link">@SecurityResources.Agreement</a></p>
+                        </div>
+                            <button type="submit">Crear Cuenta</button>                            
+                    </form>
+                    <br /><br />
+                    <p class="message">@SecurityResources.HaveAccountQuestion<a href="Login">&nbsp;@SecurityResources.Login</a></p>
+                </div>
+            </div>
+        }
+    </body>
+</html>

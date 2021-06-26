@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceFreeDaysFactory.Delete,
+	ServiceFreeDaysFactory.DeleteApi,
+	"",
+	//ServiceFreeDaysResources.Delete,
+	"resources.serviceFreeDays.delete",
+	id: "id"
+))
+{
+	<p translate="resources.serviceFreeDays.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete {{arguments.name}}?</p>
+}

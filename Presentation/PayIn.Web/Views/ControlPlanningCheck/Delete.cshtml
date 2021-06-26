@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ControlPlanningCheckFactory.DeleteState,
+	ControlPlanningCheckFactory.DeleteApi,
+	"",
+	//ControlPlanningCheckResources.Delete,
+	"resources.controlPlanningCheck.delete",
+	id: "id",
+	success: "xpStack.navigate(scope)"
+))
+{
+	<p translate="resources.controlPlanningCheck.deleteQuestion" translate-values="{ since: '{{arguments.since|date:'HH:mm'}}' }">Do you want to delete the Planning check {{arguments.since|date:'HH:mm'}}?</p>
+}
+

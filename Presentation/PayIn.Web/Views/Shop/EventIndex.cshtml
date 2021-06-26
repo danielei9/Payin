@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="Store" ng-controller="EventsController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script type="text/javascript">
+        angular.module('Store', [])
+        .controller('EventsController', ['$http', '$scope', function ($http, $scope) {
+            $http.get('/Api/Shop').then(function (data) {
+                $scope.events = data.data;
+            });
+            }])
+    </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento : {{ events.data[0].name }}</title>
+</head>
+<body>
+    <div class="gallery">
+        <img class="image" ng-src={{events.data[0].photoUrl}}>
+        <img class="icon-image" ng-src={{events.data[0].photoUrl}}>
+    </div>
+    <div class="gallery-title">{{ events.data[0].name }}</div>
+    <div class="content" ng-show="events.data[0].entranceTypes.length" >
+        <div class="col-50-card" ng-repeat="item in events.data[0].entranceTypes">
+            <div class="border-card">
+                <div class="img-container">
+                   <img class="img-full" ng-src={{item.photoUrl}}>
+                </div>
+                <div class="card-header">
+                    <p>{{item.name}}</p>
+                </div>
+                <div class="card-data">
+                    <div class="item more-info-box">
+                        <div class="data-box">
+                            <abbr class="month">{{events.data[0].eventStart| date:'MMM' }}</abbr>
+                            <abbr class="day">{{events.data[0].eventStart | date:'EEE'}}</abbr>
+                            <span class="number">{{events.data[0].eventStart | date:'dd'}}</span>
+                        </div>
+                        <div class="secondary-box">
+                            <div class="row row-box">
+                                <span class="icon ion-cash icon-money">&nbsp;Desde&nbsp;
+                                    <span class="quantity">{{item.price}} €</span>
+                                </span>                             
+                             </div>
+                         </div>
+                         <div class="row row-box">
+                            <span class="icon ion-location">&nbsp;{{events.data[0].place}}</span>
+                                                     <div style="text-align: center">
+                            <div style="text-align: left;display: inline-block;">
+                                <button type="button" name="buttonminus" ng-click="item.quantity = item.quantity-1; temp.totalEntrances=temp.totalEntrances-1;calcPrice('minus', item.price)" ng-disabled="item.quantity<=0" class="ion ion-minus button-forms" disabled="disabled"></button>
+                                <span class="product-quantity">   {{item.quantity}} </span>
+                                <button type="button" name="buttonplus" ng-click="item.quantity = item.quantity+1; temp.totalEntrances = temp.totalEntrances+1; calcPrice('add', item.price);" class="ion ion-plus button-forms"></button>
+                            </div>
+                        </div>
+                         </div>
+                      </div>                     
+                   </div>                
+              </div>
+            </div>
+         </div>
+    <div id="footer">
+            <p style="color: black;">&copy; 2015-2017 Feria Valencia &middot; <a style="color: orange;" href="http://static.feriavalencia.com/dhvlc17/Aviso_legal_y_cookies.html" target="_new">Privacidad</a> y <a style="color: orange;" href="http://static.feriavalencia.com/dhvlc17/condiciones_generales.html" target="_new">Términos del servicio</a></p>
+    </div>
+</body>
+</html>

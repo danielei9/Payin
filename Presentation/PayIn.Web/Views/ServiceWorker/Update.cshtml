@@ -1,0 +1,19 @@
+﻿@using PayIn.Application.Dto.Arguments.ServiceWorker;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ServiceWorkerFactory.WorkerUpdate,
+	ServiceWorkerFactory.WorkerUpdateApi,
+	"",
+	//ServiceWorkerResources.Update
+	"resources.serviceWorker.update"
+))
+{
+	<xp-get data-api="@ServiceWorkerFactory.WorkerUpdateApi">
+		@(Html.ArgumentFor<ServiceWorkerUpdateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<ServiceWorkerUpdateArguments>(x => x.Login))
+	</xp-get>
+}
+
+

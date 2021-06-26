@@ -1,0 +1,443 @@
+﻿@using PayIn.Application.Dto.SmartCity.Arguments;
+@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	SmartCityFactory.GetAllName,
+	SmartCityFactory.GetAllApi,
+	"",
+	"resources.smartCity.smartCity.dashBoard",
+	//subtitle: "{{arguments.name}}",
+	isTitleActive: true
+	//init: "scope.arguments.componentId = params.componentId;"
+))
+{
+	<div ng-repeat="sensor in arguments.sensors">
+		<div class="row">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<a ui-sref="sensorgetenergy({ id:  {{sensor.sensor.id}} })" style="float: right;font-size: 1.5em;" xp-navigate>
+									<i class="@XpIcons.ChartBar"></i>
+								</a>
+								<h4 class="font-thin m-t-none m-b-none text-primary-lt">{{sensor.sensor.componentName}}</h4>
+								<span class="m-b block text-sm text-muted">{{sensor.sensor.deviceName}}</span>
+								<xp-chart
+									xp-model="sensor.sensor.data"
+									xp-options='{
+										"type": "bar",
+										"scaleBeginAtZero": true,
+										"legend": {
+											"display": false,
+											"position": "bottom"
+										}
+									}'
+									xp-x-axis='{
+										"data": "label",
+										"stacked": true
+									}'
+									xp-y-axis='{
+										"unity": "€",
+										"beginAtZero": true,
+										"stacked": true
+									}'
+									xp-data='[
+										{
+											"name": "P1",
+											"value": "p1ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p1Color",
+											"borderColor": "p1Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "P2",
+											"value": "p2ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p2Color",
+											"borderColor": "p2Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "P3",
+											"value": "p3ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p3Color",
+											"borderColor": "p3Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "Defecto potencia",
+											"value": "powerLackCost",
+											"fillTransparency": 0.7,
+											"backgroundColor": "colorOver",
+											"borderColor": "colorOver",
+											"borderWidth": 2
+										},
+										{
+											"name": "Exceso potencia",
+											"value": "powerExcessCost",
+											"fillTransparency": 0,
+											"backgroundColor": "colorOver",
+											"borderColor": "colorOver",
+											"borderWidth": 2
+										},
+										{
+											"type": "line",
+											"value": "powerContractMinCost",
+											"borderColor": "\"#aed6f1\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\""
+										},
+										{
+											"name": "Potencia contratada",
+											"type": "line",
+											"value": "powerContractCost - powerContractMinCost",
+											"borderColor": "\"#85c1e9\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\""
+										},
+										{
+											"type": "line",
+											"value": "powerContractMaxCost - powerContractCost",
+											"borderColor": "\"#aed6f1\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\"",
+											"fill": "-2"
+										}
+									]'>
+								</xp-chart>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-repeat="subsensor in sensor.subsensors">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<a ui-sref="sensorgetenergy({ id:  {{subsensor.id}} })" style="float: right;font-size: 1.2em;" xp-navigate>
+									<i class="@XpIcons.ChartBar"></i>
+								</a>
+								<h4 class="font-thin m-t-none m-b-none text-primary-lt">{{subsensor.componentName}}</h4>
+								<span class="m-b block text-sm text-muted">{{subsensor.deviceName}}</span>
+								<xp-chart
+									xp-model="subsensor.data"
+									xp-options='{
+										"type": "bar",
+										"scaleBeginAtZero": true,
+										"aspectRatio": 3,
+										"legend": {
+											"display": false,
+											"position": "bottom"
+										}
+									}'
+									xp-x-axis='{
+										"data": "label",
+										"stacked": true,
+										"displayLabel": false
+									}'
+									xp-y-axis='{
+										"unity": "€",
+										"beginAtZero": true,
+										"stacked": true
+									}'
+									xp-data='[
+										{
+											"name": "P1",
+											"value": "p1ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p1Color",
+											"borderColor": "p1Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "P2",
+											"value": "p2ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p2Color",
+											"borderColor": "p2Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "P3",
+											"value": "p3ConsumptionCost",
+											"fillTransparency": 0,
+											"backgroundColor": "p3Color",
+											"borderColor": "p3Color",
+											"borderWidth": 2
+										},
+										{
+											"name": "Defecto potencia",
+											"value": "powerLackCost",
+											"fillTransparency": 0.7,
+											"backgroundColor": "colorOver",
+											"borderColor": "colorOver",
+											"borderWidth": 2
+										},
+										{
+											"name": "Exceso potencia",
+											"value": "powerExcessCost",
+											"fillTransparency": 0,
+											"backgroundColor": "colorOver",
+											"borderColor": "colorOver",
+											"borderWidth": 2
+										},
+										{
+											"type": "line",
+											"value": "powerContractMinCost",
+											"borderColor": "\"#aed6f1\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\""
+										},
+										{
+											"name": "Potencia contratada",
+											"type": "line",
+											"value": "powerContractCost - powerContractMinCost",
+											"borderColor": "\"#85c1e9\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\""
+										},
+										{
+											"type": "line",
+											"value": "powerContractMaxCost - powerContractCost",
+											"borderColor": "\"#aed6f1\"",
+											"borderWidth": 2,
+											"backgroundColor": "\"#aed6f1\"",
+											"fill": "-2"
+										}
+									]'>
+								</xp-chart>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h4 class="font-thin m-t-none m-b-none text-primary-lt">Término de energía</h4>
+								<span class="m-b block text-sm text-muted ng-binding">{{sensor.sensor.deviceName}}</span>
+								<xp-chart
+									xp-model="sensor.sensor"
+									xp-options='{
+										"type": "bar",
+										"scaleBeginAtZero": true,
+										"legend": {
+											"display": false
+										}
+									}'
+									xp-x-axis='{
+										"data":"P1,P2,P3"
+									}'
+									xp-y-axis='{
+										"unity": "€",
+										"beginAtZero": true
+									}'
+									xp-data='[
+										{
+											"value": "p1ConsumptionCost,p2ConsumptionCost,p3ConsumptionCost",
+											"fillTransparency": "0,0,0",
+											"backgroundColor": "p1Color,p2Color,p3Color",
+											"borderColor": "p1Color,p2Color,p3Color",
+											"borderWidth": 2
+										}
+									]'>
+								</xp-chart>
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<td>&nbsp;</td>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p1Color}">P1</span></th>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p2Color}">P2</span></th>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p3Color}">P3</span></th>
+												<td>&nbsp;</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Consumo</td>
+												<td>{{sensor.sensor.p1ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.consumptionCost | number : 2}} €</td>
+											</tr>
+										</tbody>
+										@*<tfoot>
+											<tr>
+												<td>&nbsp;</td>
+												<td>{{sensor.sensor.p1ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.consumptionCost | number : 2}} €</td>
+											</tr>
+										</tfoot>*@
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					@*<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h4 class="font-thin m-t-none m-b-none text-primary-lt">Término de Potencia</h4>
+								<span class="m-b block text-sm text-muted ng-binding">Comparativa de potencias</span>
+								<xp-chart xp-model="sensor.sensor"
+											xp-options='{
+										"type": "bar",
+										"scaleBeginAtZero": true,
+										"legend": {
+											"display": false
+										}
+									}'
+											xp-x-axis='{
+										"data":"C. P1,DP. P1,EP. P1,C. P2,DP. P2,EP. P2,C. P3,DP. P3,EP. P3"
+									}'
+											xp-y-axis='{
+										"unity": "€",
+										"beginAtZero": true
+									}'
+											xp-data='[
+										{
+											"value": "p1ConsumptionCost,p1PowerLackCost,p1PowerExcessCost,p2ConsumptionCost,p2PowerLackCost,p2PowerExcessCost,p3ConsumptionCost,p3PowerLackCost,p3PowerExcessCost",
+											"fillTransparency": "0,0.7,0,0,0.7,0,0,0.7,0",
+											"backgroundColor": "p1Color,colorOver,colorOver,p2Color,colorOver,colorOver,p3Color,colorOver,colorOver",
+											"borderColor": "p1Color,colorOver,colorOver,p2Color,colorOver,colorOver,p3Color,colorOver,colorOver",
+											"borderWidth": 2
+										}
+									]'>
+								</xp-chart>
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<td>&nbsp;</td>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p1Color}">P1</span></th>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p2Color}">P2</span></th>
+												<th><span class="color-template" style="padding: 0 20px" ng-style="{'background-color': sensor.sensor.p3Color}">P3</span></th>
+												<td>&nbsp;</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Consumo</td>
+												<td>{{sensor.sensor.p1ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3ConsumptionCost | number : 2}} €</td>
+												<td>{{sensor.sensor.consumptionCost | number : 2}} €</td>
+											</tr>
+											<tr>
+												<td>Defecto Potencia</td>
+												<td>{{sensor.sensor.p1PowerLackCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2PowerLackCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3PowerLackCost | number : 2}} €</td>
+												<td>{{sensor.sensor.powerLackCost | number : 2}} €</td>
+											</tr>
+											<tr>
+												<td>Exceso Potencia</td>
+												<td>{{sensor.sensor.p1PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.powerExcessCost | number : 2}} €</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td>&nbsp;</td>
+												<td>{{sensor.sensor.p1ConsumptionCost + sensor.sensor.p1PowerLackCost + sensor.sensor.p1PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p2ConsumptionCost + sensor.sensor.p2PowerLackCost + sensor.sensor.p2PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.p3ConsumptionCost + sensor.sensor.p3PowerLackCost + sensor.sensor.p3PowerExcessCost | number : 2}} €</td>
+												<td>{{sensor.sensor.consumptionCost + sensor.sensor.powerLackCost + sensor.sensor.powerExcessCost | number : 2}} €</td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>*@
+					<div class="row">
+						@*<div class="col-md-12">
+			<div class="panel padder-v item">
+				<h4 class="font-thin m-t-none m-b-none text-primary-lt">Periodos</h4>
+				<xp-chart xp-model="sensor.sensor"
+							xp-options='{
+					"type": "doughnut",
+					"aspectRatio": 1,
+					"legend": {
+						"display": false
+					}
+				}'
+							xp-x-axis='{
+					"data":"p1Consumption",
+					"display": false
+				}'
+							xp-y-axis='{
+					"display": false
+				}'
+							xp-data='[
+					{
+						"name": "name",
+						"value": "p1ConsumptionCost,p2ConsumptionCost,p3ConsumptionCost,p4ConsumptionCost,p5ConsumptionCost,p6ConsumptionCost",
+						"backgroundColor": "p1Color,p2Color,p3Color,p4Color,p5Color,p6Color",
+						"borderColor": "p1Color,p2Color,p3Color,p4Color,p5Color,p6Color",
+						"fillTransparency": 0,
+						"borderWidth": 2
+					}
+				]'>
+				</xp-chart>
+			</div>
+		</div>*@
+					</div>
+					<div class="row text-center">
+						@*<div class="col-xs-12 m-b-md">
+						<div class="r bg-light dker item hbox no-border">
+							@*<div class="col w-xs v-middle hidden-md">
+					<div ng-init="d3_3=[60,40]" ui-jq="sparkline" ui-options="[60,40], {type:'pie', height:40, sliceColors:['#fad733','#fff']}" class="sparkline inline"><canvas width="50" height="50" style="display: inline-block; width: 40px; height: 40px; vertical-align: top;"></canvas></div>
+				</div>* @
+							<div class="col dk padder-v r-r">
+								<div class="text-primary-dk font-thin h1"><span>{{sensor.sensor.consumptionCost|number:2}}€</span></div>
+								<span class="text-muted text-xs">Total cost</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel padder-v item">
+							<div class="h1 text-info font-thin h1">{{sensor.sensor.consumption|number:2}}kWh</div>
+							<span class="text-muted text-xs">Total consumption</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<a href="" class="block panel padder-v bg-primary item">
+							<span class="text-white font-thin h1 block">{{sensor.sensor.consumptionCO2|number:2}}kg</span>
+							<span class="text-muted text-xs">CO2 emissions</span>
+						</a>
+					</div>
+					@*
+		<div class="col-md-6">
+			<a href="" class="block panel padder-v bg-info item">
+				<span class="text-white font-thin h1 block">432</span>
+				<span class="text-muted text-xs">Comments</span>
+				<span class="top">
+					<i class="fa fa-caret-up text-warning m-l-sm m-r-sm"></i>
+				</span>
+			</a>
+		</div>
+		<div class="col-md-6">
+			<div class="panel padder-v item">
+				<div class="font-thin h1">129</div>
+				<span class="text-muted text-xs">Feeds</span>
+				<div class="bottom">
+					<i class="fa fa-caret-up text-warning m-l-sm m-r-sm"></i>
+				</div>
+			</div>
+		</div>
+					* @*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

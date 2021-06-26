@@ -1,0 +1,24 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+			ControlFormOptionFactory.Update,
+			ControlFormOptionFactory.UpdateApi,
+			"",
+			"resources.controlFormOption.updateOption"
+))
+{
+	<xp-get data-api="@ControlFormOptionFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.controlFormOption.optionInfo">Option information</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						@(Html.ArgumentFor<ControlFormOptionUpdateArguments>(x => x.Value, width: 3))
+						@(Html.ArgumentFor<ControlFormOptionUpdateArguments>(x => x.Text))
+					</div>
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+
+    <string name="ok">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="edit">Editar</string>
+
+    <string name="pressToContinue">Pulse para continuar</string>
+    <string name="date">Fecha</string>
+
+    <string name="btnCreate">Crear</string>
+
+    <string name="notification">Notificaciones</string>
+</resources>

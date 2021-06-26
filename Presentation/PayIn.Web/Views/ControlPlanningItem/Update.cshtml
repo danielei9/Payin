@@ -1,0 +1,47 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPlanningItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using Xp.Common.Resources;
+
+@using (Html.xpPut(
+	ControlPlanningItemFactory.Update,
+	ControlPlanningItemFactory.UpdateApi,
+	"",
+	//ControlPlanningItemResources.Update,
+	"resources.controlPlanningItem.update",
+	init: "arguments.untilId=0;" +
+	"scope.arguments.id= params.id",
+		actions: new[] {
+		new ActionLink(ActionLink.ActionLinkType.Popup, ControlPlanningItemFactory.Delete,  XpIcons.Trash,   id:"{{id}}", arguments:"{\"since\":\"{{arguments.since}}\",\"until\":\"{{arguments.until}}\"}"),
+		}
+))
+{
+<xp-get data-api="@ControlPlanningItemFactory.GetApi">
+	<div data-ng-class="{'has-error':!form.since.$valid}" class="form-group col-md-6">
+		<label for="since" class="control-label" translate="resources.controlPlanningItem.timeSince">Time since</label>
+		<div class="input-group date ng-scope" data-xp-time="arguments.since">
+			<input data-ng-model="value" id="since" name="since" required type="text" class="form-control">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+			<a class="input-group-addon" data-xp-navigate ng-href='#@(ControlFormAssignFactory.GetCheckUrl("{{arguments.sinceId}}"))'>
+				<i class="@XpIcons.ListAlt"></i>
+				<span class="badge badge-sm up bg-info pull-right-xs">{{arguments.sinceFormsCount||0}}</span>
+			</a>
+		</div>
+		<div ng-show="form.since.$error.required" class="ng-hide"><span class="error control-label">@GlobalResources.ExceptionRequired.FormatString("Since")</span></div>
+	</div>
+	<div data-ng-class="{'has-error':!form.until.$valid}" class="form-group col-md-6">
+		<label for="until" class="control-label" translate="resources.controlPlanningItem.timeUntil">Time until</label>
+		<div class="input-group date ng-scope" data-xp-time="arguments.until">
+			<input data-ng-model="value" id="until" name="until" required type="text" class="form-control">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+			<a class="input-group-addon" data-xp-navigate ng-href='#@(ControlFormAssignFactory.GetCheckUrl("{{arguments.untilId}}"))'>
+				<i class="@XpIcons.ListAlt"></i>
+				<span class="badge badge-sm up bg-info pull-right-xs">{{arguments.untilFormsCount||0}}</span>
+			</a>
+		</div>
+		<div ng-show="form.until.$error.required" class="ng-hide"><span class="error control-label">@GlobalResources.ExceptionRequired.FormatString("Until")</span></div>
+	</div>
+</xp-get>
+}
+

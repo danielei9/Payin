@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ProductFamilyFactory.Hide,
+	ProductFamilyFactory.IsVisibleApi,
+	"",
+	"resources.productFamily.hide",
+	init: "scope.arguments.isVisible=false;"
+))
+{
+	<p translate="resources.productFamily.hideQuestion">Do you want to hide this family?</p>
+}

@@ -1,0 +1,31 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPost(
+    LiquidationFactory.CreateName,
+    LiquidationFactory.CreateApi,
+    "",
+    "resources.liquidation.create"
+    //successUrl: "/Liquidation"
+))
+{
+	<div class="spinnerContainer" ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>
+
+	<div class="panel panel-default" style="margin-top:-15px">
+		<div class="panel-body">
+			<h4 translate="resources.liquidation.createLiquidationQuestion" translate-values="{ since: '{{arguments.since}}', until: '{{arguments.until}}', eventName: '{{arguments.eventName}}', concessionName: '{{arguments.concessionName}}', filter: '{{arguments.filter}}' }">
+				<span>¿Quiere liquidar los pagos</span>
+				<span ng-show="arguments.since">desde {{ arguments.since | date:'dd-MM-yyyy'}}</span>
+				<span ng-show="arguments.until">hasta {{ arguments.until |  date:'dd-MM-yyyy'}}</span>
+				<span ng-show="arguments.eventName">del evento {{arguments.eventName}}</span>
+                <span ng-hide="arguments.eventName">sin evento asociado</span>
+				<span ng-show="arguments.concessionName">que pertenecen a la empresa {{arguments.concessionName}}</span>
+                <span ng-hide="arguments.concessionName">sin empresa asociada</span>
+				<span ng-show="arguments.filter">y filtrados por'{{arguments.filter}}'?</span>
+                <span ng-hide="arguments.filter">y sin filtro asociado?</span>
+			</h4>
+		</div>		
+	</div>
+}
+

@@ -1,0 +1,80 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    NoticeFactory.UpdateEdictName,
+    NoticeFactory.UpdateEdictApi,
+    "",
+    "resources.notice.updateNoticeEdict",
+    init:
+		"scope.arguments.sendNotification = false;" +
+		"scope.currentDate = (new Date()).toJSON()"
+))
+{
+    <script type="text/css">
+        .badge {
+            display: none;
+        }
+
+        img:hover + .badge {
+            display: block;
+        }
+
+        .icon-map:before {
+            content: "\e033";
+            line-height: 20px;
+        }
+
+        .flag {
+            width: 16px;
+            height: 11px;
+        }
+    </script>
+	<xp-get data-api="@NoticeFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.notice.noticeInfo">Event information</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="row">
+							@(Html.ArgumentFor<NoticeUpdatePhotoArguments>(x => x.PhotoUrl, fieldUrl: @NoticeFactory.UpdateImageCropName))
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="row">
+							@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.Name))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.State, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.IsVisible, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.Visibility, width: 3))
+							@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.SendNotification, width: 3, disabled: "currentDate <= arguments.start"))
+						</div>
+					</div>
+					@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.ShortDescription))
+					@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.Description))
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.notice.showInterval">Show interval</div>
+			<div class="panel-body">
+				<div class="row">
+					@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.Start, width: 6))
+					@(Html.ArgumentFor<ApiNoticeUpdateEdictArguments>(x => x.End, width: 6))
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.notice.placeInfo">Place</div>
+			<div class="panel-body">
+				<div class="row">
+					@(Html.ArgumentFor<ApiNoticeUpdateArguments>(x => x.Place, width: 12))
+					@(Html.ArgumentFor<ApiNoticeUpdateArguments>(x => x.Longitude, width: 6))
+					@(Html.ArgumentFor<ApiNoticeUpdateArguments>(x => x.Latitude, width: 6))
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}

@@ -1,0 +1,58 @@
+﻿@using PayIn.Application.Dto.Transport.Results.GreyList;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using (Html.xpList(
+					GreyListFactory.GetAllName,
+					GreyListFactory.GetAllApi,
+					"",
+					"resources.transportGreyList.getAll",
+					isTitleActive: true,
+					initialSearch: true,
+					isPaginable: true,
+					showSpinner: true
+					))
+{	
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.transportGreyList.uid">UID</th>
+					<th translate="resources.transportGreyList.registrationDate">Registration date</th>
+					<th translate="resources.transportGreyList.action">Action</th>
+					<th translate="resources.transportGreyList.newValue">Key (value)</th>
+					<th translate="resources.transportGreyList.resolve">Resolve (date)</th>
+					<th translate="resources.transportGreyList.machine">Machine</th>
+					<th translate="resources.transportGreyList.source">Source</th>
+					<th translate="resources.transportGreyList.operationNumber">Operation number</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.resolved===true,'b-l b-5x b-danger':item.resolved===false}">
+					<td>@(Html.ColumnFor<GreyListGetAllResult>(x => x.Uid))</td>
+					<td>@(Html.ColumnFor<GreyListGetAllResult>(x => x.RegistrationDate))</td>
+					<td>{{item.actionAlias}} (@(Html.ColumnFor<GreyListGetAllResult>(x => x.Action)))</td>
+					<td>@(Html.ColumnFor<GreyListGetAllResult>(x => x.Field))({{item.newValue}})</td>
+					<td><span data-ng-show="!item.resolved">{{item.resolved}}</span> <span data-ng-show="item.resolved === true">@(Html.ColumnFor<GreyListGetAllResult>(x => x.ResolutionDate))</span></td>
+					<td>@(Html.ColumnFor<GreyListGetAllResult>(x => x.Machine)) <span tooltip="{{item.machineAlias | xpFormatTooltip}}" class="pull-right"><i class="icon-info"></i></span></td>
+					<td>{{item.sourceAlias}} (@(Html.ColumnFor<GreyListGetAllResult>(x => x.Source)))</td>
+					<td>@(Html.ColumnFor<GreyListGetAllResult>(x => x.OperationNumber))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.blackList.resolvedInfo">Resuelto</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.blackList.notResolved">Sin resolver</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

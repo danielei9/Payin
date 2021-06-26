@@ -1,0 +1,195 @@
+﻿l,.-@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    EventFactory.UpdateName,
+    EventFactory.UpdateApi,
+    "",
+    "resources.event.updateEvent"
+))
+{
+    <script type="text/css">
+        .badge {
+            display: none;
+        }
+
+        img:hover + .badge {
+            display: block;
+        }
+
+        .icon-map:before {
+            content: "\e033";
+            line-height: 20px;
+        }
+
+        .flag {
+            width: 16px;
+            height: 11px;
+        }
+    </script>
+	<xp-get data-api="@EventFactory.GetApi">
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.event.eventInfo">Event information</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="row">
+								@(Html.ArgumentFor<EventUpdatePhotoArguments>(x => x.PhotoUrl, fieldUrl: @EventFactory.UpdateImageCropName))
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<label for="photoMenuUrl" class="control-label ng-scope" translate="resources.event.imageMenuCrop">Foto</label>
+									<div class="image-menu-upload" style="display: block;float: left;position: relative; width: 100%; text-align: center;">
+										<label for="image-menu-input" style="width:100%;">
+											<img class="image-pointer-margin" style="margin: 0px; width: 100%;" ng-show="arguments.photoMenuUrl.length" ng-src={{arguments.photoMenuUrl}}>
+											<img class="image-pointer-margin ng-hide" style="margin: 0px; width: 100%;" ng-src="/Images/user_default_avatar.png" ng-hide="arguments.photoMenuUrl.length">
+										</label>
+
+										<input xp-navigate xp-modal=@EventFactory.UpdateImageMenuCropName id="image-menu-input"
+											   type="file" accept=".jpg,.png" value="{0}" class="ng-scope"
+											   style="display: none !important">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								@(Html.ArgumentFor<EventUpdateArguments>(x => x.IsVisible))
+							</div>
+						</div>
+							<div class="col-md-9">
+                                <div class="row">
+                                    @*<div data-ng-class="{'has-error':!form.name.$valid}" class="form-group col-md-12">
+                                        <label for="name" class="control-label ng-scope" translate="resources.event.name">Name</label>
+                                        <div style="float: right;">
+                                            <a ng-repeat="item in arguments.translationsName" ui-sref='@TranslationFactory.Update ({id:item.id, eventId:arguments.id})' xp-navigate><img class="flag" style="margin-right:2px;" src="../images/flags/{{item.language}}.png"></a>
+                                            <div style="float: right; margin-top: 2px; margin-left: 5px;">
+                                                <a ui-sref='@TranslationFactory.Create ({eventId:arguments.id, translationType:0})' xp-navigate>@XpColumns.IconColumn("fa fa-language fa-lg")</a>
+                                            </div>
+                                        </div>
+                                        <input id="name" name="name" type="custom" class="form-control ng-pristine ng-valid ng-valid-required ng-touched" ng-model="arguments.name">
+                                    </div>*@
+                                    @(Html.ArgumentFor<EventUpdateArguments>(x => x.Name, width: 6))
+                                    @(Html.ArgumentFor<EventUpdateArguments>(x => x.Visibility, width: 3))
+                                    @(Html.ArgumentFor<EventUpdateArguments>(x => x.State, width: 3, disabled: "1"))
+                                </div>
+                                <div class="row">
+                                    @*<div data-ng-class="{'has-error':!form.name.$valid}" class="form-group col-md-12">
+                                        <label for="shortDescription" class="control-label ng-scope" translate="resources.notice.shortDescription">Details</label>
+                                        <div style="float: right;">
+                                            <a ng-repeat="item in arguments.translationsShortDescription" ui-sref='@TranslationFactory.Update ({id:item.id, eventId:arguments.id})' xp-navigate><img class="flag" style="margin-right:2px;" src="../images/flags/{{item.language}}.png"></a>
+                                            <div style="float: right; margin-top: 2px; margin-left: 5px;">
+                                                <a ui-sref='@TranslationFactory.Create ({eventId:arguments.id, translationType:2})' xp-navigate>@XpColumns.IconColumn("fa fa-language fa-lg")</a>
+                                            </div>
+                                        </div>
+                                        <input id="shortDescription" name="shortDescription" type="custom" class="form-control ng-pristine ng-valid ng-valid-required ng-touched" ng-model="arguments.shortDescription">
+                                    </div>*@
+                                    @(Html.ArgumentFor<EventUpdateArguments>(x => x.ShortDescription, width: 12))
+                                </div>
+								<div class="row">
+                                    @*<div class="form-group col-md-12">
+                                        <label for="description" class="control-label ng-scope" translate="resources.notice.description">Desc</label>
+                                        <div style="float: right;">
+                                            <a ng-repeat="item in arguments.translationsDescription" ui-sref='@TranslationFactory.UpdateFormattedText ({id:item.id, eventId:arguments.id})' xp-navigate><img class="flag" style="margin-right:2px;" src="../images/flags/{{item.language}}.png"></a>
+                                            <div style="float: right; margin-top: 2px; margin-left: 5px;">
+                                                <a ui-sref='@TranslationFactory.CreateFormattedText ({eventId:arguments.id, translationType:1})' xp-navigate>@XpColumns.IconColumn("fa fa-language fa-lg")</a>
+                                            </div>
+                                        </div>
+                                        <div ng-controller="wysiwygeditor" id="markdownDescription">
+                                            <div text-angular="text-angular" name="htmlcontent" ng-model="temp.descriptionHml" ta-disabled='disabled' xp-markdown-editor="arguments.description"></div>
+                                        </div>
+                                    </div>*@
+                                    @(Html.ArgumentFor<EventUpdateArguments>(x => x.Description))
+
+
+								</div>
+							</div>
+						</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.EventStart, width: 6))
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.EventEnd, width: 6))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.CheckInStart, width: 6))
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.CheckInEnd, width: 6))
+					</div>
+                    <div class="row">
+                        @(Html.ArgumentFor<EventUpdateArguments>(x => x.MaxEntrancesPerCard, width: 3))
+                        @(Html.ArgumentFor<EventUpdateArguments>(x => x.MaxAmountToSpend, width: 3, dataMax: 10000))
+                        @(Html.ArgumentFor<EventUpdateArguments>(x => x.Conditions, width: 6))
+                    </div>
+				</div>
+			</div>
+		</div>
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.event.map&Activities">Event's Map  & Activities</div>
+            <div class="panel-body">
+                <div class="map">
+                    <div ng-hide="arguments.mapUrl.length">
+                        <a type="button" rel="/Event/CreateMapImage/{{arguments.id}}" href="#/Event/CreateMapImage/{{arguments.id}}" class="icon-map btn btn-default"
+                            translate="resources.event.addmap" style="line-height:1.42857143; font-size:14px">Añadir Plano Evento</a>
+                    </div>
+                    <div class="MapImage-upload" style="display: block;float: left;position: relative;
+                                left:5px;">
+                        <label for="map-input-gallery">
+                            <img ng-src={{arguments.mapUrl}} style="cursor: pointer;height: auto; width: auto; max-width: 198px; max-height: 300px; padding-left:5px; padding-bottom:20px" />
+                        </label>
+
+                        <input xp-navigate xp-modal=@EventFactory.UpdateMapImageCropName id="map-input-gallery"
+                                type="file" accept=".jpg,.png" value="{0}" class="ng-scope"
+                                style="display: none !important">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.event.galleryImages">Event Gallery Images</div>
+            <div class="panel-body">
+                    <div class="gallery" style="display:inline-block;">  
+                        <div class="GalleryImage-upload" style="display: block;float: left;position: relative;
+                                    left:5px;width: 30px;height: 90px;margin-bottom: 25px;">
+                            <label for="file-input-gallery">
+                                <i class='@XpIcons.Plus' style="cursor: pointer;position: absolute;top: 40%;" />
+                            </label>
+
+                            <input xp-navigate xp-modal=@EventFactory.AddImageGalleryName id="file-input-gallery"
+                                   type="file" accept=".jpg,.png" value="{0}" class="ng-scope"
+                                   style="display: none !important">
+                        </div>
+                        <div ng-repeat="item in arguments.eventImages" style="display:block;position: relative;float: left">
+                            <a xp-navigate data-xp-modal=@EventFactory.DeleteImageGalleryName xp-id={{item.idPhoto}} data-toggle="tooltip" title="Eliminar Imagen">
+                                <img ng-src={{item.photoUrl}} style="height: auto; width: auto; max-width: 300px; max-height: 90px; padding:5px;"
+                                     ng-mouseenter="options=true" ng-mouseleave="options=false">
+                                <span class="badge badge-sm up bg-danger pull-right-xs"
+                                      style="top:-30px!important; left:-18px!important;width: 20px !important;height: 20px !important;" ng-show="options">
+                                    <i class='@XpIcons.Trash' />
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.event.placeInfo">Event performance</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.Place, width: 9))
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.Capacity, width: 3))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.Longitude, width: 6))
+						@(Html.ArgumentFor<EventUpdateArguments>(x => x.Latitude, width: 6))
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin:-15px 0 15px 0">
+			<div class="panel-heading font-bold" translate="resources.event.codeInfo">Integration with other systems</div>
+			<div class="panel-body">
+				@(Html.SelectFor<EventUpdateArguments>(x => x.EntranceSystemId, "entranceSystemId", width: 6, disabled: "1"))
+				@(Html.ArgumentFor<EventUpdateArguments>(x => x.Code, width: 6))
+			</div>
+		</div>
+	</xp-get>
+}

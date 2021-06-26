@@ -1,0 +1,15 @@
+﻿<div xp-panel ng-init="app.selectedPage='prepaidcardloadfunds'">
+    <h1>Cargar fondos</h1>
+    <div class="verticalSpacer"><br /></div>
+
+    <!-- Buttons -->
+    <div class="buttonRowLoadFunds">
+        <button type="submit" class="orangeButton orangeButtonLoadFunds" ui-sref="prepaidcardrechargecard" xp-navigate ng-disabled="_windowState.isBusy">Tarjeta de débito o crédito</button>
+    </div>
+    <div class="buttonRowLoadFunds">
+        <button type="submit" class="orangeButton orangeButtonLoadFunds" ui-sref="prepaidcardtransfer" xp-navigate ng-disabled="_windowState.isBusy">Transferencia</button>
+    </div>
+    @*<div class="buttonRowLoadFunds">
+        <button type="submit" class="orangeButton orangeButtonLoadFunds" ui-sref="prepaidcardpointsofrecharge" xp-navigate ng-disabled="_windowState.isBusy">Puntos de recarga</button>
+    </div>*@
+</div>

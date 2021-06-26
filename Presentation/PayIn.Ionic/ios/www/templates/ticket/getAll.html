@@ -1,0 +1,57 @@
+<ion-view cache-view="false" view-title="Pay[in]" xp-panel ng-controller="ticketGetAllController">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear button-icon icon ion-navicon" ng-click="openLeft()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-icon icon ion-card" ng-click="goCards()"></button>
+  </ion-nav-buttons>
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-pane>
+        <ion-content ng-controller="LoadingCtrl">        
+          <div class="row">
+            <div class="col">
+              <a ng-controller="BarcodeCtrl" class="button button-block button-payin" ng-click="scanBarcode()">Escanear código</a>
+            </div>
+          </div>
+          <xp-list api="mobile/main/v1" initial-search>
+            <ion-refresher
+              pulling-text="Mantener para refrescar..."
+              on-refresh="search()">
+            </ion-refresher>            
+            <ul class="list">
+              <li class="item" ng-repeat="item in arguments.tickets">
+                 <div class="row row-center" ng-click="tap(item.id)" ng-controller="ticketClickController">
+                    <div class="col col-33 text-left">
+                      <a class="ticket-prize">{{item.payedAmount}}€</a>
+                      <br/>
+                      <a class="ticket-prizeAux">de {{item.amount}}€</a>
+                    </div>
+                    <div class="col col-66 ">
+                      <a class="ticket-list">{{item.supplierName}}</a>
+                      <br/>
+                      <a class="ticket-listAux">{{item.title}}</a>
+                      <br/>
+                      <a class="ticket-listAux">{{item.date | xpDateTime}}</a>
+                    </div>
+                    <a class="ion-chevron-right text-right" style="color:#E9AF30;"></a>
+                 </div>
+              </li>
+            </ul>
+          </xp-list>
+        </ion-content>
+      </ion-pane>
+    </ion-side-menu-content>
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+      <ion-content>
+        <ion-list>
+          <div class="list">
+            <a class = "button button-full button-clear button-payin" ui-sref="accountprofile">Perfil</a>
+            <a class = "button button-full button-clear button-payin" xp-logout ng-click="logout();">Cerrar Sesión</a>
+          </div>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
+</ion-view>

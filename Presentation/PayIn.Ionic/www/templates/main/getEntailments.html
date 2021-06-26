@@ -1,0 +1,67 @@
+<ion-view cache-view="false" view-title="Vinculaciones" xp-panel>
+    <ion-content class="background mainContent" ng-init="showCompany=true;showRecibo=false;showCampain=false;showPurse=false">
+        <div style="margin-top: 5%;">       
+            <xp-list id="menu" api="Mobile/Main/v1/GetEntailments" initial-search>
+                <ion-tabs class="tabs-icon-top" >
+                    <ion-tab title="Empresas" icon="ion-ios-people">
+                        <div class="row" ng-repeat="item in data" ng-controller="paymentWorkerGetAllController" style="height:100em;" data-ng-show="$tabSelected">
+                            <div class="col col-20">
+                                <i style="font-size: 2em;" ng-class="{'icon color-demo ion-checkmark-round':item.state === 1,'icon color-demo ion-help':item.state !== 1}"></i>
+                            </div>
+                            <div class="col col-70" style="font-size: 1.3em;" ng-click="accept2()">
+                                <div>{{item.concessionName}}</div>
+                            </div>
+                            <div class="col col-10">
+                                <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                            </div>
+                        </div>
+                    </ion-tab>
+                    <ion-tab title="Recibos" icon="ion-pricetag" >
+                        <div class="row" ng-controller="paymentUserGetAllController" ng-repeat="item in arguments.paymentUsers" style="height:100em;" data-ng-show="$tabSelected">
+                            <div class="col col-20">
+                                <i style="font-size: 2em;" ng-class=" {'icon color-demo ion-checkmark-round':item.state === 1,'icon color-demo ion-locked': item.state ===4, 'icon color-demo ion-help' : item.state !==1&&item.state !==4}"></i>
+
+                            </div>
+                            <div class="col col-70" style="font-size: 1.3em;" ng-click="accept2()" >
+                                <div>{{item.concessionName}}</div>
+                            </div>
+                            <div class="col col-10">
+                                <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                            </div>
+                        </div>
+                    </ion-tab>
+                    <ion-tab title="Campañas" icon="ion-arrow-graph-up-right">
+                        <div class="row" ng-repeat="item in arguments.campaigns" ng-controller="paymentConcessionCampaignGetAllController" style="height:100em;">
+                            <div class="col col-20">
+                                <i style="font-size: 2em;" ng-class="{'icon color-demo ion-checkmark-round':item.state === 1,'icon color-demo ion-help':item.state !== 1}"></i>
+
+                            </div>
+                            <div class="col col-70" style="font-size: 1.3em;" ng-click="accept2()">
+                                <div>{{item.campaignName}}</div>
+                                <div>{{item.concessionName}}</div>
+                            </div>
+                            <div class="col col-10">
+                                <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                            </div>
+                        </div>
+                    </ion-tab>
+                    <ion-tab title="Monederos" icon="ion-cash">
+                        <div class="row" style="height:100em;" ng-repeat="item in arguments.purses" ng-controller="paymentConcessionPurseGetAllController">
+                            <div class="col col-20">
+                                <i style="font-size: 2em;" ng-class=" {'icon color-demo ion-checkmark-round':item.state === 1,'icon color-demo ion-help':item.state !== 1}"></i>
+                            </div>
+                            <div class="col col-70" style="font-size: 1.3em;" ng-click="accept2()">
+                                <div >{{item.purseName}}</div>
+                                <div>{{item.concessionName}}</div>
+                            </div>
+                            <div class="col col-10">
+                                <i class="icon ion-chevron-right payin size-16"style="color: white;"></i>
+                            </div>
+                        </div>
+                    </ion-tab>
+                </ion-tabs>
+            </xp-list>
+        </div>
+
+    </ion-content>
+</ion-view>

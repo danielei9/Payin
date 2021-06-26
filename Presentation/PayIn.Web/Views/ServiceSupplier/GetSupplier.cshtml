@@ -1,0 +1,29 @@
+﻿@using Xp.Common;
+@using PayIn.Common.Security;
+@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Application.Dto.Arguments.ServiceSupplier;
+
+@using (Html.xpPut(
+    ServiceSupplierFactory.GetSupplierName,
+    ServiceSupplierFactory.GetSupplierApi,
+	"",
+	ServiceSupplierResources.GetSupplier    
+)) 
+
+{
+<xp-get data-api="@ServiceSupplierFactory.UrlApi">
+    @(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.Id,               focus: true))
+    @(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.Login))
+	@(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.Name))
+    @(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.TaxNumber))
+    @(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.TaxName))
+    @(Html.ArgumentFor<ServiceSupplierUpdateArguments>(x => x.TaxAddress))
+</xp-get>
+}
+
+
+

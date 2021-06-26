@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayIn.Domain.SmartCity.Alarm">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Members>
+      <Property Name="AlertId" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Alert" Type="PayIn.Domain.SmartCity.Alert" FixedToPoint="true">
+      <Path>
+        <Point X="1.438" Y="5.5" />
+        <Point X="1.438" Y="4.497" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAACAAAAAAAAAEAAAAAAIAAIAAI=</HashCode>
+      <FileName>Alarm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Alert" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Alert">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <AssociationLine Name="Alarms" Type="PayIn.Domain.SmartCity.Alarm" FixedFromPoint="true">
+      <Path>
+        <Point X="1.062" Y="4.497" />
+        <Point X="1.062" Y="5.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Alert.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Alarms" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Data">
+    <Position X="3.25" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="Create" Hidden="true" />
+      <Property Name="DataSetId" Hidden="true" />
+      <Property Name="EnergyTariffPriceId" Hidden="true" />
+      <Property Name="SensorId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="DataSet" Type="PayIn.Domain.SmartCity.DataSet" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="7" />
+        <Point X="4.25" Y="4.733" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="EnergyTariffPrice" Type="PayIn.Domain.SmartCity.EnergyTariffPrice" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="8.425" />
+        <Point X="4.25" Y="13.069" />
+        <Point X="14.906" Y="13.069" />
+        <Point X="14.906" Y="12.886" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQAAAQAQAAAAAAAAAAAAAEAAAAAgAgAAQAA=</HashCode>
+      <FileName>Data.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataSet" />
+      <Property Name="Sensor" />
+      <Property Name="EnergyTariffPrice" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Sensor">
+    <Position X="6" Y="7" Width="1.5" />
+    <Members>
+      <Property Name="ComponentId" Hidden="true" />
+      <Property Name="EnergyContractId" Hidden="true" />
+      <Method Name="GetDateTimeFromSentilo" Hidden="true" />
+      <Method Name="GetDateTimeToLocal" Hidden="true" />
+    </Members>
+    <AssociationLine Name="EnergyContract" Type="PayIn.Domain.SmartCity.EnergyContract" FixedToPoint="true">
+      <Path>
+        <Point X="6.547" Y="10.415" />
+        <Point X="6.547" Y="11.258" />
+        <Point X="11" Y="11.258" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAACAAQCAAAAACAIAAgAAQAAEAAAIQBAQBADAAgCAA=</HashCode>
+      <FileName>Sensor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Component" />
+      <Property Name="EnergyContract" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Datas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Component">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <Members>
+      <Property Name="DeviceId" Hidden="true" />
+      <Method Name="GetLatitude" Hidden="true" />
+      <Method Name="GetLongitude" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Device" Type="PayIn.Domain.SmartCity.Device" FixedToPoint="true">
+      <Path>
+        <Point X="7.062" Y="3.5" />
+        <Point X="7.062" Y="2.694" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAEIAAgAEAAAoAAQAAAAAAAAAESgABQAQAAA=</HashCode>
+      <FileName>Component.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Device" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Sensors" />
+      <Property Name="DataSets" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.ModelSchedule">
+    <Position X="9.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Property Name="DeviceId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACQAAAAAAAAAgAAEAAAAAQAAAAAAAAAEAAAAAAAAEA=</HashCode>
+      <FileName>ModelSchedule.cs</FileName>
+      <NewMemberFileName>EnergyTariffSchedule.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Device" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TimeTables" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyTariffPeriod">
+    <Position X="17.25" Y="10.5" Width="1.75" />
+    <Members>
+      <Property Name="TariffId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Tariff" Type="PayIn.Domain.SmartCity.EnergyTariff" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19" Y="11.562" />
+        <Point X="20.333" Y="11.562" />
+        <Point X="20.333" Y="1.078" />
+        <Point X="19" Y="1.078" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TimeTables" Type="PayIn.Domain.SmartCity.EnergyTariffTimeTable" FixedFromPoint="true">
+      <Path>
+        <Point X="17.812" Y="10.5" />
+        <Point X="17.812" Y="8.675" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AACAQAAAAQAAAAAAAAAAAASAAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>EnergyTariffPeriod.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tariff" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TimeTables" />
+      <Property Name="Prices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyTariffTimeTable">
+    <Position X="17.25" Y="7.25" Width="1.75" />
+    <Members>
+      <Property Name="PeriodId" Hidden="true" />
+      <Property Name="ScheduleId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Schedule" Type="PayIn.Domain.SmartCity.EnergyTariffSchedule" FixedToPoint="true">
+      <Path>
+        <Point X="18.562" Y="7.25" />
+        <Point X="18.562" Y="5.81" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Period" Type="PayIn.Domain.SmartCity.EnergyTariffPeriod" FixedFromPoint="true">
+      <Path>
+        <Point X="18.375" Y="8.675" />
+        <Point X="18.375" Y="10.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAABAEAAAAAAAAEAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>EnergyTariffTimeTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Schedule" />
+      <Property Name="Period" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyTariff">
+    <Position X="17.25" Y="0.5" Width="1.75" />
+    <AssociationLine Name="Periods" Type="PayIn.Domain.SmartCity.EnergyTariffPeriod" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19" Y="1.483" />
+        <Point X="19.742" Y="1.483" />
+        <Point X="19.742" Y="11.062" />
+        <Point X="19" Y="11.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Contracts" Type="PayIn.Domain.SmartCity.EnergyContract" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.25" Y="1.375" />
+        <Point X="12.344" Y="1.375" />
+        <Point X="12.344" Y="10.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAQAAAAAIAABAAAAQAAkAAABABAAAIAAAAAAA=</HashCode>
+      <FileName>EnergyTariff.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Schedules" />
+      <Property Name="Periods" />
+      <Property Name="Contracts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyTariffPrice">
+    <Position X="14.25" Y="10.5" Width="1.75" />
+    <Members>
+      <Property Name="ContractId" Hidden="true" />
+      <Property Name="PeriodId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Datas" Type="PayIn.Domain.SmartCity.Data" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.417" Y="12.886" />
+        <Point X="15.417" Y="13.492" />
+        <Point X="3.812" Y="13.492" />
+        <Point X="3.812" Y="8.425" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAQAAAAAAAAAQAQAAAAAAAAAAAAAAIQAAAIhAQgAAI=</HashCode>
+      <FileName>EnergyTariffPrice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Period" />
+      <Property Name="Contract" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Datas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyContract">
+    <Position X="11" Y="10.5" Width="1.75" />
+    <Members>
+      <Property Name="TariffId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Tariff" Type="PayIn.Domain.SmartCity.EnergyTariff" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.062" Y="10.5" />
+        <Point X="12.062" Y="1.094" />
+        <Point X="17.25" Y="1.094" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Sensors" Type="PayIn.Domain.SmartCity.Sensor" FixedFromPoint="true">
+      <Path>
+        <Point X="11" Y="10.954" />
+        <Point X="7.055" Y="10.954" />
+        <Point X="7.055" Y="10.415" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAKAAQAAAAAAAAAAAASAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>EnergyContract.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tariff" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Sensors" />
+      <Property Name="Prices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.DataSet">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <Members>
+      <Property Name="ComponentId" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Datas" Type="PayIn.Domain.SmartCity.Data" FixedFromPoint="true">
+      <Path>
+        <Point X="3.75" Y="4.733" />
+        <Point X="3.75" Y="7" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAEAAAABACAAgAAA=</HashCode>
+      <FileName>DataSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Component" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Datas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Device">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Components" Type="PayIn.Domain.SmartCity.Component" FixedFromPoint="true">
+      <Path>
+        <Point X="6.5" Y="2.694" />
+        <Point X="6.5" Y="3.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAAAAAAAAQAAEAAAEAACAgABAARAAA=</HashCode>
+      <FileName>Device.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Components" />
+      <Property Name="Schedules" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Concession">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAAAAAAAAAAAAQAQAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Concession.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Devices" />
+      <Property Name="Holidays" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.Holiday">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAEABCAAAAAAAAAA=</HashCode>
+      <FileName>Holiday.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Concession" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.ModelTimeTable">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <Members>
+      <Property Name="ScheduleId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAEAAAAAAAAEAAAAAAAAAgAAAAAEA=</HashCode>
+      <FileName>ModelTimeTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Schedule" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.SmartCity.EnergyTariffSchedule">
+    <Position X="17.25" Y="4" Width="1.75" />
+    <Members>
+      <Property Name="TariffId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TimeTables" Type="PayIn.Domain.SmartCity.EnergyTariffTimeTable" FixedFromPoint="true">
+      <Path>
+        <Point X="17.906" Y="5.81" />
+        <Point X="17.906" Y="7.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AACQQAAAAAAAAAAAEAAAAASAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>EnergyTariffSchedule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Tariff" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TimeTables" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

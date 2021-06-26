@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Transport.Arguments.TransportSimultaneousTitleCompatibilities;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpPut(
+	TransportSimultaneousTitleCompatibilitiesFactory.UpdateName,
+	TransportSimultaneousTitleCompatibilitiesFactory.UpdateApi,
+	"",
+	"resources.transportSimultaneousTitleCompatibilities.update",
+	"{{temp.titleName}}",
+	isTitleActive: true
+))
+{
+<xp-get data-api="@TransportSimultaneousTitleCompatibilitiesFactory.UpdateApiId">
+	@(Html.SelectFor<TransportSimultaneousTitleCompatibilitiesUpdateArguments>(x => x.Name, "name", TransportSimultaneousTitleCompatibilitiesFactory.RetrieveSelectorApi))
+</xp-get>
+}

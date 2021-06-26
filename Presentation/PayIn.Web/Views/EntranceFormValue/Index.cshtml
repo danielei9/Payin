@@ -1,0 +1,39 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+				EntranceFormValueFactory.GetAllName,
+				EntranceFormValueFactory.GetAllApi,
+				"",
+				"resources.entranceFormValue.retrieveAll",
+				"{{arguments.userName}} ({{arguments.eventName}})",
+				isTitleActive: true,
+				initialSearch: true,
+				showFormButtons: true,
+				init:"scope.arguments.entranceId=params.id;"
+			))
+{
+<div class="table-responsive">
+	<table class="table table-hover" ng-show="data.length">
+		<thead>
+			<tr>
+				<th translate="resources.entranceFormValue.argumentName">Question</th>
+				<th translate="resources.entranceFormValue.value">Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in data">
+				<td>@(Html.ColumnFor<EntranceFormValueGetAllResult>(x => x.ArgumentName))</td>
+				<td>
+					<div ng-if="item.valueNumeric && item.valueOptions.length == 0">@(Html.ColumnFor<EntranceFormValueGetAllResult>(x => x.ValueNumeric))</div>
+					<div ng-if="item.valueBool">@(Html.ColumnFor<EntranceFormValueGetAllResult>(x => x.ValueBool))</div>
+					<div ng-if="item.valueDateTime">@(Html.ColumnFor<EntranceFormValueGetAllResult>(x => x.ValueDateTime))</div>
+					<div ng-if="item.valueString">@(Html.ColumnFor<EntranceFormValueGetAllResult>(x => x.ValueString))</div>
+					<div ng-repeat="option in item.valueOptions">@(Html.ColumnFor<EntranceFormValueGetAllResult_Option>(x => x.Text, iterator: "option"))</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+}

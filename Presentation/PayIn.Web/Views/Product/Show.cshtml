@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ProductFactory.Show,
+	ProductFactory.IsVisibleApi,
+	"",
+	"resources.product.show",
+	init: "scope.arguments.isVisible=true;"
+))
+{
+	<p translate="resources.product.showQuestion">Do you want to show this product?</p>
+}

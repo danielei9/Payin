@@ -1,0 +1,88 @@
+<ion-view cache-view="false" view-title="Notificaciones" xp-panel xp-loading>
+    <ion-content class="background mainContent">
+        <div style="margin-top: 20%;">
+            <xp-list api="Mobile/ServiceNotification/v1" initial-search xp-page-size="8" ng-autofocus ng-controller="serviceNotificationController">
+                <ion-refresher
+                               pulling-text="Mantener para refrescar..."
+                               on-refresh="search()">
+                </ion-refresher>   
+                <img ng-show="data.length==0" src="img/flag.png" style="opacity: 0.5; width: 80%; margin-left: 9%; margin-right: 9%; margin-top: 8%;">
+                <div ng-show="data.length==0" style="color: white;font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%;">No tiene notificaciones ahora mismo.</div>
+
+                <ion-list class="list">
+                    <div ng-repeat="item in data">                      
+
+                        <a ng-show="item.referenceClass==='Ticket'" 
+                           ui-sref='ticketget({id:"{{item.referenceId}}"})'>
+                            <div class="row center">
+                                <div class="col col-10">
+                                    <i class="material-icons">receipt</i>
+                                </div>
+                                <div class="col col-80">
+                                    <div class="text-truncate">{{item.date | xpDateTime}}</div>
+                                    <div style="color: #111111;">{{item.message}}</div>
+                                </div>
+                                <div class="col col-10">
+                                    <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                                </div>
+                            </div>
+                            <hr style="background-color: white;">
+                        </a>
+                        <div ng-show="(item.referenceClass==='PaymentUser' || item.referenceClass === 'PaymentWorker') && item.type == 1"
+                             ng-controller="serviceNotificationController"
+                             ng-click="redirectFunction('{{item.referenceClass}}')">
+                            <div class="row">
+                                <div class="col col-10">
+                                   <i class="material-icons">receipt</i>
+                                </div>
+                                <div class="col col-80">
+                                    <div class="text-truncate">{{item.date | xpDateTime}}</div>
+                                    <div style="color: #111111;">{{item.message}}</div>
+                                </div>
+                                <div class="col col-10">
+                                    <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                                </div>
+                            </div>
+                            <hr style="background-color: white;">
+                        </div>
+                        <div
+                             ng-show="(item.referenceClass==='PaymentUser' || item.referenceClass === 'PaymentWorker') && item.type != 1"
+                             ng-controller="serviceNotificationController">
+                            <div class="row">
+                                <div class="col col-10">
+                                   <i class="material-icons">receipt</i>
+                                </div>
+                                <div class="col col-80">
+
+                                    <div class="text-truncate">{{item.date | xpDateTime}}</div>
+                                    <div style="color: #111111;">{{item.message}}</div>
+                                    
+                                </div>
+                                <div class="col col-10">
+                                    <i class="icon ion-chevron-right payin size-16" style="color: white;"></i>
+                                </div>
+                            </div>
+                            <hr style="background-color: white;">
+                        </div>
+                        <div ng-hide="item.referenceClass==='Ticket' || item.referenceClass==='PaymentUser' || item.referenceClass === 'PaymentWorker'">
+                            <div class="row">
+                                <div class="col col-10">
+                                   <i class="material-icons">receipt</i>
+                                </div>
+                                <div class="col col-80">
+
+                                    <div class="text-truncate">{{item.date | xpDateTime}}</div>
+                                    <div style="color: #111111;">{{item.message}}</div>
+                                </div>
+                                <div class="col col-10"></div>
+                            </div>
+                            <hr style="background-color: white;">
+                        </div>
+                    </div>
+                </ion-list>
+                <button  ng-click="next()" ng-show="!data.length === 0" class="button button-block button-payin button-clear">Más</button>
+                <!--ion-infinite-scroll ng-if="!lastPage" on-infinite="next()" distance="1%"></ion-infinite-scroll-->
+            </xp-list>
+        </div>    
+    </ion-content>
+</ion-view>

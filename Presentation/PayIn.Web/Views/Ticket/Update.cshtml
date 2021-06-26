@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	TicketFactory.UpdateName,
+	TicketFactory.UpdateApi,
+	"",
+	"resources.ticket.update",
+	isTitleActive: true
+))
+{
+	@(Html.ArgumentFor<TicketUpdateArguments>(x => x.Title, focus: true))
+	@(Html.ArgumentFor<TicketUpdateArguments>(x => x.Reference))
+	@(Html.ArgumentFor<TicketUpdateArguments>(x => x.Amount))
+	@(Html.ArgumentFor<TicketUpdateArguments>(x => x.Date))
+	@(Html.ArgumentFor<TicketUpdateArguments>(x => x.State))
+}

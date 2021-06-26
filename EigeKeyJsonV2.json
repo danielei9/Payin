@@ -1,0 +1,289 @@
+[
+	{
+		"key": {
+			"Version": "0"
+		},
+		"Value": "FFFFFFFFFFFF"
+	},
+	{
+		"key": {
+			"Sector": "00",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "01",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "02",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "03",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "04",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "05",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "06",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "07",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "08",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "09",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "10",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "11",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "12",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "13",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "14",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "15",
+			"Type": "A",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "00",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "01",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "02",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "03",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "04",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "05",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "06",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "07",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "08",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "09",
+			"Type": "B",
+			"Version": "1",
+			"DiversifyType": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "10",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "11",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "12",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "13",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "14",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "15",
+			"Type": "B",
+			"Version": "1"
+		},
+		"Value": ""
+	},	
+	{
+		"key": {
+			"Sector": "09",
+			"Type": "B",
+			"Version": "2",
+			"DiversifyType": "1"
+		},
+		"Value": ""
+	},
+	{
+		"key": {
+			"Sector": "0",
+			"Version": "3"
+		},
+		"Value": "FFFFFFFFFFFF"
+	},
+	{
+		"key": {
+			"Type": "B",
+			"Version": "3",
+			"DiversifyType": "2"
+		},
+		"Value": ""
+	},
+]

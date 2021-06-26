@@ -1,0 +1,815 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --default: #e8e9f4e8;
+    --default-hover: #D6D9ED;
+    --primary: #212492;
+    --primary-hover: #151a56;
+    --primary-muted: #484CAB;
+    --primary-supermuted: #7679C0;
+    --secondary: #ff4539;
+}
+
+.app {
+  background: white !important;
+}
+
+.container {
+    font-family: 'Roboto', sans-serif !important;
+    color: var(--primary);
+    padding: 2rem 3rem;
+}
+
+.container-main {
+  max-width: 1000px;
+}
+
+.inline-link {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.inline-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Layout */
+
+.places-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.places-top-logo {
+    width: 180px;
+}
+
+.beach-data-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 2rem;
+}
+
+.beach-data-item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    max-width: 200px;
+    line-height: 1;
+}
+
+.beach-data-item-number {
+    font-size: 3.5rem;
+}
+
+.beach-data-item-number-orange {
+    color: orange;
+}
+
+.beach-data-item-number-red {
+    color: red;
+}
+
+.beach-data-item-label {
+    line-height: 1;
+    margin-top: .5rem;
+    font-size: 1.5rem;
+    color: var(--primary-supermuted);
+}
+
+.loading-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  top: 0;
+  right: 0;
+  left: 2rem;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  color: var(--primary);
+  background: #ffffff80;
+  z-index: 10000;
+}
+
+/* Buttons */
+
+.btn-primary {
+    border: 2px var(--primary) solid;
+    color: var(--primary) !important;
+    background: transparent;
+    padding: 1rem;
+}
+
+.btn-primary-sm {
+    padding: 0.5rem 1rem;
+}
+
+    .btn-primary:hover {
+        border: 2px var(--primary-hover) solid;
+        color: var(--primary-hover) !important;
+        text-decoration: none;
+        background: var(--default-hover);
+        transition: .3s ease-in-out;
+        text-decoration: none;
+    }
+
+.btn-link {
+    color: var(--primary);
+}
+
+    .btn-link:hover {
+        background: var(--default);
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+.btn-default {
+    color: var(--primary-muted) !important;
+    border: none;
+    background: var(--default);
+    border-radius: 20rem;
+    transition: .2s ease-in-out;
+}
+
+    .btn-default:hover, .btn-default:focus {
+      color: var(--primary-muted) !important;
+      background: var(--default-hover);
+      box-shadow: none !important;
+    }
+
+    .btn-default-selected {
+      color: var(--primary-muted) !important;
+      background: var(--default-hover);
+    }
+
+.uppercase-button {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 15rem !important;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .button-group .btn {
+        margin-right: .5rem;
+    }
+
+.info-button, .lang-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  font-size: 1.7rem;
+  height: 36px;
+  width: 36px;
+  border-radius: 100% !important;
+  border: 2px var(--primary) solid;
+}
+
+.info-button:hover, .lang-button:hover {
+  background: var(--default);
+  border: 2px var(--primary) solid;
+}
+
+.lang-button {
+  margin-right: 1.5rem;
+}
+
+.weather-button {
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  margin-right: 1.5rem;
+}
+
+.weather-button:hover {
+  background: var(--default);
+}
+
+/* Input buttons */
+.radio-button {
+    display: flex;
+    padding: .25rem 1.25rem;
+    border-radius: 5rem;
+    font-size: 1.75rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px var(--primary) solid;
+}
+
+.radio-button-square {
+    font-size: 2rem;
+    height: calc(2.25rem + 7vw);
+    width: calc(2.25rem + 7vw);
+    max-height: 60px;
+    max-width: 60px;
+}
+
+.radio-button:hover {
+    background: var(--default-hover);
+    transition: .3s ease-in-out;
+    text-decoration: none;
+}
+
+input:checked ~ .radio-button {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+.input-label {
+    margin: 2rem 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.input-group-2-col {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Cards */
+
+.card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    width: 80vw;
+    margin: 1.5rem .75rem 1.5rem 0.5rem;
+}
+
+@media (min-width: 500px) {
+    .card {
+        width: 400px;
+    }
+}
+
+.card-wrapper {
+  padding-left: .8rem;
+}
+
+.card-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.title-blue-flag {
+  width: 25px;
+  height: 100%;
+  border-radius: 1px;
+}
+
+.card-info {
+    font-size: 1.2rem;
+    color: var(--primary-muted);
+}
+
+.card-carousel {
+    margin: 0 -2rem;
+}
+
+@media (min-width: 767px) {
+  .card-carousel {
+    margin: 0 -1.5rem;
+  }
+}
+
+/* Card carousel */
+
+.flickity-page-dots {
+    position: initial;
+}
+
+.dot.is-selected {
+    background: var(--primary);
+}
+
+.flickity-page-dots .dot {
+    background: var(--primary-supermuted);
+}
+
+.flickity-prev-next-button {
+    display: none;
+}
+
+
+/* Carousel Plain CSS Fallback */
+.card-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    margin: 2rem -2rem;
+}
+
+.card-scroll-item:first-child {
+    margin-left: 2rem !important;
+}
+
+.card-scroll-item:last-child {
+    margin-right: 2rem !important;
+}
+
+.card-scroll-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+
+/* graph */
+
+.card-graph {
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    background: var(--default);
+    color: var(--primary-supermuted);
+}
+
+/* beach list card */
+
+.beach-list-card {
+  margin: 2.3rem;
+  max-height: 370px;
+  overflow-y: scroll;
+}
+
+.beach-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.beach-list-item {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--default-hover);
+  padding: 1rem 0;
+}
+
+.beach-list-item-title {
+  font-size: 2rem;
+}
+
+.beach-list-item-capacity {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 600px) {
+  .beach-list {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .beach-list-card {
+    box-shadow: none;
+    width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .beach-list-item {
+    padding: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+}
+
+/* Weather pop-up */
+
+.weather-list {
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.weather-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.weather-list-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.weather-list-info {
+    margin-left: 1rem;
+}
+
+.weather-list-info-primary {
+    line-height: 1.2;
+    font-size: 2rem;
+}
+
+/* Missing/New bootstrap classes */
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.ml-2 {
+  margin-left: 2.25rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.p-2-3 {
+    padding-right: 5rem;
+    padding-left: 5rem;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.j-end {
+    justify-content: flex-end;
+}
+
+.j-center {
+    justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mw-600 {
+  max-width: 600px;
+}
+
+.mw-1000 {
+  max-width: 1200px;
+}
+
+
+/* Smaller devices */
+
+@media (max-width: 376px) {
+  .places-top-logo {
+    width: 180px;
+  }
+  
+  .beach-data-item-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 330px) {
+  .places-top-logo {
+    width: 180px;
+  }
+
+  .uppercase-button {
+    font-size: 1.25rem;
+  }
+
+  .lang-button {
+    margin-right: .5rem;
+  }
+
+  .info-button, lang-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .weather-button {
+    margin-right: .25rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-title {
+    font-size: 1.7rem
+  }
+
+  .mt-2 {
+    margin-top: 0.5rem
+  }
+
+  .beach-data-item-number {
+    font-size: 3rem;
+  }
+}
+
+/* Dirty default class overrides */
+.dataTables_wrapper {
+    display: none;
+}
+
+.wrapper-md {
+    padding: 0;
+}
+
+i {
+    color: var(--primary) !important;
+}
+
+.modal-header, .modal-body, .modal-footer {
+    font-family: 'Roboto', sans-serif !important;
+    padding: 2rem;
+    color: var(--primary) !important;
+}
+
+    .modal-footer .btn-default {
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-color: transparent !important;
+        border-radius: 2rem !important;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+        .modal-footer .btn-default:hover {
+            background: var(--default);
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+.modal-header {
+    border-bottom: none !important;
+}
+
+.modal-body {
+  align-self: center;
+  display: flex;
+  max-width: 500px;
+  position: relative;
+  padding: 15px;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+h3.modal-title {
+    font-size: 2rem !important;
+    font-weight: bold !important;
+}
+
+.modal-footer {
+    border-top: none !important;
+}
+
+.col-xs-12 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.panel {
+    margin-bottom: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.panel-body {
+    padding: 0 !important;
+}
+
+.chartjs-render-monitor {
+  min-height: auto !important;
+}
+
+/*loading icon*/
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+}
+.loader {
+  font-size: 10px;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  text-indent: -9999em;
+  border-top: 1em solid var(--primary-supermuted);
+  border-right: 1em solid var(--primary-supermuted);
+  border-bottom: 1em solid var(--primary-supermuted);
+  border-left: 1em solid var(--primary);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* scrollbar */
+.card::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.card::-webkit-scrollbar-track {
+  width: 1rem;
+  background: white;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background-color: var(--primary-supermuted) !important;
+  border-radius: 4rem;
+  transition: .25s ease-in-out;
+  border: .25rem white solid;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-supermuted) !important;
+}
+
+/* MUPI */
+@media (min-width: 900px) and (orientation: portrait) {  
+  .card {
+    width: 950px;
+    height: 850px;
+  }
+  .beach-data-item-number {
+    font-size: 8rem;
+  }
+  .beach-data-item-label {
+    font-size: 3.5rem;
+  }
+  .radio-button {
+    font-size: 3.5rem;
+  }
+  .radio-button-square {
+    font-size: 4rem;
+  }
+  .card-title {
+    font-size: 5.5rem;
+    align-items: center;
+    margin-top: 6rem;
+  }
+  .card-info {
+    font-size: 3.5rem;
+  }
+  .places-top-logo {
+    width: 100%;
+    padding: 50px 150px 0 150px;
+  } 
+  .btn, .info-button, .weather-button, .lang-button {
+    display: none;
+  }
+  .flickity-page-dots {
+    margin-top: 6rem;
+  }
+  .flickity-page-dots .dot {
+    height: 30px;
+    width: 30px;
+  }
+  .data-from {
+    margin-top: 6rem;
+    font-size: 3.5rem;
+  }
+  .card {
+    padding: 3.5rem;
+    justify-content: space-around;
+  }
+  .card-carousel {
+    margin-top: 180px !important;
+  }
+  .mt-2 {
+    margin-top: 6rem;
+  }
+  .mt-1 {
+    margin-top: 3rem;
+  }
+  .mb-1 {
+    margin-bottom: 3rem;
+  }
+  .title-blue-flag {
+    width: 60px;
+  }
+  .beach-list-item {
+    box-shadow: none;
+    border-bottom: 1px solid var(--primary);
+  }
+  .beach-list-item-name {
+    font-size: 2.75rem;
+  }
+  .beach-list-item-capacity {
+    font-size: 2.5rem;
+  }
+  .beach-list-card {
+    justify-content: flex-start;
+    margin-top: 6rem;
+    height: 1400px;
+    width: 100%;
+    overflow-y: unset;
+  }
+  .beach-list {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1rem;
+    column-gap: 2rem;
+  }
+  .weather-list {
+    grid-template-columns: 1fr;
+    grid-gap: 3rem;
+  }
+  .weather-list-icon {
+    height: 150px;
+    width: 150px;
+  }
+  .weather-list-info-secondary {
+    font-size: 4.75rem;
+  }
+  .weather-list-info-primary {
+    font-size: 8.5rem;
+  }
+  .modal-body {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 60px 60px 60px;
+    align-items: flex-start;
+  }
+  .modal-header {
+    padding: 60px 60px 0 60px;
+  }
+  .modal-lg {
+    width: 100%;
+  }
+  h3.modal-title {
+    font-size: 6rem !important;
+  }
+  fieldset .d-flex {
+    font-size: 4rem;
+  }
+}

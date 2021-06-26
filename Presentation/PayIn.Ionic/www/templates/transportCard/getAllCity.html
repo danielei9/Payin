@@ -1,0 +1,13 @@
+<ion-view cache-view="false" view-title="Prices" xp-panel xp-loading>
+    <ion-content ng-init="options =[{city:'Valencia'}, {city:'Alicante'}, {city:'Sagunto'}]">
+        <ul class="list">
+            <li class="item item-icon-right item-block" ng-repeat="option in options">
+                <div class="row row-center">
+                    <div class="col col-100" style="margin-left:1em;">
+                        <div class="ticket-list" ngClick="option.type == 'Bonometro' ">{{option.city}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

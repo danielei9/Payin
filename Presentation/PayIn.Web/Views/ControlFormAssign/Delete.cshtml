@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ControlFormAssignFactory.DeleteStateName,
+	ControlFormAssignFactory.DeleteApi,
+	"",
+	//ControlFormAssignResources.Delete,
+	"resources.controlFormAssign.delete",
+	id: "id"
+))
+{
+	<p translate="resources.controlFormAssign.deleteQuestion" translate-values="{ formName: '{{arguments.formName}}',checkDate: '{{arguments.checkDate|xpDateTime}}' }">Do you want to delete the form {{arguments.formName}} to check {{arguments.checkDate|xpDateTime}} assignation?</p>
+}
+

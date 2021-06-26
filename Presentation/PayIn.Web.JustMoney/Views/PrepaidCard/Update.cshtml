@@ -1,0 +1,68 @@
+﻿<div xp-panel ng-init="app.selectedPage='prepaidcardupdate'">
+    <div class="spinner" ng-show="_windowState.isBusy">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+    <h1>Editar detalles</h1>
+    <!-- Errors -->
+    <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+        <ul>
+            <li ng-repeat="error in errors">{{error}}</li>
+        </ul>
+    </div>
+    <div class="formPartUpdate">
+        <h3>Detalles de la cuenta</h3>
+        <xp-put api="JustMoney/Api/PrepaidCard/Details">
+            <form name="form" role="form" ng-submit="accept()">
+                <xp-list api="/JustMoney/Api/PrepaidCard/Cards" xp-success="scope.arguments.cards = data.data" initial-search>
+                    <!-- Modificar alias de las tarjetas -->
+                    <h6>Cambiar alias de tarjetas</h6>
+                    <div class="form-group row">
+                        <div class="col-sm-6" ng-repeat="item in arguments.cards" style="text-align: center;">
+                            <div class="singleInputRow">
+                                <label class="label150" for="login{{item.id}}">{{item.cardHolderId}}</label>
+                                <input class="inputFrom150" type="text" id="login{{item.id}}" name="login{{item.id}}" ng-model="item.alias" required ng-disabled="_windowState.isBusy">
+                            </div>
+                        </div>
+                    </div>
+                </xp-list>
+
+                <!-- Buttons -->
+                <div class="orangeSingleButtonsDiv">
+                    <button type="submit" class="orangeButton" ng-disabled="_windowState.isBusy || form.$invalid">GUARDAR CAMBIOS</button>
+                </div>
+
+            </form>
+        </xp-put>
+    </div>
+</div>
+
+<div style="margin-bottom: 20px;"><br /></div>
+
+<div xp-panel>
+    <div class="formPartUpdate">
+        <xp-post api="api/Account/UpdatePassword">
+            <form name="form" role="form" ng-submit="accept()">
+                <!-- Modificar detalles el titular de la cuenta -->
+                <h3>Cambiar contraseña</h3>
+                <div class="singleInputRow">
+                    <label for="oldPassword">Contraseña actual</label>
+                    <input type="text" id="oldPassword" name="oldPassword" ng-model="item.oldPassword" required ng-disabled="_windowState.isBusy">
+                </div>
+                <div class="singleInputRow">
+                    <label for="password">Nueva contraseña</label>
+                    <input type="text" id="password" name="password" ng-model="item.password" required ng-disabled="_windowState.isBusy">
+                </div>
+                <div class="singleInputRow">
+                    <label for="confirmPassword">Confirmar contraseña</label>
+                    <input type="text" id="confirmPassword" name="confirmPassword" ng-model="item.confirmPassword" required ng-disabled="_windowState.isBusy">
+                </div>
+
+                <!-- Buttons -->
+                <div class="orangeSingleButtonsDiv">
+                    <button type="submit" class="orangeButton" ng-disabled="_windowState.isBusy || form.$invalid">Cambiar contraseña</button>
+                </div>
+            </form>
+        </xp-post>
+    </div>
+</div>

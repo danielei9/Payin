@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B924100-669F-494C-BB1E-F453DF07822E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.DistributedServices.Test</RootNamespace>
+    <AssemblyName>PayIn.DistributedServices.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;HOMO</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayIn.Application.Dto.Transport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\PayIn.Application.Dto.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="PayIn.Domain.Transport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\PayIn.Domain.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xp.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Xp.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Xp.Common">
+      <HintPath>..\Libraries\Xp.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xp.Common.Net">
+      <HintPath>..\Libraries\Xp.Common.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Xp.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Xp.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="TransportBusinessServer.cs" />
+    <Compile Include="Cards\Bonometro20VCard .cs" />
+    <Compile Include="Cards\BonoTransbordo19VCard.cs" />
+    <Compile Include="Cards\BonoTransbordo30VCard.cs" />
+    <Compile Include="Cards\AbonoTCaducado.cs" />
+    <Compile Include="Cards\AbonoTJoveAmpliadoCard.cs" />
+    <Compile Include="Cards\AbonoTJoveCard.cs" />
+    <Compile Include="Cards\BonoTransbordoMarcelaCard.cs" />
+    <Compile Include="Cards\BonoTransbrodoObsoletoCard.cs" />
+    <Compile Include="Cards\EmptyFGVCard.cs" />
+    <Compile Include="Cards\Frank2Card.cs" />
+    <Compile Include="Cards\Marcela4Card.cs" />
+    <Compile Include="Cards\Marcela3Card.cs" />
+    <Compile Include="Cards\Marcela2Card.cs" />
+    <Compile Include="Cards\MarcelaCard.cs" />
+    <Compile Include="Cards\FrankCard.cs" />
+    <Compile Include="Cards\BonometroBonobusAgotadosCard.cs" />
+    <Compile Include="Cards\BonobusBonometroCard.cs" />
+    <Compile Include="Cards\BonometroBonobus4Card.cs" />
+    <Compile Include="Cards\BonometroBonobus3Card.cs" />
+    <Compile Include="Cards\BonometroBonobus2Card.cs" />
+    <Compile Include="Cards\BonometroCard.cs" />
+    <Compile Include="Cards\BonoTransbordoCard.cs" />
+    <Compile Include="Cards\AbonoCard.cs" />
+    <Compile Include="Cards\BonometroBonobusCard.cs" />
+    <Compile Include="Test\TransportBaseTest.cs" />
+    <Compile Include="Test\ChargeAbono\ChargeBono.cs" />
+    <Compile Include="Test\ChargeBonobus\ChargeBonobus.cs" />
+    <Compile Include="Test\ChargeBono\ChargeBono.cs" />
+    <Compile Include="Test\EmptyCard.cs" />
+    <Compile Include="Helpers\ResultRead.cs" />
+    <Compile Include="Helpers\ResultRevoke.cs" />
+    <Compile Include="Test\AbonoTJoveAmpliadoTest.cs" />
+    <Compile Include="Test\AbonoTJoveTest.cs" />
+    <Compile Include="Test\ExchangeAbono\ExchangeAbono.cs" />
+    <Compile Include="Test\ExchangeBono\ExchangeBono.cs" />
+    <Compile Include="Test\Marcela4Test.cs" />
+    <Compile Include="Test\Marcela3Test.cs" />
+    <Compile Include="Test\Marcela2Test.cs" />
+    <Compile Include="Test\MarcelaTest.cs" />
+    <Compile Include="Test\FrankTest.cs" />
+    <Compile Include="Test\BonometroBonobusAgotadosTest.cs" />
+    <Compile Include="Test\BonometroBonobus4Test.cs" />
+    <Compile Include="Test\BonometroBonobus3Test.cs" />
+    <Compile Include="Test\BonometroBonobus2Test.cs" />
+    <Compile Include="Test\BonobusBonometroTest.cs" />
+    <Compile Include="Test\BonometroTest.cs" />
+    <Compile Include="ITestCard.cs" />
+    <Compile Include="Test\BonoTransbordoTest.cs" />
+    <Compile Include="Test\AbonoTransporteTest.cs" />
+    <Compile Include="Test\EmptyTest.cs" />
+    <Compile Include="Test\BonometroBonobusTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCard.cs" />
+    <Compile Include="Test\ReadAbono\ReadAbonoTJoveAmpliadoTest.cs" />
+    <Compile Include="Test\RechargeBonobus\RechargeBonobus.cs" />
+    <Compile Include="Test\RechargeBono\RechargeBono.cs" />
+    <Compile Include="Test\RechargeAbono\RechargeAbonoTCaducadoTest .cs" />
+    <Compile Include="Test\RechargeAbono\RechargeAbonoTJoveAmpliadoTest.cs" />
+    <Compile Include="Test\Replace\ReplaceBT.cs" />
+    <Compile Include="Test\Replace\ReplaceBB.cs" />
+    <Compile Include="Test\Replace\ReplaceBB_BM.cs" />
+    <Compile Include="Test\RevokeAbono\RevokeAbonoTJoveAmpliadoTest.cs" />
+    <Compile Include="Test\RevokeBonobus\RevokeBono.cs" />
+    <Compile Include="Test\RevokeBono\RevokeBono.cs" />
+    <Compile Include="TitleCodeEnum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PayIn.DistributedServices.Common.Test\PayIn.DistributedServices.Common.Test.csproj">
+      <Project>{ea1aab75-6013-4c01-8068-dfaf3d721298}</Project>
+      <Name>PayIn.DistributedServices.Common.Test</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

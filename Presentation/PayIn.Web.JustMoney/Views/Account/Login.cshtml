@@ -1,0 +1,78 @@
+﻿<div xp-panel ng-init="app.selectedPage=''; cardOpened=false;" id="walletPanel">
+    <xp-login api="token" xp-init="scope.arguments.clientId='PayInWebApp';scope.errors=[];">
+        <div class="spinner" ng-show="_windowState.isBusy" style="width: 40px;
+                                                                height: 40px;
+                                                                position: absolute;
+                                                                right: 50px;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Restablecer contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-disabled="_windowState.isBusy">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-forgottenPassword-question">
+                            ¿Ha olvidado su contraseña?<br />
+                            ¿Desea definir una nueva?
+                        </div>
+                        <div class="modal-forgottenPassword-description">
+                            Si pulsa sobre 'Restablecer' recibirá un e-mail en su buzón  de correos que le permitirá establecer una nueva clave de acceso.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-disabled="_windowState.isBusy">Cerrar</button>
+                        <button type="button" class="btn modal-forgottenPassword-button" ui-sref='/ResetPassword/email=algo.algo.com' xp-navigate ng-disabled="_windowState.isBusy">Restablecer</button>
+                        @*<button class="btn btn-xs btn-info" data-ui-sref='@CampaignLineFactory.GetAllName ({id:"{{item.id}}", eventName:"{{item.name}}"})' data-xp-navigate ng-disabled="_windowState.isBusy">{{item.campaignLines}}</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form name="form" role="form" ng-submit="login()">
+            <div id="wallet_caption">
+                <p class="accessTo">ACCEDER A</p>
+                <h1 class="myAccount">MI CUENTA</h1>
+            </div>
+            <!-- Errors -->
+            <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+                <ul>
+                    <li ng-repeat="error in errors">{{error}}</li>
+                </ul>
+            </div>
+
+            <div id="wallet_fullScreen">
+                <div id="wallet">
+                    <div ng-show="!cardOpened">
+                        <img id="wallet_img" src="/app/img/cartera-cerrada-jm.png" class="walletImage" ng-click="cardOpened=true;" />
+                    </div>
+                    <div ng-show="cardOpened">
+                        <img id="wallet_img" src="/app/img/cartera-abierta-jm.png" class="walletImage" />
+                        <div class="log_buttons">
+                            <div id="wallet_user">
+                                <input type="text" name="loginUsername" required id="loginUsername" placeholder="USERNAME" ng-model="arguments.user" ng-disabled="_windowState.isBusy">
+                            </div>
+                            <div id="wallet_password">
+                                <input type="password" name="loginPassword" required id="loginPassword" placeholder="CONTRASEÑA" ng-model="arguments.password" ng-disabled="_windowState.isBusy">
+                            </div>
+                            <div id="wallet_send">
+                                <div class="orangeSingleButtonsDiv">
+                                    <button type="submit" class="orangeButton submitButton" ng-disabled="_windowState.isBusy">INICIAR SESIÓN</button>
+                                </div>
+                            </div>
+                            <div id="wallet_forgotten">
+                                <a ui-sref='accountforgotpassword({"email":"ahorrador@pay-in.es"})' xp-navigate class="rm_forgot_pass">¿Olvidaste tu contraseña?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </xp-login>
+</div>

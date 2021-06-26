@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D619B94F-C9D9-487C-8341-33446F417631}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Common</RootNamespace>
+    <AssemblyName>PayIn.Common</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.0.16</ReleaseVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Emulator\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AccountLineType.cs" />
+    <Compile Include="IncidenceState.cs" />
+    <Compile Include="IncidenceSubCategory.cs" />
+    <Compile Include="IncidenceCategory.cs" />
+    <Compile Include="IncidenceType.cs" />
+    <Compile Include="ServiceCardRelationType.cs" />
+    <Compile Include="ServiceDocumentState.cs" />
+    <Compile Include="ServiceDocumentVisibility.cs" />
+    <Compile Include="TranslationType.cs" />
+    <Compile Include="LanguageEnum.cs" />
+    <Compile Include="NoticeType.cs" />
+    <Compile Include="NotifyMeType.cs" />
+    <Compile Include="LikeType.cs" />
+    <Compile Include="CampaignCodeState.cs" />
+    <Compile Include="CampaignLineType.cs" />
+    <Compile Include="CampaignLineState.cs" />
+    <Compile Include="CampaignState.cs" />
+    <Compile Include="CheckInType.cs" />
+    <Compile Include="ContactState.cs" />
+    <Compile Include="ControlFormArgumentState.cs" />
+    <Compile Include="ControlFormOptionState.cs" />
+    <Compile Include="ControlFormState.cs" />
+    <Compile Include="EntranceState.cs" />
+    <Compile Include="EntranceTypeState.cs" />
+    <Compile Include="EntranceSystemType.cs" />
+    <Compile Include="EntranceTypeVisibility.cs" />
+    <Compile Include="ExhibitorState.cs" />
+    <Compile Include="EventState.cs" />
+    <Compile Include="EventVisibility.cs" />
+    <Compile Include="KeyType.cs" />
+    <Compile Include="NoticeState.cs" />
+    <Compile Include="NoticeVisibility.cs" />
+    <Compile Include="NumberGenerationType.cs" />
+    <Compile Include="PaymentMediaCreateType.cs" />
+    <Compile Include="ProductFamilyState.cs" />
+    <Compile Include="ProductVisibility.cs" />
+    <Compile Include="ServiceCardBatchState.cs" />
+    <Compile Include="ServiceOperationState.cs" />
+    <Compile Include="ServiceOperationType.cs" />
+    <Compile Include="SystemCardMemberState.cs" />
+    <Compile Include="UidFormat.cs" />
+    <Compile Include="ServiceCardState.cs" />
+    <Compile Include="ProductState.cs" />
+    <Compile Include="ServiceUserState.cs" />
+    <Compile Include="PromotionState.cs" />
+    <Compile Include="PromotionCodeType.cs" />
+    <Compile Include="PromoActionType.cs" />
+    <Compile Include="PromoConditionType.cs" />
+    <Compile Include="PromoLauncherType.cs" />
+    <Compile Include="PromotionExecutionType.cs" />
+    <Compile Include="PromotionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromotionResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionResources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PromotionResources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PromotionCodeState.cs" />
+    <Compile Include="DiversifyType.cs" />
+    <Compile Include="KeyVersionType.cs" />
+    <Compile Include="TicketLineType.cs" />
+    <Compile Include="TicketType.cs" />
+    <Compile Include="TransportCardState.cs" />
+    <Compile Include="TransportPriceState.cs" />
+    <Compile Include="TransportCardType.cs" />
+    <Compile Include="CheckType.cs" />
+    <Compile Include="PaymentConcessionPurseState.cs" />
+    <Compile Include="PaymentConcessionCampaignState.cs" />
+    <Compile Include="PaymentUserState.cs" />
+    <Compile Include="DecimalCharDelimiter.cs" />
+    <Compile Include="TransportCardSupportState.cs" />
+    <Compile Include="TransportTitleState.cs" />
+    <Compile Include="TransportSystemState.cs" />
+    <Compile Include="PurseState.cs" />
+    <Compile Include="ShipmentState.cs" />
+    <Compile Include="TransportType.cs" />
+    <Compile Include="UserType.cs" />
+    <Compile Include="WorkerState.cs" />
+    <Compile Include="UserState.cs" />
+    <Compile Include="ControlFormArgumentTarget.cs" />
+    <Compile Include="ControlFormArgumentType.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="IncidentType.cs" />
+    <Compile Include="LiquidationState.cs" />
+    <Compile Include="NotificationState.cs" />
+    <Compile Include="NotificationType.cs" />
+    <Compile Include="PaymentMediaState.cs" />
+    <Compile Include="PaymentMediaType.cs" />
+    <Compile Include="PaymentState.cs" />
+    <Compile Include="PinType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderMapType.cs" />
+    <Compile Include="ServiceType.cs" />
+    <Compile Include="ServiceAddressSide.cs" />
+    <Compile Include="PresenceType.cs" />
+    <Compile Include="CheckPointType.cs" />
+    <Compile Include="SexType.cs" />
+    <Compile Include="ConcessionState.cs" />
+    <Compile Include="TicketStateType.cs" />
+    <Compile Include="WorkerType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PayIn.Common.Resources\PayIn.Common.Resources.csproj">
+      <Project>{94F8DE05-4CE3-48EB-9C76-9D8DB36E90AF}</Project>
+      <Name>PayIn.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{B7A850E4-F2C6-4081-87D1-E5379BF5C0A7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Common\Xp.Common.csproj">
+      <Project>{434E06D7-69BB-4175-A611-0133D7A5336A}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PromotionResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PromotionResources.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromotionResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PromotionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

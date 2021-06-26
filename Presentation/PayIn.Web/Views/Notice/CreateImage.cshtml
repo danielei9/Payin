@@ -1,0 +1,34 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+				NoticeFactory.CreateImageName,
+				NoticeFactory.CreateImageApi,
+				"",
+				"resources.notice.imageCrop",
+				isTitleActive: true,
+				cancelText: "Finalizar",
+				acceptText: ""
+
+			))
+{
+    <script type="text/css">
+        .icon-map:before {
+        content: "\e033";
+        line-height: 20px;
+        }
+    </script>
+
+	<xp-get data-api="@NoticeFactory.GetApi">
+		@(Html.ArgumentFor<NoticeUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @NoticeFactory.UpdateImageCropName))
+		<div class="col-md-9">
+			<h4 translate="resources.notice.infoCreateImage">Para completar el proceso, solo falta añadir la foto de la noticia.</h4>
+		</div>
+        @*<div class="btn-toolbar pull-right" ng-show="arguments.photoUrl.length" style="position: absolute;bottom: 35px;right: 125px;">
+            <a type="button" href="#/Event/CreateMapImage/{{arguments.id}}" class="icon-map btn btn-default" 
+               translate="resources.event.addmap" style="line-height:1.42857143; font-size:14px">Añadir Plano Evento</a>
+        </div>*@
+	</xp-get>
+
+}

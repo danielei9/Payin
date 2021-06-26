@@ -1,0 +1,57 @@
+<ion-view id="ticketGetTicket" view-title="Ticket" class="col-center" xp-panel xp-init="scope.arguments.id=params.id">
+	<ion-content  ng-controller="LoadingCtrl">
+		<xp-get data-api="Mobile/Ticket/v1">
+			<ion-refresher
+				pulling-text="Mantener para refrescar..."
+				on-refresh="search()">
+			</ion-refresher>
+			<div class="payin-color text-center">
+				<div class="padding">
+					<h1 class="center">{{arguments.amount}}€</h1>
+					<h3 class="center">{{arguments.supplierName}}</h3>
+				</div>
+			</div>
+			<div class="row">
+				<h5 class="col col-66">{{arguments.title}}</h5>
+				<h4 class="col col-33 text-right">{{arguments.amount}}€</h4>
+			</div>
+			<div class="center" ng-show="arguments.payments.length">
+				<h3 class="center">PAGADO</h3>
+			</div>
+			<div class="row" ng-hide="arguments.payments.length">
+				<div class="col" ng-controller="PayTicketCtrl">
+					<a class="button button-block button-payin" ng-disabled="!arguments.id" ng-click="pay()">Pagar</a>
+				</div>
+			</div>
+			<div id="qrcode" class="center"></div>
+			</br>
+			<div class="row padding" ng-repeat="item in arguments.payments">
+				<div class="col col-33">
+					<div class="ticket-prize">{{arguments.amount}}€</div>
+					<div class="ticket-prizeAux">Pago: {{item.id}}</div>
+				</div> 
+				<div class="col 66">
+					<div class="ticket-list">{{item.userName}}</div>
+					<div class="ticket-listAux">{{item.paymentMediaName}}</div>
+					<div class="ticket-listAux">{{item.date|xpDateTime}}</div>
+				</div>
+			</div>
+			<div class="center" ng-show="arguments.workerName">Le atendió: {{arguments.workerName}}</div>
+			<div class="pie payin-color center">
+				<div style="width:100%">
+					<div class="row">
+						<div class="col col-50 text-left">Ticket: {{arguments.id}}</div>
+						<div class="col col-50 text-right">{{arguments.date | xpDateTime}}</div>
+					</div>
+					<div class="padding">
+						<div class="center">{{arguments.supplierTaxName}}</div>
+						<div class="center">{{arguments.supplierAddress}}</div>
+						<div class="center">Id. {{arguments.id}}-{{arguments.date|xpDateTime}}</div>
+					</div>
+				</div>
+			</div>	
+		</xp-get>
+	</ion-content>
+</ion-view>
+
+

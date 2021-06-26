@@ -1,0 +1,22 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	EventFactory.CreateMapImageName,
+	EventFactory.CreateMapImageApi,
+	"",
+	"resources.event.imageMapCrop",
+	isTitleActive: true,
+	init: "scope.arguments.id=params.id",
+	acceptText: "",
+	cancelText: "Continuar"
+))
+{
+	<xp-get data-api="@EventFactory.GetApi">
+		@(Html.ArgumentFor<EventUpdateMapPhotoArguments>(x => x.MapUrl, width: 3, focus: true, fieldUrl: @EventFactory.UpdateMapImageCropName))
+		<div class="col-md-9">
+			<h4 translate="resources.event.infoMapCreateImage">Primeramente, hay que añadir el plano del evento.</h4>
+		</div>
+	</xp-get>
+}

@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayIn.Domain.Transport.BlackList">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="BlackList" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="PayIn.Domain.Transport.BlackList.BlackListSourceType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BlackList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PayIn.Domain.Transport.BlackList.BlackListStateType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>BlackList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="TransportOperation" Type="PayIn.Domain.Transport.TransportOperation" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="1.851" />
+        <Point X="3.25" Y="1.851" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAggAgAACEABAAAAAAAQAAUEAAAAQgBAAAAAA=</HashCode>
+      <FileName>BlackList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransportOperation" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.GreyList">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="GreyList" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="PayIn.Domain.Transport.GreyList.MachineType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GreyList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PayIn.Domain.Transport.GreyList.ActionType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GreyList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PayIn.Domain.Transport.GreyList.GreyListSourceType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GreyList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PayIn.Domain.Transport.GreyList.GreyListStateType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GreyList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="TransportOperation" Type="PayIn.Domain.Transport.TransportOperation" FixedFromPoint="true">
+      <Path>
+        <Point X="2.25" Y="6.312" />
+        <Point X="3.25" Y="6.312" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAgAACEABAQEAAAAQAAEAAAAAQgBAAAgAQ=</HashCode>
+      <FileName>GreyList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransportOperation" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.Card">
+    <Position X="0.5" Y="12" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAgAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Card.cs</FileName>
+      <NewMemberFileName>TransportCard.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportCardSupportTitleCompatibility">
+    <Position X="13.5" Y="0.5" Width="3" />
+    <Members>
+      <Property Name="TransportCardSupportId" Hidden="true" />
+      <Property Name="TransportTitleId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportTitle" Type="PayIn.Domain.Transport.TransportTitle" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="1.125" />
+        <Point X="12" Y="1.125" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportCardSupport" Type="PayIn.Domain.Transport.TransportCardSupport" FixedToPoint="true">
+      <Path>
+        <Point X="16.5" Y="1.188" />
+        <Point X="18" Y="1.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAADAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TransportCardSupportTitleCompatibility.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportTitle" />
+      <Property Name="TransportCardSupport" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportConcession">
+    <Position X="14.25" Y="4" Width="2" />
+    <Members>
+      <Property Name="ConcessionId" Hidden="true" />
+      <Method Name="TransportConcession" Hidden="true" />
+      <Property Name="TransportSystemId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportSystem" Type="PayIn.Domain.Transport.TransportSystem">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.412" Y="-0.283" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Titles" Type="PayIn.Domain.Transport.TransportTitle" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="5.562" />
+        <Point X="12" Y="5.562" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportCards" Type="PayIn.Domain.Transport.TransportCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.107" Y="6.387" />
+        <Point X="15.107" Y="8.562" />
+        <Point X="16.25" Y="8.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAQAAAAAAAACEAAAAEAAAAAAAgAAkAECAAAAAAAAEA=</HashCode>
+      <FileName>TransportConcession.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportSystem" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Titles" />
+      <Property Name="TransportCards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportOffer">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <Members>
+      <Property Name="TransportPriceId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Price" Type="PayIn.Domain.Transport.TransportPrice" FixedToPoint="true">
+      <Path>
+        <Point X="6.979" Y="5" />
+        <Point X="6.979" Y="3.079" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAQAAAASAAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>TransportOffer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Price" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportPrice">
+    <Position X="6.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="TransportPrice" Hidden="true" />
+      <Property Name="TransportTitleId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Offer" Type="PayIn.Domain.Transport.TransportOffer" FixedFromPoint="true">
+      <Path>
+        <Point X="7.271" Y="3.079" />
+        <Point X="7.271" Y="5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAIAAABCATAQAEAAABAAAAAgAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>TransportPrice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Title" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Offer" />
+      <Property Name="Operations" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportSimultaneousTitleCompatibility">
+    <Position X="13.5" Y="2" Width="3" />
+    <Members>
+      <Property Name="TransportTitle2Id" Hidden="true" />
+      <Property Name="TransportTitleId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>TransportSimultaneousTitleCompatibility.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportTitle" />
+      <Property Name="TransportTitle2" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportSystem">
+    <Position X="18" Y="4" Width="1.75" />
+    <Members>
+      <Method Name="TransportSystem" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportConcession" Type="PayIn.Domain.Transport.TransportConcession" FixedToPoint="true">
+      <Path>
+        <Point X="18" Y="4.875" />
+        <Point X="16.25" Y="4.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportCards" Type="PayIn.Domain.Transport.TransportCard" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.75" Y="5.617" />
+        <Point X="18.75" Y="8.25" />
+        <Point X="18.25" Y="8.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAQAAAgAAAAAAAQABAAAAAA=</HashCode>
+      <FileName>TransportSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransportConcession" />
+      <Property Name="TransportCards" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportTitle">
+    <Position X="9" Y="0.5" Width="3" />
+    <Members>
+      <Property Name="TransportConcessionId" Hidden="true" />
+      <Method Name="TransportTitle" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportCardSupportTitleCompatibility" Type="PayIn.Domain.Transport.TransportCardSupportTitleCompatibility" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="0.875" />
+        <Point X="13.5" Y="0.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportSimultaneousTitleCompatibility2" Type="PayIn.Domain.Transport.TransportSimultaneousTitleCompatibility">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.002" Y="-0.308" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="TransportConcession" Type="PayIn.Domain.Transport.TransportConcession" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="4.875" />
+        <Point X="14.25" Y="4.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ToTransportTitle" Type="PayIn.Domain.Transport.TransportTitle" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.75" Y="6.925" />
+        <Point X="9.75" Y="7.771" />
+        <Point X="11.5" Y="7.771" />
+        <Point X="11.5" Y="6.925" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FromTransportTitle" Type="PayIn.Domain.Transport.TransportTitle" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.938" Y="6.925" />
+        <Point X="9.938" Y="7.553" />
+        <Point X="11.312" Y="7.553" />
+        <Point X="11.312" Y="6.925" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAgAgGESRQERAQAEEAAgAAQACoEAALCAAAYQhgAAAwA=</HashCode>
+      <FileName>TransportTitle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportConcession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Prices" />
+      <Property Name="TransportCardSupportTitleCompatibility" />
+      <Property Name="TransportSimultaneousTitleCompatibility" />
+      <Property Name="TransportSimultaneousTitleCompatibility2" />
+      <Property Name="ToTransportTitle" />
+      <Property Name="FromTransportTitle" />
+      <Property Name="TransportOperationTitles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.WhiteList">
+    <Position X="0.5" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAABAQAACAAAAAAAABAABAAAAAAEA=</HashCode>
+      <FileName>WhiteList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportCardSupport">
+    <Position X="18" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="TransportCardSupport" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportCardSupportTitleCompatibility" Type="PayIn.Domain.Transport.TransportCardSupportTitleCompatibility" FixedFromPoint="true">
+      <Path>
+        <Point X="18" Y="0.812" />
+        <Point X="16.5" Y="0.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EBAAACAAAAAAAAAAAAAAAAQAAgAAAgAAAQAQBAAAAAA=</HashCode>
+      <FileName>TransportCardSupport.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransportCardSupportTitleCompatibility" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportOperation">
+    <Position X="3.25" Y="0.5" Width="2" />
+    <Members>
+      <Property Name="TicketId" Hidden="true" />
+      <Property Name="TransportPriceId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="GreyList" Type="PayIn.Domain.Transport.GreyList" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="5.938" />
+        <Point X="2.25" Y="5.938" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BlackList" Type="PayIn.Domain.Transport.BlackList" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="2.688" />
+        <Point X="2.25" Y="2.688" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAgAAAAAYggEwACEBaABAIAAAAkKhQgCABQUAAgAAA=</HashCode>
+      <FileName>TransportOperation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Price" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="GreyList" />
+      <Property Name="BlackList" />
+      <Property Name="OperationTitles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportCard">
+    <Position X="16.25" Y="7.5" Width="2" />
+    <Members>
+      <Property Name="TransportConcessionId" Hidden="true" />
+      <Property Name="TransportSystemId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportSystem" Type="PayIn.Domain.Transport.TransportSystem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.25" Y="8.562" />
+        <Point X="19.062" Y="8.562" />
+        <Point X="19.062" Y="5.617" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportConcession" Type="PayIn.Domain.Transport.TransportConcession" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.25" Y="8.188" />
+        <Point X="15.464" Y="8.188" />
+        <Point X="15.464" Y="6.387" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>MAAUQAAAAAAAAAQAEBAACAAAAAAAAgAAAAQYAgAAAAA=</HashCode>
+      <FileName>TransportCard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportSystem" />
+      <Property Name="TransportConcession" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransportCardTitles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportCardTitle">
+    <Position X="11" Y="8.5" Width="2" />
+    <Members>
+      <Property Name="TransportCardId" Hidden="true" />
+      <Property Name="TransportTitleId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TransportTitle" Type="PayIn.Domain.Transport.TransportTitle" FixedToPoint="true">
+      <Path>
+        <Point X="11.75" Y="8.5" />
+        <Point X="11.75" Y="6.925" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TransportCard" Type="PayIn.Domain.Transport.TransportCard" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="9.438" />
+        <Point X="16.25" Y="9.438" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEABgQAEAAAABAAAAAAAAAAAAAEAAAAAAgAAAIAA=</HashCode>
+      <FileName>TransportCardTitle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransportTitle" />
+      <Property Name="TransportCard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Transport.TransportOperationTitle">
+    <Position X="8.25" Y="8.5" Width="2" />
+    <Members>
+      <Property Name="TransportOperationId" Hidden="true" />
+      <Property Name="TransportTitleId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Title" Type="PayIn.Domain.Transport.TransportTitle" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="8.5" />
+        <Point X="9.5" Y="6.925" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Operation" Type="PayIn.Domain.Transport.TransportOperation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="9.188" />
+        <Point X="4.875" Y="9.188" />
+        <Point X="4.875" Y="6.54" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAABCAAAAAEAAABAAAAAAAAAAAAABAAEAgAAAAAA=</HashCode>
+      <FileName>TransportOperationTitle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Title" />
+      <Property Name="Operation" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

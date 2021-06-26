@@ -1,0 +1,49 @@
+﻿@using PayIn.Application.Dto.Payments.Results.TicketTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+
+@{
+	var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+}
+
+@using (Html.xpList(
+	TicketTemplateFactory.GetAllName,
+	TicketTemplateFactory.GetAllApi,
+	"",	
+	"resources.ticketTemplate.retrieveAll",
+	isPaginable: false,
+	isTitleActive: true		
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover col-md-pull-3" ng-show="data.length">
+			<thead>
+				<tr >
+					<th class="align-total" translate="resources.ticketTemplate.id">Id</th>
+					<th translate="resources.ticketTemplate.name">Name</th>
+					<th translate="resources.ticketTemplate.concessions">Concessions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<TicketTemplateGetAllResult>(x => x.Id, popupUrl: TicketTemplateFactory.DetailsName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TicketTemplateGetAllResult>(x => x.Name, popupUrl: TicketTemplateFactory.DetailsName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TicketTemplateGetAllResult>(x => x.ConcessionsCount, popupUrl: TicketTemplateFactory.DetailsName, id: "{{item.id}}"))</td>
+					<td class="icon-column">
+						<span data-ng-show="@checkIsSuperadministrator && item.isGeneric == false">
+							@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: TicketTemplateFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+							)
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

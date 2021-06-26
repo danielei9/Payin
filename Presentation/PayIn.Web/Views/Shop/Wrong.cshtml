@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="~/Content/Login.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+        function Redirect()
+            {
+                window.location="Login";
+            }
+
+        setTimeout('Redirect()', 5000);
+    </script>
+    <title>Error Pay[In] Platform</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="formulario">
+            <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" 
+                 style="margin:auto;margin-top:-10px; 
+                 margin-right:60px;margin-bottom:15px; float:right;z-index:-1;width: 200px;" />
+
+            <strong>Algo fue mal.</strong>
+            <p class="icon ion-alert" style="color:red; font-size:5rem"></p>
+            <p>Por favor inténtelo más.</p>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.Shipment;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ShipmentFactory.Update,
+	ShipmentFactory.UpdateApi,
+	"",
+	//ServiceWorkerResources.Update
+	"resources.shipment.update"
+))
+{
+	<xp-get data-api="@ShipmentFactory.UpdateApi">
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Since, width: 6, inputAttribute: "disabled"))
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Until, width: 6))
+		<div data-ng-show="arguments.started==false">		
+		   @(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Name, focus: true))
+		</div>
+		<div data-ng-show="arguments.started==true">
+			@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Name, focus: true, inputAttribute: "disabled"))
+		</div>
+		<div data-ng-show="arguments.started==true">
+			@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Amount, inputAttribute: "disabled"))
+		</div>
+		<div data-ng-show="arguments.started==false">
+			@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Amount))
+		</div>
+	</xp-get>
+}
+
+

@@ -1,0 +1,8 @@
+Primero habilitar la ejecución de scripts en PowerShell
+Set-ExecutionPolicy Unrestricted -Scope Process
+
+Cargar el generador
+. .\MachineKey.ps1
+
+Ejecutar el generador
+Generate-MachineKey -validation sha1 > MachineKey.txt

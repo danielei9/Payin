@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	CampaignFactory.UnsuspendName,
+	CampaignFactory.UnsuspendApi,
+	"",
+	"resources.campaign.unsuspend"
+))
+{
+	<p translate="resources.campaign.unsuspendQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to activate the campaign {{arguments.name}}?</p>
+}
+

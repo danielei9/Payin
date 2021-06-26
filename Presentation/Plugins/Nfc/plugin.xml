@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.payin.nfc"
+    version="0.2.11">
+    <name>Payin NFC</name>
+    <description>Payin NFC Library</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,NFC,Payin,Pay[in]</keywords>
+    <js-module src="www/NfcPlugin.js" name="NfcPlugin">
+        <clobbers target="NfcPlugin" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NfcPlugin" >
+                <param name="android-package" value="com.payin.nfc.NfcPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/INfcAdapterExtras.java"                   target-dir="src/com/android/nfc_extras" />
+        <source-file src="nfc_tech_filter.xml"                                  target-dir="res/xml/" />
+        <source-file src="src/android/NfcPlugin.java"                           target-dir="src/com/payin/nfc" />
+        <source-file src="src/android/Util.java"                                target-dir="src/com/payin/nfc" />
+        <source-file src="src/android/EigeHsmService.java"                      target-dir="src/com/payin/nfc" />
+        <source-file src="src/android/NfcHandler.java"                          target-dir="src/com/payin/nfc" />
+        <source-file src="src/android/NfcHandlerClassic.java"                   target-dir="src/com/payin/nfc" />
+        <source-file src="src/android/PayinSQLiteClassic.java"                  target-dir="src/com/payin/nfc" />
+        
+        <source-file src="src/android/file/AssetFilesystem.java"                target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/ContentFilesystem.java"              target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/DirectoryManager.java"               target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/EncodingException.java"              target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/FileExistsException.java"            target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/Filesystem.java"                     target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/FileUtils.java"                      target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/InvalidModificationException.java"   target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/LocalFilesystem.java"                target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/LocalFilesystemURL.java"             target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/NoModificationAllowedException.java" target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/PendingRequests.java"                target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/TypeMismatchException.java"          target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/android/file/PermissionHelper.java"               target-dir="src/com/payin/nfc/file" />
+        <source-file src="src/nxp/cards/VCEntries.java"                         target-dir="src/com/nxp/ltsm/mymifareapp/cards" />
+        <source-file src="src/nxp/cards/VirtualCard.java"                       target-dir="src/com/nxp/ltsm/mymifareapp/cards" />
+        <source-file src="src/nxp/encryption/JSBLEncryption.java"               target-dir="src/com/nxp/ltsm/mymifareapp/encryption" />
+        <source-file src="src/nxp/ILTSMClient.aidl"                             target-dir="src/com/nxp/ltsm/ltsmclient" />
+        <source-file src="src/nxp/preferences/MyPreferences.java"               target-dir="src/com/nxp/ltsm/mymifareapp/preferences" />
+        <source-file src="src/nxp/ServiceConnector.java"                        target-dir="src/com/nxp/ltsm/ltsmclient" />
+        <source-file src="src/nxp/utils/Parsers.java"                           target-dir="src/com/nxp/ltsm/mymifareapp/utils" />
+        <source-file src="src/nxp/utils/StatusBytes.java"                       target-dir="src/com/nxp/ltsm/mymifareapp/utils" />
+        <source-file src="libs/bcprov-jdk15on-152.jar"                          target-dir="libs" />
+        <source-file src="libs/nxp-jsbl-cryptolib.jar"                          target-dir="libs" />
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.NFC"/>
+            <uses-feature android:name="android.hardware.nfc" android:required="false"/>
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-library
+                android:name="com.android.nfc_extras"
+                android:required="true" />
+            <uses-library
+                android:name="com.android.nfc.INfcAdapterExtras"
+                android:required="true" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+            <intent-filter>
+				<action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" /> 
+        </config-file>
+    </platform>
+</plugin>

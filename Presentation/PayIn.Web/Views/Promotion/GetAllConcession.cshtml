@@ -1,0 +1,66 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Promotion;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using (Html.xpList(
+		PromotionFactory.GetAllConcessionName,
+		PromotionFactory.GetAllConcessionApi,
+		"",
+		"resources.promotion.getAll",
+		isTitleActive: true,
+		initialSearch: true,
+		isPaginable: true,
+		showSpinner: true,
+		actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, PromotionFactory.CreateName, XpIcons.Plus)
+	}
+		))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.promotion.name">Name</th>
+					<th translate="resources.promotion.startDate">start date</th>
+					<th translate="resources.promotion.endDate">end date</th>
+					<th translate="resources.promotion.acumulativeShort">acumulative</th>	
+					<th translate="resources.promotion.concession">concession</th>
+					<th translate="resources.promotion.cost">Coste total</th>
+
+					<th>&nbsp;</th>				
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: PromotionFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<PromotionGetAllConcessionResult>(x => x.Name, panelUrl: PromotionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PromotionGetAllConcessionResult>(x => x.StartDate, panelUrl: PromotionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PromotionGetAllConcessionResult>(x => x.EndDate, panelUrl: PromotionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>
+						<span data-ng-show="item.acumulative ==0">No</span>
+					    <span data-ng-show="item.acumulative != 0">{{item.acumulative}}</span>
+					</td>
+					<td>@(Html.ColumnFor<PromotionGetAllConcessionResult>(x => x.ConcessionName, panelUrl: PromotionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PromotionGetAllConcessionResult>(x => x.TotalCost, panelUrl: PromotionFactory.UpdateName, id: "{{item.id}}"))</td>
+
+					<td class="icon-column">						
+					   <a data-ui-sref='@PromotionFactory.GetCodeName ({id:{{item.id}}})' data-xp-navigate>
+						 <i class='@XpIcons.PromotionCode'> </i>
+			             <span class="badge badge-sm up bg-info pull-right-xs" style="padding-right:3em !important">{{item.codeApplied}} / {{item.totalCode}} </span>
+					   </a>																
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

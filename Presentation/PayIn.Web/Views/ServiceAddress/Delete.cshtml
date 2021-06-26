@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceAddressFactory.Delete,
+	ServiceAddressFactory.DeleteApi,
+	"",
+	//ServiceAddressResources.Delete,
+	"resources.serviceAddressResources.delete",
+	id: "id"
+))
+{
+	<p translate="resources.serviceAddress.deleteQuestion" translate-values="{ name: '{{arguments.name}}', until:'{{arguments.until}}', sideLabel:{{arguments.sideLabel}} }">Do you want to delete {{arguments.name}}, {{arguments.until}} ({{arguments.sideLabel}})?</p>
+}

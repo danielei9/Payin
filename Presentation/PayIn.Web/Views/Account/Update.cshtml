@@ -1,0 +1,42 @@
+﻿@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    AccountFactory.UpdateSettingsName,
+    AccountFactory.UpdateSettings,
+    "",
+    //AccountResources.UpdateUsersSettings,
+    "resources.account.updateUsersSettings",
+    success: "scope.$emit('changedAvatar');"
+))
+{
+    <xp-get data-api="@AccountFactory.GetCurrentApi">
+
+        <div class="col-md-2 contentDelteParent">
+            <div class="image-upload">
+                <div class="contentDelete">
+                    <div class="col-md-12">
+                        @XpColumns.IconColumn(XpIcons.Remove, popupUrl: AccountFactory.DeleteImageName)
+                    </div>
+                </div>
+                <label for="file-input">
+                    <img class="image-pointer-margin" ng-src="{{arguments.photoUrl}}" ng-show="arguments.photoUrl.length">
+                    <img class="image-pointer-margin" ng-src="@ApplicationUserResources.DefaultUserAvatar" ng-hide="arguments.photoUrl.length">
+                </label>
+                <input data-xp-navigate="" data-xp-modal="accountimagecrop" id="file-input" type="file" accept=".jpg,.png" />
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.Name, width: 12, focus: true))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.Mobile, width: 4))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.Birthday, width: 4))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.Sex, width: 4))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.TaxNumber, width: 3))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.TaxName, width: 9))
+            @(Html.ArgumentFor<AccountUpdateArguments>(x => x.TaxAddress, width: 12))
+        </div>
+    </xp-get>
+}

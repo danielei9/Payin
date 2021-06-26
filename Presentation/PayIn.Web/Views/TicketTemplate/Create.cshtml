@@ -1,0 +1,93 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.TicketTemplate;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	TicketTemplateFactory.CreateName,
+	TicketTemplateFactory.CreateApi,
+	"",
+	"resources.ticketTemplate.create",
+	init: "scope.arguments.ticketId=params.ticketId"
+))
+{
+	<xp-get data-api="@TicketTemplateFactory.GetCreateApi">
+		<div class="panel-body col-md-6">
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.Name))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.RegEx))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.DateFormat, width: 6))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.DecimalCharDelimiter, width: 6))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.IsGeneric, width: 6))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.PreviousTextPosition, width: 6))
+			@(Html.ArgumentFor<TicketTemplateCreateArguments>(x => x.BackTextPosition, width: 6))			
+			<div data-ng-class="{'has-error':!form.amountPosition.$valid}" class="form-group col-md-12">
+				<label for="amountPosition" class="control-label col-md-4" translate="resources.ticketTemplate.amountPosition">Amount Pos</label>
+				<div class="form-group col-md-2">
+					<input id="amountPosition" name="amountPosition" type="text" class="form-control  ng-valid ng-touched ng-dirty ng-valid-parse" ng-model="arguments.amountPosition" placeholder="">
+					<div ng-show="form.amountPosition.$error.required" class="ng-hide"><span class="error control-label ng-scope" translate="resources.ticketTemplate.amountPosition">Amount Pos</span> <span class="error control-label ng-scope" translate="resources.globalResources.exceptionRequired">is required</span></div>
+				</div>
+				<label class="control-label col-md-6">{{temp.result.amount}}</label>
+			</div>
+			<div data-ng-class="{'has-error':!form.referencePosition.$valid}" class="form-group col-md-12">
+				<label for="referencePosition" class="control-label col-md-4" translate="resources.ticketTemplate.referencePosition">Pos ref</label>
+				<div class="form-group col-md-2">
+					<input id="referencePosition" name="referencePosition" type="text" class="form-control   ng-dirty ng-valid-parse ng-valid ng-touched" ng-model="arguments.referencePosition" placeholder="">
+					<div ng-show="form.referencePosition.$error.required" class="ng-hide"><span class="error control-label ng-scope" translate="resources.ticketTemplate.referencePosition">>Pos ref</span> <span class="error control-label ng-scope" translate="resources.globalResources.exceptionRequired">is required</span></div>
+				</div>
+				<label class="control-label col-md-6">{{temp.result.reference}}</label>
+			</div>
+			<div data-ng-class="{'has-error':!form.datePosition.$valid}" class="form-group col-md-12">
+				<label for="datePosition" class="control-label col-md-4" translate="resources.ticketTemplate.datePosition">Pos Fecha</label>
+				<div class="form-group col-md-2">
+					<input id="datePosition" name="datePosition" type="text" class="form-control  ng-pristine ng-valid ng-touched" ng-model="arguments.datePosition" placeholder="">
+				</div>
+				<label class="control-label col-md-6">{{temp.result.date}}</label>
+			</div>
+			<div data-ng-class="{'has-error':!form.titlePosition.$valid}" class="form-group col-md-12">
+				<label for="titlePosition" class="control-label col-md-4" translate="resources.ticketTemplate.titlePosition">Pos Título</label>
+				<div class="form-group col-md-2">
+					<input id="titlePosition" name="titlePosition" type="text" class="form-control  ng-pristine ng-valid ng-touched" ng-model="arguments.titlePosition" placeholder="">
+				</div>
+				<label class="control-label col-md-6">{{temp.result.title}}</label>
+			</div>
+			<div data-ng-class="{'has-error':!form.workerPosition.$valid}" class="form-group col-md-12">
+				<label for="workerPosition" class="control-label col-md-4" translate="resources.ticketTemplate.workerPosition">Pos Trab</label>
+				<div class="form-group col-md-2">
+					<input id="workerPosition" name="workerPosition" type="text" class="form-control  ng-pristine ng-valid ng-touched" ng-model="arguments.workerPosition" placeholder="">
+				</div>
+				<label class="control-label col-md-6">{{temp.result.workerName}}</label>
+			</div>
+			<div class="panel-body col-md-12">
+				<xp-put api="@TicketTemplateFactory.CheckApi" xp-success="scope.temp.result=data" xp-go-back="false">
+					<button class="btn m-b-xs w-xs btn-warning fa fa-question" ng-show="temp.result.success===undefined" type="button" ng-click="accept()" ng-disabled="form.$invalid" translate="resources.ticketTemplate.testButtonText">Test</button>
+					<button class="btn m-b-xs w-xs btn-success fa fa-check" ng-show="temp.result.success===true" type="button" ng-click="accept()" ng-disabled="form.$invalid" translate="resources.ticketTemplate.testButtonText">Test</button>
+					<button class="btn m-b-xs w-xs btn-danger fa fa-times" ng-show="temp.result.success===false" type="button" ng-click="accept()" ng-disabled="form.$invalid" translate="resources.ticketTemplate.testButtonText">Test</button>
+				</xp-put>
+			</div>				
+		</div>
+		<div class="panel-body col-md-6">
+			<div class="form-group">
+				<label for="titlePosition" class="control-label ng-scope" translate="resources.ticket.ticket">Ticket</label>
+				<div class="col-md-6" style="display: table; width: 100%;">
+					<textarea rows="20" style="width:100%; overflow:scroll; font-family: Consolas, monaco, monospace;" disabled spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off">
+						{{temp.ticketText}}
+					</textarea>
+				</div>					
+			</div>
+			<div class="table-responsive col-md-12" ng-show="temp.result.data.length">
+				<table class="table table-striped b-t b-light">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Grupo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in temp.result.data">
+							<td>{{$index}}</td>
+							<td>{{data.	value}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</xp-get>
+}

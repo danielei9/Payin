@@ -1,0 +1,87 @@
+﻿{
+@using PayIn.Application.Dto.Transport.Arguments.GreyList;
+@using Xp.Common;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPost(
+	GreyListFactory.ModifyBlockName,
+	GreyListFactory.ModifyBlockApi,
+	"",
+	"resources.transportGreyList.modifyBlock"
+))
+{	<tabset justified="true" class="tab-container" style="margin-top:-1.2em !important;">		
+		<tab heading="Escritura avanzada" id="avanzada">
+			<div data-ng-init="arguments.id = $stateParams.id" data-ng-controller="GreyListController">
+				<div class="alert alert-info ng-binding" style="width: 85%; margin: auto auto; margin-bottom: 2em;"><span translate="resources.transportLog.infoGreyList1">Recuerde pulsar sobre el</span> <i class="@XpIcons.Plus"></i> <span translate="resources.transportLog.infoGreyList2">para añadir la regla a la lista gris.</span></div>
+				<span style="display:none"><span style="margin-left:0.5em;" translate="resources.transportLog.infoCard">  Tarjeta con UID </span>{{arguments.id}}</span>
+				<div class="form-group" style="margin-top:1em;">
+					<div class="col-sm-12">
+						<div class="input-group m-b">
+							<select name="account" class="form-control m-b" style="width:15% !important; margin-left:3em" data-ng-model="greyList.sector" data-ng-init="greyList.sector=1">
+								<option selected disabled value="-1">== Sector ==</option>
+								<option value="1">Sector 1</option>
+								<option value="2">Sector 2</option>
+								<option value="3">Sector 3</option>
+								<option value="4">Sector 4</option>
+								<option value="5">Sector 5</option>
+								<option value="6">Sector 6</option>
+								<option value="7">Sector 7</option>
+								<option value="8">Sector 8</option>
+								<option value="9">Sector 9</option>
+								<option value="10">Sector 10</option>
+								<option value="11">Sector 11</option>
+								<option value="12">Sector 12</option>
+								<option value="13">Sector 13</option>
+								<option value="14">Sector 14</option>
+								<option value="15">Sector 15</option>
+							</select>
+							<select name="account" class="form-control m-b" style="width:15% !important; margin-left:3em" data-ng-model="greyList.block" data-ng-init="greyList.block=1">
+								<option selected disabled value="-1">== Bloque ==</option>
+								<option value="0">Bloque 0</option>
+								<option value="1">Bloque 1</option>
+								<option value="2">Bloque 2</option>
+								<option value="3">Bloque 3</option>
+							</select>
+							<input type="text" class="form-control" style="width:30% !important; margin-left:3em" data-ng-model="greyList.quantity" />
+							<span style="margin-left:0.5em;" translate="resources.transportLog.value"> Valor (Hexadecimal)</span>
+
+							<div class="pull-right">
+								<a data-ng-click="add2(greyList)"><i class="@XpIcons.Plus"></i></a>
+							</div>
+						</div>
+						<div class="form-group line b-b "></div>
+						<span translate="resources.transportLog.pendingOperations">Operaciones pendientes</span>
+						<p data-ng-hide="items.length" translate="resources.transportLog.noPendingOperations">No hay operaciones pendientes</p>
+						<table class="table table-hover" ng-show="items.length">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+									<th translate="resources.transportLog.block">Bloque</th>
+									<th>&nbsp;</th>
+									<th translate="resources.transportLog.quantity">Quantity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="item in items">
+									<td class="icon-column">
+										<a data-ng-click="remove($index)"><i class="@XpIcons.Trash"></i></a>
+									</td>
+									<td>{{$index+1}}</td>
+									<td>Sector {{item.sector}}</td>
+									<td>Bloque {{item.block}}</td>
+									<td>{{item.quantity}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</tab>		
+	</tabset>
+	<style>
+		.tab-content {
+			border: none !important;
+		}
+	</style>
+}

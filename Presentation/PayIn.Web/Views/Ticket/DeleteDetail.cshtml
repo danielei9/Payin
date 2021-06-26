@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	TicketFactory.DeleteDetail,
+	TicketFactory.DeleteDetailApi,
+	"",
+	"resources.ticket.delete",
+	id: "id"
+))
+{
+	<p translate="resources.ticket.deleteQuestionDetail" translate-values="{ article: '{{arguments.article}}', total:'{{arguments.total}}' }">Do you want to delete {{arguments.article}} of {{arguments.total}}€?</p>
+}

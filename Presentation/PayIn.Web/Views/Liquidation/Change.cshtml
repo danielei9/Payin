@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPopupPut(
+	LiquidationFactory.LiquidationChangeName,
+	LiquidationFactory.LiquidationChangeApi,
+	"",
+	//LiquidationResources.Change
+	"resources.liquidation.change"
+))
+{
+	<h4 translate="resources.liquidation.closeQuestion" translate-values="{ total: '{{arguments.total}}' }">Do you want to close the liquidation with the total of {{arguments.total}} € in the end of the day?</h4>
+}

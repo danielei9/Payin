@@ -1,0 +1,476 @@
+﻿@using PayIn.Common.Resources;
+@using System.Reflection;
+@using System.Linq;
+@using System.Linq.Expressions;
+@using System.Reflection;
+@using System.Web.Mvc;
+@using Xp.Common;
+@using Xp.Common.Resources;
+
+@helper _Validations(System.Web.Mvc.HtmlHelper html, PropertyInfo field)
+{
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var xpType = field.GetXpType();
+
+
+	if (field.IsRequired())
+	{
+		<div ng-show="form.@name.$error.required"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionRequired"></span></div>
+	}
+	if ((field.GetMaxLength() != null) && (field.GetMinLength() == null))
+	{ // Max
+		<div ng-show="form.@name.$error.maxlength"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionMaximumLength"></span></div>
+	}
+	if ((field.GetMaxLength() != null) && (field.GetMinLength() != null))
+	{ // Min
+		<div ng-show="form.@name.$error.minlength"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionMinimumLength"></span></div>
+	}
+	if (field.GetCompareProperty() != null)
+	{
+		<div ng-show="form.@name.$error.match"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionCompare" translate-values="{ pin: 'el valor original' }"></span></div>
+	}
+	if (!field.GetPattern().IsNullOrEmpty())
+	{
+		<div ng-show="form.@name.$error.pattern"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionPattern"></span></div>
+	}
+	if (xpType == XpType.Zip)
+	{
+		<div ng-show="form.@name.$error.sizeMaximum"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.paymentConcession.fileSizeWarning"></span></div>
+	}
+}
+@helper Argument(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll, string optionResource, int dataMin, int dataMax)
+{
+	var name = field.GetName();
+	var alias = label.IsNullOrEmpty() ? field.GetAlias() : label;
+	var xpType = field.GetXpType();
+
+	var divClass_ = width == null ?
+		"form-group" :
+		string.Format("form-group col-md-{0}", width);
+
+	dataMin = dataMin == null ? -180 : dataMin;
+	dataMax = dataMax == null ? 1000 : dataMax;
+
+	var multilanguageModel = "arguments." + field.GetMultilanguageModel();
+	var multilanguageArguments = field.GetMultilanguageArguments();
+
+	<div data-ng-class="{'has-error':!form.@name.$valid}" class='@divClass_'>
+		@if (!isPlaceHolder && (xpType != XpType.Bool) && (xpType != XpType.Enum))
+		{
+			<label for="@name" class="control-label" translate="@alias">alias</label>
+		}
+		@if (field.IsMultilanguage())
+		{
+			if (field.IsFormatable())
+			{
+				<div style="float: right;">
+					<a ng-repeat="item in @multilanguageModel"
+					   ui-sref='translationupdateformattedtext (@multilanguageArguments)'
+					   xp-navigate>
+						<img class="flag" style="margin-right:2px;" src="../images/flags/{{item.language}}.png">
+					</a>
+					<div style="float: right; margin-top: 2px; margin-left: 5px;">
+						<a ui-sref="translationcreateformattedtext (@multilanguageArguments)"
+						   xp-navigate>
+							<span><i class="glyphicon glyphicon-plus"></i></span>
+						</a>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div style="float: right;">
+					<a ng-repeat="item in @multilanguageModel"
+					   ui-sref='translationupdate (@multilanguageArguments)'
+					   xp-navigate>
+						<img class="flag" style="margin-right:2px;" src="../images/flags/{{item.language}}.png">
+					</a>
+					<div style="float: right; margin-top: 2px; margin-left: 5px;">
+						<a ui-sref="translationcreate (@multilanguageArguments)"
+						   xp-navigate>
+							<span><i class="glyphicon glyphicon-plus"></i></span>
+						</a>
+					</div>
+				</div>
+			}
+		}
+		@if (xpType == XpType.Enum)
+		{
+			@_ArgumentControl_Enum(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Time)
+		{
+			@_ArgumentControl_Time(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Duration)
+		{
+			@_ArgumentControl_Duration(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Date)
+		{
+			@_ArgumentControl_Date(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.DateTime)
+		{
+			@_ArgumentControl_DateTime(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Decimal)
+		{
+			@_ArgumentControl_Decimal(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll, @dataMin, @dataMax).AddTabs(1)
+		}
+		else if (xpType == XpType.Currency)
+		{
+			@_ArgumentControl_Currency(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Bool)
+		{
+			@_ArgumentControl_Bool(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		else if (xpType == XpType.Image)
+		{
+			@_ArgumentControl_Image(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll, optionResource).AddTabs(1)
+		}
+		else if (xpType == XpType.File)
+		{
+			@_ArgumentControl_File(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll, optionResource).AddTabs(1)
+		}
+		else if (xpType == XpType.Zip)
+		{
+			@_ArgumentControl_Zip(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll, optionResource).AddTabs(1)
+		}
+		else
+		{
+			@_ArgumentControl(html, field, fieldUrl, label, width, isPlaceHolder, focus, disabled, fileAutosave, inputHtmlAttribute, placeHolder, showAll).AddTabs(1)
+		}
+		@_Validations(html, field).AddTabs(1)
+	</div>
+}
+@helper _ArgumentControl_Enum(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var nameLabel = alias /*+ name*/;
+	var placeholder_ =
+		!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+		isPlaceHolder ? "placeholder=" + alias :
+										 "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	var enumerator = field.GetEnum();
+	if (enumerator != null)
+	{
+		<label for="@name" class="control-label" translate="@nameLabel">nameLabel</label>
+
+		<select id="@name" name="@name" class="form-control" ng-model="arguments.@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute ng-disabled="@disabledBool">
+			@if (showAll == true)
+			{
+				<option value="0" translate="resources.globalResources.all">All</option>
+			}
+			@foreach (var item in enumerator.GetFields().Where(x => !x.IsSpecialName))
+			{
+				var optionTranslate = alias + item.Name;
+				//<option value="@((int)item.GetValue(null))">@item.ToEnumAlias()</option>
+				<option value="@((int)item.GetValue(null))" translate="@optionTranslate">item</option>
+			}
+		</select>
+	}
+}
+@helper _ArgumentControl_Time(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias :
+																 "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<div class='input-group date' data-xp-time="arguments.@name">
+		<input data-ng-model="value" id="@name" name="@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute type='text' class="form-control" autocomplete="off" ng-disabled="@disabledBool" />
+		<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+	</div>
+}
+@helper _ArgumentControl_DateTime(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias :
+																 "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<div class="input-group date" data-xp-date-time="arguments.@name">
+		<input data-ng-model="value" id="@name" name="@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute type="text" class="form-control" autocomplete="off" ng-disabled="@disabledBool" />
+		@if (!field.IsRequired())
+		{
+			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+		}
+		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	</div>
+}
+@helper _ArgumentControl_Duration(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias :
+																 "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<div class='input-group date' data-xp-duration="arguments.@name">
+		<input data-ng-model="arguments.@name" id="@name" name="@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute type='text' class="form-control" autocomplete="off" ng-disabled="@disabledBool" />
+		<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+	</div>
+}
+@helper _ArgumentControl_Date(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias : "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<div class='input-group date' data-xp-date="arguments.@name">
+		<input data-ng-model="arguments.@name" id="@name" name="@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute type='text' class="form-control" autocomplete="off" ng-disabled="@disabledBool" />
+		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+	</div>
+}
+@helper _ArgumentControl_Decimal(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll, int dataMin, int dataMax)
+{
+	var disabled_ = disabled.IsNullOrEmpty() ? "" : "ng-disabled=" + disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias : "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<input id="@name" name="@name" type="text" class="form-control" data-ng-model="arguments.@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute @disabled_ data-step="0.000001" data-min="@dataMin" data-max="@dataMax" data-decimals="6" autocomplete="off">
+}
+@helper _ArgumentControl_Currency(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputHtmlAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeholder_ =
+	!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+	isPlaceHolder ? "placeholder=" + alias : "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<input id="@name" name="@name" type="text" class="form-control" ng-model="arguments.@name" @placeholder_ @focus_ @validationHtmlAttributes @inputHtmlAttribute data-prefix="EUR" ui-jq="TouchSpin" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down" data-min='0' data-max="1000" data-step="0.01" data-decimals="2" autocomplete="off" ng-disabled="@disabledBool">
+}
+@helper _ArgumentControl_Bool(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var placeHolder_ =
+		!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+			isPlaceHolder ? "placeholder=" + alias : "";
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+
+	<label style="padding-top:30px" class="i-checks">
+		<input id="@name" name="@name" type="checkbox" class="form-control" data-ng-model="arguments.@name" @placeHolder_ @focus_ @validationHtmlAttributes autocomplete="off" ng-disabled="@disabledBool" />
+		<i></i>
+		<span translate="@alias" style="margin-left:0px;">alias</span>
+	</label>
+}
+
+@helper _ArgumentControl_Image(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputAttribute, string placeHolder, bool showAll, string optionResource)
+{
+	var name = field.GetName();
+	var src_ = string.Format("{{{{arguments.{0}}}}}", name);
+	var srcLength_ = string.Format("arguments.{0}.length", name);
+
+	<div class="image-upload">
+		<label for="file-input" style="width:100%">
+			<img class="image-pointer-margin" style="margin:0;width:100%" ng-src=@src_ ng-show=@srcLength_>
+			<img class="image-pointer-margin" style="margin:0;width:100%" ng-src="@ApplicationUserResources.DefaultUserAvatar" ng-hide=@srcLength_>
+		</label>
+		<input xp-navigate xp-modal=@fieldUrl id="file-input" type="file" accept=".jpg,.png" value="{0}" />
+	</div>
+}
+@helper _ArgumentControl_File(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputAttribute, string placeHolder, bool showAll, string optionResource)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var inputClass = field.GetInputClass();
+	var inputClass_ = string.Format("form-control filestyle {0}", inputClass);
+	var placeHolder_ =
+		!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+		isPlaceHolder ? "placeholder=" + alias :
+		"";
+	var inputModel = "ng-model=" + string.Format("files.{0}", name);
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+	var inputAttributes = inputAttribute + " " + field.GetInputAttributes();
+	var disabled_ =
+		!disabled.IsNullOrEmpty() ? "ng-disabled=" + disabled :
+		"";
+	var optionResource_ = (optionResource.Length > 0) ? optionResource : "";
+	
+	@*<div xp-file="@name" xp-download="arguments.formUrl" style="max-height:35px;">*@
+	<div xp-file="@name" style="max-height:35px;">
+		<input id="@name" ng-options="@optionResource_" name="@name" class="@inputClass_" valid-file @inputModel icon-name="" type="file" buttontext="" text="false" classbutton="btn btn-default" @disabled_ @inputAttributes @placeHolder_ @validationHtmlAttributes autocomplete="off" ng-disabled="@disabledBool">
+	</div>
+}
+@helper _ArgumentControl_Zip(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputAttribute, string placeHolder, bool showAll, string optionResource)
+{
+	var disabledBool = disabled;
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var inputClass = field.GetInputClass();
+	var inputClass_ = string.Format("form-control filestyle {0}", inputClass);
+	var placeHolder_ =
+		!placeHolder.IsNullOrEmpty() ? "placeholder=" + placeHolder :
+		isPlaceHolder ? "placeholder=" + alias :
+		"";
+	var inputModel = "ng-model=" + string.Format("files.{0}", name);
+	var focus_ = !focus ? "" : "autofocus";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+	var inputAttributes = inputAttribute + " " + field.GetInputAttributes();
+	var disabled_ =
+		!disabled.IsNullOrEmpty() ? "ng-disabled=" + disabled :
+		"";
+	var optionResource_ = (optionResource.Length > 0) ? optionResource : "";
+
+	<div xp-zip="@name" xp-download="arguments.formUrl" style="max-height:35px;">
+		<input id="@name" ng-options="@optionResource_" name="@name" class="@inputClass_" valid-file @inputModel icon-name="" type="file" buttontext="" text="false" classbutton="btn btn-default" @disabled_ @inputAttributes @placeHolder_ @validationHtmlAttributes autocomplete="off" ng-disabled="@disabledBool">
+	</div>
+}
+@helper _ArgumentControl(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string inputAttribute, string placeHolder, bool showAll)
+{
+	var disabledBool = disabled;
+	var imgModel = fieldUrl.IsNullOrEmpty() ? "http://placehold.it/200x150&text=Sin+Imagen" : string.Format("{{{{arguments.{0}}}}}", fieldUrl);
+
+	var name = field.GetName();
+	var alias = field.GetAlias();
+	var postHtml = field.GetPostHtml();
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+	var inputAttributes = field.GetInputAttributes() + (
+		fileAutosave.IsNullOrEmpty() ? "" :
+		"data-xp-autofile=" + fileAutosave);
+	var inputType = field.GetInputType();
+	var inputClass = field.GetInputClass();
+	var inputName = name;
+	var model =
+		!fileAutosave.IsNullOrEmpty() ? string.Format("autofiles.{0}", name) :
+		inputType == "file" ? string.Format("files.{0}", name) :
+		string.Format("arguments.{0}", name);
+	var modelTemp =
+		string.Format("temp.{0}Html", name);
+	var inputModel = "ng-model=" + model;
+	var placeholder_ = !isPlaceHolder ? "" : "placeholder=" + alias;
+	var focus_ = !focus ? "" : "autofocus";
+	var inputClass_ = string.Format("form-control {0}", inputClass);
+	var enumerator = field.GetEnum();
+	if (enumerator != null)
+	{
+		<select id="@inputName" name="@name" class="form-control @inputClass_" @inputModel @placeholder_ @focus_ @Html.Raw(inputAttributes) @inputAttributes placeholder="@placeHolder" ng-disabled="@disabledBool">
+			if (!field.PropertyType.IsEnum)
+			@if (@showAll == true)
+			{
+				<option value="0" translate="resources.globalResources.all">All</option>
+			}
+			@foreach (var item in enumerator.GetFields().Where(x => !x.IsSpecialName))
+			{
+				var optionTranslate = alias + item.ToEnumAlias();
+				<option value="@((int)item.GetValue(null))">@item.ToEnumAlias()</option>
+			}
+		</select>
+	}
+	else if (field.IsFormatable())
+	{
+		<div ng-controller="wysiwygeditor" id="@inputName">
+			<div text-angular="text-angular" name="htmlcontent" ng-model="@modelTemp" xp-markdown-editor="@model" class="ng-untouched ng-valid ng-isolate-scope ta-root focussed ng-dirty ng-valid-parse"></div>
+		</div>
+	}
+	else
+	{
+		<input id="@inputName" name="@name" type=@inputType class="@inputClass_" @inputModel @placeholder_ @focus_ @inputAttributes @validationHtmlAttributes placeholder="@placeHolder" ng-disabled="@disabledBool" />
+	}
+	@*@html.Raw(postHtml)*@
+}
+@helper Select(System.Web.Mvc.HtmlHelper html, PropertyInfo field, string modelAlias, string api, string fieldUrl, string label, int? width, bool isPlaceHolder, bool focus, string disabled, string fileAutosave, string arguments, string placeHolder, string changed, bool buttonAdd, string functionButtonAdd)
+{
+	var name = field.GetName();
+	var disabledBool = disabled.IsNullOrEmpty() ? "0" : disabled;
+	var alias = field.GetAlias();
+	var alias_ = alias.IsNullOrEmpty() ? "" : ("translate=" + alias);
+	var postHtml = field.GetPostHtml();
+	var inputAttributes = field.GetInputAttributes() + (
+		fileAutosave.IsNullOrEmpty() ? "" :
+		"xp-autofile=" + fileAutosave);
+	var inputType = field.GetInputType();
+
+	var id_ = "id=\"" + name + "\"";
+	var collection = api.IsNullOrEmpty() ?
+		string.Format("temp.{0}", name) :
+		string.Format("argumentSelect.{0}.items", name);
+	var changed_ = changed.IsNullOrEmpty() ? "" : "ng-change=" + changed;
+	var itemClick = string.Format("argumentSelect.{0}.itemClick(item)", name);
+
+	var mapping = string.Format("arguments.{0}=item.id;arguments.{1}=item.value;", name, modelAlias);
+	var listAlias = "{{item.value}}";
+	var modelId_ = string.Format("arguments.{0}", name);
+	var modelAlias_ = string.Format("arguments.{0}", modelAlias);
+	var placeholder_ = !isPlaceHolder ? "" : "placeholder=" + alias;
+	var focus_ = !focus ? "" : "autofocus";
+
+	var divClass_ = width == null ?
+		"form-group" :
+		string.Format("form-group col-md-{0}", width);
+	var argumentPath = string.Format("form.{0}", name);
+	var errorClass =
+		inputType == "file" ? "" : "data-ng-class={'has-error':!" + argumentPath + ".$valid}";
+	var validationHtmlAttributes = field.GetValidationHtmlAttributes();
+	string button = (buttonAdd == true) ? "display:-webkit-box" : "display:none";
+	string inputSize = (buttonAdd == true) ? "width:96.4% !important" : "width:100% !important";
+
+	<div @errorClass class='@divClass_'>
+		<label for="@name" class="control-label" @alias_></label>
+		<div class="input-group" style="@inputSize;">
+			@if (api.IsNullOrEmpty())
+			{
+				<select @id_ name="@name" class="form-control" ng-options="item.id as item.value for item in @collection" ng-model="@modelAlias_" @placeholder_ @focus_ @inputAttributes placeholder="@placeHolder" ng-disabled="@disabledBool" @changed_></select>
+			}
+			else
+			{
+				<div class="input-righticonwrapper">
+					<input @id_ name="@name" type=@inputType class="form-control" xp-typeahead="@name" ng-model="@modelAlias_" api="@api" relation="@mapping" arguments="@arguments" @placeholder_ @focus_ @validationHtmlAttributes @inputAttributes placeholder="@placeHolder" autocomplete="off" ng-disabled="@disabledBool" />
+					<label class="fa fa-search input-righticon"></label>
+
+					<ul class="typeahead dropdown-menu">
+						<li ng-repeat="item in @collection">
+							<a ng-click="@itemClick">@listAlias</a>
+						</li>
+					</ul>
+					<div style="@button;">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="@functionButtonAdd" style="background-color:#edf1f2; border-color:#cfdadd;" ng-show="!@disabledBool"><i class="@XpIcons.Plus"></i></button>
+						</span>
+					</div>
+				</div>
+			}
+		</div>
+		<div ng-show="form.@name.$error.required"><span class="error control-label" translate="@alias">@alias</span> <span class="error control-label" translate="resources.globalResources.exceptionRequired"></span></div>
+	</div>
+}

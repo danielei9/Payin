@@ -1,0 +1,165 @@
+﻿@using PayIn.Application.Dto.Payments.Results
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+    AccountLineFactory.GetByLogBookName,
+    AccountLineFactory.GetByLogBookApi,
+    "",
+    "resources.accountLine.getByLogBook",
+    isTitleActive: true,
+    actions: new ActionLink[] {
+new ActionLink(ActionLink.ActionLinkType.Popup,
+LiquidationFactory.CreateName,
+XpIcons.Money,
+"",
+arguments:"{" +
+    "since:'{{arguments.since}}'," +
+    "until:'{{arguments.until}}'" +
+"}"
+)
+    },
+    init:
+        "scope.arguments.filterByEvent=false;" +
+        "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" +
+        "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+))
+{
+    <div class="table-responsive" ng-controller="UnliquidatedController">
+        <div class="row row-sm">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col- m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalCash | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Metálico</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalServiceCard | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Tarjeta o Pulsera</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalCreditCard | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Tarjeta Crédito</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalProducts | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Productos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalEntrances | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Entradas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalOthers | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Otros</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover" col-md-12>
+            <thead>
+                <tr>
+                    <th translate="resources.accountLine.date">Date</th>
+                    <th translate="resources.accountLine.type">Type</th>
+                    <th translate="resources.accountLine.source">Source</th>
+                    <th style="width:0px;padding:0px"></th> <!-- Es necesario para poner pintar bien el border siguiente -->
+                    <th translate="resources.accountLine.account">Account</th>
+                    <th translate="resources.accountLine.concession">Concession</th>
+                    <th translate="resources.accountLine.subaccount">Subaccount</th>
+                    <th translate="resources.accountLine.debit" class="text-right">Debit</th>
+                    <th translate="resources.accountLine.credit" class="text-right">Credit</th>
+                </tr>
+            </thead>
+            <tbody
+                ng-repeat="item in data"
+                ng-class="{
+                   'alert-success':item.totalDebit===item.totalCredit,
+                   'alert-danger':item.totalDebit!==item.totalCredit
+                }"
+            >
+                <tr ng-repeat="line in item.lines">
+                    <td rowspan="2" ng-if="$index==0"> @(Html.ColumnFor<AccountLineGetByLogBookResult>(x => x.Date))</td>
+                    <td rowspan="2" ng-if="$index==0">@(Html.ColumnFor<AccountLineGetByLogBookResult>(x => x.TypeName))</td>
+                    <td rowspan="2" ng-if="$index==0">
+                        <div>
+                            @(Html.ColumnFor<AccountLineGetByLogBookResult>(x => x.ConcessionName))
+                        </div>
+                        <div ng-if="item.concessionName != item.liquidationConcessionName">
+                            ( @(Html.ColumnFor<AccountLineGetByLogBookResult>(x => x.LiquidationConcessionName)) )
+                        </div>
+                        <div>
+                            @(Html.ColumnFor<AccountLineGetByLogBookResult>(x => x.EventName))
+                        </div>
+                    </td>
+                    <!-- AccountType: Cash = 0, ServiceCard = 1, CreditCard = 2, Products = 3, Entrances = 4, Others = 99 -->
+                    <td style="width:0px;padding:0px"></td> <!-- Es necesario para poner pintar bien el border siguiente -->
+                    <td ng-class="{
+                            'b-l b-5x b-info':    line.type===99,
+                            'b-l b-5x b-light':   line.type===0||line.type===1||line.type===2,
+                            'b-l b-5x b-success': line.type!==0&&line.type!==1&&line.type!==2&&line.type!==99&&line.paid,
+                            'b-l b-5x b-warning': line.type!==0&&line.type!==1&&line.type!==2&&line.type!==99&&!line.paid&&line.liquidated,
+                            'b-l b-5x b-danger':  line.type!==0&&line.type!==1&&line.type!==2&&line.type!==99&&!line.paid&&!line.liquidated,
+                        }">
+                        @(Html.ColumnFor<AccountLineGetByLogBookResultLine>(x => x.TypeName, iterator: "line"))
+                    </td>
+                    <td>
+                        @(Html.ColumnFor<AccountLineGetByLogBookResultLine>(x => x.ConcessionName, iterator: "line"))
+                    </td>
+                    <td>
+                        <div ng-show="line.uid">
+                            @(Html.ColumnFor<AccountLineGetByLogBookResultLine>(x => x.Uid, iterator: "line"))
+                            <div ng-show="line.uid != line.uidText">
+                                (@(Html.ColumnFor<AccountLineGetByLogBookResultLine>(x => x.UidText, iterator: "line")))
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right" style="padding-right:10px">
+                        <span ng-show="line.amount>=0">@(Html.ColumnFor<AccountLineGetByLogBookResultLine>(x => x.Amount, iterator: "line"))€</span>
+                    </td>
+                    <td class="text-right" style="padding-right:10px">
+                        <span ng-show="line.amount<0">{{-1 * line.amount | number:2}} €</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="elementBottom">
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.payment.pending">Pendient</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.payment.liquidated">liquidado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.payment.paid">Pagado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:lightgrey;" class="legendGraph" /><p style="float:left;" translate="resources.payment.unliquidable">No liquidables</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:deepskyblue;" class="legendGraph" /><p style="float:left;" translate="resources.payment.review">Revisar</p>
+            </div>
+        </div>
+    </footer>
+}

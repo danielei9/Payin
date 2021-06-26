@@ -1,0 +1,36 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments.Shipment;
+@using Xp.Common;
+@using (Html.xpPost(
+	ShipmentFactory.AddUsersName,
+	ShipmentFactory.AddUsersApi,
+	"",
+	"resources.shipment.addUsers",
+	"{{arguments.name}}",	
+	isTitleActive: true
+))
+{
+<xp-get data-api="@ShipmentFactory.GetAddUserApi">	
+	<div class="form-group" data-ng-controller="SelectCtrl" style="margin-bottom:1em;" data-ng-init="arguments.shipmentId = $stateParams.id">
+		<label class="col-sm-12 control-label text-left" translate="resources.shipment.clients">Clientes</label>
+		<div class="col-sm-12">
+			<ui-select multiple ng-model="arguments.PaymentUserIds" theme="bootstrap" ng-disabled="disabled">
+				<ui-select-match placeholder="Elegir clientes...">{{$item.name}} &lt;{{$item.login}}&gt;</ui-select-match>
+				<ui-select-choices group-by="someGroupFn" repeat="person.id as person in temp.users | propsFilter: {name: $select.search}">
+					<div ng-bind-html="person.name | highlight: $select.search"></div>
+					<small>
+						email: {{person.login}}
+					</small>
+				</ui-select-choices>
+			</ui-select>
+			<div class="checkbox">
+				<label class="i-checks">
+					<input type="checkbox" id="checkSelect" ng-model="value1" ng-click="selectAll()"><i></i> Todos
+				</label>
+			</div>
+		</div>
+	</div>	
+</xp-get>
+}

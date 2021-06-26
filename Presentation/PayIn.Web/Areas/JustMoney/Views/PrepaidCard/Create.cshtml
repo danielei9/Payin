@@ -1,0 +1,45 @@
+﻿@using PayIn.Web.App.Factories.JustMoney;
+@using PayIn.Application.Dto.JustMoney.Arguments;
+
+@using (Html.xpPost(
+	PrepaidCardFactory.Create,
+	PrepaidCardFactory.CreateApi,
+	"",
+	"resources.justMoney.prepaidCard.create",
+	isTitleActive: true
+))
+{
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Name, width: 8, focus: true))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Pin, width: 4))
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.FirstName, width: 4))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.LastName, width: 8))
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.BirthDay, width: 4))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Mobile, width: 4))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Phone, width: 4))
+		</div>
+	</div>
+	@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Address, width: 12))
+	@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Address2, width: 12))
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.ZipCode, width: 4))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.City, width: 8))
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.State, width: 6))
+			@(Html.ArgumentFor<PrepaidCardCreateArguments>(x => x.Country, width: 6))
+		</div>
+	</div>
+}

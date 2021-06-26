@@ -1,0 +1,37 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportValidation;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@using (Html.xpList(
+					TransportValidationFactory.GetAllName,
+					TransportValidationFactory.GetAllApi,
+					"",
+					"resources.transportValidation.getAll",
+					isTitleActive: true,
+					initialSearch: true,
+					isPaginable: true,
+					showSpinner: true,
+					init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+					))
+{
+
+	<div class="table-responsive">
+		<div class="panel-heading font-bold">
+			<span data-ng-translate="resources.transportValidation.yesterday">Ayer</span>
+		</div>		
+		<h3 data-ng-hide="arguments.validationYesterday.length">Ayer no hubieron validaciones.</h3>
+		<data-xp-graph2 data-xp-model="arguments.validationYesterday" data-xp-x-axis='{"data":"hour"}' data-xp-y-axis='[{"data":"value"}]'></data-xp-graph2>		
+		<div class="panel-heading font-bold">
+			<span data-ng-translate="resources.transportValidation.lastWeek">ultimos 7 dias</span>
+		</div>
+		<h3 data-ng-hide="arguments.validationLastWeek.length">No hubieron validaciones en los últimos 7 días.</h3>
+		<data-xp-graph2 data-xp-model="arguments.validationLastWeek" data-xp-x-axis='{"data":"date"}' data-xp-y-axis='[{"data":"value"}]'></data-xp-graph2>
+		<div class="panel-heading font-bold">
+			<span data-ng-translate="resources.transportValidation.lastMonth">ultimos 30 dias</span>
+		</div>
+		<h3 data-ng-hide="arguments.validationLastMonth.length">No hubieron validaciones en los últimos 30 días.</h3>
+		<data-xp-graph2 data-xp-model="arguments.validationLastMonth" data-xp-x-axis='{"data":"date"}' data-xp-y-axis='[{"data":"value"}]'></data-xp-graph2>
+	</div>
+}

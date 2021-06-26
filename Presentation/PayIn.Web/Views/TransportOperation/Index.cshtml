@@ -1,0 +1,2810 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportOperation;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+@{
+	var readAll = GreyListFactory.ReadAll("{{item.uid}}");
+
+}
+@using (Html.xpPost(
+				GreyListFactory.ModifyFieldName,
+				GreyListFactory.ModifyFieldApi,
+				"",
+				"resources.transportControl.getAll",
+				isTitleActive: true,
+				init: "scope.arguments.id = params.id;scope.arguments.modifyValues = [];scope.arguments.uid=params.uid;scope.arguments.modifyCard=false;"
+			))
+{
+	<div class="navbar">
+		<div>
+			<div class="navbar-inner">
+				<div class="col-md-8">
+					<p class="pull-left" style="margin-left:1em"><span translate="resources.transportLog.update">Última actualización: </span> <b>{{temp.date | xpDateTime}}</b></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<xp-get data-api="@TransportOperationFactory.DetailsApi">
+		<div data-ng-controller="xpEdit">
+			<tabset class="tab-container" ng-init="steps={percent:20, step1:true}">
+				<tab heading="Tarjeta" active="steps.step1">
+					<table class="table table-responsive">
+						<tbody>
+							<tr>
+								<td class="col col-md-3" colspan="2"><span translate="resources.transportLog.infoCard" style="font-weight:bold">Tarjeta con UID </span>{{temp.uid}} </td>
+								<td class="col col-md-3" rowspan="4">
+									<span style="margin-left:2em">{{arguments.typeName}}</span>
+									<div data-ng-show="arguments.isPersonalized == true">
+										<img src="~/Images/mobilisTrencadis.png" style="width:75%" />
+										<p class="payinTextCard" style="top:22%;">{{arguments.values.usuario.nombre.value}}</p>
+										<p class="payinTextCard" style="top:24%">{{arguments.values.usuario.apellidos.value}}</p>
+										<p class="payinTextCard" style="top:26%">{{arguments.values.usuario.dni_Numero.value}}-{{arguments.values.usuario.dni_Letra.value}}</p>
+										<p class="payinTextCard" style="top:28%">Caducitat: {{arguments.values.tarjeta.caducidad.value | xpDate}}</p>
+										<p class="payinTextCard" style="top:30%">N&uacute;m. Abonat:{{arguments.values.usuario.codigoViajero.value}}</p>
+									</div>
+									<div data-ng-show="arguments.owner == 1 && arguments.isPersonalized == false && arguments.deviceType != 1" style="height:185px">
+										<div class="payinCard2">
+											<p style="font-weight: bold; color:blue" data-ng-hide="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<p style="font-weight: bold;color:red" data-ng-show="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<img src="~/Images/mobilis.png" />
+										</div>
+									</div>
+									<div data-ng-show="arguments.owner == 2 || arguments.owner == 0" style="height:185px">
+										<div class="payinCard2">
+											<p style="font-weight: bold;margin-bottom:0" data-ng-hide="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<p style="font-weight: bold;color:red;margin-bottom:0" data-ng-show="arguments.isExpired===true">Caducidad:{{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<img src="~/Images/fgv.png" />
+										</div>
+									</div>
+									<div data-ng-show="arguments.owner == 3">
+										<div class="payinCard2">
+											<p style="font-weight: bold;" data-ng-hide="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<p style="font-weight: bold;color:red" data-ng-show="arguments.isExpired===true">Caducidad:  {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<img src="~/Images/emt.png" />
+										</div>
+									</div>
+									<div data-ng-show="arguments.deviceType===1">
+										<div class="payinCard2">
+											<p style="font-weight: bold;" data-ng-hide="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<p style="font-weight: bold;color:red" data-ng-show="arguments.isExpired===true">Caducidad: {{arguments.values.tarjeta.caducidad.value | xpDate}} - <span ng-show="arguments.oldVersion == true">Versión obsoleta</span></p>
+											<img src="~/Images/reloj.png" />
+										</div>
+									</div>
+									<h4 data-ng-show="arguments.values.validacion.listaNegra.value==true" style="color:red;text-transform:uppercase;">Título en lista negra</h4>
+									<div data-ng-show="arguments.values.validacion.listaNegra.value==false">
+										<span data-ng-show="arguments.isExhausted">Título agotado</span>
+										<div ng-show="arguments.isTemporal">
+											<p data-ng-show="arguments.values.validacion.maxTransbordosInternos.value===0">Transbordos no permitidos</p>
+											<div data-ng-hide="arguments.values.validacion.maxTransbordosInternos.value===0">
+												<div>
+													<div>
+														<span data-ng-show="arguments.values.validacion.numeroPersonasTrasbordo.value !=0">{{arguments.values.validacion.numeroPersonasTrasbordo.value}}</span>
+														<span data-ng-show="arguments.values.validacion.maxTransbordosInternos.value">/ {{arguments.values.validacion.maxTransbordosInternos.value}} >viajeros</span>
+													</div>
+													<div data-ng-show="arguments.svalues.tarjeta.bitGrupo.value == true">GRAN GRUPO</div>
+												</div>
+												<div>
+													<div data-ng-show="arguments.values.validacion.maxTransbordosInternos.value!==0">Transbordos</div>
+													<div ng-show="arguments.values.validacion.maxTransbordosInternos.value">{{arguments.values.validacion.contadorTransbordosInternos.value}} / {{arguments.values.validacion.maxTransbordosInternos.value}} trans. internos</div>
+													<div ng-show="arguments.values.validacion.maxTransbordosInternos.value">{{arguments.values.validacion.contadorTransbordosExternos.value}} / {{arguments.values.validacion.maxTransbordosExternos.value}} trans. externos</div>
+													<div ng-show="arguments.values.validacion.tipoValidacion_Sentido.value===2">
+														{{arguments.scriptResponse.transferRights}} derechos pend.
+														<div>{{arguments.values.validacion.tiempoRestanteTransbordo.value}} / {{arguments.values.titulo.maxTiempoTransbordo1.value}} min. para trans.</div>
+														<div ng-show="arguments.values.validacion.tipoValidacion_Sentido.value===1">{{arguments.values.validacion.contadorViajerosSalida.value}} viajeros en salida</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="col col-md-1"><span translate="resources.transportLog.title1" style="font-weight:bold">T&iacute;tulo 1: </span> {{arguments.titulo1}} {{arguments.values.titulo.validezZonal1.value | eigeZonaFilter}}</td>
+								<td class="col col-md-3">
+									<span data-ng-show="arguments.values.titulo.usoDelCampoSaldoViajes1.value == true&&arguments.isTuiN==false">{{arguments.values.titulo.saldoViaje1.value||0}} viajes</span>
+									<span data-ng-show="arguments.isTuiN==true">{{arguments.tuiN.saldoViaje_value.value||0}} €</span>
+									<span data-ng-show="arguments.values.titulo.usoDelCampoSaldoViajes1.value == false">
+										<span ng-show="arguments.values.titulo.fechaValidez1.value">Cad. {{arguments.values.titulo.fechaValidez1.value|xpDateTime}}</span>
+										<span ng-show="arguments.values.titulo.tituloEnAmpliacion1.value&&(arguments.values.titulo.tituloEnAmpliacion1.value==true)">({{arguments.values.titulo.numeroUnidadesValidezTemporal1.value}} {{arguments.values.titulo.tipoUnidadesValidezTemporal1.value | eigeUnidadesTemporal}})</span>
+										<span ng-show="arguments.values.titulo.tituloEnAmpliacion1.value&&(arguments.values.titulo.tituloEnAmpliacion1.value==false)">(+{{arguments.values.titulo.numeroUnidadesValidezTemporal1.value}} {{arguments.values.titulo.tipoUnidadesValidezTemporal1.value | eigeUnidadesTemporal}})</span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="col col-md-1"><span translate="resources.transportLog.title2" style="font-weight:bold">T&iacute;tulo 2: </span> {{arguments.titulo2}}</td>
+								<td class="col col-md-3">
+									<span data-ng-show="arguments.values.titulo.usoDelCampoSaldoViajes2.value == true">{{arguments.values.titulo.saldoViaje2.value ||0}} viajes</span>
+									<span data-ng-show="arguments.values.titulo.usoDelCampoSaldoViajes2.value == false">
+										<span ng-show="arguments.values.titulo.fechaValidez2.value">Cad. {{arguments.values.titulo.fechaValidez2.value|xpDateTime}}</span>
+										<span ng-show="arguments.values.titulo.tituloEnAmpliacion2.value&&(arguments.values.titulo.tituloEnAmpliacion2.value==true)">(+{{arguments.values.titulo.numeroUnidadesValidezTemporal2.value}}{{arguments.values.titulo.tipoUnidadesValidezTemporal2.value |eigeUnidadesTemporal}})</span>
+										<span ng-show="arguments.values.titulo.tituloEnAmpliacion2.value&&(arguments.values.titulo.tituloEnAmpliacion2.value==false)">(+{{arguments.values.titulo.numeroUnidadesValidezTemporal2.value}}{{arguments.values.titulo.tipoUnidadesValidezTemporal2.value|eigeUnidadesTemporal}})</span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="col col-md-2"><span translate="resources.transportLog.purse" style="font-weight:bold">Monedero: </span> {{arguments.values.titulo.saldoMonedero.value}}€</td>
+								<td class="col col-md-2"><span translate="resources.transportLog.bonus" style="font-weight:bold">Bonus: </span> {{arguments.values.titulo.saldoBonus.value}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="form-group line b-b"></div>
+					<h4 translate="resources.transportLog.lastValidation">Ult. Validación</h4>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th translate="resources.transportLog.traveler">Viajeros</th>
+								<th translate="resources.transportLog.date">Fecha</th>
+								<th translate="resources.transportLog.line">Línea</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{arguments.values.validacion.numeroPersonasViaje.value}}</td>
+								<td>{{arguments.values.validacion.fechaValidacion.value | xpDateTime}}</td>
+								<td><span ng-show="arguments.values.validacion.tipoValidacion_Sentido.value==1">Entrada</span><span ng-show="arguments.values.validacion.tipoValidacion_Sentido.value==2">Salida</span> {{arguments.lastValidationOperator}} - {{arguments.lastValidationPlace}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="form-group line b-b "></div>
+					<h4 translate="resources.transportLog.charge">Recargas</h4>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th translate="resources.transportLog.date">Fecha</th>
+								<th translate="resources.transportLog.title">T&iacute;tulo</th>
+								<th translate="resources.transportLog.action">Acci&oacute;n</th>
+								<th translate="resources.transportLog.quantity">Importe</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="charge in arguments.charges track by $index">
+								<td>{{charge.date | xpDate}}</td>
+								<td>{{charge.titleName}} {{charge.titleZone | eigeZonaFilter}}</td>
+								<td>{{charge.typeName}}</td>
+								<td>{{charge.quantity}} &euro;</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="form-group line b-b "></div>
+					<h4 translate="resources.transportLog.historical">Hist&oacute;rico</h4>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th translate="resources.transportLog.date">Date</th>
+								<th translate="resources.transportLog.title">Título</th>
+								<th translate="resources.transportLog.line">Linea</th>
+								<th translate="resources.transportLog.quantity">Quantity</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="historic in arguments.historical">
+								<td>{{historic.date | xpDateTime}}</td>
+								<td>{{historic.titleName}}</td>
+								<td>{{historic.operator}} - {{historic.place}} </td>
+								<td>
+									<span data-ng-show="historic.quantity>0">-{{historic.quantity}}{{historic.quantityUnits}}</span>
+									<span data-ng-show="historic.quantity===0">Validado</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</tab>
+				<tab heading="Datos" active="steps.step2">
+					<tabset class="tab-container" ng-init="stepsDatos={step1:true}">
+						<tab heading="Tarjeta" active="stepsDatos.step1">
+							<h4 translate="resources.card.cardTitle">Datos de la tarjeta</h4>
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td><b translate="resources.card.serialNumber">Número de serie: </b><b> (TNS):</b> {{arguments.values.tns || arguments.values.tarjeta.serial.value}}</td>
+										<td><b translate="resources.card.cardNumber">Número de tarjeta: </b><b> (TNT):</b> {{arguments.values.tnt || arguments.uid}}</td>
+										<td>
+											<b translate="resources.card.cardEnvironment">Código de entorno de tarjeta</b><b> (TCET):</b> (){{arguments.values.tcet || arguments.values.tarjeta.codigoEntorno.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TCET')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.cardType">Tipo de tarjeta: </b><b>(TT): </b>{{arguments.values.tarjeta.tipo.value}} - {{arguments.values.tarjeta.tipo.value|eigeTypeCard}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TT')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.cardSubtype">Subtipo de tarjeta: </b><b> (TST):</b> {{arguments.values.tst || arguments.values.tarjeta.subtipo.value}} <div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TST')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.cardVersion">Versión: </b><b>(TV): </b>{{arguments.values.tv || arguments.values.tarjeta.version.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TV')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.propietaryCompany">Empresa propietaria: </b><b> (TEP):</b>{{arguments.values.tarjeta.empresaPropietaria.value}} - {{arguments.values.tarjeta.empresaPropietaria.value|eigeIssuingCompany}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TEP')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.groupFamily">Grupo-Familia: </b><b> (TBGF):</b> {{arguments.values.tarjeta.bitGrupo.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TBGF')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.expirationDate">Fecha de caducidad: </b><b> (TFC):</b> {{arguments.values.tarjeta.caducidad.value | xpDate}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TFC')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<b translate="resources.card.cardAtbs">Bit de seguimiento de tarjeta ATBS: </b><b> (ATBS):</b> {{arguments.values.atbs || arguments.values.tarjeta.bitSeguimiento.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('ATBS')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<h4 translate="resources.card.productionTitle">Datos de producción</h4>
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.manufacturingCompany">Empresa fabricante: </b><b> (PEF):</b> {{arguments.values.pef | eigeManufacturingCompany}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('PEF')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.manufacturingDate">Fecha de fabricación: </b><b> (PFF):</b> {{arguments.values.pff | xpDate}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('PFF')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Usuario" active="stepsDatos.step2">
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.mrMs">Don/ña: </b><b> (UBDD):</b><span data-ng-show="arguments.values.usuario.sexo.value==0"> Don</span><span data-ng-show="arguments.values.usuario.sexo.value==1"> Doña</span>
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBDD')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.name">Nombre: </b><b> (UN):</b> {{arguments.values.un || arguments.values.usuario.nombre.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UN')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.surname">Apellidos: </b> <b>(UNA2):</b> {{arguments.values.una2 || arguments.values.usuario.apellidos.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UNA2')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.foreign">Extranjero: </b><b> (UBE):</b> {{arguments.values.ube || arguments.values.usuario.extranjeroSinDocumentacion.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBE')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.name2">
+												Nombre (2) (viajero con DNI/NIF/NIE) / Ampliacion
+												campo UD con otro tipo de nº identificación:
+											</b><b> (UN2):</b> {{arguments.values.un2 || arguments.values.usuario.nombre2.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UN2')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.dni">DNI/NIF/NIE: </b> <b>(UD):</b> {{arguments.scriptResponse.userDni || arguments.values.usuario.dni.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UD')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.blacklistRelease">Desbloqueo de lista negra: </b><b> (UDLN):</b> {{arguments.values.udln || arguments.values.usuario.desbloqueoListaNegra.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UDLN')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.id2">Segundo bit de identificación: </b><b> (UBN):</b> {{arguments.values.ubn || arguments.values.usuario.tipoIdentificacion2.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBN')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.testCard">Tarjeta de pruebas: </b> <b>(UBTP) </b> {{arguments.values.ubtp || arguments.values.usuario.tarjetaPruebas.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBTP')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.vinculatedCard">Tarjeta vinculada: </b><b> (UBTV):</b> {{arguments.values.ubtv ||arguments.values.usuario.vinculado.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBTV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.temporaryCard">Tarjeta provisional: </b><b> (UBTA):</b> {{arguments.values.ubta || arguments.values.usuario.averia.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UBTA')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.directDebit">Domiciliación bancaria: </b> <b>(UDB):</b> {{arguments.values.udb || arguments.values.usuario.tieneDomiciliacionBancaria.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UDB')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.travellerCode">Código de viajero: </b> <b>(UCV):</b> {{arguments.values.ucv || arguments.values.usuario.codigoViajero.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UCV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.noTravellerCode">Código de no viajero: </b> <b>(UCNV): </b> {{arguments.values.ucnv || arguments.values.usuario.codigoNoViajero.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UCNV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.pin">PIN: </b> <b>(UCPIN):</b> {{arguments.values.ucpin || arguments.values.usuario.pin.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UCPIN')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.birthday">Cumpleaños: </b><b> (UFC):</b> {{arguments.values.usuario.cumpleanyos.value |xpDate}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UFC')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.year">Año de nacimiento: </b> <b>(UAN):</b> {{arguments.values.uan || arguments.values.usuario.anyoNacimiento.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UAN')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.language">Idioma: </b> <b>(UIDI):</b> <span data-ng-show="arguments.values.usuario.idioma.value==0">Español</span><span data-ng-show="arguments.values.usuario.idioma.value==1">Valenciano</span><span data-ng-show="arguments.values.usuario.idioma.value==10">Inglés</span>
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UIDI')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.sensorySupport">Apoyo sensorial: </b><b> (UAS):</b> {{arguments.values.uas || arguments.values.usuario.apoyoSensorial.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('UAS')"></i>
+											</div>
+										</td>
+										<td colspan="2">
+											<b translate="resources.card.historical">8 históricos: </b> <b>(T8H):</b> {{arguments.values.t8h || arguments.values.usuario.tiene8Historicos.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('T8H')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Personalización" active="stepsDatos.step3">
+							<h4 translate="resources.card.emissionTitle">Datos de emisión</h4>
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.issuingCompany">Empresa emisora: </b> <b>(EEE):</b> {{arguments.values.personalizacion.empresaPersonalizadora.value  | eigeIssuingCompany}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('EEE')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.issueDate">Fecha de emisión: </b> <b>(EFE):</b> {{arguments.values.personalizacion.fechaPersonalicion.value | xpDate}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('EFE')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<h4 translate="resources.card.personalizationTitle">Datos de personalización</h4>
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.personalizingCompany">Empresa personalizadora: </b> <b>(PREP):</b> {{arguments.values.prep || arguments.values.personalizacion.empresaPersonalizadora.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('PREP')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.dateCustomization">Fecha de peresonalización: </b> <b>(PRFP):</b> {{arguments.values.personalizacion.fechaPersonalizacion.value | xpDate}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('PRFP')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.operationType">Tipo de operación: </b> <b>(PRTO):</b> {{arguments.values.personalizacion.tipoOperacion.value | eigeTipoOperacion}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('PRTO')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Título 1" active="stepsDatos.step4">
+							<div ng-controller="AccordionDemoCtrl" ng-model="oneAtATime">
+								<accordion close-others="oneAtATime">
+									<accordion-group heading="Datos Fijos">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.propietaryCompanyTitle">Propietario del título: </b> <b>(TF1EP):</b> {{arguments.values.tf1ep || arguments.values.titulo.empresaPropietaria1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1EP')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.titleCode">Código del título: </b> <b>(TF1CT):</b> {{arguments.values.tf1ct ||arguments.values.titulo.codigoTitulo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1CT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.zone6">Sexta zona: </b> <b>(ATFL1LIB1):</b> {{arguments.values.atf1lib1 || arguments.values.titulo.validezSextaZona1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('ATF1LIB1')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.dailyValidity">Validez diaria: </b> <b>(TF1VD):</b> {{arguments.values.titulo.validezDiaria1.value | eigeDailyLife}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VD')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.timeValidity">Validez horaria: </b> <b>(TF1VH):</b> {{arguments.values.titulo.validezHoraria1.value | eigeTimeValidity}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VH')"></i>
+														</div>
+													</td>
+													<td><b translate="resources.card.operationsArea">Ámbito de operaciones: </b> <b>(TF1AO):</b> {{arguments.values.tf1ao || arguments.values.titulo.ambitoOperadores1.value}}</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.rateType">Tipo tarifa: </b> <b>(TF1TT):</b> {{arguments.values.titulo.tipoTarifa1.value | eigeRateType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1TT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.rateControl">Control tarifa: </b> <b>(TF1TF):</b> <span data-ng-show="arguments.values.titulo.controlTarifa1.value!=0">{{arguments.values.tf1tf||arguments.values.titulo.controlTarifa1.value}}</span> <span data-ng-hide="arguments.values.titulo.controlTarifa1.value!=0">Sin control</span>
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1TF')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validityOperator">Validez de operador: </b> <b>(TF1VO):</b> <span data-ng-show="arguments.values.titulo.tieneValidezOperador1.value==1">Válido dentro del operador</span><span data-ng-show="arguments.values.titulo.tieneValidezOperador1.value==0">Control origen-destino</span>
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.informationType">Tipo de información: </b> <b>(TF1VOTT):</b> {{arguments.values.titulo.tipoInformacion1.value| eigeInformationType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VOTT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.information">Información: </b> <b>(TF1VOT):</b> {{arguments.values.tf1vot  || arguments.values.titulo.validezOperador1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VOT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.zonalValidity">Validez zonal: </b> <b>(TF1VZ):</b> {{arguments.values.titulo.validezZonal1.value | eigeZonaFilter }}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1VZ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.typeUnitsZonal">Tipo unidades validez: </b> <b>(TF1TUVT):</b> {{arguments.values.titulo.tipoUnidadesValidezTemporal1.value| eigeValidityType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1TUVT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.unitsNumber">Nº unidades: </b> <b>(TF1NUVT):</b> {{arguments.values.tf1nuvt || arguments.values.titulo.numeroUnidadesValidezTemporal1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1NUVT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.transferMax">Nº transbordo: </b> <b>(TF1MTEA):</b> {{arguments.values.tf1mtea || arguments.values.titulo.maxTransbordosExternos.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1MTEA')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.peopleTransfers">Máximo personas en transbordo: </b> <b>(TF1MPT):</b> {{arguments.values.tf1mpt || arguments.values.titulo.maxPersonasEnTransbordo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1MPT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.transferTime">Máximo tiempo en transbordo: </b> <b>(TF1MTT):</b> {{arguments.values.tf1mtt || arguments.values.titulo.maxTiempoTransbordo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1MTT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.balanceUse">Uso de saldo: </b> <b>(TF1UC):</b> {{arguments.values.tf1uc || arguments.values.titulo.usoDelCampoSaldoViajes1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF1UC')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Datos Variables">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.extension">Ampliación: </b> <b>(TV1BTA):</b> {{arguments.values.tv1bta || arguments.values.titulo.tituloEnAmpliacion1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV1BTA')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validityDate">Fecha validez: </b> <b>(TV1FIV):</b> {{arguments.values.titulo.fechaValidez1.value | xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV1FIV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.balance">Viajes: </b> <b>(TV1SV):</b> {{arguments.values.tv1sv || arguments.values.titulo.saldoViaje1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV1SV')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+								</accordion>
+							</div>
+						</tab>
+						<tab heading="Título 2" active="stepsDatos.step5">
+							<div ng-controller="AccordionDemoCtrl" ng-model="oneAtATime">
+								<accordion close-others="oneAtATime">
+									<accordion-group heading="Datos Fijos">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.propietaryCompanyTitle">Propietario del título: </b> <b>(TF2EP):</b> {{arguments.values.tf2ep || arguments.values.titulo.empresaPropietaria2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2EP')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.titleCode">Código del título: </b> <b>(TF2CT):</b> {{arguments.values.tf2ct || arguments.values.titulo.codigoTitulo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2CT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.zone6">Sexta zona: </b> <b>(ATF2VZ6):</b> {{arguments.values.atf2vz6 || arguments.values.titulo.validezSextaZona2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('ATF2VZ6')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.dailyValidity">Validez diaria: </b> <b>(TF2VD): </b>{{arguments.values.titulo.validezDiaria2.value | eigeDailyLife}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VD')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.timeValidity">Validez horaria: </b> <b>(TF2VH):</b> {{arguments.values.titulo.validezDiaria2.value | eigeTimeValidity}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VH')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.operationsArea">Ámbito de operaciones: </b> <b>(TF2AO):</b> {{arguments.values.tf2ao || arguments.values.titulo.ambitoOperadores2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2AO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.rateType">Tipo tarifa: </b> <b>(TF2TT):</b> {{arguments.values.titulo.tipoTarifa2.value | eigeRateType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2TT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.rateControl">Control tarifa: </b> <b>(TF2TF):</b> <span data-ng-show="arguments.values.titulo.controlTarifa2.value!=0">{{arguments.values.tf2tf || arguments.values.titulo.controlTarifa2.value}}</span> <span data-ng-hide="arguments.values.titulo.controlTarifa1.value==0">Sin control</span>
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2TF')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validityOperator">Validez de operador: </b> <b>(TF2VO):</b> <span data-ng-show="arguments.values.titulo.tieneValidezOperador2.value==1">Válido dentro del operador</span><span data-ng-show="arguments.values.titulo.tieneValidezOperador.value==0">Control origen-destino</span>
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.informationType">Tipo de información: </b> <b>(TF2VOTT):</b> {{arguments.values.titulo.tipoInformacion2.value | eigeInformationType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VOTT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.information">Información: </b> <b>(TF2VOT):</b> {{arguments.values.tf2vot  || arguments.values.titulo.validezOperador2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VOT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.zonalValidity">Validez zonal: </b> <b>(TF2VZ):</b> {{arguments.values.titulo.validezZonal2.value | eigeZonaFilter }}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2VZ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.typeUnitsZonal">Tipo unidades validez: </b> <b>(TF2TUVT):</b> {{arguments.values.titulo.tipoUnidadesValidezTemporal2.value | eigeValidityType}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2TUVT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.unitsNumber">Nº unidades: </b> <b>(TF2NUVT):</b> {{arguments.values.tf2nuvt || arguments.values.titulo.numeroUnidadesValidezTemporal2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2NUVT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.transferMax">Nº transbordo: </b> <b>(TF2MTEA):</b> {{arguments.values.tf2mtea ||arguments.values.titulo.maxTransbordosExternos2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2MTEA')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.peopleTransfers">Máximo personas en transbordo: </b> <b>(TF2MPT):</b> {{arguments.values.tf2mpt || arguments.values.titulo.maxPersonasEnTransbordo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2MPT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.transferTime">Máximo tiempo en transbordo: </b> <b>(TF2MTT):</b> {{arguments.values.tf2mtt || arguments.values.titulo.maxTiempoTransbordo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2MTT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.balanceUse">Uso de saldo: </b> <b>(TF2SV):</b> {{arguments.values.tf2sv || arguments.values.titulo.usoDelCampoSaldoViajes2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TF2SV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.rateChange">Cambio de tarifa: </b> <b>(TV2CTA):</b> {{arguments.values.tv2cta || arguments.values.validacion.titulo2EnAmpliacion.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV2CTA')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Datos Variables">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.extension">Ampliación: </b> <b>(TV2BTA):</b> {{arguments.values.tv2bta || arguments.values.titulo.tituloEnAmpliacion2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV2BTA')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validityDate">Fecha validez: </b> <b>(TV2FIV):</b> {{arguments.values.titulo.fechaValidez2.value | xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV2FIV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.balance">Viajes: </b> <b>(TV2SV):</b> {{arguments.values.tv2sv || arguments.values.titulo.saldoViaje2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TV2SV')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+								</accordion>
+							</div>
+						</tab>
+						<tab heading="Monedero" active="stepsDatos.step6">
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.priority">Prioridad </b> <b>(TGPM):</b> {{arguments.values.tgpm ||arguments.values.titulo.prioridadMonedero.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TGPM')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.balancePurse">Saldo </b> <b>(MS):</b> {{arguments.values.ms || arguments.values.titulo.saldoMonedero.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MS')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Bonus" active="stepsDatos.step7">
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.priority">Prioridad </b> <b>(TGPB):</b> {{arguments.values.tgpb || arguments.values.titulo.prioridadBonus.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TGPB')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.balancePurse">Saldo </b> <b>(BS):</b> {{arguments.values.bs || arguments.values.titulo.saldoBonus.value}}€
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('BS')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="TuiN" active="stepsDatos.step8">
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.bonusFirstTraveler">bonificado Primer Viajero </b> <b>(MVNCB1V): </b> {{arguments.tuiN.bonificadoPrimerViajero.value || 'Desconocido'}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVNCB1V')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.cashed">cobrado </b> <b>(MVNCCV):</b> {{arguments.tuiN.cobrado.value || 0}}€
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVNCCV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.cashedFirstTraveler">cobrado Primer Viajero </b> <b>(MVNCC1V):</b> {{arguments.tuiN.cobradoPrimerViajero.value || 0}}€
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVNCC1V')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.cumulativeConsumption">consumo Acumulado </b> <b>(MVCA1V):</b> {{arguments.tuiN.consumoAcumulado.value || 0}}€
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVCA1V')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.transferInternalCounter">contador Transbordos Internos </b> <b>(MVCTI):</b> {{arguments.tuiN.contadorTransbordosInternos.value || 'Desconocido'}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVCTI')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.initStation">estacion Inicio Viaje </b> <b>(MVEini):</b> {{arguments.tuiN.estacionInicioViaje.value || 'Desconocido'}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVEini')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.transactionIndex">indice Transaccion </b> <b>(MHITA):</b> {{arguments.tuiN.indiceTransaccion.value || 0}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MHITA')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.peopleTravel">numero Personas Viajando</b> <b>(MVNPV):</b> {{arguments.tuiN.numeroPersonasViajando.value || 0}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVNPV')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.initPeople">personas De Inicio </b> <b>(MVNPini):</b> {{arguments.tuiN.personasDeInicio.value || 'Desconocido'}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVNPini')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.travelBalance">saldo Viaje </b><b>: </b><span data-ng-show="arguments.tuiN.saldoViaje_Sign.value == true">+</span><span data-ng-show="arguments.tuiN.saldoViaje_Sign.value == false">-</span> {{arguments.tuiN.saldoViaje_Value.value || 0}}€
+										</td>
+										<td>
+											<b translate="resources.card.direction">sentido </b> <b>(MVSn):</b> {{arguments.tuiN.sentido.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVSn')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.temporality">temporalidad </b> <b>(MTTI):</b> {{arguments.tuiN.temporalidad.value || 0}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MTTI')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.timeConsumed">tiempo Consumido </b> <b>(MVTVC):</b> {{arguments.tuiN.tiempoConsumido.value ||0}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVTVC')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.8historical">tiene 8 Historicos </b> <b>(MT8H):</b> {{arguments.tuiN.tiene8Historicos.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MT8H')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.typeRate">tipo Tarifa </b> <b>(MVTT):</b> {{arguments.tuiN.tipoTarifa.value || 0}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVTT')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.lastValidationStation">ultima Validacion Estacion </b> <b>(MVEn):</b> {{arguments.tuiN.ultimaValidacionEstacion.value || 'Desconocido'}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVEn')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.lastValidationDateTime">ultima Validacion Fecha Hora </b> <b>(MVFHn):</b> {{arguments.tuiN.ultimaValidacionFechaHora.value | xpDateTime}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVFHn')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.lastValidationType">ultima Validacion Tipo </b> <b>(MVTVn):</b> {{arguments.tuiN.ultimaValidacionTipo.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('MVTVn')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.lastValidationDirection">ultima Validacion Tipo_Sentido </b><b>: </b> {{arguments.tuiN.ultimaValidacionTipo_Sentido.value}}
+										</td>
+										<td><b translate="resources.card.lastValidationTypeTransfer">ultima Validacion Tipo_Transbordo </b><b>: </b> {{arguments.tuiN.ultimaValidacionTipo_Transbordo.value ||'Desconcido'}}</td>
+									</tr>
+									<tr>
+										<td><b translate="resources.card.lastValidationTransportType">ultima Validacion Tipo_Transporte</b><b>: </b> {{arguments.tuiN.ultimaValidacionTipo_Transporte.value || 'Desconocido'}}</td>
+										<td><b translate="resources.card.lastValidationTravelerType">ultima Validacion Tipo_Viajero </b><b>: </b> {{arguments.tuiN.ultimaValidacionTipo_Viajero.value || 0}}</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Últ. validación" active="stepsDatos.step9">
+							<table class="table table-responsive">
+								<tbody>
+									<tr>
+										<td>
+											<b translate="resources.card.validatingCompany">Empresa validadora: </b> <b>(VEO):</b> {{arguments.values.veo || arguments.values.validacion.empresaOperadora.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VEO')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.validatingType">Tipo validación: </b> <b>(VTV):</b> {{arguments.scriptResponse.lastValidationTypeName || arguments.values.validacion.tipoValidacion.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VTV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.station">estación/Línea: </b> <b>(VLEPS):</b> {{arguments.scriptResponse.lastValidationPlace}} ({{arguments.values.vleps || arguments.values.validacion.vlepS_Autobus_Linea.value}})
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VLEPS')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.validatingTime">Hora validación: </b> <b>(VFH):</b> {{arguments.values.validacion.fechaValidacion.value |xpDateTime}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VFH')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.peopleTravel">Personas viajando: </b> <b>(VNPV):</b> {{arguments.values.vnpv || arguments.values.validacion.numeroPersonasViaje.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VNPV')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.internalTransfers">Transbordos internos: </b> <b>(VMTIA):</b> {{arguments.values.vmtia || arguments.values.validacion.maxTransbordosInternos.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VMTIA')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.peopleTransfer">Personas en transbordo: </b> <b>(VNPT):</b> {{arguments.values.vnpt ||arguments.values.validacion.numeroPersonasTransbordo.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VNPT')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.externalTransfersCount">Cont. transbordos externos: </b> <b>(VCTE):</b> {{arguments.values.vcte || arguments.values.validacion.contadorTransbordosExternos.value}}
+										</td>
+										<td>
+											<b translate="resources.card.internalTransfersCount">Cont. transbordos internos: </b> <b>(VCTI):</b> {{arguments.values.vcti ||arguments.values.validacion.contadorTransbordosInternos.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VCTI')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.outputTravelers">Viajeros en salida: </b> <b>(VCVS):</b> {{arguments.values.vcvs ||arguments.values.validacion.contadorViajerosSalida.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VCVS')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.timeLeftTransfer">Tiempo restante transbordo: </b> <b>(VTRT):</b> {{arguments.values.vtrt || arguments.values.validacion.tiempoRestanteTransbordo.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VTRT')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.blacklist">Lista negra: </b> <b>(VBLN):</b> {{arguments.values.vbln || arguments.values.validacion.listaNegra.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VBLN')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.greylist">Lista gris: </b> <b>(VBLB):</b> {{arguments.values.vblb ||arguments.values.validacion.listaGris.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VBLB')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.whitelist">Lista blanca: </b> <b>(VBS):</b> {{arguments.values.vbs || arguments.values.validacion.listaBlanca.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VBS')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.degradedOperation">Funcionamiento degradado: </b> <b>(VFD):</b> {{arguments.values.vfd ||arguments.values.validacion.funcionamientoDegradado.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VFD')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.rateChange">Cambio tarifa: </b> <b>(TV2CTA):</b> {{arguments.values.tv2cta || arguments.values.validacion.titulo2EnAmpliacion.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TV2CTA')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.activeDegraded" colspan="2">Degradado activo: </b> <b>(VFDA):</b> {{arguments.values.vfda ||arguments.values.validacion.degradado.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('VFDA')"></i>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b translate="resources.card.whitelistTrack">Localizador lista blanca: </b> <b>(TL):</b> {{arguments.values.tl || arguments.values.validacion.localizadorListaBlanca.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('TL')"></i>
+											</div>
+										</td>
+										<td>
+											<b translate="resources.card.greylistTrack" colspan="2">Localizador lista gris: </b> <b>(ATF2LIB2):</b> {{arguments.values.atf2lib2 || arguments.values.validacion.localizadorListaGris.value}}
+											<div class="cardUpdate">
+												<i class="fa fa-pencil" ng-click="openConfirm('ATF2LIB2')"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</tab>
+						<tab heading="Inspección" active="stepsDatos.step10">
+							<b translate="resources.card.inspectionCount">Contador inspecciones</b> <b>(CUCNI):</b> {{arguments.values.cucni || 'Desconocido'}}
+							<b translate="resources.card.incidentInspection">Inspecciones con incidencia </b> <b>(CUII):</b> {{arguments.values.cuii || 'Desconocido'}}
+							<b translate="resources.card.lastInspection">Última inspección</b> <b>(CUPU):</b> {{arguments.values.cupu || 'Desconocido'}}
+							<div ng-controller="AccordionDemoCtrl" ng-model="oneAtATime">
+								<accordion close-others="oneAtATime">
+									<accordion-group heading="Inspección 1">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.inspection">Inspección</b> <b>(CU1E):</b> {{arguments.values.cu1e || arguments.values.inspeccion.empresaInspeccion1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CU1E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.placeInspection">Lugar </b> <b>(CUV1L):</b> {{arguments.values.cuv1l || arguments.values.inspeccion.lugarInspeccion1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV1L')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(CUV1F):</b> {{arguments.values.inspeccion.fechaHora1.value|xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV1F')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.reason">Motivo </b> <b>(CUV1M):</b> {{arguments.values.cuv1m || arguments.values.inspeccion.incidencia1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV1M')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Inspección 2">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.inspection">Inspección</b> <b>(CU2E):</b> {{arguments.values.cu1e || 'Desconocido'}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CU2E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.placeInspection">Lugar </b> <b>(CUV2L):</b> {{arguments.values.cuv2l || 'Desconocido'}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV2L')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(CUV2F):</b> {{arguments.values.cuv2f |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV2F')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.reason">Motivo </b> <b>(CUV2M):</b> {{arguments.values.cuv2m || 'Desconocido'}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV2M')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Inspección 3">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.inspection">Inspección</b> <b>(CU3E):</b> {{arguments.values.cu3e || arguments.values.inspeccion.empresaInspeccion3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CU3E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.placeInspection">Lugar </b>(CUV3L): <b></b>{{arguments.values.cuv3l || arguments.values.inspeccion.lugarInspeccion3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV3L')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(CUV3F):</b> {{arguments.values.inspeccion.fechaHora3.value|xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV3F')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.reason">Motivo </b><b>(CUV3M):</b> {{arguments.values.cuv3m || arguments.values.inspeccion.incidencia3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV3M')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Inspección 4">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.inspection">Inspección</b> <b>(CU4E):</b> {{arguments.values.cu4e || arguments.values.inspeccion.empresaInspeccion4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CU4E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.placeInspection">Lugar </b> <b>(CUV4L):</b> {{arguments.values.cuv4l ||arguments.values.inspeccion.lugarInspeccion4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV4L')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(CUV4F):</b> {{arguments.values.inspeccion.fechaHora4.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV4F')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.reason">Motivo </b><b>(CUV4M):</b> {{arguments.values.cuv4m ||  arguments.values.inspeccion.incidencia4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('CUV4M')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+								</accordion>
+							</div>
+						</tab>
+						<tab heading="Recargas" active="step.step11">
+							<b translate="resources.card.lastRecharge">Posición última recarga: </b> <b>(CRP):</b><span data-ng-show="arguments.values.carga.posicionUltima.value==0"> Carga/Recarga 1</span><span data-ng-show="arguments.values.carga.posicionUltima.value==1"> Carga/Recarga 2</span>
+							<b translate="resources.card.activeTitles">Títulos activos (TGTA): </b> <b>(TGTA):</b> {{arguments.values.tgta || arguments.values.titulo.titulosActivos.value}}
+							<b translate="resources.card.currentTitle">Título en uso (TGTU): </b> <b>(TGTU):</b> {{arguments.values.titulo.tituloEnUso.value| eigeTitleUse}}
+							<div ng-controller="AccordionDemoCtrl" ng-model="oneAtATime">
+								<accordion close-others="oneAtATime">
+									<accordion-group heading="Carga/Recarga 1">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.priority">Prioridad (TGP1):</b> <b>(TGP1):</b> {{arguments.values.tgp1 || arguments.values.titulo.prioridadTitulo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TGP1')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.rechargeCompany">Empresa recarga: </b> <b>(C1E):</b> {{arguments.values.c1e || arguments.values.carga.empresa1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.equipmentType">Tipo de equipo: </b> <b>(C1TEC):</b> {{arguments.values.carga.tipoEquipo1.value | eigeTypeRecharge}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1TEC')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.dispesingLocation">Localización del expendedor: </b> <b>(C1LE):</b> {{arguments.values.c1le || arguments.values.carga.expendedor1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1LE')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.chargeDate">Fecha de carga/recarga: </b> <b>(C1FC):</b> {{arguments.values.carga.fecha1.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1FC')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.operationTypeCharge">Tipo de operación: </b> <b>(C1TO):</b> {{arguments.values.c1to ||arguments.values.carga.tipoOperacion1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1TO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.paymentMedia">Payment media: </b> <b>(C1FP):</b> {{arguments.values.carga.formaPago1.value | eigePaymentMedia}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1FP')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.titleCode">Código del título: </b> <b>(C1CT):</b> {{arguments.values.c1ct || arguments.values.carga.codigoTitulo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1CT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.amount">Importe: </b> <b>(C1I):</b> {{arguments.values.c1i || arguments.values.carga.importe1.value}}€
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C1I')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Carga/Recarga 2">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.priority">Prioridad (TGP2):</b> <b>(TGP2):</b> {{arguments.values.tgp2 ||  arguments.values.titulo.prioridadTitulo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('TGP2')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.rechargeCompany">Empresa recarga: </b> <b>(C2E):</b> {{arguments.values.c2e || arguments.values.carga.empresa2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2E')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.equipmentType">Tipo de equipo: </b> <b>(C2TEC):</b> {{arguments.values.carga.tipoEquipo2.value| eigeTypeRecharge}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2TEC')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.dispesingLocation">Localización del expendedor: </b> <b>(C2LE):</b> {{arguments.values.c2le ||arguments.values.carga.expendedor2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2LE')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.chargeDate">Fecha de carga/recarga: </b> <b>(C2FC):</b> {{arguments.values.carga.fecha2.value  |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2FC')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.operationTypeCharge">Tipo de operación: </b> <b>(C2TO):</b> {{arguments.values.c2to ||arguments.values.carga.tipoOperacion2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2TO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.paymentMedia">Payment media: </b> <b>(C2FP):</b> {{arguments.values.carga.formaPago2.value | eigePaymentMedia}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2FP')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.titleCode">Código del título: </b> <b>(C2CT):</b> {{arguments.values.c2ct ||arguments.values.carga.codigoTitulo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2CT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.amount">Importe: </b> <b>(C2CI):</b> {{arguments.values.c2ci || arguments.values.carga.importe2.value}}€
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('C2CI')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+								</accordion>
+							</div>
+						</tab>
+						<tab heading="Historial" active="step.step12">
+							<b translate="resources.card.lastValidation">Posición última validación</b> <b>(HITA):</b> {{arguments.values.hita ||arguments.values.historico.indiceTransaccion.value}}
+							<div ng-controller="AccordionDemoCtrl" ng-model="oneAtATime">
+								<accordion close-others="oneAtATime">
+									<accordion-group heading="Histórico 0">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H1VTV):</b> {{arguments.values.h1vtv || arguments.values.historico.tipoValidacion1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H1VM):</b> {{arguments.values.h1vm ||arguments.values.historico.validacionMultiple1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H1VFH):</b> {{arguments.values.historico.fechaHora1.value|xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H1VCT):</b> {{arguments.values.h1vct ||arguments.values.historico.codigoTitulo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H1VMB):</b> {{arguments.values.h1vmb || arguments.values.historico.usoMonederoBonus1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H1VEO):</b> {{arguments.values.h1veo || arguments.values.historico.empresaOperadora1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H1VZV):</b> {{arguments.values.historico.zona1.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H1VLEPS):</b> {{arguments.values.h1vleps || arguments.values.historico.vleps1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H1VMQ):</b> {{arguments.values.h1vmq || arguments.values.historico.numeroMaquina1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H1VLNE):</b> {{arguments.values.h1vlne || arguments.values.historico.numeroEquipo1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H1VLUCV):</b> {{arguments.values.h1vlucv || arguments.values.historico.unidadesConsumidas1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H1VAVE):</b> {{arguments.values.h1vave || arguments.values.historico.acumuladoValidacionesEntrada1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H1VAVS):</b> {{arguments.values.h1vavs || arguments.values.historico.acumuladoValidacionesSalida1.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H1VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 1">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H2VTV):</b> {{arguments.values.h2vtv ||arguments.values.historico.tipoValidacion2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H2VM):</b> {{arguments.values.h2vm || arguments.values.historico.validacionMultiple2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H2VFH):</b> {{arguments.values.historico.fechaHora2.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H2VCT):</b> {{arguments.values.h2vct ||arguments.values.historico.codigoTitulo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H2VMB):</b> {{arguments.values.h2vmb ||  arguments.values.historico.usoMonederoBonus2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H2VEO):</b> {{arguments.values.h2veo ||  arguments.values.historico.empresaOperadora2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H2VZV):</b> {{arguments.values.historico.zona2.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H2VLEPS):</b> {{arguments.values.h2vleps || arguments.values.historico.vleps2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H2VMQ):</b> {{arguments.values.h2vmq ||arguments.values.historico.numeroMaquina2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H2VLNE):</b> {{arguments.values.h2vlne ||arguments.values.historico.numeroEquipo2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b><b>(H2VLUCV): </b>{{arguments.values.h2vlucv || arguments.values.historico.unidadesConsumidas2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H2VAVE):</b> {{arguments.values.h2vave || arguments.values.historico.acumuladoValidacionesEntrada2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H2VAVS):</b> {{arguments.values.h2vavs || arguments.values.historico.acumuladoValidacionesSalida2.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H2VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 2">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H3VTV): </b> {{arguments.values.h3vtv ||arguments.values.historico.tipoValidacion3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H3VM):</b> {{arguments.values.h3vm || arguments.values.historico.validacionMultiple3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H3VFH):</b> {{arguments.values.historico.fechaHora3.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H3VCT):</b> {{arguments.values.h3vct ||arguments.values.historico.codigoTitulo3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H3VMB):</b> {{arguments.values.h3vmb ||  arguments.values.historico.usoMonederoBonus3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H3VEO):</b> {{arguments.values.h3veo ||  arguments.values.historico.empresaOperadora3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H3VZV):</b> {{arguments.values.historico.zona3.value |eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H3VLEPS):</b> {{arguments.values.h3vleps || arguments.values.historico.vleps3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H3VMQ):</b> {{arguments.values.h3vmq ||arguments.values.historico.numeroMaquina3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H3VLNE):</b> {{arguments.values.h3vlne ||arguments.values.historico.numeroEquipo3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b><b>(H3VLUCV): </b>{{arguments.values.h3vlucv || arguments.values.historico.unidadesConsumidas3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H3VAVE):</b> {{arguments.values.h3vave || arguments.values.historico.acumuladoValidacionesEntrada3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H3VAVS):</b> {{arguments.values.h3vavs || arguments.values.historico.acumuladoValidacionesSalida3.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H3VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 3">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H4VTV):</b> {{arguments.values.h4vtv ||arguments.values.historico.tipoValidacion4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H4VM): </b> {{arguments.values.h4vm || arguments.values.historico.validacionMultiple4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H4VFH):</b> {{arguments.values.historico.fechaHora4.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H4VCT):</b> {{arguments.values.h4vct ||arguments.values.historico.codigoTitulo4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H4VMB):</b> {{arguments.values.h4vmb||  arguments.values.historico.usoMonederoBonus4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H4VEO):</b> {{arguments.values.h4veo ||  arguments.values.historico.empresaOperadora4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b><b>(H4VZV):</b> {{arguments.values.historico.zona4.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H4VLEPS):</b> {{arguments.values.h4vleps || arguments.values.historico.vleps4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H4VMQ):</b> {{arguments.values.h4vmq ||arguments.values.historico.numeroMaquina4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H4VLNE):</b> {{arguments.values.h4vlne ||arguments.values.historico.numeroEquipo4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H4VLUCV):</b> {{arguments.values.h4vlucv || arguments.values.historico.unidadesConsumidas4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H4VAVE):</b> {{arguments.values.h4vave || arguments.values.historico.acumuladoValidacionesEntrada4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H4VAVS):</b> {{arguments.values.h4vavs || arguments.values.historico.acumuladoValidacionesSalida4.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H4VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 4">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H5VTV): </b> {{arguments.values.h5vtv ||arguments.values.historico.tipoValidacion5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H5VM):</b> {{arguments.values.h5vm || arguments.values.historico.validacionMultiple5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H5VFH):</b> {{arguments.values.historico.fechaHora5.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H5VCT):</b> {{arguments.values.h5vct ||arguments.values.historico.codigoTitulo5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H5VMB):</b> {{arguments.values.h5vmb||  arguments.values.historico.usoMonederoBonus5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H5VEO):</b> {{arguments.values.h5veo ||  arguments.values.historico.empresaOperadora5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b><b>(H5VZV):</b> {{arguments.values.historico.zona5.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H5VLEPS):</b> {{arguments.values.h5vleps || arguments.values.historico.vleps5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H5VMQ):</b> {{arguments.values.h5vmq ||arguments.values.historico.numeroMaquina5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H5VLNE):</b> {{arguments.values.h5vlne ||arguments.values.historico.numeroEquipo5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H5VLUCV):</b> {{arguments.values.h5vlucv|| arguments.values.historico.unidadesConsumidas5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H5VAVE):</b> {{arguments.values.h5vave|| arguments.values.historico.acumuladoValidacionesEntrada5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H5VAVS):</b> {{arguments.values.h5vavs|| arguments.values.historico.acumuladoValidacionesSalida5.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H5VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 5">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H6VTV):</b> {{arguments.values.h6vtv ||arguments.values.historico.tipoValidacion6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H6VM):</b> {{arguments.values.h6vm || arguments.values.historico.validacionMultiple6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H6VFH):</b> {{arguments.values.historico.fechaHora6.value |xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H6VCT):</b> {{arguments.values.h6vct ||arguments.values.historico.codigoTitulo6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H6VMB):</b> {{arguments.values.h6vmb||  arguments.values.historico.usoMonederoBonus6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H6VEO):</b> {{arguments.values.h6veo || arguments.values.historico.empresaOperadora6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H6VZV):</b> {{arguments.values.historico.zona6.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H6VLEPS):</b> {{arguments.values.h6vleps || arguments.values.historico.vleps6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H6VMQ):</b> {{arguments.values.h6vmq ||arguments.values.historico.numeroMaquina6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H6VLNE):</b> {{arguments.values.h6vlne ||arguments.values.historico.numeroEquipo6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H6VLUCV):</b> {{arguments.values.h6vlucv|| arguments.values.historico.unidadesConsumidas6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H6VAVE):</b> {{arguments.values.h6vave|| arguments.values.historico.acumuladoValidacionesEntrada6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H6VAVS):</b> {{arguments.values.h6vavs|| arguments.values.historico.acumuladoValidacionesSalida6.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H6VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 6">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H7VTV): </b>{{arguments.values.h7vtv ||arguments.values.historico.tipoValidacion7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H7VM):</b> {{arguments.values.h7vm|| arguments.values.historico.validacionMultiple7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H7VFH):</b> {{arguments.values.historico.fechaHora7.value|xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H7VCT):</b> {{arguments.values.h7vct ||arguments.values.historico.codigoTitulo7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H7VMB):</b> {{arguments.values.h7vmb||  arguments.values.historico.usoMonederoBonus7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H7VEO):</b> {{arguments.values.h7veo || arguments.values.historico.empresaOperadora7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H7VZV):</b> {{arguments.values.historico.zona7.value| eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H7VLEPS):</b> {{arguments.values.h7vleps || arguments.values.historico.vleps7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H7VMQ):</b> {{arguments.values.h7vmq ||arguments.values.historico.numeroMaquina7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H7VLNE):</b> {{arguments.values.h7vlne ||arguments.values.historico.numeroEquipo7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H7VLUCV):</b> {{arguments.values.h7vlucv|| arguments.values.historico.unidadesConsumidas7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H7VAVE):</b> {{arguments.values.h7vave|| arguments.values.historico.acumuladoValidacionesEntrada7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H7VAVS):</b> {{arguments.values.h7vavs|| arguments.values.historico.acumuladoValidacionesSalida7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H7VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+									<accordion-group heading="Histórico 7">
+										<table class="table table-responsive">
+											<tbody>
+												<tr>
+													<td>
+														<b translate="resources.card.validatingType">Tipo validación</b> <b>(H8VTV):</b> {{arguments.values.h8vtv ||arguments.values.historico.tipoValidacion8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VTV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.multipleValidation">Validación múltiple: </b> <b>(H8VM):</b> {{arguments.values.h8vm || arguments.values.historico.validacionMultiple8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VM')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.datetime">Fecha/hora</b> <b>(H8VFH):</b> {{arguments.values.historico.fechaHora8.value|xpDateTime}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VFH')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.titleCode">Código del título</b> <b>(H8VCT):</b> {{arguments.values.h8vct ||arguments.values.historico.codigoTitulo8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VCT')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.usePurse">Uso mondedero/bonus: </b> <b>(H8VMB):</b> {{arguments.values.h8vmb||  arguments.values.historico.usoMonederoBonus8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VMB')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.validatingCompany">Empresa validadora</b> <b>(H8VEO):</b> {{arguments.values.h8veo || arguments.values.historico.empresaOperadora8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VEO')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.validationZone">Zona</b> <b>(H8VZV):</b> {{arguments.values.historico.zona7.value | eigeValidationZone}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VZV')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.station">Estación</b> <b>(H8VLEPS):</b> {{arguments.values.h8vleps || arguments.values.historico.vleps8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VLEPS')"></i>
+														</div>
+													</td>
+													<td>
+														<b translate="resources.card.machineNumber">Nº máquina</b> <b>(H8VMQ):</b> {{arguments.values.h8vmq ||arguments.values.historico.numeroMaquina8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VMQ')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.equipmentNumber">Número de equipo</b> <b>(H8VLNE):</b> {{arguments.values.h8vlne ||arguments.values.historico.numeroEquipo8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VLNE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.unitsConsumed">Unidades consumidas</b> <b>(H8VLUCV):</b> {{arguments.values.h8vlucv|| arguments.values.historico.unidadesConsumidas8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VLUCV')"></i>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<b translate="resources.card.inputValidations">Validaciones de entrada</b> <b>(H8VAVE):</b> {{arguments.values.h8vave|| arguments.values.historico.acumuladoValidacionesEntrada7.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VAVE')"></i>
+														</div>
+													</td>
+													<td colspan="2">
+														<b translate="resources.card.outputValidations">Validaciones de salida</b> <b>(H8VAVS):</b> {{arguments.values.h8vavs|| arguments.values.historico.acumuladoValidacionesSalida8.value}}
+														<div class="cardUpdate">
+															<i class="fa fa-pencil" ng-click="openConfirm('H8VAVS')"></i>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</accordion-group>
+								</accordion>
+							</div>
+						</tab>
+					</tabset>
+				</tab>
+				<tab heading="Hexadecimal" active="steps.step3">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-12 col-md-3">
+								<div style="background-color:#f05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.keys">Claves</p>
+							</div>
+							<div class="col-xs-12 col-md-3">
+								<div style="background-color:#2563f6;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.title1">Titulo 1</p>
+							</div>
+							<div class="col-xs-12 col-md-3">
+								<div style="background-color:#23b7e5;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.title2">Titulo 2</p>
+							</div>
+							<div class="col-xs-12 col-md-3">
+								<div style="background-color:#000;" class="legendGraph" /><p style="float:left;" translate="resources.transportLog.tuin">TuiN</p>
+							</div>
+						</div>
+					</div>
+					<!-- accordion -->
+					<div ng-controller="xpCopyClipboard" ng-model="oneAtATime">
+						<accordion close-others="oneAtATime=false">
+							<accordion-group heading="Sector 0" class="b-danger">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="0" tooltip="{{data.hexadecimal[0]}}">{{arguments.modifyBlock[0]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(0)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="1" tooltip="{{data.hexadecimal[1]}}">{{arguments.modifyBlock[1]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(1)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="2" tooltip="{{data.hexadecimal[2]}}">{{arguments.modifyBlock[2]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(2)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 1" class="b-blue">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="4" tooltip="{{data.hexadecimal[4]}}">{{arguments.modifyBlock[4]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(4)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="5" tooltip="{{data.hexadecimal[5]}}">{{arguments.modifyBlock[5]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(5)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="6" tooltip="{{data.hexadecimal[6]}}">{{arguments.modifyBlock[6]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(6)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 2">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="8" tooltip="{{data.hexadecimal[8]}}">{{arguments.modifyBlock[8]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(8)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="9" tooltip="{{data.hexadecimal[9]}}">{{arguments.modifyBlock[9]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(9)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="10" tooltip="{{data.hexadecimal[10]}}">{{arguments.modifyBlock[10]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(10)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 3">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="12" tooltip="{{data.hexadecimal[12]}}">{{arguments.modifyBlock[12]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(12)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="13" tooltip="{{data.hexadecimal[13]}}">{{arguments.modifyBlock[13]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(13)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="14" tooltip="{{data.hexadecimal[14]}}">{{arguments.modifyBlock[14]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(14)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 4" class="b-info">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="16" tooltip="{{data.hexadecimal[16]}}">{{arguments.modifyBlock[16]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(16)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="17" tooltip="{{data.hexadecimal[17]}}">{{arguments.modifyBlock[17]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(17)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="18" tooltip="{{data.hexadecimal[18]}}">{{arguments.modifyBlock[18]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(18)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 5">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="20" tooltip="{{data.hexadecimal[20]}}">{{arguments.modifyBlock[20]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(20)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="21" tooltip="{{data.hexadecimal[21]}}">{{arguments.modifyBlock[21]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(21)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="22" tooltip="{{data.hexadecimal[22]}}">{{arguments.modifyBlock[22]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(22)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 6">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="24" tooltip="{{data.hexadecimal[24]}}">{{arguments.modifyBlock[24]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(24)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="25" tooltip="{{data.hexadecimal[25]}}">{{arguments.modifyBlock[25]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(25)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="26" tooltip="{{data.hexadecimal[26]}}">{{arguments.modifyBlock[26]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(26)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 7">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="28" tooltip="{{data.hexadecimal[28]}}">{{arguments.modifyBlock[28]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(28)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="29" tooltip="{{data.hexadecimal[29]}}">{{arguments.modifyBlock[29]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(29)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="30" tooltip="{{data.hexadecimal[30]}}">{{arguments.modifyBlock[30]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(30)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 8">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="32" tooltip="{{data.hexadecimal[32]}}">{{arguments.modifyBlock[32]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(32)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="33" tooltip="{{data.hexadecimal[33]}}">{{arguments.modifyBlock[33]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(33)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="34" tooltip="{{data.hexadecimal[34]}}">{{arguments.modifyBlock[34]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(34)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 9" class="b-dark">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="36" tooltip="{{data.hexadecimal[36]}}">{{arguments.modifyBlock[36]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(36)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="37" tooltip="{{data.hexadecimal[37]}}">{{arguments.modifyBlock[37]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(37)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="38" tooltip="{{data.hexadecimal[38]}}">{{arguments.modifyBlock[38]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(38)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 10">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="40" tooltip="{{data.hexadecimal[40]}}">{{arguments.modifyBlock[40]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(40)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="41" tooltip="{{data.hexadecimal[41]}}">{{arguments.modifyBlock[41]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(41)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="42" tooltip="{{data.hexadecimal[42]}}">{{arguments.modifyBlock[42]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(42)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 11">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="44" tooltip="{{data.hexadecimal[44]}}">{{arguments.modifyBlock[44]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(44)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="45" tooltip="{{data.hexadecimal[45]}}">{{arguments.modifyBlock[45]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(45)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="46" tooltip="{{data.hexadecimal[46]}}">{{arguments.modifyBlock[46]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(46)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 12">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="48" tooltip="{{data.hexadecimal[48]}}">{{arguments.modifyBlock[48]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(48)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="49" tooltip="{{data.hexadecimal[49]}}">{{arguments.modifyBlock[49]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(49)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="50" tooltip="{{data.hexadecimal[50]}}">{{arguments.modifyBlock[50]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(50)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 13">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="52" tooltip="{{data.hexadecimal[52]}}">{{arguments.modifyBlock[52]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(52)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="53" tooltip="{{data.hexadecimal[53]}}">{{arguments.modifyBlock[53]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(53)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="54" tooltip="{{data.hexadecimal[54]}}">{{arguments.modifyBlock[54]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(54)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 14">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="56" tooltip="{{data.hexadecimal[56]}}">{{arguments.modifyBlock[56]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(56)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="57" tooltip="{{data.hexadecimal[57]}}">{{arguments.modifyBlock[57]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(57)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="58" tooltip="{{data.hexadecimal[58]}}">{{arguments.modifyBlock[58]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(58)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+							<accordion-group heading="Sector 15">
+								<table class="table table-responsive">
+									<tbody>
+										<tr>
+											<td>
+												<span id="60" tooltip="{{data.hexadecimal[60]}}">{{arguments.modifyBlock[60]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(60)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="61" tooltip="{{data.hexadecimal[61]}}">{{arguments.modifyBlock[61]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(61)"></i></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span id="62" tooltip="{{data.hexadecimal[62]}}">{{arguments.modifyBlock[62]}} <i class="fa fa-pencil" style="cursor:pointer;" ng-click="openConfirmBlock(62)"></i></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</accordion-group>
+						</accordion>
+						<a class="btn btn-default before-button" data-ng-show="arguments.scriptRequest">Copiar</a>
+						<a class="btn btn-default" data-ng-show="arguments.scriptRequest" ng-click="openConfirmCard()">Pegar</a>
+
+					</div>
+					<!-- / accordion -->
+				</tab>
+				<tab heading="Histórico" active="steps.step4" style="display:none">
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th translate="resources.transportLog.date">Date</th>
+								<th translate="resources.transportLog.title">Título</th>
+								<th translate="resources.transportLog.line">Linea</th>
+								<th translate="resources.transportLog.quantity">Quantity</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="historic in arguments.scriptResponse.logs">
+								<td>{{historic.date | xpDateTime}}</td>
+								<td>{{historic.titleName}} {{historic.zone |eigeZonaFilter}}</td>
+								<td>{{historic.typeName}} {{historic.place}}</td>
+								<td>
+									<span data-ng-show="historic.quantity>0">-{{historic.quantity}}</span>
+									<span data-ng-show="historic.quantity===0">Validado</span>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</tab>
+				<tab heading="Lista gris" active="steps.step5">
+					<div class="col col-md-7">
+						<span translate="resources.transportLog.infoCard">Tarjeta con UID </span>{{temp.uid}}
+					</div>
+					<div class="col col-md-5">
+						<input type="text" class="input-sm form-control" placeholder="Filtrar" data-ng-model="filter">
+					</div>
+					<table class="table table-hover" data-ng-show="arguments.greyList.length > 0">
+						<thead>
+							<tr>
+								<th translate="resources.transportGreyList.date">Fecha</th>
+								<th translate="resources.transportGreyList.action">Acción</th>
+								<th translate="resources.transportGreyList.value">Campo (Valor)</th>
+								<th translate="resources.transportGreyList.resolve">Resuelto (Fecha)</th>
+								<th translate="resources.transportGreyList.source">Origen</th>
+								<th translate="resources.transportGreyList.operationNumber">Nº operación</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in arguments.greyList | filter:filter">
+								<td>{{item.registrationDate | xpDateTime}}</td>
+								<td>{{item.action | eigeAction}} ({{item.action}})</td>
+								<td><span data-ng-show="item.field">{{item.field}} ({{item.newValue}})</span></td>
+								<td>{{item.resolved}} <span data-ng-show="item.resolved == true">({{item.resolutionDate | xpDateTime}})</span></td>
+								<td><span data-ng-show="item.source == 1">SIGA>punT</span><span data-ng-show="item.source == 2">Pay[in]</span></td>
+								<td>{{item.operationNumber}}</td>
+								<td>
+									<span data-ng-show="item.resolved == true"> &nbsp;</span>
+									<span data-ng-hide="item.resolved == true">
+										@XpColumns.IconColumn(
+										XpIcons.Trash,
+										popupUrl: GreyListFactory.Delete,
+										id: "{{item.id}}"
+									   )
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 data-ng-hide="arguments.greyList.length > 0"> No hay datos de esta tarjeta en la lista gris</h3>
+				</tab>
+				<tab heading="Lista negra" active="steps.step6">
+					<div class="col col-md-11">
+						<span translate="resources.transportLog.infoCard">Tarjeta con UID </span>{{temp.uid}}
+					</div>
+					@*<div class="col col-md-5">
+							<input type="text" class="input-sm form-control" placeholder="Filtrar" data-ng-model="filterBlack">
+						</div>*@
+					<div class="col col-md-1">
+						<span class="icon-column" ng-show="arguments.blackList.length==0 || (arguments.blackList[0].resolved==true)">
+							@XpColumns.IconColumn(
+								XpIcons.Plus,
+								popupUrl: BlackListFactory.CreateName,
+								id: "{{temp.uid}}",
+								arguments: "{\"name\":\"{{temp.uid}}\"}"
+					)
+						</span>
+						<span class="icon-column" ng-hide="arguments.blackList.length==0 || (arguments.blackList[0].resolved==true)">
+							&nbsp;
+						</span>
+					</div>
+					<table class="table table-hover" data-ng-show="arguments.blackList.length > 0">
+						<thead>
+							<tr>
+								<th translate="resources.transportBlackList.registrationDate">Fecha de registro</th>
+								<th translate="resources.transportBlackList.resolved">Resuelto</th>
+								<th translate="resources.transportBlackList.machine">Máquina</th>
+								<th translate="resources.transportBlackList.rejection">Denegada</th>
+								<th translate="resources.transportBlackList.concession">Concessión</th>
+								<th translate="resources.transportBlackList.service">Servicio</th>
+								<th translate="resources.transportBlackList.source">Origen</th>
+								<th translate="resources.transportBlackList.isConfirmed">Confirmado</th>
+								<th translate="resources.transportBlackList.service">Servicio</th>
+								<th>&nbsp;</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in arguments.blackList | filter:filterBlack">
+								<td>{{item.registrationDate | xpDateTime}}</td>
+								<td>{{item.resolved}} <span data-ng-show="item.resolved == true">({{item.resolutionDate}})</span></td>
+								<td>{{item.machine}}</td>
+								<td>{{item.rejection}}</td>
+								<td>{{item.concession}}</td>
+								<td>{{item.service}}</td>
+								<td><span data-ng-show="item.source == 1">SIGA>punT</span><span data-ng-show="item.source == 2">Pay[in]</span></td>
+								<td>{{item.isConfirmed}}</td>
+								<td>{{item.service}}</td>
+								<td class="icon-column" data-ng-show="item.source==2&&!item.resolved">
+									@XpColumns.IconColumn(
+								XpIcons.Trash,
+								popupUrl: BlackListFactory.DeleteName,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{temp.uid}}\"}"
+					          )
+								</td>
+								<td class="icon-column" data-ng-hide="item.source==2&&!item.resolved">
+								&nbsp;
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+					<h3 data-ng-hide="arguments.blackList.length > 0"> No hay datos de esta tarjeta en la lista negra</h3>
+				</tab>
+				@*<tab heading="Lista blanca" active="steps.step6">
+						<div class="col col-md-7">
+							<span translate="resources.transportLog.infoCard">Tarjeta con UID </span>{{temp.uid}}
+						</div>
+						<div class="col col-md-5">
+							<input type="text" class="input-sm form-control" placeholder="Filtrar" data-ng-model="filterWhite">
+						</div>
+						<table class="table table-hover" data-ng-show="arguments.whiteList.length > 0">
+							<thead>
+								<tr>
+									<th translate="resources.transportWhiteList.inclusionDate">Fecha</th>
+									<th translate="resources.transportWhiteList.exclusionDate">Fecha</th>
+									<th translate="resources.transportWhiteList.titleType">Tipo de título</th>
+									<th translate="resources.transportWhiteList.operationType">Tipo de operación</th>
+									<th translate="resources.transportWhiteList.amount">Cantidad</th>
+									<th translate="resources.transportWhiteList.operationNumber">Nº operación</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in arguments.whiteList | filter:filterWhite">
+									<td>{{item.registrationDate | xpDateTime}}</td>
+									<td>{{item.action | eigeAction}} ({{item.action}})</td>
+									<td><span data-ng-show="item.field">{{item.field}} ({{item.newValue}})</span></td>
+									<td>{{item.resolved}} <span data-ng-show="item.resolved == true">({{item.resolutionDate}})</span></td>
+									<td><span data-ng-show="item.source == 1">SIGA>punT</span><span data-ng-show="item.source == 2">Pay[in]</span></td>
+									<td>{{item.operationNumber}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<h3 data-ng-hide="arguments.whiteList.length > 0"> No hay datos de esta tarjeta en la lista blanca</h3>
+					</tab>*@
+				<tab heading="Dispositivo" active="steps.step7">
+					<table class="table table-hover" data-ng-show="temp.device.length > 0">
+						<thead>
+							<tr>
+								<th translate="resources.transportLog.deviceManufacturer">Fabricante</th>
+								<th translate="resources.transportLog.deviceModel">Model</th>
+								<th translate="resources.transportLog.devicePlatform">Platform</th>
+								<th translate="resources.transportLog.deviceUuid">UUID</th>
+								<th translate="resources.transportLog.deviceSerial">Nº Serie</th>
+								<th translate="resources.transportLog.deviceOperator">Operador</th>
+								<th translate="resources.transportLog.deviceImei">IMEI</th>
+								<th translate="resources.transportLog.deviceMac">MAC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="device in temp.device">
+								<td>{{device.manufacturer}}</td>
+								<td>{{device.model}}</td>
+								<td>{{device.platform}} {{device.version}}</td>
+								<td>{{device.uuid}}</td>
+								<td>{{device.serial}}</td>
+								<td>{{device.operator}}</td>
+								<td>{{device.imei}}</td>
+								<td>{{device.mac}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<h3 data-ng-hide="temp.device.length > 0"> No hay datos sobre este dispositivo</h3>
+				</tab>
+			</tabset>
+		</div>
+	</xp-get>
+		<script type="text/ng-template" id="secondDialogId">
+			<h3>¿Estás seguro que quieres guardar el nuevo valor {{valor}}?</h3>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-click="closeSecond()" style="background-color:#CC982A !important">
+					Confirmar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-dialog="modalDialogId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous>
+					Cancelar
+				</button>
+			</div>
+		</script>
+		<script type="text/ng-template" id="secondDialogBlockId">
+			<h3>¿Estás seguro que quieres guardar el nuevo valor {{valor}}?</h3>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-click="closeSecond()" style="background-color:#CC982A !important">
+					Confirmar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-dialog="modalDialogBlockId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous>
+					Cancelar
+				</button>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="secondDialogCardId">
+			<h3>¿Estás seguro que quieres guardar los nuevos valores en la tarjeta?</h3>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-click="closeSecond()" style="background-color:#CC982A !important">
+					Confirmar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-dialog="modalDialogCardId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous>
+					Cancelar
+				</button>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="modalDialogId">
+			<div class="ngdialog-message" data-ng-controller="xpEdit">
+				<h3>Editar</h3>
+				<p>Editar el campo <input ng-model="confirmValue" /></p>
+			</div>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-dialog="secondDialogId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous
+						style="background-color:#CC982A !important; display:none;">
+					Guardar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openConfirm2()" style="background-color:#CC982A !important">
+					Guardar
+				</button>
+
+
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-click="closeThisDialog($index)">Cerrar</button>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="modalDialogBlockId">
+			<div class="ngdialog-message" data-ng-controller="xpEdit">
+				<h3>Editar</h3>
+				<p>Editar el bloque <input ng-model="confirmBlock" /></p>
+			</div>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-dialog="secondDialogBlockId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous
+						style="background-color:#CC982A !important; display:none;">
+					Guardar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openConfirmBlock2()" style="background-color:#CC982A !important">
+					Guardar
+				</button>
+
+
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-click="closeThisDialog(0)">Cerrar</button>
+			</div>
+		</script>
+
+		<script type="text/ng-template" id="modalDialogCopyCardId">
+			<div class="ngdialog-message" data-ng-controller="xpEdit">
+				<h3>Editar la tarjeta</h3>
+				<p>Asegúrese de introducir los 48 sectores, uno por cada linea. Para hacer más eficiente la operación, solo se guardan aquellos sectores que cambian.</p>
+				<p><textarea rows="33" cols="50" ng-model="confirmCard" spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off"></textarea></p>
+			</div>
+			<div class="ngdialog-buttons">
+				<button type="button" class="ngdialog-button ngdialog-button-primary"
+						ng-dialog="secondDialogCardId"
+						ng-dialog-class="ngdialog-theme-default"
+						ng-dialog-controller="SecondModalCtrl"
+						ng-dialog-close-previous
+						style="background-color:#CC982A !important; display:none;">
+					Guardar
+				</button>
+				<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openConfirmCard2()" style="background-color:#CC982A !important">
+					Guardar
+				</button>
+
+
+				<button type="button" class="ngdialog-button ngdialog-button-secondadry" ng-click="closeThisDialog(0)">Cerrar</button>
+			</div>
+		</script>
+
+		<style>
+			.tab-content {
+				padding-left: 1em !important;
+				/*padding-right: 1em !important;*/
+			}
+		</style>
+
+}
+

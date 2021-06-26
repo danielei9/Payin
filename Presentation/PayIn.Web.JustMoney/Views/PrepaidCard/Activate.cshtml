@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories.JustMoney;
+
+@using (Html.xpPopupPut(
+	PrepaidCardFactory.Activate,
+	PrepaidCardFactory.ActivateApi,
+	"",
+	"resources.justMoney.prepaidCard.activate"
+))
+{
+	<p translate="resources.justMoney.prepaidCard.activateQuestion">Do you want to activate this card?</p>
+}

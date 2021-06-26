@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPopupPost(
+    LiquidationFactory.CreateAndPayName,
+    LiquidationFactory.CreateAndPayApi,
+    "",
+    "resources.liquidation.pay",
+    arguments: "{\"concessionId\":{{arguments.concessionId}} }"
+))
+{
+	<h4 translate="resources.liquidation.payQuestion" translate-values="{ total: '{{arguments.total|number:2}}', concessionName: '{{arguments.concessionName}}' }">Do you want to pay the liquidation of {{arguments.total|number:2}}€ to the company {{arguments.concessionName}}?</h4>
+}

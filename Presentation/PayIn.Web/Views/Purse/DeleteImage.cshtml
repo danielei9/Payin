@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using (Html.xpPopupDelete(
+	PurseFactory.DeleteImageName,
+	PurseFactory.DeleteImageApi,
+	"",	
+	"resources.purse.deleteImage"
+))
+{
+	<p translate="resources.purse.deleteImageQuestion">Are you sure you want to delete your avatar?</p>
+}
+
+
+

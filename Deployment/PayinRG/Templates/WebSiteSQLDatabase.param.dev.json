@@ -1,0 +1,33 @@
+﻿{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "payin-publicName": {
+            "value": "payin-public"
+        },
+        "hostingPlanName": {
+            "value": "payin-publichosting"
+        },
+        "serverName": {
+            "value": "payin-dbs"
+        },
+        "administratorLogin": {
+            "value": "Administrador"
+        },
+        "collation": {
+            "value": "SQL_Latin1_General_CP1_CI_AI"
+        },
+        "edition": {
+            "value": "Basic"
+        },
+        "payin-internalName": {
+            "value": "payin-internal"
+        },
+        "payin-internaldbName": {
+            "value": "payin-internaldb"
+        },
+        "payin-publicdbName": {
+            "value": "payin-publicdb"
+        }
+    }
+}

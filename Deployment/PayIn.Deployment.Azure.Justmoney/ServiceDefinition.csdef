@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="PayIn.Deployment.Azure.Justmoney" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="PayIn.Web.JustMoney" vmsize="Small">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+		  <Binding name="Http" endpointName="Http" />
+		  <Binding name="Https" endpointName="Https" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+	  <InputEndpoint name="Http" protocol="http" port="80" />
+	  <InputEndpoint name="Https" protocol="https" port="443" certificate="pay-in.es" />
+    </Endpoints>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+	  <Setting name="Files" />
+	  <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" />
+    </ConfigurationSettings>
+	<Certificates>
+	  <Certificate name="pay-in.es" storeLocation="LocalMachine" storeName="My" />
+	</Certificates>
+	<Imports>
+	  <Import moduleName="RemoteAccess" />
+	  <Import moduleName="RemoteForwarder" />
+	</Imports>
+  </WebRole>
+</ServiceDefinition>

@@ -1,0 +1,22 @@
+@using PayIn.Web.Models;
+
+@model ForgotPasswordViewModel
+
+<script type="text/javascript" src="~/Scripts/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="~/Scripts/functions.js"></script>
+@{
+    Layout = "~/Views/Shared/_Authentication.cshtml";
+}
+
+<div class="container w-xxl w-auto-xs">
+    <img ng-src="{{features.logoUrl()}}" alt="{{app.name()}}" class="navbar-brand block m-t" style="margin:auto;width:80%;height:auto;" />
+    <div class="wrapper text-center">
+        <strong translate="resources.security.emailSendedText">Email sended to your account</strong>
+    </div>
+    <div class="m-b-lg">
+        <br />
+        <div><span translate="resources.security.waitEmailText">Check the spam folder if you last to receive the email.</span></div>
+        <br />
+        <a href="/Account/Login" class="btn btn-lg btn-orange btn-block" type="button" translate="resources.security.login">Login</a>
+    </div>
+</div>

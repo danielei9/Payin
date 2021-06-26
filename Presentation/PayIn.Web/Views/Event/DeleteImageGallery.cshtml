@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	EventFactory.DeleteImageGalleryName,
+	EventFactory.DeleteImageGalleryApi,
+	"",
+	"resources.event.deleteImage"
+))
+{
+	<p translate="resources.event.deleteImageQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete this image of the gallery the event {{arguments.name}}?</p>
+}

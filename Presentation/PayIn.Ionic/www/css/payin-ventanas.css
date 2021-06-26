@@ -1,0 +1,189 @@
+/* Common*/
+.buttonMainStyle{
+    border-radius: 38px 38px 38px 38px;
+    width: 100%;
+    background-color: rgba(255,255,255,0);
+    border: 1px solid white;
+    font-size: 1.5em;
+    color: #FFF !important;
+}
+.white{
+    color: white;
+}
+.cleanBorders{
+    border: 0px;
+    background-color: rgba(255,255,255,0);
+    padding: 0px;
+}
+.background{ 
+    background: -webkit-linear-gradient(110deg, 
+        rgba(222, 92, 13, 1) 30%,
+        rgba(243, 134, 13, 1) 50%,
+        rgba(231, 160, 6, 1) 70%,
+        rgba(240, 191, 19, 1) 85%,
+        rgba(248, 214, 29, 1)  100%) !important; 
+    opacity: 0.64;}
+
+.transportContent{ 
+    margin-top: -15%;
+    margin-bottom: -15%;
+}
+
+.non-padding{
+    padding: 0px;
+}
+.padding-initial{
+    padding: 10px;
+}
+.wrapperMargin20{
+    margin-top: 20% !important;
+}
+.wrapperMargin10{
+    margin-top: 10% !important;
+}
+.wrapperMargin5{
+    margin-top: 5% !important;
+}
+.inputMainStyle{
+    border: 0px !important; 
+    border-bottom: 1px solid white !important; 
+    width: 90%; 
+    background-color: rgba(255,255,255,0) !important; 
+    color: white !important;
+    font-size: 1.5em !important;
+}
+
+.inputMainStyle::-webkit-input-placeholder {
+    /* Google Chrome y Safari */
+    color: white !important;
+    opacity: 0.3;
+}
+.inputMainStyle::-moz-placeholder {
+    /* Firefox 19 y superior */
+    color: white !important;
+    opacity: 0.3;
+}
+.cleanBackground{
+    background-color: rgba(255,255,255,0);
+    border: 0px;
+    color: white;
+}
+.whiteColor{
+    color: #FFFFFF;
+}
+
+/* Template -- About */
+/*About*/
+.wrapper{ margin-top: 40%; }
+
+.img-logo{ width: 100%; }
+
+
+.hStyle{ 
+    color: #FFFFFF; 
+    text-align: center;
+}
+
+.wrapperLicence{ margin-top: 1%;}
+
+.wrapperSubContent{ margin-top: 50%;}
+
+.policyText{ text-decoration:none;}
+
+/* Template -- Account */
+
+/* Login */
+
+.wrapperIcon{
+    margin-top: 20%;
+}
+.img-login-logo{
+    width: 70%;
+}
+.form-login{
+    margin-top: 6em !important;
+}
+.icon-login{
+    font-size: 2em; 
+    color: white !important;
+    opacity: 0.7;
+}
+.label-login{
+    font-size: 1.3em; 
+    color: white !important;
+}
+.label-login{
+    font-size: 1.1em;
+}
+
+.paddingAddButtonLogin{
+    padding: 8px;" 
+}
+
+/* Profile */
+
+.img-profile-logos{
+    color: white !important;
+    font-size: 2em;
+}
+.label-profile{
+    background-color: rgba(255,255,255,0);
+    font-size: 1.0em; 
+    padding: 8px;
+    color:#FFF !important;
+}
+.hrProfile{
+    background-color: white !important; 
+    opacity: 0.3;
+}
+/* Update Password, UpdatePin, forgotPin, confirmMail & forgotPassword*/
+
+.formUpdate{
+    width: 100% !important;
+}
+
+.inputPass{
+    font-size: 1em !important; 
+}
+
+/* Register */
+.termsColor { 
+    color: #FFF !important;
+}
+
+.backgroundCheckboxTerm { 
+    background-color:inherit !important;
+    border:none
+}
+
+/* Main Menú */
+
+/* Template -- Service Notification*/
+
+/* Template -- Main*/
+
+/* Template -- Policy*/
+
+/* Template -- PaymentMedia*/
+
+/* Template -- PaymentWorker*/
+
+/* Template -- Ticket*/
+
+/* Template -- TransportCard*/
+
+/* Template -- Wizard*/
+
+
+
+
+/* PaymentMediaGetAll */
+
+.showSlider > .slider-pager{
+    opacity: 1 !important;
+}
+.maxHeight {
+    min-height:82vh;
+    max-height:85vh;
+}
+

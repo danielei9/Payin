@@ -1,0 +1,40 @@
+<ion-view view-title="Comprar tarjeta" xp-panel xp-loading>
+    <ion-content
+        ng-controller="transportCardCreateController"
+        ng-init="data=[{
+            'provider':'Bonometro',
+            'title':'Zona A',
+            'type': 1,
+            'uidType': 1,
+            'perso': 1,
+            'price':10,
+            'logo':'img/cardOwners/metro.jpg'
+        },{
+            'provider':'Vitrasa',
+            'title':'Tarjeta bus',
+            'type': 2,
+            'perso': 2,
+            'apps': [{'aid':'ffffff'}],
+            'zone':'Centro',
+            'balance':10,
+            'price':10,
+            'logo':'img/cardOwners/vitrasa.jpg'
+        }]">
+        <ul class="list">
+            <li class="item item-icon-right " ng-repeat="item in data">
+                <div class="row row-center" ng-click="execute(item);">
+                    <div class="col col-25 text-left">
+                        <img width="80p" ng-src="{{item.logo}}"/>
+                    </div>
+                    <div class="col col-50" style="margin-left:1em;">
+                        <div class="ticket-list text-truncate">{{item.provider}}</div>
+                        <div class="ticket-listAux text-truncate">{{item.title}}</div>
+                    </div>
+                    <div class="col col-25 text-right">
+                      <div class="ticket-prize">{{item.price|number:2}}€</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceFreeDays;
+
+@using (Html.xpPost(
+	ServiceFreeDaysFactory.Create,
+	ServiceFreeDaysFactory.CreateApi,
+	"",
+	//ServiceFreeDaysResources.Create,
+	"resources.serviceFreeDays.create",
+	isTitleActive: true
+))
+{
+				@(Html.ArgumentFor<ServiceFreeDaysCreateArguments>(x => x.Name))
+				@(Html.ArgumentFor<ServiceFreeDaysCreateArguments>(x => x.From))
+				@(Html.ArgumentFor<ServiceFreeDaysCreateArguments>(x => x.Until))
+				@(Html.SelectFor<ServiceFreeDaysCreateArguments>(x => x.ConcessionId, "concessionName", ServiceConcessionFactory.RetrieveSelectorApi))
+}
+

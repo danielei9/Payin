@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPopupDelete(
+	ControlFormArgumentFactory.Delete,
+	ControlFormArgumentFactory.DeleteApi,
+	"",
+	//ControlFormArgumentResources.Delete,
+	"resources.controlFormArgument.delete",
+	id: "id"
+))
+{
+	<p translate="resources.controlFormArgument.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete the form {{arguments.name}}?</p>
+}

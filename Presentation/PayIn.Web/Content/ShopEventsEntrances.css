@@ -1,0 +1,1687 @@
+/* Definicion de variables */
+:root {
+    --bgcolor: white; /* color de fondo, naranja payin */
+    --forecolor-dark: #6A1A25; /* color de fuente oscura */
+    --forecolor: white; /* color de fuente principal */
+    --forecolor2: rgba(220, 220, 220, 0.9); /* color de fuente secundario */
+    --highlightcolor: #6A1A25; /* color resaltado, orange */
+    --highlightcolor-selected: rgba(158, 107, 112, 0.7); /* color resaltado, seleccionado, orage semitransparente */
+    --bottombgcolor: #9E6B70; /* color de la sección inferior */
+    --darkRedWithOpacity: rgba(106, 26, 37, 0.45);
+    --darkRedWithouthOpacity: rgba(106, 26, 37, 1);
+}
+
+
+html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: "Trebuchet MS", Times, serif !important;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	color: #000 !important;
+}
+
+* {
+	/*background-color: var(--bgcolor);*/
+	background-color: var(--bottombgcolor);
+	-webkit-overflow-scrolling: touch;
+	background-color: white;
+}
+
+.pay-in-logo-div {
+	display: inline-block;
+	width: 100%;
+	height: 50px;
+	background-color: #D2DAE2;
+	margin-bottom: -3px;
+}
+
+	.pay-in-logo-div img {
+		margin-top: 5px;
+		float: right;
+		width: 120px;
+		height: 80%;
+		background-color: transparent;
+	}
+
+.singleEvent * {
+	background-color: transparent;
+}
+
+.banner {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 500px;
+	/* background-image: url("files/banner.jpg"); */
+	background-size: cover;
+	background-position: center center;
+}
+
+.banner_uid_container {
+	background-color: transparent;
+	display: table-cell;
+	/*margin-right: auto;*/
+	/*margin-left: auto;*/
+	/*width: 100%;*/
+	text-align: center;
+	color: yellow;
+	vertical-align: middle;
+	padding-bottom: 50px;
+}
+
+.banner_uid_searchpanel {
+	/*width: 300px;*/
+	min-width: 300px;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+.banner_uid_shadow {
+	/*width: 300px;*/
+	min-width: 300px;
+	width: 40%;
+	height: 55px;
+	background-color: #FFF;
+	padding: 10px;
+	/*border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;*/
+	border: 2px solid var(--bgcolor);
+	position: absolute;
+	opacity: 0.75;
+	-webkit-box-shadow: 10px 10px 50px -10px rgba(0,0,0,0.9);
+	-moz-box-shadow: 10px 10px 50px -10px rgba(0,0,0,0.9);
+	box-shadow: 10px 10px 50px -10px rgba(0,0,0,0.9);
+}
+
+.banner_uid_text {
+    /*width: 300px;*/
+    min-width: 300px;
+    width: 40%;
+    position: absolute;
+    padding: 10px;
+    background-color: transparent;
+    color: black;
+    display: table
+}
+
+.logo {
+	position: absolute;
+	border: 4px solid var(--highlightcolor);
+	width: 128px;
+	height: 128px;
+	left: 50px;
+	bottom: -70px;
+}
+
+	.logo img {
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+	}
+
+.title {
+	box-sizing: border-box;
+	width: 100%;
+	padding-right: 10px;
+	/*height: 50px;*/
+	text-align: right;
+	font-weight: bold;
+	font-size: 35px;
+	background-color: unset;
+}
+
+.verticalTitle {
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.singleEvent {
+	position: relative;
+	display: inline-block;
+	/*float: left;*/
+	width: 90%;
+	height: auto;
+	margin-left: 5%;
+	padding-left: 5%;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	margin-top: 70px;
+	margin-bottom: 20px;
+	background-color: var(--bottombgcolor);
+}
+
+.singleEventIMG {
+	display: block;
+	float: left;
+	width: 400px;
+	height: auto;
+	margin-right: 0;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.singleEventIMG img {
+	width: 100%;
+	height: auto;
+}
+
+.singleEventAllInfo {
+	float: left;
+	display: block;
+	position: relative;
+	width: 55%;
+	height: auto;
+	margin-left: 5%;
+}
+
+.dateAndTime {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background-color: var(--highlightcolor) !important;
+    color: white;
+    /*box-shadow: 1px 1px #FCC3B0, 2px 2px #FCC3B0, 3px 3px #FCC3B0;*/
+    margin-top: 25px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+	/*.dateAndTime p {
+		background-color: var(--highlightcolor);
+	}*/
+
+	.dateAndTime hr {
+		width: 70%;
+		border-style: solid;
+		border-color: black;
+		margin-bottom: 8px;
+		margin-top: -2px;
+		border-color: white;
+	}
+
+#eventTitle {
+	display: block;
+	/*width: auto;*/
+	/*max-width: 400px;*/
+	margin-left: 25px;
+	margin-top: 22px;
+	margin-bottom: 10px;
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+#eventPlace {
+	display: block;
+	/*width: 400px;*/
+	height: 40px;
+	font-size: 20px;
+	margin-left: 25px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+#viewMore {
+	font-size: 12px;
+    color: var(--forecolor);
+}
+
+#viewMore a {
+    color: var(--forecolor2);
+}
+
+#viewMore a:hover {
+    color: var(--forecolor);
+}
+
+#eventConditions {
+    display: inline-block;
+    /*width: 400px;
+    height: 40px;*/
+    font-size: 20px;
+    /*margin-left: 25px;*/
+    font-weight: bold;
+    color: var(--forecolor);
+
+    /*-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;*/
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    /*font-size: 16px;
+    color: var(--forecolor-dark);*/
+}
+
+#eventInfo {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid var(--highlightcolor);
+    font-size: 16px;
+    color: var(--forecolor);
+}
+
+.totalInfo {
+	width: auto !important;
+	font-size: 20px !important;
+	background-color: white;
+}
+
+.soldCounter {
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: transparent;
+    line-height: 1;
+}
+
+.singleTicket {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0px 20px;
+	display: inline-block;
+	/*float: left;*/
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	border: 3px solid var(--highlightcolor);
+	/*border-radius: 17px;*/
+	color: white;
+	background-color: var(--darkRedWithOpacity);
+}
+
+.ticketType {
+	float: left;
+	display: block;
+	width: 150px;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: transparent;
+}
+
+.ticketCosts {
+	display: block;
+	float: left;
+	font-size: 15px;
+	width: 150px;
+	/* height: 100%; */
+	font-weight: bold;
+	background-color: transparent;
+}
+
+.administrationCosts {
+	display: block;
+	float: left;
+	font-size: 15px;
+	width: 120px;
+	/* height: 100%; */
+	font-weight: bold;
+	background-color: transparent;
+}
+.ticketType, .ticketCosts, .administrationCosts {
+    color: var(--forecolor2) !important;
+}
+
+.ticketType div, .ticketCosts div, .administrationCosts div {
+    margin-top: 5px;
+}
+
+
+#eventPlace span, #eventConditions span, .ticketType div, .ticketCosts div, .administrationCosts div {
+    font-weight: lighter;
+    background-color: transparent;
+    color: var(--forecolor);
+}
+
+.ticketCounter {
+	position: relative;
+	box-sizing: border-box;
+	padding-left: 40px;
+	padding-top: 25px;
+	/*     display: inline-block; */
+	float: right;
+	width: auto;
+	height: 103px;
+	border-left: 7px dotted var(--highlightcolor);
+	margin-right: 5px;
+	color: white;
+	background-color: transparent;
+}
+
+
+.headerSelect * {
+	background-color: white !important;
+}
+
+.ticketCounter input[type=number] {
+	border: 1px solid var(--bottombgcolor);
+	background-color: var(--highlightcolor);
+	padding: 10px;
+	width: 60px;
+}
+
+input[type="number"] {
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+.number-input {
+	border: none;
+	background-color: rgba(106, 26, 47, 1);
+	/* box-shadow: 1px 1px #FCC3B0, 2px 2px #FCC3B0, 3px 3px #FCC3B0; */
+	display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+
+.number-input a {
+	outline: none;
+	-webkit-appearance: none;
+	background-color: var(--darkRedWithouthOpacity);
+	border: none;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	margin: 0;
+	font-size: 15px;
+	position: relative;
+}
+
+.number-input a.disabled {
+	background-color: var(--darkRedWithOpacity);
+	cursor: not-allowed;
+	height: 50px;
+}
+
+.number-input a:before,
+.number-input a:after {
+	display: inline-block;
+	position: absolute;
+	content: '';
+	width: 1rem;
+	height: 2px;
+	background-color: #212121;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	background-color: white;
+}
+
+.number-input a.plus:after {
+	transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+	font-family: sans-serif;
+	max-width: 5rem;
+	padding: .5rem;
+	border-width: 0 2px;
+	font-size: 2rem;
+	height: 5rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.submitButton {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    border: none;
+    background-color: var(--highlightcolor) !important;
+    color: white;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.unlinkCardButton {
+    /*margin-top: 10px;
+    margin-bottom: 50px;*/
+    border: none;
+    background-color: var(--highlightcolor) !important;
+    color: white;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.itemButton {
+	padding: 3px 9px;
+	border: none;
+	background-color: #FFD3B5;
+	color: black;
+	/*background-color: green;*/
+/*color: white;*/
+/*border-radius: 3px;*/
+cursor: pointer;
+}
+
+.submitButtonForm {
+	/*display: inline-block;*/
+	/*float: left;*/
+	text-align: right;
+	width: 100%;
+}
+
+@media (min-width: 1389px) and (max-width: 1450px) /* Small responsive part ~Ivo */
+{
+	.ticketType, .ticketCosts, .administrationCosts {
+		font-size: 14px;
+		width: 130px;
+		margin-top: 30px;
+	}
+
+	.soldCounter {
+		font-size: 1.4rem;
+	}
+}
+
+/* The part below makes the code responsive ~Ivo */
+@media (min-width: 1200px) and (max-width: 1389px) /* For Tablets ~Ivo */
+{
+	.banner {
+		height: 300px;
+	}
+
+	/*.logo {
+		width: 128px;
+		height: 128px;
+		left: 50px;
+		bottom: -70px;
+	}*/
+
+	.title {
+		font-size: 25px;
+	}
+
+	.singleEvent {
+		position: relative;
+		display: inline-block;
+		/*float: left;*/
+		width: 90%;
+		height: auto;
+		margin-left: 7%;
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+
+	.singleEventIMG {
+		width: 270px;
+		height: 170px;
+		margin-right: 30px;
+		margin-top: 70px;
+	}
+
+	.singleEventAllInfo {
+		float: left;
+		display: block;
+		position: relative;
+		width: 65%;
+		height: auto;
+	}
+
+	#eventTitle {
+		display: block;
+		/*width: 100%;*/
+	}
+
+	#eventInfo {
+		margin-top: 20px;
+	}
+
+	#eventPlace {
+		display: block;
+		/*max-width: 300px;*/
+		font-size: 16px;
+	}
+
+	#viewMore {
+		font-size: 12px;
+	}
+
+	.ticketType, .ticketCosts, .administrationCosts {
+		font-size: 14px;
+		width: 140px;
+		margin-top: 30px;
+	}
+
+	.administrationCosts, .ticketCosts {
+		width: 110px;
+	}
+
+	.soldCounter {
+		font-size: 1.3rem;
+	}
+}
+
+/* For Tablets 2.0 ~Ivo */
+@media (min-width: 989px) and (max-width: 1200px) {
+	.banner {
+		height: 300px;
+	}
+
+    /*.logo {
+        width: 128px;
+        height: 128px;
+        left: 50px;
+        bottom: -70px;
+    }*/
+
+	.title {
+		font-size: 25px;
+	}
+
+	.singleEvent {
+		width: 90%;
+		margin-left: 5%;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+
+	.singleEventIMG {
+		width: 270px;
+		height: 170px;
+		margin-right: 30px;
+		margin-top: 50px;
+	}
+
+	.singleEventAllInfo {
+		float: left;
+		display: block;
+		position: relative;
+		width: 65%;
+		height: auto;
+	}
+
+
+	#eventTitle {
+		display: block;
+		/*width: 100%;*/
+		font-size: 2vw;
+	}
+
+	#eventInfo {
+		margin-top: 20px;
+	}
+
+	#eventPlace {
+		display: block;
+		/*width: 300px;*/
+		font-size: 15px;
+	}
+
+	#viewMore {
+		font-size: 12px;
+	}
+
+	.ticketType, .ticketCosts, .administrationCosts {
+		font-size: 14px;
+		width: 120px;
+		margin-top: 20px;
+	}
+
+
+	.ticketCounter {
+		width: auto;
+		padding: 18px 0 0 20px;
+		height: 70px;
+	}
+
+	.ticketCounter h3 {
+		font-size: 1.5vw;
+	}
+
+	.ticketCounter input[type=number] {
+		padding: 8px;
+		width: 50px;
+	}
+
+	.number-input a {
+		width: 30px;
+		height: 30px;
+	}
+
+	.number-input a.disabled {
+		height: 30px;
+	}
+
+	.number-input a:before,
+	.number-input a:after {
+		width: 0.75rem;
+		height: 2px;
+		top: 50%;
+		left: 50%;
+	}
+
+	.number-input input[type=number] {
+		max-width: 3.75rem;
+		padding: .375rem;
+		border-width: 0 2px;
+		font-size: 1.5rem;
+		height: 30px;
+	}
+
+	.ticketCounter input[type=submit] {
+		width: 90px;
+		height: 30px;
+		/*border-radius: 6px;*/
+		cursor: pointer;
+		font-size: 13px;
+	}
+
+	.soldCounter {
+		font-size: 1.2rem;
+	}
+}
+
+@media (min-width: 989px) and (max-width: 1130px) {
+	.singleEventIMG {
+		width: 250px !important;
+		height: 140px !important;
+	}
+
+	#eventTitle, #eventPlace {
+		/*width: 200px !important;*/
+	}
+
+	.singleEventAllInfo {
+		float: left !important;
+		display: block !important;
+		position: relative !important;
+		width: 63% !important;
+		height: auto !important;
+	}
+}
+
+
+@media (min-width: 800px) and (max-width: 989px) {
+    .banner {
+        height: 300px;
+    }
+
+    /*.logo {
+        width: 128px;
+        height: 128px;
+        left: 50px;
+        bottom: -70px;
+    }*/
+
+    .title {
+        font-size: 25px;
+    }
+
+    .singleEvent {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .singleEventIMG {
+        width: 235px;
+        height: 135px;
+        margin-right: 30px;
+        margin-top: 50px;
+    }
+
+    .singleEventAllInfo {
+        float: left;
+        display: block;
+        position: relative;
+        width: 90%;
+        height: auto;
+    }
+
+    .dateAndTime {
+        position: absolute;
+        top: -191px;
+        left: 215px;
+    }
+
+    #eventTitle {
+        position: absolute;
+        display: block;
+        /*width: 335px;*/
+        height: 40px;
+        top: -191px;
+        left: 310px;
+        font-size: 19px;
+    }
+
+    #eventInfo {
+        margin-top: 20px;
+    }
+
+    #eventPlace {
+        display: block;
+        /*float: left;*/
+        position: absolute;
+        /*width: 335px;*/
+        top: -120px;
+        left: 310px;
+        font-size: 16px;
+    }
+
+    #viewMore a {
+        font-size: 12px;
+    }
+
+    .ticketType, .ticketCosts, .administrationCosts {
+        font-size: 14px;
+        width: 140px;
+        margin-top: 20px;
+    }
+
+    .ticketCounter {
+        width: auto;
+        padding: 18px 0 0 25px;
+        height: 70px;
+    }
+
+        .ticketCounter input[type=number] {
+            padding: 8px;
+            width: 50px;
+        }
+
+    .number-input a {
+        width: 30px;
+        height: 30px;
+    }
+
+        .number-input a.disabled {
+            height: 30px;
+        }
+
+        .number-input a:before,
+        .number-input a:after {
+            width: 0.75rem;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+        }
+
+    .number-input input[type=number] {
+        max-width: 3.75rem;
+        padding: .375rem;
+        border-width: 0 2px;
+        font-size: 1.5rem;
+        height: 30px;
+    }
+
+    .ticketCounter input[type=submit] {
+        width: 90px;
+        height: 30px;
+        /*border-radius: 6px;*/
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .soldCounter {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media (min-width: 50px) and (max-width: 699px) /* For Phones ~Ivo */
+{
+	.banner {
+		height: 200px;
+	}
+
+	.logo {
+		width: 100px;
+		height: 100px;
+		left: 50px;
+		bottom: -55px;
+	}
+
+	.singleEvent {
+		width: 90%;
+		height: auto;
+		margin-left: 5%;
+		margin-top: 30px;
+		margin-bottom: 50px;
+	}
+
+	.singleEventIMG {
+		display: block;
+		float: none;
+		width: 275px;
+		height: 170px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+	}
+
+	.singleEventAllInfo {
+		float: none;
+		display: block;
+		position: relative;
+		width: 90%;
+		height: auto;
+	}
+
+	#eventTitle {
+		display: block;
+		/*float: left;*/
+		/*width: auto;
+		max-width: 400px;*/
+		/* height: 50px; */
+		margin-left: 2%;
+		font-size: 4vw;
+		margin-top: 12px;
+	}
+
+	#eventPlace {
+		display: block;
+		/*float: left;*/
+		/*width: auto;
+		max-width: 400px;*/
+		height: 50px;
+		font-size: 3vw;
+		margin-top: 0;
+		margin-left: 2%;
+	}
+
+	#viewMore {
+		font-size: 2vW;
+	}
+
+	.dateAndTime {
+		width: 80px;
+		height: 80px;
+		font-size: 12px;
+		margin-top: 17px;
+	}
+
+	#eventInfo {
+		display: inline-block;
+		padding: 10px;
+		width: 100%;
+		font-size: 13px;
+	}
+
+	.ticketCounter {
+		display: block;
+		float: right;
+		width: auto;
+		height: auto;
+		margin-top: 0;
+		border: none;
+		padding: 15px 0 15px;
+	}
+
+	.ticketType {
+		float: left;
+		display: block;
+		width: 140px;
+		font-size: 14px;
+	}
+
+	.ticketCosts {
+		display: block;
+		float: left;
+		font-size: 14px;
+		width: 140px;
+		/* height: 100%; */
+	}
+
+	.administrationCosts {
+		display: block;
+		float: left;
+		font-size: 14px;
+		width: 140px;
+		/* height: 100%; */
+	}
+
+	.number-input a {
+		width: 30px;
+		height: 30px;
+	}
+
+		.number-input a.disabled {
+			height: 30px;
+		}
+
+	.number-input input[type=number] {
+		max-width: 3.75rem;
+		padding: .375rem;
+		border-width: 0 2px;
+		font-size: 1.5rem;
+		height: 30px;
+	}
+
+	.soldCounter {
+		font-size: 1.1rem;
+	}
+}
+
+/* For Phones ~Ivo */
+@media (min-width: 50px) and (max-width: 300px) {
+	.singleTicket {
+		min-width: 150px !important;
+	}
+
+	.ticketType, .ticketCosts, .administrationCosts {
+		width: unset !important;
+	}
+
+	.soldCounter {
+		font-size: 1rem !important;
+	}
+}
+
+@media (min-height: 300px) and (max-height: 600px) /* For devices with small heights ~Ivo */
+{
+	.banner {
+		height: 200px;
+	}
+}
+
+/* Añadidos por Toni 2019-01-03 */
+p {
+	margin: 10px 0 10px !important;
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	/*color: #000;*/
+}
+
+
+/* Sección superior */
+#head-section {
+	background-color: var(--bgcolor);
+}
+
+/* Botonera TAB */
+.buttongroup {
+	/*margin-top: 15px;*/
+	width: 100%;
+	text-align: center;
+	border-bottom: 2px solid var(--highlightcolor);
+	background-color: unset;
+}
+
+
+
+.btn-group {
+    /*margin-top: -1px !important;*/
+    background-color: transparent; /* var(--bgcolor); */
+    color: gray;
+    margin-left: 15px;
+}
+
+	.btn-group button {
+		/*border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;*/
+		/*background-color: rgba(255, 255, 255, 0.2);*/
+		background-color: transparent;
+		/*         border: 1px var(--highlightcolor) solid; */
+		padding: 10px;
+		width: 150px;
+		margin-bottom: -1px;
+		transition: all 0.6s ease;
+		font-weight: bold;
+	}
+
+		.btn-group button:hover {
+			/*background-color: rgba(255, 255, 255, 0.5); /* aclarado *-/
+    background-color: rgba(255, 255, 255, 0.5); /* oscurecido *-/*/
+			/*             background-color: var(--highlightcolor-selected); orange aclarado */
+			color: black;
+		}
+
+.btn-selected, btn-selected:hover {
+	background-color: var(--highlightcolor) !important;
+	color: white !important;
+}
+
+
+
+@media (max-width: 300px) {
+	.buttongroup .btn-group .btn {
+		font-size: 10px !important;
+	}
+}
+
+@media (min-width: 301px) and (max-width: 450px) {
+	.buttongroup .btn-group .btn {
+		font-size: 11px !important;
+	}
+
+	.btn {
+		padding: 6px 6px !important;
+	}
+}
+
+.data-table {
+	border: 0px;
+}
+
+.data-centeredcolumn {
+	width: 80px;
+	text-align: center;
+}
+
+.data-head th {
+	border-bottom: var(--highlightcolor) 2px solid !important;
+	padding: 5px 15px 0px 15px;
+}
+
+.data-row {
+	background-color: var(--bottombgcolor);
+}
+
+.data-cell {
+	border-style: none !important;
+	padding: 5px 15px !important;
+}
+
+.data-row:nth-child(odd) > td {
+	/*background-color: var(--bgcolor) !important;*/
+	background-color: var(--bottombgcolor) !important;
+	/*background-color: rgba(255, 192, 72, 0.7) !important;*/
+}
+
+.data-row:nth-child(even) > td {
+	background-color: var(--bottombgcolor) !important;
+	/*background-color: var(--bgcolor) !important;*/
+}
+
+.marginBottom10px {
+	margin-bottom: 10px;
+}
+
+/* TABS */
+#tabInfo, #tabTickets, #tabRecharge {
+	padding: 20px;
+	/*margin-top: 50px;*/
+}
+
+#tabBuy {
+	padding: 20px;
+	/*     background-color: var(--bottombgcolor); */
+}
+
+.tabSeparator {
+	font-size: 1.7em;
+	font-weight: bold;
+	color: var(--highlightcolor) !important;
+	margin-bottom: 10px;
+}
+
+
+
+#tabTickets .data-head th {
+	/*background-color: var(--highlightcolor)*/
+}
+
+#tabTickets * {
+	/*background-color: transparent;
+	color: rgba(220,220,220,1);*/
+}
+
+#tabTickets div {
+	/*color: black !important;*/
+}
+
+.data-head th {
+	color: white !important;
+}
+
+.tabContent {
+	margin-bottom: 20px;
+	background-color: var(--bottombgcolor);
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 15px;
+	width: 100%;
+	margin-top: 10px;
+	border: 2px solid var(--highlightcolor);
+	font-size: 16px;
+}
+
+.tabContent-1col {
+	width: 95%;
+	margin-left: 4%;
+	display: inline-block;
+}
+
+.tabContent-2col {
+	width: 45%;
+	margin-left: 4%;
+	display: inline-block;
+}
+
+.tabContent .balance {
+	font-size: xx-large;
+}
+
+.tabContent-content {
+}
+
+.tabContent-label {
+    font-weight: bold;
+    color: var(--forecolor2) !important;
+}
+
+.tabContent * {
+	background-color: transparent;
+	color: var(--forecolor);
+}
+
+@media (min-width: 301px) and (max-width: 450px) {
+	.buttongroup .btn-group .btn {
+		font-size: 11px !important;
+	}
+
+	.btn {
+		padding: 6px 6px !important;
+	}
+}
+
+
+
+@media (max-width: 450px) {
+	.tabSeparator {
+		font-size: 16px;
+	}
+
+	.tabContent-label {
+		font-size: 14px;
+	}
+
+    .title {
+        font-size: 5vw;
+    }
+}
+
+@media (min-width: 451px) and (max-width: 599px) {
+	.tabSeparator {
+		font-size: 3vw;
+	}
+
+	.tabContent-label {
+		font-size: 14px;
+	}
+
+    .title {
+        font-size: 5vw;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 699px) {
+	.tabSeparator {
+		font-size: 19px;
+	}
+
+	.tabContent-label {
+		font-size: 14px;
+	}
+
+    .title {
+        font-size: 22px;
+    }
+
+    .verticalTitle {
+        height: 70px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 799px) {
+    .tabSeparator {
+        font-size: 19px;
+    }
+
+    .tabContent-label {
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .verticalTitle {
+        height: 105px;
+    }
+}
+
+
+@media (min-width: 800px) and (max-width: 988px) {
+    .tabSeparator {
+        font-size: 19px;
+    }
+
+    .tabContent-label {
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .verticalTitle {
+        height: 90px;
+    }
+}
+
+@media (min-width: 989px) and (max-width: 1200px) {
+	.tabSeparator {
+		font-size: 2vw;
+	}
+
+	.tabContent-label {
+		font-size: 14px;
+	}
+
+    .title {
+        font-size: 26px;
+    }
+
+    .verticalTitle {
+        height: 90px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .title {
+        font-size: 30px;
+    }
+
+    .verticalTitle {
+        height: 90px;
+    }
+}
+
+@media (min-width: 1390px) {
+    .title {
+        font-size: 30px;
+    }
+
+    .verticalTitle {
+        height: 100px;
+    }
+}
+
+.itemButton {
+	background-color: var(--highlightcolor) !important;
+}
+
+
+
+
+
+.exitButton-div {
+    display: inline-block;
+    width: 25px;
+    margin-left: 10px;
+}
+
+.exitButton {
+    width: 25px;
+}
+
+@media (max-width: 650px) {
+    .exitButton-div {
+        width: 20px;
+    }
+
+    .exitButton {
+        width: 20px;
+    }
+}
+
+/* Product part */
+.allProductsOuterDiv {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    background-color: var(--bgcolor);
+}
+
+.allProducts {
+    /*position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;*/
+
+    /*background-color: var(--bottombgcolor);*/
+    /*padding-top: 25px;*/
+    /*margin: 100px 10%;*/
+    margin: 10px 0px 20px 0px;
+}
+
+.singleProduct {
+    /*display: block;
+    float: left;
+    width: 23%;*/
+    height: 400px;
+    background-color: var(--bottombgcolor);
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 15px;
+    /*margin: 10px;*/
+    border: 2px solid var(--highlightcolor);
+    font-size: 16px;
+}
+
+
+.singleProductIMG {
+    width: 175px;
+    height: 175px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.productNameAndPrice {
+    color: white;
+    font-size: calc(12px + 1vw);
+    background-color: transparent;
+    padding: 0 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.productName {
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.productPrice {
+    background-color: transparent;
+}
+
+.productForm {
+    background-color: transparent;
+}
+
+.productBuyPart {
+    /*display: inline-block;
+    position: absolute;*/
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 50px;
+    top: -55px;
+    right: 0;
+}
+
+.productTotal, .making-ticket {
+    display: inline-block;
+    background-color: transparent;
+    height: 50px;
+    padding: 10px 15px;
+    float: right;
+    color: black;
+    border: 2px solid var(--highlightcolor);
+    margin: 0 0 10px !important;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: +15px;
+}
+
+#eventInfo.entranceTotal {
+	color: black;
+}
+
+.productBuyButton {
+    display: inline-block;
+    background-color: var(--highlightcolor);
+    border: none;
+    color: var(--bgcolor);
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    top: -55px;
+    float: right;
+    cursor: pointer;
+}
+
+.productCounter {
+    /*position: relative;*/
+    box-sizing: border-box;
+    width: auto;
+    height: 50px;
+    /*margin-right: 5px;
+    margin-top: 15px;*/
+    color: white;
+    background-color: transparent;
+    top: 335px;
+    right: 0px;
+    left: 0px;
+    position: absolute;
+}
+
+.productCounter input[type=number] {
+    border: 1px solid var(--bottombgcolor);
+    background-color: var(--highlightcolor);
+    padding: 10px;
+    width: 60px;
+    color: var(--bgcolor);
+}
+
+.product-number-input {
+    border: none;
+    background-color: var(--highlightcolor);
+    display: inline-flex;
+}
+
+.product-number-input,
+.product-number-input * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.product-number-input a {
+    outline: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin: 0;
+    font-size: 15px;
+    position: relative;
+}
+
+.product-number-input a.disabled {
+    background-color: var(--highlightcolor-selected);
+    cursor: not-allowed;
+    height: 50px;
+}
+
+.product-number-input a:before,
+.product-number-input a:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 1rem;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: white;
+}
+
+.product-number-input a.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.product-number-input input[type=number] {
+    font-family: sans-serif;
+    max-width: 5rem;
+    padding: .5rem;
+    border-width: 0 2px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media (min-width: 900px) and (max-width: 1170px) /* Product Part for smal screens */
+{
+    /* */
+}
+
+@media (min-width: 630px) and (max-width: 900px) /* Product Part for smaller smaller screens */
+{
+
+    .singleProductIMG {
+        width: 120px;
+        height: 120px;
+    }
+
+    .productNameAndPrice {
+        font-size: calc(10px + 1vw);
+    }
+}
+
+@media (min-width: 500px) and (max-width: 630px) /* Product Part for smaller smaller screens */
+{
+    .singleProductIMG {
+        width: 130px;
+        height: 130px;
+    }
+
+    .productNameAndPrice {
+        font-size: calc(12px + 1.5vw);
+    }
+}
+
+@media (min-width: 400px) and (max-width: 500px) /* Product Part for smaller smaller screens */
+{
+    .singleProductIMG {
+        width: 130px;
+        height: 130px;
+    }
+
+    .productNameAndPrice {
+        font-size: calc(10px + 1.5vw);
+    }
+}
+
+@media (min-width: 1px) and (max-width: 400px) /* Product Part for smaller smaller screens */
+{
+    .singleProductIMG {
+        width: 140px;
+        height: 140px;
+    }
+
+    .productNameAndPrice {
+        font-size: calc(12px + 1.5vw);
+    }
+
+    .productBuyPart {
+        width: 100%;
+    }
+
+	.productTotal, .making-ticket {
+		width: 50%;
+	}
+
+    .productBuyButton {
+        width: 42%;
+    }
+}
+
+.cardInblackList {
+    padding: 15px 20px 0px 20px;
+    width: -webkit-fill-available;
+    float: left;
+}
+
+.shopDocument_DIV {
+    margin: 0 0 30px 0;
+    padding: 35px 10px;
+    background-color: #6C1823;
+    min-height: 168px;
+    background-image: url('/Images/icono_documentacion-300x168.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.shopDocument_DIV:hover {
+    transform: scale(1.1);
+    transition: all .6s;
+}
+
+.shopDocument_A {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--forecolor);
+}
+
+.shopDocument_A:hover {
+    color: var(--forecolor);
+}
+
+.has-error .control-label {
+    color: var(--forecolor-dark) !important;
+}
+
+.col-center {
+    text-align: center;
+}
+.col-min120 {
+    min-width: 120px;
+}

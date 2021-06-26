@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	LiquidationFactory.CloseName,
+	LiquidationFactory.CloseApi,
+	"",
+	"resources.liquidation.close"
+))
+{
+	<h4 translate="resources.liquidation.closeQuestion" translate-values="{ total: '{{arguments.total}}' }">Do you want to Close the liquidation with the total of {{arguments.total}} € ?</h4>
+}

@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormAssign;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlFormAssignFactory.CreateState(),
+	ControlFormAssignFactory.CreateApi,
+	"",
+	//ControlFormAssignResources.Create,
+	"resources.controlFormAssign.create",
+	init: "scope.arguments.checkId=params.checkId;",
+	successUrl: "/ControlFormAssign/Update/{{id}}"
+))
+{
+	@(Html.SelectFor<ControlFormAssignCreateArguments>(x => x.FormId, "formName", ControlFormFactory.GetSelectorApi, focus: true))
+}
+

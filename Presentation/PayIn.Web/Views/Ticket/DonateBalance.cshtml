@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPost(
+    TicketFactory.Donate,
+    TicketFactory.DonateApi,
+    "",
+    "resources.ticket.donateBalance"
+))
+{
+<p translate="resources.ticket.donateBalanceQuestion" translate-values="{ uid: '{{arguments.uid}}' }">Do you want to donate money to card '{{uid}}'?</p>
+}

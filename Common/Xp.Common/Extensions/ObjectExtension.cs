@@ -1,0 +1,373 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace System
+{
+	public static class ObjectExtension
+	{
+		#region ToJson
+		public static string ToJson(this object that)
+		{
+			var json = JsonConvert.SerializeObject(that, new JsonSerializerSettings
+			{
+				ContractResolver = new CamelCasePropertyNamesContractResolver(),
+				NullValueHandling = NullValueHandling.Ignore,
+				Formatting = Formatting.None,
+			});
+			return json;
+		}
+		#endregion ToJson
+
+		#region ConvertTo
+		public static object ConvertTo(this object THIS, Type type)
+		{
+			if ((type.GetTypeInfo().IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+				return THIS == null ? null : THIS.ConvertTo(type.GenericTypeArguments[0]);
+			if ((THIS is DateTimeOffset) && (type == typeof(DateTime)))
+				return ((DateTimeOffset)THIS).DateTime;
+
+			return Convert.ChangeType(THIS, type, CultureInfo.CurrentCulture);
+		}
+		public static T ConvertTo<T>(this object THIS)
+		{
+			return (T)THIS.ConvertTo(typeof(T));
+		}
+		#endregion ConvertTo
+		
+		#region ToUrlEncoding
+		public static string ToUrlEncoding(this object query)
+		{
+			if (query == null)
+				return "";
+
+			var arguments = new StringBuilder();
+			foreach (var property in query.GetType().GetTypeInfo().DeclaredProperties)
+			{
+				var value = property.GetValue(query);
+				if (value != null)
+				{
+					var text = "";
+					var isEnum = property.PropertyType.GetTypeInfo().IsEnum;
+
+					// Convert to communicate
+					if (isEnum)
+						text = ((int)value).ToString();
+					else
+						text = value.ToString();
+
+					if (text != "")
+					{
+						if (arguments.Length > 0)
+							arguments.Append("&" + property.Name + "=" + text);
+						else
+							arguments.Append(property.Name + "=" + text);
+					}
+				}
+			}
+
+            var result = arguments.ToString();
+            return result;
+		}
+		#endregion ToUrlEncoding
+
+		#region GetPropertyValue
+		public static object GetPropertyValue(this object THIS, string propertyName)
+		{
+			return THIS.GetPropertyValue<object>(propertyName);
+		}
+		public static T GetPropertyValue<T>(this object THIS, string propertyName)
+		{
+			if (THIS == null)
+				return default(T);
+			if (string.IsNullOrEmpty(propertyName))
+				return default(T);
+
+			var roles = propertyName.Split('.').ToList();
+			var rol = roles.FirstOrDefault();
+			roles.RemoveAt(0);
+			var path = string.Join(".", roles.ToArray());
+
+			object value = null;
+			var property = THIS.GetType().GetPropertyInfo(rol);
+			if ((property == null) && (!string.IsNullOrEmpty(path)))
+			{
+				rol += "_" + path.Replace(".", "_");
+				path = "";
+				property = THIS.GetType().GetPropertyInfo(rol);
+			}
+			if (property == null)
+				return default(T);
+
+			value = property.GetValue(THIS, null);
+			if ((value != null) && (!string.IsNullOrEmpty(path)))
+				value = value.GetPropertyValue<T>(path);
+
+			return (T)value;
+		}
+		public static object GetPropertyValue_Path(this object THIS, string path, bool withGuionize = false)
+		{
+			return THIS.GetPropertyValue_Path<object>(path, withGuionize);
+		}
+		public static T GetPropertyValue_Path<T>(this object THIS, string path, bool withGuionize = false)
+		{
+			if (string.IsNullOrEmpty(path))
+				return default(T);
+
+			return THIS.GetPropertyValue_Path<T>(path.Split('.'), withGuionize);
+		}
+		public static object GetPropertyValue_Path(this object THIS, IEnumerable<string> roles, bool withGuionize = false)
+		{
+			return THIS.GetPropertyValue_Path<object>(roles, withGuionize);
+		}
+		public static T GetPropertyValue_Path<T>(this object THIS, IEnumerable<string> roles, bool withGuionize = false)
+		{
+			if (roles.Count() == 0)
+				return (T) THIS;
+
+			var role = roles.First();
+			var lastRoles = roles.Skip(1).ToList();
+
+			var rolesCollection = role.Split('[').ToList();
+			
+			var propertyInfo = THIS.GetType().GetPropertyInfo(rolesCollection[0]);
+			if (propertyInfo != null)
+			{
+				var value = THIS.GetPropertyValue(rolesCollection[0]);
+
+				for(int i = 1; i < rolesCollection.Count(); i++)
+				{
+					var roleCollection = rolesCollection[i];
+
+					if (!roleCollection.EndsWith("]"))
+						return default(T);
+
+					roleCollection = roleCollection.Substring(0, roleCollection.Length - 1);
+					var index = Convert.ToInt32(roleCollection);
+
+					if ((value as IEnumerable).Count() <= index)
+						return default(T);
+					value = (value as IEnumerable).ElementAt(index);
+				}
+
+
+				if (lastRoles.Count() > 0)
+					return value.GetPropertyValue_Path<T>(lastRoles, withGuionize);
+
+				return (T) value;
+			}
+
+			if ((withGuionize) && (propertyInfo == null) && (lastRoles.Count() > 0))
+				return THIS.GetPropertyValue<T>(string.Join("_", roles));
+
+			return default(T);
+		}
+		#endregion GetPropertyValue
+
+		#region SetPropertyValue
+		public static void SetPropertyValue(this object THIS, string propertyName, object value)
+		{
+			if (string.IsNullOrEmpty(propertyName))
+				return;
+
+			var propertyInfo = THIS.GetType().GetPropertyInfo(propertyName);
+			if (propertyInfo == null)
+				return;
+
+			propertyInfo.SetValue(THIS, value, null);
+		}
+		public static void SetPropertyValue_Path(this object THIS, string pathToDo, object value, bool createInstances = false,
+																						 string serviceOperationName = "", Dictionary<string, Type> tipos = null)
+		{
+			THIS.SetPropertyValue_Path(pathToDo.Split('.'), new List<string>(), value, createInstances, serviceOperationName,
+																 tipos);
+		}
+		private static void SetPropertyValue_Path(this object THIS, IEnumerable<string> rolesToDo,
+																							IEnumerable<string> rolesDone, object value, bool createInstances = false,
+																							string serviceOperationName = "", Dictionary<string, Type> tipos = null)
+		{
+			if (rolesToDo.Count() == 0)
+				return;
+
+			var role = rolesToDo.First();
+			var lastRoles = rolesToDo.Skip(1).ToList();
+			var firstRoles = rolesDone.ToList();
+			firstRoles.Add(role);
+
+			if (THIS.GetType().GetPropertyInfo(role) == null)
+				return;
+
+			if (lastRoles.Count() > 0)
+			{
+				var elementType = THIS.GetType().GetPropertyType(role);
+				var collectionType = elementType.InheriteFrom(typeof(IEnumerable<>));
+				if (collectionType != null)
+					elementType = collectionType.GenericTypeArguments[0];
+
+				if (tipos.ContainsKey(serviceOperationName + "_" + string.Join("_", firstRoles)))
+					elementType = tipos[serviceOperationName + "_" + string.Join("_", firstRoles)];
+
+				if (collectionType != null)
+				{
+					object element = null;
+
+					var collection = THIS.GetPropertyValue<IList>(role);
+					if (collection.Count() == 0)
+					{
+						if (createInstances)
+							collection.Add(element = elementType.CreateEntity());
+					}
+					else
+						element = collection[0];
+
+					if (element != null)
+						element.SetPropertyValue_Path(lastRoles, firstRoles, value, createInstances, serviceOperationName, tipos);
+				}
+				else
+					THIS.SetPropertyValue(role, value);
+			}
+			else
+				THIS.SetPropertyValue(role, value);
+		}
+		#endregion SetPropertyValue
+
+		#region SetPropertyValueWithConversion
+		public static void SetPropertyValueWithConversion(this object THIS, string propertyName, object value)
+		{
+			var propertyType = THIS.GetType().GetPropertyType(propertyName);
+
+			if (value == null)
+				THIS.SetPropertyValue(propertyName, null);
+			else
+				THIS.SetPropertyValue(propertyName, value.ConvertTo(propertyType));
+		}
+		#endregion SetPropertyValueWithConversion
+
+		#region AddPropertyValues
+		public static void AddPropertyValues(this object THIS, IList<string> paths, IList<object> values)
+		{
+			for (var i = 0; i < values.Count(); i++)
+				THIS.AddPropertyValue(paths[i], values[i]);
+		}
+		#endregion AddPropertyValues
+
+		#region AddPropertyValue
+		public static void AddPropertyValue(this object THIS, string path, object value)
+		{
+			var roles = path.Split('.');
+
+			// El path se ha terminado
+			if (roles.Length == 0)
+				return;
+			var rol = roles[0];
+			if (string.IsNullOrEmpty(rol))
+				return;
+
+			//if (value == DBNull.Value)
+			//	value = null;
+
+			// Eliminar el rol del path
+			if (roles.Length > 1)
+				path = path.Substring(path.IndexOf('.') + 1);
+			else
+				path = "";
+
+			var propertyType = THIS.GetType().GetPropertyType(rol);
+			if ((propertyType == null) && (!string.IsNullOrEmpty(path)))
+			{
+				rol += "_" + path.Replace(".", "_");
+				propertyType = THIS.GetType().GetPropertyType(rol);
+				path = "";
+			}
+			if (propertyType == null)
+				return;
+
+			if (string.IsNullOrEmpty(path))
+				// Dato-valuado
+				THIS.SetPropertyValueWithConversion(rol, value);
+			else
+			// Objeto-valuado
+			{
+				#region Asignar valores
+
+				var collection = THIS.GetPropertyValue<IList>(rol);
+				//object instanceRelated = null;
+
+				if (collection != null)
+				{
+					if (collection.Count > 0)
+					{
+						// La instancia ya existe, sólo hay que propagar
+						AddPropertyValue(collection[0], path, value);
+					}
+					else
+					{
+						// La instancia relacionada no existe, hay que crear la nueva instancia y propagar
+						var instanceRelated = Activator.CreateInstance(propertyType);
+						THIS.ExecuteMethod("Add" + rol, new object[] { instanceRelated });
+
+						AddPropertyValue(instanceRelated, path, value);
+					}
+				}
+				else
+				{
+					// La instancia relacionada no existe, hay que crear la nueva instancia y propagar
+					var instanceRelated = Activator.CreateInstance(propertyType);
+					THIS.SetPropertyValue(rol, instanceRelated);
+
+					AddPropertyValue(instanceRelated, path, value);
+				}
+
+				#endregion Asignar valores
+			}
+		}
+		#endregion AddPropertyValue
+
+		#region ExecuteMethod
+		public static object ExecuteMethod(this object THIS, string methodName, object[] parameters)
+		{
+			var methodInfo = THIS.GetType().GetTypeInfo().GetDeclaredMethod(methodName); //, parameters);
+			if (methodInfo == null)
+				return null;
+
+			return methodInfo.Invoke(THIS, parameters);
+		}
+		#endregion ExecuteMethod
+
+		#region ToIsoString
+		public static string ToIsoString(this object that)
+		{
+			if (that == null)
+				return "";
+
+			if (
+				(typeof(string).GetTypeInfo().IsAssignableFrom(that.GetType().GetTypeInfo())) ||
+				(typeof(long?).GetTypeInfo().IsAssignableFrom(that.GetType().GetTypeInfo()))
+			)
+				return that.ToString();
+
+			if (typeof(bool?).GetTypeInfo().IsAssignableFrom(that.GetType().GetTypeInfo()))
+				return that.ToString();
+
+			if (typeof(decimal?).GetTypeInfo().IsAssignableFrom(that.GetType().GetTypeInfo()))
+			{
+				var val = that.ConvertTo<decimal?>();
+				return val.Value.ToString();
+			}
+
+			if (typeof(DateTime?).GetTypeInfo().IsAssignableFrom(that.GetType().GetTypeInfo()))
+			{
+				var val = that.ConvertTo(typeof(DateTime?));
+				return val.ToString();
+			}
+
+			return that.ToJson();
+		}
+		#endregion ToIsoString
+	}
+}

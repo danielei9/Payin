@@ -1,0 +1,44 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments.Purse;
+@using Xp.Common;
+
+@using (Html.xpPost(
+	PurseFactory.CreateImageName,
+	PurseFactory.CreateImageApi,
+	"",
+	"resources.purse.create",
+	isTitleActive: true,
+	init: "scope.arguments.purseId=params.id",
+	successUrl: "#/Purses"
+))
+{
+	<xp-get data-api="@PurseFactory.UpdateApi">
+		<div class="col-md-2 purseUpdateParent" style="width:241px">
+			<div class="image-upload">
+				<div class="purseUpdate">
+					<div class="col-md-12 bottom">
+						<span translate="resources.purse.updateImage">Haz click para actualizar la imagen.</span>
+					</div>
+				</div>
+				<label for="file-input">
+					<img class="image-pointer-margin" ng-src="{{arguments.photoUrl}}" data-ng-show="arguments.photoUrl.length">
+					<img class="image-pointer-margin" ng-src="@ApplicationUserResources.DefaultPurseImage" ng-hide="arguments.photoUrl.length">
+				</label>
+				<input data-xp-navigate data-xp-modal="purseimagecropcreate" id="file-input" type="file" accept=".jpg,.png" value="{0}" />				
+			</div>
+			<p class="infoPurse" translate="resources.purse.infoPurse">Te recomendamos una imagen PNG de 231x143px</p>
+		</div>
+ 		<div class="col-md-8 col-md-offset-1">
+			<h4 translate="resources.purse.infoCreateImage">Para completar el proceso, solo falta que añadas una imagen a tu monedero, de esta forma los usuarios podrán identificarlo.</h4>
+		</div>
+	</xp-get>
+	<script type="text/javascript">
+		var elems = document.getElementsByClassName('btn-toolbar pull-right');
+		for (var i = 0; i < elems.length; i += 1) {
+			elems[i].style.display = 'none';
+		}
+	</script>
+}
+

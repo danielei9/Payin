@@ -1,0 +1,136 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@{ 
+	var hasForms = "false";
+}
+
+@using (Html.xpList(
+	EntranceTypeFactory.GetAllName,
+	EntranceTypeFactory.GetAllApi,
+	"",
+	"resources.entranceType.retrieveAll",
+	"{{arguments.eventName}}",
+	isTitleActive: true,
+	initialSearch: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, EntranceTypeFactory.Create("{{arguments.eventId}}"), XpIcons.Plus)
+	},
+	init: "scope.arguments.eventId=params.id;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th translate="resources.entranceType.sellStart">Sell Start</th>
+                    <th translate="resources.entranceType.sellEnd">Sell End</th>
+                    <th translate="resources.entranceType.name">Name</th>
+                    <th translate="resources.entranceType.selled">Selled</th>
+                    <th translate="resources.entranceType.priceAndExtra">Price + Extra</th>
+                    <th translate="resources.entranceType.totalAmount">TotalAmount</th>
+                    <th>&nbsp;</th>
+                    <th ng-show="@hasForms">&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success':item.state===1, 'b-l b-5x b-warning':item.state===2}">
+                    <td class="icon-column" data-ng-show="item.sellEntrances==0">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: EntranceTypeFactory.Delete,
+                            id: "{{item.id}}",
+                            arguments: "{\"name\":\"{{item.name}}\"}"
+                        )
+                    </td>
+                    <td class="icon-column" data-ng-show="item.sellEntrances!=0">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: EntranceTypeFactory.RelocateName,
+                            id: "{{item.id}}",
+                            arguments: "{\"entranceTypeName\":\"{{arguments.entranceTypeName}}\"}"
+                        )
+                    </td>
+                    <td class="icon-column">
+                        <div ng-if="item.isVisible">@XpColumns.IconColumn(XpIcons.Eye, popupUrl: EntranceTypeFactory.Hide, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                        <div ng-if="!item.isVisible">@XpColumns.IconColumn(XpIcons.EyeSlash, popupUrl: EntranceTypeFactory.Show, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                    </td>
+                    <td class="icon-column">
+                        <div ng-if="item.visibility==0">
+                            <a data-ui-sref='@EntranceTypeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Shop'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==1">
+                            <a data-ui-sref='@EntranceTypeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Globe'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==2">
+                            <a data-ui-sref='@EntranceTypeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Group'> </i></a>
+                        </div>
+                    </td>
+                    <td>@(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.SellStart, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.SellEnd, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.Name, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>
+                        <div style="float:left; padding:4px; position:relative; width:150px; display:inline-block" @*ng-show="item.maxEntrance"*@>
+                            <a data-ui-sref='@EntranceTypeFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate>
+                                <div class="progress progress-s m-t-sm bg-grey" style="border:1px solid darkslategray; text-align:left; margin:0; height:1em">
+                                    <div ng-if="item.sellEntrancesPercent <= 69" class="progress-bar bg-success" data-toggle="tooltip" data-original-title="{{item.sellEntrancesPercent | number:2}}" style="width: {{item.sellEntrancesPercent}}%"></div>
+                                    <div ng-if="item.sellEntrancesPercent >= 70 && item.sellEntrancesPercent < 90" class="progress-bar bg-orange" data-toggle="tooltip" data-original-title="{{item.sellEntrancesPercent | number:2}}" style="width: {{item.sellEntrancesPercent}}%"></div>
+                                    <div ng-if="item.sellEntrancesPercent >= 90" class="progress-bar bg-danger" data-toggle="tooltip" data-original-title="{{item.sellEntrancesPercent | number:2}}" style="width: {{item.sellEntrancesPercent}}%"></div>
+                                </div>
+                                <span style="position: absolute;top: calc(50% - 0.7em);left: calc(50% - 1.2em);font-size: 1em;color: darkslategray;">{{item.sellEntrances}}/{{item.maxEntrance}}</span>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        @(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.Price, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))+
+                        @(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.ExtraPrice, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))€
+                    </td>
+                    <td>
+                        @(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.TotalAmount, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}")) +
+                        @(Html.ColumnFor<EntranceTypeGetAllResult>(x => x.TotalExtraPrice, panelUrl: EntranceTypeFactory.UpdateName, id: "{{item.id}}"))€
+                    </td>
+                    <td class="icon-column">
+                        <a ui-sref='@EntranceTypeFactory.GetAllGroupsName ({id:{{item.id}}})' xp-navigate>
+                            <i class='@XpIcons.Group'> </i>
+                            <span class="badge badge-sm up bg-info" ng-hide="item.groupsCount<=0" style="width:auto !important">{{item.groupsCount}}</span>
+							<span class="badge badge-sm up bg-success" ng-hide="item.groupsCount>0" style="width:auto !important">
+								<i class="fas fa-check" style="font-size: 85%; margin-left: -2px; margin-right: -2px;"></i>
+							</span>
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-show="@hasForms">
+                        <a data-ui-sref='@EntranceTypeFormFactory.GetAllName ({id:{{item.id}}})' data-xp-navigate>
+                            <i class='@XpIcons.FileText'> </i>
+                            <span class="badge badge-sm up bg-info" style="width:auto !important">{{item.forms}}</span>
+                        </a>
+                    </td>
+                    <td class="icon-column">
+                        <a data-ui-sref='@EntranceFactory.GetAllName ({id:{{item.id}}})' data-xp-navigate>
+                            <i class='@XpIcons.Ticket'> </i>
+                        </a>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+		<footer class="panel-footer">
+			<div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#27C24C;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.entranceType.active">Active</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#FAD733;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.entranceType.suspended">Suspended</p>
+                    </div>
+                </div>
+			</div>
+		</footer>
+	</div>
+}

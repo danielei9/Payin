@@ -1,0 +1,23 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+    AccessControlEntranceFactory.Update,
+    AccessControlEntranceFactory.UpdateApi,
+    "",
+    "resources.accessControl.entrance.update"
+))
+{
+    <xp-get data-api="@AccessControlFactory.GetApi">
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.accessControl.entrance.enclosureInfo">Enclosure information</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        @(Html.ArgumentFor<ApiAccessControlEntranceUpdateArguments>(x => x.Name))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xp-get>
+}

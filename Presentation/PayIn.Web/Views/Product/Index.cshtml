@@ -1,0 +1,141 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    ProductFactory.GetAllName,
+    ProductFactory.GetAllApi,
+    "",
+    "resources.product.retrieveAll",
+    isTitleActive: true,
+    isSearchable: false,
+    initialSearch: true,
+    actions: new ActionLink[] {
+        new ActionLink(
+            new ActionLink[] {
+                new ActionLink(ActionLink.ActionLinkType.Popup, ProductFactory.CreateName, text: "Product", textTranslate: "resources.product.product"),
+                new ActionLink(ActionLink.ActionLinkType.Popup, ProductFamilyFactory.CreateName, text: "Family", textTranslate: "resources.product.family")
+            },
+            XpIcons.Plus
+        )
+    }
+))
+{
+	<div class="alert alert-info">
+		<p>Si una familia no es visible tampoco lo son sus subfamilias y subproductos.</p>
+	</div>
+	<td class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+                <tr>
+                    <th style="width: 280px;">&nbsp;</th>
+                    <th style="width: 150px;" translate="resources.product.code">Code</th>
+                    <th translate="resources.product.name">Name</th>
+                    <th style="width: 100px;" translate="resources.product.price">Price</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="item in data"
+                    xp-init="
+						scope.item.expanded=false;
+						scope.item.temp=scope.item.superFamilyId||scope.item.id;
+						scope.item.parent=function() {
+							return scope.item.superFamilyId && _.find(scope.data, function(elem) { return elem.type==2 && elem.id==scope.item.superFamilyId; });
+						};
+						scope.item.checkVisible=function() {
+							var parent=scope.item.parent();
+							return !parent || (parent.expanded && parent.checkVisible());
+						};"
+                    ng-show="item.checkVisible();">
+                    <td style="padding:0">
+                        <table class="table table-hover" ng-style="{'margin-left':'{{10*item.treeLevel}}px'}">
+                            <tr ng-class="{'b-l b-3x b-warning': item.type===1,'b-l b-3x b-blue': item.type===2 }">
+                                <td a href="#" class="icon-column" ng-click="item.expanded=!item.expanded">
+                                    <div class="icon-column" ng-show="item.type==2&&(data | filter: { 'superFamilyId': item.id }).length">
+                                        <div ng-hide="item.expanded">@XpColumns.IconColumn(XpIcons.AngleRight)</div>
+                                        <div ng-show="item.expanded">@XpColumns.IconColumn(XpIcons.AngleDown)</div>
+                                    </div>
+                                </td>
+                                <td class="icon-column">
+                                    <div ng-if="item.type===1">@XpColumns.IconColumn(XpIcons.Trash, popupUrl: ProductFactory.Delete, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</div>
+                                    <div ng-if="item.type===2">@XpColumns.IconColumn(XpIcons.Trash, popupUrl: ProductFamilyFactory.Delete, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</div>
+                                </td>
+                                <td class="icon-column">
+                                    <div ng-if="item.type===1&&item.isVisible">@XpColumns.IconColumn(XpIcons.Eye, popupUrl: ProductFactory.Hide, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                                    <div ng-if="item.type===2&&item.isVisible">@XpColumns.IconColumn(XpIcons.Eye, popupUrl: ProductFamilyFactory.Hide, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                                    <div ng-if="item.type===1&&!item.isVisible">@XpColumns.IconColumn(XpIcons.EyeSlash, popupUrl: ProductFactory.Show, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                                    <div ng-if="item.type===2&&!item.isVisible">@XpColumns.IconColumn(XpIcons.EyeSlash, popupUrl: ProductFamilyFactory.Show, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                                </td>
+                                <td class="icon-column">
+                                    <div ng-if="item.visibility==0 && item.type===1">
+                                        <a data-ui-sref='@ProductFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Shop'> </i></a>
+                                    </div>
+                                    <div ng-if="item.visibility==1 && item.type===1">
+                                        <a data-ui-sref='@ProductFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Globe'> </i></a>
+                                    </div>
+                                    <div ng-if="item.visibility==2 && item.type===1">
+                                        <a data-ui-sref='@ProductFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Group'> </i></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div ng-if="item.type===1">@(Html.ColumnFor<ProductGetAllResult>(x => x.Name, panelUrl: ProductFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</div>
+                                    <div ng-if="item.type===2">@(Html.ColumnFor<ProductGetAllResult>(x => x.Name, panelUrl: ProductFamilyFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{arguments.familyName}}\"}"))</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div>
+                            <div ng-if="item.type===1">@(Html.ColumnFor<ProductGetAllResult>(x => x.Code, panelUrl: ProductFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</div>
+                            <div ng-if="item.type===2">@(Html.ColumnFor<ProductGetAllResult>(x => x.Code, panelUrl: ProductFamilyFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div ng-if="item.type===1">@(Html.ColumnFor<ProductGetAllResult>(x => x.Description, panelUrl: ProductFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</div>
+                            <div ng-if="item.type===2">@(Html.ColumnFor<ProductGetAllResult>(x => x.Description, panelUrl: ProductFamilyFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</div>
+                        </div>
+                    </td>
+                    <td>@(Html.ColumnFor<ProductGetAllResult>(x => x.Price, panelUrl: ProductFactory.UpdateName, id: "{{item.id}}", arguments: "{\"familyName\":\"{{arguments.familyName}}\"}"))</td>
+                    <td class="icon-column">
+                        @*<a data-ui-sref='@EntranceTypeFormFactory.GetAllName ({id:{{item.id}}})' data-xp-navigate>*@
+                        <a ui-sref='@ProductFactory.GetAllGroupsName ({id:{{item.id}}})' data-xp-navigate ng-show="item.type===1">
+                            <i class='@XpIcons.Group'> </i>
+                            <span class="badge badge-sm up bg-info" ng-hide="item.groupsCount<=0" style="width:auto !important">{{item.groupsCount}}</span>
+                            <span class="badge badge-sm up bg-success" ng-hide="item.groupsCount>0" style="width:auto !important">
+                                <span class="fa fa-check" style=""></span>
+                            </span>
+                        </a>
+                        <span ng-show="item.type===2">&nbsp;</span>
+                    </td>
+                    <td class="icon-column2">
+                        <div class="btn-group dropdown" dropdown data-ng-show="item.type==2">
+                            <div dropdown-toggle>
+                                <i class="glyphicon glyphicon-plus" toggle style="padding:0"></i>
+                                <span class="caret" />
+                            </div>
+                            <ul class="dropdown-menu" style="left:-125px">
+                                <li><a ui-sref="@ProductFactory.CreateName ({id:{{item.id}}})" xp-navigate><span translate="resources.product.subproduct">Subproduct</span></a></li>
+                                <li><a ui-sref="@ProductFamilyFactory.CreateName ({id:{{item.id}}})" xp-navigate> <span translate="resources.product.subfamily">Subfamily</span> </a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</td>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#0000FF;" class="legendGraph" /><p style="float:left;" translate="resources.product.family">Family</p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#ffd800;" class="legendGraph" /><p style="float:left;" translate="resources.product.product">Product</p>
+                </div>
+            </div>
+		</div>
+	</footer>
+}

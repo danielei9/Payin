@@ -1,0 +1,34 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlTemplateFactory.Create,
+	ControlTemplateFactory.CreateApi,
+	"",
+	//ControlTemplateResources.Create,
+	"resources.controlTemplate.create",
+	init:
+		"scope.arguments.monday = true," +
+		"scope.arguments.tuesday = true," +
+		"scope.arguments.wednesday = true," +
+		"scope.arguments.thursday = true," +
+		"scope.arguments.friday = true"
+))
+{
+@(Html.SelectFor  <ControlTemplateCreateArguments>(x => x.ItemId, "itemName", ControlItemFactory.RetrieveSelectorApi, focus: true))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Name))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Observations))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.CheckDuration))
+<div class="form-group col-md-12">
+	<label for="checkDuration" class="control-label">@ControlTemplateResources.WeekDays</label>
+</div>
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Monday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Tuesday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Wednesday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Thursday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Friday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Saturday, width: 3))
+@(Html.ArgumentFor<ControlTemplateCreateArguments>(x => x.Sunday, width: 3))
+}
+

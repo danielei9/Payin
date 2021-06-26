@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ControlTemplateItemFactory.Delete,
+	ControlTemplateItemFactory.DeleteApi,
+	"",
+	//ControlTemplateItemResources.Delete,
+	"resources.controlTemplate.delete",
+	id: "id"
+))
+{
+	<p translate="resources.controlTemplateItem.deleteQuestion" translate-values="{ since: '{{arguments.since|xpTime}}', until:'{{until|xpTime}}' }">Do you want to delete the template item {{arguments.since|xpTime}}-{{arguments.until|xpTime}}?</p>
+}
+

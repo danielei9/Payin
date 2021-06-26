@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PayIn.Domain.Promotions.PromoAction">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <Members>
+      <Property Name="PromotionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>PromoAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Promotion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.PromoCondition">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Property Name="PromotionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>PromoCondition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Promotion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.PromoExecution">
+    <Position X="6.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Property Name="PromotionId" Hidden="true" />
+      <Property Name="PromoUserId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIgAACABAAAAAAAFAoABAAAAEAAAAAAQAABBAAAAA=</HashCode>
+      <FileName>PromoExecution.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Promotion" />
+      <Property Name="PromoUser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.PromoLauncher">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <Members>
+      <Property Name="PromotionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACABAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAA=</HashCode>
+      <FileName>PromoLauncher.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Promotion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.PromoPrice">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="PromotionId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACABAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PromoPrice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Promotion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.Promotion">
+    <Position X="3.5" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="Promotion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAhAAAAAQgAAAIAEAACAQABEAACAA=</HashCode>
+      <FileName>Promotion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="PromoConditions" />
+      <Property Name="PromoActions" />
+      <Property Name="PromoLaunchers" />
+      <Property Name="PromoExecutions" />
+      <Property Name="PromoPrices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PayIn.Domain.Promotions.PromoUser">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="PromoUser" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAQAAAAAAAAAAAAAAAAAAABIAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>PromoUser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="PromoExecutions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

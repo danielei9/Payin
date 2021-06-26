@@ -1,0 +1,19 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+	ServiceGroupServiceUsersFactory.CreateName,
+	ServiceGroupServiceUsersFactory.CreateApi,
+	"",
+	"resources.transportCardSupportTitleCompatibility.create",
+	"{{temp.groupName}}",
+	init: "scope.arguments.GroupId=params.groupId"
+))
+{
+	<xp-get data-api="@ServiceGroupServiceUsersFactory.CreateGetNameApi">
+		@(Html.SelectFor<ServiceGroupServiceUsersCreateArguments>(x => x.UserId, "name", ServiceGroupServiceUsersFactory.RetrieveSelectorApi, placeHolder: "Introduce la Tarjeta a asociar"))
+	</xp-get>
+
+}
+

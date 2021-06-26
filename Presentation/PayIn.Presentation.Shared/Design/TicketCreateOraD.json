@@ -1,0 +1,8 @@
+﻿{
+	"Arguments": {
+		"Name": "Ticket de la ORA",
+		"Description": "Para la compra del tiquet de la ORA se ha de definir hubicación y tiempo.",
+		"Number": 1,
+		"Price": 1
+	}
+}

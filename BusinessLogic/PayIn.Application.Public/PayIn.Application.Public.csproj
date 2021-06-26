@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE624846-D588-4347-A827-EABF17AAD57D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Application.Public</RootNamespace>
+    <AssemblyName>PayIn.Application.Public</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Emulator\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE;FALLAS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE;FINESTRAT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE;VILAMARXANT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE;VINAROS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling">
+      <HintPath>..\..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data">
+      <HintPath>..\..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\ControlFormArgument\ControlFormArgumentCreateHandler.cs" />
+    <Compile Include="Handlers\ControlFormArgument\ControlFormArgumentDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlFormArgument\ControlFormArgumentGetFormHandler.cs" />
+    <Compile Include="Handlers\ControlFormArgument\ControlFormArgumentGetHandler.cs" />
+    <Compile Include="Handlers\ControlFormArgument\ControlFormArgumentUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignCheckPoint\ControlFormAssignCheckPointCreateHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignCheckPoint\ControlFormAssignCheckPointDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetCheckHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignCheckPoint\ControlFormAssignCheckPointGetHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignTemplate\ControlFormAssignTemplateCreateHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignTemplate\ControlFormAssignTemplateDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignTemplate\ControlFormAssignTemplateGetCheckHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignTemplate\ControlFormAssignTemplateGetHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssignTemplate\ControlFormAssignTemplateUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignCreateHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignGetIdsHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignGetHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignGetCheckHandler.cs" />
+    <Compile Include="Handlers\ControlFormAssign\ControlFormAssignUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlFormOption\ControlFormOptionCreateHandler.cs" />
+    <Compile Include="Handlers\ControlFormOption\ControlFormOptionDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlFormOption\ControlFormOptionGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlFormOption\ControlFormOptionGetHandler.cs" />
+    <Compile Include="Handlers\ControlFormOption\ControlFormOptionUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormCreateHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ApiControlFormGetHandler.cs" />
+    <Compile Include="Handlers\ControlForm\MobileControlFormGetHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormGetHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlForm\ControlFormGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ControlIncident\ControlIncidentCreateHandler.cs" />
+    <Compile Include="Handlers\ControlIncident\ControlIncidentCreateManualCheckHandler.cs" />
+    <Compile Include="Handlers\ControlIncident\ControlIncidentGetItemsHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemCreateHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemMobileGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemMobileGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemRemoveTagHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemGetNameHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemGetHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemAddTagHandler.cs" />
+    <Compile Include="Handlers\ControlItem\ControlItemUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningCheck\ControlPlanningCheckDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningCheck\ControlPlanningCheckGetHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningCheck\ControlPlanningCheckMobileGetHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningCheck\ControlPlanningCheckUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningCheck\ControlPlanningCheckCreateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningItem\ControlPlanningItemCreateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningCreateTemplateHandler.cs" />
+    <Compile Include="Handlers\ControlPresence\ControlPresenceGetHoursHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateCheck\ControlTemplateCheckDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateCheck\ControlTemplateCheckGetHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateCheck\ControlTemplateCheckGetTemplateHandler.cs.cs" />
+    <Compile Include="Handlers\ControlTemplateCheck\ControlTemplateCheckUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateCheck\ControlTemplateCheckCreateHandler.cs" />
+    <Compile Include="Handlers\ControlTrack\ControlTrackGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlTrack\ControlTrackGetHandler.cs" />
+    <Compile Include="Handlers\ControlTrack\ControlTrackPublicGetByRangeHandler.cs" />
+    <Compile Include="Handlers\ControlTrack\ControlTrackPublicGetByDayHandler.cs" />
+    <Compile Include="Handlers\ControlTrack\ControlTrackGetItemHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningItem\ControlPlanningItemDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningItem\ControlPlanningItemGetHandler.cs" />
+    <Compile Include="Handlers\ControlPlanningItem\ControlPlanningItemUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningClearHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningGetHandler.cs" />
+    <Compile Include="Handlers\ControlPresence\ControlPresenceMobileTrackHandler.cs" />
+    <Compile Include="Handlers\ControlPresence\ControlPresenceMobileGetTagHandler.cs" />
+    <Compile Include="Handlers\ControlPresence\ControlPresenceMobileGetTimetableHandler.cs" />
+    <Compile Include="Handlers\ControlPresence\ControlPresenceMobileCheckHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateItem\ControlTemplateItemCreateHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateItem\ControlTemplateItemDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateItem\ControlTemplateItemGetTemplateHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateItem\ControlTemplateItemGetHandler.cs" />
+    <Compile Include="Handlers\ControlTemplateItem\ControlTemplateItemUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateCreateHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateGetHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ControlTemplate\ControlTemplateUpdateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningCreateHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningDeleteHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningGetAllHandler.cs" />
+    <Compile Include="Handlers\ControlPlanning\ControlPlanningUpdateHandler.cs" />
+    <Compile Include="Handlers\Device\DeviceCreateHandler.cs" />
+    <Compile Include="Handlers\Device\DeviceMobileDeleteHandler.cs" />
+    <Compile Include="Handlers\Device\DeviceMobileCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardLinkCardHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentGetCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentGetHandler.cs" />
+    <Compile Include="Handlers\ServiceDocument\ServiceDocumentUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\MobileServiceIncidenceCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\ServiceIncidenceCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\MobileServiceIncidenceGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\ServiceIncidenceGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\MobileServiceIncidenceGetHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\ServiceIncidenceUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\ServiceIncidenceGetHandler.cs" />
+    <Compile Include="Handlers\NotificationSet\NotificationSetGetAllHandler.cs" />
+    <Compile Include="Handlers\NotifyMe\NotifyMeCreateHandler.cs" />
+    <Compile Include="Handlers\NotifyMe\NotifyMeDeleteHandler.cs" />
+    <Compile Include="Handlers\NotificationSet\NotificationSetCreateHandler.cs" />
+    <Compile Include="Handlers\Like\LikeDeleteHandler.cs" />
+    <Compile Include="Handlers\Like\LikeCreateHandler.cs" />
+    <Compile Include="Handlers\Main\MobileMainSynchronizeHandler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetVersionHandler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetAllV4Handler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetAllV3Handler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetAllV2Handler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetEntailmentsHandler.cs" />
+    <Compile Include="Handlers\Purse\MobilePurseGetSellableHandler.cs" />
+    <Compile Include="Handlers\Purse\MobilePurseGetBuyableHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchLockHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchUnlockHandler.cs" />
+    <Compile Include="Handlers\ServiceCardBatch\ServiceCardBatchCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\MobileServiceCardGetHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardDestroyHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\MobileServiceCardGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardGetAllMyCardsHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardGetHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetSelectorMembersHandler.cs" />
+    <Compile Include="Handlers\ServiceIncidence\ServiceIncidenceGetAllHandler_Notifications.cs" />
+    <Compile Include="Handlers\ServiceNotification\MobileServiceNotificationCreatePositionHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\MobileServiceNotificationCreatePhotoHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\MobileServiceNotificationCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetAllResultBase.cs" />
+    <Compile Include="Handlers\ServiceGroupServiceUser\ServiceGroupServiceUserGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceGroupServiceUser\ServiceGroupServiceUsersCreateGetNameHandler.cs" />
+    <Compile Include="Handlers\ServiceGroupServiceUser\ServiceGroupServiceUserCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupGetHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceCategory\ServiceCategoryGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCategory\ServiceCategoryUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceCategory\ServiceCategoryGetHandler.cs" />
+    <Compile Include="Handlers\ServiceCategory\ServiceCategoryCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCategory\ServiceCategoryDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointGetSelectorCheckHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetAllCommerceHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetCommerceHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetStateHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionUpdateCommerceHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceGroups\ServiceGroupGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\MobileServiceNotificationCreateChatToExhibitorHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\MobileServiceNotificationCreateChatToVisitorHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\ServiceNotificationCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceAddressName\ServiceAddressNameDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceAddressName\ServiceAddressNameCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceAddressName\ServiceAddressNameUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\ServiceNotificationGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceNotification\ServiceNotificationMobileGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceSupplier\ServiceSupplierGetCurrentHandler.cs" />
+    <Compile Include="Handlers\ServiceSupplier\ServiceSupplierUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceSupplier\ServiceSupplierGetHandler.cs" />
+    <Compile Include="Handlers\ServiceSupplier\ServiceSupplierGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceSupplier\ServiceSupplierGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceFreeDays\ServiceFreeDaysUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceFreeDays\ServiceFreeDaysDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceFreeDays\ServiceFreeDaysCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceFreeDays\ServiceFreeDaysGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceFreeDays\ServiceFreeDaysGetByIdHandler.cs" />
+    <Compile Include="Handlers\ServiceNumberPlate\ServiceNumberPlateUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceNumberPlate\ServiceNumberPlateDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceNumberPlate\ServiceNumberPlateCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceNumberPlate\ServiceNumberPlateGetAllHandler.cs" />
+    <Compile Include="Handlers\ServicePrice\ServicePriceCreateHandler.cs" />
+    <Compile Include="Handlers\ServicePrice\ServicePriceDeleteHandler.cs" />
+    <Compile Include="Handlers\ServicePrice\ServicePriceGetHandler.cs" />
+    <Compile Include="Handlers\ServicePrice\ServicePriceUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointGetAllItemHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointGetHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagGetHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagMobileGetHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceCheckPoint\ServiceCheckPointUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceTag\ServiceTagUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceTimeTable\ServiceTimeTableGetByIdHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\MobileServiceCardUnlinkHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\MobileServiceCardLinkHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserAddServiceGroupHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserCreateCardSelectGetHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserCreateCardGetHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetAllByDashBoardHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardUnlockHandler.cs" />
+    <Compile Include="Handlers\ServiceGroupServiceUser\ServiceGroupServiceUserGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetServiceGroupsHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserRegisterHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserSubscribeHandler.cs" />
+    <Compile Include="Handlers\ServiceCard\ServiceCardLockHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserUnsubscribeHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserUpdateCardGetHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserRemoveServiceGroupHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserUpdateCardHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserUpdatePhotoHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserGetHandler.cs" />
+    <Compile Include="Handlers\ServiceUser\ServiceUserUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerChangeRoleHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerGetControlHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerGetHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerMobileAcceptAssignmentHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerMobileRejectAssignmentHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\ServiceWorkerUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceWorker\WorkerMobileGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceZone\ServiceZoneGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServicePrice\ServicePriceGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceCity\ServiceCityGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceAddress\ServiceAddressGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceZone\ServiceZoneGetByConcessionHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceZone\ServiceZoneDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceZone\ServiceZoneUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceZone\ServiceZoneCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceConcession\ServiceConcessionGetSelectorHandler.cs" />
+    <Compile Include="Handlers\ServiceTimeTable\ServiceTimeTableGetAllHandler.cs" />
+    <Compile Include="Handlers\ServiceTimeTable\ServiceTimeTableDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceTimeTable\ServiceTimeTableUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceTimeTable\ServiceTimeTableCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceAddress\ServiceAddressDeleteHandler.cs" />
+    <Compile Include="Handlers\ServiceAddress\ServiceAddressUpdateHandler.cs" />
+    <Compile Include="Handlers\ServiceAddress\ServiceAddressCreateHandler.cs" />
+    <Compile Include="Handlers\ServiceCity\ServiceCityGetByConcessionTypeHandler.cs" />
+    <Compile Include="Handlers\Main\MobileMainGetAllHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopByConcessionHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopGetSelectorHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopGetEntranceHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopEventGetEntranceTypesHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopGetAllConcessionsHandler.cs" />
+    <Compile Include="Handlers\Shop\ShopConcessionGetEventsHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberDeleteHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberAddInvitedCompanyHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberCreateHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberGetHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberGetAllHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberLockHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberUnlockHandler.cs" />
+    <Compile Include="Handlers\SystemCardMember\SystemCardMemberUpdateHandler.cs" />
+    <Compile Include="Handlers\SystemCard\ApiSystemCardGetSelectorHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardUpdateHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardGetHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardUpdatePhotoHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardCreateHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardDeleteHandler.cs" />
+    <Compile Include="Handlers\SystemCard\SystemCardGetAllHandler.cs" />
+    <Compile Include="Handlers\Translation\TranslationCreateHandler.cs" />
+    <Compile Include="Handlers\Translation\TranslationDeleteHandler.cs" />
+    <Compile Include="Handlers\Translation\TranslationUpdateHandler.cs" />
+    <Compile Include="Handlers\Translation\TranslationGetHandler.cs" />
+    <Compile Include="Handlers\User\UserCreateNotificationHandler.cs" />
+    <Compile Include="Handlers\User\UserMobileHasPaymentHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Resources\PayIn.Common.Resources.csproj">
+      <Project>{94f8de05-4ce3-48eb-9c76-9d8db36e90af}</Project>
+      <Name>PayIn.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{D619B94F-C9D9-487C-8341-33446F417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899B32B-1B5C-476D-896A-8B0BF4B10F71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Resources\Xp.Common.Resources.csproj">
+      <Project>{b7a850e4-f2c6-4081-87d1-e5379bf5c0a7}</Project>
+      <Name>Xp.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434E06D7-69BB-4175-A611-0133D7A5336A}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855e283-100d-455e-bac4-b4a87207647a}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Internal\PayIn.Application.Dto.Internal.csproj">
+      <Project>{4e982c96-230d-4526-8cd2-8c977a6c9340}</Project>
+      <Name>PayIn.Application.Dto.Internal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Payments\PayIn.Application.Dto.Payments.csproj">
+      <Project>{98D4F750-5E87-4954-BA9B-3ECB96F345B5}</Project>
+      <Name>PayIn.Application.Dto.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Security\PayIn.Application.Dto.Security.csproj">
+      <Project>{96299ADF-60C2-4FB8-8254-9A19FD59D8B1}</Project>
+      <Name>PayIn.Application.Dto.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto\PayIn.Application.Dto.csproj">
+      <Project>{FE2E19BD-48CB-4D5A-863C-7DFB76548BA3}</Project>
+      <Name>PayIn.Application.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.BusinessLogic.Common\PayIn.BusinessLogic.Common.csproj">
+      <Project>{37EBDB01-383C-47F8-A44F-CCC87F7C63F2}</Project>
+      <Name>PayIn.BusinessLogic.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Payments\PayIn.Domain.Payments.csproj">
+      <Project>{85B72F50-A783-4AB8-AE30-E75F9A935B26}</Project>
+      <Name>PayIn.Domain.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Public\PayIn.Domain.Public.csproj">
+      <Project>{85254dd9-4622-4e90-84d5-4287bffebeb9}</Project>
+      <Name>PayIn.Domain.Public</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Security\PayIn.Domain.Security.csproj">
+      <Project>{a2f82701-af3c-42cf-a31a-529a4833380a}</Project>
+      <Name>PayIn.Domain.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Transport\PayIn.Domain.Transport.csproj">
+      <Project>{5773cb9d-44ea-4541-8006-d7042def917c}</Project>
+      <Name>PayIn.Domain.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Infrastructure.Security\PayIn.Infrastructure.Security.csproj">
+      <Project>{d7220b15-4c39-4e5d-bfba-c58a4bd95df5}</Project>
+      <Name>PayIn.Infrastructure.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-d3c8-43a9-8eb0-fbab811fa250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Domain\Xp.Domain.csproj">
+      <Project>{5BBA38CE-8ABE-48EF-ADC9-AB257CF91F93}</Project>
+      <Name>Xp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Infrastructure\Xp.Infrastructure.csproj">
+      <Project>{42ae21a4-ff0a-42a2-81be-5a37fd2d0b2a}</Project>
+      <Name>Xp.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

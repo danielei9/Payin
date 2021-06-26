@@ -1,0 +1,49 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+
+@using (Html.xpList(
+	ServiceAddressFactory.GetAll,
+	ServiceAddressFactory.GetAllApi,
+	"",
+	//ServiceAddressResources.RetrieveAll,
+	"resources.serviceAddress.retrieveAll",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: ServiceAddressFactory.Create,
+	csvUrl: ServiceAddressFactory.RetrieveAllCsv
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceAddress.concession">Concession</th>
+					<th translate="resources.serviceAddress.zone">Zone</th>
+					<th translate="resources.serviceAddress.names">Names</th>
+					<th translate="resources.serviceAddress.number">Number</th>
+				</tr>
+			</thead>
+			<tr data-ng-repeat="item in data">
+				<td class="icon-column">
+					@XpColumns.IconColumn(
+								XpIcons.Remove,
+								popupUrl: ServiceAddressFactory.Delete,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{item.name}}\",\"from\":\"{{item.from}}\",\"until\":\"{{item.until}}\",\"sideLabel\":\"{{item.sideLabel}}\"}"
+					)
+				</td>
+				<td>@XpColumns.TextColumn("item.concessionName")</td>
+				<td>@XpColumns.TextColumn("item.zoneName")</td>
+				@* <-- Names --> *@
+				<td>&nbsp;</td>
+				<td>
+					<span ng-show="item.from || item.until">@XpColumns.TextColumn("item.from") - @XpColumns.TextColumn("item.until")</span>
+					<span ng-show="item.sideLabel">(@XpColumns.TextColumn("item.sideLabel"))</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+}

@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+		BlackListFactory.CreateName,
+		BlackListFactory.CreateApi,
+		"",
+		"resources.transportBlackList.add"
+))
+{
+	<p translate="resources.transportBlackList.addQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to add the card {{arguments.name}} to the black list?</p>
+}
+

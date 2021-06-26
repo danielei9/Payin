@@ -1,0 +1,116 @@
+﻿<div xp-panel ng-init="app.selectedPage=''" ng-cloak>
+	<xp-post api="JustMoney/Api/PrepaidCard/CreateAndRegister" xp-success-url="Account/Login">
+		<form name="form" role="form" ng-submit="accept()">
+            <div class="separatorFormCreate"></div>
+            <div>
+                <div class="spinner" ng-show="_windowState.isBusy">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                <h1>Registar Tarjeta JustMoney Autorizada</h1>
+                <!-- Errors -->
+                <div class="alert alert-danger" role="alert" ng-show="errors.length">
+                    <ul>
+                        <li ng-repeat="error in errors">{{error}}</li>
+                    </ul>
+                </div>
+                <!-- Crear tarjeta -->
+                <h3>1. Solicitud de su tarjeta</h3>
+				<div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="cardHolderID" class="col-form-label">Número de Tarjeta</label>
+							<input type="text" class="form-control" name="cardHolderID" ng-model="arguments.cardHolderID" required ng-disabled="_windowState.isBusy">
+						</div>
+						<div class="col-sm-6">
+							<label for="alias" class="col-form-label">Alias de Tarjeta</label>
+							<input type="text" class="form-control" name="alias" ng-model="arguments.alias" required ng-disabled="_windowState.isBusy">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="firstName" class="col-form-label">Nombre</label>
+							<input type="text" class="form-control" name="firstName" ng-model="arguments.firstName" required ng-disabled="_windowState.isBusy">
+						</div>
+						<div class="col-sm-6">
+							<label for="lastName" class="col-form-label">Apellidos</label>
+							<input type="text" class="form-control" name="lastName" ng-model="arguments.lastName" required ng-disabled="_windowState.isBusy">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="mobile" class="col-form-label">Móvil</label>
+							<input type="text" class="form-control" name="mobile" ng-model="arguments.mobile" ng-disabled="_windowState.isBusy">
+						</div>
+						<div class="col-sm-6">
+							<label for="phone" class="col-form-label">Teléfono</label>
+							<input type="text" class="form-control" name="phone" ng-model="arguments.phone" ng-disabled="_windowState.isBusy">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="email" class="col-form-label">Email</label>
+							<input type="text" class="form-control" name="email" ng-model="arguments.email" required ng-disabled="_windowState.isBusy">
+						</div>
+						<div class="col-sm-6">
+							<label for="confirmEmail" class="col-form-label">Confirmar Email</label>
+							<input type="text" class="form-control" name="confirmEmail" ng-model="arguments.confirmEmail" required ng-disabled="_windowState.isBusy">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="birthDay" class="col-form-label">Fecha de nacimiento</label>
+							<input type="text" class="form-control" name="birthDay" ng-model="arguments.birthDay" required placeholder="AAAA-MM-DD" ng-disabled="_windowState.isBusy">
+						</div>
+						<div class="col-sm-6">
+							<label for="password" class="col-form-label">Contraseña</label>
+							<input type="password" class="form-control" name="password" ng-model="arguments.password" required ng-disabled="_windowState.isBusy">
+						</div>
+					</div>
+				</div>
+                <!-- Dirección -->
+                <h3>2. Dirección</h3>
+                <div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="address1" class="col-form-label">Dirección</label>
+                            <input type="text" class="form-control" name="address1" ng-model="arguments.address1" required ng-disabled="_windowState.isBusy">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="address2" class="col-form-label">Complemento de dirección</label>
+                            <input type="text" class="form-control" name="address2" ng-model="arguments.address2" ng-disabled="_windowState.isBusy">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="city" class="col-form-label">Población</label>
+                            <input type="text" class="form-control" name="city" ng-model="arguments.city" required ng-disabled="_windowState.isBusy">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="zipCode" class="col-form-label">Código Postal</label>
+                            <input type="text" class="form-control" name="zipCode" ng-model="arguments.zipCode" required ng-disabled="_windowState.isBusy">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="state" class="col-form-label">Provincia</label>
+                            <input type="text" class="form-control" name="state" ng-model="arguments.province" required ng-disabled="_windowState.isBusy">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="country" class="col-form-label">País</label>
+                            <select class="form-control" name="country" ng-model="arguments.country" required ng-disabled="_windowState.isBusy">
+                                <option value="25">España</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="col-sm-10">
+                    <div class="orangeSingleButtonsDiv">
+                        <button type="submit" class="orangeButton" ng-disabled="_windowState.isBusy">Registrar</button>
+                    </div>
+                </div>
+            </div>
+		</form>
+	</xp-post>
+</div>

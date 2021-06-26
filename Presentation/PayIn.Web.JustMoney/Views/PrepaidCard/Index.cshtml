@@ -1,0 +1,110 @@
+﻿<div xp-panel ng-init="app.selectedPage='prepaidcard'">
+    <xp-list api="/JustMoney/Api/PrepaidCard"
+             initial-search
+             xp-success="scope.arguments.selectedTab=data.data[0].id">
+        <div class="spinner" ng-show="_windowState.isBusy">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <h1>Mi cuenta</h1>
+
+        <!-- Errors -->
+        <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+            <ul>
+                <li ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <!-- Botonera TAB -->
+        <div class="linksToDifferentCards">
+            <div class="fourLinks" ng-if="data.length>=1" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[0].id}" ng-click="arguments.selectedTab=data[0].id"><a>{{data[0].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=2" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[1].id}" ng-click="arguments.selectedTab=data[1].id"><a>{{data[1].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=3" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[2].id}" ng-click="arguments.selectedTab=data[2].id"><a>{{data[2].alias}}</a></div>
+            <div class="fourLinks" ng-if="data.length>=4" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[3].id}" ng-click="arguments.selectedTab=data[3].id"><a>{{data[3].alias}}</a></div>
+        </div>
+
+        <!-- Datos del titular de la tarjeta -->
+        <div ng-if="!data.length">Ninguna cuenta dada de alta</div>
+        <div ng-repeat="item in data" ng-if="data.length">
+            <div id="tabCard" ng-show="arguments.selectedTab === item.id">
+				<div class="buttonOnRightDiv">
+					<input ng-if="item.cardType == 2" value="PREMIUM" class="labelOnLeft" disabled>
+					<input ng-if="item.cardType == 1" value="ESTANDAR" class="labelOnLeft" disabled>
+					<button ng-if="item.cardType == 1" type="submit" class="orangeButton orangeButtonUpgrade" ui-sref="prepaidcardupgrade({id:item.id})" xp-navigate ng-disabled="_windowState.isBusy">Acceder a Premium</button>
+
+					<input ng-if="item.cardStatus == 0" type="submit" value="EMITIDA" class="labelOnRight bg-danger" disabled>
+					<input ng-if="item.cardStatus == 1" type="submit" value="TARJETA ACTIVA" class="labelOnRight bg-success" disabled>
+					<input ng-if="item.cardStatus == 2" type="submit" value="TARJETA PERDIDA" class="labelOnRight" disabled>
+					<input ng-if="item.cardStatus == 3" type="submit" value="TARJETA ROBADA" class="labelOnRight" disabled>
+					<input ng-if="item.cardStatus == 4" type="submit" value="SOLO DEPOSITO" class="labelOnRight bg-danger" disabled>
+					<input ng-if="item.cardStatus == 6" type="submit" value="VERIFICAR MOTIVO" class="labelOnRight" disabled>
+					<input ng-if="item.cardStatus == 9" type="submit" value="TARJETA CERRADA" class="labelOnRight" disabled>
+					<input ng-if="item.cardStatus == 10" type="submit" value="CAMBIO DE PIN" class="labelOnRight" disabled>
+					<input ng-if="item.cardStatus == 12" type="submit" value="VERIFICAR Nº TELEFONO" class="labelOnRight" disabled>
+				</div>
+
+				<div class="formPartMiCuenta">
+					<h3>Detalles de la cuenta</h3>
+					<div class="singleInputRow">
+						<label for="balance">Saldo de la tarjeta (€)</label>
+						<input type="text" id="balance" name="balance" ng-model="item.availableBalance" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="pan">Número de tarjeta</label>
+						<input type="text" id="pan" name="pan" ng-model="item.pan" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="iban">IBAN</label>
+						<input type="text" id="pan" name="iban" ng-model="item.iban" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="expirationCodeMonth">Fecha de caducidad</label>
+						<input type="text" class="smallerInput1 col-md-2" name="expirationCodeYear" ng-model="item.expirationCodeYear" placeholder="YY" disabled>
+						<input type="text" class="smallerInput1 col-md-2" name="expirationCodeMonth" ng-model="item.expirationCodeMonth" placeholder="MM" disabled>
+					</div>
+					<hr />
+
+					<h3>Datos del titular de la tarjeta</h3>
+					<div class="singleInputRow">
+						<label for="firstName">Nombre</label>
+						<input type="text" id="firstName" name="firstName" ng-model="item.firstName" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="lastName">Apellidos</label>
+						<input type="text" id="lastName" name="lastName" ng-model="item.lastName" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="address1">Dirección</label>
+						<input type="text" id="address1" name="address1" ng-model="item.address1" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="address2">Complemento de Dirección</label>
+						<input class="smallerInput1" type="text" id="address2" name="address2" ng-model="item.address2" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="city">Población</label>
+						<input type="text" id="city" name="city" ng-model="item.city" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="zipCode">Código postal</label>
+						<input type="text" id="zipCode" name="zipCode" ng-model="item.zipCode" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="province">Provincia</label>
+						<input type="text" id="province" name="province" ng-model="item.province" disabled>
+					</div>
+					<div class="singleInputRow">
+						<label for="country" class="col-sm-3 col-form-label">País</label>
+						<select name="country" ng-model="item.country" disabled>
+							<option value="25">España</option>
+						</select>
+					</div>
+					<div class="singleInputRow">
+						<label for="mobile">Teléfono móvil</label>
+						<input type="text" id="mobile" name="mobile" ng-model="item.mobile" disabled>
+					</div>
+				</div>
+            </div>
+        </div>
+    </xp-list>
+</div>

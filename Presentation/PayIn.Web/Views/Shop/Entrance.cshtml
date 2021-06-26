@@ -1,0 +1,203 @@
+﻿@{
+    Layout = null;
+}
+<html ng-app="Store" ng-controller="shopGetEntranceController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script src="~/Vendors/angulr/js/angular-locale_es-es.js"></script>
+    <script type="text/javascript">
+        var id = window.location.pathname.split('/')[3];
+        angular.module('Store', [/*'xp'*/])
+            .controller('shopGetEntranceController', ['$http', '$scope', '$window', function ($http, $scope, $window) {
+                    $http.get('/Api/Shop/Entrance/' + id).then(function (data) {
+                        $scope.entranceData = data.data.data;
+                        console.log($scope.entranceData[0].formId);
+
+                        $scope.btnClick = function () {
+                            //$http.get('/Api/Account/Current').then(function (data) {
+                            //    if (data == null)
+                                //$scope.datos = data.data;                            
+                            if ($scope.entranceData[0].formId != "") {
+                                var forms = $scope.entranceData[0].formId;
+                               
+                                $window.open('../form/'+forms, '_self');
+                            }else
+                                    $window.open('../login', '_self');
+                            //    else
+                            //        $window.open('../Successful', '_self');
+                           //});
+                        };
+                });
+            }])
+
+
+
+            .filter('range', function () {
+                return function (input, min, max) {
+                    min = parseInt(min);
+                    max = parseInt(max);
+                    for (var i = min; i <= max; i++)
+                        input.push(i);
+                    return input;
+
+                    $scope.selectEntrance = $scope.input[0];
+
+                    $scope.changeCount = function (obj) {
+                        console.log(obj)
+                        console.log($scope.selectEntrance)
+
+                    };
+                };
+            })
+            .controller('createTicketController', ['$scope', 'xpPost', 'xpPopup', 'xpInitialScope', 'xpNavigation', function ($scope, xpPost, xpPopup, xpInitialScope, xpNavigation) {
+                $scope.createTicket = function () {
+                    var forms = '';
+                    var lines = [];
+                    var amount = 0;
+                    angular.forEach($scope.entraceData[0], function (item) {
+                        // Calculate total amount and create ticket lines
+                        if (item.quantity > 0) {
+                            amount += item.quantity;
+                            lines.push({
+                                title: item.name,
+                                amount: item.price,
+                                quantity: item.quantity,
+                                entranceTypeId: item.id
+                            });
+                        }
+
+                        // Get needed forms
+                        angular.forEach(item.forms, function (it, index) {
+                            if (index === item.forms.length - 1) {
+                                forms = it.id + ',' + forms;
+                            } else {
+                                forms = it.id + forms;
+                            }
+                        });
+                    });
+
+                    var that = this;
+                    var scope = that.$new();
+
+                    if (amount > 0) {
+                        // este date no lo coje
+                        var date = moment(Date()).format('YYYY-MM-DD HH:mm:ss');
+
+                        angular.extend(scope, xpInitialScope, xpPost);
+                        scope.apiUrl = scope.app.apiBaseUrl + "mobile/ticket/v2"
+                            .replace("{0}", (scope.app.tenant ? "/" + scope.app.tenant : ""))
+                            .replace("//", "");
+                        scope.arguments.amount = amount;
+                        scope.arguments.title = $scope.data[0].name;
+                        scope.arguments.reference = "";
+                        scope.arguments.type = 1; // Ticket
+                        scope.arguments.lines = lines;
+                        scope.arguments.concessionId = parseInt(66); //scope.data[0].concessionId;
+                        scope.arguments.date = date;
+                        scope.accept()
+                            .then(
+                            function (data) {
+                                if (forms !== '') {
+                                    xpNavigation.go('controlFormGet', {
+                                        id: forms,
+                                        ticketId: data.data[0].id,
+                                        amount: amount,
+                                        data: scope.arguments,
+                                        paymentMedias: data.paymentMedias
+                                    });
+                                } else
+                                    $scope.payTicket(data.data[0].id, amount, data.paymentMedias);
+                            }
+                            );
+                    } else {
+                        xpPopup.alert({
+                            title: 'Cantidad incorrecta',
+                            template: 'El valor del ticket es demasiado igual o menor de 0, por favor, inténtelo de nuevo',
+                            okType: 'button-payin'
+                        });
+                    }
+                    $scope.payTicket = function (ticketId, amount, paymentMedias) {
+                        // if (amount > 0) {
+                        //     xpNavigation.go("ticketgetpayed", {
+                        //       id: ticketId,
+                        //       paymentMedias: paymentMedias
+                        //     });
+                        // }
+                        // else
+                        {
+                            xpPopup.alert({
+                                title: 'Compra realizada',
+                                template: 'Entradas compradas con éxito, visite la Cartera para ver sus entradas.',
+                                okType: 'button-payin'
+                            })
+                                .then(
+                                function () {
+                                    xpNavigation.go('paymentmediagetall');
+                                }
+                                );
+                        }
+                    }
+                };
+            }]);
+
+    </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Entrada {{entranceData[0].eventName}}</title>
+</head>
+<body>
+    <div class="gallery">
+        <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:10px; float:right;" />
+        <img class="image" ng-src={{entranceData[0].photoUrl}} style="-webkit-filter: blur(4px);filter: blur(4px);">
+        <div class="centerText">
+            <p style="font-size:1.3em; text-shadow: 0 0 2px #000;moz-text-shadow: 0 0 2px #000;
+                    webkit-text-shadow: 0 0 2px #000; 
+                     color:whitesmoke" class="eventName">&nbsp;{{entranceData[0].eventName}}</p>
+            <p class="icon ion-clock"
+               style="text-shadow: 0 0 2px #000;moz-text-shadow: 0 0 2px #000;
+                    webkit-text-shadow: 0 0 2px #000;" id="eventStart">&nbsp;{{entranceData[0].eventStart | date:'shortTime'}}</p>
+
+            <p class="icon ion-location"
+               style="text-shadow: 0 0 2px #000;moz-text-shadow: 0 0 2px #000;
+                    webkit-text-shadow: 0 0 2px #000;" id="place">&nbsp;{{entranceData[0].place}}</p>
+        </div>
+    </div>
+    <div class="infoBuy" style="font-size:1.5em;padding:15px; text-shadow: 2px 0 2px #000;
+                     color:floralwhite">
+        <h3>{{entranceData[0].name}}</h3>
+        <p class="icon ion-calendar" style="margin:15px;
+           padding:5px;">
+            &nbsp;Desde <span style="text-transform:uppercase">{{entranceData[0].eventStart | date:'dd MMM'}}</span>
+            a <span style="text-transform:uppercase">{{entranceData[0].eventEnd | date:'dd MMM'}}</span>
+            
+            <span class="icon ion-cash" style="margin:15px;
+           padding:5px;">&nbsp;{{entranceData[0].price}}€</span>
+           
+            <span>Cantidad</span>
+
+            <select ng-model="selectEntrance" ng-options="n for n in [] | range:1:10"
+                    style="color: black; border-radius: 15px 50px;" ng-change="changeCount(selectEntrance)"></select>
+
+            <span ng-hide="selectEntrance==null" style="margin:50px">Coste : &nbsp;{{selectEntrance * entranceData[0].price}} €</span>
+        </p>
+        <button ng-show="selectEntrance!=null" class="btn" @*ng-click="createTicket()" ng-controller="createTicketController"*@ ng-click="btnClick()">Comprar</button>
+    </div>
+    <div style="margin:15px">
+        <h2 style="padding:15px">Descripción</h2>
+        <p>{{entranceData[0].shortDescription}}</p>
+        <p>{{entranceData[0].description}}</p>
+    </div>
+    <div style="margin:15px">
+        <h2 style="padding:15px">Condiciones</h2>
+        <p>{{entranceData[0].conditions}}</p>
+    </div>
+</body>
+</html>

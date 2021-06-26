@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ServicePrice;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServicePriceFactory.Create,
+	ServicePriceFactory.CreateApi,
+	"",
+	//ServicePriceResources.Create
+	"resources.servicePrice.create"
+))
+{
+	@(Html.SelectFor<ServicePriceCreateArguments>(x => x.ZoneId, "zoneName", ServiceZoneFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<ServicePriceCreateArguments>(x => x.Time))
+	@(Html.ArgumentFor<ServicePriceCreateArguments>(x => x.Price))
+}
+

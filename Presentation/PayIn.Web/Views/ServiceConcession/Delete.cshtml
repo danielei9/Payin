@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceConcessionFactory.Delete,
+	ServiceConcessionFactory.DeleteApi,
+	"",
+	//ServiceConcessionResources.Delete,
+	"resources.serviceConcession.delete",
+	id: "id"
+))
+{
+	<p translate="resources.serviceConcession.deleteMessage">If you delete the concession you will not be able to access it again later on. Are you sure?</p>
+}

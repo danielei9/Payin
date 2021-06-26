@@ -1,0 +1,150 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+				ServiceUserFactory.GetAllByDashboardName,
+				ServiceUserFactory.GetAllByDashboardApi,
+				"",
+				"resources.mainResources.dashBoard",
+				isTitleActive: true,
+				initialSearch: true
+			))
+{
+	<div class="table-responsive">
+		<div class="row text-center padding">
+			<div class="col-sm-3 col-xs-6">
+				<div class="h2 m-b-sm">{{arguments.lastDay}}</div>
+				<div>Último día <i class="fa fa-fw fa-caret-up text-success text-sm"></i></div>
+				@*<div ui-jq="easyPieChart"
+					 ui-options="{
+						percent: {{arguments.percentDay}},
+						lineWidth: 4,
+						trackColor: '#e8eff0',
+						barColor: '#7266ba',
+						scaleColor: false,
+						size: 115,
+						rotate: 0,
+						lineCap: 'butt'
+					}"
+					class="inline m-t easyPieChart"
+					style="width:115px;height:115px;line-height:115px;"
+				>
+					<div>
+						<span class="text-primary h3">{{arguments.percentDay}}%</span>
+					</div>
+					<canvas width="230" height="230" style="width: 115px; height: 115px;"></canvas>
+				</div>*@
+			</div>
+			<div class="col-sm-3 col-xs-6">
+				<div class="h2 m-b-sm">{{arguments.lastWeek}}</div>
+				<div>Última semana <i class="fa fa-fw fa-caret-down text-warning text-sm"></i></div>
+				@*<div
+					ui-jq="easyPieChart"
+					ui-options="{
+						percent: {{arguments.percentWeek}},
+						lineWidth: 4,
+						trackColor: '#e8eff0',
+						barColor: '#23b7e5',
+						scaleColor: false,
+						size: 115,
+						rotate: 0,
+						lineCap: 'butt'
+					}"
+					class="inline m-t easyPieChart"
+					style="width: 115px; height: 115px; line-height: 115px;"
+				>
+					<div>
+						<span class="text-info h3">{{arguments.percentWeek}}%</span>
+					</div>
+					<canvas width="230" height="230" style="width: 115px; height: 115px;"></canvas>
+				</div>*@
+			</div>
+			<div class="col-sm-3 col-xs-6">
+				<div class="h2 m-b-sm">{{arguments.lastMonth}}</div>
+				<div>Último mes <i class="fa fa-fw fa-caret-up text-success text-sm"></i></div>
+				@*<div
+					ui-jq="easyPieChart"
+					ui-options="{
+						percent: {{arguments.percentMonth}},
+						lineWidth: 4,
+						trackColor: '#e8eff0',
+						barColor: '#fad733',
+						scaleColor: false,
+						size: 115,
+						rotate: 0,
+						lineCap: 'butt'
+					}"
+					class="inline m-t easyPieChart"
+					style="width:115px;height:115px;line-height:115px;"
+				>
+					<div>
+						<span class="text-warning h3">{{arguments.percentMonth}}%</span>
+					</div>
+					<canvas width="230" height="230" style="width: 115px; height: 115px;"></canvas>
+				</div>*@
+			</div>
+			<div class="col-sm-3 col-xs-6">
+				<div class="h2 m-b-sm">{{arguments.lastYear}}</div>
+				<div>Último año <i class="fa fa-fw fa-caret-down text-danger text-sm"></i></div>
+				@*<div
+					ui-jq="easyPieChart"
+					ui-options="{
+						percent: {{arguments.percentYear}},
+						lineWidth: 4,
+						trackColor: '#e8eff0',
+						barColor: '#27c24c',
+						scaleColor: false,
+						size: 115,
+						rotate: 0,
+						lineCap: 'butt'
+					  }"
+					class="inline m-t easyPieChart"
+					style="width: 115px; height: 115px; line-height: 115px;"
+				>
+					<div>
+						<span class="text-success h3">{{arguments.percentYear}}%</span>
+					</div>
+					<canvas width="230" height="230" style="width: 115px; height: 115px;"></canvas>
+				</div>*@
+			</div>
+		</div>
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.serviceUser.uid">Vat Number</th>
+					<th translate="resources.serviceUser.vatNumber">Vat Number</th>
+					<th translate="resources.serviceUser.name">Name</th>
+					<th translate="resources.serviceUser.lastName">Last Name</th>
+					<th translate="resources.serviceUser.lastVisits">Last day/week/month/year</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success': item.state===1, 'b-l b-5x b-danger': item.state===2}">
+					<td>@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.Uid))</td>
+					<td>@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.VatNumber))</td>
+					<td>@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.LastName))</td>
+					<td>
+						@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.LastDay)) /
+						@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.LastWeek)) /
+						@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.LastMonth)) /
+						@(Html.ColumnFor<ServiceUserGetAllByDashBoardResult>(x => x.LastYear))
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.serviceUser.active">Active</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.serviceUser.unsubscribed">Unsubscribed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}
+

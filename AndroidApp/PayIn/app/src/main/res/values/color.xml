@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ColorPayIn">#e9af30</color>
+    <color name="ColorPrimary">#e9af30</color>
+    <color name="ColorPrimaryDark">#DDDDDD</color>
+    <color name="tabsScrollColor">#3498DB</color>
+    <color name="ColorAccent">#3498DB</color>
+
+    <color name="ColorBlack">#000000</color>
+    <color name="ColorWhite">#FFFFFF</color>
+    <color name="ColorGreen">#27c24c</color>
+    <color name="ColorAmber">#E2893A</color>
+    <color name="ColorYellow">#FAD733</color>
+    <color name="ColorRed">#F05050</color>
+
+    <color name="ColorPrimaryPlanning">#e9af30</color>
+    <color name="ColorAccentPresence">#3498db</color>
+    <color name="ColorGreenRoundPlanning">#27c24c</color>
+    <color name="ColorAccentRoundPresence">#3498dc</color>
+    <color name="ColorAccentOpenPresence">#3498da</color>
+</resources>

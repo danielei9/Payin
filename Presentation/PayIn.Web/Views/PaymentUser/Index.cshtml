@@ -1,0 +1,66 @@
+﻿@using PayIn.Application.Dto.Payments.Results.PaymentUser;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	PaymentUserFactory.GetAll,
+	PaymentUserFactory.GetAllApi,
+	"",
+	"resources.paymentUser.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: PaymentUserFactory.CreateName
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th translate="resources.paymentUser.name">Name</th>
+					<th translate="resources.paymentUser.login">Login</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state===1,'b-l b-5x b-danger':item.state === 3,'b-l b-5x b-warning':item.state===2}">
+					<td ng-show="item.state == 1" style="width:25px">&nbsp;</td>
+					<td class="icon-column" ng-hide="item.state == 1">
+						@XpColumns.IconColumn(
+							XpIcons.Resend,
+							popupUrl: PaymentUserFactory.ResendNotification,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: PaymentUserFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<PaymentUserGetAllResult>(x => x.Name, panelUrl: PaymentUserFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PaymentUserGetAllResult>(x => x.Login, panelUrl: PaymentUserFactory.UpdateName, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.assigned">Assigned</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.pending">Pending</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.unsuscribed">Unsuscribed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

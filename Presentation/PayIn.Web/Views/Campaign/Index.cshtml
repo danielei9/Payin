@@ -1,0 +1,107 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+    CampaignFactory.GetAll,
+    CampaignFactory.GetAllApi,
+    "",
+    "resources.campaign.getAll",
+    isPaginable: false,
+    isTitleActive: true,
+    addPanelUrl: CampaignFactory.CreateName + "({paymentConcessionId:arguments.paymentConcessionId})",
+    success: "scope.temp.paymentConcessionId = data.paymentConcessions;"
+    ))
+{
+	<div class="row"
+		 style="
+			 position: absolute;
+			 top: -5px;
+			 width: 300px;
+			 padding: 0;
+		 ">
+		@(Html.SelectFor<ApiCampaignGetAllArguments>(x => x.PaymentConcessionId, "paymentConcessionId"))
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>					
+					<th>&nbsp;</th>
+					<th translate="resources.campaign.title">Title</th>
+					<th translate="resources.campaign.since">Since</th>
+					<th translate="resources.campaign.until">Until</th>
+					@*<th translate="resources.campaign.numberOfType">Number of type</th>*@
+					<th translate="resources.campaign.discounts">Discounts</th>
+                    <th translate="resources.campaign.events">Events</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{
+					'b-l b-5x b-success':item.active===true&&item.state==1,
+					'b-l b-5x b-warning':item.active===true&&item.state==2,
+					'b-l b-5x b-danger':item.active===false
+				}">					
+					<td data-ng-show="item.state==0 || item.isSupplier==false">
+						&nbsp;
+					</td>
+					<td class="icon-column" data-ng-show="item.active==false && item.isSupplier">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: CampaignFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.title}}\"}"
+						)
+					</td>
+					<td class="icon-column" data-ng-show="item.active==true && item.state==1 && item.isSupplier">
+						@XpColumns.IconColumn(
+							XpIcons.Pause,
+							popupUrl: CampaignFactory.SuspendName,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.title}}\"}"
+						)
+					</td>
+					<td class="icon-column" data-ng-show="item.active==true && item.state==2 && item.isSupplier">
+						@XpColumns.IconColumn(
+							XpIcons.Play,
+							popupUrl: CampaignFactory.UnsuspendName,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.title}}\"}"
+						)
+					</td>
+					<td data-ng-show ="item.isSupplier">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Title, panelUrl: CampaignFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show ="item.isSupplier==false">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Title))</td>
+					<td data-ng-show="item.isSupplier">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Since, panelUrl: CampaignFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Since))</td>
+				    <td data-ng-show ="item.isSupplier&&item.until">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Until, panelUrl: CampaignFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td data-ng-show="item.isSupplier==false">@(Html.ColumnFor<ApiCampaignGetAllResult>(x => x.Until))</td>
+					<td data-ng-show="item.isSupplier&&!item.until"><span>Siempre</span></td>
+					<td class="icon-column" data-ng-show="item.isSupplier">
+						<button class="btn btn-xs btn-info" data-ui-sref='@CampaignLineFactory.GetAllName ({id:"{{item.id}}", eventName:"{{item.name}}"})' data-xp-navigate>{{item.campaignLines}}</button>
+					</td>
+                    <td class="icon-column" data-ng-show="item.isSupplier">
+                        <a data-ui-sref='@CampaignFactory.GetEventName ({id:"{{item.id}}"})' data-xp-navigate>
+                            <img src="~/App/event.png" height="20px">
+                            <span class="badge badge-sm up bg-info" style="width:auto !important">{{item.events}}</span>
+                        </a>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.campaign.active">Active</p>
+				</div>
+				<div class="col-xs-12 col-md-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.campaign.suspended">Not paid</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.campaign.inactive">Inactive</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

@@ -1,0 +1,29 @@
+﻿@using Xp.Common;
+@using PayIn.Common.Security;
+@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Application.Dto.Arguments.ServiceConcession;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPut(
+    ServiceConcessionFactory.UpdateName,
+    ServiceConcessionFactory.UrlApi,
+	"",
+	"resources.serviceConcession.update"	
+)) 
+
+{
+<xp-get data-api="@ServiceConcessionFactory.UrlApi">
+	@(Html.ArgumentFor<ServiceConcessionUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @ServiceConcessionFactory.UpdateImageCropName))
+    @(Html.ArgumentFor<ServiceConcessionUpdateArguments>(x => x.Name,  focus: true))
+	@*(Html.ArgumentFor<ServiceConcessionUpdateArguments>(x => x.Type))*@	
+    @(Html.ArgumentFor<ServiceConcessionUpdateArguments>(x => x.MaxWorkers))    
+    @(Html.ArgumentFor<ServiceConcessionUpdateArguments>(x => x.State))
+</xp-get>
+}
+
+
+

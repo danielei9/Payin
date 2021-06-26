@@ -1,0 +1,45 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+	EntranceTypeFormFactory.GetAllName,
+	EntranceTypeFormFactory.GetAllApi,
+	"{{data[0].entranceTypeName}}",
+	"resources.entranceTypeForm.retrieveAll",
+	"{{data[0].entranceTypeName}}",
+	isTitleActive: true,
+	initialSearch: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, EntranceTypeFormFactory.CreateCall("{{arguments.entranceTypeId}}"), XpIcons.Plus, id: "{{arguments.entranceTypeId}}")
+	},
+	init: "scope.arguments.entranceTypeId=params.id;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.entranceTypeForm.order" style="text-align:center">Order</th>
+					<th translate="resources.entranceTypeForm.name">Form Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+				<td class="icon-column">
+					@XpColumns.IconColumn(
+					XpIcons.Trash,
+					popupUrl: EntranceTypeFormFactory.Delete,
+					id: "{{item.id}}",
+					arguments: "{\"name\":\"{{item.name}}\"}"
+					)
+				</td>
+					<td style="width:10%;text-align:center;">@(Html.ColumnFor<EntranceTypeFormGetAllResult>(x => x.Order, popupUrl: EntranceTypeFormFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<EntranceTypeFormGetAllResult>(x => x.Name, popupUrl: EntranceTypeFormFactory.UpdateName, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

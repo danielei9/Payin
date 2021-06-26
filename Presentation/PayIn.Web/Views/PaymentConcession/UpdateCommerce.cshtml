@@ -1,0 +1,53 @@
+﻿@using Xp.Common;
+@using PayIn.Common.Security;
+@using PayIn.Common.Resources;
+@using PayIn.Application.Dto.Security.Arguments;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Common;
+
+@using (Html.xpPut(
+	PaymentConcessionFactory.UpdateCommerce,
+	PaymentConcessionFactory.UpdateCommerceApi,
+	"",
+	"resources.paymentConcession.updatePaymentConcession"
+))
+{
+	<div class="spinnerContainer" data-ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>
+	<xp-get data-api="@PaymentConcessionFactory.GetCommerceApi">
+		<div class="panel panel-default" style="margin-top:-15px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.informationTax">InformationTax</div>
+			<div class="panel-body">
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.TaxNumber, width: 3, disabled: "1"))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.TaxName, width: 9, disabled: "1"))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.TaxAddress, disabled: "1"))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.BankAccountNumber, placeHolder: @PaymentConcessionResources.PlaceHolderAccount, inputAttribute: "autocomplete = \"off\""))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.FormA, disabled: "arguments.state!==" + (int)ConcessionState.Pending))
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.informationComercial">InformationComercial</div>
+			<div class="panel-body">
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.Name, inputAttribute: "ng-disabled=arguments.state!==" + (int)ConcessionState.Pending))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.Phone, width: 3))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.Address, width: 9))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.Observations))
+			</div>
+		</div>
+		<div class="panel panel-default" style="margin-top:-20px">
+			<div class="panel-heading font-bold" translate="resources.paymentConcession.conditions">Pay[in] conditions</div>
+			<div class="panel-body">
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.LiquidationAmountMin, width: 3, disabled: "1"))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.PayinCommission, width: 3, disabled: "1"))
+				@(Html.ArgumentFor<PaymentConcessionUpdateCommerceArguments>(x => x.State, width: 6, disabled: "1"))
+			</div>
+		</div>
+	</xp-get>
+}
+
+
+

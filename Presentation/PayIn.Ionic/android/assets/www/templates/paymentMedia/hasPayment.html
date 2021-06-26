@@ -1,0 +1,59 @@
+<ion-view view-title="Pay[in]" xp-panel>
+  <ion-content ng-controller="LoadingCtrl">
+   <xp-post api="mobile/user/v1">
+      <form name="form" role="form" ng-submit="accept()" ng-controller="hasPaymentCtrl">
+        <div class="padding">
+          <p>Antes de poder crear su primera tarjeta necesitamos sus datos fiscales y un PIN numérico de 4 dígitos para verificar su identidad en cada pago.</p>
+          <p>Por su seguridad, le recomendamos que el PIN sea un número que usted recuerde, este PIN no tiene por qu&eacute; ser el mismo que el de su tarjeta.</p>
+        </div>
+        <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxName.$invalid}">
+          <span class="input-label">Nombre completo</span>
+          <input type="text" name="taxName" ng-model="arguments.taxName" required autofocus>
+        </label>
+        <ng-messages for="form.taxName.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+        </ng-messages>
+        <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxNumber.$invalid}">
+          <span class="input-label">DNI / CIF</span>
+          <input type="text" name="taxNumber" ng-model="arguments.taxNumber" required>
+        </label>
+        <ng-messages for="form.taxNumber.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+        </ng-messages>
+        <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxAddress.$invalid}">
+          <span class="input-label">Dirección postal</span>
+          <input type="text" name="taxAddress" ng-model="arguments.taxAddress" required>
+        </label>
+        <ng-messages for="form.taxAddress.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+        </ng-messages>
+        <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.birthday.$invalid}">
+          <span class="input-label">Fecha de nacimiento</span>
+          <input type="text" name="birthday" placeholder="aaaa-mm-dd" ng-model="arguments.birthday" required>
+        </label>
+        <ng-messages for="form.birthday.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+        </ng-messages>
+        <label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.pin.$invalid}">
+          <span class="input-label">Pay[in] PIN</span>
+          <input type="password" name="pin" placeholder="Pay[in] PIN (4 dígitos)" ng-model="arguments.pin" required ng-pattern="/^\d{4}$/">
+        </label>
+        <ng-messages for="form.pin.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+          <ng-message when="pattern">Este campo debe ser de 4 dígitos.</ng-message>
+        </ng-messages>
+        <!--<label form="form" class="item item-input item-stacked-label" ng-class="{'has-error':form.confirmPin.$invalid}">
+          <span class="input-label">Confirmar Pay[in] PIN</span>
+          <input type="password" name="confirmPin" placeholder="Pay[in] PIN (4 dígitos)" ng-model="arguments.confirmPin" required ng-pattern="/^\d{4}$/">
+        </label>
+        <ng-messages for="form.confirmPin.$error" role="alert">
+          <ng-message when="required">Este campo es requerido.</ng-message>
+          <ng-message when="pattern">Este campo debe ser de 4 dígitos.</ng-message>
+        </ng-messages>-->
+        <div class="button-bar padding">
+          <button type="submit" class="button button-payin" ng-disabled="form.$invalid">Siguiente</button>
+        </div>
+     </form>
+   </xp-post>
+  </ion-content>
+</ion-view>

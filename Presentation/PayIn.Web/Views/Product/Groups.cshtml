@@ -1,0 +1,48 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+	ProductFactory.GetAllGroupsName,
+	ProductFactory.GetAllGroupsApi,
+	"",
+	"resources.product.groupsByProduct",
+	subtitle: "{{arguments.productName}}",
+	isTitleActive: true,
+	initialSearch: true,
+	isSearchable: false,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ProductFactory.AddGroup("{{id}}"), XpIcons.Plus)
+	},
+	init: "scope.id=params.id;"
+))
+{
+	<div class="alert alert-info">
+		<p>Para hacer que un producto se pueda comprar sin limitaciones de grupos no se debe seleccionar ninguno.</p>
+	</div>
+	<td class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.product.group">Group</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ProductFactory.RemoveGroup,
+							id: "{{id}}",
+							arguments: "{\"groupId\":\"{{item.id}}\"}"
+						 )
+					</td>
+					<td>
+						@(Html.ColumnFor<ProductGroupsGetAllResult>(x => x.Name))
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.payin.palago.smartband"
+    version="0.1.0"
+>
+    <name>Palago SmartBand</name>
+    <description>Palago SmartBand Plugin</description>
+    <author>Payment Innovation Network S.L.</author>
+    <license>Apache 2.0</license>
+    <keywords>palago,smartband,payin,pay[in]</keywords>
+    <js-module src="www/CoolPlugin.js" name="CoolPlugin">
+        <clobbers target="CoolPlugin" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CoolPlugin" >
+                <param name="android-package" value="com.payin.palago.CoolPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        </config-file>
+        <source-file src="src/assets/keyfile.txt" target-dir="src/assets" />
+        <source-file src="src/android/com/nxp/arguments/TsmPersonalizeArguments.java" target-dir="src/com/nxp/arguments" />
+        <source-file src="src/android/com/nxp/results/TsmResults.java" target-dir="src/com/nxp/results" />
+        <source-file src="src/android/com/nxp/httpcom/HttpTransaction.java" target-dir="src/com/nxp/httpcom" />
+        <source-file src="src/android/com/nxp/listeners/OnOperationListener.java" target-dir="src/com/nxp/listeners" />
+        <source-file src="src/android/com/nxp/listeners/OnTransmitApduListener.java" target-dir="src/com/nxp/listeners" />
+        <source-file src="src/android/com/nxp/ssdp/btclient/BluetoothClient.java" target-dir="src/com/nxp/ssdp/btclient" />
+        <source-file src="src/android/com/nxp/ssdp/btclient/BluetoothDiscovery.java" target-dir="src/com/nxp/ssdp/btclient" />
+        <source-file src="src/android/com/nxp/ssdp/btclient/BluetoothTLV.java" target-dir="src/com/nxp/ssdp/btclient" />
+        <source-file src="src/android/com/nxp/ssdp/encryption/JSBLEncryption.java" target-dir="src/com/nxp/ssdp/encryption" />
+        <source-file src="src/android/com/nxp/tasks/ActivateVCTask.java" target-dir="src/com.nxp.tasks" />
+        <source-file src="src/android/com/nxp/tasks/CreateCardVCTask.java" target-dir="src/com.nxp.tasks" />
+        <source-file src="src/android/com/nxp/tasks/DeleteCardVCTask.java" target-dir="src/com.nxp.tasks" />
+        <source-file src="src/android/com/nxp/tasks/ListVCTask.java" target-dir="src/com.nxp.tasks" />
+        <source-file src="src/android/com/nxp/tasks/NfcHttpProxyTask.java" target-dir="src/com.nxp.tasks" />
+        <source-file src="src/android/com/nxp/utils/Parsers.java" target-dir="src/com/nxp/utils" />
+        <source-file src="src/android/com/nxp/utils/StatusBytes.java" target-dir="src/com/nxp/utils" />
+        <source-file src="src/android/com/payin/palago/Bluetooth.java" target-dir="src/com/payin/palago" />
+        <source-file src="src/android/com/payin/palago/CoolPlugin.java" target-dir="src/com/payin/palago" />
+        <source-file src="src/android/com/quintic/libqpp/iQppCallback.java" target-dir="src/com/quintic/libqpp" />
+        <source-file src="src/android/com/quintic/libqpp/QppApi.java" target-dir="src/com/quintic/libqpp" />
+        <source-file src="libs/signalr-client-sdk.jar" target-dir="libs" />
+        <source-file src="libs/gson-2.2.2.jar" target-dir="libs" />
+        <source-file src="libs/java-websocket-1.3.1.jar" target-dir="libs" />
+        <!--<framework src="src/android/yourFile.gradle" custom="true" type="gradleReference" />-->
+    </platform>
+</plugin>

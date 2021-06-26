@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceCategoryFactory.Delete,
+	ServiceCategoryFactory.DeleteApi,
+	"",
+	"resources.serviceCategory.delete",
+	id: "id"
+))
+{
+<p translate="resources.serviceCategory.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete category '{{arguments.name}}'?</p>
+}
+

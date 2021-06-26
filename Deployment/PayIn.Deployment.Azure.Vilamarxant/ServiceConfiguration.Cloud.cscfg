@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="PayIn.Deployment.Azure.Vilamarxant" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="PayIn.Web">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Files" value="DefaultEndpointsProtocol=https;AccountName=vilamarxant;AccountKey=Ce9dOrxlc0RHP9Hx0dnBV1P7lidEm2y6d/VplX5v+1nIqcMi7ok3fdhSNBU9NAKShXKmSRSwuc2YDNrroxXAtw==;EndpointSuffix=core.windows.net" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=carcaixent;AccountKey=PCxg2pFH75mFAIenwgkju0LLh/IHDeChDvPZnxSMIYAoMMSHx1Ct/XBSH0T5Omw5AP3ngpDbymknTzZUFhfoYA==;EndpointSuffix=core.windows.net" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="Administrador" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHtfjh9Y68KUTjWMOEcMtPQwDQYJKoZIhvcNAQEBBQAEggEAHJ0O8GBdcXj4pLcRG+vFCqlgzRZ9vmZ2qm0oBkJyVo0nPbjbMUGKz4Br0PH58lgxZxeqQyVPZA90GrZV2hfjMTAYueC1hcAboe1PA1Gq2lTqBO2SHtt6hG/NAbgF6HnEWCuBPRZvPGJ7yvPTM7IAtNGCLmy/aoKE6VApwhPmZQ5nE8qsMTakLk60ntE9iLAIpqRh10RzX+zhPk325fG+LschExG2I0QnlYTl16MwWUUK7/qO3QsIA/neHeGeOqqDW76Zgp8CQeEOfVTYDvKj1k6hyIcI3jNywHxj8ziNYO1KlBsCUZativ4jlMGW6zAA4uj1ez0D2Kjw/YMRTIro2TAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECJGVLsGNR7k1gBCvRMP75JIDTEzv7kQdqMpr" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2018-07-07T23:59:59.0000000+02:00" />
+	  <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+	  <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="cc265289-c013-4217-9f96-ce1fe868803f" />
+	</ConfigurationSettings>
+    <Certificates>
+      <Certificate name="pay-in.es" thumbprint="984E8C5D228CD5E9F206D40A78BEC93EE4A1B9DC" thumbprintAlgorithm="sha1" />
+	  <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="7681D03710F3229DCFA6ED6A5CF9FD540DAF7638" thumbprintAlgorithm="sha1" />
+	</Certificates>
+  </Role>
+</ServiceConfiguration>

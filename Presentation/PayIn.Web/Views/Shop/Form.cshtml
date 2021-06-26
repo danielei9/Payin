@@ -1,0 +1,213 @@
+﻿@using PayIn.Web.App.Factories;
+@{
+    Layout = null;
+}
+<html ng-app="Store" ng-controller="shopGetFormController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script type="text/javascript">
+    var id = window.location.pathname.split('/')[3];
+    angular.module('Store', [])
+        .controller('shopGetFormController', ['$http', '$scope', function ($http, $scope) {
+            $http.get('/Api/Shop/ControlForm/' + id).then(function (data) {
+                $scope.ControlFormData = data.data.data;
+            });
+        }])
+    </script>
+    <style media="screen" type="text/css">             
+        .onoffswitch {
+            position: relative; width: 90px;
+            -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+        }
+        .onoffswitch-checkbox {
+            display: none;
+        }
+        .onoffswitch-label {
+            display: block; overflow: hidden; cursor: pointer;
+            border: 2px solid #999999; border-radius: 20px;
+        }
+        .onoffswitch-inner {
+            display: block; width: 200%; margin-left: -100%;
+            transition: margin 0.3s ease-in 0s;
+        }
+        .onoffswitch-inner:before, .onoffswitch-inner:after {
+            display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+            font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+            box-sizing: border-box;
+        }
+        .onoffswitch-inner:before {
+            content: "Sí";
+            padding-left: 10px;
+            background-color: #39C234; color: #FFFFFF;
+        }
+        .onoffswitch-inner:after {
+            content: "No";
+            padding-right: 10px;
+            background-color: #F00909; color: #FFFCFC;
+            text-align: right;
+        }
+        .onoffswitch-switch {
+            display: block; width: 27px; margin: 1.5px;
+            background: #FFFFFF;
+            position: absolute; top: 0; bottom: 0;
+            right: 56px;
+            border: 2px solid #999999; border-radius: 20px;
+            transition: all 0.3s ease-in 0s;
+        }
+        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+            margin-left: 0;
+        }
+        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+            right: 0px;
+        }
+            </style>
+
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ControlFormData[0].name}}</title>
+</head>
+<body>
+    <div class="content" ng-show="ControlFormData" style="padding:32px">
+        <form name="form[{{$index}}]" novalidate role="form">
+            <div class="col-50-card" ng-repeat="item in ControlFormData">
+                <div class="col-50-card" ng-repeat="values in item.arguments">
+
+                    <!-- String -->
+                    <div ng-if="values.type==1" style="margin-right:5vw;">
+                        <span style="width:100%;" class="input-label item-input ">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <input type="text" ng-model="values.valueString">
+                    </div>
+
+                    <!-- Int -->
+                    <div ng-if="values.type==2" style="margin-right:5vw;">
+                        <span style="width:100%;" class="input-label item-input ">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <input type="number" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                               title="Numbers only" ng-model="values.valueString">
+                    </div>
+
+                    <!-- Double -->
+                    <div ng-if="values.type==3" style="margin-right:5vw;">
+                        <span style="width:100%;" class="input-label item-input ">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <input type="number" ng-model="values.valueString">
+                    </div>
+                    <!-- Boolean -->
+                    <div ng-if="values.type==4" style="margin-right:5vw;">
+                        <span style="width:80%;" class="input-label item-input ">{{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        @*<input type="checkbox" ng-init="values.valueBool=false;" ng-model="values.valueBool">
+                        <span class="slider round"></span>*@
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                            <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Date -->
+                    <div ng-if="values.type==5" style="margin-right:5vw;">
+                        <span style="width:100%;">{{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <div style="position:relative;background: transparent; width: 100%; border-bottom: 1px solid white;
+                                    line-height:inherit !important; margin-left: 5vw; margin-right: 5vw;"
+                             class="blanco">
+                            <span style="position:absolute; bottom:5px;left:0;">
+                                <input type="date" id="myDate" style="line-height:inherit !important" value="1985-02-01">
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Time -->
+                    <div ng-if="values.type==6" style="margin-right:5vw;">
+                        <span style="width:100%;" class="input-label item-input ">{{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <div style=" height:5px; position:relative;background: transparent; width: 100%; border-bottom: 1px solid white;
+                                margin-left: 5vw; margin-right: 5vw;" class="blanco">
+                             <span style="position:absolute; bottom:5px;left:0;">
+                                 <input type="time" name="hora" style="line-height:inherit !important"
+                                        value="23:45:52" max="23:59:59" min="00:00:00" step="1">
+                             </span>
+                        </div>
+                    </div>
+
+                    <!-- DateTime -->
+                    <div ng-if="values.type==7" style="margin-right:5vw;">
+                        <span style="width:100%;">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <div style="position:relative;background: transparent; width: 100%; border-bottom: 1px solid white;
+                                    line-height:inherit !important; margin-left: 5vw; margin-right: 5vw;"
+                             class="blanco">
+                            <span style="position:absolute; bottom:5px;left:0;">
+                                <input type="datetime-local" name="daytime" style="line-height:inherit !important" value="1985-02-01T23:45:52">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Duration -->
+                    <div ng-if="values.type==8" style="margin-right:5vw;">
+                        <span style="width:100%;" class="input-label item-input ">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <div style=" height:5px; position:relative;background: transparent; width: 100%; border-bottom: 1px solid white;
+                                margin-left: 5vw; margin-right: 5vw;" class="blanco">
+                            <span style="position:absolute; bottom:5px;left:0;">
+                                <input type="time" name="hora" style="line-height:inherit !important"
+                                       value="23:45:52" max="23:59:59" min="00:00:00" step="1">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Miltiopcion -->
+                    <div ng-if="values.type==11" style="margin-right:5vw;">
+                        <span style="width:80%;" class="input-label item-input ">
+                            {{$index + 1}}. &nbsp;{{values.name}}
+                            <span style="color:red;" ng-if="values.minOptions>=1">*</span>
+                        </span>
+                        <div style="background:transparent !important; border: 0 !important; border-bottom:1px solid white !important;margin-left:15px"
+                             ng-repeat="cb in values.options">
+                            <label style="background:transparent !important; border: 0 !important;">{{cb.text}}</label>
+                            <input type="checkbox" style="background:transparent !important; border: 0 !important;margin-left:5px;top:10px" ng-init="cb.valueSelected=false" ng-click="(item2.valueSelected==true) ? item.options.checked = item.options.checked + 1 : item.options.checked= item.options.checked - 1"
+                                          ng-model="cb.valueSelected" ng-disabled="values.options.checked==values.maxOptions && !cb.valueSelected">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div  class="row row-center">
+           
+        </div>
+    </div>
+    <div class="row row-center">
+        <div class=" col button button-block " style="background: rgba(255,153,0,0.5);
+          border-radius: 38px 38px 38px 38px;
+          border: 1px solid white;
+          text-align: center;
+          margin: 35px;
+          color: white;" type="button" name="recharge_card" ng-click="buyEntrances(temp.data)">
+            COMPRAR ENTRADA
+        </div>
+    </div>
+</body>
+</html>

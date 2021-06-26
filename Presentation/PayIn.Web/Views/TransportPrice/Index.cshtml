@@ -1,0 +1,61 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportPrice;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using (Html.xpList(
+	TransportPriceFactory.GetAllName,
+	TransportPriceFactory.GetAllApi,
+	"",
+	"resources.transportPrice.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	addPanelUrl: TransportPriceFactory.Create("{{arguments.titleId}}"),
+	init: "scope.arguments.titleId = params.titleId;",
+	showSpinner: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.transportPrice.version">Version</th>
+					<th translate="resources.transportPrice.start">Start</th>
+					<th translate="resources.transportPrice.end">End</th>
+					<th translate="resources.transportPrice.zone">Zone</th>
+					<th translate="resources.transportPrice.price">Prices</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+					<td ng-show="item.state === 0">&nbsp;</td>
+					<td class="icon-column" ng-show="item.state === 1">
+						@XpColumns.IconColumn(
+						XpIcons.Trash,
+						popupUrl: TransportPriceFactory.Delete,
+						id: "{{item.id}}"
+					)
+					</td>
+					<td>@(Html.ColumnFor<TransportPriceGetAllResult>(x => x.Version, panelUrl: TransportPriceFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportPriceGetAllResult>(x => x.Start, panelUrl: TransportPriceFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportPriceGetAllResult>(x => x.End, panelUrl: TransportPriceFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<TransportPriceGetAllResult>(x => x.ZoneAlias, panelUrl: TransportPriceFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>
+						<a ui-sref='@TransportPriceFactory.UpdateName ({id:{{item.id}}})' data-xp-navigate class="ng-binding">{{item.price}} €</a>
+					</td>				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportPrice.active">Paid</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportPrice.deleted">Cancelled</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

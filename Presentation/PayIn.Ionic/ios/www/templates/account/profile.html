@@ -1,0 +1,46 @@
+<ion-view cache-view="false" view-title="Perfil" xp-panel>
+  <ion-content ng-controller="LoadingCtrl">
+    <xp-put api="api/account">
+      <form name="form" id="form" role="form" ng-submit="accept()">
+        <xp-get api="api/account/current">
+          <div class="list">
+            <div class="item item-divider">Usuario</div>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.name.$invalid}">
+              <span class="input-label">Nombre de usuario</span>
+              <input type="text" name="name" ng-model="arguments.name" autofocus>
+            </label>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.mobile.$invalid}">
+              <span class="input-label">Teléfono</span>
+              <input type="text" name="mobile" ng-model="arguments.mobile">
+            </label>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.birthday.$invalid}">
+              <span class="input-label">Fecha de nacimiento</span>
+              <!--<input type="date" value="{{arguments.birthday}}" validatedateformat data-date-format="yyyy-mm-dd">-->
+              <input type="text" name="birthday" placeholder="aaaa-mm-dd" ng-model="arguments.birthday">
+            </label>
+            <div class="item item-divider">Datos fiscales</div>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxName.$invalid}">
+              <span class="input-label">Nombre completo</span>
+              <input type="text" name="taxName" ng-model="arguments.taxName">
+            </label>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxNumber.$invalid}">
+              <span class="input-label">DNI / CIF</span>
+              <input type="text" name="taxNumber" ng-model="arguments.taxNumber">
+            </label>
+            <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.taxAddress.$invalid}">
+              <span class="input-label">Dirección postal</span>
+              <input type="text" name="taxAddress" ng-model="arguments.taxAddress">
+            </label>
+            <div class="button-bar padding">
+              <button type="submit" class="button button-payin" ng-disabled="form.$invalid">Ok</button>
+            </div>
+            <div class="button-bar padding">
+              <a ui-sref="updatepassword" class="button button-clear button-payin">Contraseña</a>
+              <a ui-sref="updatepin" class="button button-clear button-payin">Pay[in] PIN</a>
+            </div>
+          </div>
+        </xp-get>
+      </form>
+    </xp-put>
+  </ion-content>
+</ion-view>

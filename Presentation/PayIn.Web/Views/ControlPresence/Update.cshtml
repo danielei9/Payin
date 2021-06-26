@@ -1,0 +1,24 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPresence;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlPresenceFactory.Update,
+	ControlPresenceFactory.UpdateApi,
+	"",
+	//ControlPresenceResources.Update
+	"resources.controlPresence.update"
+))
+{
+	<xp-get data-api="@ControlPresenceFactory.GetApi">
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.Login))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.Date))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.Latitude))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.Longitude))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.LatitudeWanted))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.LongitudeWanted))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.Observations))
+		@(Html.ArgumentFor<ControlPresenceUpdateArguments>(x => x.PresenceType))
+	</xp-get>
+}
+

@@ -1,0 +1,67 @@
+﻿@using PayIn.Application.Dto.SmartCity.Arguments;
+@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	SensorFactory.GetInstantaneousName,
+	SensorFactory.GetInstantaneousApi,
+	"",
+	"resources.smartCity.sensor.getInstantaneous",
+	isTitleActive: true,
+	init:
+		"scope.id = params.id;" +
+		"scope.arguments.period = 1;" +
+		"scope.selectedType = 1;" +
+		"scope.selectedGraph = 1;"
+))
+{
+	<div style="margin-top:-50px;">
+		<div>
+			@(Html.ArgumentFor<ApiSensorGetInstantaneousArguments>(x => x.Period, width: 3))
+			@(Html.ArgumentFor<ApiSensorGetInstantaneousArguments>(x => x.Date, width: 3, disabled: "arguments.period != 2"))
+		</div>
+		<div class="table-responsive">
+			<div>
+				<xp-chart
+					xp-model="data"
+					xp-options='{
+						"type": "line",
+						"legend": {
+						  "visible": false
+						}
+					}'
+					xp-data='[
+						{
+							"name": "Valores",
+							"value": "value",
+							"fillTransparency": 0
+						}
+					]'
+					xp-x-axis='{
+						"data": "timestamp",
+						"isDateTime": true
+					}'
+					xp-y-axis='{
+						"unity": ""
+					}'
+				>
+				</xp-chart>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th translate="resources.smartCity.sensor.timestamp">Timestamp</th>
+						<th translate="resources.smartCity.sensor.value">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in data">
+						<td>@(Html.ColumnFor<ApiSensorGetInstantaneousResult>(x => x.Timestamp))</td>
+						<td>@(Html.ColumnFor<ApiSensorGetInstantaneousResult>(x => x.Value))</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+}

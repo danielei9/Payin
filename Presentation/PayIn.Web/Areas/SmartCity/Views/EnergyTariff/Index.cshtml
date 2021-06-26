@@ -1,0 +1,105 @@
+﻿@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	EnergyTariffFactory.GetAllName,
+	EnergyTariffFactory.GetAllApi,
+	"",
+	"resources.smartCity.energyTariff.getAll",
+	isTitleActive: true
+	//addPanelUrl: ObservationFactory.Create("{{arguments.titleId}}"),
+	//init: "scope.arguments.titleId = params.titleId;",
+	//showSpinner: true
+))
+{
+	<div class="table-responsive" ng-controller="EnergyTariffGetAllController">
+		<h4 class="m-t-lg">Todos los horarios están en formato UTC. Por lo que se puede observar que en invierno se muestra 1h menos y en verano 2.</h4>
+		<div ng-repeat="item in data" class="m-t-lg">
+			<h4>@(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.Name))</h4>
+			<div>
+				<span translate="resources.smartCity.energyTariff.powerMax">PowerMax</span>
+				:
+				@(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.PowerMax))
+				<span ng-if="item.powerMaxFactor != 1">x @(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.PowerMaxFactor))</span>
+				@(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.PowerMaxUnit))
+			</div>
+			<div>
+				<span translate="resources.smartCity.energyTariff.voltageMax">VoltageMax</span>
+				:
+				@(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.VoltageMax))
+				<span ng-if="item.powerMaxFactor != 1">x @(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.VoltageMaxFactor))</span>
+				@(Html.ColumnFor<ApiEnergyTariffGetAllResult>(x => x.VoltageMaxUnit))
+			</div>
+			<div>
+				<table class="table table-hover col-md-8">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th translate="resources.smartCity.schedule.name">Name</th>
+							<th translate="resources.smartCity.schedule.period">Period</th>
+							<th translate="resources.smartCity.schedule.weekDay">WeekDay</th>
+							<th translate="resources.smartCity.schedule.timeTables">Time table</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="schedule in item.schedules">
+							<td>
+								<table class="weekDays">
+									<thead>
+										<tr>
+											<th>&nbsp;</th>
+											<th ng-repeat="weekDay in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]">{{weekDay}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="weekDay in [1,2,3,4,5,6,7,8]">
+											<td ng-if="weekDay==1">L</td>
+											<td ng-if="weekDay==2">M</td>
+											<td ng-if="weekDay==3">X</td>
+											<td ng-if="weekDay==4">J</td>
+											<td ng-if="weekDay==5">V</td>
+											<td ng-if="weekDay==6">S</td>
+											<td ng-if="weekDay==7">D</td>
+											<td ng-if="weekDay==8">F</td>
+											<td ng-repeat="hour in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]"><div ng-style="{'background-color': getColor(schedule, 1, hour)}">&nbsp;</div></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td>@(Html.ColumnFor<ApiEnergyTariffGetAllResult_Schedule>(x => x.Name, iterator: "schedule"))</td>
+							<td>
+								<div>@(Html.ColumnFor<ApiEnergyTariffGetAllResult_Schedule>(x => x.Since, iterator: "schedule"))</div>
+								<div>@(Html.ColumnFor<ApiEnergyTariffGetAllResult_Schedule>(x => x.Until, iterator: "schedule"))</div>
+							</td>
+							<td>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 1)) >= 1)">L</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 2)) >= 2)">M</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 4)) >= 4)">X</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 8)) >= 8)">J</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 16)) >= 16)">V</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 32)) >= 32)">S</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 64)) >= 64)">D</span>
+								<span ng-show="schedule.weekDay && ((schedule.weekDay % (2 * 128)) >= 128)">F</span>
+							</td>
+							<td>
+								<table style="width:100%">
+									<tbody>
+										<tr ng-repeat="timeTable in schedule.timeTables">
+											<td><div class="color-template" ng-style="{'background-color': timeTable.periodColor}"></div></td>
+											<td>@(Html.ColumnFor<ApiEnergyTariffGetAllResult_TimeTable>(x => x.PeriodName, iterator: "timeTable"))</td>
+											<td>
+												<div>{{timeTable.since|xpTimeUtc}}</div>
+												<div>{{timeTable.until|xpTimeUtc}}</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+}

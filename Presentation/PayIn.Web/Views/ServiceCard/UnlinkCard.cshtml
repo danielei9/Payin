@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceCardFactory.UnlinkCardName,
+	ServiceCardFactory.UnlinkCardApi,
+	"",
+	"resources.serviceCard.unlinkCard" //,
+    //success: "window.history.back();"
+))
+{
+<p translate="resources.serviceCard.unlinkQuestion">Do you want to unlink this card?</p>
+}

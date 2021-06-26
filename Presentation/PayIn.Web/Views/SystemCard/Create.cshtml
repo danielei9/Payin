@@ -1,0 +1,24 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.SystemCard;
+@using Xp.Common;
+@using (Html.xpPost(
+    SystemCardFactory.CreateName,
+    SystemCardFactory.CreateApi,
+    "",
+    "resources.systemCard.create",
+    isTitleActive: true
+))
+{
+    @(Html.ArgumentFor<SystemCardCreateArguments>(x => x.Name, focus: true))
+    @(Html.ArgumentFor<SystemCardCreateArguments>(x => x.CardType))
+    @(Html.ArgumentFor<SystemCardCreateArguments>(x => x.SynchronizationInterval))
+    @(Html.SelectFor<SystemCardCreateArguments>(x => x.ConcessionOwnerId, "concessionName", ServiceConcessionFactory.RetrieveSelectorApi, focus: true))
+    @(Html.ArgumentFor<SystemCardCreateArguments>(x => x.NumberGenerationType))
+    @(Html.ArgumentFor<SystemCardCreateArguments>(x => x.ClientId))
+    <div class="form-group col-md-12">
+        <label for="affiliationEmailBody" class="control-label ng-scope" translate="resources.systemCard.affiliationEmailBody">Email to send</label>
+        <textarea id="affiliationEmailBody" rows="10" style="width:100%; overflow:scroll; font-family: Consolas, monaco, monospace;" ng-model="arguments.affiliationEmailBody" spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off"></textarea>
+    </div>
+}

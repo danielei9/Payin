@@ -1,0 +1,30 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Public;
+@using PayIn.Domain.Security;
+@using PayIn.Common.Security;
+
+@{
+
+}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Pay[in]</title>
+    <link id="favicon" rel="shortcut icon" href="~/Images/{{features.favicon()}}o" type="image/png" />
+    <link rel="apple-touch-icon" sizes="194x194" href="~/Images/{{features.faviconApple()}}" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+</head>
+<xp-get api="Api/Shop" ng-controller="eventGetController" initial-search>
+<body>
+</body>
+</xp-get>
+</html>

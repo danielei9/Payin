@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+    CampaignLineFactory.Delete,
+    CampaignLineFactory.DeleteApi,
+    "",
+    "resources.campaignLine.delete",
+    id: "id"
+))
+{
+    <p translate="resources.campaignLine.deleteQuestion" translate-values="{ quantity: '{{arguments.quantity}}' }">Do you want to delete the campaign line with the quantity {{arguments.quantity}} €?</p>
+}
+

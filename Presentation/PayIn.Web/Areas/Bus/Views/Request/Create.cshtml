@@ -1,0 +1,19 @@
+﻿@using PayIn.Web.App.Factories.Bus;
+@using PayIn.Application.Dto.Bus.Arguments;
+
+@using (Html.xpPopupPost(
+	RequestFactory.CreateName,
+	RequestFactory.CreateApi,
+	"",
+	"resources.bus.sensor.addTargetValue",
+	init: "delete scope.id;"
+))
+{
+    <div class="col-md-12">
+		<div class="row">
+			@(Html.SelectFor<BusApiRequestCreateArguments>(x => x.FromId, "FromName", api: StopFactory.SelectorApi, width: 6))
+			@(Html.SelectFor<BusApiRequestCreateArguments>(x => x.ToId, "ToName", api: StopFactory.SelectorApi, width: 6))
+			@(Html.ArgumentFor<BusApiRequestCreateArguments>(x => x.UserName))
+		</div>
+    </div>
+}

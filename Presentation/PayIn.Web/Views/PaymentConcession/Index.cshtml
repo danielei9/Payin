@@ -1,0 +1,53 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+
+@using (Html.xpList(
+		PaymentConcessionFactory.GetAllName,
+		PaymentConcessionFactory.GetAllApi,
+		"",
+		"resources.paymentConcession.getAfilliates",
+		isPaginable: false,
+		isTitleActive: true,
+		actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, PaymentConcessionFactory.CreatePaymentConcessionAfilliateName, XpIcons.Plus)
+	}
+))
+{
+
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+				<tr>
+					<th translate="resources.paymentConcession.name">Name</th>
+					<th translate="resources.paymentConcession.phone">Phone</th>
+					<th translate="resources.paymentWorker.login">Email</th>
+				</tr>
+            </thead>
+            <tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<PaymentConcessionGetAllResult>(x => x.Name, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PaymentConcessionGetAllResult>(x => x.Phone, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<PaymentConcessionGetAllResult>(x => x.Email, panelUrl: PaymentConcessionFactory.UpdateName, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.accepted">Accepted</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.pending">Pending</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.unsuscribed">Deleted</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

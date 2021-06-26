@@ -1,0 +1,47 @@
+<ion-view view-title="Registro" xp-panel xp-loading>
+    <ion-content class="background transportContent">
+        <div class="wrapperMargin20">
+            <xp-register data-api="/api/account" ng-controller="accountRegisterController">
+                <form name="form" id="form" role="form" ng-submit="register2()" style="margin-top:20%">
+                    <div class="row">
+                        <div class="col col-5"></div>
+                        <div class="col col-90">
+                            <label form="form" ng-class="{'has-error':form.name.$invalid}">           
+                                <input type="text" name="name" ng-model="arguments.name" required autofocus placeholder="Nombre completo" class="inputMainStyle">
+                            </label>         
+                            <label form="form"  ng-class="{'has-error':form.username.$invalid}">            
+                                <input type="text" name="username" ng-model="arguments.username" required class="inputMainStyle" placeholder="Email">
+                            </label>         
+                            <label ng-class="{'has-error':form.mobile.$invalid}">          
+                                <input type="text" name="mobile" ng-model="arguments.mobile" required class="inputMainStyle" placeholder="Teléfono">
+                            </label>         
+                            <label form="form" ng-class="{'has-error':form.password.$invalid}">           
+                                <input type="password" name="password" ng-model="arguments.password" required placeholder="Contraseña (min. 6 carácteres)" class="inputMainStyle">
+                            </label>         
+                            <div class="item item-checkbox backgroundCheckboxTerm">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="acceptTerms" ng-model="arguments.acceptTerms">
+                                </label>
+                                <a ui-sref="policy" class="payin-terms termsColor" > Acepto los términos y condiciones de uso</a>
+                            </div>
+                        </div>
+                        <div class="col col-5"></div>
+                    </div>
+                    <div class="row cleanBorders">
+                        <div class="col col-10"></div>
+                        <div class="col col-80" >
+                            <div class="row center" class="buttonMainStyle">
+                                <div class="col col-15"></div>
+                                <div class="col col-70 center">
+                                    <button type="submit"  class="buttonMainStyle" ng-disabled="form.$invalid">Ok</button>
+                                </div>
+                                <div class="col col-15"></div>
+                            </div>
+                        </div>
+                        <div class="col col-10"></div>
+                    </div>
+                </form>
+            </xp-register>
+        </div>
+    </ion-content>
+</ion-view>

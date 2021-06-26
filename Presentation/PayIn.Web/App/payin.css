@@ -1,0 +1,726 @@
+﻿[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+.navbar-header {
+    height: 50px;
+}
+
+.navbar-brand {
+    height: 50px;
+}
+
+    .navbar-brand img {
+        margin-top: 12px;
+        max-height: 30px;
+    }
+
+.btn-group i {
+    padding: 7px;
+}
+
+.infoPurse {
+    text-align: center;
+    font-style: italic;
+    margin-left: 1em;
+}
+
+.tooltip-inner {
+    white-space: pre;
+    max-width: none;
+}
+
+.padding {
+    padding: 15px;
+}
+
+.padding-horizontal {
+    padding: 0 15px;
+}
+
+.padding-vertical {
+    padding: 15px 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.payinCard {
+    background-color: #CCC;
+    height: 21px;
+    position: absolute;
+    top: 100px;
+    width: 25%;
+    border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+}
+
+.payinCard2 {
+    background-color: #CCC;
+    height: 1.5em;
+    position: relative;
+    top: 0px;
+    width: 64%;
+    border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+}
+
+.payinTextCard {
+    position: absolute;
+    left: 65%;
+    font-weight: bold;
+}
+
+.square {
+    font-family: sans-serif;
+    color: white;
+    padding: 1em;
+    float: left;
+    width: 31.33%;
+}
+
+    .square:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+        float: left;
+    }
+/*.input-group{
+	width:96.4% !important;
+}*/
+.input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child) {
+    border-radius: 2px;
+}
+
+#downloadFile {
+    position: relative;
+    left: 96.2%;
+    top: -34px;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 27px;
+}
+
+.payinEye {
+    padding-left: 1.4em;
+}
+
+.payinEye2 {
+    padding-left: 0.8em;
+}
+
+input[type=checkbox]:after {
+    content: " ";
+    background-color: #FFF;
+    display: inline-block;
+    visibility: visible;
+}
+
+.legendGraph {
+    float: left;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.legend-graph-group {
+    float: right;
+    border: 1px solid #CCC;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.legend-graph-color {
+    float: left;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.legend-graph-text {
+    float: left;
+}
+
+.legend-graph-item {
+    float: left;
+    clear: left;
+}
+
+.badge {
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 16px !important;
+    width: 16px !important;
+}
+
+.truncate {
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncate-base {
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.tooltip.top {
+    display: none;
+}
+
+.tooltip.top {
+    display: none;
+}
+
+.greyListContainer {
+    padding: 1px;
+    float: right;
+    margin-left: -5px !important;
+    margin-top: 9px !important;
+}
+
+.greyListPoint {
+    width: 2px;
+    height: 0;
+    border: 3px solid red;
+    overflow: hidden;
+    position: absolute;
+}
+/* Para la barra de jornada*/
+td.journey {
+    width: 200px;
+    padding: 1px 15px !important;
+}
+
+td .journey-0 {
+    float: left;
+}
+
+td .journey-24 {
+    float: right;
+}
+
+td .journey-bar {
+    margin-top: 20px;
+}
+
+    td .journey-bar .journey-background {
+        height: 10px;
+        background-color: #F0F3F4;
+    }
+
+    td .journey-bar .journey-range {
+        height: 10px;
+        background-color: #e9af30;
+        margin-top: -10px
+    }
+
+.padder-xs {
+    padding-left: 2em;
+}
+/* Para el icono cuando se minimiza */
+@media (min-width: 768px) {
+    .app-aside-folded .app-header .navbar-brand {
+        padding-left: 5px;
+    }
+
+        .app-aside-folded .app-header .navbar-brand img {
+            margin-top: 15px;
+            max-height: 25px;
+        }
+
+    .navbar-right {
+        margin-right: 0px;
+    }
+}
+/* Special table */
+.table {
+    margin-bottom: 0;
+}
+
+    .table > thead > tr > th.icon-column {
+        width: 25px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.icon-column-dropdown {
+        width: 40px;
+        padding: 8px 0px !important;
+        cursor: pointer;
+        text-align: right;
+    }
+
+    .table > tbody > tr > td.icon-column {
+        width: 35px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.icon-column2 {
+        width: 50px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.icon-column3 {
+        width: 75px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.icon-column4 {
+        width: 100px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.icon-column5 {
+        width: 125px;
+        padding: 8px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.datetime-column {
+        width: 140px;
+        padding: 10px 0px !important;
+        text-align: center;
+    }
+
+    .table > tbody > tr > td.table-column {
+        padding: 0;
+    }
+
+        .table > tbody > tr > td.table-column .table > tbody > tr:first-child > td {
+            border-top-width: 0;
+        }
+
+.panel .table-responsive {
+    margin-bottom: 0;
+    border: 0;
+}
+
+.panel .dataTables_wrapper {
+    margin-bottom: 20px;
+}
+
+/*Orange color*/
+/* http://paletton.com/#uid=10+0u0kpqtffHEfkNvBtcoEvMj- */
+/* https://color.adobe.com/es/create/color-wheel/?base=2&rule=Analogous&selected=4&name=Mi%20tema%20de%20Color&mode=rgb&rgbvalues=0.611764705882353,0.4251404345524549,0.0039215686274509664,0.7686274509803922,0.5508298887124743,0.06666666666666661,0.9137254901960784,0.6862745098039216,0.18823529411764706,0.9882352941176471,0.7845172231055567,0.34509803921568627,1,0.8431372549019608,0.5098039215686274&swatchOrder=0,1,2,3,4 */
+/*
+   #9C6B01     #C48C11      #E9AF30      #FCC858      #FFD782
+   156,107,1   196,140,17   233,175,48   252,200,88   255,215,130
+   #C48C11     #131e26      #1c2b36                   #7793a7
+
+   #FFFFFF
+   #869fb1
+   #5c798f
+*/
+.btn-orange {
+    color: white; /*#7793a7*/
+    background-color: #E9AF30; /*#1c2b36*/
+    border-color: #E9AF30; /*#1c2b36*/
+}
+
+.bg-orange {
+    color: #FFD782; /*#7793a7*/
+    background-color: #E9AF30; /*#1c2b36*/
+}
+
+    .bg-orange.lt,
+    .bg-orange .lt {
+        background-color: #263845;
+    }
+
+    .bg-orange.lter,
+    .bg-orange .lter {
+        background-color: #314554;
+    }
+
+    .bg-orange.dk,
+    .bg-orange .dk {
+        background-color: #C48C11; /*#131e26*/
+    }
+
+    .bg-orange.dker,
+    .bg-orange .dker {
+        background-color: #0a1015;
+    }
+
+    .bg-orange.bg,
+    .bg-orange .bg {
+        background-color: #E9AF30; /*#1c2b36*/
+    }
+
+    .bg-orange a {
+        color: #96abbb;
+    }
+
+        .bg-orange a:hover {
+            color: #ffffff;
+        }
+
+        .bg-orange a.list-group-item:hover,
+        .bg-orange a.list-group-item:focus {
+            background-color: inherit;
+        }
+
+    .bg-orange .nav > li:hover > a,
+    .bg-orange .nav > li:focus > a,
+    .bg-orange .nav > li.active > a {
+        color: #ffffff;
+        background-color: #C48C11; /*#131e26*/
+    }
+
+    .bg-orange .nav > li > a {
+        color: #FFFFFF; /*#869fb1*/
+    }
+
+        .bg-orange .nav > li > a:hover,
+        .bg-orange .nav > li > a:focus {
+            background-color: #9C6B01; /*#16232d*/
+        }
+
+    .bg-orange .nav .open > a {
+        background-color: #C48C11; /*#131e26*/
+    }
+
+    .bg-orange .caret {
+        border-top-color: #FFD782; /*#7793a7*/
+        border-bottom-color: #FFD782; /*#7793a7*/
+    }
+
+    .bg-orange.navbar .nav > li.active > a {
+        color: #ffffff;
+        background-color: #9C6B01; /*#131e26*/
+    }
+
+    .bg-orange .open > a,
+    .bg-orange .open > a:hover,
+    .bg-orange .open > a:focus {
+        color: #ffffff;
+    }
+
+    .bg-orange .text-muted {
+        color: #FFFFFF /*#5c798f*/ !important;
+    }
+
+    .bg-orange .text-lt {
+        color: #c4d0d9 !important;
+    }
+
+    .bg-orange.auto .list-group-item,
+    .bg-orange .auto .list-group-item {
+        background-color: transparent;
+        border-color: #C48C11 /*#131e26*/ !important;
+    }
+
+        .bg-orange.auto .list-group-item:hover,
+        .bg-orange .auto .list-group-item:hover,
+        .bg-orange.auto .list-group-item:focus,
+        .bg-orange .auto .list-group-item:focus,
+        .bg-orange.auto .list-group-item:active,
+        .bg-orange .auto .list-group-item:active,
+        .bg-orange.auto .list-group-item.active,
+        .bg-orange .auto .list-group-item.active {
+            background-color: #C48C11 /*#131e26*/ !important;
+        }
+
+.b-orange {
+    border-color: #E9AF30;
+}
+
+.btn-PayIn,
+.btn-PayIn:visited {
+    color: #FFFEFF;
+    text-shadow: none;
+    border-color: #E9AF30;
+    background-color: #E9AF30;
+    border-color: #E9AF30;
+    background-repeat: repeat-x;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+    .btn-PayIn:hover {
+        background-color: #CC982A !important;
+        background-position: 0 -15px;
+        border-color: #CC982A !important;
+        color: #FFFEFF !important;
+    }
+
+    .btn-PayIn:focus {
+        color: #FFFEFF !important;
+        background-color: #CC982A !important;
+    }
+
+    .btn-PayIn:active {
+        background-color: #CC982A;
+        border-color: #753D00;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        background-repeat: repeat-x;
+    }
+
+.btn-warning:disabled {
+    background-color: #eb9316;
+    background-image: none;
+}
+
+.topLn-PayIn {
+    color: #FFFEFF;
+    text-shadow: none;
+    border-color: #E9AF30;
+    background-color: #E9AF30;
+    border-color: #E9AF30;
+}
+
+i.text-orange {
+    color: #E9AF30;
+}
+
+.align-total {
+    padding: 8px 15px;
+}
+
+/* Subtitle */
+.xp-subtitle {
+    margin-left: 20px;
+}
+/*Para la imagen del perfil*/
+.image-upload > input {
+    display: none;
+}
+/*propiedades de las imagenes del usuario*/
+.image-pointer-margin {
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+/*Alinea un elemento en la parte inferior de la página*/
+
+
+/*Formateo de tablas*/
+.max-text-size-200 {
+    overflow: hidden;
+    width: 200px !important;
+}
+
+.max-text-size-100 {
+    overflow: hidden;
+    width: 100px !important;
+}
+
+@media (max-width: 767px) {
+
+    .dropdownProfile {
+        width: 50%;
+        float: left;
+    }
+
+    .dropdownLang {
+        width: 50%;
+        float: right;
+    }
+
+    .listLang {
+        margin-left: 15px;
+        float: right;
+        width: 70px !important;
+        margin-right: 2px;
+    }
+
+    .selectLang {
+        padding: 5px 15px 5px 0 !important;
+    }
+
+    .padder-xs {
+        padding-left: 0;
+    }
+
+    .greyListContainer {
+        padding: 1px;
+        float: right;
+        margin-left: -5px !important;
+        margin-top: 9px !important;
+        position: relative;
+    }
+
+    .transportEye {
+        margin-right: 5px !important;
+    }
+
+    .transportControlEye {
+        margin-left: 0 !important;
+    }
+
+    .payinTextCard {
+        position: absolute;
+        left: 44%;
+        font-weight: bold;
+    }
+}
+
+.transportEye {
+    margin-right: 0;
+}
+
+.transportControlEye {
+    margin-left: 1em;
+}
+
+.listLang {
+    margin-left: 15px;
+}
+
+.pull-right {
+    right: 0;
+    left: auto
+}
+
+/*Eventos en barra defs navegación*/
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.caret {
+    margin-right: 2px;
+}
+
+.max-var-height {
+    max-height: 50px;
+}
+
+.tab-content {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+/*No mostrar scrollbar en los list*/
+.table-responsive {
+    overflow-x: visible;
+}
+
+.disabled-color {
+    color: grey;
+}
+
+.expired-color {
+    color: #BBB;
+}
+
+/*Icono a la derecha, usado para la lupa en SelectFor*/
+.input-righticon {
+    position: absolute;
+    left: calc(100% - 20px);
+    top: 10px;
+    color: #ccc;
+    z-index: 3;
+}
+
+.input-righticonwrapper {
+    position: relative;
+}
+
+    .input-righticonwrapper input {
+        padding-right: 24px;
+    }
+
+tr.selectedrow {
+    background-color: #f5f5f5;
+}
+
+.weekDays {
+    width: 500px;
+    font-size: 0.75em;
+}
+
+    .weekDays th {
+        width: 2%;
+        height: 18px;
+        text-align: center;
+        border: 1px solid black;
+    }
+
+    .weekDays td {
+        text-align: center;
+        border: 1px solid black;
+    }
+
+        .weekDays td > div {
+            width: 100%;
+            height: 100%;
+        }
+
+.color-template {
+    width: 35px;
+    height: 20px;
+    color: white;
+    margin: 2px;
+}
+
+.square, .rectangle {
+    width: 100%;
+}
+
+    .square:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
+
+    .rectangle:before {
+        content: "";
+        display: block;
+    }
+
+.rectangle_16_9:before {
+    padding-top: 56.25%;
+}
+
+.rectangle_4_3:before {
+    padding-top: 75%;
+}
+
+.rectangle_3_2:before {
+    padding-top: 66.66%;
+}
+
+.rectangle_2_1:before {
+    padding-top: 50%;
+}
+
+.rectangle_4_2:before {
+    padding-top: 25%;
+}
+
+.rectangle_8_5:before {
+    padding-top: 62.5%;
+}
+
+.clickable {
+    cursor: pointer
+}

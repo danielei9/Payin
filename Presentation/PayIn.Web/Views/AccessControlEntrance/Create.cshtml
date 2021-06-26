@@ -1,0 +1,24 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    AccessControlEntranceFactory.CreateName,
+    AccessControlEntranceFactory.CreateApi,
+    "",
+    "resources.accessControl.entrance.create",
+    isTitleActive: true,
+    init:
+        "scope.arguments.accessControlId = params.accessControlId;"
+))
+{
+	<div class="panel panel-default" style="margin:-15px 0 15px 0">
+		<div class="panel-heading font-bold" translate="resources.accessControl.entrance.enclosureInfo">Enclosure information</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+                <div class="row">
+                    @(Html.ArgumentFor<ApiAccessControlEntranceCreateArguments>(x => x.Name))
+                </div>
+			</div>
+		</div>
+	</div>
+}

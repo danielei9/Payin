@@ -1,0 +1,76 @@
+﻿@using PayIn.Web.App.Factories;
+@{
+    Layout = null;
+}
+<html ng-app="Store" ng-controller="shopGetEventsConcessionController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script src="~/Vendors/angulr/js/angular-locale_es-es.js"></script>
+    <script type="text/javascript">
+        var id = window.location.pathname.split('/')[3];
+
+        angular.module('Store', [])
+            .controller('shopGetEventsConcessionController', ['$http', '$scope', function ($http, $scope) {
+                $http.get('/Api/Shop/Concession/' + id).then(function (data) {
+                    $scope.concessionData = data.data.data;
+                    $scope.concessionPhotoUrl = data.data.data[0].photoUrl; // data.data.concessionPhotoUrl;
+                    $scope.concessionLogoUrl = data.data.concessionLogoUrl;
+                });
+            }])
+    </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{concessionData[0].concessionName}}</title>
+</head>
+<body>
+    <div class="gallery">
+        <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:10px; float:right; height: 5vh;" />
+        <img class="image" ng-src={{concessionPhotoUrl}} ng-show="concessionData[0]" style="height: auto !important; max-height: 350px;">
+        <img class="icon-image" ng-src={{concessionLogoUrl}} ng-show="concessionData[0]">
+    </div>
+    <div class="gallery-title" ng-show="concessionData[0]">Eventos de {{concessionData[0].concessionName}}</div>
+    <div class="content" ng-show="concessionData">
+        <div class="col-50-card" ng-repeat="item in concessionData" title="Ver tipos de entradas para {{item.name}}">
+            <div class="border-card">
+                <a href="@ShopFactory.GetEventEntrancesType/{{item.id}}">
+                    <div class="img-container">
+                        <img class="img-full" ng-src={{item.photoUrl}}>
+                    </div>
+                    <div class="card-header">
+                        <p>{{item.name}}</p>
+                    </div>
+                    <div class="card-data">
+                        <div class="item more-info-box" style="height:11%">
+                                <div class="data-box" style="padding:5px;" title="{{item.date |date:'longDate'}}">
+                                    <abbr class="month">{{item.date| date:'MMM' }}</abbr>
+                                    <abbr class="day">{{item.date| date:'EEE'}}</abbr>
+                                    <span class="number">{{item.date | date:'dd'}}</span>
+                                </div>
+                                <div class="secondary-box" style="padding:5px" title="Entradas desde {{item.priceStart}} €">
+                                    <div class="row row-box">
+                                        <span class="icon ion-cash icon-money" ng-if="item.priceStart!=0"><span class="quantity">&nbsp;>{{item.priceStart |number : 2}} €</span></span>
+                                        <span class="icon ion-cash icon-money" ng-if="item.priceStart==0"><span class="quantity">&nbsp; Hay Gratis!!!</span></span>
+                                        <div class="row row-box" title="{{item.place}}">
+                                            <span class="icon ion-location icon-location" > &nbsp;{{item.place| limitTo: 15 }}{{item.place.length > 15 ? '...' : ''}}</span>
+                                            <div style="text-align: center">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                          </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+    <p ng-hide="concessionData[0]" style="font-size:3em;position: absolute;left: calc(50% - 200px);top: calc(50% + 80px);">No se han encontrado eventos</p>
+</body>
+</html>

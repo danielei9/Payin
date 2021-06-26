@@ -1,0 +1,93 @@
+﻿@using PayIn.Application.Dto.Results.ControlTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using Xp.Common.Resources;
+
+@{
+	var items = ControlTemplateItemFactory.GetTemplate + "({templateId:{{item.id}}})";
+	var checks = ControlTemplateCheckFactory.GetTemplate + "({templateId:{{item.id}}})";
+
+}
+
+@using (Html.xpList(
+	ControlTemplateFactory.GetAll,
+	ControlTemplateFactory.GetAllApi,
+	"",
+	//ControlTemplateResources.GetAll,
+	"resources.controlTemplate.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	actions: new ActionLink[] { 
+		new ActionLink(ActionLink.ActionLinkType.Panel, ControlTemplateFactory.Create, XpIcons.Plus)
+	}
+))
+{	
+		<div class="table-responsive">
+			<table class="table table-hover" ng-show="data.length">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th translate="resources.controlTemplate.item">Item</th>
+						<th translate="resources.controlTemplate.name">Name</th>
+						<th translate="resources.controlTemplate.checkDuration">Check Duration</th>
+						<th translate="resources.controlTemplate.weekDays">Week days</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="item in data">
+						<td class="icon-column">
+							@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ControlTemplateFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+						</td>
+						<td>@(Html.ColumnFor<ControlTemplateGetAllResult>(x => x.ItemName, panelUrl: ControlTemplateFactory.Update, id: "{{item.id}}"))</td>
+						<td>@(Html.ColumnFor<ControlTemplateGetAllResult>(x => x.Name, panelUrl: ControlTemplateFactory.Update, id: "{{item.id}}"))</td>
+						<td>@(Html.ColumnFor<ControlTemplateGetAllResult>(x => x.CheckDuration, panelUrl: ControlTemplateFactory.Update, id: "{{item.id}}"))</td>
+						<td>
+							<a ui-sref='@ControlTemplateFactory.Update ({id:{{item.id}}})' data-xp-navigate>
+								<span data-ng-show="item.monday" translate="resources.globalResources.mo">Mo</span>
+								<span data-ng-show="item.tuesday" translate="resources.globalResources.tu">Tu</span>
+								<span data-ng-show="item.wednesday" translate="resources.globalResources.we">We</span>
+								<span data-ng-show="item.thursday" translate="resources.globalResources.th">Th</span>
+								<span data-ng-show="item.friday" translate="resources.globalResources.fr">Fr</span>
+								<span data-ng-show="item.saturday" translate="resources.globalResources.sa">Sa</span>
+								<span data-ng-show="item.sunday" translate="resources.globalResources.su">Su</span>
+							</a>
+						</td>
+						<td class="journey">
+							<div class="journey-0">0h</div>
+							<div class="journey-24">24h</div>
+							<div class="journey-bar">
+								<div class="journey-background" />
+								<div class="journey-range" data-ng-repeat="item2 in item.items" data-ng-show="item2.until"
+									 style="margin-left:{{item2.since|xpJourneyStart}}%;width:{{item2.until|xpJourneyLength:item2.since}}%"
+									 title="{{item2.since|xpTime}} - {{item2.until|xpTime}}" />
+							
+								<div class="journey-range" data-ng-repeat="item2 in item.items" data-ng-show="!item2.until"
+									 style="margin-left:{{item2.since|xpJourneyStart}}%;width:2%;background-color:#006633;z-index:9999;"
+									 title="Check: {{item2.since|xpTime}}" />
+
+							</div>
+
+						</td>
+						<td class="icon-column">
+							<a class="btn btn-xs btn-success" data-xp-navigate ui-sref=@items>
+								<i class='@XpIcons.Calendar'></i> {{item.templateItemsCount}}
+							</a>
+						</td>
+						<td class="icon-column">
+							<a class="btn btn-xs btn-success" data-xp-navigate ui-sref=@checks style="margin-left:5px;">
+								<i class='@XpIcons.List'></i> {{item.templateChecksCount}}
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+}

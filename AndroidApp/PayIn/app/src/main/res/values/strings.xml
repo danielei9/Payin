@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Pay[in]</string>
+
+    <!-- Labels del Manifest -->
+    <string name="servFichaje">Fichaje</string>
+    <string name="servRegistro">Registro</string>
+    <string name="servNFC">NFC</string>
+    <string name="servAjustes">Ajustes</string>
+    <string name="servAbout">Acerca de&#8230;</string>
+    <string name="servCalendario">Calendario</string>
+    <string name="servUpdatePass">Cambiar contraseña</string>
+    <string name="servNotification">Listado de notificaciones</string>
+
+    <!-- Content descriptors -->
+    <string name="contentDescriptorIvIcon" translatable="false">Icono Servicios</string>
+    <string name="contentDescriptorAddIcon" translatable="false">Icono añadir</string>
+    <string name="contentDescriptorLogo" translatable="false">Logo de Pay[in]</string>
+    <string name="contentDescriptorCamara" translatable="false">Icono de una cámara</string>
+    <string name="contentDescriptorNFC" translatable="false">Icono de OK</string>
+    <string name="contentDescriptorTypeFichajeManual" translatable="false">Icono de entrada o salida de Fichaje Manual</string>
+    <string name="contentDescriptorIvQR" translatable="false">Icono QR</string>
+    <string name="contentDescriptorBell" translatable="false">Icono campana de notificaciones</string>
+
+    <!-- Elementos internos -->
+    <string name="secret" translatable="false">PayInAndroidNativeApp@123456</string>
+
+    <string name="url" translatable="false">https://control.pay-in.es/</string>
+    <string name="url_debug" translatable="false">http://payin-test.cloudapp.net/</string>
+<!--
+    <string name="url" translatable="false">http://172.31.48.213:8081/</string>
+    <string name="url_debug" translatable="false">http://172.31.48.213:8081/</string>
+-->
+    <string name="sabadell_url"       translatable="false">https://sis.REDSYS.es/sis/realizarPago</string>
+    <string name="sabadell_url_debug" translatable="false">https://sis-t.redsys.es:25443/sis/realizarPago</string>
+
+    <string name="apiMainMobile" translatable="false">Mobile/Main/v1</string>
+
+    <string name="apiServiceTagMobileGet"              translatable="false">Mobile/ServiceTag/v1/Tag/</string>
+    <string name="apiControlPresenceMobileCheck"       translatable="false">Mobile/ControlPresence/v1/Check</string>
+    <string name="apiControlPresenceMobileTimetable"   translatable="false">Mobile/ControlPresence/v1/Timetable</string>
+    <string name="apiControlPresenceMobileTrack"       translatable="false">Mobile/ControlPresence/v1/Track</string>
+    <string name="apiControlItemMobileGetAll"          translatable="false">Mobile/ControlItem/v1</string>
+    <string name="apiControlItemMobileGetSelector"     translatable="false">Mobile/ControlItem/v1/Selector</string>
+    <string name="apiControlPlanningCheckMobileGet"    translatable="false">Mobile/ControlPlanningCheck/v1</string>
+    <string name="apiControlIncidentMobileManualCheck" translatable="false">Mobile/ControlIncident/v1/ManualCheck</string>
+
+    <string name="apiTicketGet"                  translatable="false">Mobile/Ticket/v1</string>
+    <string name="apiTicketCreate"               translatable="false">Mobile/Ticket/v1</string>
+    <string name="apiTicketPay"                  translatable="false">Mobile/Ticket/v1/Pay</string>
+    <string name="apiPaymentConcessionGetAll"    translatable="false">Mobile/PaymentConcession/v1</string>
+    <string name="apiPaymentMediaDelete"         translatable="false">Mobile/PaymentMedia/v1</string>
+    <string name="apiPaymentRefund"              translatable="false">Mobile/Payment/v1/Refund</string>
+
+    <string name="apiUser"           translatable="false">Mobile/User/v1/</string>
+    <string name="apiUserHasPayment" translatable="false">Mobile/User/v1/HasPayment</string>
+    <string name="apiUserUpdatePin" translatable="false">Mobile/User/v1/Pin</string>
+
+    <string name="apiPaymentMediaCreate" translatable="false">Mobile/PaymentMedia/v1/WebCard</string>
+
+    <string name="apiDeviceCreate" translatable="false">Mobile/Device/v1/</string>
+
+    <string name="apiNotificationGetAll" translatable="false">Mobile/ServiceNotification/v1</string>
+
+    <string name="apiAccount"              translatable="false">Api/Account</string>
+    <string name="apiAccountCurrent"       translatable="false">Api/Account/Current</string>
+    <string name="apiAccountLogout"        translatable="false">Api/Account/Logout</string>
+    <string name="apiAccountUpdatePasword" translatable="false">Api/Account/UpdatePassword/</string>
+    <string name="apiAccountConfirmMail"   translatable="false">Api/Account/ConfirmEmail</string>
+
+    <string name="apiWorker" translatable="false">Mobile/Worker/v1</string>
+    <string name="apiServiceWorkerAccept" translatable="false">Mobile/Worker/v1</string>
+    <string name="apiServiceWorkerReject" translatable="false">Mobile/Worker/v1/RejectAssignment</string>
+    <string name="apiPaymentWorkerAccept" translatable="false">Mobile/PaymentWorker/v1</string>
+    <string name="apiPaymentWorkerReject" translatable="false">Mobile/PaymentWorker/v1/RejectAssignment</string>
+
+    <!-- Elementos Preferencias -->
+    <string name="prefs" translatable="false">preferences</string>
+</resources>

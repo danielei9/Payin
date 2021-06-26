@@ -1,0 +1,25 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPresence;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlPresenceFactory.Create,
+	ControlPresenceFactory.CreateApi,
+	"",
+	//ControlPresenceResources.Create
+	"resources.controlPresence.create"
+))
+{
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.Login))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.Date))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.Latitude))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.Longitude))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.LatitudeWanted))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.LongitudeWanted))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.Observations))
+	@(Html.ArgumentFor<ControlPresenceCreateArguments>(x => x.PresenceType))
+	@(Html.SelectFor<ControlPresenceCreateArguments>(x => x.TagId, "tagName", ServiceCheckPointFactory.RetrieveSelectorApi))
+	@(Html.SelectFor<ControlPresenceCreateArguments>(x => x.ItemId, "itemName", ControlItemFactory.RetrieveSelectorApi))
+	@(Html.SelectFor<ControlPresenceCreateArguments>(x => x.PlanningId, "planningName", ControlPlanningFactory.GetSelectorApi))
+}
+

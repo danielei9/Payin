@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using Xp.Common;
+@using (Html.xpPost(
+	PaymentConcessionPurseFactory.CreateName,
+	PaymentConcessionPurseFactory.CreateApi,
+	"",
+	"resources.paymentConcessionPurse.create",
+	isTitleActive: true,
+	init:"scope.arguments.id=params.id"
+))
+{	
+		@(Html.ArgumentFor<PaymentConcessionPurseCreateArguments>(x => x.Login, focus:true, inputAttribute:"autocomplete=\"off\""))
+}
+	

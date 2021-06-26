@@ -1,0 +1,15 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceAddressName;
+
+@using (Html.xpPopupPut(
+	ServiceAddressNameFactory.Update,
+	ServiceAddressNameFactory.UpdateApi,
+	"",
+	//ServiceAddressNameResources.Update
+	"resources.serviceAddressName.update"
+))
+{
+	@(Html.ArgumentFor<ServiceAddressNameUpdateArguments>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ServiceAddressNameUpdateArguments>(x => x.ProviderMap))
+}

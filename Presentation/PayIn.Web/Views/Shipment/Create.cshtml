@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments.Shipment;
+@using Xp.Common;
+@using (Html.xpPost(
+	ShipmentFactory.CreateName,
+	ShipmentFactory.CreateApi,
+	"",
+	"resources.shipment.create",
+	isTitleActive: true
+))
+{
+	<div class="col-sm-12">
+		<h4 class="alert alert-info" translate="resources.shipment.alertCreate">¡Atención! No podrás modificar ni eliminar una remesa, una vez haya llegado la fecha de inicio de la remesa.</h4>	
+	</div>
+
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Since, width: 6))
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Until, width: 6))
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<ShipmentCreateArguments>(x => x.Amount))
+}

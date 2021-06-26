@@ -1,0 +1,81 @@
+ @font-face{
+    font-family: 'Credit_Card';
+    src: url('../lib/ionic/fonts/Credit_Card.ttf') format('truetype');
+    font-weight: bolder;
+  }
+
+.payin-creditcard {
+   font-family: "Credit_Card";
+}
+
+.payin-creditNumber{
+    font-family: "Credit_Card";
+    font-size: 3.5vw !important;
+    font-weight: bolder !important;
+}
+
+.payin-imgCredit{
+  max-width:50%;  
+}
+
+.payin-expirationCard{
+  font-family: "Credit_Card";
+  padding-top:0.1rem;
+}
+.payin-bgMobilis{
+    background: url('../img/cards/mobilis.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgFGV{
+    background: url('../img/cards/fgv.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgEMT{
+    background: url('../img/cards/emt.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgVitrasa{
+    background: url('../img/cards/vitrasa.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgTrencadis{
+    background: url('../img/cards/mobilisTrencadis.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgReloj{
+    background: url('../img/cards/reloj.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.payin-bgPurse{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+.payin-bgCard{
+	background-color:#CCC;
+}
+.item-complex .item-content, .item-radio .item-content{
+  background-color:#CCC;
+}

@@ -1,0 +1,68 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+    PaymentWorkerFactory.GetAll,
+    PaymentWorkerFactory.GetAllApi,
+    "",
+    "resources.paymentWorker.getAll",
+    isPaginable: false,
+    isTitleActive: true ,
+    actions: new ActionLink[] {
+      new ActionLink(ActionLink.ActionLinkType.Panel, PaymentWorkerFactory.Create, XpIcons.Plus)
+    }
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th translate="resources.paymentWorker.name">Name</th>
+					<th translate="resources.paymentWorker.login">Login</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state===1,'b-l b-5x b-danger':item.state === 3,'b-l b-5x b-warning':item.state===2}">
+					<td ng-show="item.state == 1" style="width:25px">&nbsp;</td>
+					<td class="icon-column" ng-hide="item.state == 1">
+						@XpColumns.IconColumn(
+							XpIcons.Resend,
+							popupUrl: PaymentWorkerFactory.ResendNotification,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: PaymentWorkerFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<PaymentWorkerGetAllResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<PaymentWorkerGetAllResult>(x => x.Login))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.enumResources.workerState_Active">Active</p>
+				</div>
+				@*<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.paymentWorker.pending">Pending</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.paymentWorker.unsuscribed">Unsuscribed</p>
+				</div>*@
+			</div>
+		</div>
+	</footer>
+
+}

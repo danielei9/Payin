@@ -1,0 +1,57 @@
+﻿@using PayIn.Application.Dto.Results.ServiceTag;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Security;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ServiceTagFactory.GetAll,
+	ServiceTagFactory.GetAllApi,
+	"",
+	//ServiceTagResources.GetAll,
+	"resources.serviceTag.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	init: "scope.arguments.itemId = params.itemId;",
+	actions: new ActionLink[] { 
+		new ActionLink(ActionLink.ActionLinkType.Panel, ServiceTagFactory.Create, XpIcons.Plus)
+	}
+))
+{
+	var route = ServiceTagFactory.Update + "({id:{{item.id}}})";
+	var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+		
+	<div>
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.serviceTag.type">Type  </th>
+					<th translate="resources.serviceTag.supplier">Supplier </th>
+					<th translate="resources.serviceTag.reference">Reference</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+						XpIcons.Remove,
+						popupUrl: ServiceTagFactory.Delete,
+						id: "{{item.id}}",
+						arguments: "{\"reference\":\"{{item.reference}}\"}"
+					)
+					</td>
+					<td class="icon-column">
+						<img data-ng-show="item.type==1" src="~/Images/p-in.png"    alt="P[in]"    style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==2" src="~/Images/p-out.png"   alt="P[out]"   style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==3" src="~/Images/p-check.png" alt="P[check]" style="height:50px; margin:-20px 0 -15px 0;" />
+						<img data-ng-show="item.type==4" src="~/Images/p-check.png" alt="P[round]" style="height:50px; margin:-20px 0 -15px 0;" />
+
+					</td>
+					<td>@(Html.ColumnFor<ServiceTagGetAllResult>(x => x.SupplierName, panelUrl: ServiceTagFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ServiceTagGetAllResult>(x => x.Reference, panelUrl: ServiceTagFactory.Update, id: "{{item.id}}"))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

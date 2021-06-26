@@ -1,0 +1,13 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+    EntranceTypeFormFactory.Delete,
+    EntranceTypeFormFactory.DeleteApi,
+    "",
+    "resources.entranceTypeForm.delete",
+    id: "id"
+))
+{
+	<p translate="resources.entranceTypeForm.deleteQuestion" >Do you want to remove the form from entrance type?</p>
+}
+

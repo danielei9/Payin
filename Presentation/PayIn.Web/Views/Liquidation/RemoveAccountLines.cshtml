@@ -1,0 +1,12 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+    LiquidationFactory.RemoveAccountLinesName,
+    LiquidationFactory.RemoveAccountLinesApi,
+    "",
+    "resources.liquidation.removeAccountLines"
+))
+{
+    <h4 translate="resources.liquidation.removeAccountLinesQuestion" translate-values="{ type: '{{arguments.typeName}}' }">Do you want to remove the account line '{{arguments.typeName}}' from the liquidation?</h4>
+}

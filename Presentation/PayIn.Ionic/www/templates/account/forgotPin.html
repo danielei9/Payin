@@ -1,0 +1,52 @@
+<ion-view cache-view="false" view-title="Recuperar Pin" xp-panel xp-loading>
+    <ion-content class="background transportContent" >
+        <div class="wrapperMargin20">
+            <xp-forgot-pin id="forgotpin" data-api="Mobile/User/v1/ForgotPin" ng-controller="pinUpdateController" data-cache>             
+                <form name="form" role="form" id="form" ng-submit="confirm()">
+                    <div class="row">
+                        <div class="col col-100">     
+                            <div class="row">
+                                <div class="col col-100 whiteColor">
+                                    Por su seguridad se procederá a eliminar todas las tarjetas asociadas a su cuenta de usuario.
+                                    Este PIN debe ser fácil de recordar y no tiene por qu&eacute; ser el mismo que el de su tarjeta.
+                                </div>
+                            </div> 
+                            <div class="row wrapperMargin10">
+                                <div class="col col-100">
+                                    <label form="form" ng-class="{'has-error':form.password.$invalid}">
+                                        <span class="whiteColor">Introduce tu password</span>
+                                        <input type="password" class="inputMainStyle formUpdate" name="password" ng-model="arguments.password" required ng-minlength="6">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100">
+                                    <label form="form"  ng-class="{'has-error':form.password.$invalid}">
+                                        <span class="whiteColor">Introduce tu nuevo Pay[in] PIN</span>
+                                        <input class="inputMainStyle inputPass formUpdate wrapperMargin5" type="password" name="pin" ng-model="arguments.pin" placeholder="Pay[in] PIN nuevo (4 dígitos)" ng-pattern="/^\d{4}$/" required>
+                                    </label>
+                                </div>        
+                            </div>
+                            <div class="row wrapperMargin20">
+                                <div class="col col-100" >
+                                    <div class="row center buttonMainStyle padding-initial">
+                                        <div class="col col-100 center">
+                                            <button type="submit" class="cleanBackground" ng-disabled="form.$invalid">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-100">
+                                    <div class="payin-bar padding-horizontal">
+                                        <a class="button button-block cleanBackground whiteColor" ng-href="#/Account/ForgotPin">¿Has olvidado el pin?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </form>    
+            </xp-forgot-pin>
+        </div>
+    </ion-content>
+</ion-view>

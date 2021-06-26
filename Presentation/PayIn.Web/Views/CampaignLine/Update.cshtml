@@ -1,0 +1,37 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.CampaignLine;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+    CampaignLineFactory.Update,
+    CampaignLineFactory.UpdateApi,
+    "",
+    "resources.campaignLine.update"
+))
+{
+	<xp-get data-api="@CampaignLineFactory.GetApi">
+		<div class="panel-heading font-bold" translate="resources.campaignLine.campaignLineDetails">Campaign line details</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="row">
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.All, width: 6))
+                </div>
+
+                <div class="row" ng-hide="arguments.all">
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.SinceTime, width: 6))
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.UntilTime, width: 6))
+                </div>
+                <div class="row">
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.Type, width: 6))
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.Quantity, width: 6))
+                </div>
+                <div class="row">
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.AllProduct, width: 6))
+                    @(Html.ArgumentFor<CampaignLineUpdateArguments>(x => x.AllEntranceType, width: 6))
+                </div>
+            </div>
+        </div>
+	</xp-get>
+}
+
+

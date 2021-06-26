@@ -1,0 +1,23 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpPut(
+    ServiceDocumentFactory.UpdateName,
+    ServiceDocumentFactory.UpdateApi,
+    "",
+    "resources.serviceDocument.update"
+))
+{
+	<xp-get data-api="@ServiceDocumentFactory.UpdateApi">
+		@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Name))
+		<div class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Since, width: 6))
+				@(Html.ArgumentFor<ServiceDocumentCreateArguments>(x => x.Until, width: 6))
+			</div>
+		</div>
+	</xp-get>
+}
+

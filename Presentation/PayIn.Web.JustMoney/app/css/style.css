@@ -1,0 +1,1166 @@
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('/app/fonts/roboto.light.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+}
+
+body, html {
+    /*font-family: 'Roboto Light', sans-serif;*/
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+/*button, input, optgroup, select, textarea {
+    font-family: Arial, Helvetica, sans-serif !important;
+}*/
+
+input {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+a
+{
+    text-decoration: none;
+    color: black;
+}
+
+                                /* HEADER STYLING*/
+
+.header
+{
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    position: fixed;
+    padding: 50px 0;
+    background-color: white;
+}
+
+.header-justmoney-img
+{
+    width: 390px;
+    /*height: 225px;*/
+    position: absolute;
+    top: 0;
+}
+
+.headerLink1
+{
+    margin-left: 390px;
+}
+
+.headerLink, .headerLink:hover, .headerLink:active
+{
+    color: black;
+    text-decoration: none;
+    margin-right: 25px;
+    font-size: 20px;
+}
+
+@media (max-width: 1140px) and (min-width: 0px) {
+    .headerLink, .headerLink:hover, .headerLink:active {
+        font-size: 15px !important;
+    }
+}
+
+.mi-cuenta-img {
+    width: 175px;
+    height: 100px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.logout-img {
+    width: 197px;
+    height: 100px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.separator
+{
+    background-color: #f9f9f9;
+    position: relative;
+    /*float: right;*/
+    width: 68%;
+    height: 180px;
+    display: inline-block;
+}
+
+
+                                    /* LEFT SITE LINKS */
+
+.leftSiteLinksOuter
+{
+    width: 35%;
+    margin-top: 220px;
+    display: none; /*inline-block;*/
+    position: absolute;
+    background-color: #f9f9f9;
+}
+
+.leftSiteLink
+{
+    font-size: 21px;
+    font-weight: bold;
+    width: 100%;
+    min-height: 30px;
+    display: block;
+    padding: 9px 15px;
+    background-color: #f4f4f4;
+    text-decoration: none;
+    color: black;
+}
+
+.leftSiteLinkActive, .leftSiteLinkActive:hover, .leftSiteLink:hover {
+    background-image: linear-gradient(to right, rgba(0,55,105,0.95), #33a0f2 150%);
+    color: white;
+    cursor: pointer;
+}
+
+.rightSiteOuter {
+    position: relative;
+    float: right;
+    width: 61%;
+    display: inline-block;
+    margin-bottom: 50px;
+    padding-right: 3%;
+}
+
+input:disabled {
+    /*color: rgb(84, 84, 84);*/
+    background-color: transparent !important;
+}
+
+.rightSiteOuter_full {
+    position: relative;
+    float: right;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 50px;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.rightSiteOuter h1, .rightSiteOuter_full h1 {
+    margin-top: 0;
+}
+
+.rightSideMiCuenta
+{
+    width: 100%;
+}
+
+.linksToDifferentCards
+{
+    min-width: 75%;
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.fourLinks {
+    white-space: nowrap;
+    position: relative;
+    width: calc(25% - 3px);
+    background-color: #C1C1C1;
+    display: inline-block;
+    padding: 7px;
+    text-align: center;
+    margin-right: -4px;
+    border-left: 1px solid black;
+    -ms-transform: skew(-60deg);
+    -webkit-transform: skew(-60deg);
+    transform: skew(-60deg);
+}
+
+.fourLinks a
+{
+    display: block;
+    -ms-transform: skew(60deg);
+    -webkit-transform: skew(60deg);
+    transform: skew(60deg);
+    cursor: pointer;
+}
+
+.diffCardLinkActive, .fourLinks:hover {
+    color: white;
+    font-weight: bold;
+    background-color: #004994;
+}
+
+.diffCardLinkActive a, .fourLinks:hover a {
+    color: white;
+    font-weight: bold;
+}
+
+.buttonOnRightDiv
+{
+    width: 94%;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.buttonOnRight {
+	display: block;
+	padding: 9px 20px;
+	border: none;
+	background-color: #EDEDED !important;
+	font-size: 14px;
+	float: right;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+input.labelOnRight {
+	display: block;
+	padding: 9px 20px;
+	border: none;
+	background-color: #EDEDED !important;
+	font-size: 14px;
+	float: right;
+	letter-spacing: 1px;
+}
+input.labelOnRight.bg-success {
+	background-color: #dff0d8 !important;
+}
+input.labelOnRight.bg-danger {
+	background-color: #f2dede !important;
+}
+
+.buttonOnLeft {
+	display: block;
+	padding: 9px 20px;
+	border: none;
+	background-color: #EDEDED !important;
+	font-size: 14px;
+	float: left;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+input.labelOnLeft {
+	display: block;
+	padding: 9px 20px;
+	border: none;
+	background-color: #EDEDED !important;
+	font-size: 14px;
+	float: left;
+	letter-spacing: 1px;
+}
+
+.formPartMiCuenta, .formPartLog, .formPartUpdate, .formPartEnableDisable, .formPartAddCard, .formPartCreate, .formPartLoadFunds, .formPartShareFunds {
+    width: 94%;
+    display: inline-block;
+}
+
+.formPartMiCuenta h3, .formPartLog h3, .formPartUpdate h3, .formPartEnableDisable h3, .formPartAddCard h3, .formPartCreate h3, .formPartLoadFunds h3, .formPartShareFunds h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}
+
+.singleInputRow
+{
+    width: 100%;
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 1px 0;
+}
+
+.singleInputRow .label150 {
+    float: left;
+    display: inline-block;
+    padding: 5px 0;
+    width: 150px;
+}
+
+.singleInputRow .inputFrom150 {
+    margin-right: unset !important;
+    width: calc(100% - 150px);
+}
+
+.singleInputRow label
+{
+    float: left;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.singleInputRow input, .singleInputRow select {
+    float: right;
+    display: block;
+    border: none;
+    margin-right: 50px;
+    width: 60%;
+    padding: 7px 10px;
+}
+
+.singleInputRow select:disabled {
+    background-color: rgb(235, 235, 228);
+}
+
+.singleInputRow .smallerInput1
+{
+    width: 45%;
+}
+
+.fechaPeriod select {
+	width: 10vw;
+	max-width: 110px;
+	border: none;
+	display: inline-block;
+	padding: 7px 2px;
+	margin-right: 5px;
+	text-align: center;
+}
+
+.rightSiteOuter hr, .rightSiteOuter_full hr {
+    border: none;
+    background-color: rgba(220,220,220, 0.5);
+    height: 1px;
+}
+
+.xpPutRow {
+    width: -webkit-fill-available;
+}
+.floatRight {
+    float: right;
+}
+
+.switchLabel {
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+.switchCell {
+    text-align: right;
+    width: -webkit-fill-available;
+}
+.verticalSpacer {
+    margin-bottom: 20px;
+}
+
+.rowCardLockUnlock {
+    height: 50px;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.margin0 {
+    margin: 0;
+}
+
+.orangeButtonsDiv {
+    width: 80%;
+    margin: 30px 0;
+}
+
+.orangeButton {
+    display: inline-block;
+    background-color: #f4ae24;
+    padding: 15px 20px;
+    border: none;
+    color: white;
+    letter-spacing: 1px;
+    margin-left: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.orangeButtonLoadFunds {
+    width: 300px !important;
+}
+
+.orangeButtonUpgrade {
+	height: 38px;
+	padding: 9px 20px;
+}
+
+.orangeSingleButtonsDiv {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.orangeSingleButtonsDiv .orangeButton  {
+    margin-left: -8px;
+}
+
+.buttonRowLoadFunds {
+    height: 70px;
+    text-align: center;
+}
+
+                            /* Modal Forgotten Password */
+.modal-forgottenPassword-question {
+    text-align: center;
+}
+
+.modal-forgottenPassword-description {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.modal-forgottenPassword-button {
+    color: #fff;
+    background-color: #1c3a79;
+    border-color: #1c3a79;
+    text-decoration: none;
+}
+
+.modal-forgottenPassword-button:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+                    /* Formulario Historial de transacciones */
+.fechaPeriod {
+    width: 60%;
+    min-width: 520px;
+    display: inline-block;
+    margin: 0 0;
+}
+
+.fechaPeriod label {
+    width: 30%;
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.fechaPeriod input {
+    width: 10vw;
+    max-width: 110px;
+    border: none;
+    display: inline-block;
+    padding: 7px 2px;
+    margin-right: 5px;
+    text-align: center;
+}
+
+.fechaPeriod input::placeholder {
+    text-align: right;
+    opacity: 0.1;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+
+.fechaTable {
+    position: relative;
+    width: 100%;
+    margin: 50px 0;
+}
+
+.fechaTableUpperRow {
+    width: 100%;
+    background-color: #f4f4f4;
+    display: inline-block;
+    padding: 0 0;
+}
+
+.fechaTableUpperRow h3 {
+    background-color: #f4f4f4;
+    margin: 0 -2px !important;
+    width: calc(33% - 2px);
+    text-align: center;
+    padding: 15px 0;
+    display: inline-block;
+    margin: 0 0;
+}
+
+.withBorder {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.fechaTableRow1 {
+    width: 100%;
+    background-color: white;
+    display: inline-block;
+    margin: 0;
+}
+
+.fechaTableRow2 {
+    width: 100%;
+    background-color: #EDEDED;
+    display: inline-block;
+    margin: 0;
+}
+
+.fechaTableRow1 p, .fechaTableRow2 p {
+    width: calc(33% - 2px);
+    text-align: center;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.redPrice {
+    color: #fb071a;
+    font-weight: bold;
+}
+
+.greenPrice {
+    color: #06b800;
+    font-weight: bold;
+}
+
+.availableBalance {
+    color: #004994;
+    margin-left: -10px;
+    position: absolute;
+}
+
+.availableBalanceNegative {
+    color: #fb071a;
+    margin-left: -10px;
+    position: absolute;
+}
+
+.fechaTableRowDate {
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.fechaTableRowDescr {
+    font-size: 12px;
+}
+
+.fechaTableRowPrice {
+    letter-spacing: 1px;
+}
+
+.fechaTablePaginaSwitcher {
+    margin-top: 15px;
+    width: 100%;
+    text-align: right;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+/* LOGIN */
+.walletImage {
+    width: 100%;
+    height: auto;
+}
+
+#walletPanel {
+    margin: 170px 0px 0px -40px;
+}
+
+#wallet_caption {
+    text-align: center;
+}
+
+#wallet {
+    width: 800px;
+    border: none !important;
+    vertical-align: top;
+}
+
+#wallet_fullScreen {
+    width: 100%;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+#wallet_img {
+    width: 100%;
+}
+
+#wallet_user, #wallet_password, #wallet_send, #wallet_forgotten {
+    /*background-color: rgba(0, 75, 100, .5);*/
+    position: relative;
+    left: -220px;
+    width: 258px;
+}
+
+#wallet_user {
+    height: 30px;
+    top: -288px;
+    text-align: left;
+    position: relative;
+}
+
+#wallet_password {
+    height: 30px;
+    top: -260px;
+    text-align: left;
+}
+
+#wallet_send {
+    top: -190px;
+    padding-left: 25px;
+    z-index: 1;
+}
+
+#wallet_forgotten {
+    /*height: 25px;*/
+    position: relative;
+    top: -240px;
+    left: -220px;
+    width: 258px;
+    z-index: 0;
+}
+
+.submitButton {
+    float: left;
+    width: 208px !important;
+    min-height: 40px !important;
+    color: white !important;
+    font-weight: 900 !important;
+    background-color: rgb(244, 174, 36);
+    border: none !important;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+/* Textbox y Selectbox */
+.col-form-label {
+    font-size: 18px !important;
+}
+
+input.form-control {
+    font-size: 18px !important;
+    border: none;
+}
+
+select.form-control {
+    font-size: 18px !important;
+    border: none;
+}
+
+/* Textos y Botones en Login */
+#loginUsername, #loginPassword {
+    /*margin-top: 0px !important;
+    margin-left: 0px !important;*/
+    color: black;
+    border: none !important;
+    width: 258px !important;
+    background-color: white;
+    padding: 0 5px;
+}
+
+.rm_forgot_pass {
+    /*display: none !important;*/
+    color: white !important;
+}
+
+.accessTo {
+    color: black;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif
+}
+
+.myAccount {
+    color: rgb(0, 55, 105);
+    letter-spacing: 6px;
+    margin-top: -18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.hideElement {
+    display: none !important;
+}
+
+.inlineblockElement {
+    display: inline-block;
+}
+
+.separatorFormCreate {
+    display: none;
+}
+
+@media (min-width: 1031px) {
+    #walletPanel {
+        margin-top: 0px;
+    }
+
+    #wallet_fullScreen, #wallet_caption {
+        padding-left: 90px;
+    }
+
+    #wallet_user, #wallet_password, #wallet_send, #wallet_forgotten {
+        left: -222px;
+        width: 269px;
+    }
+
+    #wallet_user {
+        top: -242px;
+        height: 22px;
+    }
+
+    #wallet_password {
+        top: -204px;
+        height: 22px;
+    }
+
+    #wallet_send {
+        top: -186px;
+        padding-left: 61px;
+    }
+
+    .submitButton {
+        line-height: 1;
+        width: 162px !important;
+        font-size: 11px;
+    }
+
+    #wallet_forgotten {
+        top: -130px;
+        height: 25px;
+        display: inline-block;
+        left: -464px;
+    }
+
+    #loginUsername, #loginPassword {
+        height: 30px;
+        width: 269px !important;
+    }
+
+    /*.myAccount {
+        margin-bottom: 0px;
+    }*/
+}
+
+@media (min-width: 0) and (max-width: 1030px) {
+
+    .separator {
+        display: none;
+    }
+
+    .separatorFormCreate {
+        position: relative;
+        width: 68%;
+        height: 180px;
+        display: inline-block;
+    }
+
+    .leftSiteLinksOuter {
+        width: 90%;
+        margin-left: 5%;
+        position: relative;
+        margin-top: 110px;
+        margin-bottom: 75px;
+    }
+
+    .leftSiteLinksOuter img {
+        display: none !important;
+    }
+
+    .rightSiteOuter, .rightSiteOuter_full {
+        display: block !important;
+        width: 90% !important;
+    }
+
+    /*.spinner {
+        position: relative;
+        margin-top: -500px;
+        margin-bottom: 420px;
+        padding-left: 0;
+        padding-right: 0;
+    }*/
+
+    /*.fechaTable {
+        width: 100%;
+    }*/
+}
+
+@media (max-width: 1030px) and (min-width: 901px) {
+    #wallet_user, #wallet_password {
+        left: -223px;
+        width: 269px;
+    }
+
+    #wallet_user {
+        top: -243px;
+        height: 22px;
+    }
+
+    #wallet_password {
+        top: -203px;
+        height: 22px;
+    }
+
+    #wallet_send {
+        left: -185px;
+        width: 269px;
+    }
+
+    #wallet_forgotten {
+        top: -130px;
+        height: 25px;
+        float: left;
+        left: -398px;
+        width: 269px;
+    }
+
+    .submitButton {
+        line-height: 0.8;
+        width: 152px !important;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    #loginUsername, #loginPassword {
+        height: 30px;
+        width: 269px !important;
+    }
+
+}
+
+@media (max-width: 900px) and (min-width: 701px) {
+    #wallet {
+        width: 600px;
+    }
+
+    #wallet_user, #wallet_password, #wallet_send, #wallet_forgotten {
+        left: -165px;
+        width: 200px;
+    }
+
+    #wallet_user {
+        top: -182px;
+        height: 22px;
+    }
+
+    #wallet_password {
+        top: -159px;
+        height: 22px;
+    }
+
+    #wallet_send {
+        top: -163px;
+        height: 45px;
+    }
+
+    #wallet_forgotten {
+        top: -161px;
+        height: 25px;
+        left: -167px;
+    }
+
+    .submitButton {
+        line-height: 1;
+        width: 162px !important;
+        font-size: 11px;
+    }
+
+    #loginUsername, #loginPassword {
+        height: 22px;
+        width: 200px !important;
+    }
+
+}
+
+@media (max-width: 700px) and (min-width: 0px) {
+    #wallet {
+        width: 400px;
+    }
+
+    #wallet_user, #wallet_password, #wallet_send {
+        left: -109px;
+        width: 132px;
+    }
+
+    #wallet_user {
+        top: -127px;
+        height: 15px;
+    }
+
+    #wallet_password {
+        top: -112px;
+        height: 15px;
+    }
+
+    #wallet_send {
+        top: -122px;
+        /*height: 30px;*/
+        text-align: center !important;
+    }
+
+
+    #wallet_forgotten {
+        left: 74px;
+        width: 150px;
+        top: -145px;
+        height: 16px;
+        text-align: center !important;
+        font-size: 11px;
+    }
+
+    #loginUsername, #loginPassword {
+        height: 16px;
+        width: 132px !important;
+        font-size: 11px;
+        padding: 0 2px;
+    }
+
+    .orangeButton {
+        margin-left: -22px !important;
+        width: 125px !important;
+        font-size: 12px;
+        padding: 0;
+        height: 35px;
+    }
+
+    .submitButton {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    float: right;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #004994;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+
+/* Collapsable menu */
+@media (max-width: 999px) {
+    .header {
+        padding: 50px 0 22px 0 !important;
+    }
+
+    .header-justmoney-img img {
+        width: 60%;
+        margin-top: -3px;
+    }
+
+    #menu {
+        display: none !important;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+}
+
+@media (min-width: 1000px) {
+    .collapsableMenu {
+        display: none !important;
+    }
+
+    #menu {
+        display: block;
+    }
+
+    .header-justmoney-img img {
+        width: 100%;
+    }
+
+    .header {
+        margin-top: -3px;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+@media (max-width: 1140px) and (min-width: 1001px) {
+    .header-justmoney-img img {
+        width: 80%;
+    }
+}
+
+.header-justmoney-img {
+    z-index: -1;
+}
+
+.navbar-toggler-icon {
+    background-image: url(data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://ww…p='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E);
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
+}
+
+.collapsableMenu {
+    background-color: rgb(255, 255, 255);
+    color: rgb(33, 37, 41);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 10;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: Roboto Light, sans-serif;
+    margin-bottom: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 7px;
+    text-align: left;
+    text-size-adjust: 100%;
+    overflow: hidden;
+    transition-property: visibility, opacity;
+    transition-duration: 0s, 0.3s;
+    transition-timing-function: ease, linear;
+    transition-delay: 0s, 0s;
+    opacity: 0;
+    height: 252px
+}
+
+.menuItem {
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: block;
+    font-family: Roboto Light, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    height: 45px;
+    line-height: 33px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    /*margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;*/
+    margin: 0px;
+    /*padding-bottom: 6px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 6px;*/
+    padding: 6px 0px;
+    text-align: left;
+    text-decoration-color: rgb(0, 0, 0);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-size-adjust: 100%;
+    transition-duration: 0.5s;
+    /*width: 364px;*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.navbar-toggler {
+    float: right;
+    margin-right: 30px;
+    background-color: #f2f4f6;
+    margin-top: -33px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-toggler-icon {
+    background-color: #f2f4f6;
+    color: #797a7b;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
+}
+/* Collapsable menu */
+
+
+.logSaldoDiv {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logSaldoDiv h3 {
+    font-size: 1.3em;
+}
+
+.logSaldoSpan {
+    font-weight: bold;
+}
+
+
+.day, month {
+    width: 20%;
+}
+
+.year {
+    width: 20%;
+}
+
+@media (max-width: 300px) {
+    .day, month {
+        width: 32px;
+    }
+
+    .year {
+        width: 52px;
+    }
+}

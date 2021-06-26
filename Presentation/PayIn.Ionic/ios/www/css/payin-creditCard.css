@@ -1,0 +1,34 @@
+ @font-face{
+    font-family: 'Credit_Card';
+    src: url('../lib/ionic/fonts/Credit_Card.ttf') format('truetype');
+    font-weight: bolder;
+  }
+
+.payin-creditcard {
+   font-family: "Credit_Card";
+}
+
+.payin-creditNumber{
+	 font-family: "Credit_Card";     
+     word-spacing: 1.2rem;
+     font-size: 5vw !important;
+	 display:inline-block;
+	 font-weight: bolder !important;
+	 padding-top:0.1rem;
+}
+
+.payin-imgCredit{
+  max-width:50%;  
+}
+
+.payin-expirationCard{
+  font-family: "Credit_Card";
+  padding-top:0.1rem;
+}
+
+.payin-bgCard{
+	background-color:#CCC;
+}
+.item-complex .item-content, .item-radio .item-content{
+  background-color:#CCC;
+}

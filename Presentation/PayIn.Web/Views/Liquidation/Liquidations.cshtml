@@ -1,0 +1,114 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@{
+	var payments = PaymentFactory.LiquidationPaymentsState("{{item.id}}");
+}
+@using (Html.xpList(
+	LiquidationFactory.LiquidationPayName,
+	LiquidationFactory.LiquidationPayApi,
+	"",
+	//LiquidationResources.Liquidations,
+	"resources.liquidation.liquidations",
+	isTitleActive: true,
+	init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+		   + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+	initialSearch: false,
+	isSearchable: true
+	))
+{
+	<div class="table-responsive" data-ng-controller="LiquidationPayController">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.liquidation.id">Id</th>
+					<th translate="resources.liquidation.name">Name</th>
+					<th translate="resources.liquidation.cif">Cif</th>
+					<th translate="resources.liquidation.accountNumber">Account number</th>
+					<th translate="resources.liquidation.startDate">Start date</th>
+					<th translate="resources.liquidation.endDate">End Date</th>
+					<th translate="resources.liquidation.paymentDate">Payment date</th>
+					<th translate="resources.liquidation.bank">Bank</th>
+					<th translate="resources.liquidation.tpv">TPV</th>
+					<th translate="resources.liquidation.total">Total</th>
+					@*<th>@LiquidationResources.PayinCommission</th>
+						<th>@LiquidationResources.RecievedAmount</th>*@
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-danger': item.state === 1,'b-l b-5x b-warning': item.state === 0,'b-l b-5x b-success': item.state === 2}">
+					<td class="icon-column" data-ng-show="item.state == 1" style="margin-left:20px">
+						@XpColumns.IconColumn(
+							 XpIcons.Pay,
+							 popupUrl: LiquidationFactory.LiquidationConfirmPayName,
+							 id: "{{item.id}}",
+							 arguments: "{\"total\":\"{{item.paidQuantity}}\",\"since\":\"{{item.liquidationSince}}\"}"
+							 )
+					</td>
+					<td class="icon-column" data-ng-show="item.state == 2" style="margin-left:20px">
+						@XpColumns.IconColumn(
+						 XpIcons.Unpay,
+						 popupUrl: LiquidationFactory.LiquidationConfirmUnpayName,
+						 id: "{{item.id}}",
+						 arguments: "{\"total\":\"{{item.paidQuantity}}\",\"since\":\"{{item.liquidationSince}}\"}"
+						 )
+					</td>
+                    <th data-ng-show="item.state == 0">&nbsp;</th>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.Id))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.ConcessionName))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.Cif))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.AccountNumber))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.LiquidationSince))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.LiquidationUntil))</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.PaymentDate))</td>
+					@*<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.TotalQuantity))€</td>
+						<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.PayinQuantity))€</td>*@
+					<td>
+						<span data-ng-show="item.paidBank==true"><i class="fa fa-check"></i></span>
+						<span data-ng-hide="item.paidBank==true">
+						 @XpColumns.IconColumn(
+						 XpIcons.Uncheck,
+						 popupUrl: LiquidationFactory.LiquidationConfirmPayBankName,
+						 id: "{{item.id}}"
+						 )
+						</span>
+					</td>
+					<td>
+					<span data-ng-show="item.paidTPV==true"><i class="fa fa-check"></i></span>
+					 <span data-ng-hide="item.paidTPV==true">
+						@XpColumns.IconColumn(
+							 XpIcons.Uncheck,
+							 popupUrl: LiquidationFactory.LiquidationConfirmPayTPVName,
+							 id: "{{item.id}}"
+							 )
+					 </span>
+					</td>
+					<td>@(Html.ColumnFor<LiquidationPayResult>(x => x.PaidQuantity))€</td>
+					<td class="icon-column">
+						<a data-xp-navigate ui-sref=@payments>
+							<i class='@XpIcons.Money'></i>
+							<span class="badge badge-sm up bg-info pull-right-xs">{{item.paymentsCount}}</span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid row">
+			<div class="col-xs-12 col-sm-4">
+				<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.paid">Paid</p>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.open">Open</p>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.liquidation.closed">Closed</p>
+			</div>
+		</div>
+	</footer>
+
+}

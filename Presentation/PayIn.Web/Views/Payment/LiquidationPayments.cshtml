@@ -1,0 +1,60 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpList(
+	PaymentFactory.LiquidationPaymentsName,
+	PaymentFactory.LiquidationPaymentsApi,
+	"",
+	"resources.payment.liquidationCharges",
+	"{{arguments.liquidationSince|xpDate}} - {{arguments.liquidationUntil|xpDate}} ({{arguments.liquidationAmount}}€ {{-1 * arguments.liquidationCommission}}€)",
+	isTitleActive: true,
+	isPaginable: false,
+	init: "scope.arguments.liquidationId=params.liquidationId;scope.arguments.concessionId=params.concessionId;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th translate="resources.payment.id">Id</th>
+					<th translate="resources.payment.date">Date</th>
+					<th translate="resources.payment.eventname">Event</th>
+					<th translate="resources.payment.concession">Concession</th>
+					<th translate="resources.payment.uid">Uid</th>
+					<th translate="resources.payment.title">Title</th>
+					<th translate="resources.payment.amount" class="text-right">Amount</th>
+					<th translate="resources.payment.commission" class="text-right">Commission</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success': item.state === 1,'b-l b-5x b-warning': item.state === 4,'b-l b-5x b-danger': item.state === 2 || item.state === 3}">
+					<td>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Id, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Date, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.EventName, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.TicketConcessionName, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td>
+						<span>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.UidText, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</span>
+						<span ng-if="item.seq">- @(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Seq, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</span>
+						<span ng-if="item.uid && item.uidText && (item.uid!=item.uidText)">( @(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Uid, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}")) )</span>
+					</td>
+					<td>@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Title, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+					<td class="text-right">@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Amount, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}")) €</td>
+					<td class="text-right">@(Html.ColumnFor<PaymentsGetAllByLiquidationResult>(x => x.Commission, popupUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}")) €</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="col-md-9 col-md-offset-3" data-ng-hide="data.length">
+			<h1 translate="resources.liquidation.liquidationNull">It has no pending liquidation</h1>
+		</div>
+	</div>
+	<footer class="panel-footer">
+		<div class="elementBottom">
+			<div class="col-md-6 col-xs-12 col-sm-6">
+				<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.payment.payment">Payment</p>
+			</div>
+			<div class="col-md-6 col-xs-12 col-sm-6">
+				<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.payment.refund">Refund</p>
+			</div>
+		</div>
+	</footer>
+}

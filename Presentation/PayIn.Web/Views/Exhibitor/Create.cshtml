@@ -1,0 +1,62 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+    ExhibitorFactory.CreateName,
+    ExhibitorFactory.CreateApi,
+    "",
+    "resources.exhibitor.create",
+    init: "scope.arguments.eventId = params.id;scope.arguments.concessionName = params.concessionName; "
+))
+{
+    <script type="text/javascript" src="~/App/js/qrcode.js"></script>
+    <script type="text/javascript">
+        function soloNumeros(e) {
+            var key = window.Event ? e.which : e.keyCode
+            return ((key >= 48 && key <= 57) || (key == 32) ||
+                (key == 8) || (key == 9) || (key == 43))
+        }
+    </script>
+    <div class="col-md-12">
+        <div class="row">
+            <div onKeyPress="return soloNumeros(event)">
+                @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Code, width: 3))
+            </div>
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.InvitationCode, width: 3))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Pavilion, width: 3))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Stand, width: 3))
+        </div>
+        <div class="row">
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Name, width: 9))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Email, width: 3))
+        </div>
+        <div class="row">
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Contact, width: 9))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.ContactEmail, width: 3))
+        </div>
+        <div class="row">
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Url, width: 12))
+        </div>
+        <div class="row">
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Address, width: 12))
+        </div>
+        <div class="row">
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.PostalCode, width: 3))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.City, width: 3))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Province, width: 3))
+            @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Country, width: 3))
+        </div>
+        <div class="row">
+            <div onKeyPress="return soloNumeros(event)">
+                @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Phone, width: 6))
+            </div>
+            <div onKeyPress="return soloNumeros(event)">
+                @(Html.ArgumentFor<ExhibitorCreateArguments>(x => x.Fax, width: 6))
+            </div>
+        </div>
+
+        <div class="row">
+            @(Html.SelectFor<ExhibitorCreateArguments>(x => x.PaymentConcessionId, "concessionName", ExhibitorFactory.RetrieveSelectorApi, focus: true, width: 12))
+        </div>
+    </div>
+}

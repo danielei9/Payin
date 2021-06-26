@@ -1,0 +1,132 @@
+﻿@using Xp.Common;
+@using PayIn.Application.Dto.JustMoney.Results;
+@using PayIn.Application.Dto.JustMoney.Arguments;
+@using PayIn.Web.App.Factories.JustMoney;
+
+@using (Html.xpPut(
+    UserFactory.UpdateName,
+    UserFactory.UrlApi,
+    "",
+    "resources.justMoney.user.updateCaption"
+))
+{
+<xp-get data-api="@UserFactory.GetDetailsApi">
+
+    <div class="col-md-12">
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.FirstName, width: 4, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.LastName, width: 4, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.BirthDay, width: 4, disabled: "true"))
+
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Login, width: 6))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.CardStatus, width: 6, disabled: "true"))
+
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Pan, width: 4, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.EspirationCodeMonth, width: 2, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.EspirationCodeYear, width: 2, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Balance, width: 4, disabled: "true"))
+
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Phone, width: 6, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Mobile, width: 6, disabled: "true"))
+
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Address2, width: 6, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Address2, width: 6, disabled: "true"))
+
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.ZipCode, width: 3, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.City, width: 3, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Province, width: 3, disabled: "true"))
+        @(Html.ArgumentFor<JustMoneyApiPrepaidCardGetDetailResult>(x => x.Country, width: 3, disabled: "true"))
+    </div>
+       
+    @*<form>
+        <h3>Mi cuenta</h3>
+        <h6>Detalles de la cuenta</h6>
+        <div class="form-group row">
+            <label for="balance" class="col-sm-3 col-form-label">Saldo de la tarjeta</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="balance">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="pan" class="col-sm-3 col-form-label">Número de tarjeta</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="pan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dni" class="col-sm-4 col-form-label">Número de identificación del titular</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="dni">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="caducity" class="col-sm-4 col-form-label">Fecha caducidad (MM/AA)</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="caducity">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="coin" class="col-sm-3 col-form-label">Moneda</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="coin">
+            </div>
+        </div>
+        <h6>Datos del titular de la tarjeta</h6>
+        <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Nombre</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastName" class="col-sm-3 col-form-label">Apellidos</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="lastName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="address1" class="col-sm-3 col-form-label">Dirección</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="address1">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="address2" class="col-sm-4 col-form-label">Complemento de dirección</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="address2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="zipCode" class="col-sm-3 col-form-label">Código Postal</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="zipCode">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="city" class="col-sm-3 col-form-label">Población</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="city">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="state" class="col-sm-3 col-form-label">Provincia</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="state">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="country" class="col-sm-3 col-form-label">País</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="country">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="mobile" class="col-sm-3 col-form-label">Móvil</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="mobile">
+            </div>
+        </div>
+    </form>*@
+
+</xp-get>
+
+}

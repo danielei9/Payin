@@ -1,0 +1,38 @@
+﻿@using PayIn.Application.Dto.Results;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	PaymentFactory.PaymentGraphName,
+	PaymentFactory.PaymentGraphApi,
+	"",
+	//PaymentResources.Chart,
+	"resources.payment.chart",
+	"",
+	isPaginable: false,
+	isTitleActive: true,
+	isSearchable: false,
+	init:
+		"scope.arguments.since='" + DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd") + "';" +
+		"scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" +
+		"scope.sumPayments = function(data) { return _.reduce(data, function(memo, item){ return memo + (item.payedAmount || 0); }, 0)};" +
+		"scope.sumReturned = function(data) { return _.reduce(data, function(memo, item){ return memo + (item.returnedAmount || 0); }, 0)};"
+		))
+{
+	<div class="table-responsive" data-ng-controller="PaymentGraphController">	
+		<div data-ng-show="data.length" class="btn-group m-l-xs pull-right" style="border: 1px solid #CCC; margin-right:20px;padding:10px;">
+			<div style="background-color:#FFCC00;" class="legendGraph" /><p style="float:left;">Pagos devueltos (&euro;)</p>
+			<br />
+			<div style="background-color:#0957FF" class="legendGraph" /><p style="float:left;">Pagos (&euro;)</p>
+		</div>
+		<h4 data-ng-hide="data.length" style="position:absolute;z-index:9999; left:30%; top:40%" translate="resources.payment.noData">No details available for this date.</h4>
+		<data-xp-graph2 data-xp-model="data" data-xp-x-axis='{"data":"day"}' data-xp-y-axis='[{"data":"payedAmount"},{"data":"returnedAmount"}]'></data-xp-graph2>
+		<div class="text-center"><span translate="resources.payment.totalPaid">Total paid</span>: {{sumPayments(data) || 0 | currency: '€'}}
+		<span style="margin-left:60px;"><span translate="resources.payment.totalRefund">Total refund</span>: {{sumReturned(data) || 0 | currency: '€'}}</span>
+		
+		</div>
+
+	</div>
+}
+

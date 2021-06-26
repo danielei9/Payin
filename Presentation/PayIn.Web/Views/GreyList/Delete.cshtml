@@ -1,0 +1,13 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	GreyListFactory.Delete,
+	GreyListFactory.DeleteApi,
+	"",
+	"resources.transportGreyList.delete",
+	id: "id"
+))
+{
+	<p translate="resources.transportGreyList.deleteQuestion">Do you want to remove this item from the grey list?</p>
+}
+

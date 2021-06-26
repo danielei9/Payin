@@ -1,0 +1,39 @@
+﻿@using PayIn.Application.Dto.Bus.Arguments;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    StopFactory.UpdateName,
+    StopFactory.UpdateApi,
+    "",
+    "resources.bus.stop.update"
+))
+{
+    <xp-get data-api="@StopFactory.GetApi">
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.bus.stop.update">Update stop</div>
+            <div class="panel-body">
+                <div class="row">
+					<div class="col-md-12">
+						<div class="row">
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.Code, width: 6))
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.MasterCode, width: 6))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.Name, width: 12))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.Location, width: 6))
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.Longitude, width: 3))
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.Latitude, width: 3))
+						</div>
+						<div class="row">
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.GeofenceRadious, width: 6))
+							@(Html.ArgumentFor<BusApiStopUpdateArguments>(x => x.WaitingTime_Seconds, width: 6))
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </xp-get>
+}

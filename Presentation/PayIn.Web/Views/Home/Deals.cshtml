@@ -1,0 +1,60 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Public;
+@using PayIn.Domain.Security;
+@using PayIn.Common.Security;
+
+@{
+	var checkIsCommerceOrUser = "authentication.hasRole('" + AccountRoles.Commerce + "," + AccountRoles.User + "')";
+	var checkIsCommerce = "authentication.hasRole('" + AccountRoles.Commerce + "')";
+	var checkIsCommercePayment = "authentication.hasRole('" + AccountRoles.CommercePayment + "')";
+	var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";	
+}
+
+<!-- content -->
+<div class="bg-light lter b-b wrapper-md hidden-print" data-ng-hide="@checkIsCommercePayment||@checkIsSuperadministrator">
+	<h1 class="m-n font-thin h3" translate="resources.home.titleOffers">Create a new concession</h1>
+</div>
+<div class="bg-light lter b-b wrapper-md hidden-print" data-ng-show="@checkIsSuperadministrator">
+	<h1 class="m-n font-thin h3" translate="resources.home.home">Home</h1>
+</div>
+
+<div class="wrapper-md" data-ng-show="(@checkIsCommerceOrUser && !@checkIsCommercePayment)" ng-init='panelUrl="/"'>
+	<div class="row row-sm">
+		<div class="col-lg-3 col-md-4 col-sm-6">
+			<div class="panel b-a">
+				<div class="panel-heading text-center topLn-PayIn no-border">
+					<h4 class="text-u-c m-b-none" translate="resources.home.charges">Charges</h4>
+					<h2 class="m-t-none">
+						<sup class="pos-rlt" style="top:-22px"></sup>
+						<span class="text-2x text-lt">1%</span>
+						<span class="text-xs" translate="resources.home.perTransaction">/ transaction</span>
+					</h2>
+				</div>
+				<ul class="list-group ">
+					<li class="list-group-item">
+						<i class="icon-check text-success m-r-xs"></i><span translate="resources.home.noSetUpFee">No Set Up Fee</span>
+					</li>
+					<li class="list-group-item">
+						<i class="icon-check text-success m-r-xs"></i><span translate="resources.home.noMaintenance">No Maintenance</span>
+					</li>
+					<li class="list-group-item">
+						<i class="icon-check text-success m-r-xs"></i><span translate="resources.home.noVat">No Vat</span>
+					</li>
+					<li class="list-group-item">
+						<i class="icon-check text-success m-r-xs"></i><span translate="resources.home.statisticalReport">Statistical Report</span>
+					</li>
+				</ul>
+				<div class="panel-footer text-center">
+					<div ng-hide="@checkIsCommerce || @checkIsCommercePayment">
+						<a ui-sref="@PaymentConcessionFactory.CreatePaymentConcessionName" xp-navigate class="btn btn-PayIn font-bold m" translate="resources.home.purchase">Purchase</a>
+					</div>
+					<div ng-show="@checkIsCommerce">
+						<a ui-sref="@PaymentConcessionFactory.CreatePaymentConcessionCommerceName" xp-navigate class="btn btn-PayIn font-bold m" translate="resources.home.purchase">Purchase</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /content -->

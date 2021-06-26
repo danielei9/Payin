@@ -1,0 +1,19 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	ProductFactory.AddGroupName,
+	ProductFactory.AddGroupApi,
+	"",
+	"resources.product.addGroup",
+	subtitle: "{{temp.productName}}"
+))
+{
+	<xp-get api="@ProductFactory.Get"
+		xp-success="
+			scope.temp.productName=scope.arguments.name;
+			scope.$parent.arguments={};
+		">
+		@(Html.SelectFor<ProductAddGroupArguments>(x => x.GroupId, "groupName", ServiceGroupFactory.RetrieveSelectorApi))
+	</xp-get>
+}

@@ -1,0 +1,48 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	TicketFactory.SupplierRetrieveAllChargeName,
+	TicketFactory.SupplierRetrieveAllChargeApi,
+	"",
+	//TicketResources.RetrieveAll,
+	"resources.ticket.retrieveAll",
+	isPaginable: false,
+	isTitleActive: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.ticket.title">Title</th>
+					<th translate="resources.ticket.date">Date</th>
+					<th translate="resources.ticket.reference">Reference</th>
+					<th translate="resources.ticket.amount">Amount</th>
+					<th translate="resources.ticket.culture">Culture</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td>
+						@XpColumns.IconColumn(
+						XpIcons.Remove,
+						id: "{{item.id}}",
+					 arguments: "{name:'{{item.title}}',date:'{{item.date}}',reference:'{{item.reference}}',amount:'{{item.amount}}',culture:'{{item.culture}}'}"
+					)
+					</td>
+					<td>@XpColumns.TextColumn("item.title")</td>
+					<td>
+						<span>@XpColumns.TextColumn("item.date")</span>
+						<span>@XpColumns.TextColumn("item.reference")</span>
+						<span>@XpColumns.TextColumn("item.amount")</span>
+						<span>@XpColumns.TextColumn("item.culture")</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}
+@*@Html.Partial("_Delete")*@

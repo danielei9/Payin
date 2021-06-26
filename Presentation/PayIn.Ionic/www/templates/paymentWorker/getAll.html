@@ -1,0 +1,22 @@
+<ion-view cache-view="false" view-title="Empresa" xp-panel xp-loading>
+    <ion-content>
+        <xp-list api="Mobile/PaymentWorker/v1" initial-search>
+            <ion-refresher
+                pulling-text="Mantener para refrescar..."
+                on-refresh="search()">
+            </ion-refresher>
+            <ul class="list">
+                <li ng-repeat="item in data" ng-controller="paymentWorkerGetAllController">
+                    <div
+                        ng-click="accept2()"
+                        class="item item-icon-left item-icon-right
+                    ">
+                        <i ng-class="{{item.state}} === 1 ? 'icon color-demo ion-checkmark-round' : 'icon color-demo ion-help'"></i>
+                        <div class="ticket-list ">{{item.concessionName}}</div>
+                        <i class="icon ion-chevron-right payin size-16"></i>
+                    </div>
+                </li>
+            </ul>
+        </xp-list>
+    </ion-content>
+</ion-view>

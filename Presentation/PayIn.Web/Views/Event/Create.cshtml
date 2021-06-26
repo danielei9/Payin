@@ -1,0 +1,75 @@
+﻿
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+    EventFactory.CreateName,
+    EventFactory.CreateApi,
+    "",
+    "resources.event.create",
+    isTitleActive: true,
+    successUrl: "/Event/CreateImage/{{id}}"
+))
+{
+    <xp-get api="@EventFactory.CreateGetApi">
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.event.eventInfo">Event information</div>
+            <div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						@(Html.SelectFor<EventCreateArguments>(x => x.PaymentConcessionId, "paymentConcessionId", width: 3))
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.Visibility, width: 3))
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.Name, focus: true, width: 6))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.ShortDescription))
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="description" class="control-label ng-scope" translate="resources.event.description">Desc</label>
+							<div ng-controller="wysiwygeditor" style="margin-top:15px" id="markdownDescription">
+								<div text-angular="text-angular" name="htmlcontent" ng-model="temp.descriptionHml" ta-disabled='disabled' xp-markdown-editor="arguments.description"></div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.EventStart, width: 6))
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.EventEnd, width: 6))
+					</div>
+					<div class="row">
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.CheckInStart, width: 6))
+						@(Html.ArgumentFor<EventCreateArguments>(x => x.CheckInEnd, width: 6))
+					</div>
+                    <div class="row">
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.MaxEntrancesPerCard, width: 3))
+                        @(Html.ArgumentFor<EventUpdateArguments>(x => x.MaxAmountToSpend, width: 3, dataMax: 10000))
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.Conditions, width: 6))
+                    </div>
+				</div>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.event.placeInfo">Event performance</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.Place, width: 6))
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.Capacity, width: 6))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.Longitude, width: 6))
+                        @(Html.ArgumentFor<EventCreateArguments>(x => x.Latitude, width: 6))
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.event.codeInfo">Integration with other systems</div>
+            <div class="panel-body">
+                @(Html.SelectFor<EventCreateArguments>(x => x.EntranceSystemId, "entranceSystemId", width: 6))
+				@*@(Html.SelectFor<EventCreateArguments>(x => x.ProfileId, "profileName", EventFactory.ProfileRetrieveSelectorApi,width:3))*@
+                @(Html.ArgumentFor<EventCreateArguments>(x => x.Code, width: 6))
+            </div>
+        </div>
+    </xp-get>
+}

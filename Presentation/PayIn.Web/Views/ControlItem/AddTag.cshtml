@@ -1,0 +1,18 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlItemFactory.AddTag,
+	ControlItemFactory.AddTagApi,
+	"",
+	//ControlItemResources.AddTag,
+	"resources.controlItem.addTag",
+	"{{arguments.name}}"
+))
+{
+	<xp-get data-api="@ControlItemFactory.NameApi">
+		@(Html.SelectFor<ControlItemAddTagArguments>(x => x.TagId, "tagReference", ServiceCheckPointFactory.GetSelectorApi))
+	</xp-get>
+}
+

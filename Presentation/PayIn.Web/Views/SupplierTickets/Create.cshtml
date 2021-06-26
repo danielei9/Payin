@@ -1,0 +1,23 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.Ticket;
+
+@using (Html.xpPost(
+	ServiceAddressFactory.CreateName,
+	ServiceAddressFactory.CreateApi,
+	"",
+	ServiceAddressResources.Create,
+	isTitleActive: true //,
+	//init: "scope.arguments.carnetTipo = 1; scope.arguments.sexo = 2;",
+	//acceptText: @GlobalResources.Crear
+))
+{
+	@(Html.ArgumentFor<ServiceAddressCreateBySupplierArgument>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ServiceAddressCreateBySupplierArgument>(x => x.From))
+	@(Html.ArgumentFor<ServiceAddressCreateBySupplierArgument>(x => x.Until))
+	@(Html.ArgumentFor<ServiceAddressCreateBySupplierArgument>(x => x.Side))
+	@(Html.SelectFor<ServiceAddressCreateBySupplierArgument>(x => x.ConcessionId, "name", ServiceConcessionFactory.RetrieveSelectorApi))
+	@*@(Html.ArgumentFor<ServiceAddressCreateBySupplierArgument>(x => x.CityId))*@
+}
+

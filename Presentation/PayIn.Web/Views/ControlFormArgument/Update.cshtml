@@ -1,0 +1,31 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormArgument;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPut(
+										ControlFormArgumentFactory.Update,
+										ControlFormArgumentFactory.UpdateApi,
+										"",
+										//ControlFormArgumentResources.Update
+										"resources.controlFormArgument.update"
+									))
+{
+	<xp-get data-api="@ControlFormArgumentFactory.GetApi">
+		@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.Name, focus: true))
+		@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.Observations))
+		<div class="col-md-6">
+			<div class="row">
+				@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.Type, width: 6))
+				@(Html.ArgumentFor<ControlFormArgumentCreateArguments>(x => x.Order, width: 6))
+			</div>
+		</div>
+		<div ng-show="arguments.type==11" class="col-md-6">
+			<div class="row">
+				@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.MinOptions, width: 6))
+				@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.MaxOptions, width: 6))
+			</div>
+		</div>
+        <div ng-show="arguments.type!=11" class="col-md-6">
+			@(Html.ArgumentFor<ControlFormArgumentUpdateArguments>(x => x.Required))
+		</div>
+	</xp-get>
+}

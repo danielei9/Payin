@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	TicketTemplateFactory.Delete,
+	TicketTemplateFactory.DeleteApi,
+	"",
+	"resources.ticketTemplate.delete",
+	id: "id"
+))
+{
+	<p translate="resources.ticketTemplate.deleteQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to delete the ticket template {{arguments.name}}?</p>
+}
+

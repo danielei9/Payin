@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en" ng-app="payin">
+<head>
+    <meta charset="utf-8" />
+    @*<title>Platges Vinaròs</title>*@
+    <title>Finestrat</title>
+    @*<title>Pay[in]</title>*@
+    <link id="favicon" rel="shortcut icon" href="~/Images/{{features.favicon()}}" type="image/png" />
+    <link rel="apple-touch-icon" sizes="194x194" ng-href="~/Images/{{features.faviconApple()}}" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OpenLayers -->
+    <!--link href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" rel="stylesheet"-->
+    <!-- OpenLayers Routing -->
+    <link rel="stylesheet" href="~/App/ol.css" />
+    <link rel="stylesheet" href="~/App/openlayers-routing-machine.css" />
+    <!-- Vis -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Markdown-->
+    @Styles.Render("~/Content/markdown")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+</head>
+<body ng-controller="AppCtrl">
+    <div class="app" id="app">
+        <div ng-cloak>
+            <!-- uiView: -->
+            @RenderBody()
+            <!-- / uiView: -->
+        </div>
+        <!-- footer -->
+        <!-- / footer -->
+    </div>
+    @*
+        MAPA XAVI
+        Descomentar esta línea
+    *@
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=false"></script>
+    <script src="https://www.google.com/jsapi"></script>
+
+    @*sensor=false&language=ja&region=GB*@
+    <!-- OpenLayers -->
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <!-- OpenLayers Routing -->
+    <script src="~/App/js/ol-debug.js"></script>
+    <script src="~/App/js/openlayers-routing-machine.js"></script>
+    <!-- Vis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <!-- Charjs -->
+    <script src="~/bower_components/chart.js/dist/Chart.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- jQuery-->
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Angularjs -->
+    @Scripts.Render("~/bundles/angularjs")
+    <!-- BootStrap-->
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Lazyload -->
+    @Scripts.Render("~/bundles/lazyload")
+    <!-- Translate -->
+    @Scripts.Render("~/bundles/translate")
+    <!-- Markdown-->
+    @Scripts.Render("~/bundles/markdown")
+    <!-- Xp -->
+    @Scripts.Render("~/bundles/xp")
+</body>
+</html>

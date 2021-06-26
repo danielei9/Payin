@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPopupPut(
+	PaymentConcessionCampaignFactory.ResendNotification,
+	PaymentConcessionCampaignFactory.ResendNotificationApi,
+	"",
+	"resources.paymentConcessionCampaign.resendNotification"
+))
+{
+	<p translate="resources.paymentConcessionCampaign.resendNotificationQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to reassign the payment worker {{arguments.name}}?</p>
+}

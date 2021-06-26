@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplateCheck;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlTemplateCheckFactory.CreateName,
+	ControlTemplateCheckFactory.CreateApi,
+	"",
+	//ControlTemplateCheckResources.Create,
+	"resources.controlTemplateCheck.create",
+	init: "scope.arguments.templateId = params.templateId;"
+))
+{
+	@(Html.SelectFor<ControlTemplateCheckCreateArguments>(x => x.CheckPointId, "checkPointName", ServiceCheckPointFactory.RetrieveSelectorCheckApi))
+	@(Html.ArgumentFor<ControlTemplateCheckCreateArguments>(x => x.Time))
+}

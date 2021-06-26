@@ -1,0 +1,59 @@
+﻿@using PayIn.Common.Security;
+@using PayIn.Web.Models;
+
+@model ValidateEmailViewModel
+
+<script type="text/javascript" src="~/Scripts/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="~/Scripts/functions.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Authentication.cshtml";
+}
+
+<div class="container w-xxl w-auto-xs">
+    <img ng-src="{{features.logoUrl()}}" alt="{{app.name()}}" class="navbar-brand block m-t" style="margin:auto;;width:80%;height:auto;" />
+    <div class="m-b-lg">
+        @Html.Partial("Error")
+        @using (Html.BeginForm("ConfirmEmail", "Account", "", FormMethod.Post, new { @class = "form", role = "form", name = "confirmEmail", id = "confirmEmail" }))
+        {
+            @Html.AntiForgeryToken()
+            <div id="loading" class="spinnerContainer" style="display:none">
+                <img class="spinnerLoading" src="~/Images/spinner.gif" />
+            </div>
+            <div id="container" style="display:none;">
+                <div class="wrapper text-center">
+                    <strong translate="resources.security.confirmEmail">Confirm email</strong>
+                </div>
+                <div ng-show="!arguments.code" class="wrapper">
+                    <span translate="resources.security.confirmEmailText">Thanks for registering in Pay[in] system. You will receive an email in your account. To confirm your registration, click on the link received in the email, or copy the user Id and the code from the email and past it in the corresponding boxes. Please if you do not receive the email try to register again. If you still can not receive the email write an email to system@pay-in.es</span>
+                </div>
+                <div ng-show="arguments.code && arguments.userId" class="wrapper">
+                    <strong translate="resources.security.confirmEmailUrlText">Click on the Confirm Email button to confirm your registration</strong>
+                </div>
+                <div id="divUserId" class="list-group-item">
+                    @Html.TextBoxFor(m => m.UserId, new { @id = "userId", @class = "form-control no-border", @placeholder = @SecurityResources.userId })
+                </div>
+                <div id="divCode" class="list-group-item">
+                    @Html.TextBoxFor(m => m.Code, new { @id = "code", @class = "form-control no-border", @placeholder = @SecurityResources.code })
+                </div>
+                <div id="divRefresh" class="list-group-item" style="display:none">
+                    @Html.TextBoxFor(m => m.Refresh, new { @id = "refresh", @class = "form-control no-border" })
+                </div>
+                <br />
+                <button id="submitbtn" class="btn btn-lg btn-orange btn-block" type="submit" translate="resources.security.confirmEmail">Confirm email</button>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $("#confirmEmail").ready(function () {
+        var ref = $("#refresh").val();
+        if (($("#userId").val().length > 1) && ($("#code").val().length > 1) && ref == 'True') {
+            $("#confirmEmail").submit();
+            $('#loading').css("display", "inherit");
+        } else {
+            $('#loading').css("display", "none");
+            $('#container').css("display", "inherit");
+        }
+    });
+</script>

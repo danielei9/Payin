@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlTemplateCheck;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlTemplateCheckFactory.Update,
+	ControlTemplateCheckFactory.UpdateApi,
+	"",
+	//ControlTemplateCheckResources.Update
+	"resources.controlTemplateCheck.update"
+))
+{
+	<xp-get data-api="@ControlTemplateCheckFactory.GetApi">
+		@(Html.ArgumentFor<ControlTemplateCheckUpdateArguments>(x => x.Time, focus: true))
+	</xp-get>
+}
+

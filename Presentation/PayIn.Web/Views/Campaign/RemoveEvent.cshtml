@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	CampaignFactory.RemoveEvent,
+	CampaignFactory.RemoveEventApi,
+	"",
+	"resources.campaign.removeEvent",
+	init: "scope.campaign == arguments.campaign;"
+))
+{
+	<p translate="resources.campaign.removeEventQuestion"  translate-values="{ name: '{{arguments.name}}' }">Do you want to delete this event?</p>
+}

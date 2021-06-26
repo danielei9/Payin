@@ -1,0 +1,42 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlItemFactory.Create,
+	ControlItemFactory.CreateApi,
+	"",
+	//ControlItemResources.Create
+	"resources.controlItem.create"
+))
+{
+	@(Html.SelectFor  <ControlItemCreateArguments>(x => x.ConcessionId, "concessionName", ServiceConcessionFactory.RetrieveSelectorApi, focus: true))
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.Name                                                                                     ))
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.Observations                                                                             ))
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.CheckTimetable                                                                           ))
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.SaveFacialRecognition                                                                    ))
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.SaveTrack                                                                                ))
+	<div id="trackFrecuencyDiv">
+	@(Html.ArgumentFor<ControlItemCreateArguments>(x => x.TrackFrecuency, placeHolder: ControlItemResources.PlaceHolder))
+	</div>
+
+	<script type="text/javascript">
+		function showContent() {
+			element = document.getElementById("trackFrecuencyDiv");
+			check = document.getElementById("saveTrack");
+			if (check.checked == true) {
+				element.style.display = 'block';
+			}
+			else {
+				element.style.display = 'none';
+			}
+		}
+
+	</script>
+
+}
+
+
+
+
+

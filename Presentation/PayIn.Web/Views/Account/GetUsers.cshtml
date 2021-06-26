@@ -1,0 +1,66 @@
+﻿@using PayIn.Application.Dto.Security.Results;
+@using PayIn.Domain.Security;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@{
+    var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+}
+
+@using (Html.xpList(
+    AccountFactory.GetUsers,
+    AccountFactory.GetUsersApi,
+    "",
+    "resources.account.users",
+    isTitleActive: true
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th style="width: 1px;">&nbsp;</th>
+                    <th style="width: 1px;">&nbsp;</th>
+                    <th translate="resources.account.userName">UserName</th>
+                    <th translate="resources.account.name">Name</th>
+                    <th translate="resources.account.countFailed">Count failed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in data" ng-class="{
+					'b-l b-5x b-success' : !item.block,
+					'b-l b-5x b-danger' : item.block
+			    }">
+                    <td>
+                        @*<span data-ng-show="item.block==false"></span>*@
+                        @*<span data-ng-show="item.block==true">Sí ({{item.blockDate}})</span>*@
+                        <span class="icon-column" data-ng-show="item.block==true">
+                            <a xp-navigate ui-sref='@AccountFactory.UnlockUser("{{'item.id'}}")'>
+                                <i class='@XpIcons.Play' />
+                            </a>
+                        </span>
+                    </td>
+                    <td class="icon-column" ng-show="@checkIsSuperadministrator">
+                        <a xp-navigate ui-sref='@AccountFactory.OverwritePassword("{{'item.id'}}")'>
+                            <i class='@XpIcons.Key' />
+                        </a>
+                    </td>
+                    <td>@(Html.ColumnFor<AccountGetUsersResult>(x => x.UserName))</td>
+                    <td>@(Html.ColumnFor<AccountGetUsersResult>(x => x.Name))</td>
+                    <td>@(Html.ColumnFor<AccountGetUsersResult>(x => x.FailedCount))</td>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.user.enabled">Enabled</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.user.locked">Locked</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

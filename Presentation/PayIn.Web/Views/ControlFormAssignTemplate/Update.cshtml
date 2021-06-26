@@ -1,0 +1,17 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormAssignTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	ControlFormAssignTemplateFactory.UpdateStateName,
+	ControlFormAssignTemplateFactory.UpdateApi,
+	"",
+	//ControlFormAssignTemplateResources.Update"
+	"resources.controlFormAssignTemplate.update"
+))
+{
+	<xp-get data-api="@ControlFormAssignTemplateFactory.UpdateGetApi">
+		<div ng-repeat="arg in arguments.values" ng-controller="ControlFormAssignUpdate_ValueController"></div>
+	</xp-get>
+}
+

@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	CampaignFactory.SuspendName,
+	CampaignFactory.SuspendApi,
+	"",
+	"resources.campaign.suspend"
+))
+{
+	<p translate="resources.campaign.suspendQuestion" translate-values="{ name: '{{arguments.name}}' }">Do you want to suspend the campaign {{arguments.name}}?</p>
+}
+

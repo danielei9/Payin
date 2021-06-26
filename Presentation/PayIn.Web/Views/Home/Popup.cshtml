@@ -1,0 +1,18 @@
+﻿@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+
+@using (Html.xpPopupShow(
+    HomeFactory.Popup,
+    "",
+    "{{arguments.title||'" + HomeResources.PopupTitle + "'}}",
+    init:
+        "setTimeout(function () {" +
+            "scope.dismiss();" +
+        "}, 1000);",
+    id: "id",
+    cancelText: GlobalResources.Exit
+))
+{
+	<p>{{arguments.message}}</p>
+}

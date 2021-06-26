@@ -1,0 +1,49 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+    NotificationSetFactory.GetAll,
+    NotificationSetFactory.GetAllApi,
+    "",
+    "resources.notificationSet.retrieveAll",
+    isTitleActive: true,
+    initialSearch: true,
+    actions: new ActionLink[] {
+new ActionLink(ActionLink.ActionLinkType.Panel, NotificationSetFactory.Create, XpIcons.Plus)
+    }
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th translate="resources.notificationSet.message">Text to send</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success': item.state===1, 'b-l b-5x b-warning': item.state===2}">
+                    @*<td>@(Html.ColumnFor<NotificationSetGetAllResult>(x => x.Message, panelUrl: EventFactory.UpdateName, id: "{{item.id}}", arguments: "{\"EntranceSystemName\":\"{arguments.entranceSystemName}}\"}"))</td>*@
+                    <td>@(Html.ColumnFor<NotificationSetGetAllResult>(x => x.Message))</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*<footer class="panel-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <div style="background-color:#27C24C;" class="legend-graph-color" />
+                            <p style="float:left;" translate="resources.event.stateActive">Active</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div style="background-color:#FAD733;" class="legend-graph-color" />
+                            <p style="float:left;" translate="resources.event.stateSuspended">Suspended</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>*@
+    </div>
+
+    }

@@ -1,0 +1,13 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	AccountFactory.DeleteImageName,
+	AccountFactory.DeleteImageApi,
+	"",
+	//AccountResources.DeleteImage,
+	"resources.account.deleteImage",
+	success: "scope.$emit('changedAvatar');"
+))
+{
+	<p translate="resources.account.deleteQuestion">Are you sure you want to delete your avatar?</p>
+}

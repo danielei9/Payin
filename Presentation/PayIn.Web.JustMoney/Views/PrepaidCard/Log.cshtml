@@ -1,0 +1,241 @@
+﻿<style>
+    .date-button {
+        border: 1px solid lightgray;
+        /*border-radius: 3px;*/
+        background-color: gainsboro;
+    }
+</style>
+<div xp-panel ng-init="app.selectedPage='prepaidcardlog'">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script>
+        var datepicker = new Datepickk();
+    </script>
+
+    <xp-list api="/JustMoney/Api/PrepaidCard/Log"
+             initial-search
+             xp-success="scope.arguments.selectedTab=data.data[0].id"
+             xp-init="
+                var dateTo = moment(new Date());
+                var dateFrom = moment(dateTo).subtract(7,'d');
+
+                scope.arguments.sinceDay = dateFrom.format('D');
+                scope.arguments.sinceMonth = dateFrom.format('M');
+                scope.arguments.sinceYear = dateFrom.format('YYYY');
+                scope.arguments.untilDay = dateTo.format('D');
+                scope.arguments.untilMonth = dateTo.format('M');
+                scope.arguments.untilYear = dateTo.format('YYYY');
+             ">
+        <div class="spinner" ng-show="_windowState.isBusy">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+        <h1>Historial de transacciones</h1>
+        <!-- Errors -->
+        <div class="alert alert-danger" role="alert" ng-show="errors.length" ng-cloak>
+            <ul>
+                <li ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <div class="formPartLog">
+            <!-- Botonera TAB -->
+            <div class="linksToDifferentCards">
+                <div class="fourLinks" ng-if="data.length>=1" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[0].id}" ng-click="arguments.selectedTab=data[0].id"><a>{{data[0].alias}}</a></div>
+                <div class="fourLinks" ng-if="data.length>=2" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[1].id}" ng-click="arguments.selectedTab=data[1].id"><a>{{data[1].alias}}</a></div>
+                <div class="fourLinks" ng-if="data.length>=3" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[2].id}" ng-click="arguments.selectedTab=data[2].id"><a>{{data[2].alias}}</a></div>
+                <div class="fourLinks" ng-if="data.length>=4" ng-class="{'diffCardLinkActive': arguments.selectedTab === data[3].id}" ng-click="arguments.selectedTab=data[3].id"><a>{{data[3].alias}}</a></div>
+            </div>
+
+            <div class="verticalSpacer"></div>
+
+            <!-- Filtro de fechas -->
+            <h3>Seleccione un periodo de fechas para ver sus transacciones</h3>
+			<div class="fechaPeriod">
+				<label for="since" class="col-form-label">Fecha desde</label>
+				<select id="Dia1" ng-model="arguments.sinceDay" required ng-disabled="_windowState.isBusy">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+					<option>16</option>
+					<option>17</option>
+					<option>18</option>
+					<option>19</option>
+					<option>20</option>
+					<option>21</option>
+					<option>22</option>
+					<option>23</option>
+					<option>24</option>
+					<option>25</option>
+					<option>26</option>
+					<option>27</option>
+					<option>28</option>
+					<option>29</option>
+					<option>30</option>
+					<option>31</option>
+				</select>
+				<select id="Month1" ng-model="arguments.sinceMonth" required ng-disabled="_windowState.isBusy">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<input type="text" id="Año1" class="year" placeholder="AÑO" ng-model="arguments.sinceYear" required ng-disabled="_windowState.isBusy">
+				@*<button type="button" class="date-button" onclick="closeOnSelectDemo('from', this)"><span class="glyphicon glyphicon-calendar"></span></button>*@
+			</div>
+			<div class="fechaPeriod">
+				<label for="until" class="col-form-label">Fecha hasta</label>
+				<select id="Dia2" ng-model="arguments.untilDay" required ng-disabled="_windowState.isBusy">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+					<option>13</option>
+					<option>14</option>
+					<option>15</option>
+					<option>16</option>
+					<option>17</option>
+					<option>18</option>
+					<option>19</option>
+					<option>20</option>
+					<option>21</option>
+					<option>22</option>
+					<option>23</option>
+					<option>24</option>
+					<option>25</option>
+					<option>26</option>
+					<option>27</option>
+					<option>28</option>
+					<option>29</option>
+					<option>30</option>
+					<option>31</option>
+				</select>
+				<select id="Month2" ng-model="arguments.untilMonth" required ng-disabled="_windowState.isBusy">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<input type="text" id="Año2" class="year" placeholder="AÑO" ng-model="arguments.untilYear" required ng-disabled="_windowState.isBusy">
+				@*<button type="button" class="date-button" onclick="closeOnSelectDemo('to', this)"><span class="glyphicon glyphicon-calendar"></span></button>*@
+			</div>
+
+            <script>
+                function closeOnSelectDemo(fromDate, $scope) {
+                    datepicker.unselectAll();
+                    datepicker.closeOnSelect = true;
+                    console.log(datepicker.closeOnSelect);
+
+                    datepicker.onSelect = function (checked) {
+                        //var selectedDate = this.toLocaleDateString();
+                        var selectedDate = this;
+                        if (fromDate == 'from') {
+                            document.getElementById("Dia1").value = selectedDate.getDate();
+                            document.getElementById("Mes1").value = selectedDate.getMonth() + 1;
+                            document.getElementById("Año1").value = selectedDate.getFullYear();
+                            console.log("1: " + selectedDate.getDate());
+                            console.log("2: " + selectedDate.getMonth() + 1);
+                            console.log("3: " + selectedDate.getFullYear());
+                        } else {
+                            document.getElementById("Dia2").value = selectedDate.getDate();
+                            document.getElementById("Mes2").value = selectedDate.getMonth() + 1;
+                            document.getElementById("Año2").value = selectedDate.getFullYear();
+                            console.log("4: " + selectedDate.getDate());
+                            console.log("5: " + selectedDate.getMonth() + 1);
+                            console.log("6: " + selectedDate.getFullYear());
+						}
+
+						if (!$scope.$$phase)
+							$scope.$apply();
+                    };
+                    datepicker.onClose = function () {
+                        datepicker.closeOnSelect = false;
+                        datepicker.onClose = null;
+                    }
+                    datepicker.show();
+                }
+            </script>
+
+            <div class="orangeSingleButtonsDiv">
+                <button type="button" class="orangeButton" ng-click="search()" ng-disabled="_windowState.isBusy">Consultar</button>
+            </div>
+
+            <!-- Movimientos de la tarjeta -->
+            <div class="fechaTable" ng-init="lastCard = 0">
+                <div ng-if="arguments.selectedTab == ''">
+                    <div class="fechaTableUpperRow">
+                        <h3>Fecha</h3>
+                        <h3 class="withBorder">Descripción</h3>
+                        <h3>Movimiento</h3>
+                    </div>
+                    <div>Seleccione una tarjeta</div>
+                </div>
+                <div ng-if="arguments.selectedTab != '' && arguments.selectedTab === item.id && data.length" ng-repeat="item in data" ng-init="lastCard = item.id;">
+                    @*<div class="logSaldoDiv">
+                        <h3>Saldo: <span class="logSaldoSpan">{{item.balanceString}}€</span></h3>
+                    </div>*@
+                    <div class="fechaTableUpperRow">
+                        <h3>Fecha</h3>
+                        <h3 class="withBorder">Descripción</h3>
+                        <h3>Movimiento</h3>
+                    </div>
+
+                    <div ng-repeat="rec in item.transactions" ng-init="odd = ($index % 2 == 0)" ng-class="{'fechaTableRow1': odd, 'fechaTableRow2': !odd}">
+                        <p class="fechaTableRowDate">{{rec.date | date: "dd/MM/yyyy hh:mm"}}</p>
+                        <p class="fechaTableRowDescr">{{rec.description}}</p>
+                        <p class="fechaTableRowPrice" ng-class="{'greenPrice': rec.amount>=0, 'redPrice': rec.amount<0}">{{rec.amount | number : 2}}€<br /><span ng-class="{'availableBalance': rec.availableBalance>=0, 'availableBalanceNegative': rec.availableBalance<0}">{{rec.availableBalance | number : 2}}€</span></p>
+                    </div>
+                </div>
+
+                <p class="fechaTablePaginaSwitcher" style="display: none">
+                    <i class="fas fa-chevron-left"></i>
+                    Pag 1 de 1
+                    <i class="fas fa-chevron-right"></i>
+                </p>
+
+            </div>
+
+            <div class="orangeButtonsDiv" style="display: none;">
+                <button class="orangeButton" ng-disabled="_windowState.isBusy">DESCARGAR PDF</button>
+                <button class="orangeButton" ng-disabled="_windowState.isBusy">GENERAR DOCUMENTO EXCEL</button>
+            </div>
+
+        </div>
+    </xp-list>
+
+</div>

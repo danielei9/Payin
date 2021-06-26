@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+    ServiceCardFactory.LinkCardName,
+    ServiceCardFactory.LinkCardApi,
+    "",
+    "resources.serviceCard.linkCard"
+))
+{
+    <div class="spinnerContainer" ng-show="_windowState.isBusy">
+        <img class="spinnerLoading" src="~/Images/spinner.gif" />
+    </div>
+
+    <div class="panel panel-default" style="margin-top:-15px">
+        <div class="panel-body">
+            @(Html.ArgumentFor<ServiceCardLinkCardArguments>(x => x.UidText))
+        </div>
+    </div>
+}
+

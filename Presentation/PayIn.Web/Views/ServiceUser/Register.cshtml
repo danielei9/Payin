@@ -1,0 +1,11 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ServiceUserFactory.RegisterName,
+	ServiceUserFactory.RegisterApi,
+	"",
+	"resources.serviceUser.register"
+))
+{
+	<p translate="resources.serviceUser.registerQuestion">Do you want to send a registration to this member?</p>
+}

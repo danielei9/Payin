@@ -1,0 +1,2428 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    
+    
+    <title>SignalR/SignalR - C# - GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="SignalR/SignalR" name="twitter:title" /><meta content="SignalR - Incredibly simple real-time web for .NET" name="twitter:description" /><meta content="https://avatars1.githubusercontent.com/u/931666?v=3&amp;s=400" name="twitter:image:src" />
+      <meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars1.githubusercontent.com/u/931666?v=3&amp;s=400" property="og:image" /><meta content="SignalR/SignalR" property="og:title" /><meta content="https://github.com/SignalR/SignalR" property="og:url" /><meta content="SignalR - Incredibly simple real-time web for .NET" property="og:description" />
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="2E19476A:10E7:15C1054:569C9C19" name="octolytics-dimension-request_id" />
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location" />
+<meta content="Rails, view, files#disambiguate" data-pjax-transient="true" name="analytics-event" />
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta content="3c3c295d848b58b5ab7b6745b86750403603c033" name="form-nonce" />
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-1b53a0bcb9add868a6c5ae469ecabb8b236ffa8f2b05360fde027f75eb714f1b.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-70af51f1bed4904749e6ef486ad11871c8ce4361ac82bb5f96a090b7f5346580.css" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="4222bfcb881548243f94e18e8a3bcfd0">
+
+      
+  <meta name="description" content="SignalR - Incredibly simple real-time web for .NET">
+  <meta name="go-import" content="github.com/SignalR/SignalR git https://github.com/SignalR/SignalR.git">
+
+  <meta content="931666" name="octolytics-dimension-user_id" /><meta content="SignalR" name="octolytics-dimension-user_login" /><meta content="2087064" name="octolytics-dimension-repository_id" /><meta content="SignalR/SignalR" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="2087064" name="octolytics-dimension-repository_network_root_id" /><meta content="SignalR/SignalR" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/SignalR/SignalR/commits/dev.atom" rel="alternate" title="Recent Commits to SignalR:dev" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_out   env-production  vis-public">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+      
+      <div class="header header-logged-out" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <span aria-hidden="true" class="mega-octicon octicon-logo-github"></span>
+    </a>
+
+    <div class="header-actions" role="navigation">
+        <a class="btn btn-primary" href="/join" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+      <a class="btn" href="/login?return_to=%2FSignalR%2FSignalR" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+    </div>
+
+    <div class="site-search repo-scope js-site-search" role="search">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/SignalR/SignalR/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/SignalR/SignalR/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus js-site-search-field is-clearable chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search"
+      aria-label="Search this repository"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+    </div>
+
+      <ul class="header-nav left" role="navigation">
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/explore" data-ga-click="(Logged out) Header, go to explore, text:explore">Explore</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/features" data-ga-click="(Logged out) Header, go to features, text:features">Features</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://enterprise.github.com/" data-ga-click="(Logged out) Header, go to enterprise, text:enterprise">Enterprise</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/pricing" data-ga-click="(Logged out) Header, go to pricing, text:pricing">Pricing</a>
+          </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+        <div itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-repo-pjax-container" class="context-loader-container js-repo-nav-next" data-pjax-container>
+      
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="/login?return_to=%2FSignalR%2FSignalR"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <span aria-hidden="true" class="octicon octicon-eye"></span>
+    Watch
+  </a>
+  <a class="social-count" href="/SignalR/SignalR/watchers">
+    654
+  </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2FSignalR%2FSignalR"
+    class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+    aria-label="You must be signed in to star a repository" rel="nofollow">
+    <span aria-hidden="true" class="octicon octicon-star"></span>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="/SignalR/SignalR/stargazers">
+      5,485
+    </a>
+
+  </li>
+
+  <li>
+      <a href="/login?return_to=%2FSignalR%2FSignalR"
+        class="btn btn-sm btn-with-count tooltipped tooltipped-n"
+        aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <span aria-hidden="true" class="octicon octicon-repo-forked"></span>
+        Fork
+      </a>
+
+    <a href="/SignalR/SignalR/network" class="social-count">
+      1,654
+    </a>
+  </li>
+</ul>
+
+    <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public ">
+  <span aria-hidden="true" class="octicon octicon-repo"></span>
+  <span class="author"><a href="/SignalR" class="url fn" itemprop="url" rel="author"><span itemprop="title">SignalR</span></a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong><a href="/SignalR/SignalR" data-pjax="#js-repo-pjax-container">SignalR</a></strong>
+
+  <span class="page-context-loader">
+    <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+  </span>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container">
+
+  <a href="/SignalR/SignalR" aria-label="Code" aria-selected="true" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /SignalR/SignalR">
+    <span aria-hidden="true" class="octicon octicon-code"></span>
+    Code
+</a>
+    <a href="/SignalR/SignalR/issues" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /SignalR/SignalR/issues">
+      <span aria-hidden="true" class="octicon octicon-issue-opened"></span>
+      Issues
+      <span class="counter">360</span>
+</a>
+  <a href="/SignalR/SignalR/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /SignalR/SignalR/pulls">
+    <span aria-hidden="true" class="octicon octicon-git-pull-request"></span>
+    Pull requests
+    <span class="counter">16</span>
+</a>
+    <a href="/SignalR/SignalR/wiki" class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /SignalR/SignalR/wiki">
+      <span aria-hidden="true" class="octicon octicon-book"></span>
+      Wiki
+</a>
+  <a href="/SignalR/SignalR/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /SignalR/SignalR/pulse">
+    <span aria-hidden="true" class="octicon octicon-pulse"></span>
+    Pulse
+</a>
+  <a href="/SignalR/SignalR/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /SignalR/SignalR/graphs">
+    <span aria-hidden="true" class="octicon octicon-graph"></span>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+<div class="repository-meta js-details-container">
+  <span class="repository-meta-content">
+        Incredibly simple real-time web for .NET
+        <a href="http://signalr.net" rel="nofollow">http://signalr.net</a>
+  </span>
+
+</div>
+
+
+<div class="overall-summary overall-summary-bottomless">
+
+  <div class="stats-switcher-viewport js-stats-switcher-viewport">
+    <div class="stats-switcher-wrapper">
+    <ul class="numbers-summary">
+      <li class="commits">
+        <a data-pjax href="/SignalR/SignalR/commits/dev">
+            <span aria-hidden="true" class="octicon octicon-history"></span>
+            <span class="num text-emphasized">
+              4,520
+            </span>
+            commits
+        </a>
+      </li>
+      <li>
+        <a data-pjax href="/SignalR/SignalR/branches">
+          <span aria-hidden="true" class="octicon octicon-git-branch"></span>
+          <span class="num text-emphasized">
+            92
+          </span>
+          branches
+        </a>
+      </li>
+
+      <li>
+        <a data-pjax href="/SignalR/SignalR/releases">
+          <span aria-hidden="true" class="octicon octicon-tag"></span>
+          <span class="num text-emphasized">
+            36
+          </span>
+          releases
+        </a>
+      </li>
+
+      <li>
+        
+  <a href="/SignalR/SignalR/graphs/contributors">
+    <span aria-hidden="true" class="octicon octicon-organization"></span>
+    <span class="num text-emphasized">
+      67
+    </span>
+    contributors
+  </a>
+      </li>
+    </ul>
+
+      <div class="repository-lang-stats">
+        <ol class="repository-lang-stats-numbers">
+          <li>
+              <a href="/SignalR/SignalR/search?l=csharp">
+                <span class="color-block language-color" style="background-color:#178600;"></span>
+                <span class="lang">C#</span>
+                <span class="percent">82.6%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/SignalR/SignalR/search?l=javascript">
+                <span class="color-block language-color" style="background-color:#f1e05a;"></span>
+                <span class="lang">JavaScript</span>
+                <span class="percent">16.3%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/SignalR/SignalR/search?l=smalltalk">
+                <span class="color-block language-color" style="background-color:#596706;"></span>
+                <span class="lang">Smalltalk</span>
+                <span class="percent">0.5%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/SignalR/SignalR/search?l=powershell">
+                <span class="color-block language-color" style="background-color:#ccc;"></span>
+                <span class="lang">PowerShell</span>
+                <span class="percent">0.3%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/SignalR/SignalR/search?l=css">
+                <span class="color-block language-color" style="background-color:#563d7c;"></span>
+                <span class="lang">CSS</span>
+                <span class="percent">0.2%</span>
+              </a>
+          </li>
+          <li>
+              <a href="/SignalR/SignalR/search?l=bash">
+                <span class="color-block language-color" style="background-color:#89e051;"></span>
+                <span class="lang">Shell</span>
+                <span class="percent">0.1%</span>
+              </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="repository-lang-stats-graph js-toggle-lang-stats" title="Click for language details">
+    <span class="language-color" aria-label="C# 82.6%" style="width:82.6%; background-color:#178600;" itemprop="keywords">C#</span>
+    <span class="language-color" aria-label="JavaScript 16.3%" style="width:16.3%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span>
+    <span class="language-color" aria-label="Smalltalk 0.5%" style="width:0.5%; background-color:#596706;" itemprop="keywords">Smalltalk</span>
+    <span class="language-color" aria-label="PowerShell 0.3%" style="width:0.3%; background-color:#ccc;" itemprop="keywords">PowerShell</span>
+    <span class="language-color" aria-label="CSS 0.2%" style="width:0.2%; background-color:#563d7c;" itemprop="keywords">CSS</span>
+    <span class="language-color" aria-label="Shell 0.1%" style="width:0.1%; background-color:#89e051;" itemprop="keywords">Shell</span>
+  </div>
+
+<include-fragment src="/SignalR/SignalR/show_partial?partial=tree%2Frecently_touched_branches_list"></include-fragment>
+
+<div class="file-navigation in-mid-page file-navigation-new">
+  <div class="right">
+    <div class="btn-group">
+      
+  <button class="btn btn-sm disabled tooltipped tooltipped-n" aria-label="You must be signed in to make or propose changes" type="button">
+    New file
+  </button>
+
+
+
+      <a href="/SignalR/SignalR/find/dev"
+        class="btn btn-sm empty-icon right js-show-file-finder"
+        data-pjax
+        data-hotkey="t"
+        data-ga-click="Repository, find file, location:repo overview">
+        Find file
+      </a>
+    </div>
+      <div class="file-navigation-options" data-multiple>
+
+        <div class="file-navigation-option">
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol" class="js-set-user-protocol-preference" data-form-nonce="3c3c295d848b58b5ab7b6745b86750403603c033" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="mBj0XmmKi5/f79zoUjglvYsKLk5BpRmnTSGBFFk/an0NHpx7YOd1qEI6DcGt0jyw1ZfXRwA6aDGAqzfdsrSlXw==" /></div>
+            <input type="hidden" name="protocol_type" value="clone">
+
+            <div class="select-menu js-menu-container js-select-menu">
+              <div class="input-group js-select-button js-zeroclipboard-container">
+                <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone HTTPS, location:repo overview">
+    HTTPS
+  </button>
+</div>
+<input type="text" class="input-monospace input-mini js-zeroclipboard-target js-url-field" value="https://github.com/SignalR/SignalR.git" readonly>
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span aria-hidden="true" class="octicon octicon-clippy"></span></button>
+</div>
+
+              </div>
+
+              <div class="select-menu-modal-holder">
+                <div class="select-menu-modal js-menu-content" aria-hidden="true">
+                  <div class="select-menu-header">
+                    <span aria-label="Close" class="octicon octicon-x js-menu-close" role="button"></span>
+                    <span class="select-menu-title">Choose a clone URL</span>
+                  </div>
+
+                  <div class="select-menu-list js-navigation-container" role="menu">
+                      <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                        <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+                        <div class="select-menu-item-text">
+                          <input type="radio" name="protocol_selector" value="http" checked>
+                          <span class="select-menu-item-heading">
+                            HTTPS
+                            (recommended)
+                          </span>
+                            <span class="description">
+                              Clone with Git or checkout with SVN using the repository's web address.
+                            </span>
+                          <span class="js-select-button-text hidden-select-button-text">
+                            <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone HTTPS, location:repo overview">
+    HTTPS
+  </button>
+</div>
+<input type="text" class="input-monospace input-mini js-zeroclipboard-target js-url-field" value="https://github.com/SignalR/SignalR.git" readonly>
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span aria-hidden="true" class="octicon octicon-clippy"></span></button>
+</div>
+
+                          </span>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="select-menu-list" role="menu">
+                    <a class="select-menu-item select-menu-action" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank">
+                      <span aria-hidden="true" class="octicon octicon-question select-menu-item-icon"></span>
+                      <div class="select-menu-item-text">
+                        Learn more about clone URLs
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+</form>        </div>
+
+        <div class="file-navigation-option">
+</div>
+
+
+        <div class="file-navigation-option">
+          <a href="/SignalR/SignalR/archive/dev.zip"
+             class="btn btn-sm"
+             rel="nofollow"
+             data-ga-click="Repository, download zip, location:repo overview">
+            Download ZIP
+          </a>
+        </div>
+      </div>
+  </div>
+
+  
+<div class="select-menu js-menu-container js-select-menu left">
+  <button class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    title="dev"
+    type="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <i>Branch:</i>
+    <span class="js-select-button css-truncate-target">dev</span>
+  </button>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span aria-label="Close" class="octicon octicon-x js-menu-close" role="button"></span>
+        <span class="select-menu-title">Switch branches/tags</span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab" role="tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tag…" class="js-select-menu-tab" role="tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches" role="menu">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/1637"
+               data-name="1637"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1637">
+                1637
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/1638"
+               data-name="1638"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1638">
+                1638
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/1920"
+               data-name="1920"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1920">
+                1920
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/2380-hub-progress"
+               data-name="2380-hub-progress"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2380-hub-progress">
+                2380-hub-progress
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/2456"
+               data-name="2456"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2456">
+                2456
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/2626"
+               data-name="2626"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2626">
+                2626
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/2629"
+               data-name="2629"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2629">
+                2629
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/2694"
+               data-name="2694"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2694">
+                2694
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/DR"
+               data-name="DR"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="DR">
+                DR
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/async-await"
+               data-name="async-await"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="async-await">
+                async-await
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/asyncawait"
+               data-name="asyncawait"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="asyncawait">
+                asyncawait
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/benchmark"
+               data-name="benchmark"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="benchmark">
+                benchmark
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/break"
+               data-name="break"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="break">
+                break
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/brecon/VBClient"
+               data-name="brecon/VBClient"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="brecon/VBClient">
+                brecon/VBClient
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-478"
+               data-name="bug-478"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-478">
+                bug-478
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2653"
+               data-name="bug-2653"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2653">
+                bug-2653
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2658"
+               data-name="bug-2658"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2658">
+                bug-2658
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2710"
+               data-name="bug-2710"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2710">
+                bug-2710
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2753"
+               data-name="bug-2753"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2753">
+                bug-2753
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2757"
+               data-name="bug-2757"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2757">
+                bug-2757
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2796"
+               data-name="bug-2796"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2796">
+                bug-2796
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2903"
+               data-name="bug-2903"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2903">
+                bug-2903
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2933"
+               data-name="bug-2933"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2933">
+                bug-2933
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-2988"
+               data-name="bug-2988"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-2988">
+                bug-2988
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-3147"
+               data-name="bug-3147"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-3147">
+                bug-3147
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-3227-2_NegotiateHandler"
+               data-name="bug-3227-2_NegotiateHandler"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-3227-2_NegotiateHandler">
+                bug-3227-2_NegotiateHandler
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-3227-2"
+               data-name="bug-3227-2"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-3227-2">
+                bug-3227-2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-3362-rebase"
+               data-name="bug-3362-rebase"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-3362-rebase">
+                bug-3362-rebase
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-RandomNRE"
+               data-name="bug-RandomNRE"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-RandomNRE">
+                bug-RandomNRE
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-RedisSend"
+               data-name="bug-RedisSend"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-RedisSend">
+                bug-RedisSend
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-async-hub"
+               data-name="bug-async-hub"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-async-hub">
+                bug-async-hub
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-ifdef"
+               data-name="bug-ifdef"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-ifdef">
+                bug-ifdef
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-json"
+               data-name="bug-json"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-json">
+                bug-json
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-perfmessagelist"
+               data-name="bug-perfmessagelist"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-perfmessagelist">
+                bug-perfmessagelist
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-proxy-45"
+               data-name="bug-proxy-45"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-proxy-45">
+                bug-proxy-45
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-redis-nuspec"
+               data-name="bug-redis-nuspec"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-redis-nuspec">
+                bug-redis-nuspec
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-redis"
+               data-name="bug-redis"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-redis">
+                bug-redis
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-retry-configuration"
+               data-name="bug-retry-configuration"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-retry-configuration">
+                bug-retry-configuration
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-sample"
+               data-name="bug-sample"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-sample">
+                bug-sample
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-sanitizing-perfnames"
+               data-name="bug-sanitizing-perfnames"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-sanitizing-perfnames">
+                bug-sanitizing-perfnames
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-sb-config"
+               data-name="bug-sb-config"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-sb-config">
+                bug-sb-config
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-scaleout-error-callback"
+               data-name="bug-scaleout-error-callback"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-scaleout-error-callback">
+                bug-scaleout-error-callback
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-scaleoutDuplicateMsg"
+               data-name="bug-scaleoutDuplicateMsg"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-scaleoutDuplicateMsg">
+                bug-scaleoutDuplicateMsg
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-stackexchange-test"
+               data-name="bug-stackexchange-test"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-stackexchange-test">
+                bug-stackexchange-test
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-stackexchange"
+               data-name="bug-stackexchange"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-stackexchange">
+                bug-stackexchange
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bug-tracing"
+               data-name="bug-tracing"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bug-tracing">
+                bug-tracing
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/bus_tracing"
+               data-name="bus_tracing"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="bus_tracing">
+                bus_tracing
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/cpp"
+               data-name="cpp"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="cpp">
+                cpp
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open selected"
+               href="/SignalR/SignalR/tree/dev"
+               data-name="dev"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="dev">
+                dev
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/error-trace"
+               data-name="error-trace"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="error-trace">
+                error-trace
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/feature-2380-hub-progress"
+               data-name="feature-2380-hub-progress"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="feature-2380-hub-progress">
+                feature-2380-hub-progress
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/feature-2654"
+               data-name="feature-2654"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="feature-2654">
+                feature-2654
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/feature-2695"
+               data-name="feature-2695"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="feature-2695">
+                feature-2695
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/feature-2971"
+               data-name="feature-2971"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="feature-2971">
+                feature-2971
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/feature-3107"
+               data-name="feature-3107"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="feature-3107">
+                feature-3107
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/generic_acks"
+               data-name="generic_acks"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="generic_acks">
+                generic_acks
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/gh-pages"
+               data-name="gh-pages"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="gh-pages">
+                gh-pages
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/hacked-typed-client"
+               data-name="hacked-typed-client"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="hacked-typed-client">
+                hacked-typed-client
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/hub-name-conflict"
+               data-name="hub-name-conflict"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="hub-name-conflict">
+                hub-name-conflict
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/hub_method"
+               data-name="hub_method"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="hub_method">
+                hub_method
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/iOS-sample-changes"
+               data-name="iOS-sample-changes"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="iOS-sample-changes">
+                iOS-sample-changes
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/js-hub-logging"
+               data-name="js-hub-logging"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="js-hub-logging">
+                js-hub-logging
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/keepaliveapi"
+               data-name="keepaliveapi"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="keepaliveapi">
+                keepaliveapi
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/knockout"
+               data-name="knockout"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="knockout">
+                knockout
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/master"
+               data-name="master"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="master">
+                master
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/method-missing-new"
+               data-name="method-missing-new"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="method-missing-new">
+                method-missing-new
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/mono"
+               data-name="mono"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="mono">
+                mono
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/netmf"
+               data-name="netmf"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="netmf">
+                netmf
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/passive-clients"
+               data-name="passive-clients"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="passive-clients">
+                passive-clients
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-run/messagelist"
+               data-name="perf-run/messagelist"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-run/messagelist">
+                perf-run/messagelist
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-run/metadata"
+               data-name="perf-run/metadata"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-run/metadata">
+                perf-run/metadata
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-run/repair"
+               data-name="perf-run/repair"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-run/repair">
+                perf-run/repair
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-run/sqlLongPolling"
+               data-name="perf-run/sqlLongPolling"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-run/sqlLongPolling">
+                perf-run/sqlLongPolling
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-run/2939"
+               data-name="perf-run/2939"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-run/2939">
+                perf-run/2939
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-serverpush"
+               data-name="perf-serverpush"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-serverpush">
+                perf-serverpush
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perf-work"
+               data-name="perf-work"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perf-work">
+                perf-work
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/perfdemo"
+               data-name="perfdemo"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="perfdemo">
+                perfdemo
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/performanceRepair"
+               data-name="performanceRepair"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="performanceRepair">
+                performanceRepair
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/ping-interval"
+               data-name="ping-interval"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="ping-interval">
+                ping-interval
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/redis-log"
+               data-name="redis-log"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="redis-log">
+                redis-log
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/redis-perf-release"
+               data-name="redis-perf-release"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="redis-perf-release">
+                redis-perf-release
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/redis-tracing"
+               data-name="redis-tracing"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="redis-tracing">
+                redis-tracing
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/release"
+               data-name="release"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="release">
+                release
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/release1.x"
+               data-name="release1.x"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="release1.x">
+                release1.x
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/repro-2747"
+               data-name="repro-2747"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="repro-2747">
+                repro-2747
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/sb-config-timeout-new"
+               data-name="sb-config-timeout-new"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="sb-config-timeout-new">
+                sb-config-timeout-new
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/sb-onmessage"
+               data-name="sb-onmessage"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="sb-onmessage">
+                sb-onmessage
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/scaleout-connectionstring"
+               data-name="scaleout-connectionstring"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="scaleout-connectionstring">
+                scaleout-connectionstring
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/volatile"
+               data-name="volatile"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="volatile">
+                volatile
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/withCredentials"
+               data-name="withCredentials"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="withCredentials">
+                withCredentials
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/xam"
+               data-name="xam"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="xam">
+                xam
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+               href="/SignalR/SignalR/tree/xamarin-package"
+               data-name="xamarin-package"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="xamarin-package">
+                xamarin-package
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/v0.5.63pre"
+              data-name="v0.5.63pre"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="v0.5.63pre">
+                v0.5.63pre
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/v0.3.5"
+              data-name="v0.3.5"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="v0.3.5">
+                v0.3.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.2.0"
+              data-name="2.2.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.2.0">
+                2.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.1.2"
+              data-name="2.1.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.1.2">
+                2.1.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.1.1"
+              data-name="2.1.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.1.1">
+                2.1.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.1.0"
+              data-name="2.1.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.1.0">
+                2.1.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.3"
+              data-name="2.0.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.3">
+                2.0.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.2"
+              data-name="2.0.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.2">
+                2.0.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.1"
+              data-name="2.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.1">
+                2.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.0"
+              data-name="2.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.0">
+                2.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.0rc"
+              data-name="2.0.0rc"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.0rc">
+                2.0.0rc
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.0beta2"
+              data-name="2.0.0beta2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.0beta2">
+                2.0.0beta2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/2.0.0beta1"
+              data-name="2.0.0beta1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="2.0.0beta1">
+                2.0.0beta1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.2.2"
+              data-name="1.2.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.2">
+                1.2.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.2.1"
+              data-name="1.2.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.1">
+                1.2.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.2.0"
+              data-name="1.2.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.2.0">
+                1.2.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.4"
+              data-name="1.1.4"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.4">
+                1.1.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.3"
+              data-name="1.1.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.3">
+                1.1.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.2"
+              data-name="1.1.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.2">
+                1.1.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.1"
+              data-name="1.1.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.1">
+                1.1.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.0"
+              data-name="1.1.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.0">
+                1.1.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.1.0beta"
+              data-name="1.1.0beta"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.1.0beta">
+                1.1.0beta
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0.1"
+              data-name="1.0.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.1">
+                1.0.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0.0"
+              data-name="1.0.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0.0">
+                1.0.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0rc2"
+              data-name="1.0rc2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0rc2">
+                1.0rc2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0rc1"
+              data-name="1.0rc1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0rc1">
+                1.0rc1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0alpha2"
+              data-name="1.0alpha2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0alpha2">
+                1.0alpha2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/1.0alpha1"
+              data-name="1.0alpha1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="1.0alpha1">
+                1.0alpha1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5.84rc"
+              data-name="0.5.84rc"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5.84rc">
+                0.5.84rc
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5.3"
+              data-name="0.5.3"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5.3">
+                0.5.3
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5.2"
+              data-name="0.5.2"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5.2">
+                0.5.2
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5.1"
+              data-name="0.5.1"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5.1">
+                0.5.1
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5.0"
+              data-name="0.5.0"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5.0">
+                0.5.0
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.5"
+              data-name="0.5"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.5">
+                0.5
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.4"
+              data-name="0.4"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.4">
+                0.4
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item js-navigation-open "
+              href="/SignalR/SignalR/tree/0.3.5"
+              data-name="0.3.5"
+              data-skip-pjax="true"
+              rel="nofollow">
+              <span aria-hidden="true" class="octicon octicon-check select-menu-item-icon"></span>
+              <span class="select-menu-item-text css-truncate-target" title="0.3.5">
+                0.3.5
+              </span>
+            </a>
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <a href="/SignalR/SignalR/pull/new/dev" class="btn btn-sm btn-primary" data-pjax data-ga-click="Repository, new pull request, location:repo overview">
+      New pull request
+    </a>
+
+  <div class="breadcrumb">
+    
+  </div>
+</div>
+
+
+
+
+  <div class="commit-tease js-details-container">
+    <span class="right">
+      Latest commit
+      <a class="commit-tease-sha" href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" data-pjax>
+        fa864e8
+      </a>
+      <time datetime="2015-12-17T03:30:24Z" is="relative-time">Dec 16, 2015</time>
+    </span>
+
+
+    <span class="commit-author-section">
+      <img alt="@moozzyk" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/1438884?v=3&amp;s=40" width="20" />
+      <a href="/moozzyk" class="user-mention" rel="contributor">moozzyk</a>
+    </span>
+
+        <a href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" class="message" data-pjax="true" title="IndependenceDay
+
+Creating a dedicated SignalR store client">IndependenceDay</a>
+          <span class="hidden-text-expander inline">
+            <a href="#" class="js-details-target">…</a>
+          </span>
+    </span>
+
+      <div class="commit-desc"><pre class="text-small">Creating a dedicated SignalR store client</pre></div>
+  </div>
+
+
+<div class="file-wrap ">
+
+  <a href="/SignalR/SignalR/tree/fa864e866bea4737dbd888f993892694f2f6b1a6" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+  <table class="files js-navigation-container js-active-navigation-container" data-pjax>
+
+
+    <tbody>
+      <tr class="warning include-fragment-error">
+        <td class="icon"><span aria-hidden="true" class="octicon octicon-alert"></span></td>
+        <td class="content" colspan="3">Failed to load latest commit information.</td>
+      </tr>
+
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/.nuget" class="js-directory-link js-navigation-open" id="3ce4907e9cfb8bdf6d2f0d8f9d816070-8533c2acdfdc3e3d52e08013ef28d3ab8a0894e9" title=".nuget">.nuget</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/edeacf4cbadffda58e65452687b793b4a1fea9f5" class="message" data-pjax="true" title="ProjectJsonifyEverything - enabling building UWP client from command line
+
+- updating nuget.exe to enable restoring dependencies from project.json
+- adding explicit restore since the Restore target apparently ignores project.json files">ProjectJsonifyEverything - enabling building UWP client from command …</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-10T05:25:41Z" is="time-ago">Dec 9, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/build" class="js-directory-link js-navigation-open" id="b0da275520918e23dd615e2a747528f1-6bd727558a7777aee2d50f002351b49122644a20" title="build">build</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" class="message" data-pjax="true" title="IndependenceDay
+
+Creating a dedicated SignalR store client">IndependenceDay</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-17T03:30:24Z" is="time-ago">Dec 16, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/lib" class="js-directory-link js-navigation-open" id="e8acc63b1e238f3255c900eed37254b8-e33146c811486fe6455967afdcc91dd1b73bea24" title="lib">lib</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/66e2cfc67771bbe66cddcc4bfb991cd93fb4caf6" class="message" data-pjax="true" title="adding support for Xamarin.iOS, Xamarin.Android">adding support for Xamarin.iOS, Xamarin.Android</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-04-09T15:37:48Z" is="time-ago">Apr 9, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/nuspecs" class="js-directory-link js-navigation-open" id="f4129db4516fc380239efabeb81405a7-eeb971e71664ae269348224d8955a69e051ef67f" title="nuspecs">nuspecs</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" class="message" data-pjax="true" title="IndependenceDay
+
+Creating a dedicated SignalR store client">IndependenceDay</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-17T03:30:24Z" is="time-ago">Dec 17, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/readmes" class="js-directory-link js-navigation-open" id="673dcb8f1db196f9684ac135420206bc-fadb28c826e81cfc5f62a46a9efe7bd7f88086ef" title="readmes">readmes</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/56ba92424242f2e97425968b3807ffce6407aff0" class="message" data-pjax="true" title="Updated the readmes for metapackages.
+- Added a pointer to migration instructions.">Updated the readmes for metapackages.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-08-20T17:31:26Z" is="time-ago">Aug 20, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/samples" class="js-directory-link js-navigation-open" id="6ef9161b900632671022358216c7dfe7-75343d6509e98b6b60cc3777b1737c06975ce56b" title="samples">samples</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/e7a5954ead84b45d64dc8f7af482c580580f2ba1" class="message" data-pjax="true" title="LessRed - fixing FxCop warnings after moving to VS2015">LessRed - fixing FxCop warnings after moving to VS2015</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-02T05:34:49Z" is="time-ago">Dec 1, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/src" class="js-directory-link js-navigation-open" id="25d902c24283ab8cfbac54dfa101ad31-bd963ed2fd679439384095f2d33ce5afc9c809a3" title="src">src</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" class="message" data-pjax="true" title="IndependenceDay
+
+Creating a dedicated SignalR store client">IndependenceDay</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-17T03:30:24Z" is="time-ago">Dec 17, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/tests" class="js-directory-link js-navigation-open" id="b61a6d542f9036550ba9c401c80f00ef-f14eba417ef3c6a28fa7bcc05778a6cc60f5f9ac" title="tests">tests</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/fa864e866bea4737dbd888f993892694f2f6b1a6" class="message" data-pjax="true" title="IndependenceDay
+
+Creating a dedicated SignalR store client">IndependenceDay</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-17T03:30:24Z" is="time-ago">Dec 17, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/tools" class="js-directory-link js-navigation-open" id="4a931512ce65bdc9ca6808adf92d8783-2d00e8634225cdcfa404f07935bf00f05ceb1966" title="tools">tools</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/ec48a64a6729db26c229e94b924ca027266c651c" class="message" data-pjax="true" title="Run Forrest, Run! - enabling running store tests in build.cmd">Run Forrest, Run! - enabling running store tests in build.cmd</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2014-05-23T19:59:02Z" is="time-ago">May 23, 2014</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-directory"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/tree/dev/xamarin" class="js-directory-link js-navigation-open" id="61aa5cce7b72ec74b1dfa878aa2bdb56-9518cd043f9fc41501354007b4516752e988458e" title="xamarin">xamarin</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/a75fcf626a3d3ffc420711ca82ca17ef21f34ce9" class="message" data-pjax="true" title="Bumping version to 2.2.1">Bumping version to 2.2.1</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-08-26T23:00:12Z" is="time-ago">Aug 26, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/.deployment" class="js-directory-link js-navigation-open" id="7fb69b335675f0183b26e7ae39777400-4afe631e581fe4f5c00e4c795dc7eaf2f892d023" title=".deployment">.deployment</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/4efc073d6d9da61d862c8405fce0058ec38ab4c7" class="message" data-pjax="true" title="Deploy the test project.">Deploy the test project.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2012-12-14T04:39:41Z" is="time-ago">Dec 13, 2012</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/.gitattributes" class="js-directory-link js-navigation-open" id="fc723d30b02a4cca7a534518111c1a66-bdaa5ba9827f4c7fd798aca31c283088982ac56b" title=".gitattributes">.gitattributes</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/b97f81a991b2de8332dd541b482fdc27f6727db6" class="message" data-pjax="true" title="Fixing git attributes for RESX">Fixing git attributes for RESX</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-03-25T22:41:34Z" is="time-ago">Mar 25, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/.gitignore" class="js-directory-link js-navigation-open" id="a084b794bc0759e7a6b77810e01874f2-6b6d03cf637be3aee84dd2df05f3e49270a23373" title=".gitignore">.gitignore</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/be8a4ed8238ec8f5f08fd5fb04a14e35d7ad4145" class="message" data-pjax="true" title="Adding Websockets transport">Adding Websockets transport</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-10T05:19:21Z" is="time-ago">Dec 9, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/CONTRIBUTING.md" class="js-directory-link js-navigation-open" id="6a3371457528722a734f3c51d9238c13-0da830398cadcdacd39b9d9cb618ea9df95bf6cb" title="CONTRIBUTING.md">CONTRIBUTING.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/3aec299b5588da901e14f8362e0179ac3d5c1e65" class="message" data-pjax="true" title="Added contribution guidelines.">Added contribution guidelines.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-12-10T18:42:16Z" is="time-ago">Dec 10, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/LICENSE.md" class="js-directory-link js-navigation-open" id="37854d19817c792316d481f5beb93cc7-06b2cdcdeec05907c5cc9fbc35f46c6f11616811" title="LICENSE.md">LICENSE.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/1ceea59f66260bf85b22a47695006348cd8fe811" class="message" data-pjax="true" title="Changed LICENSE.md to apache 2.0.">Changed LICENSE.md to apache 2.0.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2012-10-20T21:29:54Z" is="time-ago">Oct 20, 2012</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/Microsoft.AspNet.SignalR.Mono.Mobile.sln" class="js-directory-link js-navigation-open" id="5b74090b0c32fd3294e4efccf5e7916c-23abd75366df7d6cefa28730f5e6a60b5e6e1616" title="Microsoft.AspNet.SignalR.Mono.Mobile.sln">Microsoft.AspNet.SignalR.Mono.Mobile.sln</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/6892edbb119ee9d1ecf5841c424d3f6074b0959b" class="message" data-pjax="true" title="Made changes as per code review feedback">Made changes as per code review feedback</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-11-18T01:22:05Z" is="time-ago">Nov 17, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/Microsoft.AspNet.SignalR.Mono.sln" class="js-directory-link js-navigation-open" id="d32a66cacaede48f1eddaa14976b3853-0a69d9d39a533eff5d6e5defc725d1e4665e7365" title="Microsoft.AspNet.SignalR.Mono.sln">Microsoft.AspNet.SignalR.Mono.sln</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/9fcc2004f9cfefd0d43df1f27d4808bb18e35e30" class="message" data-pjax="true" title="Added the .NET40 client sample to the Mono sln">Added the .NET40 client sample to the Mono sln</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-05-22T08:58:27Z" is="time-ago">May 22, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/Microsoft.AspNet.SignalR.sln" class="js-directory-link js-navigation-open" id="e74c0c3bbf8240ad782db8e3a421fbd1-943b46a05f37631ae4a052aff080b8af853d62d6" title="Microsoft.AspNet.SignalR.sln">Microsoft.AspNet.SignalR.sln</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/9e5449bdff81b9f85a9605739651db5d14234c5f" class="message" data-pjax="true" title="Adding UWP client to the NuGet package">Adding UWP client to the NuGet package</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-10T05:19:20Z" is="time-ago">Dec 9, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/README.md" class="js-directory-link js-navigation-open" id="04c6e90faac2675aa89e2176d2eec7d8-9bb5fab7d30218e66d3e5bcae19f93a8cd55a479" title="README.md">README.md</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/594efa30a56e13962ce3dcb7d1b7817d0e7daeff" class="message" data-pjax="true" title="Updated README.md">Updated README.md</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2014-04-28T17:47:59Z" is="time-ago">Apr 28, 2014</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/build-ci-perf.cmd" class="js-directory-link js-navigation-open" id="65fd7380480b2be18aa387d4a52a16bc-6b0620f23677604b70a64bedaa4ae00b3a69f58f" title="build-ci-perf.cmd">build-ci-perf.cmd</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/d981d0e239027ca8ae9307f1e6d38594331fad2b" class="message" data-pjax="true" title="Fixing perf runs
+-Using new artifacts path
+-Disabling external E2E scenario for now (currently throws exception, and
+needs some other updates)">Fixing perf runs</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-05-17T22:12:27Z" is="time-ago">May 17, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/build-ci.cmd" class="js-directory-link js-navigation-open" id="51e1c7b4ee5835cec08d2f62e353c976-06501b5cac04c79bcea726fe7782ed8d56b527c3" title="build-ci.cmd">build-ci.cmd</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/c9ef565c84d085e1c2c2f5192982f62d3b9a4d36" class="message" data-pjax="true" title="BetterPath - updating path to MSBuild to use v12 required to build Windows Store projects.">BetterPath - updating path to MSBuild to use v12 required to build Wi…</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2014-08-20T20:33:38Z" is="time-ago">Aug 20, 2014</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/build.cmd" class="js-directory-link js-navigation-open" id="02389dfac0a172ab80211625efc34318-548a8857925fee8fe7f9ccfca7ac4bbf863c9ed7" title="build.cmd">build.cmd</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/edeacf4cbadffda58e65452687b793b4a1fea9f5" class="message" data-pjax="true" title="ProjectJsonifyEverything - enabling building UWP client from command line
+
+- updating nuget.exe to enable restoring dependencies from project.json
+- adding explicit restore since the Restore target apparently ignores project.json files">ProjectJsonifyEverything - enabling building UWP client from command …</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2015-12-10T05:25:41Z" is="time-ago">Dec 10, 2015</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/build.sh" class="js-directory-link js-navigation-open" id="0b83f9dedf40d7356e5ca147a077acb4-72f2d86a1ebb043d0b1f01d1e115272f48b8962d" title="build.sh">build.sh</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/02b7908d9b3ae37dba3ddb757fedafa499f85c2c" class="message" data-pjax="true" title="Fix build.sh">Fix build.sh</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-05-22T09:12:05Z" is="time-ago">May 22, 2013</time></span>
+          </td>
+        </tr>
+        <tr class="js-navigation-item">
+          <td class="icon">
+            <span aria-hidden="true" class="octicon octicon-file-text"></span>
+            <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </td>
+          <td class="content">
+            <span class="css-truncate css-truncate-target"><a href="/SignalR/SignalR/blob/dev/makefile" class="js-directory-link js-navigation-open" id="cd5dbf3629c558b0104ba8f0937d6816-51cb0030e3beb667cbdecd2a6da8a5c9e69338bd" title="makefile">makefile</a></span>
+          </td>
+          <td class="message">
+            <span class="css-truncate css-truncate-target">
+                  <a href="/SignalR/SignalR/commit/780b4dbc90cc443c1a62c00099799a86c24c98b9" class="message" data-pjax="true" title="Added a .NET 40 client samples project for mono and testing.
+- Removed JSON.NET from project since it&#39;s not used.
+- Updated make file to build just the solution.">Added a .NET 40 client samples project for mono and testing.</a>
+            </span>
+          </td>
+          <td class="age">
+            <span class="css-truncate css-truncate-target"><time datetime="2013-05-22T08:52:13Z" is="time-ago">May 22, 2013</time></span>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+  <div id="readme" class="boxed-group clearfix announce instapaper_body md">
+    <h3>
+      <span aria-hidden="true" class="octicon octicon-book"></span>
+      README.md
+    </h3>
+
+      <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1><a id="user-content-aspnet-signalr-" class="anchor" href="#aspnet-signalr-" aria-hidden="true"><span class="octicon octicon-link"></span></a>ASP.NET SignalR <a href="http://ci.signalr.net/?guest=1"><img src="https://camo.githubusercontent.com/54ca3ff299996000dd4a46fb6e9d0694bdb8c378/687474703a2f2f63692e7369676e616c722e6e65742f6170702f726573742f6275696c64732f6275696c64547970653a2869643a627432292f73746174757349636f6e" alt="Build Status" data-canonical-src="http://ci.signalr.net/app/rest/builds/buildType:(id:bt2)/statusIcon" style="max-width:100%;"></a></h1>
+
+<p>ASP.NET SignalR is a library for ASP.NET developers that makes it incredibly simple to add real-time web functionality to your applications. What is "real-time web" functionality? It's the ability to have your server-side code push content to the connected clients as it happens, in real-time.</p>
+
+<h2><a id="user-content-what-can-it-be-used-for" class="anchor" href="#what-can-it-be-used-for" aria-hidden="true"><span class="octicon octicon-link"></span></a>What can it be used for?</h2>
+
+<p>Pushing data from the server to the client (not just browser clients) has always been a tough problem. SignalR makes 
+it dead easy and handles all the heavy lifting for you.</p>
+
+<h2><a id="user-content-documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>See the <a href="http://asp.net/signalr">documentation</a></p>
+
+<h2><a id="user-content-get-it-on-nuget" class="anchor" href="#get-it-on-nuget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it on NuGet!</h2>
+
+<pre><code>Install-Package Microsoft.AspNet.SignalR
+</code></pre>
+
+<h2><a id="user-content-get-a-sample-on-nuget-straight-into-your-app" class="anchor" href="#get-a-sample-on-nuget-straight-into-your-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get a sample on NuGet, straight into your app!</h2>
+
+<pre><code>Install-Package Microsoft.AspNet.SignalR.Sample
+</code></pre>
+
+<h2><a id="user-content-license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE</h2>
+
+<p><a href="https://github.com/SignalR/SignalR/blob/master/LICENSE.md">Apache 2.0 License</a></p>
+
+<h2><a id="user-content-contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>See the <a href="https://github.com/SignalR/SignalR/blob/master/CONTRIBUTING.md">contribution  guidelines</a></p>
+
+<h2><a id="user-content-building-the-source" class="anchor" href="#building-the-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building the source</h2>
+
+<pre><code>git clone git@github.com:SignalR/SignalR.git (or https if you use https)
+</code></pre>
+
+<h3><a id="user-content-windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows</h3>
+
+<p>After cloning the repository, run <code>build.cmd</code>.</p>
+
+<p><strong>NOTE:</strong> Opening the solution requires VS 2012.</p>
+
+<h3><a id="user-content-mono" class="anchor" href="#mono" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mono</h3>
+
+<p>After cloning the repository, run <code>make</code>.</p>
+
+<p>Open Microsoft.AspNet.SignalR.Mono.sln to do development.</p>
+
+<h2><a id="user-content-continuous-integration" class="anchor" href="#continuous-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Continuous Integration</h2>
+
+<p>We have a CI Server (<a href="http://ci.signalr.net/">http://ci.signalr.net/</a>)</p>
+
+<h2><a id="user-content-questions" class="anchor" href="#questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questions?</h2>
+
+<p>The SignalR team hangs out in the <a href="http://jabbr.net/#/rooms/signalr">signalr</a> room at on <a href="http://jabbr.net/">JabbR</a>.</p>
+</article>
+  </div>
+
+
+  </div>
+  <div class="modal-backdrop"></div>
+</div>
+
+    </div>
+  </div>
+
+    </div>
+
+        <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://github.com/pricing" data-ga-click="Footer, go to pricing, text:pricing">Pricing</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span aria-hidden="true" class="mega-octicon octicon-mark-github" title="GitHub "></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2016 <span title="0.10318s from github-fe128-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span aria-hidden="true" class="octicon octicon-alert"></span>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <span aria-hidden="true" class="octicon octicon-x"></span>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-2895475c714f13790b63e636b5389a6918a260259c5b22a15acf5ef26bd6ef09.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-c0404608a3bcd1310776df0ab26e107bfd70ff0382408f43ede1a81e730e39cd.js"></script>
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <span aria-hidden="true" class="octicon octicon-alert"></span>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <span aria-hidden="true" class="octicon octicon-x"></span>
+    </button>
+  </div>
+</div>
+
+  </body>
+</html>
+

@@ -1,0 +1,61 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    AccessControlFactory.GetAllName,
+    AccessControlFactory.GetAllApi,
+    "",
+    "resources.accessControl.retrieveAll",
+    isTitleActive: true,
+    initialSearch: true,
+    showFormButtons: true,
+    actions: new ActionLink[] {
+                new ActionLink(ActionLink.ActionLinkType.Panel, AccessControlFactory.CreateName, XpIcons.Plus)
+                }
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th translate="resources.accessControl.name">Name</th>
+                    <th translate="resources.accessControl.capacity">Capacity</th>
+                    <th translate="resources.accessControl.maxCapacity">Maximum Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data">
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: AccessControlFactory.Delete,
+                            id: "{{item.id}}",
+                            arguments: "{\"name\":\"{{item.name}}\"}"
+                        )
+                    </td>
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.DoorOpen,
+                            panelUrl: AccessControlEntranceFactory.GetAllName + "({accessControlId:'{{item.id}}'})"
+                        )
+                    </td>
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Repeat,
+                            popupUrl: AccessControlFactory.EntryReset,
+                            id: "{{item.id}}",
+                            arguments: "{\"accessControlId\":\"{{item.id}}\",\"name\":\"{{item.name}}\"}"
+                        )
+                    </td>
+                    <td>@(Html.ColumnFor<ApiAccessControlGetAllResult>(x => x.Name, panelUrl: AccessControlFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<ApiAccessControlGetAllResult>(x => x.CurrentCapacity, panelUrl: AccessControlFactory.UpdateName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<ApiAccessControlGetAllResult>(x => x.MaxCapacity, panelUrl: AccessControlFactory.UpdateName, id: "{{item.id}}"))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

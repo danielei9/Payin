@@ -1,0 +1,33 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPlanningCheck;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using Xp.Common.Resources;
+@using (Html.xpPut(
+	ControlPlanningCheckFactory.Update,
+	ControlPlanningCheckFactory.UpdateApi,
+	"",
+	//ControlPlanningCheckResources.Update,
+	"resources.controlPlanningCheck.update",
+	"{{arguments.workerName}}",
+	actions: new[] {
+		new ActionLink(ActionLink.ActionLinkType.Popup, ControlPlanningCheckFactory.DeleteState, XpIcons.Trash, id:"{{id}}", arguments:"{\"since\":\"{{arguments.date}}\"}")
+	}
+))
+{
+	<xp-get data-api="@ControlPlanningCheckFactory.GetApi">
+		<div data-ng-class="{'has-error':!form.date.$valid}" class="form-group col-md-12">
+			<label for="date" class="control-label">Date</label>
+			<div class="input-group date ng-scope" data-xp-date-time="arguments.date">
+				<input data-ng-model="value" id="date" name="date" required="" type="text" class="form-control">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				<a class="input-group-addon " data-xp-navigate ng-href='#@(ControlFormAssignFactory.GetCheckUrl("{{arguments.id}}"))'>
+					<i class="@XpIcons.ListAlt"></i>
+					<span class="badge badge-sm up bg-info pull-right-xs">{{arguments.formsCount||0}}</span>
+				</a>
+			</div>
+			<div ng-show="form.date.$error.required" class="ng-hide"><span class="error control-label">@GlobalResources.ExceptionRequired.FormatString("Date")</span></div>
+		</div>
+	</xp-get>
+}
+

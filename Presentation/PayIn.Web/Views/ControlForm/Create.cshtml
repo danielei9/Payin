@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlForm;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlFormFactory.Create,
+	ControlFormFactory.CreateApi,
+	"",
+	//ControlFormResources.Create
+	"resources.controlForm.create"
+))
+{
+	@(Html.SelectFor  <ControlFormCreateArguments>(x => x.ConcessionId, "concessionName", PaymentConcessionFactory.GetSelectorApi, focus: true))
+	@(Html.ArgumentFor<ControlFormCreateArguments>(x => x.Name))
+	@(Html.ArgumentFor<ControlFormCreateArguments>(x => x.Observations))
+}

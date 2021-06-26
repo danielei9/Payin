@@ -1,0 +1,81 @@
+﻿@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	SensorFactory.GetPerHourName,
+	SensorFactory.GetPerHourApi,
+	"",
+	"resources.smartCity.sensor.getPerHour",
+	isTitleActive: true,
+	init: "scope.id = params.id;"
+))
+{
+	<div class="table-responsive">
+		<div>
+			<xp-chart
+				xp-model="data"
+				xp-options = '{
+					"type": "bar",
+					"aspectRatio":"2.5"
+				}'
+				xp-data='[
+					{
+						"name": "Hace 3 días",
+						"value": "day3",
+						"borderColor": "#ff3333",
+						"backgroundColor": "#ff3333",
+						"fillTransparency": 0
+					},
+					{
+						"name": "Anteayer",
+						"value": "day2",
+						"borderColor": "#ff6633",
+						"backgroundColor": "#ff6633",
+						"fillTransparency": 0
+					},
+					{
+						"name":"Ayer",
+						"value":"day1",
+						"borderColor":"#ff9933",
+						"backgroundColor":"#ff9933",
+						"fillTransparency":0
+					},
+					{
+						"name":"Hoy",
+						"value":"day0",
+						"borderColor":"#ffcc33",
+						"backgroundColor":"#ffcc33",
+						"fillTransparency":0
+					}
+				]'
+				xp-x-axis = '{
+					"data": "hour"
+				}'
+				xp-y-axis = '{
+					"unity": "V"
+				}'
+			></xp-chart>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.smartCity.sensor.hour">Timestamp</th>
+					<th translate="resources.smartCity.sensor.day3">3 days ago</th>
+					<th translate="resources.smartCity.sensor.day2">2 days ago</th>
+					<th translate="resources.smartCity.sensor.day1">Yesterday</th>
+					<th translate="resources.smartCity.sensor.day0">Today</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<ApiSensorGetPerHourResult>(x => x.Hour))</td>
+					<td>@(Html.ColumnFor<ApiSensorGetPerHourResult>(x => x.Day3))</td>
+					<td>@(Html.ColumnFor<ApiSensorGetPerHourResult>(x => x.Day2))</td>
+					<td>@(Html.ColumnFor<ApiSensorGetPerHourResult>(x => x.Day1))</td>
+					<td>@(Html.ColumnFor<ApiSensorGetPerHourResult>(x => x.Day0))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

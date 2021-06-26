@@ -1,0 +1,612 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    padding-left: 100px;
+    padding-top: 2.5vmax;
+}
+#eventsInput {
+    width:400px;
+    border-radius: 7px;
+}
+
+.gallery {
+    display: block;
+    height:430px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+    .gallery .image {
+        width: 100%;
+        height: 350px !important;
+        display: block;
+    }
+
+    .gallery .icon-image {
+        min-height: 25vh;
+        min-width: 27vh;
+        max-width: 8vw;
+        position: relative;
+        margin-top: -22vh;
+        margin-left: 2vw;
+        z-index: 5;
+        background-color: white;
+        border: 0.6vh solid orange;
+    }
+
+.gallery-title {
+    position: relative;
+    width: 100%;
+    font-size: 1.8vmax;
+    padding-right: 1vh;
+    margin-top: -4vh;
+    /*border-bottom: 1px solid black;*/
+    text-align: right;
+}
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+.col-50-card {
+    width: 20vmax;
+    float: left;
+    position: relative;
+    padding: 5px;
+    margin-right: 4vmin;
+    margin-top: 1vmax;
+}
+
+    .col-50-card .border-card {
+        box-shadow: 3px 5px 12px 1px grey;
+        border: 1px solid gray;
+    }
+
+    .col-50-card .img-container {
+        position: relative;
+        overflow: hidden;
+        background: white;
+        max-height: 207px;
+    }
+
+.img-container:before {
+    content: "";
+    padding-top: 66.67%;
+    display: block;
+}
+
+.img-full {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    transition: all .2s ease-in;
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+}
+
+    .img-full:hover {
+        transform: scale(.8);
+        -ms-transform: scale(.8);
+        -moz-transform: scale(.8);
+        -webkit-transform: scale(.8);
+        -o-transform: scale(.8);
+    }
+
+.col-50-card .card-header {
+    display: block;
+    background: white;
+    padding: 5px;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    border-color: black;
+}
+
+    .col-50-card .card-header p {
+        margin: 0 0 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.4vmax;
+        color: black;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+.col-50-card .card-data {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    background: white;
+}
+
+.icon-centered {
+    color: black;
+    font-size: 500%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+
+/*
+Get all entrances
+box-model
+https://codepen.io/payin/pen/xrpqEe?editors=1100
+*/
+
+.more-info-box {
+    padding: 0;
+    border: 0;
+    height: 33%;
+    margin: 0;
+}
+
+.data-box {
+    display: block;
+    float: left;
+    width: 35%;
+    background-color: #f8f8f8;
+    padding: 3px;
+}
+
+.data-box .month {
+    height: 21px;
+    display: block;
+    font-size: 17px;
+    background-color: #d2d2d2;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.data-box .day {
+    height: 16px;
+    display: block;
+    font-size: 16px;
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: -3px;
+}
+
+.data-box .number {
+    display: block;
+    font-size: 22px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.secondary-box {
+    display: block;
+    margin-left: 35%;
+    padding: 0 3px;
+    height: 50px;
+}
+
+.row-box {
+    margin-bottom: 5px;
+    vertical-align: middle;
+    position: relative;
+    padding-top: 0;
+    padding-left: 0px;
+    padding-bottom: 5px;
+}
+
+.price-text {
+    padding-left: 5px;
+    vertical-align: middle;
+    width: 50%;
+}
+
+    .price-text .quantity {
+        font-size: .9rem;
+        font-weight: bold;
+        float: right;
+    }
+
+.border-quant-box {
+    border: 1px solid black;
+    height: 1.5em;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+    .border-quant-box .button-forms {
+        height: 1.5em;
+        width: 20%;
+        padding: 0;
+        border: 0;
+    }
+
+.icon-money {
+    font-size:1.5vmax;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+    line-height: 0;
+}
+
+.icon-location {
+    margin-left:0.5vw;
+    font-size: 1.5vmax;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+    line-height: 0;
+}
+
+.product-quantity {
+    margin: auto;
+    font-size: 1.4em;
+}
+
+#footer {
+    position: fixed;
+    left: 0px;
+    bottom: -5px;
+    height: 30px;
+    width: 100%;
+    background: #999
+}
+
+/*Selector*/
+
+.input-Selector {
+    width: 400px;
+    height: 35px;
+    position: absolute;
+    left: calc(50% - 200px);
+    top: calc(50% - 20px);
+    font-size: 1.4em;
+}
+
+.slides {
+    height: 430px;
+    position: center;
+}
+
+.centerText {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: calc(50% - 100px);
+    top: calc(50%);
+    font-size: 2em;
+}
+
+.infoBuy {
+    background: rgba(241,231,103,1);
+    background: -moz-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
+    background: -webkit-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: -o-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    border-color: gold;
+    border-radius: 15px 50px 30px;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
+}
+
+.btn {
+    background: #ffaa22;
+    background-image: -webkit-linear-gradient(top, #ffaa22, #ffab23);
+    background-image: -moz-linear-gradient(top, #ffaa22, #ffab23);
+    background-image: -ms-linear-gradient(top, #ffaa22, #ffab23);
+    background-image: -o-linear-gradient(top, #ffaa22, #ffab23);
+    background-image: linear-gradient(to bottom, #ffaa22, #ffab23);
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    text-shadow: 3px 1px 8px #666666;
+    font-family: Arial;
+    color: #0f0e0f;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #f09103 1px;
+    text-decoration: none;
+    margin-top: -60px; position:relative; float:right
+}
+
+    .btn:hover {
+        background: #ffab23;
+        background-image: -webkit-linear-gradient(top, #ffab23, #ffed64);
+        background-image: -moz-linear-gradient(top, #ffab23, #ffed64);
+        background-image: -ms-linear-gradient(top, #ffab23, #ffed64);
+        background-image: -o-linear-gradient(top, #ffab23, #ffed64);
+        background-image: linear-gradient(to bottom, #ffab23, #ffed64);
+        text-decoration: none;
+
+    }
+
+.imageSlide {
+    width: 100%;
+    height: 100%;
+    background: #444;
+    margin: 0 auto;
+}
+
+    .slides.wide {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+    }
+
+    .slides img.tall {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+    }
+
+/*
+Entrances CSS
+*/
+
+/* Estilos param los diferentes parametros según el tipo de pantalla */
+/* Portrait */
+@media screen and (max-width: 380px) and (orientation: portrait) {
+    .icon-money {
+        font-size: 2vmax;
+        vertical-align: middle;
+        padding: 0;
+        line-height: 0;
+    }
+
+    .gallery .image {
+        width: 100%;
+        height: 200px !important;
+        display: block;
+    }
+
+    .col-50-card .card-data {
+        display: block;
+        padding: 5px;
+        height: 6% !important;
+        background: white;
+    }
+
+    .gallery .icon-image {
+        position: relative;
+        min-height: 12vh !important;
+        min-width: 20vw !important;
+        display: block;
+        bottom: -7vh;
+        left: 10px;
+        top: 85px;
+        z-index: 5;
+        background-color: white;
+        border: 0.6vh solid orange;
+    }
+
+    .gallery-title {
+        margin-top: -1.5vh !important;
+        margin-bottom: -3vh;
+    }
+
+    .icon-location {
+        margin-left: 5.45vw;
+        font-size: 1.45vmax;
+        vertical-align: middle;
+        padding: 0;
+        line-height: 0;
+    }
+
+    .data-box {
+        display: block;
+        float: left;
+        margin-top:-0.75vh;
+        width: 8vw !important;
+        height: 3vh !important;
+        background-color: #f8f8f8;
+        padding: 3px;
+    }
+
+        .data-box .month {
+            height: 12px;
+            display: block;
+            font-size: 9px;
+            background-color: #d2d2d2;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .data-box .day {
+            height: 11px;
+            display: block;
+            font-size: 10px;
+            text-transform: capitalize;
+            text-align: center;
+            margin-top: -3px;
+        }
+        .data-box .number {
+            display: block;
+            font-size: 8px;
+            margin-top: -2px;
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+    .content {
+        padding-left: 40px;
+        padding-top: 4vmax;
+    }
+
+    #eventsInput {
+        width: 200px;
+        border-radius: 7px;
+    }
+
+    .input-Selector {
+        width: 100%;
+        height: 35px;
+        left: calc(50% - 100px);
+        margin-top: 0px;
+        font-size: 1.8vmax;
+    }
+
+    .form-control-feedback {
+        top:250px;
+        position: inherit;
+        margin-top: -155px;
+    }
+
+    .glyphicon {
+        margin-left: 175px;
+        position: inherit;
+        margin-top: -27px;
+    }
+
+
+    .gallery {
+        display: block;
+        height: 250px !important;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+
+    .slides {
+        height: 250px;
+        position: center;
+    }
+
+    .imageSlide {
+        margin: auto;
+        max-height: 250px;
+        transform: scale(3);
+    }
+
+
+}
+
+@media screen and (max-width: 640px) and (orientation: landscape) {
+
+    .glyphicon {
+        margin-top: -5px;
+    }
+
+    .gallery .icon-image {
+        position: absolute;
+        width: 5vw !important;
+        height: 5vh !important;
+        display: block;
+        bottom: -7vh;
+        left: 10px;
+        top: 115px;
+        z-index: 5;
+        background-color: white;
+        border: 0.6vh solid orange;
+    }
+
+    .input-Selector {
+        width: 400px;
+        height: 35px;
+        position: absolute;
+        left: calc(50% - 250px);
+        top: calc(50% - 150px);
+        font-size: 1em;
+    }
+    .content {
+        padding-left: 40px;
+        padding-top: 2.5vmax;
+    }
+    .icon-money {
+        font-size: 2.5vmin;
+        vertical-align: middle;
+        padding: 0;
+        line-height: 0;
+    }
+    .icon-location {
+        font-size: 2.8vmin;
+        vertical-align: middle;
+        padding: 0;
+        line-height: 0;
+    }
+
+    .gallery .image {
+        width: 100%;
+        height: 150px;
+        display: block;
+    }
+
+    .data-box {
+        display: block;
+        float: left;
+        margin-top: -0.75vh;
+        width: 8vw !important;
+        height: 3vh !important;
+        background-color: #f8f8f8;
+        padding: 3px;
+    }
+
+        .data-box .month {
+            height: 12px;
+            display: block;
+            font-size: 9px;
+            background-color: #d2d2d2;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .data-box .day {
+            height: 11px;
+            display: block;
+            font-size: 10px;
+            text-transform: capitalize;
+            text-align: center;
+            margin-top: -3px;
+        }
+
+        .data-box .number {
+            display: block;
+            font-size: 8px;
+            margin-top: -2px;
+            text-transform: capitalize;
+            text-align: center;
+        }
+    .col-50-card .card-data {
+        display: block;
+        padding: 5px;
+        height: 15% !important;
+        background: white;
+    }
+
+    .gallery {
+        display: block;
+        height: 150px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+    .col-50-card {
+        width: 16vmax;
+        height: inherit;
+        /* margin-top: 5px; */
+        float: left;
+        position: relative;
+        padding: 5px;
+        margin-right: 2vmin;
+        margin-top: 3.5vmax;
+    }
+    .img-container:before {
+        content: "";
+        padding-top: 45%;
+        display: block;
+    }
+}

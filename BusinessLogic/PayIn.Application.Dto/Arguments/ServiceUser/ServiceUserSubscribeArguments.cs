@@ -1,0 +1,17 @@
+﻿using Xp.Common.Dto.Arguments;
+
+namespace PayIn.Application.Dto.Arguments
+{
+	public partial class ServiceUserSubscribeArguments : IArgumentsBase
+	{
+		public int Id	{ get; set; }
+
+		#region Constructors
+		public ServiceUserSubscribeArguments (int id)
+		{
+			Id = id;
+		}
+		#endregion Constructors
+	}
+}
+

@@ -1,0 +1,46 @@
+<ion-view cache-view="false" view-title="Recibos" xp-panel xp-loading ng-controller="ticketGetAllController">
+    <ion-content class="background mainContent">
+        <div style="margin-top: 20%;">
+            <xp-list api="mobile/ticket/v1/dues" xp-init="
+                                                          scope.argumentSelect.concessionId = {items:[]};"
+                     initial-search
+                     >
+                <img ng-show="data.length==0" src="img/recibo.png" style="opacity: 0.9; width: 80%; margin-left: 9%; margin-right: 9%; margin-top: 8%;">
+                <div ng-show="data.length==0" style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%; color: white;">No tiene ningún recibo pendiente ahora mismo.</div>
+
+                <ion-refresher
+                               pulling-text="Mantener para refrescar..."
+                               on-refresh="search()">
+                </ion-refresher>
+                <ul class="list" >
+                    <li class="item item-icon-right" ng-repeat="item in data" ng-show="item.amount > item.payedAmount">
+                        <div class="row row-center"  ng-click="tap(item.id)" ng-controller="ticketClickController"style="color: white;">
+                            <div class="col col-33 text-left">
+                                <div class="ticket-prize">{{item.payedAmount| number:2}}€</div>
+                                <div class="ticket-prizeAux">de {{item.amount| number:2}}€</div>
+                            </div>
+                            <div class="col col-66 ">
+                                <div class="ticket-list text-truncate">{{item.supplierName}}</div>
+                                <div class="ticket-listAux text-truncate">{{item.title}}</div>
+                                <div class="ticket-listAux">{{item.date | xpDateTime}}</div>
+                            </div>
+                            <a class="icon ion-chevron-right payin size-16"></a>
+                        </div>
+                    </li>
+                </ul>
+            </xp-list>
+        </div>    
+    </ion-content>
+</ion-view>
+<!--<ion-view>
+
+<ion-header-bar class="bar-dark">
+<h1 class="title">Passcode</h1>
+</ion-header-bar>
+
+<ion-content>
+... your content goes here ...
+</ion-content>
+<ion-numeric-keyboard options="options"></ion-numeric-keyboard>
+
+</ion-view-->

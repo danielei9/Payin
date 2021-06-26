@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories.Bus;
+
+@using (Html.xpPopupDelete(
+	RequestFactory.DeleteName,
+	RequestFactory.DeleteApi,
+	"",
+	"resources.bus.request.delete"
+))
+{
+	<p translate="resources.bus.request.deleteQuestion" >Do you want to remove this request?</p>
+}
+

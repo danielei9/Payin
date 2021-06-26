@@ -1,0 +1,46 @@
+<ion-view cache-view="false" view-title="Nueva tarjeta" xp-panel xp-loading>
+  <ion-header-bar class="bar bar-subheader bar-stable" align-title="center">
+    <h5>Datos para identificar la tarjeta</h5>
+  </ion-header-bar>
+  <ion-content>
+    <xp-post
+      api="mobile/paymentmedia/v1/webcard"
+      ng-controller="paymentMediaCreateController"
+      xp-back='0'>    
+      <form name="form" id="form" role="form" ng-submit="create()">
+        <div class="list">
+          <label form="bankEntity" class="item item-input item-stacked-label" ng-class="{'has-error':form.bankEntity.$invalid}">
+            <span class="input-label">Nombre del Banco</span>
+            <input type="text" name="bankEntity" ng-model="arguments.bankEntity" required autofocus>
+          </label>
+          <ng-messages for="form.bankEntity.$error" role="alert">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label form="name" class="item item-input item-stacked-label" ng-class="{'has-error':form.name.$invalid}">
+            <span class="input-label">Nombre de la Tarjeta</span>
+            <input type="text" name="name" ng-model="arguments.name" required>
+          </label>
+          <ng-messages for="form.name.$error">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+          </ng-messages>
+          <label class="item item-input item-stacked-label" ng-class="{'has-error':form.pin.$invalid}">
+            <span form="pin" class="input-label">Pay[in] PIN</span>
+            <input type="password" name="pin" ng-model="arguments.pin" placeholder="4 dígitos" required ng-pattern="/^\d{4}$/">
+          </label>
+          <ng-messages for="form.pin.$error">
+            <ng-message when="required">Este campo es requerido.</ng-message>
+            <ng-message when="pattern">Este campo debe ser de 4 dígitos.</ng-message>
+          </ng-messages>
+        </div>
+        <div class="button-bar padding">
+          <button type="submit" class="button button-payin" ng-disabled="form.$invalid">Ok</button>
+        </div>
+      </form>
+      <iframe frameborder="0" width="100%" style="height: 80vh; display: none;" name="bankFrame" id="bankFrame" onload="iframeLoaded()"></iframe>
+      <!-- DEBUG -->
+      <form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST"></form>
+      <!-- REAL -->
+      <!--<form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis.redsys.es/sis/realizarPago" method="post"></form>-->
+    </xp-post>
+  </ion-content>
+</ion-view>

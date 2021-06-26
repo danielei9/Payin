@@ -1,0 +1,12 @@
+﻿@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ActivityFactory.Delete,
+	ActivityFactory.DeleteApi,
+	"",
+	"resources.activity.delete",
+	id: "id"
+))
+{
+	<p translate="resources.activity.deleteQuestion" >Do you want to delete this activity?</p>
+}

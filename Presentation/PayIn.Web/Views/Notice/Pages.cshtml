@@ -1,0 +1,62 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    NoticeFactory.GetPagesName,
+    NoticeFactory.GetPagesApi,
+    "",
+    "resources.notice.retrievePages",
+    isTitleActive: true,
+    initialSearch: true,
+    showFormButtons: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, NoticeFactory.CreatePageName, XpIcons.Plus)
+    }
+))
+{
+	<div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length" id="tablePages" xp-tree>
+            <thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th translate="resources.notice.name">Name</th>
+                    <th translate="resources.notice.concession">Company</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" class="page{{item.superNoticeId}}" ng-class='{"collapse":item.superNoticeId}'>
+                    <td class="icon-column">@XpColumns.IconColumn(XpIcons.Trash, popupUrl: NoticeFactory.Delete, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</td>
+                    <td class="icon-column">
+                        <div ng-if="item.isVisible">@XpColumns.IconColumn(XpIcons.Eye, popupUrl: NoticeFactory.Hide, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                        <div ng-if="!item.isVisible">@XpColumns.IconColumn(XpIcons.EyeSlash, popupUrl: NoticeFactory.Show, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                    </td>
+                    <td class="icon-column">
+                        <div ng-if="item.visibility==0">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Shop'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==1">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Globe'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==2">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Group'> </i></a>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="width:25px">
+                            <a data-toggle="collapse" data-parent="tablePages" href=".page{{item.id}}" id="collapse-toggle" ng-style="{'margin-left':'{{item.level*20}}px'}" ng-click="item.expanded=!item.expanded">
+                                <i class="@XpIcons.ChevronDown" ng-show="item.hasChild&&item.expanded==true"></i>
+                                <i class="@XpIcons.ChevronRight" ng-show="item.hasChild&&!(item.expanded==true)"></i>
+                                <span>&nbsp;</span>
+                            </a>
+                        </span>
+                        @(Html.ColumnFor<ApiNoticeGetPagesResult>(x => x.Name, panelUrl: NoticeFactory.UpdatePageName, id: "{{item.id}}"))
+                    </td>
+                    <td>@(Html.ColumnFor<ApiNoticeGetPagesResult>(x => x.ConcessionName, panelUrl: NoticeFactory.UpdatePageName, id: "{{item.id}}"))</td>
+                </tr>
+            </tbody>
+        </table>
+	</div>
+}

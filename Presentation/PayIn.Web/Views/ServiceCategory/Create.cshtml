@@ -1,0 +1,23 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+                ServiceCategoryFactory.Create,
+                ServiceCategoryFactory.CreateApi,
+                "",
+                "resources.serviceCategory.create"
+            ))
+{
+    @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.Name))
+    @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AllMembersInSomeGroup, width: 6))
+    @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AMemberInOnlyOneGroup, width: 6))
+    @(Html.ArgumentFor<ServiceCategoryCreateArguments>(x => x.AskWhenEmit, width: 6))
+    @(Html.SelectFor<ServiceCategoryCreateArguments>(x => x.DefaultGroupWhenEmitId, "DefaultGroupWhenEmit", ServiceGroupFactory.RetrieveSelectorApi, width: 6))
+
+    <div class="panel-body">
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+    </div>
+
+}
+

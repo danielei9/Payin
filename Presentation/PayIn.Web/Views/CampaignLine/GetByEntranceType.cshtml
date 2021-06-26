@@ -1,0 +1,45 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+	CampaignLineFactory.GetByEntranceTypeName,
+	CampaignLineFactory.GetByEntranceTypeAllApi,
+	"",
+	"resources.campaignLine.getByEntranceType",
+	"{{arguments.campaignTitle}}",
+	isTitleActive: true,
+	initialSearch: true,
+	showFormButtons: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, CampaignLineFactory.AddEntranceType("{{id}}"), XpIcons.Plus)
+	},
+	init: "scope.id=params.id;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.campaignLine.entranceTypeName">EntranceTypes</th>
+					<th translate="resources.campaignLine.eventName">Event</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: CampaignLineFactory.RemoveEntranceType,
+							id: "{{id}}",
+							arguments: "{\"entranceTypeId\":\"{{item.id}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ApiCampaignLineGetByEntranceTypeResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<ApiCampaignLineGetByEntranceTypeResult>(x => x.EventName))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

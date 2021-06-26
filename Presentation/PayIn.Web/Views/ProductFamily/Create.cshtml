@@ -1,0 +1,17 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Common.Resources;
+
+@using (Html.xpPost(
+    ProductFamilyFactory.Create,
+    ProductFamilyFactory.CreateApi,
+    "",
+    "resources.productFamily.create",
+    isTitleActive: true,
+    successUrl: "/ProductFamily/CreateImage/{{id}}"
+))
+{
+	@(Html.ArgumentFor<ProductFamilyCreateArguments>(x => x.Name, focus: true))
+    @(Html.ArgumentFor<ProductFamilyCreateArguments>(x => x.Code))
+	@(Html.ArgumentFor<ProductFamilyCreateArguments>(x => x.Description))
+}

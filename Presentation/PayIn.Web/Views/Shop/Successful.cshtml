@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="~/Content/Login.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">        
+        function Redirect()
+            {
+                window.location="../Shop";
+            }
+        
+        setTimeout('Redirect()', 5000);
+    </script>
+    <title>Welcome Pay[In] Platform</title>
+</head>
+<body>
+    <div class="login-page">
+        <div class="formulario">
+            <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:-10px; margin-right:60px;margin-bottom:15px; float:right;z-index:-1;width: 200px;" />
+            <strong>Bienvenido a la platafoma.</strong>
+            <p style="margin-right:25px">Ya está listo para realizar una compra.</p>
+        </div>
+    </div>
+</body>
+</html>

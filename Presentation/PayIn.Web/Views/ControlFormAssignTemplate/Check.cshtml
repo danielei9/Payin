@@ -1,0 +1,55 @@
+﻿@using PayIn.Application.Dto.Results.ControlFormAssignTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ControlFormAssignTemplateFactory.GetCheckStateName,
+	ControlFormAssignTemplateFactory.GetCheckApi,
+	"",
+	//ControlFormAssignTemplateResources.GetCheck,
+	"resources.controlFormAssignTemplate.getCheck",
+	"{{arguments.checkTime|xpTime}}",
+	isPaginable: false,
+	isTitleActive: true,
+	init: "scope.arguments.checkId = params.checkId;",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ControlFormAssignTemplateFactory.CreateState("{{$stateParams.checkId}}"), XpIcons.Plus)
+	},
+	showFormButtons: true
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.controlFormAssign.form">Form</th>
+					<th translate="resources.controlFormAssign.arguments">Arguments</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ControlFormAssignTemplateFactory.DeleteStateName,
+							id: "{{item.id}}",
+							arguments: "{\"formName\":\"{{item.formName}}\",\"checkTime\":\"{{arguments.checkTime}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ControlFormAssignTemplateGetCheckResult>(x => x.FormName))
+					<td class="table-column">
+						<table class ="table table-hover">
+							<tbody>
+								<tr ng-repeat="argument in item.arguments">
+									<td>{{argument.name}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+}

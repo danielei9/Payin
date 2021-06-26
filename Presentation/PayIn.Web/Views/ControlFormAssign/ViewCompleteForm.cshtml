@@ -1,0 +1,54 @@
+﻿@using PayIn.Application.Dto.Results.ControlFormAssign;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ControlFormAssignFactory.GetFormStateName,
+	ControlFormAssignFactory.GetFormApi,
+	"",
+	//ControlFormAssignResources.GetCheck,
+	"resources.controlFormAssign.getCheck",
+	"{{arguments.workerName}} - {{arguments.checkDate|xpDateTime}}",
+	isPaginable: false,
+	isTitleActive: true,
+	init: "scope.arguments.checkId = params.checkId;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.controlFormAssign.form">Form</th>
+					<th translate="resources.controlFormAssign.arguments">Arguments</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ControlFormAssignFactory.DeleteStateName,
+							id: "{{item.id}}",
+							arguments: "{\"formName\":\"{{item.formName}}\",\"checkDate\":\"{{arguments.checkDate}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ControlFormAssignGetCheckResult>(x => x.FormName, panelUrl: "controlformassignupdate", id: "{{item.id}}"))</td>
+					<td class="table-column">
+						<table class="table table-hover">
+							<tr ng-repeat="value in item.values">
+								<td><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.name}}</a></td>
+								<td data-ng-show="value.type == 8"><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.valueDateTime | xpDuration}}</a></td>
+								<td data-ng-show="value.type == 7"><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.valueDateTime | xpDateTime}}</a></td>
+								<td data-ng-show="value.type == 6"><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.valueDateTime | xpTime}}</a></td>
+								<td data-ng-show="value.type == 5"><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.valueDateTime | xpDate}}</a></td>
+								<td data-ng-hide="value.type >= 5 && value.type <= 8"><a ui-sref="controlformassignupdate({id:{{item.id}}})" data-xp-navigate>{{value.valueBool}}{{value.valueNumeric}}{{value.valueString}}</a></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

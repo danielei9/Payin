@@ -1,0 +1,16 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlFormAssignTemplate;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlFormAssignTemplateFactory.CreateState(),
+	ControlFormAssignTemplateFactory.CreateApi,
+	"",
+	//ControlFormAssignTemplateResources.Create,
+	"resources.controlFormAssignTemplate.create",
+	init: "scope.arguments.checkId=params.checkId;"
+))
+{
+	@(Html.SelectFor<ControlFormAssignTemplateCreateArguments>(x => x.FormId, "formName", ControlFormFactory.GetSelectorApi, focus: true))
+}
+

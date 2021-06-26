@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServiceAddressFactory.DeleteName,
+	ServiceAddressFactory.DeleteApi,
+	"",
+	ServiceAddressResources.Delete,
+	id: "id"
+))
+{
+	<p>@ServiceAddressResources.DeleteQuestion.FormatString("{{arguments.name}}", "{{arguments.from}} - {{arguments.until}} ({{arguments.sideLabel}})")</p>
+}

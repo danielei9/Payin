@@ -1,0 +1,54 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+@using (Html.xpList(
+				CheckFactory.GetAllName,
+				CheckFactory.GetAllApi,
+				"{{data[0].entranceAlias}}",
+				"resources.check.retrieveAll",
+				"{{data[0].subtitle}} ",
+				init: "scope.id=params.id",
+				isTitleActive: true,
+				showFormButtons: true,
+				initialSearch: true
+			))
+{
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length" xp-navigate>
+            <thead>
+                <tr>
+                    @*<th> &nbsp;</th>*@
+                    <th translate="resources.check.type">In/Out</th>
+                    <th translate="resources.check.timestamp">Timestamp</th>
+                    <th translate="resources.check.login">Doorman</th>
+                    <th translate="resources.check.observations">Observations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" @*ng-class="{'b-l b-5x b-success':item.state===0, 'b-l b-5x b-warning':item.state===1}"*@>
+                    <td>@(Html.ColumnFor<ApiEntranceCheckGetAllResult>(x => x.TypeAlias))</td>
+                    <td>
+                        @(Html.ColumnFor<ApiEntranceCheckGetAllResult>(x => x.TimeStampTime))&nbsp;
+                    @(Html.ColumnFor<ApiEntranceCheckGetAllResult>(x => x.TimeStampDate))
+                </td>
+                <td>@(Html.ColumnFor<ApiEntranceCheckGetAllResult>(x => x.Login))</td>
+                <td>@(Html.ColumnFor<ApiEntranceCheckGetAllResult>(x => x.Observations))</td>
+            </tr>
+        </tbody>
+    </table>
+    @*<footer class="panel-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#27C24C;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.entrance.active">In</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#F05050;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.entrance.suspended">Out</p>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+</div>
+}

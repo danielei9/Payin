@@ -1,0 +1,100 @@
+﻿@using PayIn.Application.Dto.Payments.Results
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+    AccountLineFactory.GetByLiquidationName,
+    AccountLineFactory.GetByLiquidationApi,
+    "",
+    "resources.accountLine.getByLiquidation",
+    isTitleActive: true, actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Popup, LiquidationFactory.CloseName, XpIcons.Lock, arguments: "{id:{{id}},total:{{arguments.total}}}", show:"arguments.state==0"),
+        new ActionLink(ActionLink.ActionLinkType.Popup, LiquidationFactory.OpenName, XpIcons.LockOpen, arguments: "{id:{{id}}}", show:"arguments.state==1"),
+        new ActionLink(ActionLink.ActionLinkType.Popup, LiquidationFactory.PayName, XpIcons.Money, arguments: "{id:{{id}},total:{{arguments.total}}}", show:"arguments.state==1")
+    },
+    init:
+        "scope.id=params.id;"
+))
+{
+    <div class="table-responsive" data-ng-controller="UnliquidatedController">
+        <table class="table table-hover" col-md-12>
+            <thead>
+                <tr>
+                    <th class="icon-column">&nbsp;</th>
+                    <th translate="resources.accountLine.date">Date</th>
+                    <th translate="resources.accountLine.type">Type</th>
+                    <th translate="resources.accountLine.event">Event</th>
+                    <th translate="resources.accountLine.concession">Concession</th>
+                    <th translate="resources.accountLine.type">Type</th>
+                    <th translate="resources.accountLine.uid">Uid</th>
+                    <th translate="resources.accountLine.debit" class="text-right">Debit</th>
+                    <th translate="resources.accountLine.credit" class="text-right">Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" ng-click="item.selected = !item.selected" ng-class="{'selectedrow':item.selected}">
+                    <td class="icon-column" style="text-align: center;">
+                        <div ng-if="arguments.state==0">
+                            @XpColumns.IconColumn(
+                                XpIcons.Trash,
+                                popupUrl: LiquidationFactory.RemoveAccountLinesName,
+                                id: "{{id}}",
+                                arguments: "{\"id\":\"{{id}}\",\"typeName\":\"{{item.typeName}}\",\"accountLineId\":\"{{item.id}}\"}"
+                            )
+                        </div>
+                    </td>
+                    <td>@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.Date))</td>
+                    <td>@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.TypeName))</td>
+                    <td>@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.EventName))</td>
+                    <!-- Cash = 0, ServiceCard = 1, CreditCard = 2, Products = 3, Entrances = 4, Others = 99 -->
+                    <!-- Buy = 1, Entrance = 2, Product = 3, Discount = 4, ExtraPrice = 5, Recharge = 6, ReturnCard = 7 -->
+                    <td ng-class="{
+                            'b-l b-5x b-success': item.paid,
+                            'b-l b-5x b-warning': !item.paid&&item.liquidated,
+                            'b-l b-5x b-danger' : !item.paid&&!item.liquidated,
+                        }">
+                        @(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.ConcessionName))
+                    </td>
+                    <td>@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.LineTypeName))</td>
+                    <td>
+                        @(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.Uid))
+                        <div ng-show="item.uid != item.uidText">
+                            (@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.UidText)))
+                        </div>
+                    </td>
+                    <td class="text-right" style="padding-right:10px">
+                        <span ng-show="item.amount>=0">@(Html.ColumnFor<AccountLineGetByLiquidationResult>(x => x.Amount))€</span>
+                    </td>
+                    <td class="text-right" style="padding-right:10px">
+                        <span ng-show="item.amount<0">{{-1 * item.amount | number:2}} €</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="7" class="text-right">Total</th>
+                    <th colspan="2" class="text-right">{{arguments.total | number:2}} €</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="elementBottom">
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.payment.pending">Pendient</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.payment.liquidated">liquidado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.payment.paid">Pagado</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:lightgrey;" class="legendGraph" /><p style="float:left;" translate="resources.payment.unliquidable">No liquidables</p>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div style="background-color:deepskyblue;" class="legendGraph" /><p style="float:left;" translate="resources.payment.review">Revisar</p>
+            </div>
+        </div>
+    </footer>
+}

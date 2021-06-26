@@ -1,0 +1,137 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Domain.Security;
+
+@{
+    var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+}
+
+@using (Html.xpList(
+    TicketFactory.SystemCardName,
+    TicketFactory.SystemCardApi,
+    "",
+    "resources.ticket.retrieveSystemCard",
+    isTitleActive: true,
+    init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+        + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+        + "scope.arguments.eventId = params.eventId;",
+    initialSearch: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, TicketFactory.CreateName, XpIcons.Plus)
+    }
+))
+{
+    <div class="table-responsive">
+        <div class="row row-sm">
+            <div class="col-xs-4 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalPaidCharges||0 | number:2}}€ / {{arguments.totalCharges||0 | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Cobros</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalPaidRecharges||0 | number:2}}€ / {{arguments.totalRecharges||0 | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Recargas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 m-b-md" rowspan="2">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalPaidOthers||0 | number:2}}€ / {{arguments.totalOthers||0 | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Otros</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-sm">
+            <div class="col-xs-4 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalPaidOrders||0 | number:2}}€ / {{arguments.totalOrders||0 | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Pedidos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 m-b-md">
+                <div class="r bg-light dker item hbox no-border text-center">
+                    <div class="col dk padder-v r-r">
+                        <div class="text-primary-dk font-thin h1"><span>{{arguments.totalPaidShipments||0 | number:2}}€ / {{arguments.totalShipments||0 | number:2}}€</span></div>
+                        <span class="text-muted text-xs">Envíos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th translate="resources.ticket.id">Id</th>
+                    <th translate="resources.ticket.date">Date</th>
+                    <th translate="resources.ticket.event">Event</th>
+                    <th translate="resources.ticket.concession">Concession</th>
+                    <th translate="resources.ticket.uid" colspan="2">Uid</th>
+                    <th translate="resources.ticket.title">Title</th>
+                    <th translate="resources.ticket.paid">Paid</th>
+                    <th translate="resources.ticket.total">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="6">&nbsp;</td>
+                    <td><h4>{{arguments.totalPaidAmount||0 | number:2}} €</h4></td>
+                    <td><h4>{{arguments.totalAmount||0 | number:2}} €</h4></td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state===1&&item.payedAmount>=item.amount,'b-l b-5x b-danger':item.state === 2,'b-l b-5x b-warning':(item.state===1&&item.payedAmount<item.amount)||item.state==4}">
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.Id, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.Date, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.EventName, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.ConcessionName, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.UidText, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>
+                        &nbsp;
+                        <span ng-if="item.uid && item.uidText && (item.uid!=item.uidText)">
+                        (
+                            @(Html.ColumnFor<TicketGetAllResult>(x => x.Uid, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))
+                        )
+                        </span>
+                    </td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.Title, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.PayedAmount, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))€</td>
+                    <td>@(Html.ColumnFor<TicketGetAllResult>(x => x.Amount, popupUrl: TicketFactory.DetailsName, id: "{{item.id}}"))€</td>
+                    <td class="icon-column" ng-show="item.templateId && item.hasText && @checkIsSuperadministrator">
+                        <a xp-navigate ui-sref='@TicketTemplateFactory.UpdateName ({id:{{item.templateId||0}},ticketId:{{item.id}}})'>
+                            <i class='@XpIcons.Pencil' />
+                        </a>
+                    </td>
+                    <td class="icon-column" ng-show="!item.templateId && item.hasText && @checkIsSuperadministrator">
+                        <a xp-navigate ui-sref='@TicketTemplateFactory.CreateName ({ticketId:{{item.id}}})'>
+                            <i class='@XpIcons.Plus' />
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.ticket.paid">Paid</p>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.ticket.notPaid">Not paid</p>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.ticket.cancelled">Cancelled</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

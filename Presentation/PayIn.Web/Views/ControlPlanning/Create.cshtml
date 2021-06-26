@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments.ControlPlanning;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ControlPlanningFactory.CreateName,
+	ControlPlanningFactory.CreateApi,
+	"",
+	//ControlPlanningResources.Create,
+	"resources.controlPlanning.create",
+	init:
+		"scope.arguments.dateSince=moment(Date()).format('YYYY-MM-DD');" +
+		"scope.arguments.dateUntil=moment(Date()).format('YYYY-MM-DD');" +
+		"scope.arguments.workerId=params.workerId;"
+))
+{
+@(Html.SelectFor  <ControlPlanningCreateArguments>(x => x.ItemId, "itemName", ControlItemFactory.RetrieveSelectorApi))
+@(Html.ArgumentFor<ControlPlanningCreateArguments>(x => x.DateSince, width: 6))
+@(Html.ArgumentFor<ControlPlanningCreateArguments>(x => x.DateUntil, width: 6))
+@(Html.ArgumentFor<ControlPlanningCreateArguments>(x => x.CheckDuration, width: 12))
+}

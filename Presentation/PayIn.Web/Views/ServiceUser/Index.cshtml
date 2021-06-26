@@ -1,0 +1,221 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+@using PayIn.Application.Dto.Arguments.ServiceConcession;
+
+@using (Html.xpList(
+    ServiceUserFactory.GetAllName,
+    ServiceUserFactory.GetAllApi,
+    "",
+    "resources.serviceUser.retrieveAll",
+    init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+        + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+    initialSearch: true,
+    isTitleActive: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, ServiceUserFactory.CreateName, XpIcons.Plus)
+    },
+    success: "scope.temp.paymentConcessionId = data.paymentConcessions;"
+))
+{
+    <style>
+        select {
+            border: 1px solid #ccc !important;
+        }
+        .col_cards {
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 5px;
+        }
+        .col_plus {
+            width: 20px;
+            text-align: right;
+        }
+    </style>
+    <div class="row"
+         style="
+			 position: absolute;
+			 top: -5px;
+			 width: 300px;
+			 padding: 0;
+		 ">
+        @(Html.SelectFor<ServiceConcessionGetAllArguments>(x => x.PaymentConcessionId, "paymentConcessionId"))
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th translate="resources.serviceUser.code">Code</th>
+                    <th translate="resources.serviceUser.vatNumber">Vat Number</th>
+                    <th translate="resources.serviceUser.name">Name</th>
+                    <th translate="resources.serviceUser.login">Login</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th><!-- LinkCard -->
+                    <th translate="resources.serviceUser.card">Card</th>
+                </tr>
+            </thead>
+            <tbody>
+				<tr
+					ng-repeat="item in data"
+					ng-class="{
+						'b-l b-5x b-success': item.state===1,
+						'b-l b-5x b-danger': item.state===2
+					}"
+				>
+					<td class="icon-column" ng-show="item.state===1 || item.state===2">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ServiceUserFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td class="icon-column" ng-show="item.state===1">
+						@XpColumns.IconColumn(
+							XpIcons.Pause,
+							popupUrl: ServiceUserFactory.UnsubscribeName,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td class="icon-column" ng-show="item.state===2">
+						@XpColumns.IconColumn(
+							XpIcons.Play,
+							popupUrl: ServiceUserFactory.SubscribeName,
+							id: "{{item.id}}",
+							arguments: "{\"id\":\"{{item.id}}\"}"
+						)
+					</td>
+					<td xp-navigate ui-sref='@ServiceUserFactory.GetName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.Code))</td>
+					<td xp-navigate ui-sref='@ServiceUserFactory.GetName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.VatNumber))</td>
+					<td xp-navigate ui-sref='@ServiceUserFactory.GetName ({id:{{item.id}}})' class="clickable">
+						@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.Name))
+						@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.LastName))
+					</td>
+					<td xp-navigate ui-sref='@ServiceUserFactory.GetName ({id:{{item.id}}})' class="clickable">
+						@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.Login))
+					</td>
+					<td class="icon-column">
+						@* No registrado *@
+						<div ng-show="item.state == 1 && !item.isRegistered && item.login">
+							@XpColumns.IconColumn(
+								XpIcons.Envelope,
+								popupUrl: ServiceUserFactory.RegisterName,
+								id: "{{item.id}}",
+								arguments: "{\"id\":\"{{item.id}}\"}"
+							)
+						</div>
+						@* Registrado y confirmado *@
+						@*<div ng-show="item.isRegistered&&item.isEmailConfirmed&&item.login">
+							@XpColumns.IconColumn(
+								XpIcons.Check
+							)
+						</div>*@
+						@* Registrado pero no confirmado *@
+						<div ng-show="item.state == 1 && item.isRegistered && !item.isEmailConfirmed && item.login">
+							@XpColumns.IconColumn(
+								XpIcons.Back,
+								popupUrl: ServiceUserFactory.RegisterName,
+								id: "{{item.id}}",
+								arguments: "{\"id\":\"{{item.id}}\"}"
+							)
+						</div>
+					</td>
+					<td class="icon-column">
+						<a ui-sref='@ServiceUserFactory.ServiceGroupsName ({id:"{{item.id}}"})' xp-navigate>
+							<i class='@XpIcons.Group'> </i>
+							<span class="badge badge-sm up bg-info" style="width:auto !important">{{item.serviceGroupsCount}}</span>
+						</a>
+					</td>
+                    <td class="icon-column">
+                        @*@XpColumns.IconColumn(XpIcons.Share, popupUrl: EntranceFactory.ChangeCardName, id: "{{item.id}}", tooltip: "Cambiar a otra pulsera/tarjeta")*@
+                        @XpColumns.IconColumn(XpIcons.Link, popupUrl: ServiceCardFactory.LinkCardName, id: "{{item.id}}", tooltip: "Vincular tarjeta")
+                    </td>
+					<td class="col_cards" colspan="2">
+						<table class="table table-hover">
+                            <tr ng-repeat="card in item.cards"
+                                ng-class="{
+									'b-l b-3x b-success': (card.blackListCount==0 || card.blackListCount == null) && card.state!=3,
+									'b-l b-3x b-danger': (card.blackListCount != null && card.blackListCount!=0) && card.state!=3
+								}">
+                                <td class="icon-column">
+                                    <span ng-show="item.state===1 && (card.blackListCount==0 || card.blackListCount == null) && card.state!=3">
+                                        @XpColumns.IconColumn(XpIcons.Pause, popupUrl: ServiceCardFactory.LockCardName, id: "{{card.id}}", tooltip: "Bloquear")
+                                    </span>
+                                    <span ng-show="item.state===1 && (card.blackListCount != null && card.blackListCount!=0) && card.state!=3">
+                                        @XpColumns.IconColumn(XpIcons.Play, popupUrl: ServiceCardFactory.UnlockCardName, id: "{{card.id}}", tooltip: "Desbloquear")
+                                    </span>
+                                    <span ng-show="item.state!=1 || card.state==3">
+                                        &nbsp;
+                                    </span>
+                                </td>
+                                <td style="width: 100px; cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:{{card.id}}})'>
+                                    <span>
+                                        @(Html.ColumnFor<ServiceUserGetAllResult.Card>(x => x.UidText, iterator: "card"))
+                                    </span>
+                                    @*<span ng-if="item.lastSeq">
+                -
+                @(Html.ColumnFor<ServiceUserGetAllResult.Card>(x => x.LastSeq, iterator: "card"))
+            </span>*@
+                                    @*<span ng-if="item.uid && item.uidText && (item.uid != item.uidText)">
+                (
+                @(Html.ColumnFor<ServiceUserGetAllResult.Card>(x => x.Uid, iterator: "card"))
+                )
+            </span>*@
+                                </td>
+                                @*<td ng-show="card.type==1" style="width:100px;">
+            <a ui-sref="@ServiceCardFactory.GetName ({id: card.id})" data-xp-navigate="" class="ng-binding">
+                <span translate="resources.serviceCard.cardTypePrincipal">Principal</span>
+            </a>
+        </td>*@
+                                <td ng-show="card.type==1" style="width:100px; cursor:pointer;" xp-navigate ui-sref="@ServiceCardFactory.GetName ({id:card.id})"><span translate="resources.serviceCard.cardTypePrincipal">Principal</span></td>
+                                <td ng-show="card.type==2" style="width:100px; cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:card.id})'><span translate="resources.serviceCard.cardTypeSecondary">Secondary</span></td>
+                                <td ng-show="card.type==3" style="width:100px; cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:card.id})'><span translate="resources.serviceCard.cardTypeAnonymous">Anonymous</span></td>
+                                <td ng-show="card.type==4" style="width:100px; cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:card.id})'>
+                                    <span translate="resources.serviceCard.cardTypeLinked">Linked</span>
+                                </td>
+                                <td ng-show="card.type!=1 && card.type!=2 && card.type!=3 && card.type!=4" style="width:100px; cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:card.id})'>&nbsp;</td>
+                                <td style="cursor:pointer;" xp-navigate ui-sref='@ServiceCardFactory.GetName ({id:card.id})'>
+                                    @(Html.ColumnFor<ServiceUserGetAllResult.Card>(x => x.Alias, iterator: "card"))
+                                    <div ng-show="card.type==4 && card.ownerName && card.ownerName!=''">
+                                        ({{card.ownerName}})
+                                    </div>
+                                </td>
+                                <td class="icon-column">
+                                    <div ng-show="card.type==4" style="margin: 0 7px;">
+                                        @XpColumns.IconColumn(XpIcons.Unlink, popupUrl: ServiceCardFactory.UnlinkCardName, id: "{{card.id}}", arguments: "{linkedToLogin:\"{{item.login}}\"}", tooltip: "Desvincular tarjeta")
+                                    </div>
+                                </td>
+                            </tr>
+						</table>
+					</td>
+				</tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#27C24C;" class="legendGraph" />
+					<p style="float:left;" translate="resources.serviceUser.activeLeyend" translate-values="{count: (data|filter:{state:1}).length}">Active</p>
+                </div>
+                @*<div class="col-xs-12 col-md-4">
+					a
+                    <div style="background-color:#F05050;" class="legendGraph" />
+					<p style="float:left;" translate="resources.serviceUser.unsubscribedLeyend" translate-values="{count: (data|filter:{state:2}).length}">Unsubscribed</p>
+                </div>*@
+                <div class="col-xs-12 col-md-6">
+                    <div style="background-color:#F05050;" class="legendGraph" />
+					<p style="float:left;" translate="resources.serviceUser.lockedLeyend" translate-values="{count: (data|filter:{state:2}).length}">Locked</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}
+

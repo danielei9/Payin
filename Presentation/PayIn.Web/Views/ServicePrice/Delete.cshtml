@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupDelete(
+	ServicePriceFactory.Delete,
+	ServicePriceFactory.DeleteApi,
+	"",
+	//ServicePriceResources.Delete,
+	"resources.servicePrice.delete",
+	id: "id"
+))
+{
+	<p translate="resources.servicePrice.deleteQuestion" translate-values="{ zone: '{{arguments.zone}}', time:'{{arguments.time}}', price:{{arguments.price}} }">Do you want to delete {{arguments.zone}} ({{arguments.time}} - {{arguments.price}}€) ?</p>
+}

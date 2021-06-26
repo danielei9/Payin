@@ -1,0 +1,57 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Results;
+@using Xp.Common;
+
+@using (Html.xpList(
+    ServiceNotificationFactory.GetAllName,
+    ServiceNotificationFactory.GetAllApi,
+    "",
+    "resources.serviceNotification.getAll",
+    isTitleActive: true,
+    initialSearch: false,
+    init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';"
+        + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+actions: new ActionLink[] {
+new ActionLink(ActionLink.ActionLinkType.Panel, UserFactory.CreateNotificationName, XpIcons.Plus)
+    }
+))
+{
+    <div class="table-responsive" ng-controller="ServiceNotificationGetAllController">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th translate="resources.serviceNotification.createdAt">Created</th>
+                    @*<th translate="resources.serviceNotification.type">Type</th>*@
+                    <th translate="resources.serviceNotification.referenceClass">Class</th>
+                    <th translate="resources.serviceNotification.referenceId">#</th>
+                    <th translate="resources.serviceNotification.sender">Sender</th>
+                    <th translate="resources.serviceNotification.receiver">Receiver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-danger': item.state===0, 'b-l b-5x b-warning': item.state===1, 'b-l b-5x b-success': item.state===2}">
+                    <td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.CreatedAt))</td>
+                    @*<td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.Type))</td>*@
+                    <td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.ReferenceClass))</td>
+                    <td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.ReferenceId))</td>
+                    <td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.SenderLogin))</td>
+                    <td>@(Html.ColumnFor<ServiceNotificationGetAllResult>(x => x.ReceiverLogin))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#27C24C;" class="legend-graph-color" />
+                    <p style="float:left;" translate="resources.serviceNotification.stateRead">Read</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div style="background-color:#FAD733;" class="legend-graph-color" />
+                    <p style="float:left;" translate="resources.serviceNotification.stateActived">Active</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

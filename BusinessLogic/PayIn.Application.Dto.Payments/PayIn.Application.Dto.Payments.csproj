@@ -1,0 +1,934 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98D4F750-5E87-4954-BA9B-3ECB96F345B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Application.Dto.Payments</RootNamespace>
+    <AssemblyName>PayIn.Application.Dto.Payments</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Emulator|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Emulator\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Homo|AnyCPU'">
+    <OutputPath>bin\Homo\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vilamarxant|AnyCPU'">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Fallas|AnyCPU'">
+    <OutputPath>bin\Fallas\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling">
+      <HintPath>..\..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data">
+      <HintPath>..\..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arguments\AccessControlEntrance\ApiAccessControlEntranceCreateArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntrance\ApiAccessControlEntranceDeleteArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntrance\ApiAccessControlEntranceGetAllArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntrance\ApiAccessControlEntranceGetArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntrance\ApiAccessControlEntranceUpdateArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntry\ApiAccessControlEntryResetArguments.cs" />
+    <Compile Include="Arguments\AccessControlEntry\ApiAccessControlEntryCreateArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlGetPlaceArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlGetWeatherArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlGetPlacesArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlUpdateArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlGetAllArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlCreateArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlDeleteArguments.cs" />
+    <Compile Include="Arguments\AccessControl\ApiAccessControlGetArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByCashArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByOthersArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByCreditCardsArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByEntranceTypesArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByProductsArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByLiquidationArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByAccountsArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByServiceCardsArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetByLogBookArguments.cs" />
+    <Compile Include="Arguments\Activity\ActivityCreateArguments.cs" />
+    <Compile Include="Arguments\Activity\ActivityDeleteArguments.cs" />
+    <Compile Include="Arguments\Activity\ActivityGetArguments.cs" />
+    <Compile Include="Arguments\Activity\ActivityUpdateArguments.cs" />
+    <Compile Include="Arguments\Activity\MobileActivityGetByEventArguments.cs" />
+    <Compile Include="Arguments\Activity\ApiActivityGetAllArguments.cs" />
+    <Compile Include="Arguments\CampaignCode\PublicCampaignCodeCreateArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineAddEntranceTypeArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineAddServiceUserArguments .cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineAddServiceGroupArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineAddProductFamilyArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineCreateArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetByServiceUserArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetByServiceGroupArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineRemoveServiceUserArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineRemoveServiceGroupArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineServiceGroupGetSelectorArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineServiceUserGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Campaign\PublicCampaignGetAllWithLinesArguments.cs" />
+    <Compile Include="Arguments\Campaign\PublicCampaignGetQrArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignGetEventArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\ApiCampaignLineGetAllArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\ApiCampaignLineGetByEntranceTypeArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetByProductFamilyArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetSelectorArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineProductFamilyGetSelectorArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineProductGetSelectorArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineRemoveEntranceTypeArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineRemoveProductFamilyArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineUpdateArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignCreateArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignGetCreateArguments.cs" />
+    <Compile Include="Arguments\Campaign\CampaignAddEventArguments.cs" />
+    <Compile Include="Arguments\Campaign\CampaignEventGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Campaign\CampaignRemoveEventArguments.cs" />
+    <Compile Include="Arguments\Campaign\PublicCampaignGetAllArguments.cs" />
+    <Compile Include="Arguments\Campaign\PublicCampaignGetByUserArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignUnsuspendArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignSuspendArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignDeleteArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignGetAddOwnersArguments.cs" />
+    <Compile Include="Arguments\Campaign\MobileCampaignGetArguments.cs" />
+    <Compile Include="Arguments\Campaign\MobileCampaignGetAllArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignGetAllArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignGetArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignUpdateArguments.cs" />
+    <Compile Include="Arguments\Campaign\ApiCampaignUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactDeleteArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactGetAllArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactLockArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactScanExhibitorArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactScanVisitorArguments.cs" />
+    <Compile Include="Arguments\Contact\MobileContactUnlockArguments.cs" />
+    <Compile Include="Arguments\EntranceCheck\PublicEntranceCheckCreateUserQrArguments.cs" />
+    <Compile Include="Arguments\EntranceFormValue\EntranceFormValueGetAllArguments.cs" />
+    <Compile Include="Arguments\EntranceCheck\ApiEntranceCheckGetAllArguments.cs" />
+    <Compile Include="Arguments\EntranceCheck\ApiEntranceCheckGetArguments.cs" />
+    <Compile Include="Arguments\EntranceCheck\MobileEntranceCheckCreateTextArguments.cs" />
+    <Compile Include="Arguments\EntranceTypeForm\EntranceTypeFormCreateArguments.cs" />
+    <Compile Include="Arguments\EntranceTypeForm\EntranceTypeFormDeleteArguments.cs" />
+    <Compile Include="Arguments\EntranceTypeForm\EntranceTypeFormGetAllArguments.cs" />
+    <Compile Include="Arguments\EntranceTypeForm\EntranceTypeFormGetArguments.cs" />
+    <Compile Include="Arguments\EntranceTypeForm\EntranceTypeFormUpdateArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeCreateArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeBuyBalanceGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeDonateGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeSelectableByCardArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGroupsGetAllArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGetVisibilityArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeRelocateArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeDeleteArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGetAllArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeUpdateArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGetSelectorArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeIsVisibleArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeVisibilityArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeGetPursesArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeRechargeGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\MobileEntranceTypeGetToGiveArguments.cs" />
+    <Compile Include="Arguments\EntranceType\MobileEntranceTypeGetSellableArguments.cs" />
+    <Compile Include="Arguments\EntranceType\MobileEntranceTypeGetBuyableArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeAddGroupArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeDeleteGroupArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeRemoveGroupArguments.cs" />
+    <Compile Include="Arguments\EntranceType\MobileEntranceTypeGetPursesArgumentss.cs" />
+    <Compile Include="Arguments\Entrance\ApiEntranceGetAllArguments.cs" />
+    <Compile Include="Arguments\Entrance\ApiEntranceChangeCardArguments.cs" />
+    <Compile Include="Arguments\Entrance\EntranceGenerateMailArguments.cs" />
+    <Compile Include="Arguments\Entrance\ApiEntranceCreateArguments.cs" />
+    <Compile Include="Arguments\Entrance\EntranceSuspendArguments.cs" />
+    <Compile Include="Arguments\Entrance\EntranceTicketGetArguments.cs" />
+    <Compile Include="Arguments\Entrance\EntranceUnsuspendArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetActiveArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetAllArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetBySystemCardArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetByEventArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceLoadTextArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceLoadQrArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetByPaymentConcessionArguments.cs" />
+    <Compile Include="Arguments\Entrance\ApiEntranceGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\EntranceCheck\MobileEntranceCheckCreateQrArguments.cs" />
+    <Compile Include="Arguments\Entrance\MobileEntranceGetArguments.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeSyncronizeArguments_EntranceType.cs" />
+    <Compile Include="Arguments\EntranceType\EntranceTypeSyncronizeArguments.cs" />
+    <Compile Include="Arguments\Entrance\PublicEntranceGetByUserArguments.cs" />
+    <Compile Include="Arguments\Event\ApiEventGetAllArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetCalendarArguments.cs" />
+    <Compile Include="Arguments\Event\EventUpdatePhotoMenuArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetMapArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetSelectorOpenedArguments.cs" />
+    <Compile Include="Arguments\Event\EventGetVisibilityArguments.cs" />
+    <Compile Include="Arguments\Event\EventGetCreateArguments.cs" />
+    <Compile Include="Arguments\Event\EventAddImageGalleryArguments.cs" />
+    <Compile Include="Arguments\Event\EventDeleteImageGalleryArguments.cs" />
+    <Compile Include="Arguments\Event\EventProfileGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Event\EventUpdateMapPhotoArguments.cs" />
+    <Compile Include="Arguments\Event\EventVisibilityArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorCreateArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorDeleteArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\MobileExhibitorGetAllArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorGetAllArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorSuspendArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorUnsuspendArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorUpdateArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorGetArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\ExhibitorMobileGetArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\MobileExhibitorGetAllVisitorsArguments.cs" />
+    <Compile Include="Arguments\Exhibitor\MobileExhibitorGetVisitorArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationCloseArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationRemoveAccountLinesArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationAddAccountLinesArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationAddAccountLinesArguments_Line.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationCreateAccountLinesArguments_Line.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationCreateAccountLinesArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationGetSelectorOpenedArguments.cs" />
+    <Compile Include="Arguments\Liquidation\TimerLiquidationCreateArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationCreateAndPayArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationCreateArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationGetPaymentConcessionSelectorArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeCreateEdictArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeCreatePageArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetPagesArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetEdictsArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeGetEdictsArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeGetPagesArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeGetAllArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeUpdateEdictArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeUpdatePageArgument.cs" />
+    <Compile Include="Arguments\Notice\NoticeGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetAllPublicArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetAllByEventArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetArguments.cs" />
+    <Compile Include="Arguments\Notice\MobileNoticeGetByEventArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeCreateArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeDeleteArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeGetArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeGetVisibilityArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeIsVisibleArguments.cs" />
+    <Compile Include="Arguments\Notice\ApiNoticeUpdateArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Notice\NoticeVisibilityArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionCreatePhotoUrlArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaGetByPaymentConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\PublicPaymentMediaCreateWebCardByUserArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\PublicPaymentMediaGetByUserArguments.cs" />
+    <Compile Include="Arguments\AccountLine\AccountLineGetAllUnliquidatedArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentGetAllByCardArguments.cs" />
+    <Compile Include="Arguments\Product\ProductRemoveGroupArguments.cs" />
+    <Compile Include="Arguments\Product\ProductAddGroupArguments.cs" />
+    <Compile Include="Arguments\Product\ProductDeleteGroupArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGroupsGetAll.cs" />
+    <Compile Include="Arguments\Product\ProductMobileGetTpvArguments.cs" />
+    <Compile Include="Arguments\Product\ProductSyncronizeArguments_Product.cs" />
+    <Compile Include="Arguments\Product\ProductSyncronizeArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGetAllByDashboardArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGetVisibilityArguments.cs" />
+    <Compile Include="Arguments\Product\ProductVisibilityArguments.cs" />
+    <Compile Include="Arguments\Purse\MobilePurseGetSellableArguments.cs" />
+    <Compile Include="Arguments\Purse\MobilePurseGetBuyableArguments.cs" />
+    <Compile Include="Arguments\Shop\ShopGetMyCardsSelectorArguments.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateAndGetArguments_Group.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateAndGetArguments_Payment.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateListArguments_Ticket.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateListArguments.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketGetAllArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreatePayedAndGetArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateListArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateListArguments_Ticket.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateListArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\ApiTicketPayArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketPayAndCreateWebCardByUserArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateProductsAndGetArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateProductsAndGetArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateEntrancesAndGetArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateEntrancesAndGetArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketCreateAndGetArguments.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketPayUserArguments_PaymentMedia.cs" />
+    <Compile Include="Arguments\Ticket\PublicTicketPayUserArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketAnswerFormsArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketAnswerFormsArguments_Option.cs" />
+    <Compile Include="Arguments\Ticket\TicketAnswerFormsArguments_Form.cs" />
+    <Compile Include="Arguments\Ticket\TicketAnswerFormsArguments_Argument.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineAddProductArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineRemoveProductArguments.cs" />
+    <Compile Include="Arguments\CampaignLine\CampaignLineGetByProductArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetAllCheckViewArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetCheckViewArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetArguments.cs" />
+    <Compile Include="Arguments\Event\EventIsVisibleArguments.cs" />
+    <Compile Include="Arguments\Event\EventSuspendArguments.cs" />
+    <Compile Include="Arguments\Event\EventUnsuspendArguments.cs" />
+    <Compile Include="Arguments\Event\EventDeleteArguments.cs" />
+    <Compile Include="Arguments\Event\EventCreateArguments.cs" />
+    <Compile Include="Arguments\Event\EventGetAllArguments.cs" />
+    <Compile Include="Arguments\Event\EventGetArguments.cs" />
+    <Compile Include="Arguments\Event\EventUpdateArguments.cs" />
+    <Compile Include="Arguments\Event\EventUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Event\EventGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationChangeArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationGetAllArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationOpenArguments.cs" />
+    <Compile Include="Arguments\Liquidation\LiquidationPayArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignGetArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseCreateArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseDeleteArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseMobileAcceptAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseMobileRejectAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignCreateArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignDeleteArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignMobileAcceptAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignMobileRejectAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionCampaign\PaymentConcessionCampaignResendNotificationArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentConcessionPurse\PaymentConcessionPurseResendNotificationArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionCreateArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionGetArguments.cs" />
+    <Compile Include="Arguments\Event\MobileEventGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionGetCommerceArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\ApiPaymentConcessionGetSelectorArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionGetSelectorArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionMobileGetArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionMobileGetAllWithPromotionsArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionUpdateArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionUpdateCommerceArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PromotionGetPaymentConcessionSelectorArguments.cs" />
+    <Compile Include="Arguments\PaymentConcession\PaymentConcessionMobileGetServiceCardsByUidArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaCreateWebCardAndUserArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaActivateWebCardArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaCreateWebCardArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaDeleteArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\MobilePaymentMediaGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\ApiPaymentMediaPaySabadellArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\ApiPaymentMediaWebCardRefundArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserDeleteArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserGetSelectorArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileAcceptAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserCreateArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileBlockConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileDissociateConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileGetAllConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileRejectAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserGetArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileUnblockConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserResendNotificationArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserUpdateArguments.cs" />
+    <Compile Include="Arguments\PaymentUser\PaymentUserMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerMobileAcceptAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerMobileGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerCreateArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerDeleteArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerDissociateConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerGetAllArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerGetAllConcessionArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerMobileRejectAssignmentArguments.cs" />
+    <Compile Include="Arguments\PaymentWorker\PaymentWorkerResendNotificationArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentGetAllArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentGetAllByLiquidationArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentGetChargesArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentGetGraphArguments.cs" />
+    <Compile Include="Arguments\PaymentMedia\SabadellPaymentMediaCreateWebCardArguments.cs" />
+    <Compile Include="Arguments\Payment\UnliquidatedPaymentArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentRefundPinArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyCreateArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyDeleteArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyGetAllArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyGetArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyGetSelectorArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyUpdateArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyUpdateGetArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\ProductFamily\ProductFamilyIsVisibleArguments.cs" />
+    <Compile Include="Arguments\Product\ProductCreateArguments.cs" />
+    <Compile Include="Arguments\Product\ProductDeleteArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGetAllArguments.cs" />
+    <Compile Include="Arguments\Product\ProductIsVisibleArguments.cs" />
+    <Compile Include="Arguments\Product\ProductMobileGetArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGetArguments.cs" />
+    <Compile Include="Arguments\Product\ProductGetSelectorArguments.cs" />
+    <Compile Include="Arguments\Product\ProductUpdateArguments.cs" />
+    <Compile Include="Arguments\Product\ProductUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionAddCodeArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionAsignArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionCreateArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionCreateArguments_PromoPrice.cs" />
+    <Compile Include="Arguments\Promotion\PromotionGetAllConcessionArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionUnlinkCodeArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionDeleteArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionGetAllArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionGetArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionGetCodeArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionMobileSendCodeArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionUpdateArguments.cs" />
+    <Compile Include="Arguments\Promotion\PromotionUpdateArguments_PromoPrice.cs" />
+    <Compile Include="Arguments\Purse\PurseCreateArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseCloseArgments.cs" />
+    <Compile Include="Arguments\Purse\PurseDeleteArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseGetAllArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseGetArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseGetUsersArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseImageCreateArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseImageDeleteArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseUpdateArguments.cs" />
+    <Compile Include="Arguments\Purse\PurseUpdatePhotoArguments.cs" />
+    <Compile Include="Arguments\Shipment\CampaignLineDeleteArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentGetAddUserArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentAddUsersArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentCreateArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentDeleteArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentGetAllArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentGetArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentReceiptGetAllArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentTicketsCreateArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentTicketDeleteArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentTicketGetAllArguments.cs" />
+    <Compile Include="Arguments\Shipment\ShipmentUpdateArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateDeleteArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateGetAllArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateCheckInternalArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateGetDetailsArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateGetSelectorArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateGetUpdateArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateUpdateArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateCreateArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateCheckArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentTpvRefundArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyManyProductsArguments_Product.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyManyProductsArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyManyEntrancesArguments_EntranceType.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyManyEntrancesArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketSellArguments_EntranceType.cs" />
+    <Compile Include="Arguments\Ticket\TicketGiveEntrancesArguments_EntranceType.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyEntrancesArguments_EntranceType.cs" />
+    <Compile Include="Arguments\Ticket\TicketCreateAndGetIFrameArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketActivateArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketDonateBalanceArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketUserSellArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyEntrancesArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketBuyRechargeBalanceArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketRechargeBalanceArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketCreateArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketDonateBalanceArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketRechargeBalanceArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketGiveEntrancesArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGiveArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketSellArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketCreateArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketDeleteArguments.cs" />
+    <Compile Include="Arguments\TicketTemplate\TicketTemplateGetArguments.cs" />
+    <Compile Include="Arguments\Entrance\ApiEntranceInviteArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGetSystemCardArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileGetOrdersByPaymentConcessionArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileUpdateStateAndGetOrdersArguments.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateAndGetArguments .cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketCreateAndGetArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileUpdateStateArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileCreateArguments_TicketLine.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketGetOrdersArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobilePayV2Arguments_PaymentMedia.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketPayV3Arguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobilePayV2Arguments.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketPayV3Arguments_PaymentMedia.cs" />
+    <Compile Include="Arguments\Ticket\MobileTicketPayV3Arguments_Promotion.cs" />
+    <Compile Include="Arguments\Ticket\TicketSellArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketTpvGetAllArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGetAllArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGetDetailsArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGetArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketTpvCreateArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileCreateArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileDeleteArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileGetDuesArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileGetPayArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobileGetArguments.cs" />
+    <Compile Include="Arguments\Payment\PaymentRefundArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketMobilePayArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketGraphArguments.cs" />
+    <Compile Include="Arguments\Ticket\TicketUpdateArguments.cs" />
+    <Compile Include="Arguments\Log\LogUndoArguments.cs" />
+    <Compile Include="Arguments\User\UserMobileCreateArguments.cs" />
+    <Compile Include="Arguments\User\UserMobileForgotPinArguments.cs" />
+    <Compile Include="Arguments\User\UserMobileHasPaymentArguments.cs" />
+    <Compile Include="Arguments\User\UserMobileUpdatePinArguments.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\AccessControlEntrance\ApiAccessControlEntranceGetAllResult.cs" />
+    <Compile Include="Results\AccessControlEntrance\ApiAccessControlEntranceGetResult.cs" />
+    <Compile Include="Results\AccessControl\ApiAccessControlGetPlacesResult.cs" />
+    <Compile Include="Results\AccessControl\ApiAccessControlGetPlaceResult.cs" />
+    <Compile Include="Results\AccessControl\ApiAccessControlGetWeatherResult.cs" />
+    <Compile Include="Results\AccessControl\ApiAccessControlGetResult.cs" />
+    <Compile Include="Results\AccessControl\ApiAccessControlGetAllResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByAccountsResult_SumPerConcession.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByCashResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByCashResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByCreditCardsResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByEntranceTypesResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByLiquidationResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByOthersResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByOthersResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByEntranceTypesResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByProductsResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByProductsResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByCreditCardsResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByLiquidationResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByAccountsResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByAccountsResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByServiceCardsResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByServiceCardsResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByLogBookResultBase.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByLogBookResultLine.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetByLogBookResult.cs" />
+    <Compile Include="Results\Activity\ActivityGetResult.cs" />
+    <Compile Include="Results\Activity\ApiActivityGetAllResult.cs" />
+    <Compile Include="Results\Activity\MobileActivityGetByEventResult.cs" />
+    <Compile Include="Results\CampaignCode\PublicCampaignCodeCreateResult.cs" />
+    <Compile Include="Results\CampaignLine\ApiCampaignLineGetAllResultBase.cs" />
+    <Compile Include="Results\CampaignLine\ApiCampaignLineGetByEntranceTypeResultBase.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetByServiceGroupResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetByServiceUserResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineProductGetSelectorResult - Copia.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineServiceGroupGetSelectorResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetEventResultBase.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetEventResult.cs" />
+    <Compile Include="Results\CampaignLine\ApiCampaignLineGetAllResult.cs" />
+    <Compile Include="Results\CampaignLine\ApiCampaignLineGetByEntranceTypeResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetByProductFamilyResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetSelectorResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineProductFamilyGetSelectorResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineServiceUserGetSelectorResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetAddOwnersResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetAddOwnersResultBase.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetAllResultBase.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetCreateResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetCreateResultBase.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetCreateResultBase_PaymentConcessions.cs" />
+    <Compile Include="Results\Campaign\CampaignEventGetSelectorResult.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetAllWithLinesResult.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetAllResult.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetAllWithLinesResult_EntranceType.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetAllWithLinesResult_Line.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetAllWithLinesResult_Product.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetQrResult.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetByUserResult_Qr.cs" />
+    <Compile Include="Results\Campaign\PublicCampaignGetByUserResult.cs" />
+    <Compile Include="Results\Campaign\MobileCampaignGetResult.cs" />
+    <Compile Include="Results\Campaign\MobileCampaignGetAllResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetAllResult.cs" />
+    <Compile Include="Results\Campaign\ApiCampaignGetResult.cs" />
+    <Compile Include="Results\Campaign\MobileCampaignGetResult_CampaignLine.cs" />
+    <Compile Include="Results\Contact\MobileContactGetAllResult.cs" />
+    <Compile Include="Results\EntranceCheck\MobileEntranceCheckCreateResult.cs" />
+    <Compile Include="Results\EntranceFormValue\EntranceFormValueGetAllResult.cs" />
+    <Compile Include="Results\EntranceCheck\ApiEntranceCheckGetAllResult.cs" />
+    <Compile Include="Results\EntranceCheck\ApiEntranceCheckGetResult.cs" />
+    <Compile Include="Results\EntranceFormValue\EntranceFormValueGetAllResultBase.cs" />
+    <Compile Include="Results\EntranceFormValue\EntranceFormValueGetAllResult_Option.cs" />
+    <Compile Include="Results\EntranceTypeForm\EntranceTypeFormGetAllResult.cs" />
+    <Compile Include="Results\EntranceTypeForm\EntranceTypeFormGetResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeBuyBalanceGetResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGetAllResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeDonateGetResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeRechargeGetResult.cs" />
+    <Compile Include="Results\EntranceType\MobileEntranceTypeGetPursesResultBase.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGetAllResultBase.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGroupsGetAllResultBase.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGroupsGetAllResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGetResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGetVisibilityResult.cs" />
+    <Compile Include="Results\EntranceType\MobileEntranceTypeGetToGiveResult.cs" />
+    <Compile Include="Results\EntranceType\MobileEntranceTypeGetSellableResult.cs" />
+    <Compile Include="Results\EntranceType\MobileEntranceTypeGetBuyableResult.cs" />
+    <Compile Include="Results\EntranceType\MobileEntranceTypeGetPursesResult.cs" />
+    <Compile Include="Results\Entrance\ApiEntranceGetAllResult.cs" />
+    <Compile Include="Results\Entrance\ApiEntranceGetResult.cs" />
+    <Compile Include="Results\Entrance\ApiEntranceValidationResult.cs" />
+    <Compile Include="Results\EntranceType\EntranceTypeGetSelectorResult.cs" />
+    <Compile Include="Results\Entrance\EntranceGenerateMailResult.cs" />
+    <Compile Include="Results\Entrance\EntranceTicketGetResult.cs" />
+    <Compile Include="Results\Entrance\MobileEntranceGetActiveResult.cs" />
+    <Compile Include="Results\Entrance\MobileEntranceGetResult.cs" />
+    <Compile Include="Results\Entrance\MobileEntranceGetResult_Activities.cs" />
+    <Compile Include="Results\Event\ApiEventGetAllResultBase.cs" />
+    <Compile Include="Results\Event\ApiEventGetAllResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetCalendarResult.cs" />
+    <Compile Include="Results\Event\EventGetAllResult.cs" />
+    <Compile Include="Results\Event\EventGetCreateResultBase_PaymentConcessions.cs" />
+    <Compile Include="Results\Event\EventGetCreateResultBase.cs" />
+    <Compile Include="Results\Event\EventGetCreateResult.cs" />
+    <Compile Include="Results\Event\EventGetResultBase.cs" />
+    <Compile Include="Results\Event\EventGetVisibilityResult.cs" />
+    <Compile Include="Results\Event\EventImagesGetResult.cs" />
+    <Compile Include="Results\Event\EventProfileGetSelectorResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetAllCheckViewResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetMapResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult_Exhibitors.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult_Activities.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult_Notices.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorMobileGetResult_Notification.cs" />
+    <Compile Include="Results\Exhibitor\MobileExhibitorGetAllResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetCheckViewResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult_Images.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult.cs" />
+    <Compile Include="Results\Event\EventGetResult.cs" />
+    <Compile Include="Results\Event\EventGetSelectorResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetResult_EntranceTypes.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorGetAllResult.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorGetResult.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorGetSelectorResult.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorUpdateGetResult.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorMobileGetResult.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorMobileGetResult_Event.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorMobileGetResult_Product.cs" />
+    <Compile Include="Results\Exhibitor\ExhibitorMobileGetResult_ProductTypeEnum.cs" />
+    <Compile Include="Results\Exhibitor\MobileExhibitorGetAllVisitorsResult.cs" />
+    <Compile Include="Results\Exhibitor\MobileExhibitorGetVisitorResult.cs" />
+    <Compile Include="Results\Exhibitor\MobileExhibitorGetVisitorResult_Notification.cs" />
+    <Compile Include="Results\Liquidation\LiquidationGetAllResult.cs" />
+    <Compile Include="Results\Liquidation\LiquidationGetAllResultBase.cs" />
+    <Compile Include="Results\Liquidation\LiquidationPayResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetPagesResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetEdictsResult.cs" />
+    <Compile Include="Results\Notice\ApiNoticeGetPagesResult.cs" />
+    <Compile Include="Results\Notice\ApiNoticeGetEdictsResult.cs" />
+    <Compile Include="Results\Notice\ApiNoticeGetAllResult.cs" />
+    <Compile Include="Results\Notice\NoticeGetSelectorResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetAllByEventResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetAllPublicResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetByEventResult.cs" />
+    <Compile Include="Results\Notice\MobileNoticeGetResult_SubNotice.cs" />
+    <Compile Include="Results\Notice\NoticeGetResult.cs" />
+    <Compile Include="Results\Notice\NoticeGetVisibilityResult.cs" />
+    <Compile Include="Results\PaymentConcessionCampaign\PaymentConcessionCampaignGetResult.cs" />
+    <Compile Include="Results\PaymentConcessionCampaign\PaymentConcessionCampaignGetAllResult.cs" />
+    <Compile Include="Results\PaymentConcessionPurse\PaymentConcessionPurseGetAllResult.cs" />
+    <Compile Include="Results\Event\MobileEventGetAllResult.cs" />
+    <Compile Include="Results\PaymentConcession\ApiPaymentConcessionGetSelectorResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionGetAllResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetAllWithPromotionsResultBase.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionGetCommerceResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionGetResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetAllWithPromotionsResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetAllResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetResult_Event.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetResult_Product.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetResult_ProductTypeEnum.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetResult_Promotion.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetServiceCardsByUidResult_Concession.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetServiceCardsByUidResult_Promotion.cs" />
+    <Compile Include="Results\PaymentConcession\PromotionGetPaymentConcessionSelectorResult.cs" />
+    <Compile Include="Results\Liquidation\LiquidationGetPaymentConcessionSelectorResult.cs" />
+    <Compile Include="Results\PaymentConcession\PaymentConcessionMobileGetServiceCardsByUidResult.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResultBase.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult_ServiceCard.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult_Promotion.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult_PromotionAction.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult_PromotionPrice.cs" />
+    <Compile Include="Results\Entrance\MobileEntranceGetAllResult.cs" />
+    <Compile Include="Results\PaymentMedia\MobilePaymentMediaGetAllResult_Purse.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetAllUnliquidatedResult.cs" />
+    <Compile Include="Results\Payments\PaymentsGetAllByLiquidationResult.cs" />
+    <Compile Include="Results\Payments\PaymentsGetAllByLiquidationResultBase.cs" />
+    <Compile Include="Results\Payments\PaymentsGetAllResult.cs" />
+    <Compile Include="Results\Payments\PaymentGetChargesResult.cs" />
+    <Compile Include="Results\Payments\PaymentsGetGraphResult.cs" />
+    <Compile Include="Results\AccountLine\AccountLineGetAllUnliquidatedResultBase.cs" />
+    <Compile Include="Results\Payments\PaymentGetAllByCardResult.cs" />
+    <Compile Include="Results\Payments\UnliquidatedPaymentResult.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserGetAllResultBase.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserGetAllResult.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserGetSelectorResult.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserMobileGetAllConcessionResult.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserGetResult.cs" />
+    <Compile Include="Results\PaymentUser\PaymentUserMobileGetAllResult.cs" />
+    <Compile Include="Results\PaymentWorker\PaymentWorkerMobileGetAllResult.cs" />
+    <Compile Include="Results\PaymentWorker\PaymentWorkerGetAllConcessionResult.cs" />
+    <Compile Include="Results\PaymentWorker\PaymentWorkerGetAllResult.cs" />
+    <Compile Include="Results\ProductFamily\ProductFamilyGetAllResult.cs" />
+    <Compile Include="Results\ProductFamily\ProductFamilyGetResult.cs" />
+    <Compile Include="Results\ProductFamily\ProductFamilyGetSelectorResult.cs" />
+    <Compile Include="Results\ProductFamily\ProductFamilyUpdateGetResult.cs" />
+    <Compile Include="Results\CampaignLine\CampaignLineGetByProductResult.cs" />
+    <Compile Include="Results\Product\ProductGetAllByDashboardResult.cs" />
+    <Compile Include="Results\Product\ProductGetAllByDashboardResultBase.cs" />
+    <Compile Include="Results\Product\ProductGroupsGetAllResultBase.cs" />
+    <Compile Include="Results\Product\ProductGroupsGetAllResult.cs" />
+    <Compile Include="Results\Product\ProductGetVisibilityResult.cs" />
+    <Compile Include="Results\Product\ProductMobileGetTpvResult.cs" />
+    <Compile Include="Results\Product\ProductMobileGetResult.cs" />
+    <Compile Include="Results\Product\ProductGetSelectorResult.cs" />
+    <Compile Include="Results\Product\ProductGetAllResult.cs" />
+    <Compile Include="Results\Product\ProductGetResult.cs" />
+    <Compile Include="Results\Product\ProductUpdateGetResult.cs" />
+    <Compile Include="Results\Promotion\PromotionAssignResult.cs" />
+    <Compile Include="Results\Promotion\PromotionCheckResult.cs" />
+    <Compile Include="Results\Promotion\PromotionGetAllConcessionResult.cs" />
+    <Compile Include="Results\Promotion\PromotionGetAllResult.cs" />
+    <Compile Include="Results\Promotion\PromotionGetCodeResult.cs" />
+    <Compile Include="Results\Promotion\PromotionGetCodeResultBase.cs" />
+    <Compile Include="Results\Promotion\PromotionGetResult.cs" />
+    <Compile Include="Results\Purse\MobilePurseGetBuyableResult.cs" />
+    <Compile Include="Results\Purse\MobilePurseGetSellableResult.cs" />
+    <Compile Include="Results\Purse\PurseGetAllResult.cs" />
+    <Compile Include="Results\Purse\PurseGetUsersResult.cs" />
+    <Compile Include="Results\Purse\PurseGetResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentGetAddUserResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentGetAddUserResultBase.cs" />
+    <Compile Include="Results\Shipment\ShipmentGetAllResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentGetResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentReceiptGetAllResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentReceiptGetAllResult_TicketLine.cs" />
+    <Compile Include="Results\Shipment\ShipmentTicketGetAllResult.cs" />
+    <Compile Include="Results\Shipment\ShipmentTicketGetAllResult_TicketLine.cs" />
+    <Compile Include="Results\Shop\ShopGetMycardsSelectorResult.cs" />
+    <Compile Include="Results\TicketDetail\TicketDetailGetResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetAllResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetDetailsResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetResultDetailsBase.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetSelectorResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateCheckResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateCheckResultBase.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetUpdateResultBase.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetUpdateResult.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetResultBase.cs" />
+    <Compile Include="Results\TicketTemplate\TicketTemplateGetResult.cs" />
+    <Compile Include="Results\Ticket\MobileTicketGetAllResult.cs" />
+    <Compile Include="Results\Ticket\PublicTicketCreateAndGetResultBase.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResult_Entrance.cs" />
+    <Compile Include="Results\Ticket\TicketGetAllResult.cs" />
+    <Compile Include="Results\Ticket\TicketGetAllBase.cs" />
+    <Compile Include="Results\Ticket\TicketGetDetailsResult_Payment.cs" />
+    <Compile Include="Results\Ticket\TicketGetDetailsResult_TicketLine.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResultBase_Promotion.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResult_Payment.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResult_Promotion.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResult_TicketLine.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetDuesResult.cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResult .cs" />
+    <Compile Include="Results\Ticket\MobileTicketCreateAndGetResultBase.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetPayResult_Payment.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetPayResult_Recharge.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetPayResult_TicketLine.cs" />
+    <Compile Include="Results\Ticket\MobileTicketGetOrdersResult.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetResult_Payment.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetResult_TicketLine.cs" />
+    <Compile Include="Results\Ticket\TicketTpvGetAllResult.cs" />
+    <Compile Include="Results\Ticket\TicketGetDetailsResult.cs" />
+    <Compile Include="Results\Ticket\TicketGetResult.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetPayResult.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetResult.cs" />
+    <Compile Include="Results\Ticket\TicketGraphResult.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetPayResultBase.cs" />
+    <Compile Include="Results\Ticket\TicketMobileGetResultBase.cs" />
+    <Compile Include="Results\Translation\TranslationGetResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Resources\PayIn.Common.Resources.csproj">
+      <Project>{94f8de05-4ce3-48eb-9c76-9d8db36e90af}</Project>
+      <Name>PayIn.Common.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common.Security\PayIn.Common.Security.csproj">
+      <Project>{d0e42711-7326-4e5b-9e1e-f595cb004a9e}</Project>
+      <Name>PayIn.Common.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\PayIn.Common\PayIn.Common.csproj">
+      <Project>{d619b94f-c9d9-487c-8341-33446f417631}</Project>
+      <Name>PayIn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common.Net\Xp.Common.Net.csproj">
+      <Project>{6899b32b-1b5c-476d-896a-8b0bf4b10f71}</Project>
+      <Name>Xp.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Xp.Common\Xp.Common.csproj">
+      <Project>{434e06d7-69bb-4175-a611-0133d7a5336a}</Project>
+      <Name>Xp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xp.Common.Dto\Xp.Common.Dto.csproj">
+      <Project>{0855e283-100d-455e-bac4-b4a87207647a}</Project>
+      <Name>Xp.Common.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto.Internal\PayIn.Application.Dto.Internal.csproj">
+      <Project>{4E982C96-230D-4526-8CD2-8C977A6C9340}</Project>
+      <Name>PayIn.Application.Dto.Internal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Application.Dto\PayIn.Application.Dto.csproj">
+      <Project>{fe2e19bd-48cb-4d5a-863c-7dfb76548ba3}</Project>
+      <Name>PayIn.Application.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Payments\PayIn.Domain.Payments.csproj">
+      <Project>{85b72f50-a783-4ab8-ae30-e75f9a935b26}</Project>
+      <Name>PayIn.Domain.Payments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PayIn.Domain.Transport\PayIn.Domain.Transport.csproj">
+      <Project>{5773CB9D-44EA-4541-8006-D7042DEF917C}</Project>
+      <Name>PayIn.Domain.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Application\Xp.Application.csproj">
+      <Project>{31513307-d3c8-43a9-8eb0-fbab811fa250}</Project>
+      <Name>Xp.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Domain\Xp.Domain.csproj">
+      <Project>{5bba38ce-8abe-48ef-adc9-ab257cf91f93}</Project>
+      <Name>Xp.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Results\Log\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

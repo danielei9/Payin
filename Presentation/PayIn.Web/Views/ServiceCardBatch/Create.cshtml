@@ -1,0 +1,25 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Common.Security;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServiceCardBatchFactory.CreateName,
+	ServiceCardBatchFactory.CreateApi,
+	"",
+	"resources.serviceCardBatch.create"
+))
+{
+	<div class="spinnerContainer" ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>
+
+	<div class="panel panel-default" style="margin-top:-15px">
+		<div class="panel-body">
+			@(Html.ArgumentFor<ServiceCardBatchCreateArguments>(x => x.Name, focus: true))
+			@(Html.ArgumentFor<ServiceCardBatchCreateArguments>(x => x.UidFormat))
+			@(Html.SelectFor<ServiceCardBatchCreateArguments>(x => x.SystemCardId, "systemCardName", SystemCardFactory.RetrieveSelectorApi))
+		</div>
+	</div>	
+}
+

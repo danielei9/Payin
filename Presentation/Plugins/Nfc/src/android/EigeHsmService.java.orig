@@ -1,0 +1,719 @@
+<<<<<<< HEAD
+package com.payin.nfc;
+
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
+import android.security.KeyPairGeneratorSpec;
+import android.security.keystore.KeyProperties;
+import android.security.keystore.KeyProtection.Builder;
+import android.security.keystore.KeyGenParameterSpec;
+import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import javax.security.auth.x500.X500Principal;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Calendar; 
+import java.util.Map;
+
+import java.math.BigInteger;
+import java.security.*;
+import java.security.spec.*;
+import java.security.KeyStore;
+import java.security.KeyStore.*;
+import java.security.KeyFactory;
+import java.security.Security;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.security.cert.X509Certificate;
+import java.security.cert.CertificateFactory;
+import java.security.cert.CertificateException;
+import java.security.KeyPairGenerator;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.String;
+
+public class EigeHsmService {
+    static final String TAG = "EigeHsmService";
+    static Cipher cipher;
+    /*static final String alias = "payin";
+    static KeyStore keyStore;
+    static KeyPairGenerator kpg;
+    static KeyPair kp;*/
+    static PrivateKey privateKey;
+    static PublicKey publicKey;
+
+    public static final String PUBLIC_KEY_FILE="localhost/assets/www/key/public.key";
+    public static final String PRIVATE_KEY_FILE="cdvfile://localhost/assets/www/key/private.key";
+
+    // XAVI
+    private String password = "Pa$$w0rd";
+    private String mobileKeyAlias = "mobilePayin";
+    private String keyStoreType = 
+        "pkcs12"
+        //"AndroidKeyStore"
+        //KeyStore.getDefaultType()
+        // JKS
+        //JCEKS
+        ;
+    
+    private KeyStore keyStore;
+    
+    public void load()
+        throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
+        keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, password.toCharArray());
+        Log.d(TAG, "HSM Loaded");
+    }
+    public KeyPair generateKeyPair() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA);
+        kpg.initialize(2048);
+        KeyPair keyPair = kpg.generateKeyPair();
+        Log.d(TAG, "HSM Key pair generated");
+        return keyPair;
+    }
+    private X509Certificate generateCertificate(KeyPair keyPair) 
+    {
+        X509Certificate cert = null; 
+        int validDuration = 365; //Integer.parseInt(config.getProperty(RepositoryManagedSignatureProviderFactory.VALID_DURATION)); 
+        
+        // get user's first and last name 
+        //Map<QName, Serializable> props = serviceRegistry.getNodeService().getProperties(person); 
+        String firstName = "Payin"; //String.valueOf(props.get(ContentModel.PROP_FIRSTNAME)); 
+        String lastName = "Payment Innovation Network, S.L."; //String.valueOf(props.get(ContentModel.PROP_LASTNAME)); 
+        
+        // backdate the start date by a day 
+        Calendar start = Calendar.getInstance(); 
+        start.add(Calendar.DATE, -1); 
+        //Date startDate = start.getTime(); 
+        
+        // what is the end date for this cert's validity? 
+        Calendar end = Calendar.getInstance(); 
+        end.add(Calendar.DATE, validDuration); 
+        //Date endDate = end.getTime(); 
+        
+        //try 
+        //{ 
+        // This code works with newer versions of the BouncyCastle libraries, but not 
+        // the (severely outdated) version that ships with Alfresco 
+        /*X509v1CertificateBuilder certBuilder = new JcaX509v1CertificateBuilder(
+                        new X500Principal("CN=" + firstName + " " + lastName),  
+                        BigInteger.ONE,  
+                        startDate, cal.getTime(),  
+                        new X500Principal("CN=" + firstName + " " + lastName),  
+                        keyPair.getPublic()); 
+            
+            AlgorithmIdentifier sigAlgId = new DefaultSignatureAlgorithmIdentifierFinder().find("SHA1withRSA"); 
+            AlgorithmIdentifier digAlgId = new DefaultDigestAlgorithmIdentifierFinder().find(sigAlgId); 
+            AsymmetricKeyParameter keyParam = PrivateKeyFactory.createKey(keyPair.getPrivate().getEncoded()); 
+        ContentSigner sigGen = new BcRSAContentSignerBuilder(sigAlgId, digAlgId).build(keyParam); 
+        X509CertificateHolder certHolder = certBuilder.build(sigGen); 
+            
+        // now lets convert this thing back to a regular old java cert 
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");   
+            InputStream certIs = new ByteArrayInputStream(certHolder.getEncoded());  
+            cert = (X509Certificate) cf.generateCertificate(certIs);  
+            certIs.close();*/ 
+            
+        // X509V3CertificateGenerator certGen = new X509V3CertificateGenerator(); 
+        // X500Principal subjectName = new X500Principal("CN=" + firstName + " " + lastName); 
+        
+        // certGen.setSerialNumber(BigInteger.valueOf(System.currentTimeMillis())); 
+        // certGen.setNotBefore(startDate); 
+        // certGen.setNotAfter(endDate); 
+        // certGen.setSubjectDN(subjectName); 
+        // certGen.setPublicKey(keyPair.getPublic()); 
+        // certGen.setSignatureAlgorithm("SHA256WithRSAEncryption"); 
+            
+        // // if we are actually generating a trusted cert, the action is a little different 
+        // if(trusted) 
+        // { 
+        //     KeyStore trustedKs = getTrustedKeyStore(); 
+            
+        //     PrivateKey caKey = getCaKey(trustedKs); 
+        //     X509Certificate caCert = getCaCert(trustedKs); 
+            
+        //     // set the issuer of the generated cert to the subject of the ca cert 
+        //     X500Principal caSubject = caCert.getSubjectX500Principal(); 
+        //     certGen.setIssuerDN(caSubject); 
+            
+        //     //add the required extensions for the new cert 
+        //     certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false, 
+        //     new AuthorityKeyIdentifierStructure(caCert)); 
+        //     certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, 
+        //     new SubjectKeyIdentifierStructure(keyPair.getPublic())); 
+            
+        //     cert = certGen.generate(caKey, "BC"); 
+            
+        //     //verify the cert 
+        //     cert.verify(caCert.getPublicKey()); 
+        // } 
+        // else 
+        // { 
+        //     certGen.setIssuerDN(subjectName); 
+        //     cert = certGen.generate(keyPair.getPrivate(), "BC"); 
+        // } 
+        // } 
+        // catch(CertificateException ce)  
+        // { 
+        // logger.error("CertificateException creating or validating X509 certificate for user: " + ce); 
+        // throw new AlfrescoRuntimeException(ce.getMessage()); 
+        // } 
+        // catch(Exception ex) 
+        // { 
+        // logger.error("Unknown exception creating or validating X509 certificate for user : " + ex); 
+        // ex.printStackTrace(); 
+        // } 
+        
+        // return cert; 
+        return null;
+    }
+    private Certificate[] getCertificateChain(KeyPair pair) { //, NodeRef person) {
+        // Log.d(TAG, "XAVI ini getCertificateChain");
+        
+        // boolean generateTrusted = Boolean.parseBoolean(config.getProperty(RepositoryManagedSignatureProviderFactory.ENABLE_TRUSTED_CERTS)); 
+        // Certificate[] certChain;
+        // Log.d(TAG, "XAVI 1 getCertificateChain");
+        
+        // // generate the user certificate 
+        // Certificate cert = generateCertificate(pair, null, generateTrusted);
+        // Log.d(TAG, "XAVI 2 getCertificateChain");
+        
+        // // create a trusted cert chain if enabled
+        // if(generateTrusted)
+        // {
+        //     Log.d(TAG, "XAVI 3 getCertificateChain");
+        //     // get the ca cert used to sign and create cert chain
+        //     KeyStore trustedKs = getTrustedKeyStore();
+        //     Certificate[] caChain = getCaCertChain(trustedKs);
+        //     certChain = new Certificate[caChain.length + 1];
+        //     certChain[0] = cert;
+        //     for(int i = 0; i < caChain.length; i++)
+        //     {
+        //         certChain[i+1] = caChain[i];
+        //     }
+        // }
+        // else
+        // {
+        //     Log.d(TAG, "XAVI 4 getCertificateChain");
+        //     certChain = new Certificate[1];
+        //     certChain[0] = cert;
+        // }
+        // Log.d(TAG, "XAVI end getCertificateChain()");
+        
+        // return certChain; 
+
+        // X509V3CertificateGenerator certGenerator = new X509V3CertificateGenerator();
+        // certGenerator.setSerialNumber(BigInteger.valueOf(Math.abs(new Random().nextLong())));
+        // certGenerator.setIssuerDN(new X509Name(dn));
+        // certGenerator.setSubjectDN(new X509Name(dn));
+        // certGenerator.setIssuerDN(new X509Name(issuer)); // Set issuer!
+        // certGenerator.setNotBefore(Calendar.getInstance().getTime());
+        // certGenerator.setNotAfter(Calendar.getInstance().getTime());
+        // certGenerator.setPublicKey(publicKey);
+        // certGenerator.setSignatureAlgorithm("SHA1WithRSAEncryption");
+        // X509Certificate certificate = (X509Certificate) certGenerator.generate(privateKey, "BC");
+        return null; //certificate;
+    }
+    public void addKeyPair(KeyPair keypair) throws NoSuchAlgorithmException, KeyStoreException, CertificateException {
+        Log.d(TAG, "XAVI init addKeyPair()");
+        
+        int nBefore = keyStore.size();
+        
+        // Create new key if needed
+        if (keyStore.containsAlias(mobileKeyAlias)) {
+            keyStore.deleteEntry(mobileKeyAlias);
+            Log.d(TAG, "XAVI key pair existed and deleted");
+        }
+        
+        //PrivateKey priv = keypair.getPrivate();
+        //PublicKey pub = pair.getPublic();
+        
+        //Certificate[] certChain = getCertificateChain(pair, person);
+        //keyStore.setKeyEntry(mobileKeyAlias, priv, password.toCharArray(), certChain); 
+        
+        // Calendar start = Calendar.getInstance();
+        // Calendar end = Calendar.getInstance();
+        // end.add(Calendar.YEAR, 25);
+            
+            // Log.d(TAG, "XAVI Generating keys");
+            // KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(this)
+            //     .setAlias(alias)
+            //     .setSubject(new X500Principal("CN=Sample Name, O=Android Authority"))
+            //     .setSerialNumber(BigInteger.ONE)
+            //     .setStartDate(start.getTime())
+            //     .setEndDate(end.getTime())
+            //     .build();
+            // KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
+            // generator.initialize(spec);
+
+            // KeyPair keyPair = generator.generateKeyPair();
+            // Log.d(TAG, "XAVI Generated keys");
+
+            // Create my secret key
+            // Log.d(TAG, "XAVI Creating secret key");
+            // KeyStore.ProtectionParameter protParam = new KeyStore.PasswordProtection(password.toCharArray());
+
+            // PrivateKey privKey = keypair.getPrivate();
+            // PublicKey pubKey = keypair.getPublic();
+            
+            // Log.d(TAG, "XAVI Creating Certificate");
+            // CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            // X509Certificate[] certChain = {
+            //     getCertificate("CN=mobile.pay-in.es, O=Payin")
+            // };
+            
+			// // generate a new X.509 certificate
+            // Log.d(TAG, "XAVI Settint entry");
+            // keyStore.setEntry(
+            //     "key2",
+            //     new KeyStore.PrivateKeyEntry(keypair.getPrivate(), certChain),
+            //     new android.security.keystore.KeyProtection.Builder(KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+            //         .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE) //ENCRYPTION_PADDING_RSA_PKCS1)
+            //         .build());
+            // Log.d(TAG, "XAVI END");
+                 
+            
+                 
+            // X509Certificate[] certChain = new X509Certificate[1];
+            // X500Name subjectName = new X500Name("CN=mobile.pay-in.es");
+            // Date startDate = new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000);
+            // // validity of 1 year
+            // Date endDate = new Date(System.currentTimeMillis() + 365L * 26 * 60 * 60 * 1000);
+            // X509v3CertificateBuilder certGen = new JcaX509v3CertificateBuilder(subjectName, BigInteger.ONE, startDate, endDate, subjectName, pubKey);
+            // JcaX509ExtensionUtils x509ExtUtils = new JcaX509ExtensionUtils();
+            // certGen.addExtension(X509Extension.subjectKeyIdentifier, false, (ASN1Encodable) x509ExtUtils.createSubjectKeyIdentifier(pubKey));
+            // certGen.addExtension(X509Extension.authorityKeyIdentifier, false, (ASN1Encodable) x509ExtUtils.createAuthorityKeyIdentifier(pubKey));
+            // certGen.addExtension(X509Extension.keyUsage, false, new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyCertSign));
+            // certGen.addExtension(X509Extension.extendedKeyUsage, false, new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth));
+			// // set subjectAltName to IP address and SIP URI
+            // certGen.addExtension(
+            //     X509Extension.subjectAlternativeName,
+            //     false,
+            //     new GeneralNames(
+            //         new GeneralName[] {
+            //             new GeneralName(GeneralName.iPAddress, ipAddress),
+            //             new GeneralName(GeneralName.uniformResourceIdentifier,
+            //                 ImsModule.IMS_USER_PROFILE.getPublicUri())
+            //         }));
+			// // set basicConstraints to CA
+            // certGen.addExtension(X509Extension.basicConstraints, false, new BasicConstraints(true));
+
+            // KeyStore.PrivateKeyEntry entry = new KeyStore.PrivateKeyEntry(key, certificate);
+            // keyStore.setEntry(mobileKeyAlias, entry, protParam);
+            // Log.d(TAG, "XAVI Created secret key");
+            
+
+    
+            // RSAKeyGenParameterSpec spec = //new KeyPairGeneratorSpec.Builder(
+            //     new RSAKeyGenParameterSpec(
+            //         2048,
+            //         RSAKeyGenParameterSpec.F4
+            //     //)
+            // );*/
+        Log.d(TAG, "XAVI end addKeyPair()");
+    }
+                                
+                                
+//                                 // cordova.getActivity().getApplicationContext())
+//                                 //     .setAlias(alias)
+//                                 //     .setSubject(new X500Principal("CN=mobile.pay-in.es, O=Android Authority"))
+//                                 //     .setSerialNumber(BigInteger.ONE)
+//                                 //     .setStartDate(start.getTime())
+//                                 //     .setEndDate(end.getTime())
+//                                 //     .build();
+// Log.d(TAG, "XAVI KeyPairGeneratorSpec.Builder");
+//                             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+// Log.d(TAG, "XAVI KeyPairGenerator.getInstance");
+//                             generator.initialize(spec);
+// Log.d(TAG, "XAVI generator.initialize");
+//                             KeyPair keyPair = generator.generateKeyPair();
+                            
+                            
+//         final RSAPrivateKey rsaPrivateKey = (RSAPrivateKey) keyPair.getPrivate();
+//         final RSAPublicKey rsaPublicKey = (RSAPublicKey) keyPair.getPublic();
+        
+        
+//         // String dn =  "CN="+cn+", OU="+ou+", O="+o+", L="+l+", ST="+st+", C="+c;
+//         X509V3CertificateGenerator certificateGenerator = new X509V3CertificateGenerator();
+//         certificateGenerator.setSubjectDN(new X509Principal("CN=mobile.pay-in.es, O=Android Authority"));  
+
+//         final java.security.cert.X509Certificate certificate = makeCertificate(
+//             rsaPrivateKey,
+//             rsaPublicKey,
+//             "mobile.pay-in.es", //cn,
+//             "Android Authority" //, //o,
+//             //ou,
+//             //l,
+//             //st,
+//             //c
+//         );
+//         final java.security.cert.X509Certificate[] certificateChain = { certificate };
+
+//         keyStore.setKeyEntry(alias, keyPair.getPrivate(), "Pa$$w0rd".toCharArray(), certificateChain);
+        
+        
+//                             store.setKeyEntry(alias, privKey, passwd, chain);
+// Log.d(TAG, "XAVI keyPair " + keyPair.toString());
+//                         }
+//                         int nAfter = keyStore.size();
+//                         Log.v(TAG, "XAVI Before = " + nBefore + " After = " + nAfter);
+
+//                         // Retrieve the keys
+//                         KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)keyStore.getEntry(alias, null);
+//                         RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
+//                         RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
+
+//                         Log.v(TAG, "XAVI private key = " + privateKey.toString());
+//                         Log.v(TAG, "XAVI public key = " + publicKey.toString());
+    
+// Log.d(TAG, "XAVI Created");
+//                         Enumeration<String> aliases = keyStore.aliases();
+//                         while(aliases.hasMoreElements()){
+//                             Log.d(TAG, "XAVI Alias:" + aliases.nextElement());
+//                         }
+                        
+//                         keyStore.store(
+//                             cordova.getActivity().getApplicationContext().openFileOutput("payin.keystore", Context.MODE_PRIVATE), 
+//                             "Pa$$w0rd".toCharArray()
+//                         );
+    
+    // FIN XAVI
+    
+	static byte[] encryptRSA(byte[] message)
+    {
+        byte[] res = null;
+        try{
+            /*if(kpg == null)
+            {
+                kpg = KeyPairGenerator.getInstance("RSA");
+                kpg.initialize(1024);
+                kp = kpg.genKeyPair();
+                publicKey = kp.getPublic();
+                privateKey = kp.getPrivate();
+            }*/
+            if(publicKey == null)
+            {
+                // Encrypt the string using the public key
+                /*Log.e(TAG, "Public Key null");
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");                
+                byte[] bytePublicKey = Util.hexStringToByteArray(PUBLIC_KEY_FILE);
+                EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(bytePublicKey);
+                publicKey = keyFactory.generatePublic(publicKeySpec);*/
+                Log.e(TAG, PUBLIC_KEY_FILE);
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
+                publicKey = (PublicKey) inputStream.readObject();
+            }
+            
+            if(cipher==null)
+                cipher = Cipher.getInstance("RSA");
+            //cipher.init(Cipher.ENCRYPT_MODE, (PublicKey)EigeHsmService.getPublicKey());
+            //publicKey = NfcPlugin.keyPair.getPublic();
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            res = cipher.doFinal(message);
+            Log.e(TAG, "EN "+Util.bytesToHex(res));
+            //String mensaje_original = new String(res); 
+        }
+        catch (Exception e) {
+            Log.e("HSMSERVICE","ERRORRRRRRR encrypt");
+        }
+        return res;
+    }
+    static byte[] decryptRSA(byte[] message)
+    {
+        byte[] res = null;
+        try{
+            /*if(kpg == null)
+            {
+                kpg = KeyPairGenerator.getInstance("RSA");
+                kpg.initialize(1024);
+                kp = kpg.genKeyPair();
+                publicKey = kp.getPublic();
+                privateKey = kp.getPrivate();
+            }*/
+            
+            if(privateKey == null)
+            {
+                // Decrypt the cipher text using the private key.
+                /*Log.e(TAG, "Private Key null");
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+                byte[] bytePrivateKey = Util.hexStringToByteArray(PRIVATE_KEY_FILE);                
+                EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(bytePrivateKey);
+                privateKey = keyFactory.generatePrivate(privateKeySpec);*/
+                Log.e(TAG, PRIVATE_KEY_FILE);
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
+                privateKey = (PrivateKey) inputStream.readObject();
+            }
+            
+            if(cipher==null)
+                cipher = Cipher.getInstance("RSA");
+            //cipher.init(Cipher.DECRYPT_MODE, (PrivateKey)EigeHsmService.getPrivateKey());
+            //privateKey = NfcPlugin.keyPair.getPrivate();
+            cipher.init(Cipher.DECRYPT_MODE,privateKey);
+            res = cipher.doFinal(message);
+            Log.e(TAG, "DEC "+Util.bytesToHex(res));
+            //String mensaje_original = new String(res); 
+        } catch (Exception e) {
+            Log.e("HSMSERVICE","ERRORRRRRRR Decrypt");
+        }
+        return res;
+    }
+
+    /*public static boolean existsAlias()
+    {
+        try{
+            
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+        
+            return keyStore.containsAlias(alias);
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }*/
+    
+    /*public static RSAPublicKey getPublicKey()
+    {
+        // existsAlias();
+        try{
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)keyStore.getEntry(alias, null);
+            RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
+            RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
+            return publicKey;
+        }catch(Exception ex)
+        {
+            return null;
+        }
+    }
+    
+    public static RSAPrivateKey getPrivateKey()
+    {
+        // existsAlias();
+        try{
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)keyStore.getEntry(alias, null);
+            RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
+            RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
+            return privateKey;
+        }catch(Exception ex)
+        {
+            return null;
+        }
+    }*/
+=======
+package com.payin.nfc;
+
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
+import android.security.KeyPairGeneratorSpec;
+import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import javax.security.auth.x500.X500Principal;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Calendar;
+
+import java.math.BigInteger;
+import java.security.*;
+import java.security.spec.*;
+import java.security.KeyStore.*;
+import java.security.KeyFactory;
+import java.security.Security;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.String;
+
+public class EigeHsmService {
+    
+    static final String TAG = "EigeHsmService";
+    static Cipher cipher;
+    /*static final String alias = "payin";
+    static KeyStore keyStore;
+    static KeyPairGenerator kpg;
+    static KeyPair kp;*/
+    static PrivateKey privateKey;
+    static PublicKey publicKey;
+
+    public static final String PUBLIC_KEY_FILE="localhost/assets/www/key/public.key";
+    public static final String PRIVATE_KEY_FILE="cdvfile://localhost/assets/www/key/private.key";
+
+	static byte[] encryptRSA(byte[] message)
+    {
+        byte[] res = null;
+        try{
+            /*if(kpg == null)
+            {
+                kpg = KeyPairGenerator.getInstance("RSA");
+                kpg.initialize(1024);
+                kp = kpg.genKeyPair();
+                publicKey = kp.getPublic();
+                privateKey = kp.getPrivate();
+            }*/
+            if(publicKey == null)
+            {
+                // Encrypt the string using the public key
+                /*Log.e(TAG, "Public Key null");
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");                
+                byte[] bytePublicKey = Util.hexStringToByteArray(PUBLIC_KEY_FILE);
+                EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(bytePublicKey);
+                publicKey = keyFactory.generatePublic(publicKeySpec);*/
+                Log.e(TAG, PUBLIC_KEY_FILE);
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(PUBLIC_KEY_FILE));
+                publicKey = (PublicKey) inputStream.readObject();
+            }
+            
+            if(cipher==null)
+                cipher = Cipher.getInstance("RSA");
+            //cipher.init(Cipher.ENCRYPT_MODE, (PublicKey)EigeHsmService.getPublicKey());
+            //publicKey = NfcPlugin.keyPair.getPublic();
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            res = cipher.doFinal(message);
+            Log.e(TAG, "EN "+Util.bytesToHex(res));
+            //String mensaje_original = new String(res); 
+        }
+        catch (Exception e) {
+            Log.e("HSMSERVICE","ERRORRRRRRR encrypt");
+        }
+        return res;
+    }
+    static byte[] decryptRSA(byte[] message)
+    {
+        byte[] res = null;
+        try{
+            /*if(kpg == null)
+            {
+                kpg = KeyPairGenerator.getInstance("RSA");
+                kpg.initialize(1024);
+                kp = kpg.genKeyPair();
+                publicKey = kp.getPublic();
+                privateKey = kp.getPrivate();
+            }*/
+            
+            if(privateKey == null)
+            {
+                // Decrypt the cipher text using the private key.
+                /*Log.e(TAG, "Private Key null");
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+                byte[] bytePrivateKey = Util.hexStringToByteArray(PRIVATE_KEY_FILE);                
+                EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(bytePrivateKey);
+                privateKey = keyFactory.generatePrivate(privateKeySpec);*/
+                Log.e(TAG, PRIVATE_KEY_FILE);
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
+                privateKey = (PrivateKey) inputStream.readObject();
+            }
+            
+            if(cipher==null)
+                cipher = Cipher.getInstance("RSA");
+            //cipher.init(Cipher.DECRYPT_MODE, (PrivateKey)EigeHsmService.getPrivateKey());
+            //privateKey = NfcPlugin.keyPair.getPrivate();
+            cipher.init(Cipher.DECRYPT_MODE,privateKey);
+            res = cipher.doFinal(message);
+            Log.e(TAG, "DEC "+Util.bytesToHex(res));
+            //String mensaje_original = new String(res); 
+        } catch (Exception e) {
+            Log.e("HSMSERVICE","ERRORRRRRRR Decrypt");
+        }
+        return res;
+    }
+
+    /*public static boolean existsAlias()
+    {
+        try{
+            
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+        
+            return keyStore.containsAlias(alias);
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }*/
+    
+    /*public static RSAPublicKey getPublicKey()
+    {
+        // existsAlias();
+        try{
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)keyStore.getEntry(alias, null);
+            RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
+            RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
+            return publicKey;
+        }catch(Exception ex)
+        {
+            return null;
+        }
+    }
+    
+    public static RSAPrivateKey getPrivateKey()
+    {
+        // existsAlias();
+        try{
+            if(keyStore!=null)
+                keyStore = KeyStore.getInstance("AndroidKeyStore");
+            keyStore.load(null);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)keyStore.getEntry(alias, null);
+            RSAPrivateKey privateKey = (RSAPrivateKey) privateKeyEntry.getPrivateKey();
+            RSAPublicKey publicKey = (RSAPublicKey) privateKeyEntry.getCertificate().getPublicKey();
+            return privateKey;
+        }catch(Exception ex)
+        {
+            return null;
+        }
+    }*/
+>>>>>>> f5281196aee24e5c6d65a3de9b32e5c9dcbb2487
+}

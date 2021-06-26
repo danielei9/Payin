@@ -1,0 +1,64 @@
+﻿@using PayIn.Application.Dto.Payments.Results.Shipment;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+
+@using (Html.xpList(
+	ShipmentFactory.DetailName,
+	ShipmentFactory.DetailApi,
+	"",
+	"resources.shipment.detail",
+	"{{arguments.name}}",
+	isPaginable: false,
+	isTitleActive: true,
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, ShipmentFactory.AddUsers("{{$stateParams.id}}"), XpIcons.Plus)
+	},
+	init:"scope.id=params.id"
+))
+{
+<div class="table-responsive">
+	<table class="table table-hover" ng-show="data.length">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th translate="resources.shipment.name">Name</th>
+				<th translate="resources.shipment.login">Login</th>
+				<th translate="resources.shipment.amount">Amount</th>
+				<th translate="resources.shipment.paymentDate">Payment Date</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.payed==true,'b-l b-5x b-danger':item.payed==false}">
+				<td class="icon-column">
+					<span data-ng-show="item.payed==false">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ShipmentFactory.DeleteTicket,
+							id: "{{item.id}}",							
+							arguments: "{\"name\":\"{{item.name}}\"}"
+							)
+					</span>
+				</td>
+				<td>@(Html.ColumnFor<ShipmentTicketGetAllResult>(x => x.Name))</td>
+				<td>@(Html.ColumnFor<ShipmentTicketGetAllResult>(x => x.Login))</td>
+				<td>@(Html.ColumnFor<ShipmentTicketGetAllResult>(x => x.Amount))</td>
+				<td><span data-ng-show="item.payed==true">@(Html.ColumnFor<ShipmentTicketGetAllResult>(x => x.Date))</span></td>				
+			</tr>
+		</tbody>
+	</table>
+</div>
+<footer class="panel-footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.shipment.paid">Assigned</p>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.shipment.notPaid">Unsuscribed</p>
+			</div>
+		</div>
+	</div>
+</footer>
+}

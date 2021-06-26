@@ -1,0 +1,69 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Calendario" >
+
+    <item android:id="@+id/itemAgenda"
+        android:title="@string/lista_items"
+        android:icon="@drawable/ic_view_list"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/itemCalendar"
+        android:title="@string/calendario"
+        android:icon="@drawable/ic_calendar"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/itemArrowLeft"
+        android:title="@string/previousDay"
+        android:icon="@drawable/ic_chevron_left"
+        android:visible="false"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/itemArrowRight"
+        android:title="@string/nextDay"
+        android:icon="@drawable/ic_chevron_right"
+        android:visible="false"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/itemToDo"
+        android:title="@string/toDo"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_calendar_clock" />
+
+    <item android:id="@+id/itemDone"
+        android:title="@string/done"
+        android:visible="false"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_calendar_check" />
+
+    <item android:id="@+id/itemCheck"
+        android:title="@string/manualCheck"
+        android:icon="@drawable/ic_checkbox"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/itemToday"
+        android:title="@string/goToToday"
+        android:icon="@drawable/ic_calendar_today"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/itemDayView"
+        android:title="@string/day"
+        android:icon="@drawable/ic_hourview"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/itemThreeDayView"
+        android:title="@string/threeDays"
+        android:icon="@drawable/ic_week"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/itemRefresh"
+        android:title="@string/refresh"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_refresh"
+        app:showAsAction="never"/>
+
+</menu>

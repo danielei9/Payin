@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ticket">Ticket</string>
+
+    <string name="concession">Empresa</string>
+    <string name="reference">Referencia</string>
+    <string name="amount">Importe</string>
+    <string name="concept">Concepto</string>
+
+    <string name="notification_paymentMedia_ok">Tarjeta de crédito vinculada con éxito</string>
+    <string name="notification_paymentMedia_error">Error en la vinculación de la tarjeta</string>
+    <string name="notification_payment_ok">Pago del ticket correcto</string>
+    <string name="notification_payment_error">Pago del ticket fallido</string>
+    <string name="notification_refund_ok">Devolución del pago correcta</string>
+    <string name="notification_refund_error">Devolución del pago fallida</string>
+
+    <string name="total_cards">TOTAL TARJETAS</string>
+
+    <string name="pin">PIN Pay[in] (4 dígitos)</string>
+    <string name="comfirm_pin">Confirmar PIN Pay[in]</string>
+    <string name="new_pin">Nuevo PIN</string>
+    <string name="old_pin">Antiguo PIN</string>
+    <string name="change_pin">Cambiar el PIN Pay[in]</string>
+
+    <string name="qr">QR</string>
+
+    <string name="step1">Paso 1&#47;2: Seleccionar tarjeta</string>
+    <string name="step2">Paso 2&#47;2: Confirmar PIN de Pay[in]</string>
+
+    <string name="userCreationInfo">Antes de poder crear su primera tarjeta necesitamos sus datos fiscales.
+        Además, va a definir un PIN númerico de 4 dígitos para verificar su identidad a la hora de realizar un pago.</string>
+
+    <string name="pay">Pagar</string>
+    <string name="payed">Pagado</string>
+
+    <string name="legal">Usted va a realizar el pago a Payment Innovation Network S.L. (B-98638927), ubicada en Marina Real Juan Carlos I, Muelle de la aduana s/n Edificio Lanzadera, 46024, Valencia, quién posteriormente realizará la gestión de la transacción con la empresa emisora.
+        Para más información o cualquier reclamación info@pay-in.es"</string>
+
+    <string name="PaymentMediaHash">**** **** **** ****</string>
+
+    <string name="varios">Varios</string>
+
+    <string name="worker">Le atendió: %1$s</string>
+</resources>

@@ -1,0 +1,70 @@
+﻿@using PayIn.Application.Dto.Payments.Results.PaymentConcessionPurse;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	PaymentConcessionPurseFactory.GetAllName,
+	PaymentConcessionPurseFactory.GetAllApi,
+	"",
+	"resources.paymentConcessionPurse.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	init: "scope.id=params.id",
+	actions: new ActionLink[] {
+		new ActionLink(ActionLink.ActionLinkType.Panel, PaymentConcessionPurseFactory.CreateName + "({id:{{$stateParams.id}}})", XpIcons.Plus)
+	}
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th translate="resources.paymentConcessionPurse.concession">Title</th>						
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state===1,'b-l b-5x b-danger':item.state===0 , 'b-l b-5x b-warning':item.state===2}">
+					<td class="icon-column">
+						<div ng-show="item.state === 2||item.state === 0">
+							@XpColumns.IconColumn(
+								XpIcons.Resend,
+								popupUrl: PaymentConcessionPurseFactory.ResendNotification,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{item.concession}}\"}"
+							)
+						</div>
+					</td>
+					<td class="icon-column">
+						<div data-ng-show="!item.isOwner && (item.state === 1 || item.state === 2)">
+							@XpColumns.IconColumn(
+								XpIcons.Trash,
+								popupUrl: PaymentConcessionPurseFactory.Delete,
+								id: "{{item.id}}",
+								arguments: "{\"name\":\"{{item.concession}}\"}"
+							)
+						</div>
+					</td>
+					<td>@(Html.ColumnFor<PaymentConcessionPurseGetAllResult>(x => x.Concession))</td>				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.accepted">Active</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.pending">Suspended</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.paymentUser.unsuscribed">Removed</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

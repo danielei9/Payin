@@ -1,0 +1,12 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPost(
+    AccessControlFactory.EntryReset,
+    AccessControlFactory.EntryResetApi,
+    "",
+    "resources.accessControl.reset"
+))
+{
+    <p translate="resources.accessControl.resetQuestion">Do you want to empty this enclosure?</p>
+}

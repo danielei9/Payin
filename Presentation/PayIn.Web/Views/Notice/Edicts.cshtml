@@ -1,0 +1,55 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    NoticeFactory.GetEdictsName,
+    NoticeFactory.GetEdictsApi,
+    "",
+    "resources.notice.retrieveEdicts",
+    isTitleActive: true,
+    initialSearch: true,
+    showFormButtons: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, NoticeFactory.CreateEdictName, XpIcons.Plus)
+    }
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th translate="resources.notice.start">Start</th>
+                    <th translate="resources.notice.name">Name</th>
+                    <th translate="resources.notice.concession">Company</th>
+                </tr>
+			</thead>
+			<tbody> 
+                <tr ng-repeat="item in data">
+                    <td class="icon-column">@XpColumns.IconColumn(XpIcons.Trash, popupUrl: NoticeFactory.Delete, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</td>
+                    <td class="icon-column">
+                        <div ng-if="item.isVisible">@XpColumns.IconColumn(XpIcons.Eye, popupUrl: NoticeFactory.Hide, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                        <div ng-if="!item.isVisible">@XpColumns.IconColumn(XpIcons.EyeSlash, popupUrl: NoticeFactory.Show, id: "{{item.id}}", arguments: "{\"id\":\"{{item.id}}\"}")</div>
+                    </td>
+                    <td class="icon-column">
+                        <div ng-if="item.visibility==0">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Shop'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==1">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Globe'> </i></a>
+                        </div>
+                        <div ng-if="item.visibility==2">
+                            <a data-ui-sref='@NoticeFactory.VisibilityName ({id:"{{item.id}}"})' data-xp-navigate><i class='@XpIcons.Group'> </i></a>
+                        </div>
+                    </td>
+                    <td>@(Html.ColumnFor<ApiNoticeGetEdictsResult>(x => x.Start, panelUrl: NoticeFactory.UpdateEdictName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<ApiNoticeGetEdictsResult>(x => x.Name, panelUrl: NoticeFactory.UpdateEdictName, id: "{{item.id}}"))</td>
+                    <td>@(Html.ColumnFor<ApiNoticeGetEdictsResult>(x => x.ConcessionName, panelUrl: NoticeFactory.UpdateEdictName, id: "{{item.id}}"))</td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+}

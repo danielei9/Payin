@@ -1,0 +1,35 @@
+﻿@using PayIn.Application.Dto.Bus.Arguments;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    StopFactory.UpdateLinkName,
+    StopFactory.UpdateLinkApi,
+    "",
+    "resources.bus.stop.updateLink" //,
+                                    //init: ""
+))
+{
+    <xp-get data-api="@StopFactory.GetLinkApi">
+        <div class="panel panel-default" style="margin:-15px 0 15px 0">
+            <div class="panel-heading font-bold" translate="resources.bus.stop.updateLink">Update link</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            @*<div data-ng-class="{'has-error':!form.time.$valid}" class="form-group col-md-6">
+                                <label for="time" class="control-label ng-scope" translate="resources.bus.stop.time_Seconds">Stop seconds</label>
+                                <div class="input-group date ng-scope" xp-duration="arguments.time" xp-step=1 xp-startview=0 xp-minview=0 xp-maxview=0>
+                                    <input data-ng-model="arguments.time" id="time" name="time" type="text" class="form-control ng-valid ng-touched ng-dirty" autocomplete="off" ng-disabled="">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                </div>
+                            </div>*@
+                            @(Html.ArgumentFor<BusApiStopUpdateLinkArguments>(x => x.Time_Seconds, width: 6))
+                            @(Html.ArgumentFor<BusApiStopUpdateLinkArguments>(x => x.Weight, width: 6))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xp-get>
+}

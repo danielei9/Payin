@@ -1,0 +1,57 @@
+<ion-view cache-view="false" view-title="Otros títulos" xp-panel xp-loading
+          xp-init="
+                   scope.temp.charges = params.charges; 
+                   scope.temp.operationType = 1;
+                   scope.temp.cardId = params.cardId;
+                   scope.temp.cardType = params.cardType;
+                   scope.temp.cardScript = params.cardScript"
+          >
+    <xp-post
+             api="mobile/ticket/v1/"
+             ng-controller="transportCardGetAllChargesController"
+             xp-init="scope.arguments.date = moment(Date()).format('YYYY-MM-DD HH:mm:ss');">
+        <ion-content class="background transportContent">
+            <div style="margin-top: 20%">
+
+                <div class="row">
+                    <div class="col col-5"></div>
+                    <div class="col col-90" style="background-color: rgba(255,255,255,0.15); border-radius: 5%; color: white;">
+                        <ul class="list">
+                            <li
+                                ng-repeat="ticket in temp.charges"
+                                style="color: white;">
+                                <div
+                                     class="row row-center"
+                                     ng-init="price=ticket.prices[0]"
+                                     ng-click="clickCharge(temp, ticket, price);" >
+                                    <div class="col col-80">
+                                        <div style="font-size: 20px;">{{ticket.ownerName}} - {{ticket.name}} <span ng-show="ticket.prices.lenght == 1">{{ticket.prices[0].zoneName}}</span></div>
+                                        <div style="font-size: 0.8em; color: #000000;">{{ticket.ownerCity}}</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===4&&ticket.prices.length===1">Sustitución de título</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===5&&price.changePrice">Nueva tarifa</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===6&&price.changePrice">Cambio de Zona</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===8">Tarifa obsoleta</div>
+
+                                    </div>
+                                    <div class="col col-20 text-right" ng-show="ticket.prices.length===1">
+                                        <div style="font-size: 20px;" ng-show="ticket.code < 1270 || ticket.code > 1278">{{price.price | number:2}}€</div>
+                                        <div style="font-size: 0.8em; color: #000000;" ng-show="price.changePrice">+ {{price.changePrice |number:2}}€</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===4&&ticket.prices.length===1">Elim. billetes</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===5&&price.changePrice">Act. billetes</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===6&&price.changePrice">Act. billetes</div>
+                                        <div style="font-size: 0.8em;" ng-show="price.rechargeType===8">Act. billetes</div>
+                                    </div>
+                                    <div class="col col-20 text-right" ng-show="ticket.prices.length>1" style="color: white;">
+                                        <a class="icon ion-chevron-right size-16"></a>
+                                    </div>
+                                    <hr class="background-color: white">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col col-5"></div>
+                </div>
+            </div>
+        </ion-content>
+    </xp-post>
+</ion-view>

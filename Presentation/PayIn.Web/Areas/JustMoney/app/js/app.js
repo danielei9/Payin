@@ -1,0 +1,1 @@
+﻿angular.module('justmoney', ['ui.router', 'xp.communication', 'xp.authentication']);

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{842D0CB7-9A8E-4710-9CDA-D356C1E93D48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Infrastructure.Bus.Db</RootNamespace>
+    <AssemblyName>PayIn.Infrastructure.Bus.Db</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'JustMoney|AnyCPU'">
+    <OutputPath>bin\JustMoney\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Carcaixent|AnyCPU'">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Finestrat|AnyCPU'">
+    <OutputPath>bin\Finestrat\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Faura|AnyCPU'">
+    <OutputPath>bin\Faura\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Vinaros|AnyCPU'">
+    <OutputPath>bin\Vinaros\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBusContext.cs" />
+    <Compile Include="BusContext.cs" />
+    <Compile Include="BusContextAdapter.cs" />
+    <Compile Include="BusRepository.cs" />
+    <Compile Include="Migrations\201903211208468_initial.cs" />
+    <Compile Include="Migrations\201903211208468_initial.Designer.cs">
+      <DependentUpon>201903211208468_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221109508_ReestructurandoTodoElBusModel.cs" />
+    <Compile Include="Migrations\201903221109508_ReestructurandoTodoElBusModel.Designer.cs">
+      <DependentUpon>201903221109508_ReestructurandoTodoElBusModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221154399_LinkNodeToRoute.cs" />
+    <Compile Include="Migrations\201903221154399_LinkNodeToRoute.Designer.cs">
+      <DependentUpon>201903221154399_LinkNodeToRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221504137_ChangeBusToVehicle.cs" />
+    <Compile Include="Migrations\201903221504137_ChangeBusToVehicle.Designer.cs">
+      <DependentUpon>201903221504137_ChangeBusToVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221512164_StopPositionAccuracy.cs" />
+    <Compile Include="Migrations\201903221512164_StopPositionAccuracy.Designer.cs">
+      <DependentUpon>201903221512164_StopPositionAccuracy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221607529_RouteChangeRelatedToLine.cs" />
+    <Compile Include="Migrations\201903221607529_RouteChangeRelatedToLine.Designer.cs">
+      <DependentUpon>201903221607529_RouteChangeRelatedToLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903222358285_ChangeCurrentSenseName.cs" />
+    <Compile Include="Migrations\201903222358285_ChangeCurrentSenseName.Designer.cs">
+      <DependentUpon>201903222358285_ChangeCurrentSenseName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903251656272_AddFinishAndDefaultNodeInformation.cs" />
+    <Compile Include="Migrations\201903251656272_AddFinishAndDefaultNodeInformation.Designer.cs">
+      <DependentUpon>201903251656272_AddFinishAndDefaultNodeInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252032496_ChangeFromNodeToStop.cs" />
+    <Compile Include="Migrations\201903252032496_ChangeFromNodeToStop.Designer.cs">
+      <DependentUpon>201903252032496_ChangeFromNodeToStop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252242221_SolucionandoError1.cs" />
+    <Compile Include="Migrations\201903252242221_SolucionandoError1.Designer.cs">
+      <DependentUpon>201903252242221_SolucionandoError1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252250365_SolucionandoError2.cs" />
+    <Compile Include="Migrations\201903252250365_SolucionandoError2.Designer.cs">
+      <DependentUpon>201903252250365_SolucionandoError2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271525209_AddNotesAndTimestampToRequest.cs" />
+    <Compile Include="Migrations\201903271525209_AddNotesAndTimestampToRequest.Designer.cs">
+      <DependentUpon>201903271525209_AddNotesAndTimestampToRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903281443563_AddUserNameAndVisitTimeStampsToRequestInBusRequest.cs" />
+    <Compile Include="Migrations\201903281443563_AddUserNameAndVisitTimeStampsToRequestInBusRequest.Designer.cs">
+      <DependentUpon>201903281443563_AddUserNameAndVisitTimeStampsToRequestInBusRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011055219_AnyadirHorarioAlBus.cs" />
+    <Compile Include="Migrations\201904011055219_AnyadirHorarioAlBus.Designer.cs">
+      <DependentUpon>201904011055219_AnyadirHorarioAlBus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021613538_AddGeofenceRadiousToStop.cs" />
+    <Compile Include="Migrations\201904021613538_AddGeofenceRadiousToStop.Designer.cs">
+      <DependentUpon>201904021613538_AddGeofenceRadiousToStop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904160855565_AddWaitingTimeInStop.cs" />
+    <Compile Include="Migrations\201904160855565_AddWaitingTimeInStop.Designer.cs">
+      <DependentUpon>201904160855565_AddWaitingTimeInStop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904180630151_StopOrder.cs" />
+    <Compile Include="Migrations\201904180630151_StopOrder.Designer.cs">
+      <DependentUpon>201904180630151_StopOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PayIn.Domain.Bus\PayIn.Domain.Bus.csproj">
+      <Project>{14972FB7-E923-4910-8F0B-68E205C66849}</Project>
+      <Name>PayIn.Domain.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Domain\Xp.Domain.csproj">
+      <Project>{5BBA38CE-8ABE-48EF-ADC9-AB257CF91F93}</Project>
+      <Name>Xp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xp.Infrastructure\Xp.Infrastructure.csproj">
+      <Project>{42AE21A4-FF0A-42A2-81BE-5A37FD2D0B2A}</Project>
+      <Name>Xp.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903211208468_initial.resx">
+      <DependentUpon>201903211208468_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221109508_ReestructurandoTodoElBusModel.resx">
+      <DependentUpon>201903221109508_ReestructurandoTodoElBusModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221154399_LinkNodeToRoute.resx">
+      <DependentUpon>201903221154399_LinkNodeToRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221504137_ChangeBusToVehicle.resx">
+      <DependentUpon>201903221504137_ChangeBusToVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221512164_StopPositionAccuracy.resx">
+      <DependentUpon>201903221512164_StopPositionAccuracy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221607529_RouteChangeRelatedToLine.resx">
+      <DependentUpon>201903221607529_RouteChangeRelatedToLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903222358285_ChangeCurrentSenseName.resx">
+      <DependentUpon>201903222358285_ChangeCurrentSenseName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251656272_AddFinishAndDefaultNodeInformation.resx">
+      <DependentUpon>201903251656272_AddFinishAndDefaultNodeInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252032496_ChangeFromNodeToStop.resx">
+      <DependentUpon>201903252032496_ChangeFromNodeToStop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252242221_SolucionandoError1.resx">
+      <DependentUpon>201903252242221_SolucionandoError1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252250365_SolucionandoError2.resx">
+      <DependentUpon>201903252250365_SolucionandoError2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271525209_AddNotesAndTimestampToRequest.resx">
+      <DependentUpon>201903271525209_AddNotesAndTimestampToRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281443563_AddUserNameAndVisitTimeStampsToRequestInBusRequest.resx">
+      <DependentUpon>201903281443563_AddUserNameAndVisitTimeStampsToRequestInBusRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011055219_AnyadirHorarioAlBus.resx">
+      <DependentUpon>201904011055219_AnyadirHorarioAlBus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021613538_AddGeofenceRadiousToStop.resx">
+      <DependentUpon>201904021613538_AddGeofenceRadiousToStop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904160855565_AddWaitingTimeInStop.resx">
+      <DependentUpon>201904160855565_AddWaitingTimeInStop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904180630151_StopOrder.resx">
+      <DependentUpon>201904180630151_StopOrder.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

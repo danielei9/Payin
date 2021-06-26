@@ -1,0 +1,42 @@
+﻿@using PayIn.Common.Security;
+@using PayIn.Web.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="~/Content/Login.css" rel="stylesheet" />
+    <link rel="shortcut icon" ng-href="/Images/{{features.favicon()}}" type="image/png">  
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login Pay[In] Platform</title>
+</head>
+<body>
+
+@using (Html.BeginForm("Login", "Shop", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="login-page">
+        <div class="formLogin">
+            <img src="{{features.logoUrl()}}" alt="{{app.name()}}" class="navbar-brand block m-t" style="margin:auto;margin-top:-10px; margin-right:60px;margin-bottom:15px; float:right;z-index:-1;width: 200px;" />
+            <div class="wrapper text-center">
+                <strong>@SecurityResources.LoginText</strong>
+                <br><br>
+            </div>
+            <form name="login" method="post" accept-charset="utf-8" >
+                <label for="usermail">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @id = "email", @autocomplete = "off", @class = "form-control no-border", @placeholder = @SecurityResources.Email })
+                <label for="password">Password</label>
+                    @Html.PasswordFor(m => m.Password, new { @id = "password", @autocomplete = "off", @class = "form-control no-border", @placeholder = @SecurityResources.Password })
+                <button type="submit">Login</button>
+                <p class="message">@SecurityResources.NotHaveAccountQuestion<a href="Register">@SecurityResources.Register</a></p>
+            </form>
+        </div>
+    </div>
+}
+</body>
+</html>

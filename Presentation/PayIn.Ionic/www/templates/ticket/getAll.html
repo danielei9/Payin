@@ -1,0 +1,35 @@
+<ion-view cache-view="false" view-title="Historial de Tickets" xp-panel xp-loading ng-controller="ticketGetAllController">
+        <ion-content class="background mainContent">
+          <div style="margin-top: 20%;">
+          <xp-list api="mobile/main/v1" xp-init="
+            scope.argumentSelect.concessionId = {items:[]};"
+            initial-search xp-page-size="8" ng-autofocus>
+                <img ng-show="arguments.tickets.length==0" src="img/bill1.png" style="opacity: 0.1; width: 80%; margin-left: 9%; margin-right: 9%; margin-top: 8%;">
+                <div ng-show="arguments.tickets.length==0" style="font-size: 1.9em; opacity: 0.5;text-align: center;line-height: 1.2;margin-top: 2%;">No tiene ningún ticket ahora mismo.</div>
+            <ion-refresher
+              pulling-text="Mantener para refrescar..."
+              on-refresh="search()">
+            </ion-refresher>            
+            <ul class="list">
+              <li class="item item-icon-right " ng-repeat="item in arguments.tickets" style="background-color:transparent !important; border-top:none !important; border-bottom:1.5px solid #FFF">
+                 <div class="row row-center" ng-click="tap(item.id)" ng-controller="ticketClickController">
+                    <div class="col col-10">
+                      <i class="material-icons size-30" style="color:#FFF">description</i>
+                    </div>
+                    <div class="col col-30 text-left">
+                      <div class="ticket-prize">{{item.payedAmount| number:2}}€</div>
+                      <div class="ticket-prizeAux" style="margin-top:0.5em !important;">de {{item.amount| number:2}}€</div>
+                    </div>
+                    <div class="col col-60" style="margin-left:1em;">
+                      <div class="ticket-list text-truncate">{{item.supplierName}}</div>
+                      <div class="ticket-listAux text-truncate" style="padding-top:0.5em !important;">{{item.title}}</div>
+                      <div class="ticket-listAux">{{item.date | xpDateTime}}</div>
+                    </div>
+                    <a class="icon ion-chevron-right size-18" style="color:#FFF"></a>
+                 </div>
+              </li>
+            </ul>
+          </xp-list>
+        </div>
+        </ion-content>
+</ion-view>

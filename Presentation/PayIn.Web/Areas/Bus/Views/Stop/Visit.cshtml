@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories.Bus;
+
+@using (Html.xpPopupPut(
+	StopFactory.VisitName,
+	StopFactory.VisitApi,
+	"",
+	"resources.bus.stop.visit",
+	arguments: "params"
+))
+{
+	<p translate="resources.bus.stop.visitQuestion" >Do you want to visit this stop?</p>
+}

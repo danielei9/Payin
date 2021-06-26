@@ -1,0 +1,10 @@
+android {
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 21
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}

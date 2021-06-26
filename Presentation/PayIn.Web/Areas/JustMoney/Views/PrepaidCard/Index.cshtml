@@ -1,0 +1,61 @@
+﻿@using PayIn.Application.Dto.JustMoney.Results;
+@using PayIn.Web.App.Factories.JustMoney;
+@using Xp.Common;
+
+@using (Html.xpList(
+	PrepaidCardFactory.GetAllName,
+	PrepaidCardFactory.GetAllApi,
+	"",
+	"resources.justMoney.prepaidCard.getAll",
+	isTitleActive: true,
+	actions:
+		new ActionLink[] {
+new ActionLink(
+	ActionLink.ActionLinkType.Panel,
+	PrepaidCardFactory.CreateName,
+	icon: XpIcons.Plus,
+	arguments:"{lines:{{data}}}"
+)
+		}
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.justMoney.prepaidCard.name">Name</th>
+					<th translate="resources.justMoney.prepaidCard.pan">PAN</th>
+					<th translate="resources.justMoney.prepaidCard.balance">Balance</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="item in data"
+					ng-class="{
+						'b-l b-5x b-info':item.status===0,
+						'b-l b-5x b-success':item.status===1,
+					}">
+					<td class="icon-column">
+						<div ng-if="item.status===0">@XpColumns.IconColumn(XpIcons.Lock, popupUrl: PrepaidCardFactory.ActivateName, id: "{{item.id}}")</div>
+					</td>
+					<td>@(Html.ColumnFor<PrepaidCardGetAllResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<PrepaidCardGetAllResult>(x => x.Pan))</td>
+					<td>@(Html.ColumnFor<PrepaidCardGetAllResult>(x => x.Balance)) €</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer class="panel-footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<div class="legendGraph bg-info" /><p style="float:left;" translate="resources.justMoney.prepaidCard.issued">Issued</p>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="legendGraph bg-success" /><p style="float:left;" translate="resources.justMoney.prepaidCard.activated">Activated</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+}

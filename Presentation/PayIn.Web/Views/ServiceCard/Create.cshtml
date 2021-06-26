@@ -1,0 +1,30 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Common.Security;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	ServiceCardFactory.CreateName,
+	ServiceCardFactory.CreateApi,
+	"",
+	"resources.serviceCard.create"
+))
+{
+	<div class="spinnerContainer" ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>
+
+	<div class="panel panel-default" style="margin-top:-15px">
+		<div class="panel-body">
+			@(Html.SelectFor<ServiceCardCreateArguments>(x => x.ServiceCardBatchId, "systemCardBatchName", ServiceCardBatchFactory.RetrieveSelectorApi))
+			@(Html.ArgumentFor<ServiceCardCreateArguments>(x => x.UidFormat))
+			<div class="form-group">
+				<div class="col-md-6" style="display: table; width: 100%;">
+					<label for="titlePosition" class="control-label ng-scope" translate="resources.serviceCard.uids">ServiceCardBatch</label>
+					<textarea rows="20" style="width:100%; overflow:scroll; font-family: Consolas, monaco, monospace;" ng-model="arguments.uids" spellcheck="false" data-gramm="false" autocorrect="off" autocapitalize="off"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>	
+}
+

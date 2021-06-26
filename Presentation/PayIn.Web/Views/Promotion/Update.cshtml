@@ -1,0 +1,127 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.Promotion;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common.Resources;
+@using Xp.Common;
+@using (Html.xpPut(
+		PromotionFactory.Update,
+		PromotionFactory.UpdateApi,
+		"",
+		"resources.promotion.update",
+		init: "scope.arguments.promoConditions=[];scope.arguments.promoActions=[];scope.arguments.promoPrices=[]"
+	))
+	{
+ 	<xp-get data-api="@PromotionFactory.UpdateApi">
+		<div data-ng-controller="PromotionController" class="col-md-12">
+			<div class="row">
+				@(Html.ArgumentFor<PromotionUpdateArguments>(x => x.Name, focus: true, disabled: "!arguments.isOwner"))
+			</div>
+			<div class="row">
+				@(Html.ArgumentFor<PromotionUpdateArguments>(x => x.StartDate, width: 6, disabled:"!arguments.isOwner"))
+				@(Html.ArgumentFor<PromotionUpdateArguments>(x => x.EndDate, width: 6,disabled: "!arguments.isOwner"))
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="name" class="control-label ng-scope" translate="resources.promotion.concession">Nombre</label>
+					<input id="name" name="name" type="custom" class="form-control  ng-pristine ng-valid ng-valid-required ng-touched" ng-model="arguments.concessionName" disabled>
+				</div>
+			</div>
+			<div class="row">
+				@(Html.ArgumentFor<PromotionUpdateArguments>(x => x.PromoActions, width: 6, disabled: "!arguments.isOwner"))
+			</div>
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+			<div class="row">
+				@(Html.SelectFor<PromotionUpdateArguments>(x => x.Title, "TitleName", TransportTitleFactory.RetrieveSelectorTitleApi, width: 12, disabled: "!arguments.isOwner", buttonAdd:true, functionButtonAdd: "add6(arguments.title,arguments.TitleName)"))			
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-hover" data-ng-show="arguments.titlesList.length>0">
+						<thead>
+							<tr>
+								<th translate="resources.promotion.titles">Title</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in arguments.titlesList">
+								<td>{{item.title}} {{item.zone}}({{item.price}}€)</td>
+								<td class="icon-column" ng-show="arguments.isOwner">
+									<a data-ng-click="removeTitle($index)"><i class="@XpIcons.Trash"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="line line-dashed b-b line-lg pull-in"></div>
+			<div class="row">
+				<div class="col-md-12" >
+					<span >Nº máximo de códigos por</span>
+					<select name="account" class="form-control m-b" style="width:15% !important; margin-left:1em; display:inline !important" data-ng-model="promoCondition.condition" data-ng-init="promoCondition.condition=0" ng-show="arguments.isOwner" ng-disabled="!arguments.isOwner" >
+						<option selected disabled value="-1">== Condición ==</option>
+						<option value="0">DNI</option>
+						<option value="1">Persona</option>
+						<option value="2">Dispositivo</option>
+						<option value="3">Tarjeta</option>
+						<option value="4">Recarga</option>
+					</select>
+					<span>: </span>
+					<input data-ng-model="promoCondition.quantity" style="margin-left:1em" ng-disabled="!arguments.isOwner"/>
+					<a data-ng-click="add3(promoCondition)" ><i class="@XpIcons.Plus" ng-show="arguments.isOwner"></i></a>
+					<div class="col-md-12">
+						<table class="table table-hover" data-ng-show="arguments.promoConditions.length>0">
+							<thead>
+								<tr>
+									<th translate="resources.promotion.quantity">Name</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in arguments.promoConditions">
+									<td>
+										<span>Nº máximo de códigos por</span>
+										<span data-ng-show="item.condition==0"> DNI : </span>
+										<span data-ng-show="item.condition==1"> persona : </span>
+										<span data-ng-show="item.condition==2"> dispositivo : </span>
+										<span data-ng-show="item.condition==3"> tarjeta : </span>
+										<span data-ng-show="item.condition==4"> recarga : </span>
+										{{item.type | promoConditionTypeName}} {{item.quantity}}
+									</td>
+									<td class="icon-column" ng-show="arguments.isOwner">
+										<a data-ng-click="removeCondition($index)"><i class="@XpIcons.Trash"></i></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top:3em">
+				@*@(Html.ArgumentFor<PromotionCreateArguments>(x => x.PromoLaunchers, width: 12))*@
+				<div class="radio-inline">
+					<label class="i-checks">
+						<input type="radio" name="PromoLaunchers" value="0" ng-model="arguments.promoLaunchers" ng-disabled="!arguments.isOwner">
+						<i></i>
+						Solo válido para la primera recarga
+					</label>
+				</div>
+				<div class="radio-inline">
+					<label class="i-checks">
+						<input type="radio" name="PromoLaunchers" value="2" ng-model="arguments.promoLaunchers" ng-disabled="!arguments.isOwner">
+						<i></i>
+						Recarga instantánea
+					</label>
+				</div>
+				<div class="radio-inline">
+					<label class="i-checks">
+						<input type="radio" name="PromoLaunchers" value="-1" ng-model="arguments.promoLaunchers" ng-disabled="!arguments.isOwner">
+						<i></i>
+						Recarga normal
+					</label>
+				</div>
+			</div>
+		</div>
+	</xp-get>
+}
+
+

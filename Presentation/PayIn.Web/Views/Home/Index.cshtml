@@ -1,0 +1,47 @@
+﻿@using PayIn.Domain.Security;
+@using PayIn.Common.Resources;
+
+@{
+	XpHtmlHelpersExtension.SetXpHelpers(typeof(ASP.XpHelpers));
+	XpArgumentsExtension.SetXpArguments(typeof(ASP.XpArguments));
+	XpColumnsExtension.SetXpColumns(typeof(ASP.XpColumns));
+}
+<script type="text/javascript" defer="defer">
+    @Html.Raw(ViewBag.AccessToken)
+	@Html.Raw(ViewBag.RefreshToken)
+
+	@Html.Raw(ViewBag.UserName)
+	@Html.Raw(ViewBag.Roles)
+
+	@Html.Raw(ViewBag.ClientId)
+	@Html.Raw(ViewBag.Error)
+		
+	var roles = window.sessionStorage.getItem("roles");
+	@* Esto se usaba porqeu los falleres eran redirigios a la web de FACCA
+	if (
+		@(ViewBag.CanAccessUsers != true ? 1 : 0) &&
+		(roles.indexOf("@AccountRoles.Superadministrator") < 0) &&
+		(roles.indexOf("@AccountRoles.PaymentWorker") < 0) &&
+		(roles.indexOf("@AccountRoles.CommercePayment") < 0) &&
+		(roles.indexOf("@AccountRoles.Commerce") < 0)
+	) {
+		window.location.href = "http://facca.pay-in.es";
+	}*@
+</script>
+<!-- content -->
+<div class="app-content">
+	<div ui-butterbar></div>
+	<a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside"></a>
+
+	@*<iframe frameborder="0" width="100%" style="height: 80vh; display: none;" name="bankFrame" id="bankFrame" onload="iframeLoaded()"></iframe>*@
+	<iframe frameborder="0" width="100%" style="height: 80vh; display: none;" name="bankFrame" id="bankFrame"></iframe>
+	<form style="display:none" name="formPost" id="formPost" target="bankFrame"></form>
+	<!-- HOMO -->
+	<!-- DEBUG -->
+	@*<form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST"></form>*@
+	<!-- REAL -->
+	<!--<form style="display:none" name="formPost" id="formPost" target="bankFrame" action="https://sis.redsys.es/sis/realizarPago" method="post"></form>-->
+
+	<div class="app-content-body fade-in-up" style="height:100%;" ui-view id="uiView"></div>
+</div>
+<!-- /content -->

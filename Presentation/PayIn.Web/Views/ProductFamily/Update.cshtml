@@ -1,0 +1,37 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+				ProductFamilyFactory.UpdateName,
+				ProductFamilyFactory.UrlApi,
+				"",
+				"resources.productFamily.update",
+				init: "scope.arguments.familyName = params.familyName;"
+			))
+{
+	<xp-get data-api="@ProductFamilyFactory.UpdateApi">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="row">
+						@(Html.ArgumentFor<ProductFamilyUpdatePhotoArguments>(x => x.PhotoUrl, fieldUrl: @ProductFamilyFactory.UpdateImageCropName))	
+					</div>
+				</div>
+				<div class="col-md-9">
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductFamilyUpdateArguments>(x => x.IsVisible, width:2))
+                        @(Html.SelectFor<ProductFamilyUpdateArguments>(x => x.ParentId, "familyName", focus: true, api: ProductFamilyFactory.RetrieveSelectorApi, arguments: "{\"id\":\"{{id}}\"}", width:5))
+                        @(Html.ArgumentFor<ProductFamilyUpdateArguments>(x => x.Code, width:5))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductFamilyUpdateArguments>(x => x.Name))
+                    </div>
+                    <div class="row">
+                        @(Html.ArgumentFor<ProductFamilyUpdateArguments>(x => x.Description))
+                    </div>
+                </div>
+			</div>
+		</div>
+	</xp-get>
+}

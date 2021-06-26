@@ -1,0 +1,61 @@
+﻿@using PayIn.Application.Dto.Transport.Results.TransportCardSupport;
+@using PayIn.Application.Dto.Transport.Arguments.TransportCardSupport;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using (Html.xpList(
+	TransportCardSupportFactory.GetAllName,
+	TransportCardSupportFactory.GetAllApi,
+	"",
+	"resources.transportCardSupport.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	initialSearch: false,
+	addPanelUrl: TransportCardSupportFactory.CreateName,
+	showSpinner: true
+))
+{
+<div class="table-responsive" data-ng-controller="TransportCardSupportGetAllController">
+	<table class="table table-hover" ng-show="data.length>1||arguments.ownerId">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th translate="resources.transportCardSupport.name">Name</th>
+				<th translate="resources.transportCardSupport.ownerCode">Owner Code</th>
+				<th translate="resources.transportCardSupport.type">Type</th>
+				<th translate="resources.transportCardSupport.subType">Sub Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+				<td ng-show="item.state === 0">&nbsp;</td>
+				<td class="icon-column" ng-show="item.state === 1">
+					@XpColumns.IconColumn(
+	 XpIcons.Trash,
+	 popupUrl: TransportCardSupportFactory.Delete,
+	 id: "{{item.id}}",
+	 arguments: "{\"name\":\"{{item.name}}\"}"
+	 )
+				</td>
+				<td>@(Html.ColumnFor<TransportCardSupportGetAllResult>(x => x.Name, panelUrl: TransportCardSupportFactory.UpdateName, id: "{{item.id}}"))</td>
+				<td>@(Html.ColumnFor<TransportCardSupportGetAllResult>(x => x.OwnerCode, panelUrl: TransportCardSupportFactory.UpdateName, id: "{{item.id}}"))</td>
+				<td>@(Html.ColumnFor<TransportCardSupportGetAllResult>(x => x.Type, panelUrl: TransportCardSupportFactory.UpdateName, id: "{{item.id}}"))</td>
+				<td>@(Html.ColumnFor<TransportCardSupportGetAllResult>(x => x.SubType, panelUrl: TransportCardSupportFactory.UpdateName, id: "{{item.id}}"))</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<footer class="panel-footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.active">Paid</p>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.transportSystem.deleted">Cancelled</p>
+			</div>
+		</div>
+	</div>
+</footer>
+}

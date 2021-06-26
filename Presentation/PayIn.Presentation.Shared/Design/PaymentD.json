@@ -1,0 +1,25 @@
+﻿{
+	"Arguments":
+	{
+		"SupplierId": "1",
+		"SupplierName": "Bar APTC",
+		"Amount": "9.52",
+		"Currency": "EUR",
+		"Reference": "Ticket001",
+		"Title": "Desayuno",
+		"Date": "/Date(1224043200000)/",
+		"ServiceType": 1
+	},
+	"PaymentMedias" : [
+		{
+			"Title" : "Personal",
+			"Subtitle" : "Visa",
+			"Other" :  ""
+		},
+		{
+			"Title" : "Trabajo",
+			"Subtitle" : "MasterCard",
+			"Other" :  ""
+		}
+	]
+}

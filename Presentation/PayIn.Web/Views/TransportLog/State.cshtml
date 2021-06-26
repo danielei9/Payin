@@ -1,0 +1,38 @@
+﻿@using PayIn.Application.Dto.Payments.Results.TransportLog;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Common;
+@using PayIn.Domain.Security;
+
+@using (Html.xpPopupShow(
+	"",
+	"",
+	"resources.transportLog.state",
+	showCancellButton: true
+))
+{
+<xp-get data-api="@TransportLogFactory.StateApi">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th translate="resources.transportLog.block">Sector - Bloque</th>
+				<th translate="resources.transportLog.previous">Anterior</th>
+				<th translate="resources.transportLog.now">Actual</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Sector 0 - Bloque 1</td>
+				<td>FFFFFF</td>
+				<td>FFFFFF</td>				
+		</tr>
+		<tr>
+			<td><b>Sector 0 - Bloque 2</b></td>
+			<td><b>FFFFFF</b></td>
+			<td> <b>000000</b></td>		
+		</tr>
+	</tbody>
+</table>
+</xp-get>
+}

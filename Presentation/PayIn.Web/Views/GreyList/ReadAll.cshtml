@@ -1,0 +1,25 @@
+﻿{
+@using PayIn.Application.Dto.Transport.Arguments.GreyList;
+@using Xp.Common;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using (Html.xpPost(
+	GreyListFactory.ReadAllName,
+	GreyListFactory.ReadAllApi,
+	"",
+	"resources.transportGreyList.readAll"
+))
+{	<tabset justified="true" class="tab-container" style="margin-top:-1.2em !important;">	 
+	 	<tab heading="Lectura" id="lectura">
+	 		<div data-ng-init="arguments.id = $stateParams.id">	
+				<span style="margin-left:0.5em;" translate="resources.transportLog.infoCard">  Tarjeta con UID </span>{{arguments.id}}
+				@(Html.ArgumentFor<GreyListReadAllArguments>(x => x.ReadAllCard))		
+	 		</div>	 		
+	 	</tab>	
+	</tabset>		
+	<style>
+		.tab-content{
+			border:none !important;
+		}
+	</style>
+}

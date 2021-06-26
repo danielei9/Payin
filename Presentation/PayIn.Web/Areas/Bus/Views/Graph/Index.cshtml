@@ -1,0 +1,33 @@
+﻿@using PayIn.Application.Dto.Bus.Results;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpList(
+	GraphFactory.GetAllName,
+	GraphFactory.GetAllApi,
+	"",
+	"resources.bus.graph.getAll",
+	isTitleActive: true
+))
+{
+	<xp-graph
+		style="height: 500px;"
+		xp-nodes="nodes"
+		xp-links="links"
+	>
+	</xp-graph>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.bus.graph.id">Id</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<BusGraphGetAllResult>(x => x.Id))</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

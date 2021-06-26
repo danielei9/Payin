@@ -1,0 +1,61 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpPopupPost(
+    EntranceTypeFactory.GetSellableName,
+    TicketFactory.SellEntrancesApi,
+    "",
+    "resources.ticket.sell",
+    init:
+        "scope.arguments={};" +
+        "scope.arguments.cardId=params.cardId;" +
+        "scope.arguments.entranceTypes=[];"
+//"scope.arguments.uid=params.uid;" +
+//"scope.arguments.paymentConcessionId=params.paymentConcessionId;" +
+//"scope.arguments.lines = scope.data;"
+))
+{
+    <xp-list data-api="@EntranceTypeFactory.GetSellableApi" data-initial-search xp-success="scope.arguments.entranceTypes=data.data;">
+        <div class="panel panel-default">
+            <div id="panel-body" class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="icon-column">&nbsp;</th>
+                                <th translate="resources.entranceType.event">Event</th>
+                                <th translate="resources.entranceType.name">Name</th>
+                                <th translate="resources.entranceType.price">Price</th>
+                                <th translate="resources.entranceType.extraPrice">Extra price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data" ng-click="item.selected = !item.selected" ng-class="{'selectedrow':item.selected, 'b-l b-5x b-danger':item.checkInClosed}">
+                                <td ng-show="item.selected" class="icon-column" style="text-align: right;">
+                                    @XpColumns.IconColumn(XpIcons.Check)
+                                </td>
+                                <td ng-show="!item.selected" class="icon-column" style="text-align: right;">
+                                    @XpColumns.IconColumn(XpIcons.Unchecked)
+                                </td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetSellableResult>(x => x.EventName))</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetSellableResult>(x => x.Name))</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetSellableResult>(x => x.Price))€</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetSellableResult>(x => x.ExtraPrice))€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <div style="background-color:#F05050;" class="legendGraph" /><p style="float:left;" translate="resources.entranceType.checkInClosed">Checkin closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </xp-list>
+}

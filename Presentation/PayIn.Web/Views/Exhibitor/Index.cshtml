@@ -1,0 +1,62 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+@using (Html.xpList(
+		ExhibitorFactory.GetAllName,
+		ExhibitorFactory.GetAllApi,
+		"",
+		"resources.exhibitor.retrieveAll",
+		"{{$stateParams.eventName}}",
+		init: "scope.arguments.eventId=params.id; /*scope.arguments.concession=params.concession;*/",
+		isTitleActive: true,
+		showFormButtons: true,
+		actions: new ActionLink[] {
+						new ActionLink(ActionLink.ActionLinkType.Panel, ExhibitorFactory.Create("{{arguments.eventId}}") , XpIcons.Plus)
+		},
+		initialSearch: true
+))
+{
+
+    <div class="table-responsive">
+        <table class="table table-hover" ng-show="data.length">
+            <thead>
+                <tr>
+                    <th> &nbsp;</th>
+                    <th> &nbsp;</th>
+                    <th translate="resources.exhibitor.name">Name</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data"ng-class="{'b-l b-5x b-success': item.state===1, 'b-l b-5x b-warning': item.state===2}">
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: ExhibitorFactory.Delete,
+                            id: "{{item.id}}",
+                            arguments: "{\"name\":\"{{item.name}}\"}"
+                        )
+                    </td>
+                    <td class="icon-column">
+                        <div ng-if="item.state===1">@XpColumns.IconColumn(XpIcons.Pause, popupUrl: ExhibitorFactory.SuspendName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</div>
+                        <div ng-if="item.state===2">@XpColumns.IconColumn(XpIcons.Play, popupUrl: ExhibitorFactory.UnsuspendName, id: "{{item.id}}", arguments: "{\"name\":\"{{item.name}}\"}")</div>
+                    </td>
+                    <td>@(Html.ColumnFor<ExhibitorGetAllResult>(x => x.Name, panelUrl: ExhibitorFactory.UpdateName, id: "{{item.id}}", arguments: "{\"concessionName\":\"{{item.concessionName}}\"}"))</td>                    
+            </tr>
+        </tbody>
+    </table>
+        <footer class="panel-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#27C24C;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.exhibitor.stateActive">Active</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div style="background-color:#FAD733;" class="legend-graph-color" />
+                        <p style="float:left;" translate="resources.exhibitor.stateSuspended">Suspended</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</div>
+}

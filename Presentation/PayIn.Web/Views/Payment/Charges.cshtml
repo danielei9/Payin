@@ -1,0 +1,64 @@
+﻿@using PayIn.Application.Dto.Payments.Results;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	PaymentFactory.GetChargesName,
+	PaymentFactory.GetChargesApi,
+	"",
+	//PaymentResources.Charges,
+	"resources.payment.charges",
+	isTitleActive: true,
+	init: "scope.arguments.since='" + DateTime.Now.ToString("yyyy-MM-dd") + "';" + "scope.arguments.until='" + DateTime.Now.ToString("yyyy-MM-dd") + "';",
+	initialSearch: false
+))
+{
+	<div class="table-responsive" data-ng-controller="PaymentGetChargesController">
+			<table class="table table-hover" ng-show="data.length">
+				<thead>
+					<tr>
+						<th translate="resources.payment.date" class="datetime-column">Date</th>
+						<th translate="resources.payment.id">Id</th>
+						<th translate="resources.payment.name">Name</th>
+						<th translate="resources.payment.amount">Amount</th>
+						<th translate="resources.payment.observations">Observations</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="item in data" data-ng-class="{'b-l b-5x b-success': item.state === 1,'b-l b-5x b-warning': item.state === 4}">
+						<td>@(Html.ColumnFor<PaymentGetChargesResult>(x => x.Date, panelUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+						<td>@(Html.ColumnFor<PaymentGetChargesResult>(x => x.Id, panelUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+						<td>@(Html.ColumnFor<PaymentGetChargesResult>(x => x.TaxName, panelUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))</td>
+						<td>
+							@(Html.ColumnFor<PaymentGetChargesResult>(x => x.Amount, panelUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))€ /
+							@(Html.ColumnFor<PaymentGetChargesResult>(x => x.TicketAmount, panelUrl: TicketFactory.DetailsName, id: "{{item.ticketId}}"))€
+						</td>
+						<td ng-show="item.refundFromId == null && item.refundToId == null">&nbsp;</td>
+						<td ng-show="item.refundToId != null" translate="resources.payment.returned">Returned {{item.refundToId}} ({{item.refundToDate| xpDateTime}})</td>
+						<td ng-show="item.refundFromId != null" translate="resources.payment.return">Return {{item.refundFromId}} ({{item.refundFromDate| xpDateTime}})</td>
+						<td class="icon-column" ng-show="item.state == 1 && item.refundToDate == null">
+							@XpColumns.IconColumn(
+								XpIcons.Back,
+								popupUrl: PaymentFactory.RefundName,
+								id: "{{item.id}}",
+								arguments: "{\"id\":\"{{item.id}}\"}"
+							)
+						</td>
+						<td ng-show="item.state != 1 || item.refundToDate != null">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			<footer class="panel-footer">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<div style="background-color:#27C24C;" class="legendGraph" /><p style="float:left;" translate="resources.payment.charge">Payment</p>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div style="background-color:#FAD733;" class="legendGraph" /><p style="float:left;" translate="resources.payment.refund">Refund</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+}

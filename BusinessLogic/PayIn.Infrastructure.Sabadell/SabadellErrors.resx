@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MSG0000" xml:space="preserve">
+    <value>El sistema está ocupado, inténtelo más tarde</value>
+  </data>
+  <data name="MSG0001" xml:space="preserve">
+    <value>Número de pedido repetido</value>
+  </data>
+  <data name="MSG0002" xml:space="preserve">
+    <value>El Bin de la tarjeta no está dado de alta en FINANET</value>
+  </data>
+  <data name="MSG0003" xml:space="preserve">
+    <value>El sistema está arrancando, inténtelo en unos momentos</value>
+  </data>
+  <data name="MSG0004" xml:space="preserve">
+    <value>Error de auntenticación</value>
+  </data>
+  <data name="MSG0005" xml:space="preserve">
+    <value>No existe método de pago válido para su tarjeta</value>
+  </data>
+  <data name="MSG0006" xml:space="preserve">
+    <value>Tarjeta ajena al servicio</value>
+  </data>
+  <data name="MSG0007" xml:space="preserve">
+    <value>Faltan datos, por favor compruebe que su navegador acepta cookies</value>
+  </data>
+  <data name="MSG0008" xml:space="preserve">
+    <value>Error en datos enviado. Contacte con su comercio</value>
+  </data>
+  <data name="SIS0010" xml:space="preserve">
+    <value>Falta el campo  Ds_Merchant_Terminal</value>
+  </data>
+  <data name="SIS0011" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_Terminal</value>
+  </data>
+  <data name="SIS0014" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_Order</value>
+  </data>
+  <data name="SIS0015" xml:space="preserve">
+    <value>Falta el campo Ds_Merchant_Currency</value>
+  </data>
+  <data name="SIS0016" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_Currency</value>
+  </data>
+  <data name="SIS0018" xml:space="preserve">
+    <value>Falta el campo Ds_Merchant_Amount</value>
+  </data>
+  <data name="SIS0019" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_Amount</value>
+  </data>
+  <data name="SIS0020" xml:space="preserve">
+    <value>Falta el campo Ds_Merchant_Signature</value>
+  </data>
+  <data name="SIS0021" xml:space="preserve">
+    <value>Ds_Merchant_Signature no tiene datos</value>
+  </data>
+  <data name="SIS0022" xml:space="preserve">
+    <value>Error de formato en Ds_TransactionType</value>
+  </data>
+  <data name="SIS0023" xml:space="preserve">
+    <value>Ds_TransactionType tiene un valor desconocido</value>
+  </data>
+  <data name="SIS0024" xml:space="preserve">
+    <value>Ds_ConsumerLanguage excede de 3 posiciones</value>
+  </data>
+  <data name="SIS0025" xml:space="preserve">
+    <value>Error de formato en Ds_ConsumerLanguage</value>
+  </data>
+  <data name="SIS0026" xml:space="preserve">
+    <value>No existe el comercio</value>
+  </data>
+  <data name="SIS0027" xml:space="preserve">
+    <value>La moneda no coincide con la del terminal</value>
+  </data>
+  <data name="SIS0028" xml:space="preserve">
+    <value>El terminal está dado de baja</value>
+  </data>
+  <data name="SIS0030" xml:space="preserve">
+    <value>En un pago con tarjeta h llegado un tipo que no es pago</value>
+  </data>
+  <data name="SIS0031" xml:space="preserve">
+    <value>Método de pago no definido</value>
+  </data>
+  <data name="SIS0034" xml:space="preserve">
+    <value>Error en acceso a la BBDD</value>
+  </data>
+  <data name="SIS0038" xml:space="preserve">
+    <value>Error en JAVA</value>
+  </data>
+  <data name="SIS0040" xml:space="preserve">
+    <value>El comercio no  tiene ningún método de pago</value>
+  </data>
+  <data name="SIS0041" xml:space="preserve">
+    <value>Error en el cálculo del algoritmo HASH</value>
+  </data>
+  <data name="SIS0042" xml:space="preserve">
+    <value>Error en el cálculo del algoritmo HASH</value>
+  </data>
+  <data name="SIS0043" xml:space="preserve">
+    <value>Error al realizar la notificación on-line</value>
+  </data>
+  <data name="SIS0046" xml:space="preserve">
+    <value>El Bin de la tarjeta no está dado de alta</value>
+  </data>
+  <data name="SIS0051" xml:space="preserve">
+    <value>Número de pedido repetido</value>
+  </data>
+  <data name="SIS0054" xml:space="preserve">
+    <value>No existe operación sobre la que realizar la devolución</value>
+  </data>
+  <data name="SIS0055" xml:space="preserve">
+    <value>La operación sobre la que se desea realizar la devolución no es una operación válida</value>
+  </data>
+  <data name="SIS0056" xml:space="preserve">
+    <value>La operación sobre la que se desea realizar la devolución no está autorizada</value>
+  </data>
+  <data name="SIS0057" xml:space="preserve">
+    <value>El importe a devolver supera el permitido</value>
+  </data>
+  <data name="SIS0058" xml:space="preserve">
+    <value>Inconsistencia de datos</value>
+  </data>
+  <data name="SIS0059" xml:space="preserve">
+    <value>No existe la operación sobre la que realizar la confirmación</value>
+  </data>
+  <data name="SIS0060" xml:space="preserve">
+    <value>Ya existe confirmación asociada a la preautorización</value>
+  </data>
+  <data name="SIS0061" xml:space="preserve">
+    <value>La preautorización sobre la que se desea confirmar no está autorizada</value>
+  </data>
+  <data name="SIS0062" xml:space="preserve">
+    <value>El importe a confirmar supera el permitido</value>
+  </data>
+  <data name="SIS0063" xml:space="preserve">
+    <value>Error en el número de tarjeta</value>
+  </data>
+  <data name="SIS0064" xml:space="preserve">
+    <value>Error en el número de tarjeta</value>
+  </data>
+  <data name="SIS0065" xml:space="preserve">
+    <value>Error en el número de tarjeta</value>
+  </data>
+  <data name="SIS0066" xml:space="preserve">
+    <value>Error en la caducidad de la tarjeta</value>
+  </data>
+  <data name="SIS0067" xml:space="preserve">
+    <value>Error e nla caducidad de la tarjeta</value>
+  </data>
+  <data name="SIS0068" xml:space="preserve">
+    <value>Error en la caducidad de la tarjeta</value>
+  </data>
+  <data name="SIS0069" xml:space="preserve">
+    <value>Error en la caducidad de la tarjeta</value>
+  </data>
+  <data name="SIS007" xml:space="preserve">
+    <value>Error al desmontar XML de entrada</value>
+  </data>
+  <data name="SIS0070" xml:space="preserve">
+    <value>Error en la caducidad de la tarjeta</value>
+  </data>
+  <data name="SIS0071" xml:space="preserve">
+    <value>Tarjeta caducada</value>
+  </data>
+  <data name="SIS0072" xml:space="preserve">
+    <value>Operación no anulable</value>
+  </data>
+  <data name="SIS0074" xml:space="preserve">
+    <value>Falta el campo</value>
+  </data>
+  <data name="SIS0075" xml:space="preserve">
+    <value>El valor tiene menos de 4 posiciones o más de 12</value>
+  </data>
+  <data name="SIS0076" xml:space="preserve">
+    <value>El valor no es numérico</value>
+  </data>
+  <data name="SIS0078" xml:space="preserve">
+    <value>Valor desconocido</value>
+  </data>
+  <data name="SIS0079" xml:space="preserve">
+    <value>Error al realizar el pago con tarjeta</value>
+  </data>
+  <data name="SIS008" xml:space="preserve">
+    <value>Falta el campo Ds_Merchant_MerchantCode</value>
+  </data>
+  <data name="SIS0081" xml:space="preserve">
+    <value>Se han perdido los datos almacenados</value>
+  </data>
+  <data name="SIS0089" xml:space="preserve">
+    <value>El valor de Ds_Merchant_ExpiryDate no ocupa 4 posiciones</value>
+  </data>
+  <data name="SIS009" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_MerchantCode</value>
+  </data>
+  <data name="SIS0092" xml:space="preserve">
+    <value>El valor de  Ds_Merchant_ExpiryDate es nulo</value>
+  </data>
+  <data name="SIS0093" xml:space="preserve">
+    <value>Tarjeta no encontrada en tabla de rangos</value>
+  </data>
+  <data name="SIS0094" xml:space="preserve">
+    <value>La tarjeta no fue autenticada como 3D secure</value>
+  </data>
+  <data name="SIS0112" xml:space="preserve">
+    <value>Valor no permitido</value>
+  </data>
+  <data name="SIS0114" xml:space="preserve">
+    <value>Se ha llamado a un GET en lugar de un POST</value>
+  </data>
+  <data name="SIS0115" xml:space="preserve">
+    <value>No existe operación sobre la que realizar el pago de la cuota</value>
+  </data>
+  <data name="SIS0116" xml:space="preserve">
+    <value>La operación sobre la que se desea pagar una cuota no es válida</value>
+  </data>
+  <data name="SIS0117" xml:space="preserve">
+    <value>La operación sobre la que se desea pagar una cuota no está autorizada</value>
+  </data>
+  <data name="SIS0132" xml:space="preserve">
+    <value>La fecha de Confirmación de Autorización no puede superar en más de 7 días a la preautorización</value>
+  </data>
+  <data name="SIS0133" xml:space="preserve">
+    <value>La fecha de confirmación de Autenticación no puede superar en más de 45 días la autenticación previa</value>
+  </data>
+  <data name="SIS0139" xml:space="preserve">
+    <value>El pago recurrente inicial está duplicado</value>
+  </data>
+  <data name="SIS0142" xml:space="preserve">
+    <value>Tiempo excedido para el pago</value>
+  </data>
+  <data name="SIS0198" xml:space="preserve">
+    <value>Importe supera límite permitido para el comercio</value>
+  </data>
+  <data name="SIS0199" xml:space="preserve">
+    <value>El número de operaciones supera el límite permitido para el comercio</value>
+  </data>
+  <data name="SIS0200" xml:space="preserve">
+    <value>El impote acumulado supera el limite permitido para el comercio</value>
+  </data>
+  <data name="SIS0214" xml:space="preserve">
+    <value>El comercio no admite devoluciones</value>
+  </data>
+  <data name="SIS0216" xml:space="preserve">
+    <value>El CVV2 tiene más de tres posiciones</value>
+  </data>
+  <data name="SIS0217" xml:space="preserve">
+    <value>Error de formato en CVV2</value>
+  </data>
+  <data name="SIS0218" xml:space="preserve">
+    <value>La entrada "operaciones" no permite pagos seguros</value>
+  </data>
+  <data name="SIS0219" xml:space="preserve">
+    <value>El número de operaciones de la tarjeta supera el límite permitido para el comercio</value>
+  </data>
+  <data name="SIS0220" xml:space="preserve">
+    <value>El importe acumulado de la tarjeta supera el límite permitido para el comercio</value>
+  </data>
+  <data name="SIS0221" xml:space="preserve">
+    <value>El CVV2 es obligatorio</value>
+  </data>
+  <data name="SIS0222" xml:space="preserve">
+    <value>Ya existe anulación asociada a la preautorización</value>
+  </data>
+  <data name="SIS0223" xml:space="preserve">
+    <value>La preautorización que se desea anular no está autorizada</value>
+  </data>
+  <data name="SIS0224" xml:space="preserve">
+    <value>El comercio no permite anulaciones por no tener firma ampliada</value>
+  </data>
+  <data name="SIS0225" xml:space="preserve">
+    <value>No existe operación</value>
+  </data>
+  <data name="SIS0226" xml:space="preserve">
+    <value>Inconsistencia de datos en la validación de una anulación</value>
+  </data>
+  <data name="SIS0227" xml:space="preserve">
+    <value>Valor no válido</value>
+  </data>
+  <data name="SIS0229" xml:space="preserve">
+    <value>No existe el código de pago aplazado solicitado</value>
+  </data>
+  <data name="SIS0252" xml:space="preserve">
+    <value>El comercio no permite el envío de tarjeta</value>
+  </data>
+  <data name="SIS0253" xml:space="preserve">
+    <value>La tarjeta no cumple el check-digit</value>
+  </data>
+  <data name="SIS0254" xml:space="preserve">
+    <value>El número de operaciones por IP supera el máximo permitido para el comercio</value>
+  </data>
+  <data name="SIS0255" xml:space="preserve">
+    <value>El importe acumulado por IP supera el límite permitido para el comercio</value>
+  </data>
+  <data name="SIS0256" xml:space="preserve">
+    <value>El comercio no puede realizar preautorizaciones</value>
+  </data>
+  <data name="SIS0257" xml:space="preserve">
+    <value>La tarjeta no permite preautorizaciones</value>
+  </data>
+  <data name="SIS0258" xml:space="preserve">
+    <value>Inconsistencia en datos de confirmación</value>
+  </data>
+  <data name="SIS0261" xml:space="preserve">
+    <value>Operación supera alguna limitación de operatoria definida por Banco Sabadell</value>
+  </data>
+  <data name="SIS0270" xml:space="preserve">
+    <value>Tipo de operación no activado para este comercio</value>
+  </data>
+  <data name="SIS0274" xml:space="preserve">
+    <value>Tipo de operación desconocida o no permitida para esta entrada al TPV virtual</value>
+  </data>
+  <data name="SIS0281" xml:space="preserve">
+    <value>Operación supera alguna limitación operatoria definida por Banco Sabadell</value>
+  </data>
+  <data name="SIS0296" xml:space="preserve">
+    <value>Error al validar  los datos de la operación "Tarjeta en Archivo (P.Suscripciones/P.Exprés)" inicial</value>
+  </data>
+  <data name="SIS0297" xml:space="preserve">
+    <value>Superado el número máximo de operaciones para realizar transacciones sucesivas</value>
+  </data>
+  <data name="SIS0298" xml:space="preserve">
+    <value>El comercio no permite realizar operaciones de Pago con Referencia</value>
+  </data>
+  <data name="SIS0319" xml:space="preserve">
+    <value>El comercio no pertenece al grupo especificado en Ds_Merchant_Group</value>
+  </data>
+  <data name="SIS0321" xml:space="preserve">
+    <value>La referencia indicada en Ds_Merchant_Identifier no está asociada al comercio</value>
+  </data>
+  <data name="SIS0322" xml:space="preserve">
+    <value>Error de formato en Ds_Merchant_Group</value>
+  </data>
+  <data name="SIS0325" xml:space="preserve">
+    <value>Se ha pedido no mostrar pantallas pero no se ha enviada ninguna referencia de tarjeta</value>
+  </data>
+</root>

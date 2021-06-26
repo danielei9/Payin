@@ -1,0 +1,66 @@
+﻿@using PayIn.Application.Dto.Results.ControlItem;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ControlItemFactory.GetAll,
+	ControlItemFactory.GetAllApi,
+	"",
+	//ControlItemResources.GetAll,
+	"resources.controlItem.getAll",
+	isPaginable: false,
+	isTitleActive: true,
+	actions: new ActionLink[] { 
+		new ActionLink(ActionLink.ActionLinkType.Panel, ControlItemFactory.Create, XpIcons.Plus)
+	}
+))
+{
+	var items = ServiceCheckPointFactory.GetItemChecks + "({itemId:{{item.id}}})";
+	
+	<div class="table-responsive">
+		<table class="table table-hover" ng-show="data.length">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th translate="resources.controlItem.name">Name</th>
+					<th translate="resources.controlItem.observations">Observations</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in data">
+					<td class="icon-column">
+						@XpColumns.IconColumn(
+							XpIcons.Trash,
+							popupUrl: ControlItemFactory.Delete,
+							id: "{{item.id}}",
+							arguments: "{\"name\":\"{{item.name}}\"}"
+						)
+					</td>
+					<td>@(Html.ColumnFor<ControlItemGetAllResult>(x => x.Name,           panelUrl: ControlItemFactory.Update, id: "{{item.id}}"))</td>
+					<td>@(Html.ColumnFor<ControlItemGetAllResult>(x => x.Observations,   panelUrl: ControlItemFactory.Update, id: "{{item.id}}"))</td>
+					<td class="icon-column"><i class='@XpIcons.Calendar' data-ng-show="item.checkTimetable" /></td>
+					<td class="icon-column"><i class='@XpIcons.Camera' data-ng-show="item.saveFacialRecognition" /></td>
+					<td class="icon-column">
+						<a ui-sref='@ControlTrackFactory.GetItemName ({itemId: {{item.id}}})'>
+							<i class='@XpIcons.MapMarker' data-ng-show="item.saveTrack" />
+						</a>
+					</td>
+					<td class="icon-column3">
+						<a class="btn btn-xs btn-success" data-xp-navigate ui-sref=@items>
+							<span data-ng-show="item.entranceCount || item.exitCount">{{item.entranceCount}} <i class='@XpIcons.ArrowRight'></i> {{item.exitCount}} &nbsp;</span>						
+							<span data-ng-show="item.checkCount || !(item.entranceCount || item.exitCount)">&nbsp;<i class='@XpIcons.Rss'></i> {{item.checkCount}} </span>								
+							<span data-ng-show="item.roundCount">&nbsp;<i class='@XpIcons.Round'></i> {{item.roundCount}}</span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}
+@*@Html.Partial("_Delete")*@
+

@@ -1,0 +1,28 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments;
+
+@using (Html.xpPost(
+	TicketFactory.UserCreateAndPayOraName,
+	TicketFactory.UserCreateAndPayOraApi,
+	"",
+	"resources.ticket.create",
+	isTitleActive: true //,
+	//init: "scope.arguments.carnetTipo = 1; scope.arguments.sexo = 2;",
+	//acceptText: @GlobalResources.Crear
+))
+{
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.Title, focus: true))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.AddressName))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.AddressNumber))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.Date))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.Until))
+	@(Html.SelectFor<TicketCreateAndPayArguments>(x => x.PaymentMediaId, "paymentName", PaymentMediaFactory.RetrieveSelectorApi))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.Pin))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.PopReceipt))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.Reference))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.ServiceType))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.SupplierId))
+	@(Html.ArgumentFor<TicketCreateAndPayArguments>(x => x.SupplierName))
+	@(Html.SelectFor<TicketCreateAndPayArguments>(x => x.ZoneId, "zoneName", ServiceZoneFactory.RetrieveSelectorApi))				
+}
+

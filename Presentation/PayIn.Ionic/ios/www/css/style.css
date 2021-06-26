@@ -1,0 +1,38 @@
+.account-login-logo {
+	width: 90%;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+.iconList{
+    width: 20%;
+}
+.popup{
+	height: 100px;
+	width: 100px;
+}
+#map {
+    height: 100%;
+    width: 100%;
+}
+.scroll {
+    height: 100%;
+}
+.spinnerLoading{
+    position: absolute;
+    left: 47%;
+    top: 27%;
+    margin-left: -32px;
+    margin-top: -32px;
+    z-index: 9999;
+    opacity:1;
+}
+.spinnerContainer{
+    background-color: #CCC;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    top: 0;
+    position: absolute;
+    left: 0;
+    opacity:0.5;
+}

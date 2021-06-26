@@ -1,0 +1,126 @@
+﻿@using PayIn.Application.Dto.Bus.Results;
+@using PayIn.Web.App.Factories.Bus;
+@using Xp.Common;
+
+@using (Html.xpList(
+	LineFactory.GetItineraryName,
+	LineFactory.GetItineraryApi,
+	"",
+	"resources.bus.line.getItinerary",
+	isTitleActive: true,
+	init: "scope.id = params.id;",
+	success:
+		"scope.temp.stops = scope.arguments.stops;" +
+		"scope.temp.data = (data.data.length > 0) ? data.data[0].stops : [];" +
+		"scope.temp.center = (data.data.length > 0) && (data.data[0].stops.length > 0) ? data.data[0].stops[0] : {};" +
+		"scope.temp.pendingRequests = scope.arguments.pendingRequests;"
+))
+{
+    <style>
+        .map {
+            width: 100%;
+            height: 600px;
+            margin-bottom: 10px;
+        }
+        .colAddRequest {
+            margin-bottom: -50px;
+            text-align: right;
+        }
+        .closed {
+            color: lightblue;
+        }
+        .deleted {
+            color: lightgray;
+            text-decoration: line-through
+        }
+        .isRequested {
+            background-color: Highlight;
+        }
+		.routing-control {
+			visibility: hidden;
+		}
+    </style>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="map">
+                <xp-map
+                    markers="temp.stops"
+                    route="temp.data"
+                    main-longitude-template='temp.center.longitude'
+                    main-latitude-template='temp.center.latitude'
+                    zoom='16'
+				>
+                </xp-map>
+            </div>
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-12">
+                    <div class="colAddRequest">
+						@XpColumns.IconColumn(XpIcons.Plus, popupUrl: RequestFactory.CreateName, id: "{{id}}", success: "document.location.reload();")
+                    </div>
+                    <h2>Solicitud de paradas</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th translate="resources.bus.request.timestamp">Hour</th>
+                                <th translate="resources.bus.request.userName">User name</th>
+                                <th translate="resources.bus.request.from">From</th>
+                                <th translate="resources.bus.request.to">To</th>
+                                <th class="icon-column">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in temp.pendingRequests">
+                                <td>@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.Timestamp))</td>
+                                <td>@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.UserName))</td>
+                                <td ng-class="{'deleted':item.fromVisitTimeStamp}">
+									@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.FromCode))
+									@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.FromName))</td>
+                                <td ng-class="{'deleted':item.toVisitTimeStamp}">
+									@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.ToCode))
+									@(Html.ColumnFor<BusApiVehicleGetItineraryResult_PendingRequest>(x => x.ToName))
+								</td>
+                                <td>@XpColumns.IconColumn(XpIcons.Trash, popupUrl: RequestFactory.DeleteName, id: "{{item.id}}")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="table-responsive" ng-repeat="bus in data">
+                <h2>Ruta</h2>
+                <table class="table table-hover">
+                    <thead>
+						<tr>
+							<th class="icon-column">&nbsp;</th>
+							<th>&nbsp;</th>
+							<th translate="resources.bus.stop.name">Name</th>
+							<th translate="resources.bus.stop.time">Time</th>
+							<th class="icon-column">&nbsp;</th>
+						</tr>
+                    </thead>
+                    <tbody>
+						<tr ng-repeat="stop in bus.stops" ng-class="{'isRequested': stop.isRequested}">
+							<td>
+								<div ng-if="stop.sense==0">@XpColumns.IconColumn(XpIcons.Remove)</div>
+								<div ng-if="stop.sense==1">@XpColumns.IconColumn(XpIcons.ArrowDown)</div>
+								<div ng-if="stop.sense==2">@XpColumns.IconColumn(XpIcons.ArrowUp)</div>
+								<div ng-if="stop.sense>=3">@XpColumns.IconColumn(XpIcons.Refresh)</div>
+							</td>
+							<td>
+								@(Html.ColumnFor<BusApiVehicleGetItineraryResult_Stop>(x => x.Code, iterator: "stop"))
+							</td>
+							<td>
+								@(Html.ColumnFor<BusApiVehicleGetItineraryResult_Stop>(x => x.Name, iterator: "stop"))
+							</td>
+							<td>
+								@(Html.ColumnFor<BusApiVehicleGetItineraryResult_Stop>(x => x.Time, iterator: "stop", filter: "timeHHMM"))
+							</td>
+							<td>@XpColumns.IconColumn(XpIcons.FlagCheckered, popupUrl: StopFactory.VisitName, id: "{{stop.id}}", arguments: "{\"vehicleId\":\"{{bus.id}}\"}", success: "document.location.reload();")</td>
+						</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

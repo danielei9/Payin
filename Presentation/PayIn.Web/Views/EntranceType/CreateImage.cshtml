@@ -1,0 +1,22 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	EntranceTypeFactory.CreateImageName,
+	EntranceTypeFactory.CreateImageApi,
+	"",
+	"resources.entranceType.imageCrop",
+	isTitleActive: true,
+	init: "scope.arguments.id=params.id",
+	successUrl: "#/EntranceType",
+	acceptText: "",
+	cancelText: "Continuar"
+))
+{
+	<xp-get data-api="@EntranceTypeFactory.GetApi">
+		@(Html.ArgumentFor<EntranceTypeUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @EntranceTypeFactory.UpdateImageCropName))
+		<div class="col-md-9">
+			<h4 translate="resources.entranceType.infoCreateImage">Para completar el proceso, solo falta añadir la foto del tipo de entrada.</h4>
+		</div>
+	</xp-get>
+}

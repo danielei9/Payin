@@ -1,0 +1,49 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPut(
+	CampaignFactory.Update,
+	CampaignFactory.UpdateApi,
+	"",
+	"resources.campaign.update"
+))
+{
+<div class="col-md-12">
+	<xp-get data-api="@CampaignFactory.UpdateApi">
+		<div class="row">
+			@(Html.ArgumentFor<ApiCampaignUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @CampaignFactory.UpdateImageCropName))
+			<div class="col-md-9 no-padding">
+				<div data-ng-show="arguments.started==false">
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Title, focus: true))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Description))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Since, width: 6, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Until, width: 6))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.NumberOfTimes, width: 12, placeHolder: "Sin límite"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetSystemCardId, "targetSystemCardName", SystemCardFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los sistemas de tarjetas"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetConcessionId, "targetConcessionName", ServiceConcessionFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los comercios del sistema de tarjeta seleccionado"))
+				</div>
+				<div data-ng-show="arguments.started==true && arguments.finished == false">
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Title, focus: true, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Description, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Since, width: 6, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Until, width: 6))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.NumberOfTimes, width: 12, placeHolder: "Sin límite"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetSystemCardId, "targetSystemCardName", SystemCardFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los sistemas de tarjetas"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetConcessionId, "targetConcessionName", ServiceConcessionFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los comercios del sistema de tarjeta seleccionado"))
+				</div>
+				<div data-ng-show="arguments.started==true && arguments.finished == true">
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Title, focus: true, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Description, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Since, width: 6, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.Until, width: 6, inputAttribute: "disabled"))
+					@(Html.ArgumentFor<ApiCampaignUpdateArguments>(x => x.NumberOfTimes, width: 12, placeHolder: "Sin límite", inputAttribute: "disabled"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetSystemCardId, "targetSystemCardName", SystemCardFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los sistemas de tarjetas"))
+					@(Html.SelectFor<ApiCampaignUpdateArguments>(x => x.TargetConcessionId, "targetConcessionName", ServiceConcessionFactory.RetrieveSelectorApi, width: 6, placeHolder: "Todos los comercios del sistema de tarjeta seleccionado"))
+				</div>
+			</div>
+		</div>
+	</xp-get>
+</div>
+}
+
+

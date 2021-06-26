@@ -1,0 +1,26 @@
+﻿@using PayIn.Application.Dto.Arguments.SystemCardMember;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	SystemCardMemberFactory.CreateName,
+	SystemCardMemberFactory.CreateApi,
+	"",
+	"resources.systemCardMember.create",
+	init: "scope.arguments.systemCardId=params.systemCardId",
+	subtitle: "{{temp.name}}"
+))
+{
+	<xp-get xp-panel data-api="@SystemCardFactory.GetApi" data-xp-init="scope.id=params.systemCardId; delete scope.arguments.systemCardId;" data-xp-success="scope.$parent.temp.name=scope.arguments.name; scope.$parent.arguments.systemCardId = scope.arguments.id"></xp-get>
+	<div class="spinnerContainer" ng-show="_windowState.isBusy">
+		<img class="spinnerLoading" src="~/Images/spinner.gif" />
+	</div>	
+
+	<div class="panel panel-default" style="margin-top:-15px">
+        <div class="panel-body">
+            @(Html.ArgumentFor<SystemCardMemberCreateArguments>(x => x.Name, focus: true))
+            @(Html.ArgumentFor<SystemCardMemberCreateArguments>(x => x.Login))
+            @(Html.ArgumentFor<SystemCardMemberCreateArguments>(x => x.CanEmit))
+        </div>
+	</div>	
+}
+

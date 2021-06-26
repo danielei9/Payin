@@ -1,0 +1,40 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Arguments;
+
+@using (Html.xpPost(
+	ProductFactory.CreateName,
+	ProductFactory.CreateApi,
+	"",
+	"resources.product.create",
+	isTitleActive: true,
+	init: "scope.arguments.familyId=params.id;scope.arguments.isVisible=true;",
+	successUrl: "/Product/CreateImage/{{id}}"
+))
+{
+<div class="col-md-12">
+	<div class="row">
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.IsVisible, width: 6))
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.Visibility, width: 6))
+	</div>
+	<div class="row">
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.Code, width: 4))
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.ToConsult, width: 4))
+		<div ng-hide="arguments.toConsult">
+			@(Html.ArgumentFor<ProductCreateArguments>(x => x.Price, width: 4))
+		</div>
+		<div data-ng-class="{'has-error':!form.price.$valid}" class="form-group col-md-4" ng-show="arguments.toConsult">
+			<label for="price" class="control-label ng-scope" translate="resources.product.price">Precio</label>
+			<div class="input-group bootstrap-touchspin" style="width:100% !important;">
+				<span class="input-group-addon bootstrap-touchspin-prefix">EUR</span>
+				<input id="price" name="price" type="text" class="form-control" disabled="disabled" prefix="EUR" value="A consultar" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.Name))
+	</div>
+	<div class="row">
+		@(Html.ArgumentFor<ProductCreateArguments>(x => x.Description))
+	</div>
+</div>
+}

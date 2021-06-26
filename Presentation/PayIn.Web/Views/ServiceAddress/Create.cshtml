@@ -1,0 +1,21 @@
+﻿@using PayIn.Application.Dto.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Arguments.ServiceAddress;
+
+@using (Html.xpPost(
+	ServiceAddressFactory.Create,
+	ServiceAddressFactory.CreateApi,
+	"",
+	//ServiceAddressResources.Create,
+	"resources.serviceAddress.create",
+	isTitleActive: true
+))
+{
+	@(Html.ArgumentFor<ServiceAddressCreateArguments>(x => x.Name, focus: true))
+	@(Html.ArgumentFor<ServiceAddressCreateArguments>(x => x.From))
+	@(Html.ArgumentFor<ServiceAddressCreateArguments>(x => x.Until))
+	@(Html.ArgumentFor<ServiceAddressCreateArguments>(x => x.Side))
+	@(Html.SelectFor<ServiceAddressCreateArguments>(x => x.CityId, "cityName", ServiceCityFactory.RetrieveSelectorApi))
+	@(Html.SelectFor<ServiceAddressCreateArguments>(x => x.ZoneId, "zoneName", ServiceZoneFactory.RetrieveSelectorApi))
+}

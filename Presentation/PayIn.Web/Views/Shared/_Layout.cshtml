@@ -1,0 +1,878 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Web.App.Factories.SmartCity;
+@using PayIn.Web.App.Factories.JustMoney;
+@using PayIn.Common.Resources;
+@using PayIn.Domain.Security;
+
+@{
+    var checkIsSuperadministrator = "authentication.hasRole('" + AccountRoles.Superadministrator + "')";
+    var checkIsSuperadministratorOrPaymentWorker = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsSuperadministratorOrCommerce = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.Commerce + "')";
+    var checkIsSuperadministratorOrCommercePayment = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.CommercePayment + "')";
+    var checkIsSuperadministratorOrCommercePaymentOrPaymentWorker = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.CommercePayment + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsSuperadministratorOrCommerceOrCommercePaymentOrPaymentWorker = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.Commerce + "," + AccountRoles.CommercePayment + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsCommerce = "authentication.hasRole('" + AccountRoles.Commerce + "')";
+    var checkIsCommercePayment = "authentication.hasRole('" + AccountRoles.CommercePayment + "')";
+    var checkIsCommerceCommercePayment = "authentication.hasRole('" + AccountRoles.Commerce + "," + AccountRoles.CommercePayment + "')";
+    var checkIsPaymentWorker = "authentication.hasRole('" + AccountRoles.PaymentWorker + "')";
+    var checkIsOperator = "authentication.hasRole('" + AccountRoles.Operator + "')";
+    var checkIsSuperadministratorOperator = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.Operator + "')";
+    var checkIsCommercePaymentOrUser = "authentication.hasRole('" + AccountRoles.CommercePayment + "," + AccountRoles.User + "')";
+    var checkIsCommerceOrPaymentWorker = "authentication.hasRole('" + AccountRoles.Commerce + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsCommercePaymentOrPaymentWorker = "authentication.hasRole('" + AccountRoles.CommercePayment + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsCommercePaymentOrPaymentWorkerOrUser = "authentication.hasRole('" + AccountRoles.CommercePayment + "," + AccountRoles.PaymentWorker + "," + AccountRoles.User + "')";
+    var checkIsCommerceOrCommercePaymentOrPaymentWorker = "authentication.hasRole('" + AccountRoles.Commerce + "," + AccountRoles.CommercePayment + "," + AccountRoles.PaymentWorker + "')";
+    var checkIsTransport = "authentication.hasRole('" + AccountRoles.Transport + "')";
+    var checkIsTransportOperator = "authentication.hasRole('" + AccountRoles.TransportOperator + "')";
+    var checkIsSuperadministratorTransportOperator = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.TransportOperator + "')";
+    var checkIsSuperadministratorTransport = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.Transport + "')";
+    var checkIsSystemCardOwner = "authentication.hasRole('" + AccountRoles.SystemCardOwner + "')";
+    var checkIsSuperadministratorOrSystemCardOwner = "authentication.hasRole('" + AccountRoles.Superadministrator + "," + AccountRoles.SystemCardOwner + "')";
+    var checkIsUser = "authentication.hasRole('" + AccountRoles.User + "')";
+    var checkIsOnlyUser = "authentication.roles.length == 1 && authentication.hasRole('" + AccountRoles.User + "')";
+}
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en" ng-app="payin">
+<head>
+    <meta charset="utf-8" />
+    @*<title>Platges Vinaròs</title>*@
+    <title>Finestrat</title>
+    @*<title>Pay[in]</title>*@
+    <link id="favicon" rel="shortcut icon" href="~/Images/{{features.favicon()}}" type="image/png" />
+    <link rel="apple-touch-icon" sizes="194x194" ng-href="~/Images/{{features.faviconApple()}}" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OpenLayers -->
+    <!--link href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" rel="stylesheet"-->
+    <!-- OpenLayers Routing -->
+    <link rel="stylesheet" href="~/App/ol.css" />
+    <link rel="stylesheet" href="~/App/openlayers-routing-machine.css" />
+    <!-- Vis -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Markdown-->
+    @Styles.Render("~/Content/markdown")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+        (function (f, b) {
+            if (!b.__SV) {
+                var a, e, i, g;
+                window.mixpanel = b;
+                b._i = [];
+                b.init = function (a, e, d) {
+                    function f(b, h) {
+                        var a = h.split(".");
+                        2 == a.length && (b = b[a[0]], h = a[1]);
+                        b[h] = function () {
+                            b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+                        }
+                    }
+                    var c = b;
+                    "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel"; c.people = c.people || [];
+                    c.toString = function (b) {
+                        var a = "mixpanel";
+                        "mixpanel" !== d && (a += "." + d);
+                        b || (a += " (stub)");
+                        return a
+                    };
+                    c.people.toString = function () {
+                        return c.toString(1) + ".people (stub)"
+                    };
+                    i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+                    for (g = 0; g < i.length; g++) f(c, i[g]); b._i.push([a, e, d])
+                };
+                b.__SV = 1.2;
+                a = f.createElement("script");
+                a.type = "text/javascript";
+                a.async = !0;
+                a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+                e = f.getElementsByTagName("script")[0];
+                e.parentNode.insertBefore(a, e)
+            }
+        })(document, window.mixpanel || []);
+        mixpanel.init("55e98223cf7bea80e3be35b4fe32985f");
+    </script>
+    <!-- end Mixpanel -->
+    <script type='text/javascript'>
+        var appInsights = window.appInsights || function (config) {
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
+            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;)r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
+        }({
+            instrumentationKey: '1eff60f7-0700-4178-95e0-69d3379163e9'
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body ng-controller="AppCtrl">
+    <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}">
+        <div ng-cloak ng-show="authentication.name">
+            <!-- superior navbar -->
+            <div class="app-header navbar noPrint">
+                <!-- icon navbar header -->
+                <div class="navbar-header">
+                    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+                        <i class="glyphicon glyphicon-cog"></i>
+                    </button>
+                    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+                        <i class="glyphicon glyphicon-align-justify"></i>
+                    </button>
+                    <!-- brand -->
+                    <a href="#/" class="navbar-brand text-lt">
+                        <img ng-show="app.settings.asideFolded" src="{{features.logoSmallMenuUrl()}}" alt="P[in]" />
+                        <img ng-hide="app.settings.asideFolded" src="{{features.logoMenuUrl()}}" alt="Pay[in]" />
+                    </a>
+                    <!-- / brand -->
+                </div>
+                <!-- / icon navbar header -->
+                <!-- collapse navbar -->
+                <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+                    <!-- collapse button -->
+                    <div class="nav navbar-nav hidden-xs">
+                        <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+                            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+                        </a>
+                    </div>
+                    <!-- / collapse button -->
+                    <!-- navbar right -->
+                    <ul class="nav navbar-nav navbar-right" xp-logout>
+                        <!-- dropdown -->
+                        <li class="dropdown" dropdown style="width:200px;">
+                            <a href class="dropdown-toggle clear max-var-height" dropdown-toggle>
+                                <span class=" truncate-base">{{authentication.name}}</span>
+                                <b class="caret m-b-sm"></b>
+                                <xp-get data-api="@AccountFactory.GetCurrentApi">
+                                    <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm m-r" style="position:absolute;" ng-show="arguments.photoUrl.length">
+                                        <img ng-controller="OnChangedAvatar" ng-src="{{arguments.photoUrl}}">
+                                        <i class="on md b-white bottom"></i>
+                                    </span>
+                                </xp-get>
+                                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm m-r" style="position:absolute;" ng-hide="arguments.photoUrl.length">
+                                    <img src="@ApplicationUserResources.DefaultUserAvatar">
+                                    <i class="on md b-white bottom"></i>
+                                </span>
+                            </a>
+                            <!-- dropdown -->
+                            <ul class="dropdown-menu animated fadeInRight w">
+                                <li>
+                                    <a ui-sref="@AccountFactory.UpdateSettingsName" data-xp-navigate translate="resources.nav.profile_menu.PROFILE">@*MainResources.Profile*@ Profile</a>
+                                </li>
+                                <li>
+                                    <a data-ng-href="@AccountFactory.UpdatePassword" translate="resources.nav.profile_menu.CHANGEPASSWORD">
+                                        @*@MainResources.ChangePwd*@ Change password
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="logout()" translate="resources.nav.profile_menu.LOGOUT">@*@MainResources.Logout*@ Logout</a>
+                                </li>
+                            </ul>
+                            <!-- / dropdown -->
+                        </li>
+                        <li class="dropdown" is-open="lang.isopen" dropdown style="width:130px;">
+                            <a href class="dropdown-toggle" dropdown-toggle>
+
+                                <span class="hidden-sm hidden-md">{{selectLang}}</span>
+                                <b class="caret"></b>
+                                <span class="pull-right m-b-n-sm m-l-sm" data-ng-show="selectLang=='Spanish'"><img class="" src="~/images/flags/spa.png" /></span>
+                                <span class="pull-right m-b-n-sm m-l-sm" data-ng-show="selectLang=='English'"><img class="" src="~/images/flags/eng.png" /></span>
+                                <span class="pull-right m-b-n-sm m-l-sm" data-ng-show="selectLang=='Valencian'"><img class="" src="~/images/flags/val.png" /></span>
+                            </a>
+                            <!-- dropdown -->
+                            <ul class="dropdown-menu animated fadeInRight w">
+                                <li ng-repeat="(langKey, label) in langs">
+                                    <a ng-click="setLang(langKey, $event)" href>{{label}}</a>
+                                </li>
+                            </ul>
+                            <!-- / dropdown -->
+                        </li>
+                    </ul>
+                    <!-- / navbar right -->
+                </div>
+                <!-- / navbar collapse -->
+            </div>
+            <!-- / collapse navbar -->
+            <!-- menu -->
+            <div class="app-aside hidden-xs noPrint affix h-full" ng-class="app.settings.asideColor">
+                <div class="aside-wrap">
+                    <!-- if you want to use a custom scroll when aside fixed, use the slimScroll
+                        <div class="navi-wrap" ui-jq="slimScroll" ui-options="{height:'100%', size:'8px'}">
+                    -->
+                    <div class="navi-wrap">
+                        <!-- nav -->
+                        <nav ui-nav class="navi">
+                            <!-- list -->
+                            <ul class="nav">
+                                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                                    <span style="display:none;"></span>
+                                </li>
+                                <!-- Search -->
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    <form ui-shift="prependTo" target=".navbar-collapse" role="search" ng-controller="SearchCardCtrl" ng-submit="cardSearch(cardSearchId)">
+                                        <div class="padding-horizontal input-group" style="width:100%">
+                                            <input type="number" ng-model="cardSearchId" class="form-control input-sm bg-light no-border padder" placeholder="Buscar tarjeta" name="cardSearchId" required autocomplete="off" />
+                                            <i class="fa fa-search form-control-feedback" style="margin-right:15px"></i>
+                                        </div>
+                                    </form>
+                                </li>
+                                <!-- Transport -->
+                                <li data-ng-show=@checkIsSuperadministratorTransport>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-car icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.TRANSPORT">Transport</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.TRANSPORT">Transport</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@TransportOperationFactory.GetAllName" data-ng-show=@checkIsSuperadministrator>
+                                                <span translate="resources.nav.menu.LOG">Log</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@TransportValidationFactory.GetAllName">
+                                                <span translate="resources.nav.menu.VALIDATION">Validations</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@BlackListFactory.GetAllName">
+                                                <span translate="resources.nav.menu.BLACKLIST">BlackList</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@GreyListFactory.GetAllName">
+                                                <span translate="resources.nav.menu.GREYLIST">GreyList</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" t>
+                                            <a ui-sref="@LiquidationFactory.GetAllName" data-ng-show=@checkIsSuperadministrator>
+                                                <span translate="resources.nav.menu.LIQUIDATIONS">Liquidations</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@TransportCardSupportFactory.GetAllName">
+                                                <span translate="resources.nav.menu.SUPPORT">Support</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@TransportSystemFactory.GetAllName">
+                                                <span translate="resources.nav.menu.SYSTEM">System</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@TransportTitleFactory.GetAllName" data-ng-show=@checkIsSuperadministrator>
+                                                <span translate="resources.nav.menu.TITLES">Titles</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@PromotionFactory.GetAllName">
+                                                <span translate="resources.nav.menu.PROMOTIONS">Promotions</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Concessiones -->
+                                <li ui-sref-active="active" data-ng-show="@checkIsSuperadministrator">
+                                    <a ui-sref="@ServiceConcessionFactory.GetAllName">
+                                        <i class="fa fa-building icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CONCESSIONS">Concessions</span>
+                                    </a>
+                                </li>
+                                <!-- Organization -->
+                                @*<li data-ng-show=@checkIsCommerceOrCommercePaymentOrPaymentWorker>*@
+                                <li ng-show="features.hasOrganizationStructure()&&@checkIsSuperadministratorOrCommerceOrCommercePaymentOrPaymentWorker">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-users icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.ORGANIZATION">Organization</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.ORGANIZATION">Organization</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show="@checkIsSuperadministratorOrCommerce">
+                                            <a ui-sref="@ServiceWorkerFactory.GetAllName">
+                                                <span translate="resources.nav.menu.WORKERS">Workers</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsCommercePayment>
+                                            <a ui-sref="@PaymentWorkerFactory.GetAll">
+                                                <span translate="resources.nav.menu.WORKERS">Workers</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministratorOrCommercePaymentOrPaymentWorker ng-show="features.hasMemberManagement()">
+                                            <a ui-sref="@ServiceCategoryFactory.GetAllName">
+                                                <span translate="resources.nav.menu.GROUPS">Groups</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show="@checkIsSuperadministratorOrPaymentWorker" ng-show="features.hasConcessionManagement()">
+                                            <a ui-sref="@PaymentWorkerFactory.GetAllConcession">
+                                                <span translate="resources.nav.menu.COMPANIES">Companies</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministratorOrCommercePaymentOrPaymentWorker ng-show="features.hasMemberManagement()">
+                                            <a ui-sref="@ServiceUserFactory.GetAllName">
+                                                <span translate="resources.nav.menu.AFFILIATED">Affiliated Persons</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Payments -->
+                                @*<li data-ng-show=@checkIsCommercePaymentOrPaymentWorkerOrUser>*@
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-dollar icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.PAYMENTS">Payments</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.PAYMENTS">Payments</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsCommercePaymentOrPaymentWorkerOrUser>
+                                            <a ui-sref="@PaymentFactory.GetAllName">
+                                                <span translate="resources.nav.menu.PAYMENTS">Payments</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@ShipmentFactory.ReceiptName">
+                                                <span translate="resources.nav.menu.RECEIPTS">Receipts</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Accounting -->
+                                <li ng-show="features.hasAccounting()" NOTSHOW_data-ng-show=@checkIsSystemCardOwner>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fas fa-money-bill text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.ACCOUNTING">Accounting</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.ACCOUNTING">Accounting</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@AccountLineFactory.GetByLogBookName">
+                                                <span translate="resources.nav.menu.LOGBOOK">Log book</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@AccountLineFactory.GetByAccountsName">
+                                                <span translate="resources.nav.menu.ACCOUNTS">Accounts</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href class="auto">
+                                                <span class="pull-right text-muted">
+                                                    <i class="fa fa-fw fa-angle-right text"></i>
+                                                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                                                </span>
+                                                <span translate="resources.nav.menu.LEDGER">Ledger</span>
+                                            </a>
+                                            <ul class="nav nav-sub dker">
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByCashName">
+                                                        <span translate="resources.nav.menu.CASH">Cash</span>
+                                                    </a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByServiceCardsName">
+                                                        <span translate="resources.nav.menu.SERVICECARDS">Service cards</span>
+                                                    </a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByCreditCardsName">
+                                                        <span translate="resources.nav.menu.CREDITCARDS">Credit cards</span>
+                                                    </a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByProductsName">
+                                                        <span translate="resources.nav.menu.PRODUCTS">Productos</span>
+                                                    </a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByEntranceTypesName">
+                                                        <span translate="resources.nav.menu.ENTRANCETYPES">Entrance types</span>
+                                                    </a>
+                                                </li>
+                                                <li ui-sref-active="active">
+                                                    <a ui-sref="@AccountLineFactory.GetByOthersName">
+                                                        <span translate="resources.nav.menu.OTHERS">Others</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@LiquidationFactory.GetAllName">
+                                                <span translate="resources.nav.menu.LIQUIDATIONS">Liquidations</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Charges -->
+                                <li ng-show="features.canCharge()&&@checkIsCommercePaymentOrPaymentWorkerOrUser">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="glyphicon glyphicon-euro icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CHARGES">Charges</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header" ng-show=@checkIsCommercePaymentOrPaymentWorker>
+                                            <a href>
+                                                <span translate="resources.nav.menu.CHARGES">Charges</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@TicketFactory.GetAllName">
+                                                <span translate="resources.nav.menu.TICKETS">Tickets</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" ng-show=@checkIsCommercePaymentOrPaymentWorker>
+                                            <a ui-sref="@PaymentFactory.GetChargesName">
+                                                <span translate="resources.nav.menu.CHARGES">Charges</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Tarjetas -->
+                                <li ng-show="features.hasCardSystem() || @checkIsSuperadministrator">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="glyphicon glyphicon-credit-card text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CARDS">Cards</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active" ng-show=@checkIsSuperadministratorOrSystemCardOwner>
+                                            <a ui-sref="@SystemCardFactory.GetAllName">
+                                                <span translate="resources.nav.menu.SYSTEMCARDS">Sistemas</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@ServiceCardFactory.GetAll" ng-show=@checkIsSuperadministratorOrSystemCardOwner>
+                                                <span translate="resources.nav.menu.CARDS">Cards</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@ServiceCardFactory.GetAllMyCards" ng-show=@checkIsUser>
+                                                <span translate="resources.nav.menu.MYCARDS">My Cards</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@ServiceCardBatchFactory.GetAllName">
+                                                <span translate="resources.nav.menu.CARDBATCHES">Batches</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Fidelizaciones -->
+                                <li ng-show="features.hasLoyaltySystem()&&@checkIsCommercePaymentOrPaymentWorker">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-gift icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.LOYALTIES">Loyalties</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.LOYALTIES">Loyalties</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsCommercePaymentOrPaymentWorker>
+                                            <a ui-sref="@CampaignFactory.GetAllName">
+                                                <span translate="resources.nav.menu.CAMPAIGNS">Campaigns</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Store -->
+                                <li ng-show="@checkIsCommercePaymentOrPaymentWorker && (features.sellProducts() || features.hasForms())">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-shopping-cart icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.STORE">Store</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active" ng-show="@checkIsCommercePaymentOrPaymentWorker && features.sellProducts()">
+                                            <a ui-sref="@ProductFactory.GetAllName">
+                                                <span translate="resources.nav.menu.PRODUCT">Products</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" ng-show="@checkIsCommercePaymentOrPaymentWorker && features.hasForms()">
+                                            <a ui-sref="@ControlFormFactory.GetAllName">
+                                                <span translate="resources.nav.menu.FORMS">Forms</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Comunicaciones -->
+                                <li ng-show="features.hasCommunication()&&@checkIsCommercePaymentOrPaymentWorker">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-bullhorn icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.COMMUNICATIONS">Communications</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active" data-ng-show=@checkIsCommercePaymentOrPaymentWorker>
+                                            <a ui-sref="@EventFactory.GetAllName">
+                                                <span translate="resources.nav.menu.EVENT">Events</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@NoticeFactory.GetAllName">
+                                                <span translate="resources.nav.menu.NOTICES">Notices</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@NoticeFactory.GetPagesName">
+                                                <span translate="resources.nav.menu.PAGES">Pages</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" ng-show="features.hasEdicts()">
+                                            <a ui-sref="@NoticeFactory.GetEdictsName">
+                                                <span translate="resources.nav.menu.EDICTS">Edicts</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@ServiceIncidenceFactory.GetAllName">
+                                                <span translate="resources.nav.menu.INCIDENCES">Incidences</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Control -->
+                                <li ng-show=@checkIsSuperadministratorOperator>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="glyphicon glyphicon-user icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CONTROL">Control</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span translate="resources.nav.menu.Control">Control</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@ServiceTagFactory.GetAll">
+                                                <span translate="resources.nav.menu.TAGS">Tags</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsOperator>
+                                            <a ui-sref="@ControlItemFactory.GetAll">
+                                                <span translate="resources.nav.menu.ITEMS">Items</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsOperator>
+                                            <a ui-sref="@ControlTrackFactory.GetAllName">
+                                                <span translate="resources.nav.menu.TRACE">Trace</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsOperator>
+                                            <a ui-sref="@ControlTemplateFactory.GetAll">
+                                                <span translate="resources.nav.menu.TEMPLATES">Templates</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsOperator>
+                                            <a ui-sref="@ServiceWorkerFactory.GetControlName">
+                                                <span translate="resources.nav.menu.WORKERS">Workers</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsOperator>
+                                            <a ui-sref="@ControlFormFactory.GetAllName">
+                                                <span translate="resources.nav.menu.FORMS">Forms</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-building icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.SUPPLIERS">Suppliers</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@ServiceSupplierFactory.GetAllSuppliersName">
+                                                <span translate="resources.nav.menu.CONCESSIONS">Concessions</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-money icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CHARGES">Charges</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span></span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@TicketFactory.GetAllName">
+                                                <span translate="resources.nav.menu.TICKETS">Tickets</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@PaymentFactory.GetAllName">
+                                                <span translate="resources.nav.menu.PAYMENTS">Payments</span>
+                                            </a>
+                                        </li>
+                                        @*<li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                                @*<a ui-sref="@LiquidationFactory.GetAllName">* @
+                                                <a ui-sref="@LiquidationFactory.LiquidationPayName">
+                                                    <span translate="resources.nav.menu.LIQUIDATIONS">Liquidations</span>
+                                                </a>
+                                            </li>*@
+                                    </ul>
+                                </li>
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa icon-settings icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.CONFIGURATION">Configuration</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li class="nav-sub-header">
+                                            <a href>
+                                                <span></span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@TicketTemplateFactory.GetAllName" xp-navigate>
+                                                <span translate="resources.nav.menu.TICKETTEMPLATES">Ticket Templates</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-ng-show=@checkIsSuperadministrator>
+                                    @*<li data-ng-show=@checkIsSuperadministratorOrCommerceOrCommercePaymentOrPaymentWorker>*@
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-users icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.USERS">Users</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        @*<li ui-sref-active="active" data-ng-show=@checkIsSuperadministratorOrCommerceOrCommercePaymentOrPaymentWorker>*@
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministratorOrCommerceOrCommercePaymentOrPaymentWorker>
+                                            <a ui-sref="@ServiceNotificationFactory.GetAllName">
+                                                <span translate="resources.nav.menu.NOTIFICATIONS">Notifications</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active" data-ng-show=@checkIsSuperadministrator>
+                                            <a ui-sref="@AccountFactory.GetUsers" xp-navigate>
+                                                <span translate="resources.nav.menu.USERS">Users</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li ng-show="features.hasAccessControl()">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fa fa-users icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.ACCESSCONTROL">Access control</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active" ng-show="@checkIsCommercePaymentOrPaymentWorker">
+                                            <a ui-sref="@AccessControlFactory.GetAllName">
+                                                <span translate="resources.nav.menu.ENCLOSURES">ENCLOSURES</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@AccessControlFactory.PlacesName" xp-navigate>
+                                                <span translate="resources.nav.menu.PLACES">PLACES</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Document Management -->
+                                <li ui-sref-active="active" ng-show="features.hasDocumentManagement()">
+                                    <a ui-sref="@ServiceDocumentFactory.GetAllName">
+                                        <i class="far fa-file-alt icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.DOCUMENTS">Documents</span>
+                                    </a>
+                                </li>
+                                <!-- SmartCity -->
+                                <li ng-show="features.hasSmartCity()">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fab fa-hubspot icon text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.SMARTCITY">SmartCity</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@SmartCityFactory.GetAllName">
+                                                <span translate="resources.nav.menu.SMARTCITYDASHBOARD">Dashboard</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@EnergyTariffFactory.GetAllName">
+                                                <span translate="resources.nav.menu.ENERGYTARIFFS">Tariffs</span>
+                                            </a>
+                                        </li>
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@DeviceFactory.GetAllName">
+                                                <span translate="resources.nav.menu.DEVICES">Devices</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- JustMoney -->
+                                <li ng-show="features.isJustMoney()">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fas fa-money-bill text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.JUSTMONEY">JustMoney</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@PayIn.Web.App.Factories.JustMoney.UserFactory.GetAllName">
+                                                <span translate="resources.nav.menu.PREPAIDCARDS">Prepaid cards</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Bus -->
+                                <li ng-show="features.manageBus()">
+                                    <a href class="auto">
+                                        <span class="pull-right text-muted">
+                                            <i class="fa fa-fw fa-angle-right text"></i>
+                                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                                        </span>
+                                        <i class="fas fa-bus text-orange"></i>
+                                        <span class="font-bold" translate="resources.nav.menu.BUS">Gestión de bus</span>
+                                    </a>
+                                    <ul class="nav nav-sub dk">
+                                        <li ui-sref-active="active">
+                                            <a ui-sref="@PayIn.Web.App.Factories.Bus.LineFactory.GetAllName">
+                                                <span translate="resources.nav.menu.LINES">Linías</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!-- / list -->
+                        </nav>
+                        <!-- nav -->
+                    </div>
+                </div>
+            </div>
+            <!-- / menu -->
+            @RenderBody()
+            <!-- / uiView: -->
+        </div>
+        <!-- footer -->
+        <div class="app-footer wrapper b-t bg-light">
+            <span class="pull-right">{{app.name()}} {{app.version}} <a href ui-scroll="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+            &copy; 2014 Copyright
+        </div>
+        <!-- / footer -->
+    </div>
+    @*
+        MAPA XAVI
+        Descomentar esta línea
+    *@
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry&sensor=false"></script>
+    <script src="https://www.google.com/jsapi"></script>
+
+    @*sensor=false&language=ja&region=GB*@
+    <!-- OpenLayers -->
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <!-- OpenLayers Routing -->
+    <script src="~/App/js/ol-debug.js"></script>
+    <script src="~/App/js/openlayers-routing-machine.js"></script>
+    <!-- Vis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <!-- Charjs -->
+    <script src="~/bower_components/chart.js/dist/Chart.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- jQuery-->
+    @Scripts.Render("~/bundles/jquery")
+    <!-- Angularjs -->
+    @Scripts.Render("~/bundles/angularjs")
+    <!-- BootStrap-->
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Lazyload -->
+    @Scripts.Render("~/bundles/lazyload")
+    <!-- Translate -->
+    @Scripts.Render("~/bundles/translate")
+    <!-- Markdown-->
+    @Scripts.Render("~/bundles/markdown")
+    <!-- Xp -->
+    @Scripts.Render("~/bundles/xp")
+    <!-- App -->
+    @*@Html.Partial("_Routes")* @
+        @Scripts.Render("~/bundles/app")
+        @* @Scripts.Render("~/bundles/template")*@
+</body>
+</html>

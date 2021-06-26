@@ -1,0 +1,51 @@
+﻿@using PayIn.Application.Dto.Results;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpList(
+    ServiceIncidenceFactory.GetAllName,
+    ServiceIncidenceFactory.GetAllApi,
+    "",
+    "resources.incidence.getAll",
+    isPaginable: false,
+    ////initialSearch: false,
+    isTitleActive: true
+))
+{
+<div class="table-responsive">
+    <table class="table table-hover" ng-show="data.length">
+        <thead>
+            <tr>
+                <th translate="resources.incidence.dateTime">Date/Time</th>
+                <th translate="resources.incidence.type">Type</th>
+                <th translate="resources.incidence.category">Category</th>
+                <th translate="resources.incidence.subCategory">SubCategory</th>
+                <th translate="resources.incidence.name">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success': item.state===2, 'b-l b-5x b-warning': item.state===1}">
+                @*<tr data-ng-repeat="item in data">*@
+                <td xp-navigate ui-sref='@ServiceIncidenceFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceIncidenceGetAllResult>(x => x.DateTime))</td>
+                <td xp-navigate ui-sref='@ServiceIncidenceFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceIncidenceGetAllResult>(x => x.TypeName))</td>
+                <td xp-navigate ui-sref='@ServiceIncidenceFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceIncidenceGetAllResult>(x => x.CategoryName))</td>
+                <td xp-navigate ui-sref='@ServiceIncidenceFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceIncidenceGetAllResult>(x => x.SubCategoryName))</td>
+                <td xp-navigate ui-sref='@ServiceIncidenceFactory.UpdateName ({id:{{item.id}}})' class="clickable">@(Html.ColumnFor<ServiceIncidenceGetAllResult>(x => x.Name))</td>
+            </tr>
+        </tbody>
+    </table>
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div style="background-color:#FAD733;" class="legend-graph-color" />
+                    <p style="float:left;" translate="resources.incidence.active">Active</p>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div style="background-color:#27C24C;" class="legend-graph-color" />
+                    <p style="float:left;" translate="resources.incidence.closed">Closed</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+}

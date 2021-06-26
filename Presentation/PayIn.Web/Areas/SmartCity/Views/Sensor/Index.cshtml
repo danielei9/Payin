@@ -1,0 +1,92 @@
+﻿@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	SensorFactory.GetAllName,
+	SensorFactory.GetAllApi,
+	"",
+	"resources.smartCity.sensor.getAll",
+	subtitle: "{{arguments.name}}",
+	isTitleActive: true,
+	init: "scope.arguments.componentId = params.componentId;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+                <tr>
+                    <th translate="resources.smartCity.sensor.name">Name</th>
+                    <th translate="resources.smartCity.sensor.lastTimestamp">Last timestamp</th>
+                    <th translate="resources.smartCity.sensor.lastValue">Last value</th>
+                    <th translate="resources.smartCity.sensor.targetValue">Target value</th>
+                    <th translate="resources.smartCity.sensor.contract">Contract</th>
+                    <th translate="resources.smartCity.sensor.tariff">Tariff</th>
+                    <th class="icon-column">&nbsp;</th>
+                    <th class="icon-column">&nbsp;</th>
+                </tr>
+			</thead>
+			<tbody>
+                <tr ng-repeat="item in data" ng-class="{'b-l b-5x b-success':item.state === 1,'b-l b-5x b-danger':item.state === 0}">
+                    <td>
+                        <div>
+                            @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.Name))
+                        </div>
+                        <div>
+                            @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.Code))
+                        </div>
+                    </td>
+                    <td>@(Html.ColumnFor<ApiSensorGetAllResult>(x => x.LastTimestamp))</td>
+                    <td>@(Html.ColumnFor<ApiSensorGetAllResult>(x => x.LastValue)) @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.Unit))</td>
+
+                    <td ng-if="!item.updatable" style="padding-left: 30px;">
+                        &nbsp;
+                    </td>
+                    <td ng-if="item.updatable && (!item.targetValue)" style="padding-left: 30px;">
+                        @XpColumns.IconColumn(XpIcons.Plus, popupUrl: SensorFactory.SetTargetValueName, id: "{{item.id}}")
+                    </td>
+                    <td ng-if="item.updatable && (item.targetValue)">
+                        <span style="margin-left: 5px;">@(Html.ColumnFor<ApiSensorGetAllResult>(x => x.TargetValue)) @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.Unit))</span>
+                        <span style="margin-left: 5px;">@XpColumns.IconColumn(XpIcons.Pencil, popupUrl: SensorFactory.SetTargetValueName, id: "{{item.id}}", arguments: "{\"targetValue\":{{item.targetValue}}}")</span>
+                        <span style="margin-left: 5px;">@XpColumns.IconColumn(XpIcons.Remove, popupUrl: SensorFactory.RemoveTargetValueName, id: "{{item.id}}")</span>
+                    </td>
+
+                    <td>
+                        <div>
+                            @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.ContractName))
+                        </div>
+                        <div>
+                            @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.ContractCompany))
+                        </div>
+                        <div ng-if="item.hasMaximeter">
+                            <div ng-repeat="price in item.prices" class="color-template" style="width: 100%;padding: 0 5px;text-align:center" ng-style="{'background-color': price.color}">
+                                @(Html.ColumnFor<ApiSensorGetAllResult_Price>(x => x.PowerContract, iterator: "price"))
+                                <span ng-if="price.powerContractFactor!=1">x @(Html.ColumnFor<ApiSensorGetAllResult_Price>(x => x.PowerContractFactor, iterator: "price"))</span>
+                                @(Html.ColumnFor<ApiSensorGetAllResult_Price>(x => x.PowerContractUnit, iterator: "price"))
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="item.type==6">
+                            <div>
+                                @(Html.ColumnFor<ApiSensorGetAllResult>(x => x.TariffName))
+                            </div>
+                            <div>
+                                <div ng-repeat="price in item.prices" class="color-template" style="width: 100%;padding: 0 5px;text-align:center" ng-style="{'background-color': price.color}">
+                                    {{price.price}} €/{{item.unit}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="item.type==6">@XpColumns.IconColumn(XpIcons.ChartBar, panelUrl: SensorFactory.GetEnergyName + "({ id: \"{{item.id}}\"})")</div>
+                        <div ng-if="item.type==3">@XpColumns.IconColumn(XpIcons.ChartBar, panelUrl: SensorFactory.GetPowerName + "({ id: \"{{item.id}}\"})")</div>
+                    </td>
+                    <td>
+                        <div>@XpColumns.IconColumn(XpIcons.ChartLine, panelUrl: SensorFactory.GetInstantaneousName + "({ id: \"{{item.id}}\"})")</div>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+	</div>
+}

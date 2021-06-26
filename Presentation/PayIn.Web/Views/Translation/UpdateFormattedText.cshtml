@@ -1,0 +1,57 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Results.Translation;
+@using Xp.Common;
+
+@using (Html.xpPut(
+    TranslationFactory.UpdateFormattedText,
+    TranslationFactory.UpdateApi,
+    "",
+    "resources.translation.title",
+    isTitleActive: true,
+    init: ""
+        + "scope.arguments.noticeId = params.noticeId;"
+        + "scope.arguments.eventId = params.eventId;"
+        + "scope.arguments.language = params.language;"
+        + "scope.arguments.translateTo = params.language;"
+        + "scope.arguments.translationType = params.translationType;"
+    ))
+{
+    <xp-get data-api="@TranslationFactory.GetApi">
+        @*<div>Arguments: {{arguments}}</div>
+            <div>Id: {{id}}</div>*@
+        <div class="form-group">
+            <div class="row" style="margin: 0px 0px 15px 0px;">
+                <div data-ng-class="{'has-error':!form.originalText.$valid}" class="col-md-12">
+
+                    <label for="originalText" class="control-label ng-scope" translate="resources.translation.originalText">Texto original</label>
+                    <p ng-bind="arguments.originalText"></p>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 0px 15px 0px;">
+                <div class="col-md-12">
+                    <span translate="resources.translation.translateTo">Translate to</span>
+                    <span ng-show="arguments.language==0" translate="resources.language.valencian">Valencian</span>
+                    <span ng-show="arguments.language==1" translate="resources.language.spanish">Spanish</span>
+                    <span ng-show="arguments.language==2" translate="resources.language.english">English</span>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0px 0px 15px 0px;">
+                <div data-ng-class="{'has-error':!form.translatedText.$valid}" class="col-md-12">
+                    <label for="translatedText" class="control-label ng-scope" translate="resources.translation.translatedText">Texto traducido</label>
+                    <div ng-controller="wysiwygeditor" style="margin-top:0px" id="markdownTranslatedText">
+                        <div text-angular="text-angular" name="htmlcontent" ng-model="arguments.translatedText" xp-markdown-editor="arguments.translatedText" class="ng-untouched ng-valid ng-isolate-scope ta-root focussed ng-dirty ng-valid-parse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-left: 15px; margin-bottom: -34px;">
+            <a class="btn btn-orange" xp-navigate xp-modal=@TranslationFactory.Delete xp-arguments="{id:arguments.id}" xp-id={{arguments.id}}>
+                <span translate="resources.translation.delete">Delete</span>
+            </a>
+        </div>
+
+    </xp-get>
+}

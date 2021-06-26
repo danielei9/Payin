@@ -1,0 +1,43 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Results;
+
+@using (Html.xpList(
+    ServiceUserFactory.ServiceGroupsName,
+    ServiceUserFactory.ServiceGroupsApi,
+    "",
+    "resources.serviceUser.serviceGroups",
+    "{{arguments.userName}}",
+    isTitleActive: true,
+    init: "scope.id = params.id",
+    initialSearch: true,
+    actions: new ActionLink[] {
+        new ActionLink(ActionLink.ActionLinkType.Panel, ServiceUserFactory.AddServiceGroup("{{id}}"), XpIcons.Plus)
+    }
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th translate="resources.serviceUser.name">Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data">
+                    <td>@(Html.ColumnFor<ServiceUserGetAllResult>(x => x.Name))</td>
+                    <td class="icon-column">
+                        @XpColumns.IconColumn(
+                            XpIcons.Trash,
+                            popupUrl: ServiceUserFactory.RemoveServiceGroupName,
+                            id: "{{arguments.userId}}",
+                            arguments: "{\"groupId\":\"{{item.id}}\",\"userName\":\"{{arguments.userName}}\",\"groupName\":\"{{item.name}}\"}"
+                         )
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+}
+

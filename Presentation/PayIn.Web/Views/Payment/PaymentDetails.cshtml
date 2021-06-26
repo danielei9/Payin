@@ -1,0 +1,55 @@
+﻿@using PayIn.Common.Resources;
+
+
+@using (Html.xpPopupShow(
+	"",
+	"",
+	"",
+	//TicketResources.PaymentDetails,
+	"resources.ticket.paymentDetails",
+	showCancellButton: true
+))
+{
+	<div class="table-responsive">
+		<div class="col-md-4" style="float:left;">
+			<img data-ng-show="arguments.fotoExists == 'true'" src="{{arguments.fotoUrl}}" style="max-width:160px; margin:30px 0 0 30px;" />
+		</div>
+		<div class="col-md-4">
+		<h1 class="text-center" width:80%"><strong>{{arguments.supplierName}}</strong></h1>
+		<p class="text-center">{{arguments.supplierAddress}}</p>
+		<p class="text-center">@TicketResources.Cif: {{arguments.supplierTaxNumber}}</p>
+		<p class="text-center">@TicketResources.VatIncluding</p>
+		<p class="text-center">{{arguments.date|xpDateTime}}</p>
+			</div>
+		<div class="col-md-4">
+			&nbsp;
+		</div>
+		<table class="table table-hover" style="align-content:center">
+			<thead>
+				<tr>
+					<th translate="resources.ticket.paymentId">PaymentId</th>
+					<th translate="resources.ticket.ticketReference">TicketReference</th>
+					<th class="text-right"><span translate="resources.ticket.amount">Amount</span> / <span translate="resources.ticket.totalTicket">TotalTicket</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{arguments.id}}</td>
+					<td>{{arguments.reference}}</td>
+					<td class="text-right">{{arguments.amount|number:2}} € / {{arguments.ticketAmount|number:2}} €</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr />
+		<div class="text-right align-total"><strong translate="resources.ticket.payinComission">PayinCommission:</strong> {{arguments.payin|number:2}} €</div>
+		<h4 class="text-right align-total"><strong translate="resources.ticket.total">Total:</strong> {{arguments.total|number:2}} €</h4>
+		<hr />
+		<div>
+			<p class="text-center" translate="resources.ticket.name">Name: {{arguments.taxName}}</p>
+			<p class="text-center" translate="resources.ticket.cardNumber">CardNumber: {{arguments.numberHash}}</p>
+			<p class="text-center" data-ng-show="arguments.cardType==1"><span translate="resources.ticket.cardType">CardType</span>: Visa</p>
+			<p class="text-center" data-ng-show="arguments.cardType==2"><span translate="resources.ticket.cardType">CardType</span>: MasterCard</p>
+			<p class="text-center" data-ng-show="arguments.cardType==3"><span translate="resources.ticket.cardType">CardType</span>: AmericanExpress</p>
+		</div>
+	</div>
+}

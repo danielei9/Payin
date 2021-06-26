@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPopupPut(
+	ProductFactory.RemoveGroup,
+	ProductFactory.RemoveGroupApi,
+	"",
+	"resources.product.removeGroup",
+	arguments: "{\"groupId\":{{arguments.groupId}}}"
+))
+{
+	<p translate="resources.product.removeGroupQuestion" >Do you want to unlink indicated group?</p>
+}

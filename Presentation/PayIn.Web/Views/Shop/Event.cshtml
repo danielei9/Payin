@@ -1,0 +1,69 @@
+﻿@using PayIn.Web.App.Factories;
+@{
+    Layout = null;
+}
+<html ng-app="Store" ng-controller="shopGetGetEntranceTypesEventController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script src="~/Vendors/angulr/js/angular-locale_es-es.js"></script>
+    <script type="text/javascript">
+        var id = window.location.pathname.split('/')[3];
+        angular.module('Store', [])
+            .controller('shopGetGetEntranceTypesEventController', ['$http', '$scope', function ($http, $scope) {
+                $http.get('/Api/Shop/Event/'+id).then(function (data) {
+                    $scope.EventData = data.data.data;
+                });
+            }])
+    </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Images/{{features.favicon()}}" type="image/png">
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{EventData[0].name}}</title>
+</head>
+<body>
+    <div class="gallery">
+        <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:10px; float:right; height: 5vh;" />
+        <img class="image" ng-src={{EventData[0].photoUrl}}>
+        <img class="icon-image" ng-src={{EventData[0].photoUrl}} >
+    </div>
+    <div class="gallery-title">Tipos de Entradas de {{EventData[0].name}}</div>
+    <div class="content" ng-show="EventData">
+        <div class="col-50-card" ng-repeat="item in EventData">
+            <div class="border-card">
+                <a href="@ShopFactory.GetEntrance/{{item.id}}">
+                    <div class="img-container">
+                        <img class="img-full" ng-src={{item.entrancePhotoUrl}}>
+                    </div>
+                    <div class="card-header">
+                        <p>{{item.entranceName}}</p>
+                    </div>
+                    <div class="card-data">
+                        <div class="item more-info-box" style="height:11%">
+                            <div class="data-box" style="padding:5px" title="{{item.eventStart |date:'longDate'}}">
+                                <abbr class="month">{{EventData[0].eventStart| date:'MMM' }}</abbr>
+                                <abbr class="day">{{EventData[0].eventStart | date:'EEE'}}</abbr>
+                                <span class="number">{{EventData[0].eventStart | date:'dd'}}</span>
+                            </div>
+                            <div class="secondary-box" style="padding:5px">
+                                <div class="row row-box" title="Precio: {{item.entrancePrice}} €">
+                                    <span class="icon ion-cash icon-money"><span class="quantity">&nbsp;{{item.entrancePrice |number : 2}} €</span></span>                                  
+                                    <div class="row row-box"  title="{{item.place}}">
+                                        <span class="icon ion-location icon-location"> &nbsp;{{EventData[0].place}}</span>                             
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

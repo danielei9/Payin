@@ -1,0 +1,54 @@
+﻿@using PayIn.Web.App.Factories;
+@using Xp.Common;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpPopupPost(
+    EntranceTypeFactory.GetToGiveName,
+    TicketFactory.GiveEntrancesApi,
+    "",
+    "resources.ticket.give",
+    init:
+        //"scope.arguments.uid=params.uid;" +
+        "scope.arguments.cardId=params.cardId;" +
+        "scope.arguments.entranceTypes=[];"
+//init:
+//    "scope.arguments={};" +
+//    "scope.arguments.uid=params.uid;" +
+//    "scope.arguments.paymentConcessionId=params.paymentConcessionId;" +
+//    "scope.arguments.lines = scope.data;"
+))
+{
+    <xp-list data-api="@EntranceTypeFactory.GetToGiveApi" data-initial-search xp-success="scope.arguments.entranceTypes=data.data;">
+        <div class="panel panel-default">
+            <div id="panel-body" class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="icon-column">&nbsp;</th>
+                                <th translate="resources.entranceType.event">Event</th>
+                                <th translate="resources.entranceType.name">Name</th>
+                                <th translate="resources.entranceType.price">Price</th>
+                                <th translate="resources.entranceType.extraPrice">Extra price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in data" ng-click="item.selected = !item.selected" ng-class="{'selectedrow':item.selected}">
+                                <td ng-show="item.selected" class="icon-column">
+                                    @XpColumns.IconColumn(XpIcons.Check)
+                                </td>
+                                <td ng-show="!item.selected" class="icon-column">
+                                    @XpColumns.IconColumn(XpIcons.Unchecked)
+                                </td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetToGiveResult>(x => x.EventName))</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetToGiveResult>(x => x.Name))</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetToGiveResult>(x => x.Price))</td>
+                                <td>@(Html.ColumnFor<MobileEntranceTypeGetToGiveResult>(x => x.ExtraPrice))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </xp-list>
+}

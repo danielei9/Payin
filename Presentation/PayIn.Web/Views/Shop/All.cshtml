@@ -1,0 +1,87 @@
+﻿@using PayIn.Web.App.Factories;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html ng-app="Store" ng-controller="shopGetAllEventsController">
+<head>
+
+    @*<script src="~/Vendors/angulr/vendor/angular/angular.js"></script>*@
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript">
+        var filter = window.location.pathname.split('/')[3];
+        var myApp = angular.module('Store', ['ui.bootstrap']);
+
+        myApp.controller('shopGetAllEventsController', ['$http', '$scope', function ($http, $scope) {
+            $scope.inputEvent = "";
+            $scope.myInterval = 3500;
+
+            $scope.callEvents = function () {
+                
+                if ($scope.inputEvent.length!=0)
+                    filter = $scope.inputEvent;
+
+                $http.get('/Api/Shop/All/' + filter).then(function (data) {
+                    $scope.events = data.data;
+      
+                    $scope.slides = $scope.events.data[0];
+
+                });
+            };
+            $scope.callEvents();
+
+        }]);
+
+    </script>
+
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events</title>
+</head>
+<body>
+    <div class="gallery" style="height:430px !important; width:100%">
+        <div id="slides_control">
+            <div>
+                <carousel interval="myInterval">
+                    <slide ng-repeat="slide in slides.images" @*active="slide.active"*@ style="height:430px; position:center;" ng-show="slides !=0">
+                        <img ng-src="{{slide}}" style="margin:auto; max-width: 100%; zoom:150%;">
+                    </slide>
+                </carousel>
+            </div>
+        </div>
+        <img src="/app/logo_orange.png" alt="Pay[in]" class="navbar-brand block m-t" style="margin:auto;margin-top:-350px;z-index:2" />
+        <div class="input-Selector">
+            <form novalidate>                
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>                
+                <input type="text" id="eventsInput" placeholder="Busca eventos por nombre, ciudad..." style="width:400px;border-radius: 7px;" ng-model="inputEvent">
+                <button ng-click="callEvents()" style="visibility:hidden"></button>
+             </form>
+        </div>
+    </div>
+    <div class="gallery-title"></div>
+    <div class="content" ng-show="events.data">
+        <div class="col-50-card" ng-repeat="item in events.data">
+            <div class="border-card">
+                <a href="@ShopFactory.GetEventEntrancesType/{{item.id}}" @*ui-sref="@ShopFactory.GetApiConcessionEvents ({id:{{item.id}}})"*@ xp-navigate>
+                    <div class="img-container">
+                        <img class="img-full" ng-src={{item.photoUrl}}>
+                    </div>
+                    <div class="card-header">
+                        <p>{{item.name}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+     </div>
+    <p ng-hide="events.data" style="font-size:3em;position: absolute;left: calc(50% - 200px);top: calc(50% + 80px);">No se han encontrado eventos</p>
+</body>
+</html>

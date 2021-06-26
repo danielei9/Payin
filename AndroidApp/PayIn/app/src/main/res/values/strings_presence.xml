@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="control_presence">Control de Presencia</string>
+
+    <string name="fichaje_manual_item">item</string>
+
+    <string name="item">Item:</string>
+    <string name="selectPlan">Seleccionar un plan:</string>
+
+    <string name="form">Formulario:</string>
+    <string name="observations">Observaciones:</string>
+    <string name="btnSend">Enviar</string>
+
+    <string name="goToToday">Ir a hoy</string>
+    <string name="day">Día</string>
+    <string name="threeDays">3 días</string>
+    <string name="refresh">Actualizar</string>
+    <string name="manualCheck">Fichaje manual</string>
+    <string name="toDo">To Do</string>
+    <string name="done">Done</string>
+    <string name="previousDay">Día anterior</string>
+    <string name="nextDay">Día siguiente</string>
+
+    <string name="spinner_title">Seleccione un item</string>
+    <string name="lista_items">Listado Items</string>
+    <string name="calendario">Calendario</string>
+
+    <string name="prefHoursTitle">Jornada laboral</string>
+    <string name="prefhoursDesc">Mostrar horas trabajadas en la ventana principal</string>
+</resources>

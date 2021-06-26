@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.9</ProductVersion>
+    <ProjectGuid>02533d6a-6dd6-4ddc-bf19-cca71a702aee</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PayIn.Deployment.Azure</RootNamespace>
+    <AssemblyName>PayIn.Deployment.Azure</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>PayIn.Deployment.Azure</Name>
+    <PackageEnableRemoteDebugger>False</PackageEnableRemoteDebugger>
+    <UseWebProjectPorts>True</UseWebProjectPorts>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceConfiguration Include="ServiceConfiguration.Carcaixent.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Faura.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Vinaros.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.JustMoney.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Vilamarxant.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Homo.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Finestrat.cscfg" />
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Test.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Presentation\PayIn.Web.Internal\PayIn.Web.Internal.csproj">
+      <Name>PayIn.Web.Internal</Name>
+      <Project>{6c14cc99-3d11-4487-8950-bfe1037071f5}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>PayIn.Web.Internal</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Presentation\PayIn.Web.JustMoney\PayIn.Web.JustMoney.csproj">
+      <Name>PayIn.Web.JustMoney</Name>
+      <Project>{c8e24e3e-86e5-4709-ab79-951cce0011f5}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>PayIn.Web.JustMoney</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Presentation\PayIn.Web\PayIn.Web.csproj">
+      <Name>PayIn.Web</Name>
+      <Project>{afba7bc2-5005-48e8-9e21-a40ab43e11a1}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>PayIn.Web</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PayIn.InternalContent\" />
+    <Folder Include="PayIn.Web.InternalContent\" />
+    <Folder Include="PayIn.Web.JustMoneyContent\" />
+    <Folder Include="PayIn.WebContent\" />
+    <Folder Include="PayInContent\" />
+    <Folder Include="Profiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PayIn.InternalContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="PayIn.WebContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="PayInContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\PayInHomoStagging.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInTest.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInStagging.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInHomo.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInVilamarxant.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInTestStaging.azurePubxml" />
+    <PublishProfile Include="Profiles\PayInCarcaixent.azurePubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <DiagnosticsConfiguration Include="PayIn.Web.InternalContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="PayIn.Web.JustMoneyContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="PayIn.WebContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.9\</CloudExtensionsDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Production' ">
+    <OutputPath>bin\Production\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Test' ">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Emulator' ">
+    <OutputPath>bin\Emulator\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Homo' ">
+    <OutputPath>bin\Homo\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Vilamarxant' ">
+    <OutputPath>bin\Vilamarxant\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Fallas' ">
+    <OutputPath>bin\Fallas\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'JustMoney' ">
+    <OutputPath>bin\JustMoney\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Carcaixent' ">
+    <OutputPath>bin\Carcaixent\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Finestrat' ">
+    <OutputPath>bin\Finestrat\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Faura' ">
+    <OutputPath>bin\Faura\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Vinaros' ">
+    <OutputPath>bin\Vinaros\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>

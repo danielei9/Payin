@@ -1,0 +1,38 @@
+﻿@using PayIn.Web.App.Factories;
+@using PayIn.Application.Dto.Payments.Results;
+
+@using (Html.xpList(
+    PaymentFactory.CardPaymentsName,
+    PaymentFactory.CardPaymentsApi,
+    "",
+    "resources.serviceUser.payments",
+    showFormButtons: true,
+    isTitleActive: true,
+    init: "scope.id = params.id;",
+    initialSearch: true
+))
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th translate="resources.serviceUser.paymentTicketId"># Ticket</th>
+                    <th translate="resources.serviceUser.paymentDate">Date</th>
+                    <th translate="resources.serviceUser.paymentConcessionName">Place</th>
+                    <th translate="resources.serviceUser.paymentTicketAmount">Ticket amount</th>
+                    <th translate="resources.serviceUser.paymentPaymentAmount">Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in data">
+                    <td>@(Html.ColumnFor<PaymentGetAllByCardResult>(x => x.TicketId))</td>
+                    <td>@(Html.ColumnFor<PaymentGetAllByCardResult>(x => x.Date))</td>
+                    <td>@(Html.ColumnFor<PaymentGetAllByCardResult>(x => x.ConcessionName))</td>
+                    <td>@(Html.ColumnFor<PaymentGetAllByCardResult>(x => x.TicketAmount))</td>
+                    <td>@(Html.ColumnFor<PaymentGetAllByCardResult>(x => x.PaymentAmount))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+}
+

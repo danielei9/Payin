@@ -1,0 +1,38 @@
+﻿@using PayIn.Application.Dto.SmartCity.Results;
+@using PayIn.Web.App.Factories.SmartCity;
+@using Xp.Common;
+
+@using (Html.xpList(
+	ComponentFactory.GetAllName,
+	ComponentFactory.GetAllApi,
+	"",
+	"resources.smartCity.component.getAll",
+	isTitleActive: true,
+	init: "scope.arguments.deviceId = params.deviceId;"
+))
+{
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th translate="resources.smartCity.component.name">Name</th>
+					<th translate="resources.smartCity.component.type">Type</th>
+					<th translate="resources.smartCity.component.lastTimestamp">Last timestamp</th>
+					<th translate="resources.smartCity.component.model">Model</th>
+					<th class="icon-column">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in data">
+					<td>@(Html.ColumnFor<ApiComponentGetAllResult>(x => x.Name))</td>
+					<td>@(Html.ColumnFor<ApiComponentGetAllResult>(x => x.TypeName))</td>
+					<td>@(Html.ColumnFor<ApiComponentGetAllResult>(x => x.LastTimestamp))</td>
+					<td>@(Html.ColumnFor<ApiComponentGetAllResult>(x => x.Model))</td>
+					<td>
+						<button class="btn btn-xs btn-info" data-ui-sref='@SensorFactory.GetAllName ({componentId:"{{item.id}}"})' data-xp-navigate>{{item.sensorsNumber}}</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}

@@ -1,0 +1,49 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments.CampaignLine;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+@using Xp.Common;
+
+@using (Html.xpPost(
+	CampaignLineFactory.CreateName,
+	CampaignLineFactory.CreateApi,
+	"",
+	"resources.campaignLine.create"
+))
+{
+    <style>
+        .panel-body {
+            padding: 15px;
+            margin-top: -15px;
+        }
+    </style>
+
+	<div data-ng-init="arguments.campaignId = $stateParams.id">
+		<div class="panel-heading font-bold" translate="resources.campaignLine.campaignLineDetails">Campaign line details</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<div class="checkbox" style="margin-left:0px;">
+					<label class="i-checks">
+                        <input type="checkbox" id="checkAll" ng-model="value2" ng-true-value="true" ng-false-value="false"><i></i> <span translate="resources.campaignLine.all" style="margin-left:0px !important">Aplicar siempre el descuento</span>
+					</label>
+				</div>
+				<div class="row" ng-hide="value2">
+					@*@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.Min, width: 6))
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.Max, width: 6))*@
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.SinceTime, width: 6))
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.UntilTime, width: 6))
+				</div>
+				<div class="row">
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.Type, width: 6))
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.Quantity, width: 6))
+				</div>
+				@*<div class="row">
+					@(Html.SelectFor<CampaignLineCreateArguments>(x => x.PurseId, "PurseName", CampaignLineFactory.RetrieveSelectorApi))
+				</div>*@
+				<div class="row">
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.AllProduct, width: 6))
+					@(Html.ArgumentFor<CampaignLineCreateArguments>(x => x.AllEntranceType, width: 6))
+				</div>
+			</div>
+		</div>
+	</div>
+}

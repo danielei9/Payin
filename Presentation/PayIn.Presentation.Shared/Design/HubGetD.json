@@ -1,0 +1,54 @@
+﻿{
+	"Favorites": [
+		{
+			"Title": "Tarjeta personal",
+			"Subtitle": "Visa La Caixa",
+			"IsFavorite": true
+		},
+		{
+			"Title": "Abono diario",
+			"Subtitle": "Golf Valencia",
+			"IsFavorite": true
+		},
+		{
+			"Title": "Bono 10",
+			"Subtitle": "Metro Valencia",
+			"IsFavorite": true,
+			"Balance": "3"
+		}
+	],
+	"Data": [
+		{
+			"Title": "Subvención",
+			"Subtitle": "Ayuntamiento",
+			"IsFavorite": false,
+			"Balance" :  "15.50"
+		},
+		{
+			"Title": "Tarjeta personal",
+			"Subtitle": "Visa La Caixa",
+			"IsFavorite": true
+		},
+		{
+			"Title": "Tarjeta trabajo",
+			"Subtitle": "Visa BSCH",
+			"IsFavorite": false
+		},
+		{
+			"Title": "Abono diario",
+			"Subtitle": "Golf Valencia",
+			"IsFavorite": true
+		},
+		{
+			"Title": "Concierto Fallas",
+			"Subtitle": "Entrada",
+			"IsFavorite": false
+		},
+		{
+			"Title": "Bono 10",
+			"Subtitle": "Metro Valencia",
+			"IsFavorite": true,
+			"Balance":  "3"
+		}
+	]
+}

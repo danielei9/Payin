@@ -1,0 +1,24 @@
+﻿@using PayIn.Application.Dto.Payments.Arguments;
+@using PayIn.Common.Resources;
+@using PayIn.Web.App.Factories;
+
+@using (Html.xpPost(
+	CampaignFactory.CreateImageName,
+	CampaignFactory.CreateImageApi,
+	"",
+	"resources.campaign.imageCrop",
+	isTitleActive: true,
+	init: "scope.arguments.campaignId=params.id",
+	successUrl: "#/Campaign",
+	acceptText: "",
+	cancelText: "Continuar"
+))
+{
+	<xp-get api="@CampaignFactory.GetApi">
+		@(Html.ArgumentFor<ApiCampaignUpdatePhotoArguments>(x => x.PhotoUrl, width: 3, focus: true, fieldUrl: @CampaignFactory.UpdateImageCropName))
+		<div class="col-md-9">
+			<h4 translate="resources.campaign.infoCreateImage">Para completar el proceso, solo falta añadir la foto de la promoción.</h4>
+		</div>
+	</xp-get>
+}
+

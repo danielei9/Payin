@@ -1,0 +1,32 @@
+﻿@using PayIn.Web.App.Factories;
+@{
+    Layout = null;
+}
+<html ng-app="Store" ng-controller="shopGetGetEntranceTypesEventController">
+<head>
+    <script src="~/Vendors/angulr/vendor/angular/angular.js"></script>
+    <script type="text/javascript">
+        var id = window.location.pathname.split('/')[3];
+        angular.module('Store', [])
+            .controller('shopGetFormController', ['$http', '$scope', function ($http, $scope) {
+                $http.get('/Api/Shop/Form/'+id).then(function (data) {
+                    $scope.FormData = data.data.data;
+                });
+            }])
+    </script>
+    <!-- BootStrap-->
+    @Styles.Render("~/Content/bootstrap")
+    <!-- Xp -->
+    @Styles.Render("~/Content/xp")
+    <!-- App -->
+    @Styles.Render("~/Content/app")
+    <link type="text/css" href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="http://ionicons.com/css/ionicons.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{FormData[0].name}}</title>
+</head>
+<body>
+    <div class="gallery">
+     </div>
+</body>
+</html>
